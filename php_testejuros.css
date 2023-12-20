@@ -8,3 +8,9 @@ p{
 	color: green;	
 	margin: 3px;
 }
+@media (prefers-color-scheme: dark) { 
+  body{
+     color: #fff;
+     background-color: #111;
+  }
+}

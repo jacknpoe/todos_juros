@@ -64,9 +64,9 @@ class Juros:
         return (total / acumulador - 1) * 100
 
     """Calcula os juros a partir do acréscimo"""
-    def acrescimoparajuros(self, acrescimo=0, precisao=12, maximointeracoes=100, maximojuros=50,
+    def acrescimoparajuros(self, acrescimo=0, precisao=12, maximoiteracoes=100, maximojuros=50,
                            acrescimocomovalororiginal=False):
-        if maximointeracoes < 1 or self.Quantidade <= 0 or precisao < 1 or self.Periodo <= 0 or acrescimo <= 0:
+        if maximoiteracoes < 1 or self.Quantidade <= 0 or precisao < 1 or self.Periodo <= 0 or acrescimo <= 0:
             return 0
 
         minimojuros = 0
@@ -83,7 +83,7 @@ class Juros:
 
         minimadiferenca = 0.1 ** precisao
 
-        for i in range(maximointeracoes):
+        for i in range(maximoiteracoes):
             mediojuros = (minimojuros + maximojuros) / 2
             if (maximojuros - minimojuros) < minimadiferenca:
                 return mediojuros

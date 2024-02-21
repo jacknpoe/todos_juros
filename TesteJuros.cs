@@ -14,11 +14,11 @@ class TesteJuros {
         juros.Pagamentos[1] = 60;
         juros.Pagamentos[2] = 90;
 
-        double acrescimocalculado = juros.jurosParaAcrescimo(3);
-        double juroscalculado = juros.acrescimoParaJuros(acrescimocalculado);
+        double acrescimoCalculado = juros.jurosParaAcrescimo(3);
+        double jurosCalculado = juros.acrescimoParaJuros(acrescimoCalculado);
 
-        System.Console.WriteLine(acrescimocalculado);
-        System.Console.WriteLine(juroscalculado);
+        System.Console.WriteLine(acrescimoCalculado);
+        System.Console.WriteLine(jurosCalculado);
         System.Console.ReadLine();
     }
 }

@@ -14,14 +14,14 @@ class Juros (pQuantidade: Int, pComposto: Boolean, pPeriodo: Int) {
     private var pagamentos: Array<Int> = emptyArray()
     private var pesos: Array<Double> = emptyArray()
 
-    init {
-        setValores(pQuantidade, pComposto, pPeriodo)
-    }
-
     fun setValores(pQuantidade: Int, pComposto: Boolean, pPeriodo: Int) {
         quantidade = pQuantidade
         composto = pComposto
         periodo = pPeriodo
+    }
+
+    init {
+        setValores(pQuantidade, pComposto, pPeriodo)
     }
 
     fun setPagamento(indice: Int, valor: Int) {
@@ -45,12 +45,12 @@ class Juros (pQuantidade: Int, pComposto: Boolean, pPeriodo: Int) {
         var acumulador = 0.0
         var soZero = true
 
-        for(indice in 0..quantidade-1) {
+        for(indice in 0..<quantidade) {
             if(pagamentos[indice] > 0 && pesos[indice] > 0) soZero = false
-            if(composto) {
-                acumulador += pesos[indice] / (1 + juros / 100).pow(pagamentos[indice] / periodo)
+            acumulador += if(composto) {
+                pesos[indice] / (1 + juros / 100).pow(pagamentos[indice] / periodo)
             } else {
-                acumulador += pesos[indice] / (1 + juros / 100 * pagamentos[indice] / periodo)
+                pesos[indice] / (1 + juros / 100 * pagamentos[indice] / periodo)
             }
         }
 

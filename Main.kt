@@ -1,5 +1,3 @@
-import juros.Juros
-
 fun main() {
     val juros = Juros(3, true, 30)
     juros.setPagamento(0, 30)

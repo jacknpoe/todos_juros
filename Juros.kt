@@ -1,5 +1,3 @@
-// import kotlin.collections
-package juros
 import kotlin.math.pow
 
 class Juros (pQuantidade: Int, pComposto: Boolean, pPeriodo: Int) {

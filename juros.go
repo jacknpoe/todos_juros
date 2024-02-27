@@ -75,14 +75,7 @@ func (this Juros) acrescimoParaJuros(acrescimo float64, precisao int, maxIteraco
 }
 
 func main() {
-	juros := Juros{3, true, 30, make([]float64, 3), make([]float64, 3)}
-	juros.Pagamentos[0] = 30.0
-	juros.Pagamentos[1] = 60.0
-	juros.Pagamentos[2] = 90.0
-	juros.Pesos[0] = 1
-	juros.Pesos[1] = 1
-	juros.Pesos[2] = 1
-	// fmt.Println(juros.getPesoTotal())
+	juros := Juros{3, true, 30, []float64{30.0, 60.0, 90.0}, []float64{1.0, 1.0, 1.0}}
 	acrescimoCalculado := juros.jurosParaAcrescimo(3)
 	jurosCalculado := juros.acrescimoParaJuros(acrescimoCalculado, 15, 100, 50)
 	fmt.Println(acrescimoCalculado)

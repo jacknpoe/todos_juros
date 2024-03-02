@@ -54,7 +54,7 @@ Public Class Juros
     Public Function AcrescimoParaJuros(ByVal acrescimo As Double, ByVal precisao As Integer, ByVal maxIteracoes As Integer, ByVal maxJuros As Double)
         Dim minJuros As Double = 0.0
         Dim medJuros As Double
-        DIm minDiferenca As Double
+        Dim minDiferenca As Double
         Dim PesoTotal As Double
         If maxIteracoes < 1 Or Quantidade < 1 Or precisao < 1 Or Periodo < 1 Or acrescimo <= 0 Or maxJuros <= 0 Then Return 0.0
         pesoTotal = GetPesoTotal

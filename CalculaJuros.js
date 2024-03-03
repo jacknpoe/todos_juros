@@ -1,6 +1,7 @@
 // Classe que faz o cálculo do juros, sendo que precisa de arrays pra isso
 // Versão 1.0: ??/??/????: versão inclusa no HTML
 // Versão 1.1: 26/09/2023: versão separada no arquivo CalculaJuros.js
+// Versão 1.2: 03/03/2024: correção (não aceitava acréscimo menor que 1%)
 // TODO: colocar a classe em um arquivo separado (como com aula93.js e cursos2.js)
 
 class CalculaJuros{
@@ -74,9 +75,9 @@ class CalculaJuros{
 		return (total / acumulador - 1) * 100
 	}
 
-	// Calcula os juros a parit do acréscimo
-	acrescimoParaJuros(acrescimo=0, precisao=12, maximoInteracoes=100, maximoJuros=50, acrescimoComoValorOriginal=false){
-		if(maximoInteracoes < 1 || this.Quantidade < 1 || precisao < 1 || this.Periodo < 1 || acrescimo < 1 ) return 0
+	// Calcula os juros a partir do acréscimo
+	acrescimoParaJuros(acrescimo=0, precisao=15, maximoInteracoes=100, maximoJuros=50, acrescimoComoValorOriginal=false){
+		if(maximoInteracoes < 1 || this.Quantidade < 1 || precisao < 1 || this.Periodo < 1 || acrescimo <= 0 ) return 0
 
 		let minimoJuros = 0
 		let medioJuros = 0

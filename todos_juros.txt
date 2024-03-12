@@ -40,9 +40,12 @@ php_testejuros.php
 Juros.py
 main.py
 
-11. TypeScript
+11. R
+Juros.R
+
+12. TypeScript
 Juros.ts
 TesteJuros.ts
 
-12. Visual Basic .NET
+13. Visual Basic .NET
 TesteJuros.vb

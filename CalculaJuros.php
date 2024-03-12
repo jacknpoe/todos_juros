@@ -98,7 +98,7 @@
 				}
 				else
 				{	// SIMPLES
-					$acumulador += $this->Pesos[ $indice] / (( 1 + $juros / 100) * $this->Pagamentos[ $indice] / $this->Periodo);
+					$acumulador += $this->Pesos[ $indice] / ( 1 + $juros / 100 * $this->Pagamentos[ $indice] / $this->Periodo);
 				}
 			}
 

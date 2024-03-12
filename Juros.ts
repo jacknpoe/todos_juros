@@ -19,7 +19,7 @@ export class Juros{
 
 	// "Define as datas de pagamento a partir de uma string separada pelo delimitador
 	setPagamentos(delimitador: string = ",", pagamentos: string = "") : boolean {
-		if( pagamentos == ""){
+		if(pagamentos == ""){
 			for(let c: number = 0; c < this.Quantidade; c++){
 				this.Pagamentos[c] = (1 + c) * this.Periodo;
 			}
@@ -35,7 +35,7 @@ export class Juros{
 
 	// "Define as datas de pagamento a partir de uma string separada pelo delimitador
 	setPesos(delimitador: string = ",", pesos: string = "") : boolean {
-		if( pesos == ""){
+		if(pesos == ""){
 			for(let c: number = 0; c < this.Quantidade; c++){
 				this.Pesos[c] = 1;
 			}
@@ -49,7 +49,7 @@ export class Juros{
 		return true;
 	}
 
-	// Retorna a soma total de todos os pesos
+	// "Retorna a soma total de todos os pesos
 	getPesoTotal() : number {
 		let acumulador: number = 0.0;
 		for(let c = 0; c < this.Quantidade; c++){
@@ -58,7 +58,7 @@ export class Juros{
 		return acumulador;
 	}
 
-	// Calcula o acréscimo a partir dos juros
+	// "Calcula o acréscimo a partir dos juros
 	jurosParaAcrescimo(juros: number = 0.0) : number {
 		if(juros <= 0.0 || this.Quantidade < 1 || this.Periodo < 1) return 0.0;
 
@@ -71,7 +71,7 @@ export class Juros{
 			if(this.Composto){
 				acumulador += this.Pesos[i] / ((1 + juros / 100) ** (this.Pagamentos[i] / this.Periodo));
 			} else{
-				acumulador += this.Pesos[i] / (1 + juros / 100 * this.Pagamentos[i] / this.Periodo);
+				acumulador += this.Pesos[i] / ((1 + juros / 100) * this.Pagamentos[i] / this.Periodo);
 			}
 		}
 
@@ -79,7 +79,7 @@ export class Juros{
 		return (pesoTotal / acumulador - 1) * 100;
 	}
 
-	// Calcula os juros a partir do acréscimo
+	// "Calcula os juros a partir do acréscimo
 	acrescimoParaJuros(acrescimo: number = 0.0, precisao: number = 15, maximoInteracoes: number = 100, maximoJuros: number = 50.0, acrescimoComoValorOriginal: boolean = false) : number {
 		if(maximoInteracoes < 1 || this.Quantidade < 1 || precisao < 1 || this.Periodo < 1 || acrescimo <= 0 ) return 0.0;
 

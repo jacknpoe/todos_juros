@@ -40,7 +40,7 @@ func (this Juros) jurosParaAcrescimo(juros float64) float64 {
 		if this.Composto {
 			acumulador += this.Pesos[indice] / math.Pow(1+juros/100, this.Pagamentos[indice]/this.Periodo)
 		} else {
-			acumulador += this.Pesos[indice] / (1 + juros/100*this.Pagamentos[indice]/this.Periodo)
+			acumulador += this.Pesos[indice] / ((1 + juros/100) * this.Pagamentos[indice] / this.Periodo)
 		}
 	}
 

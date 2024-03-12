@@ -43,9 +43,12 @@ main.py
 11. R
 Juros.R
 
-12. TypeScript
+12. Ruby
+juros.rb
+
+13. TypeScript
 Juros.ts
 TesteJuros.ts
 
-13. Visual Basic .NET
+14. Visual Basic .NET
 TesteJuros.vb

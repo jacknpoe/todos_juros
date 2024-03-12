@@ -9,7 +9,7 @@ namespace jacknpoe {
 	class Interest {
 	protected:
 		short Quant;		// number of payments (all payments with 0 will be considered a valid payment in cash)
-		bool Compounded;		// compounded (InterestRate², InterestRate³)
+		bool Compounded;		// compounded (InterestRateÂ², InterestRateÂ³)
 		short Period;		// period fot the InterestRate (like 30 for a 30 days interest rate)
 		short *Payments;		// payment days in periods like in days { 0, 30, 60, 90}
 		long double *Weights;		// payment weights (in any unit, value, apportionment...)
@@ -93,7 +93,7 @@ namespace jacknpoe {
 		for( short index = 0; index < Quant; index++) {
 			if( Payments[ index] > 0 and Weights[ index] > 0) onlyzero = false;
 			if( Compounded)	accumulator += Weights[ index] / pow( 1 + interestrate / 100, Payments[ index] / Period);  // compounded interest
-				else accumulator += Weights[ index] / ( 1 + interestrate / 100 * Payments[ index] / Period);  // simple interest
+				else accumulator += Weights[ index] / (( 1 + interestrate / 100) * Payments[ index] / Period);  // simple interest
 		}
 		if( onlyzero) return 0;
 		return ( total / accumulator - 1 ) * 100;
@@ -133,9 +133,9 @@ int main() {
 
 	
 	while( true) {
-		std::cout << "——————————————————————————————————\n";
+		std::cout << "â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”\n";
 		std::cout << "| Choose an option               |\n";
-		std::cout << "——————————————————————————————————\n\n";
+		std::cout << "â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”\n\n";
 		std::cout << "     1. Interest Rate to Increase.\n\n";
 		std::cout << "     2. Increase to Interest Rate.\n\n";
 		std::cout << "Others. Exit.\n\n\n";

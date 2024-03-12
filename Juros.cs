@@ -42,7 +42,7 @@ public class Juros
             if(Composto) {
                 acumulador += Pesos[indice] / Math.Pow(1 + juros / 100, Pagamentos[indice] / Periodo);
             } else {
-                acumulador += Pesos[indice] / (1 + juros / 100 * Pagamentos[indice] / Periodo);
+                acumulador += Pesos[indice] / ((1 + juros / 100) * Pagamentos[indice] / Periodo);
             }
         }
 

@@ -52,7 +52,7 @@ double jurosParaAcrescimo(struct Juros *juros, double valor) {
 	for(indice = 0; indice < juros->Quantidade; indice++) {
 		if(juros->Pagamentos[indice] > 0 && juros->Pesos[indice] > 0) soZero = false;
 		if(juros->Composto) acumulador += juros->Pesos[indice] / pow(1 + valor / 100, juros->Pagamentos[indice] / juros->Periodo);
-			else acumulador += juros->Pesos[indice] / ((1 + valor / 100) * juros->Pagamentos[indice] / juros->Periodo);
+			else acumulador += juros->Pesos[indice] / (1 + valor / 100 * juros->Pagamentos[indice] / juros->Periodo);
 	}
 	
 	if(soZero) return 0.0;

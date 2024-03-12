@@ -111,7 +111,7 @@ begin
     begin
       acumulador := acumulador + Pesos[indice] / Power(1 + juros / 100, Pagamentos[indice] / Periodo);
     end else begin
-      acumulador := acumulador + Pesos[indice] / (1 + juros / 100 * Pagamentos[indice] / Periodo);
+      acumulador := acumulador + Pesos[indice] / ((1 + juros / 100) * Pagamentos[indice] / Periodo);
     end;
   end;
   if soZero then

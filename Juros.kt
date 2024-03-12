@@ -48,7 +48,7 @@ class Juros (pQuantidade: Int, pComposto: Boolean, pPeriodo: Int) {
             acumulador += if(composto) {
                 pesos[indice] / (1 + juros / 100).pow(pagamentos[indice] / periodo)
             } else {
-                pesos[indice] / (1 + juros / 100 * pagamentos[indice] / periodo)
+                pesos[indice] / ((1 + juros / 100) * pagamentos[indice] / periodo)
             }
         }
 

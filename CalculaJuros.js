@@ -67,7 +67,7 @@ class CalculaJuros{
 			if(this.Composto){
 				acumulador += this.Pesos[i] / ((1 + juros / 100) ** (this.Pagamentos[i] / this.Periodo))
 			} else{
-				acumulador += this.Pesos[i] / ((1 + juros / 100) * this.Pagamentos[i] / this.Periodo)
+				acumulador += this.Pesos[i] / (1 + juros / 100 * this.Pagamentos[i] / this.Periodo)
 			}
 		}
 

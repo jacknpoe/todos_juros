@@ -93,7 +93,7 @@ namespace jacknpoe {
 		for( short index = 0; index < Quant; index++) {
 			if( Payments[ index] > 0 and Weights[ index] > 0) onlyzero = false;
 			if( Compounded)	accumulator += Weights[ index] / pow( 1 + interestrate / 100, Payments[ index] / Period);  // compounded interest
-				else accumulator += Weights[ index] / (( 1 + interestrate / 100) * Payments[ index] / Period);  // simple interest
+				else accumulator += Weights[ index] / ( 1 + interestrate / 100 * Payments[ index] / Period);  // simple interest
 		}
 		if( onlyzero) return 0;
 		return ( total / accumulator - 1 ) * 100;

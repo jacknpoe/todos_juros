@@ -56,7 +56,7 @@ class Juros:
             if self.Composto:
                 acumulador += self.Pesos[i] / ((1 + juros / 100) ** (self.Pagamentos[i] / self.Periodo))
             else:
-                acumulador += self.Pesos[i] / ((1 + juros / 100) * self.Pagamentos[i] / self.Periodo)
+                acumulador += self.Pesos[i] / (1 + juros / 100 * self.Pagamentos[i] / self.Periodo)
 
         if sozero:
             return 0

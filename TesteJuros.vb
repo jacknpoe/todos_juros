@@ -43,7 +43,7 @@ Public Class Juros
             If Composto Then
                 acumulador = acumulador + Pesos(Indice) / (1 + juros / 100) ^ (Pagamentos(Indice) / Periodo)
             Else
-                acumulador = acumulador + Pesos(Indice) / ((1 + juros / 100) * Pagamentos(Indice) / Periodo)
+                acumulador = acumulador + Pesos(Indice) / (1 + juros / 100 * Pagamentos(Indice) / Periodo)
             End If
         Next Indice
 

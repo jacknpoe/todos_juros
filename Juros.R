@@ -23,7 +23,7 @@ jurosParaAcrescimo = function(juros) {
     if (Juros$composto) {
       acumulador <- acumulador + Juros$pesos[indice] / (1 + juros / 100) ** (Juros$pagamentos[indice] / Juros$periodo)
     } else {
-      acumulador <- acumulador + Juros$pesos[indice] / ((1 + juros / 100) * Juros$pagamentos[imdice] / Juros$periodo)
+      acumulador <- acumulador + Juros$pesos[indice] / (1 + juros / 100 * Juros$pagamentos[imdice] / Juros$periodo)
     }
   }
   

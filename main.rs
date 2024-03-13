@@ -1,3 +1,4 @@
+/// "Classe" Juros para os cálculos entre acréscimo e juros
 pub struct Juros {
     quantidade: usize,
     composto: bool,
@@ -6,7 +7,9 @@ pub struct Juros {
     pesos: Vec<f64>,
 }
 
+/// Métodos da "classe" Juros
 impl Juros {
+    /// Cria um "objeto" Juros e atribui valores para os "atributos"
     pub fn novo(quantidade: usize, composto: bool, periodo: f64, pagamentos: Vec<f64>, pesos: Vec<f64>) -> Self {
         Self {
             quantidade,
@@ -17,6 +20,7 @@ impl Juros {
         }
     }
 
+    /// Calcula o peso total, somando todos os valores do array pesos
     pub fn get_peso_total(&self) -> f64 {
         let mut acumulador: f64 = 0.0;
         for indice in 0..self.quantidade {
@@ -25,6 +29,7 @@ impl Juros {
         acumulador
     }
 
+    /// Calcula o total do acréscimo a partir dos juros e dos dados no "objeto"
     pub fn juros_para_acrescimo(&self, juros: f64) -> f64 {
         if juros <= 0.0 || self.quantidade <= 0 || self.periodo <= 0.0 {
             return 0.0;
@@ -55,6 +60,7 @@ impl Juros {
         }
     }
 
+    /// Calcula o total dos juros a partir do acréscimo e dos dados no "objeto"
     pub fn acrescimo_para_juros (&self, acrescimo: f64, precisao: f64, max_iteracoes: usize, maximo_juros: f64) -> f64 {
         if max_iteracoes < 1 || self.quantidade <= 0 || precisao < 1.0 || self.periodo <= 0.0 || acrescimo <= 0.0 || maximo_juros <= 0.0 {
             return 0.0;

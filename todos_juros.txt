@@ -46,9 +46,12 @@ Juros.R
 12. Ruby
 juros.rb
 
-13. TypeScript
+13. Rust
+main.rs
+
+14. TypeScript
 Juros.ts
 TesteJuros.ts
 
-14. Visual Basic .NET
+15. Visual Basic .NET
 TesteJuros.vb

@@ -1,10 +1,10 @@
 /// "Classe" Juros para os cálculos entre acréscimo e juros
 pub struct Juros {
-    quantidade: usize,
-    composto: bool,
-    periodo: f64,
-    pagamentos: Vec<f64>,
-    pesos: Vec<f64>,
+    pub quantidade: usize,
+    pub composto: bool,
+    pub periodo: f64,
+    pub pagamentos: Vec<f64>,
+    pub pesos: Vec<f64>,
 }
 
 /// Métodos da "classe" Juros

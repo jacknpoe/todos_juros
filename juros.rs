@@ -10,13 +10,13 @@ pub struct Juros {
 /// Métodos da "classe" Juros
 impl Juros {
     /// Cria um "objeto" Juros e atribui valores para os "atributos"
-    pub fn novo(quantidade: usize, composto: bool, periodo: f64, pagamentos: Vec<f64>, pesos: Vec<f64>) -> Self {
+    pub fn novo(quantidade: usize, composto: bool, periodo: f64, pagamentos: &Vec<f64>, pesos: &Vec<f64>) -> Self {
         Self {
             quantidade,
             composto,
             periodo,
-            pagamentos,
-            pesos
+            pagamentos: pagamentos.to_vec(),
+            pesos: pesos.to_vec()
         }
     }
 

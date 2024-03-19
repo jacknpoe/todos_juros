@@ -4,7 +4,7 @@ pub struct Juros {
     pub composto: bool,
     pub periodo: f64,
     pub pagamentos: Vec<f64>,
-    pub pesos: Vec<f64>,
+    pub pesos: Vec<f64>
 }
 
 /// Métodos da "classe" Juros
@@ -16,7 +16,7 @@ impl Juros {
             composto,
             periodo,
             pagamentos,
-            pesos,
+            pesos
         }
     }
 

@@ -47,6 +47,7 @@ Juros.R
 juros.rb
 
 13. Rust
+juros.rs
 main.rs
 
 14. TypeScript

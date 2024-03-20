@@ -1,18 +1,18 @@
 import kotlin.math.pow
 
-class Juros (pQuantidade: Int, pComposto: Boolean, pPeriodo: Int) {
+class Juros (pQuantidade: Int, pComposto: Boolean, pPeriodo: Double) {
     private var quantidade: Int = 0
         set(value) {
             field = value
-            pagamentos = Array(value){0}
+            pagamentos = Array(value){0.0}
             pesos = Array(value){0.0}
         }
     private var composto: Boolean = false
-    private var periodo: Int = 30
-    private var pagamentos: Array<Int> = emptyArray()
+    private var periodo: Double = 30.0
+    private var pagamentos: Array<Double> = emptyArray()
     private var pesos: Array<Double> = emptyArray()
 
-    fun setValores(pQuantidade: Int, pComposto: Boolean, pPeriodo: Int) {
+    fun setValores(pQuantidade: Int, pComposto: Boolean, pPeriodo: Double) {
         quantidade = pQuantidade
         composto = pComposto
         periodo = pPeriodo
@@ -22,7 +22,7 @@ class Juros (pQuantidade: Int, pComposto: Boolean, pPeriodo: Int) {
         setValores(pQuantidade, pComposto, pPeriodo)
     }
 
-    fun setPagamento(indice: Int, valor: Int) {
+    fun setPagamento(indice: Int, valor: Double) {
         pagamentos[indice] = valor
     }
 
@@ -37,14 +37,14 @@ class Juros (pQuantidade: Int, pComposto: Boolean, pPeriodo: Int) {
     }
 
     fun jurosParaAcrescimo(juros: Double) : Double {
-        if(juros <= 0 || quantidade <= 0 || periodo <= 0) return 0.0
+        if(juros <= 0 || quantidade <= 0 || periodo <= 0.0) return 0.0
         val pesoTotal = getPesoTotal()
         if(pesoTotal <= 0) return 0.0
         var acumulador = 0.0
         var soZero = true
 
         for(indice in 0..<quantidade) {
-            if(pagamentos[indice] > 0 && pesos[indice] > 0) soZero = false
+            if(pagamentos[indice] > 0.0 && pesos[indice] > 0.0) soZero = false
             acumulador += if(composto) {
                 pesos[indice] / (1 + juros / 100).pow(pagamentos[indice] / periodo)
             } else {
@@ -57,7 +57,7 @@ class Juros (pQuantidade: Int, pComposto: Boolean, pPeriodo: Int) {
     }
 
     fun acrescimoParaJuros(acrescimo: Double, precisao: Int = 15, maxIteracoes: Int = 100, topJuros: Double = 50.0) : Double {
-        if(maxIteracoes < 1 || quantidade <= 0 || precisao < 1 || periodo <= 0 || acrescimo <=0 || topJuros <= 0) return 0.0
+        if(maxIteracoes < 1 || quantidade <= 0 || precisao < 1 || periodo <= 0.0 || acrescimo <=0 || topJuros <= 0) return 0.0
         var minJuros = 0.0
         var maxJuros = topJuros
         var medJuros = 0.0

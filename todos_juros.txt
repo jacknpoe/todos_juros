@@ -1,58 +1,58 @@
-11 resoluções de equação transcendente
-Desde que esse artigo foi publicado, mais uma resolução foi acrescentada ao repositório https://github.com/jacknpoe/todos_juros, totalizando, agora, onze resoluções.
-No artigo Resolução de Equação Transcendente, foi explicado como uma equação que calcula os juros a partir do acréscimo e das parcelas pode ser feita usando cálculo numérico, especificamente o método da bisseção.
+15 resoluções de equação transcendente
+Desde que esse artigo foi publicado, mais cinco resoluções foram acrescentadas ao repositório https://github.com/jacknpoe/todos_juros, totalizando, agora, quinze resoluções.
+No artigo Resolução de Equação Transcendente, foi explicado como uma equação que calcula os juros a partir do acréscimo e das parcelas pode ser feita usando cálculo numérico, especificamente o método da bisseção.
 Esta é a relação das resoluções em linguagens diferentes. Algumas contêm o código de teste no mesmo arquivo. Em outras, o arquivo de testes é separado. Caso seja publicada uma nova resolução, ela será adicionada à lista.
 
-1. C
+1. C (01/03/2024)
 juros.c
 
-2. C++
+2. C++ (17/09/2023)
 interest.cpp
 
-3. C#
+3. C# (21/02/2024)
 Juros.cs
 TesteJuros.cs
 
-4. Delphi
+4. Delphi (28/02/2024)
 Juros.pas
 TesteJuros.dpr
 
-5. Go
+5. Go (27/02/2024)
 juros.go
 
-6. Java
+6. Java (27/02/2024)
 Juros.java
 TesteJuros.java
 
-7. JavaScript
+7. JavaScript (22/11/2023)
 CalculaJuros.js
 js_testejuros.html
 
-8. Kotlin
+8. Kotlin (22/02/2024)
 Juros.kt
 Main.kt
 
-9. PHP
+9. PHP (17/09/2023)
 CalculaJuros.php
 php_testejuros.php
 
-10. Python
+10. Python (17/09/2023)
 Juros.py
 main.py
 
-11. R
+11. R (11/03/2024)
 Juros.R
 
-12. Ruby
+12. Ruby (12/03/2024)
 juros.rb
 
-13. Rust
+13. Rust (13/03/2024)
 juros.rs
 main.rs
 
-14. TypeScript
+14. TypeScript (03/03/2024)
 Juros.ts
 TesteJuros.ts
 
-15. Visual Basic .NET
+15. Visual Basic .NET (02/03/2024)
 TesteJuros.vb

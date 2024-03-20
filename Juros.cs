@@ -4,8 +4,8 @@ public class Juros
 {
     private int _quantidade;
     public bool Composto;
-    public int Periodo;
-    public int[] Pagamentos;
+    public double Periodo;
+    public double[] Pagamentos;
     public double[] Pesos;
 
     public int Quantidade{
@@ -13,12 +13,12 @@ public class Juros
         set {
             int quantidade = (value > 0) ? value : 0;
             _quantidade = quantidade;
-            Pagamentos = new int[quantidade];
+            Pagamentos = new double[quantidade];
             Pesos = new double[quantidade];
         }
     }
 
-    public Juros(int quantidade = 0, bool composto = false, int periodo = 30) {
+    public Juros(int quantidade = 0, bool composto = false, double periodo = 30.0) {
         Quantidade = quantidade;    // perceba que irá usar o método SET para definir os arrays também
         Composto = composto;
         Periodo = periodo;
@@ -31,14 +31,14 @@ public class Juros
     }
 
     public double jurosParaAcrescimo(double juros) {
-        if(juros == 0 || Quantidade == 0 || Periodo <= 0) return 0;
+        if(juros == 0 || Quantidade == 0 || Periodo <= 0.0) return 0;
         double pesoTotal = getPesoTotal();
         if(pesoTotal == 0) return 0;
         double acumulador = 0;
         bool soZero = true;
 
         for(int indice = 0; indice < Quantidade; indice ++) {
-            if(Pagamentos[indice] > 0 && Pesos[indice] > 0) soZero = false;
+            if(Pagamentos[indice] > 0.0 && Pesos[indice] > 0) soZero = false;
             if(Composto) {
                 acumulador += Pesos[indice] / Math.Pow(1 + juros / 100, Pagamentos[indice] / Periodo);
             } else {
@@ -51,7 +51,7 @@ public class Juros
     }
 
     public double acrescimoParaJuros(double acrescimo, int precisao = 15, int maxInteracoes = 100, double maxJuros = 50) {
-        if(maxInteracoes < 1 || Quantidade == 0 || precisao < 1 || Periodo <= 0 || acrescimo <= 0 || maxJuros <= 0) return 0;
+        if(maxInteracoes < 1 || Quantidade == 0 || precisao < 1 || Periodo <= 0.0 || acrescimo <= 0 || maxJuros <= 0) return 0;
         double minJuros = 0, medJuros = 0, minDiferenca = Math.Pow(0.1, precisao), pesoTotal = getPesoTotal();
         if(pesoTotal == 0) return 0;
 

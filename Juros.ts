@@ -9,7 +9,7 @@ export class Juros{
     public Pagamentos: number[] = [];
     public Pesos: number[] = [];
 
-    constructor(quantidade=0, composto=false, periodo=30){
+    constructor(quantidade=0, composto=false, periodo=30.0){
 		this.Quantidade = quantidade;
 		this.Composto = composto;
 		this.Periodo = periodo;
@@ -21,7 +21,7 @@ export class Juros{
 	setPagamentos(delimitador: string = ",", pagamentos: string = "") : boolean {
 		if(pagamentos == ""){
 			for(let c: number = 0; c < this.Quantidade; c++){
-				this.Pagamentos[c] = (1 + c) * this.Periodo;
+				this.Pagamentos[c] = (1.0 + c) * this.Periodo;
 			}
 		} else {
 			let temporaria: string[] = pagamentos.split(delimitador)
@@ -60,14 +60,14 @@ export class Juros{
 
 	// "Calcula o acréscimo a partir dos juros
 	jurosParaAcrescimo(juros: number = 0.0) : number {
-		if(juros <= 0.0 || this.Quantidade < 1 || this.Periodo < 1) return 0.0;
+		if(juros <= 0.0 || this.Quantidade < 1 || this.Periodo <= 0.0) return 0.0;
 
 		let pesoTotal : number = this.getPesoTotal();
 		let acumulador: number = 0.0;
 		let soZero: boolean = true;
 
 		for(let i: number = 0; i < this.Quantidade; i++){
-			if(this.Pagamentos[i] > 0 && this.Pesos[i] > 0) soZero = false;
+			if(this.Pagamentos[i] > 0.0 && this.Pesos[i] > 0.0) soZero = false;
 			if(this.Composto){
 				acumulador += this.Pesos[i] / ((1 + juros / 100) ** (this.Pagamentos[i] / this.Periodo));
 			} else{
@@ -81,7 +81,7 @@ export class Juros{
 
 	// "Calcula os juros a partir do acréscimo
 	acrescimoParaJuros(acrescimo: number = 0.0, precisao: number = 15, maximoInteracoes: number = 100, maximoJuros: number = 50.0, acrescimoComoValorOriginal: boolean = false) : number {
-		if(maximoInteracoes < 1 || this.Quantidade < 1 || precisao < 1 || this.Periodo < 1 || acrescimo <= 0 ) return 0.0;
+		if(maximoInteracoes < 1 || this.Quantidade < 1 || precisao < 1 || this.Periodo <= 0.0 || acrescimo <= 0 ) return 0.0;
 
 		let minimoJuros: number = 0.0;
 		let medioJuros: number = 0.0;

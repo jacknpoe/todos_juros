@@ -2,7 +2,7 @@ class Juros
   attr_accessor :quantidade, :composto, :periodo, :pagamentos, :pesos
 
   # construtor (perceba que o padrão de quantidade quebra a lógica dos cálculos)
-  def initialize(quantidade = 0, composto = false, periodo = 30)
+  def initialize(quantidade = 0, composto = false, periodo = 30.0)
     @quantidade = quantidade
     @composto = composto
     @periodo = periodo
@@ -79,14 +79,14 @@ class Juros
 end
 
 #testes
-juros = Juros.new(3, true, 30)
-juros.pagamentos[0] = 30
-juros.pagamentos[1] = 60
-juros.pagamentos[2] = 90
+juros = Juros.new(3, true, 30.0)
+juros.pagamentos[0] = 30.0
+juros.pagamentos[1] = 60.0
+juros.pagamentos[2] = 90.0
 juros.pesos[0] = 1.0
 juros.pesos[1] = 1.0
 juros.pesos[2] = 1.0
 
 puts(juros.getPesoTotal())
-puts(juros.jurosParaAcrescimo(3))
-puts(juros.acrescimoParaJuros( juros.jurosParaAcrescimo(3)))
+puts(juros.jurosParaAcrescimo(3.0))
+puts(juros.acrescimoParaJuros( juros.jurosParaAcrescimo(3.0)))

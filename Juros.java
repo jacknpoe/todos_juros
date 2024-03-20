@@ -14,15 +14,15 @@ import java.lang.Math;
 public class Juros {
     private int Quantidade;
     public boolean Composto;
-    public int Periodo;
-    public int Pagamentos[];
+    public double Periodo;
+    public double Pagamentos[];
     public double Pesos[];
     
-    public Juros(int quantidade, boolean composto, int periodo) {
+    public Juros(int quantidade, boolean composto, double periodo) {
         this.Quantidade = quantidade;
         this.Composto = composto;
         this.Periodo = periodo;
-        this.Pagamentos = new int[quantidade];
+        this.Pagamentos = new double[quantidade];
         this.Pesos = new double[quantidade];
     }
 
@@ -30,7 +30,7 @@ public class Juros {
 
     public void setQuantidade(int valor) {
         this.Quantidade = valor;
-        this.Pagamentos = new int[valor];
+        this.Pagamentos = new double[valor];
         this.Pesos = new double[valor];
     }
     
@@ -41,14 +41,14 @@ public class Juros {
     }
     
     public double jurosParaAcrescimo(double juros){
-        if(juros <= 0 || this.Quantidade <= 0 || this.Periodo <= 0) return 0.0;
+        if(juros <= 0 || this.Quantidade <= 0 || this.Periodo <= 0.0) return 0.0;
         double pesoTotal = this.getPesoTotal();
         if(pesoTotal <= 0.0) return 0.0;
         double acumulador = 0.0;
         boolean soZero = true;
         
         for(int indice = 0; indice < this.Quantidade; indice++) {
-            if(this.Pagamentos[indice] > 0 && this.Pesos[indice] > 0.0) soZero = false;
+            if(this.Pagamentos[indice] > 0.0 && this.Pesos[indice] > 0.0) soZero = false;
             if(this.Composto) {
                 acumulador += this.Pesos[indice] / Math.pow(1 + juros / 100, this.Pagamentos[indice] / this.Periodo);
             } else {
@@ -61,7 +61,7 @@ public class Juros {
     }
 
     public double acrescimoParaJuros(double acrescimo, int precisao, int maxIteracoes, double maxJuros) {
-        if(maxIteracoes < 1 || this.Quantidade <= 0 || precisao < 1 || this.Periodo <= 0 || acrescimo <= 0 || maxJuros <= 0) return 0;
+        if(maxIteracoes < 1 || this.Quantidade <= 0 || precisao < 1 || this.Periodo <= 0.0 || acrescimo <= 0 || maxJuros <= 0) return 0;
         double minJuros = 0.0, medJuros = 0.0, minDiferenca = Math.pow(0.1, precisao), pesoTotal = this.getPesoTotal();
         if(pesoTotal <= 0.0) return 0.0;
        

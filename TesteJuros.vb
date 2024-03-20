@@ -1,8 +1,8 @@
 Public Class Juros
     Private PQuantidade As Integer
     Public Composto As Boolean
-    Public Periodo as Integer
-    Public Pagamentos() as Integer
+    Public Periodo as Double
+    Public Pagamentos() as Double
     Public Pesos() As Double
 
     Public Property Quantidade() As Integer
@@ -16,7 +16,7 @@ Public Class Juros
         End Set
     End Property
 
-    Sub New(ByVal quant As Integer, ByVal comp As Boolean, ByVal period As Integer)
+    Sub New(ByVal quant As Integer, ByVal comp As Boolean, ByVal period As Double)
         Quantidade = quant
         Composto = comp
         Periodo = period
@@ -34,12 +34,12 @@ Public Class Juros
         Dim pesoTotal As Double
         Dim acumulador As Double = 0.0
         Dim soZero As Boolean = True
-        If juros <= 0.0 Or Quantidade <= 0 Or Periodo <= 0 Then Return 0.0
+        If juros <= 0.0 Or Quantidade <= 0 Or Periodo <= 0.0 Then Return 0.0
         pesoTotal = GetPesoTotal
         If pesoTotal <= 0.0 Then Return 0.0
 
         For Indice As Integer = 0 to Quantidade - 1
-            If Pagamentos(Indice) > 0 And Pesos(Indice) > 0.0 Then soZero = False
+            If Pagamentos(Indice) > 0.0 And Pesos(Indice) > 0.0 Then soZero = False
             If Composto Then
                 acumulador = acumulador + Pesos(Indice) / (1 + juros / 100) ^ (Pagamentos(Indice) / Periodo)
             Else
@@ -56,7 +56,7 @@ Public Class Juros
         Dim medJuros As Double
         Dim minDiferenca As Double
         Dim PesoTotal As Double
-        If maxIteracoes < 1 Or Quantidade < 1 Or precisao < 1 Or Periodo < 1 Or acrescimo <= 0 Or maxJuros <= 0 Then Return 0.0
+        If maxIteracoes < 1 Or Quantidade < 1 Or precisao < 1 Or Periodo <= 0.0 Or acrescimo <= 0 Or maxJuros <= 0 Then Return 0.0
         pesoTotal = GetPesoTotal
         If pesoTotal <= 0.0 Then Return 0.0
         minDiferenca = 0.1 ^ precisao
@@ -77,15 +77,15 @@ End Class
 
 Public Class Program
     Public Shared Sub Main()
-        Dim meuJuros As Juros = New Juros(3, True, 30)
-        meuJuros.Pagamentos(0) = 30
-        meuJuros.Pagamentos(1) = 60
-        meuJuros.Pagamentos(2) = 90
+        Dim meuJuros As Juros = New Juros(3, True, 30.0)
+        meuJuros.Pagamentos(0) = 30.0
+        meuJuros.Pagamentos(1) = 60.0
+        meuJuros.Pagamentos(2) = 90.0
         meuJuros.Pesos(0) = 1.0
         meuJuros.Pesos(1) = 1.0
         meuJuros.Pesos(2) = 1.0
 
-        Console.WriteLine(meuJuros.JurosParaAcrescimo(3))
-        Console.WriteLine(meuJuros.AcrescimoParaJuros(meuJuros.JurosParaAcrescimo(3), 15, 100, 50))
+        Console.WriteLine(meuJuros.JurosParaAcrescimo(3.0))
+        Console.WriteLine(meuJuros.AcrescimoParaJuros(meuJuros.JurosParaAcrescimo(3.0), 15, 100, 50.0))
     End Sub
 End Class

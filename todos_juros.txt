@@ -30,6 +30,7 @@ js_testejuros.html
 
 8. Julia (20/03/2024)
 juros.jl
+testejuros.jl
 
 9. Kotlin (22/02/2024)
 Juros.kt

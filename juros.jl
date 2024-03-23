@@ -40,7 +40,7 @@ function jurosParaAcrescimo(sJuros::Juros, juros::Real)::Real
         if sJuros.Composto
             acumulador += sJuros.Pesos[indice] / (1 + juros / 100) ^ (sJuros.Pagamentos[indice] / sJuros.Periodo)
         else
-            acumulador += sJuros.Peso[indice] / (1 + juros / 100 * sJuros.Pagamentos[indice] / sJuros.Periodo)
+            acumulador += sJuros.Pesos[indice] / (1 + juros / 100 * sJuros.Pagamentos[indice] / sJuros.Periodo)
         end
     end
 

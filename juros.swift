@@ -87,7 +87,6 @@ class Juros {
 
         return medJuros
     }
-    // usar (var maxJuros: Double)
 }
 
 // testa Juros

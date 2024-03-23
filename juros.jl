@@ -1,7 +1,7 @@
 # Cálculo do juros, sendo que precisa de arrays pra isso
-# Versão 0.1: 20/08/2024: versão feita a partir de pesquisas no Google
-# Versão 0.2: 21/08/2024: versão com testejuros separado
-# Versão 0.3: 21/08/2024: versão com os tipos nos parâmetros
+# Versão 0.1: 20/03/2024: versão feita a partir de pesquisas no Google
+# Versão 0.2: 21/03/2024: versão com testejuros separado
+# Versão 0.3: 21/03/2024: versão com os tipos nos parâmetros
 
 # Estrutura com os dados comuns (como parcelas)
 struct Juros

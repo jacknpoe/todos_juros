@@ -1,5 +1,6 @@
 // Classe de cálculo do juros, sendo que precisa de arrays pra isso
 // Versão 0.1: 23/03/2024: versão feita no Online Swift Playground
+// Versão 0.2: 25/03/2024: parânetros com valores padrão
 
 import Foundation
 // import UIKit
@@ -93,4 +94,4 @@ class Juros {
 let juros : Juros = Juros(quantidade : 3, composto : true, periodo : 30.0, pagamentos : [30.0, 60.0, 90.0], pesos : [1.0, 1.0, 1.0])
 print(juros.getPesoTotal())
 print(juros.jurosParaAcrescimo(juros : 3.0))
-print(juros.acrescimoParaJuros(acrescimo : juros.jurosParaAcrescimo(juros : 3.0), precisao : 15, maxIteracoes : 100, pMaxJuros : 50.0))
+print(juros.acrescimoParaJuros(acrescimo : juros.jurosParaAcrescimo(juros : 3.0)))

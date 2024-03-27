@@ -39,7 +39,7 @@ Main.kt
 10. Lua (26/03/2024)
 juros.lua
 
-11. Object-C (27/03/2024)
+11. Objective-C (27/03/2024)
 juros.m
 
 12. PHP (17/09/2023)

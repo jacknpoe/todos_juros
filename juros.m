@@ -140,6 +140,7 @@ int main (int argc, const char * argv[])
 {
     NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 
+    // cria juros e seta as propriedades
     Juros * juros = [[Juros alloc] init];
     [juros aloca];
     [juros setQuantidade: 3];
@@ -152,6 +153,7 @@ int main (int argc, const char * argv[])
     [juros putPeso: 1.0];
     [juros putPeso: 1.0];
 
+    // testes
     double pesoTotal = [juros getPesoTotal];
     double acrescimo = [juros jurosParaAcrescimo: 3.0];
     double juroscalc = [juros acrescimoParaJuros: acrescimo precisao: 15.0 maxIteracoes: 100 maxJuros: 50.0];

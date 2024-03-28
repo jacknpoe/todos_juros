@@ -76,6 +76,8 @@
         acumulador *= valor;
     }
     return acumulador;
+//    return pow(valor, e);
+//    return (double) pow([NSNumber numberWithDouble: valor], [NSNumber numberWithDouble: e]);
 }
 // calcula a somatória de pesos
 - (double) getPesoTotal {
@@ -161,6 +163,8 @@ int main (int argc, const char * argv[])
     NSLog(@"Peso Total = %f", pesoTotal);
     NSLog(@"Acréscimo = %f", acrescimo);
     NSLog(@"Juros = %f", juroscalc);
+    // NSLog(@"Pow = %f", pow(1.03, 0.5));
+    // NSLog(@"Pow = %f", pow(acrescimo, [juros Pagamento: 1] / [juros Periodo]));
 
     [juros desaloca];
     [juros release];

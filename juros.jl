@@ -21,7 +21,7 @@ function getPesoTotal(sJuros::Juros)::Real
     acumulador
 end
 
-# calcula os juros a partir do acréscimo e dados comuns (como parcelas)
+# calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
 function jurosParaAcrescimo(sJuros::Juros, juros::Real)::Real
     if juros <= 0 || sJuros.Quantidade <= 0 || sJuros.Periodo <= 0
         return 0.0
@@ -50,7 +50,7 @@ function jurosParaAcrescimo(sJuros::Juros, juros::Real)::Real
     (pesoTotal / acumulador - 1) * 100
 end
 
-# calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
+# calcula os juros a partir do acréscimo e dados comuns (como parcelas)
 function acrescimoParaJuros(sJuros::Juros, acrescimo::Real, precisao::Integer, maxIteracoes::Integer, maxJuros::Real)::Real
     if maxIteracoes < 1 || sJuros.Quantidade< 1 || precisao < 1 || sJuros.Periodo <= 0.0 || acrescimo <= 0.0 || maxJuros <= 0.0
         return 0.0

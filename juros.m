@@ -88,7 +88,7 @@
     }
     return acumulador;
 }
-// calcula os juros a partir do acréscimo e dados comuns (como parcelas)
+// calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
 - (double) jurosParaAcrescimo: (double) juros {
     if (juros <= 0.0 || Quantidade <= 0 || Periodo <= 0.0) return 0.0;
     double pesoTotal = [self getPesoTotal];
@@ -109,7 +109,7 @@
     if (soZero) return 0.0;
     return (pesoTotal / acumulador - 1) * 100;
 }
-// calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
+// calcula os juros a partir do acréscimo e dados comuns (como parcelas)
 - (double) acrescimoParaJuros: (double) acrescimo precisao: (double) p maxIteracoes: (int) mi maxJuros: (double) mj {
     if (mi < 1 || Quantidade < 1 || p < 1 || Periodo <= 0.0 || acrescimo <- 0.0 || mj <= 0.0 ) return 0.0;
     double pesoTotal = [self getPesoTotal];

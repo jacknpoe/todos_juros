@@ -46,30 +46,33 @@ testajuros.m
 12. Objective-C (27/03/2024)
 juros.m
 
-13. PHP (17/09/2023)
+13. Pascao (01/04/2024)
+testajuros.pas
+
+14. PHP (17/09/2023)
 CalculaJuros.php
 php_testejuros.php
 
-14. Python (17/09/2023)
+15. Python (17/09/2023)
 Juros.py
 main.py
 
-15. R (11/03/2024)
+16. R (11/03/2024)
 Juros.R
 
-16. Ruby (12/03/2024)
+17. Ruby (12/03/2024)
 juros.rb
 
-17. Rust (13/03/2024)
+18. Rust (13/03/2024)
 juros.rs
 main.rs
 
-18. Swift
+19. Swift
 juros.swift
 
-19. TypeScript (03/03/2024)
+20. TypeScript (03/03/2024)
 Juros.ts
 TesteJuros.ts
 
-20. Visual Basic .NET (02/03/2024)
+21. Visual Basic .NET (02/03/2024)
 TesteJuros.vb

@@ -31,7 +31,7 @@ class Juros {
         return acumulador
     }
 
-    // calcula os juros a partir do acréscimo e dados comuns (como parcelas)
+    // calcula os acréscimo a partir dos juros e dados comuns (como parcelas)
     func jurosParaAcrescimo(juros : Double) -> Double {
         if (juros <= 0.0 || Quantidade < 1 || Periodo <= 0.0) {
             return 0.0
@@ -60,7 +60,7 @@ class Juros {
         return (pesoTotal / acumulador - 1) * 100
     }
 
-    // calcula os acréscimo a partir dos juros e dados comuns (como parcelas)
+    // calcula os juros a partir do acréscimo e dados comuns (como parcelas)
     func acrescimoParaJuros(acrescimo : Double, precisao : Int = 15, maxIteracoes : Int = 100, pMaxJuros : Double = 50.0) -> Double {
         if (maxIteracoes < 1 || Quantidade < 1 || precisao < 1 || Periodo <= 0.0 || acrescimo <= 0.0 || pMaxJuros <= 0.0) {
             return 0.0

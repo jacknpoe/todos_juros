@@ -1,7 +1,7 @@
--- C·lculo do juros, sendo que precisa de arrays pra isso
--- Vers„o 0.1: 26/03/2024: vers„o feita sem muito conhecimento de Lua
+-- C√°lculo do juros, sendo que precisa de arrays pra isso
+-- Vers√£o 0.1: 26/03/2024: vers√£o feita sem muito conhecimento de Lua
 
--- estrutura b·sica para simplificar as chamadas
+-- estrutura b√°sica para simplificar as chamadas
 Juros = {
 	Quantidade = 0,
 	Composto = false,
@@ -10,7 +10,7 @@ Juros = {
 	Pesos = {}
 }
 
--- funÁ„o que calcula a somatÛria de Pesos[]
+-- fun√ß√£o que calcula a somat√≥ria de Pesos[]
 function getPesoTotal()
 	acumulador = 0
 	for indice = 1, Juros.Quantidade do
@@ -19,7 +19,7 @@ function getPesoTotal()
 	return acumulador
 end
 
--- calcula os juros a partir do acrÈscimo e dados comuns (como parcelas)
+-- calcula o acr√©scimo a partir dos juros e dados comuns (como parcelas)
 function jurosParaAcrescimo(juros)
 	if (juros <= 0 or Juros.Quantidade <= 0 or Juros.Periodo <= 0) then
 		return 0
@@ -48,7 +48,7 @@ function jurosParaAcrescimo(juros)
 	return (pesoTotal / acumulador - 1) * 100
 end
 
--- calcula o acrÈscimo a partir dos juros e dados comuns (como parcelas)
+-- calcula os juros a partir do acr√©scimo e dados comuns (como parcelas)
 function acrescimoParaJuros(acrescimo, precisao, maxIteracoes, maxJuros)
 	if (maxIteracoes < 1 or Juros.Quantidade <= 0 or precisao < 1 or Juros.Periodo <= 0 or acrescimo <= 0 or maxJuros <= 0) then
 		return 0
@@ -86,7 +86,7 @@ Juros.Pesos[1] = 1
 Juros.Pesos[2] = 1
 Juros.Pesos[3] = 1
 
--- testa as funÁıes
+-- testa as fun√ß√µes
 print(getPesoTotal())
 print(jurosParaAcrescimo(3))
 print(acrescimoParaJuros(jurosParaAcrescimo(3), 15, 100, 50))

@@ -82,7 +82,7 @@ classdef Juros
                     juros = medJuros;
                     return;
                 end
-                if obj.jurosParaAcrescimo(medJuros)< acrescimo
+                if obj.jurosParaAcrescimo(medJuros) < acrescimo
                     minJuros = medJuros;
                 else
                     maxJuros = medJuros;

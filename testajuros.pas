@@ -13,10 +13,7 @@ type
 		Pesos: array of real;
 	end;
 
-var
-	juros: rJuros;
-
-// calcula a somatória de pesos[]
+// calcula a somat¢ria de pesos[]
 function getPesoTotal(sJuros: rJuros): real;
 var
  	acumulador: real;
@@ -28,7 +25,7 @@ begin
 	getPesoTotal := acumulador;
 end;
 
-// calcula o acréscimo a partir dos juros e dos dados comuns (como parcelas)
+// calcula o acr‚scimo a partir dos juros e dos dados comuns (como parcelas)
 function jurosParaAcrescimo(sJuros: rJuros; juros: real): real;
 var
     pesoTotal: real;
@@ -41,7 +38,7 @@ begin
     if (pesoTotal <= 0.0) then exit(0.0);
     acumulador := 0.0;
     soZero := true;
-    
+
     for indice := 0 to (sJuros.Quantidade - 1) do
     begin
         if ((sJuros.Pagamentos[indice] > 0.0) and (sJuros.Pesos[indice] > 0.0)) then soZero := false;
@@ -49,12 +46,12 @@ begin
         then acumulador := acumulador + sJuros.Pesos[indice] / (1 + juros / 100) ** (sJuros.Pagamentos[indice] / sJuros.Periodo)
         else acumulador := acumulador + sJuros.Pesos[indice] / (1 + juros / 100 * sJuros.Pagamentos[indice] / sJuros.Periodo);
     end;
-    
+
     if (soZero) then exit(0.0);
     jurosParaAcrescimo := (pesoTotal / acumulador - 1) * 100;
 end;
 
-// calcula os juros a partir do acréscimo e dos dados comuns (como parcelas)
+// calcula os juros a partir do acr‚scimo e dos dados comuns (como parcelas)
 function acrescimoParaJuros(sJuros: rJuros; acrescimo: real; precisao, maxIteracoes: integer; maxJuros: real): real;
 var
     pesoTotal, minJuros, medJuros, minDiferenca: real;
@@ -66,7 +63,7 @@ begin
     minJuros := 0.0;
     medJuros := maxJuros / 2;
     minDiferenca := 0.1 ** precisao;
-    
+
     for indice := 1 to maxIteracoes do
     begin
         medJuros := (minJuros + maxJuros) / 2;
@@ -78,9 +75,11 @@ begin
     acrescimoParaJuros := medJuros;
 end;
 
+var
+	juros: rJuros;
 
 begin
-	// definição dos dados
+	// defini‡Æo dos dados
 	juros.Quantidade := 3;
 	juros.Composto := true;
 	juros.Periodo := 30.0;

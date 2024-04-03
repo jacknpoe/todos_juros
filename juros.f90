@@ -116,18 +116,20 @@ program testaJuros
 use juros
 implicit none
     ! cria e atribui valores para a estrutura sJuros
+    integer :: quantidade = 3
+    integer :: indice
+
     type(tJuros) :: sJuros
-    sJuros%Quantidade = 3
     sJuros%Composto = .true.
     sJuros%Periodo = 30.0
-    allocate(sJuros%Pagamentos(1:3))
-    sJuros%Pagamentos(1) = 30.0
-    sJuros%Pagamentos(2) = 60.0
-    sJuros%Pagamentos(3) = 90.0
-    allocate(sJuros%Pesos(1:3))
-    sJuros%Pesos(1) = 1.0
-    sJuros%Pesos(2) = 1.0
-    sJuros%Pesos(3) = 1.0
+
+    sJuros%Quantidade = quantidade
+    allocate(sJuros%Pagamentos(1:quantidade))
+    allocate(sJuros%Pesos(1:quantidade))
+    do indice = 1, quantidade
+        sJuros%Pagamentos(indice) = 30.0 * indice
+        sJuros%Pesos(indice) = 1.0
+    enddo
 
     ! testes
     print *, 'Peso total =',getPesoTotal(sJuros)

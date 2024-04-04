@@ -31,12 +31,12 @@ function jurosParaAcrescimo(sJuros::Juros, juros::Real)::Real
         return 0.0
     end
     acumulador = 0.0
-    soZero = true
+    # soZero = true
 
     for indice = 1:sJuros.Quantidade
-        if sJuros.Pagamentos[indice] > 0.0 && sJuros.Pesos[indice] > 0.0
-            soZero = false
-        end
+        # if sJuros.Pagamentos[indice] > 0.0 && sJuros.Pesos[indice] > 0.0
+        #     soZero = false
+        # end
         if sJuros.Composto
             acumulador += sJuros.Pesos[indice] / (1 + juros / 100) ^ (sJuros.Pagamentos[indice] / sJuros.Periodo)
         else
@@ -44,7 +44,8 @@ function jurosParaAcrescimo(sJuros::Juros, juros::Real)::Real
         end
     end
 
-    if soZero
+    # if soZero
+    if acumulador <= 0
         return 0.0
     end
     (pesoTotal / acumulador - 1) * 100

@@ -1,5 +1,6 @@
 -- Cálculo do juros, sendo que precisa de arrays pra isso
 -- Versão 0.1: 26/03/2024: versão feita sem muito conhecimento de Lua
+-- Versão 0.2: 01/04/2024: corrigidos os acentos dos comentários
 
 -- estrutura básica para simplificar as chamadas
 Juros = {
@@ -10,7 +11,7 @@ Juros = {
 	Pesos = {}
 }
 
--- função que calcula a somatória de Pesos[]
+-- calcula a somatória de Pesos[]
 function getPesoTotal()
 	acumulador = 0
 	for indice = 1, Juros.Quantidade do
@@ -29,12 +30,12 @@ function jurosParaAcrescimo(juros)
 		return 0
 	end
 	acumulador = 0
-	soZero = true
+	-- soZero = true
 	
 	for indice = 1, Juros.Quantidade do
-		if (Juros.Pagamentos[indice] > 0 and Juros.Pesos[indice] > 0) then
-			soZero = false
-		end
+		-- if (Juros.Pagamentos[indice] > 0 and Juros.Pesos[indice] > 0) then
+		--  	soZero = false
+		-- end
 		if (Juros.Composto) then
 			acumulador = acumulador + Juros.Pesos[indice] / (1 + juros / 100) ^ (Juros.Pagamentos[indice] / Juros.Periodo)
 		else
@@ -42,7 +43,8 @@ function jurosParaAcrescimo(juros)
 		end
 	end
 	
-	if (soZero) then
+	-- if (soZero) then
+	if acumulador <= 0.0 then
 		return 0
 	end
 	return (pesoTotal / acumulador - 1) * 100

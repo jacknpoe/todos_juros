@@ -60,10 +60,10 @@ class CalculaJuros{
 
 		let total = this.getPesoTotal()
 		let acumulador = 0
-		let soZero = true
+		// let soZero = true
 
 		for(let i = 0; i < this.Quantidade; i++){
-			if(this.Pagamentos[i] > 0 && this.Pesos[i] > 0) soZero = false
+			// if(this.Pagamentos[i] > 0 && this.Pesos[i] > 0) soZero = false
 			if(this.Composto){
 				acumulador += this.Pesos[i] / ((1 + juros / 100) ** (this.Pagamentos[i] / this.Periodo))
 			} else{
@@ -71,7 +71,8 @@ class CalculaJuros{
 			}
 		}
 
-		if(soZero) return 0
+		// if(soZero) return 0
+		if (acumulador <= 0) return 0
 		return (total / acumulador - 1) * 100
 	}
 

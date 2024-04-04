@@ -35,10 +35,10 @@ public class Juros
         double pesoTotal = getPesoTotal();
         if(pesoTotal == 0) return 0;
         double acumulador = 0;
-        bool soZero = true;
+        // bool soZero = true;
 
         for(int indice = 0; indice < Quantidade; indice ++) {
-            if(Pagamentos[indice] > 0.0 && Pesos[indice] > 0) soZero = false;
+            // if(Pagamentos[indice] > 0.0 && Pesos[indice] > 0) soZero = false;
             if(Composto) {
                 acumulador += Pesos[indice] / Math.Pow(1 + juros / 100, Pagamentos[indice] / Periodo);
             } else {
@@ -46,7 +46,8 @@ public class Juros
             }
         }
 
-        if(soZero) return 0;
+        // if(soZero) return 0;
+        if (acumulador <= 0 ) return 0;
         return (pesoTotal / acumulador - 1) * 100;
     }
 

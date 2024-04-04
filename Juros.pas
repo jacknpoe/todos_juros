@@ -1,5 +1,3 @@
-// esse código não será mais mantido (a partir de 04/04/2024), pois não tenho licença para continuar compilando
-
 unit Juros;
 
 interface

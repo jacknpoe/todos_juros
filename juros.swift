@@ -41,12 +41,12 @@ class Juros {
             return 0.0
         }
         var acumulador : Double = 0.0
-        var soZero : Bool = true
+        // var soZero : Bool = true
 
         for indice in 0 ..< Quantidade {
-            if (Pagamentos[indice] > 0.0 && Pesos[indice] > 0.0) {
-                soZero = false
-            }
+            // if (Pagamentos[indice] > 0.0 && Pesos[indice] > 0.0) {
+            //     soZero = false
+            // }
             if (Composto) {
                 acumulador += Pesos[indice] / pow(1 + juros / 100, Pagamentos[indice] / Periodo)
             } else {
@@ -54,7 +54,8 @@ class Juros {
             }
         }
 
-        if (soZero) {
+        // if (soZero) {
+        if (acumulador <= 0.0) {
             return 0.0
         }
         return (pesoTotal / acumulador - 1) * 100

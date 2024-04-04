@@ -88,17 +88,17 @@
     }
     return acumulador;
 }
-// calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
+// calcula os juros a partir do acréscimo e dados comuns (como parcelas)
 - (double) jurosParaAcrescimo: (double) juros {
     if (juros <= 0.0 || Quantidade <= 0 || Periodo <= 0.0) return 0.0;
     double pesoTotal = [self getPesoTotal];
     if (pesoTotal <= 0.0) return 0.0;
     double acumulador = 0.0;
-    BOOL soZero = YES;
+    // BOOL soZero = YES;
     int indice;
 
     for (indice = 0; indice < Quantidade; indice++) {
-        if([[Pagamentos objectAtIndex: indice] doubleValue] > 0.0 && [[Pesos objectAtIndex: indice] doubleValue] > 0.0) soZero = NO;
+        // if([[Pagamentos objectAtIndex: indice] doubleValue] > 0.0 && [[Pesos objectAtIndex: indice] doubleValue] > 0.0) soZero = NO;
         if (Composto) {
             // ATENÇÃO: a potência só funciona com expoentes inteiros, porque a linguagem não tem POW!
             acumulador += [[Pesos objectAtIndex: indice] doubleValue] / [self potencia: (1 + juros / 100) expoente: ([[Pagamentos objectAtIndex: indice] doubleValue] / Periodo)];
@@ -106,10 +106,11 @@
             acumulador += [[Pesos objectAtIndex: indice] doubleValue] / (1 + juros / 100 * [[Pagamentos objectAtIndex: indice] doubleValue] / Periodo);
         }
     }
-    if (soZero) return 0.0;
+    // if (soZero) return 0.0;
+    if (acumulador <= 0.0) return 0.0;
     return (pesoTotal / acumulador - 1) * 100;
 }
-// calcula os juros a partir do acréscimo e dados comuns (como parcelas)
+// calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
 - (double) acrescimoParaJuros: (double) acrescimo precisao: (double) p maxIteracoes: (int) mi maxJuros: (double) mj {
     if (mi < 1 || Quantidade < 1 || p < 1 || Periodo <= 0.0 || acrescimo <- 0.0 || mj <= 0.0 ) return 0.0;
     double pesoTotal = [self getPesoTotal];

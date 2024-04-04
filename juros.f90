@@ -38,7 +38,7 @@ implicit none
         real*8, intent(in) :: juros
         real*8 :: pesoTotal
         real*8 :: acumulador
-        logical :: soZero
+        ! logical :: soZero
         integer :: indice
 
         if (juros <= 0.0 .or. sJuros%Quantidade <= 0 .or. sJuros%Periodo <= 0.0) then
@@ -53,12 +53,12 @@ implicit none
         endif
 
         acumulador = 0.0
-        soZero = .true.
+        ! soZero = .true.
 
         do indice = 1, sJuros%Quantidade
-            if (sJuros%Pagamentos(indice) > 0.0 .and. sJuros%Pesos(indice) > 0.0) then
-                soZero = .false.
-            endif
+            ! if (sJuros%Pagamentos(indice) > 0.0 .and. sJuros%Pesos(indice) > 0.0) then
+            !     soZero = .false.
+            ! endif
             if (sJuros%Composto) then
                 acumulador = acumulador + sJuros%Pesos(indice) / (1 + juros / 100) ** (sJuros%Pagamentos(indice) / sJuros%Periodo)
             else
@@ -66,7 +66,8 @@ implicit none
             endif
         enddo
 
-        if (soZero) then
+        !if (soZero) then
+        if (acumulador <= 0.0) then
             jurosParaAcrescimo = 0.0
             return
         endif

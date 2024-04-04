@@ -55,7 +55,7 @@
 			{
 				for( $indice = 1; $indice <= $this->Quantidade; $indice++)
 				{
-					$this->Pesos[ $indice] = 1; <=
+					$this->Pesos[ $indice] = 1;
 				}
 			}
 			else
@@ -85,12 +85,12 @@
 			if( $juros <= 0 or $this->Quantidade <= 0 or $this->Periodo <= 0) return 0;
 			$total = $this->getPesoTotal();
 			$acumulador = 0;
-			$soZero = true;
+			// $soZero = true;
 			$indice = 0;
 
 			for( $indice = 1; $indice <= $this->Quantidade; $indice++)
 			{
-				if( $this->Pagamentos[ $indice] > 0 and $this->Pesos[ $indice] > 0 ) $soZero = false;
+				// if( $this->Pagamentos[ $indice] > 0 and $this->Pesos[ $indice] > 0 ) $soZero = false;
 
 				if( $this->Composto )
 				{	// COMPOSTO
@@ -102,7 +102,8 @@
 				}
 			}
 
-			if( $soZero ) return 0;
+			// if( $soZero ) return 0;
+			if( $acumulador <= 0) return 0;
 			return ( $total / $acumulador - 1) * 100;
 		}
 

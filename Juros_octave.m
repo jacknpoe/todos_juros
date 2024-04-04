@@ -41,12 +41,12 @@ classdef Juros_octave
                 return;
             end
             acumulador = 0.0;
-            soZero = true;
+            % soZero = true;
 
             for indice = 1 : obj.Quantidade
-                if obj.Pagamentos(indice) >= 0 & obj.Pesos(indice) >= 0
-                    soZero = false;
-                end
+                % if obj.Pagamentos(indice) >= 0 & obj.Pesos(indice) >= 0
+                %     soZero = false;
+                % end
                 if obj.Composto
                     acumulador = acumulador + obj.Pesos(indice) / (1 + juros / 100) ^ (obj.Pagamentos(indice) / obj.Periodo);
                 else
@@ -54,7 +54,8 @@ classdef Juros_octave
                 end
             end
 
-            if soZero
+            % if soZero
+            if acumulador <= 0
                 acrescimo = 0.0;
                 return;
             end

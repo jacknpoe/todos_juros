@@ -41,6 +41,11 @@ implicit none
         logical :: soZero
         integer :: indice
 
+        if (juros <= 0.0 .or. sJuros%Quantidade <= 0 .or. sJuros%Periodo <= 0.0) then
+            jurosParaAcrescimo = 0.0
+            return
+        endif
+
         pesoTotal = getPesoTotal(sJuros)
         if (pesoTotal <= 0.0) then
             jurosParaAcrescimo = 0.0
@@ -83,6 +88,12 @@ implicit none
         real*8 :: maxJuros
         real*8 :: minDiferenca
         integer :: indice
+
+        if (maxIteracoes < 1 .or. sJuros%Quantidade <= 0 .or. precisao < 1 .or. sJuros%Periodo <= 0.0 &
+            .or. acrescimo <= 0.0 .or. mJuros <= 0.0) then
+            acrescimoParaJuros = 0.0
+            return
+        endif
 
         pesoTotal = getPesoTotal(sJuros)
         if (pesoTotal <= 0.0) then

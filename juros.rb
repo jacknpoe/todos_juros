@@ -30,12 +30,12 @@ class Juros
     end
 
     acumulador = 0.0
-    soZero = true
+    # soZero = true
 
     for indice in 0..@quantidade-1
-      if @pagamentos[indice] > 0 and @pesos[indice] > 0
-        soZero = false
-      end
+      # if @pagamentos[indice] > 0 and @pesos[indice] > 0
+      #   soZero = false
+      # end
       if @composto
         acumulador += ( @pesos[indice] / (1.0 + juros / 100.0) ** (@pagamentos[indice] / @periodo) )
       else
@@ -43,7 +43,8 @@ class Juros
       end
     end
 
-    if soZero
+    # if soZero
+    if acumulador <= 0.0
       return 0.0
     end
     return (pesoTotal / acumulador - 1) * 100

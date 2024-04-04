@@ -45,10 +45,10 @@ public class Juros {
         double pesoTotal = this.getPesoTotal();
         if(pesoTotal <= 0.0) return 0.0;
         double acumulador = 0.0;
-        boolean soZero = true;
+        // boolean soZero = true;
         
         for(int indice = 0; indice < this.Quantidade; indice++) {
-            if(this.Pagamentos[indice] > 0.0 && this.Pesos[indice] > 0.0) soZero = false;
+            // if(this.Pagamentos[indice] > 0.0 && this.Pesos[indice] > 0.0) soZero = false;
             if(this.Composto) {
                 acumulador += this.Pesos[indice] / Math.pow(1 + juros / 100, this.Pagamentos[indice] / this.Periodo);
             } else {
@@ -56,7 +56,8 @@ public class Juros {
             }
         }
         
-        if(soZero) return 0.0;
+        // if(soZero) return 0.0;
+        if (acumulador <= 0.0) return 0.0;
         return (pesoTotal / acumulador - 1) * 100;
     }
 

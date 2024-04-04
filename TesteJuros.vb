@@ -33,13 +33,13 @@ Public Class Juros
     Public Function JurosParaAcrescimo(ByVal juros As Double) As Double
         Dim pesoTotal As Double
         Dim acumulador As Double = 0.0
-        Dim soZero As Boolean = True
+        ' Dim soZero As Boolean = True
         If juros <= 0.0 Or Quantidade <= 0 Or Periodo <= 0.0 Then Return 0.0
         pesoTotal = GetPesoTotal
         If pesoTotal <= 0.0 Then Return 0.0
 
         For Indice As Integer = 0 to Quantidade - 1
-            If Pagamentos(Indice) > 0.0 And Pesos(Indice) > 0.0 Then soZero = False
+            ' If Pagamentos(Indice) > 0.0 And Pesos(Indice) > 0.0 Then soZero = False
             If Composto Then
                 acumulador = acumulador + Pesos(Indice) / (1 + juros / 100) ^ (Pagamentos(Indice) / Periodo)
             Else
@@ -47,7 +47,8 @@ Public Class Juros
             End If
         Next Indice
 
-        If soZero Then Return 0.0
+        ' If soZero Then Return 0.0
+        If acumulador <= 0.0 Then Return 0.0
         Return (pesoTotal / acumulador - 1) * 100
     End Function
 

@@ -37,17 +37,18 @@ begin
     pesoTotal := getPesoTotal(sJuros);
     if (pesoTotal <= 0.0) then exit(0.0);
     acumulador := 0.0;
-    soZero := true;
+    // soZero := true;
 
     for indice := 0 to (sJuros.Quantidade - 1) do
     begin
-        if ((sJuros.Pagamentos[indice] > 0.0) and (sJuros.Pesos[indice] > 0.0)) then soZero := false;
+        // if ((sJuros.Pagamentos[indice] > 0.0) and (sJuros.Pesos[indice] > 0.0)) then soZero := false;
         if (sJuros.Composto)
         then acumulador := acumulador + sJuros.Pesos[indice] / (1 + juros / 100) ** (sJuros.Pagamentos[indice] / sJuros.Periodo)
         else acumulador := acumulador + sJuros.Pesos[indice] / (1 + juros / 100 * sJuros.Pagamentos[indice] / sJuros.Periodo);
     end;
 
-    if (soZero) then exit(0.0);
+    // if (soZero) then exit(0.0);
+    if (acumulador <= 0.0) then exit(0.0);
     jurosParaAcrescimo := (pesoTotal / acumulador - 1) * 100;
 end;
 

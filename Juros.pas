@@ -89,7 +89,7 @@ end;
 function TJuros.jurosParaAcrescimo(juros: double): double;
 var
   pesoTotal, acumulador: double;
-  soZero: boolean;
+  // soZero: boolean;
   indice: integer;
 begin
   pesoTotal := getPesoTotal;
@@ -99,14 +99,14 @@ begin
     exit;
   end;
   acumulador := 0.0;
-  soZero := true;
+  // soZero := true;
 
   for indice := 0 to (Quantidade - 1) do
   begin
-    if (Pagamentos[indice] > 0) and (Pesos[indice] > 0) then
-    begin
-      soZero := false;
-    end;
+    // if (Pagamentos[indice] > 0) and (Pesos[indice] > 0) then
+    // begin
+    //  soZero := false;
+    // end;
     if Composto then
     begin
       acumulador := acumulador + Pesos[indice] / Power(1 + juros / 100, Pagamentos[indice] / Periodo);
@@ -114,7 +114,8 @@ begin
       acumulador := acumulador + Pesos[indice] / (1 + juros / 100 * Pagamentos[indice] / Periodo);
     end;
   end;
-  if soZero then
+  // if soZero then
+  if acumulador <= 0.0 then
   begin
     result := 0.0;
   end else begin

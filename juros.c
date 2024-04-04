@@ -46,16 +46,17 @@ double getPesoTotal(struct Juros *juros) {
 double jurosParaAcrescimo(struct Juros *juros, double valor) {
 	if(valor <= 0 || juros->Quantidade <= 0 || juros->Periodo <= 0.0) return 0.0;
 	double pesoTotal = getPesoTotal(juros);
-	double acumulador = 0; bool soZero = true;
+	double acumulador = 0; // bool soZero = true;
 	short indice;
 	
 	for(indice = 0; indice < juros->Quantidade; indice++) {
-		if(juros->Pagamentos[indice] > 0.0 && juros->Pesos[indice] > 0) soZero = false;
+		// if(juros->Pagamentos[indice] > 0.0 && juros->Pesos[indice] > 0) soZero = false;
 		if(juros->Composto) acumulador += juros->Pesos[indice] / pow(1 + valor / 100, juros->Pagamentos[indice] / juros->Periodo);
 			else acumulador += juros->Pesos[indice] / (1 + valor / 100 * juros->Pagamentos[indice] / juros->Periodo);
 	}
 	
-	if(soZero) return 0.0;
+	// if(soZero) return 0.0;
+	if( acumulador <= 0.0 ) return 0.0;
 	return(pesoTotal / acumulador - 1) * 100;
 }
 

@@ -64,10 +64,10 @@ export class Juros{
 
 		let pesoTotal : number = this.getPesoTotal();
 		let acumulador: number = 0.0;
-		let soZero: boolean = true;
+		// let soZero: boolean = true;
 
 		for(let i: number = 0; i < this.Quantidade; i++){
-			if(this.Pagamentos[i] > 0.0 && this.Pesos[i] > 0.0) soZero = false;
+			// if(this.Pagamentos[i] > 0.0 && this.Pesos[i] > 0.0) soZero = false;
 			if(this.Composto){
 				acumulador += this.Pesos[i] / ((1 + juros / 100) ** (this.Pagamentos[i] / this.Periodo));
 			} else{
@@ -75,7 +75,8 @@ export class Juros{
 			}
 		}
 
-		if(soZero) return 0.0;
+		// if(soZero) return 0.0;
+		if(acumulador <= 0.0 ) return 0.0;
 		return (pesoTotal / acumulador - 1) * 100;
 	}
 

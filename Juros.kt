@@ -41,10 +41,10 @@ class Juros (pQuantidade: Int, pComposto: Boolean, pPeriodo: Double) {
         val pesoTotal = getPesoTotal()
         if(pesoTotal <= 0) return 0.0
         var acumulador = 0.0
-        var soZero = true
+        // var soZero = true
 
         for(indice in 0..<quantidade) {
-            if(pagamentos[indice] > 0.0 && pesos[indice] > 0.0) soZero = false
+            // if(pagamentos[indice] > 0.0 && pesos[indice] > 0.0) soZero = false
             acumulador += if(composto) {
                 pesos[indice] / (1 + juros / 100).pow(pagamentos[indice] / periodo)
             } else {
@@ -52,7 +52,8 @@ class Juros (pQuantidade: Int, pComposto: Boolean, pPeriodo: Double) {
             }
         }
 
-        if(soZero) return 0.0
+        // if(soZero) return 0.0
+        if(acumulador <= 0.0) return 0.0
         return(pesoTotal / acumulador - 1) * 100
     }
 

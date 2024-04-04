@@ -88,14 +88,15 @@ namespace jacknpoe {
 	long double Interest::InterestRateToIncrease( long double interestrate) {
 		if( interestrate <= 0 || Quant == 0 ) return 0;   long double total = getTotalWeight();
 		if( total == 0) return 0;   if( Period <= 0.0) return 0;
-		long double accumulator = 0;   bool onlyzero = true;
+		long double accumulator = 0;  // bool onlyzero = true;
 
 		for( short index = 0; index < Quant; index++) {
-			if( Payments[ index] > 0.0 && Weights[ index] > 0) onlyzero = false;
+			// if( Payments[ index] > 0.0 && Weights[ index] > 0) onlyzero = false;
 			if( Compounded)	accumulator += Weights[ index] / pow( 1 + interestrate / 100, Payments[ index] / Period);  // compounded interest
 				else accumulator += Weights[ index] / ( 1 + interestrate / 100 * Payments[ index] / Period);  // simple interest
 		}
-		if( onlyzero) return 0;
+		// if( onlyzero) return 0;
+		if( accumulator <= 0 ) return 0;
 		return ( total / accumulator - 1 ) * 100;
 	}
 

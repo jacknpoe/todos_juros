@@ -16,10 +16,10 @@ jurosParaAcrescimo = function(juros) {
   if (pesoTotal <= 0) { 0.0 }
   
   acumulador <- 0.0
-  soZero <- TRUE
+  # soZero <- TRUE
   
   for (indice in 1:Juros$quantidade) {
-    if (Juros$pagamentos[indice] > 0 & Juros$pesos[indice] > 0) { soZero <- FALSE}
+    # if (Juros$pagamentos[indice] > 0 & Juros$pesos[indice] > 0) { soZero <- FALSE}
     if (Juros$composto) {
       acumulador <- acumulador + Juros$pesos[indice] / (1 + juros / 100) ** (Juros$pagamentos[indice] / Juros$periodo)
     } else {
@@ -27,7 +27,8 @@ jurosParaAcrescimo = function(juros) {
     }
   }
   
-  if (soZero) { 0.0 }
+  # if (soZero) { 0.0 }
+  if (acumulador <= 0) { 0.0 }
   (pesoTotal / acumulador - 1) * 100
 }
 

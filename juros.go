@@ -31,20 +31,21 @@ func (this Juros) jurosParaAcrescimo(juros float64) float64 {
 	}
 
 	var acumulador float64 = 0.0
-	soZero := true
+	// soZero := true
 
 	for indice := 0; indice < this.Quantidade; indice++ {
-		if this.Pagamentos[indice] > 0 && this.Pesos[indice] > 0 {
-			soZero = false
-		}
+		// if this.Pagamentos[indice] > 0 && this.Pesos[indice] > 0 {
+		// 	soZero = false
+		// }
 		if this.Composto {
 			acumulador += this.Pesos[indice] / math.Pow(1+juros/100, this.Pagamentos[indice]/this.Periodo)
 		} else {
-			acumulador += this.Pesos[indice] / (1 + juros/100 * this.Pagamentos[indice] / this.Periodo)
+			acumulador += this.Pesos[indice] / (1 + juros/100*this.Pagamentos[indice]/this.Periodo)
 		}
 	}
 
-	if soZero {
+	// if soZero {
+	if acumulador <= 0.0 {
 		return 0.0
 	}
 	return (pesoTotal/acumulador - 1) * 100

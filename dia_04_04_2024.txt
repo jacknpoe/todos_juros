@@ -1,0 +1,14 @@
+Entre as 08:15 e as 10:30 do dia 04/04/2024, quinta-feira, tirando quinze minutos em que eu fui na farmácia, eu:
+• encontrei o nome do arquivo no repositório do GitHub;
+• verifiquei se era da classe de problemas para atualizar;
+• achei o editor na linguagem;
+• achei o compilador, interpretador ou serviço on-line;
+• para alguns casos, iniciei o serviço Apache;
+• achei o código-fonte pesquisando em dois discos;
+• comentei o código que se tornou obsoleto;
+• escrevi o código novo;
+• compilei ou rodei no interpretador;
+• verifiquei o resultado com dados que geram valores conhecidos;
+• em alguns casos, corrigi erros de digitação;
+• atualizei a solução no GitHub.
+Eu fiz isso para 23 linguagens de programação diferentes. Em duas horas, pouco mais de cinco minutos por solução.

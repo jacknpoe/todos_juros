@@ -1,5 +1,5 @@
--- Cálculo do juros, sendo que precisa de arrays pra isso
--- Versão 0.1: 09/04/2024: versão feita sem muito conhecimento de Ada
+-- Calculo do juros, sendo que precisa de arrays pra isso
+-- Versao 0.1: 09/04/2024: versao feita sem muito conhecimento de Ada e exponenciacao inteira
 
 with Ada.Text_IO, Ada.Long_Float_Text_IO;
 use  Ada.Text_IO, Ada.Long_Float_Text_IO;
@@ -20,9 +20,6 @@ begin
 
    -- faz os testes
    Put("O peso total é ="); Put(juros.getPesototal(sjuros)); Put_Line("");
-   null;
    Put("O acréscimo é ="); Put(juros.jurosParaAcrescimos(sjuros, 3.0)); Put_Line("");
-   null;
    Put("Os juros são ="); Put( juros.acrescimoParaJuros(sjuros, juros.jurosParaAcrescimos(sjuros, 3.0), 15, 100, 50.0)); Put_Line("");
-   null;
 end testajuros;

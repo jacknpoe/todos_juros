@@ -43,7 +43,7 @@ package body juros is
    -- calcula os juros a partir do acrescimo e dados comuns (como parcelas)
    function acrescimoParaJuros(sjuros : tjuros; acrescimo : Long_Float; precisao : Integer; maxIteracoes : Integer; mJuros : Long_Float) return Long_FLoat is
       pesoTotal : Long_Float;
-      minJuros : Long_Float;
+      minJuros : Long_Float := 0.0;
       medJuros : Long_Float;
       maxJuros : Long_Float;
       minDiferenca : Long_Float;
@@ -55,7 +55,6 @@ package body juros is
       if pesoTotal <= 0.0 then
          return 0.0;
       end if;
-      minJuros := 0.0;
       medJuros := mJuros / 2.0;
       maxJuros := mJuros;
       minDiferenca := 0.1 ** precisao;

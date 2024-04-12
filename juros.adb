@@ -1,7 +1,11 @@
-with Ada.Text_IO, Ada.Long_Float_Text_IO;
+with Ada.Text_IO, Ada.Long_Float_Text_IO, Ada.Numerics.Generic_Elementary_Functions;
 use  Ada.Text_IO, Ada.Long_Float_Text_IO;
 
 package body juros is
+   -- para exponenciação com pontos flutuantes
+   package Value_Functions is new Ada.Numerics.Generic_Elementary_Functions(Long_Float);
+   use Value_Functions;
+
    -- calcula a somatoria de Pesos[]
    function getPesototal(sjuros : tjuros) return Long_Float is
       acumulador : Long_Float := 0.0;
@@ -28,7 +32,8 @@ package body juros is
       for indice in 1 .. sjuros.Quantidade loop
          if sjuros.Composto then
             -- veja que foi convertida a divisao de Pagamentos por Periodo para Natural, entao, quando necessario, precisa usar os juros diarios
-            acumulador := acumulador + sjuros.Pesos(indice) / (1.0 + juros / 100.0) ** Natural(sjuros.Pagamentos(indice) / sjuros.Periodo);
+            -- foi corrigida a divisão para ponto flutuante em 12/04/2024
+            acumulador := acumulador + sjuros.Pesos(indice) / (1.0 + juros / 100.0) ** (sjuros.Pagamentos(indice) / sjuros.Periodo);
          else
             acumulador := acumulador + sjuros.Pesos(indice) / (1.0 + juros / 100.0 * sjuros.Pagamentos(indice) / sjuros.Periodo);
          end if;

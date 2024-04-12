@@ -1,5 +1,6 @@
 -- Calculo do juros, sendo que precisa de arrays pra isso
 -- Versao 0.1: 09/04/2024: versao feita sem muito conhecimento de Ada e exponenciacao inteira
+-- Versao 0.2: 12/04/2024: versao feita sem muito conhecimento de Ada e exponenciacao ponto flutuante
 
 with Ada.Text_IO, Ada.Long_Float_Text_IO;
 use  Ada.Text_IO, Ada.Long_Float_Text_IO;

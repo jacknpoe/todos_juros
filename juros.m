@@ -68,15 +68,17 @@
 // calcula a exponenciação do valor por e
 // o problema é que ela só funciona co expoentes inteiros
 // deve ser colocada uma exponenciação mais genérica
+// CORRIGIDO: como era erro do compilador, agora, com a correção, faz com ponto flutuante
 - (double) potencia: (double) valor expoente: (double) e {
-    int expoente = (int) e;
-    double acumulador = 1.0;
-    int indice;
-    for (indice = 0; indice < expoente; indice++) {
-        acumulador *= valor;
-    }
-    return acumulador;
-//    return pow(valor, e);
+//    int expoente = (int) e;
+//    double acumulador = 1.0;
+//    int indice;
+//    for (indice = 0; indice < expoente; indice++) {
+//        acumulador *= valor;
+//    }
+//    return acumulador;
+//    return exp((float)e*log((float)valor));
+    return pow(valor, e);
 //    return (double) pow([NSNumber numberWithDouble: valor], [NSNumber numberWithDouble: e]);
 }
 // calcula a somatória de pesos

@@ -15,9 +15,8 @@ programa {
 	// calcula a somatória de Pesos[]
 	funcao real getPesoTotal()  {
 		real acumulador = 0.0
-		inteiro indice
 
-		para(indice = 0; indice < Quantidade; indice += 1){
+		para(inteiro indice = 0; indice < Quantidade; indice++){
 			acumulador += Pesos[indice]
 		}
 
@@ -28,13 +27,12 @@ programa {
 	funcao real jurosParaAcrescimo(real juros) {
 		real pesoTotal
 		real acumulador = 0.0
-		inteiro indice
 
 		se(juros <= 0.0 ou Quantidade <= 0 ou Periodo <= 0.0) { retorne 0.0 }
 		pesoTotal = getPesoTotal()
 		se(pesoTotal <= 0.0) { retorne 0.0 }
 
-		para(indice = 0; indice < Quantidade; indice += 1) {
+		para(inteiro indice = 0; indice < Quantidade; indice++) {
 			se(Composto) {
 				acumulador += Pesos[indice] / mat.potencia( 1.0 + juros / 100.0, Pagamentos[indice] / Periodo)
 			} senao {
@@ -52,13 +50,12 @@ programa {
 		real minJuros = 0.0
 		real medJuros = maxJuros / 2.0
 		real minDiferenca = mat.potencia(0.1, precisao)
-		inteiro indice
 
 		se(maxIteracoes < 1 ou Quantidade < 1 ou precisao < 1.0 ou Periodo <= 0.0 ou acrescimo <= 0.0 ou maxJuros <= 0.0) { retorne 0.0 }
 		pesoTotal = getPesoTotal()
 		se(pesoTotal <= 0.0) { retorne 0.0 }
 
-		para(indice = 0; indice < maxIteracoes; indice += 1) {
+		para(inteiro indice = 0; indice < maxIteracoes; indice++) {
 			medJuros = (minJuros + maxJuros) / 2.0
 			se((maxJuros - medJuros) < minDiferenca) { retorne medJuros }
 			se(jurosParaAcrescimo(medJuros) < acrescimo) {
@@ -72,15 +69,13 @@ programa {
 	}
 
 	funcao inicio() {
-		inteiro indice
-
 		// define os valores para as variáveis globais
 		Quantidade = 3
 		Composto = verdadeiro
 		Periodo = 30.0
-		para(indice = 0; indice < 3; indice += 1) {
+		para(inteiro indice = 0; indice < 3; indice++) {
 			Pagamentos[indice] = (indice + 1.0) * 30.0
-			Pesos[indice] =1.0
+			Pesos[indice] = 1.0
 		}
 
 		// testa as funções
@@ -94,7 +89,7 @@ programa {
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 2086; 
+ * @POSICAO-CURSOR = 2242; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;

@@ -5,8 +5,8 @@ package juros is
       Quantidade : Integer := 0;
       Composto : Boolean := False;
       Periodo : Long_Float := 0.0;
-      Pagamentos : vetor (1 .. 600);
-      Pesos : vetor (1 .. 600);
+      Pagamentos : vetor (1 .. 1000);
+      Pesos : vetor (1 .. 1000);
    end record;
    function getPesototal(sjuros : tjuros) return Long_Float;
    function jurosParaAcrescimos(sjuros : tjuros; juros : Long_Float) return Long_FLoat;

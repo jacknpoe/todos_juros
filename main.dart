@@ -131,7 +131,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
-              'Os resultados são:',
+              'Os resultados são (clique no botão para gerar):',
             ),
             Text(
               _texto,

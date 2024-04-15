@@ -115,7 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
       pesoTotalCalculado = juros.getPesoTotal();
       acrescimoCalculado = juros.jurosParaAcrescimo(3.0);
       jurosCalculado = juros.acrescimoParaJuros(juros.jurosParaAcrescimo(3.0), precisao: 18, maxIteracoes: 200, maxJuros: 100.0);
-      _texto = 'Peso total = $pesoTotalCalculado, acréscimo = $acrescimoCalculado, juros = $jurosCalculado.';
+      _texto = 'Peso total = $pesoTotalCalculado,\nacréscimo = $acrescimoCalculado,\njuros = $jurosCalculado.';
     });
   }
 

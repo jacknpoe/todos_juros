@@ -1,3 +1,4 @@
+//  Versão 0.2:    04/2024: trocada avaliação soZero por acumulador == 0
 using System;
 
 public class Juros

@@ -1,3 +1,5 @@
+// Versão 0.2:    04/2024: trocada avaliação soZero por acumulador == 0
+
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -99,7 +101,7 @@ int main() {
 	juros.Pagamentos[2] = 90.0;
 	
 	acrescimoCalculado = jurosParaAcrescimo(&juros, 3);
-	printf("Acr�scimo calculado: %3.15f\n", acrescimoCalculado);
+	printf("Acréscimo calculado: %3.15f\n", acrescimoCalculado);
 	jurosCalculado = acrescimoParaJuros(&juros, acrescimoCalculado, 15, 100, 50.0);
 	printf("Juros calculado: %3.15f\n", jurosCalculado);
 	gets(buffer);

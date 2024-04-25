@@ -2,6 +2,7 @@
 // Versão 1.0: ??/??/????: versão inclusa no HTML
 // Versão 1.1: 26/09/2023: versão separada no arquivo CalculaJuros.js
 // Versão 1.2: 03/03/2024: correção (não aceitava acréscimo menor que 1%)
+// Versão 1.3:    04/2024: trocada avaliação soZero por acumulador == 0
 // TODO: colocar a classe em um arquivo separado (como com aula93.js e cursos2.js)
 
 class CalculaJuros{

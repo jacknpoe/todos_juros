@@ -2,7 +2,7 @@ with Ada.Containers.Vectors; -- 0.4
 
 -- estrutura e funções do pacote
 package juros is
-   package vetor_dinamico is new Ada.Containers.Vectors (Index_Type => Natural, Element_Type => Long_Float);
+   package vetor_dinamico is new Ada.Containers.Vectors (Index_Type => Natural, Element_Type => Long_Float); -- 0.4
 
    type tjuros is record
       Quantidade : Integer := 0;

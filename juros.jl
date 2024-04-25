@@ -2,6 +2,7 @@
 # Versão 0.1: 20/03/2024: versão feita a partir de pesquisas no Google
 # Versão 0.2: 21/03/2024: versão com testejuros separado
 # Versão 0.3: 21/03/2024: versão com os tipos nos parâmetros
+# Versão 0.4:    04/2024: trocada avaliação soZero por acumulador == 0
 
 # Estrutura com os dados comuns (como parcelas)
 struct Juros

@@ -1,6 +1,7 @@
 // Classe de cálculo do juros, sendo que precisa de arrays pra isso
 // Versão 0.1: 23/03/2024: versão feita no Online Swift Playground
 // Versão 0.2: 25/03/2024: parânetros com valores padrão
+// Versão 0.3:    04/2024: trocada avaliação soZero por acumulador == 0
 
 import Foundation
 // import UIKit

@@ -1,5 +1,6 @@
 // Cálculo do juros, sendo que precisa de arrays pra isso
 // Versão 0.1: 14/04/2024: versão feita sem muito conhecimento de Dart
+// Versão 0.2:    04/2024: trocada avaliação soZero por acumulador == 0
 
 // para a função pow()
 import "dart:math";

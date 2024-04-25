@@ -1,6 +1,7 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Versão 0.2:    04/2024: trocada avaliação soZero por acumulador == 0
  */
 
 package jacknpoe.testejuros;

@@ -17,8 +17,6 @@ begin
    sjuros.Composto := true;
    sjuros.Periodo := 30.0;
    for indice in 1 .. quantidade loop
-      -- sjuros.Pagamentos(indice) := 30.0 * long_float(indice);
-      -- sjuros.Pesos(indice) := 1.0;
       sJuros.Pagamentos.Append(30.0 * long_float(indice)); -- 0.4
       sJuros.Pesos.Append(1.0); -- 0.4
    end loop;

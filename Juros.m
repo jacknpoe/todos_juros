@@ -1,5 +1,6 @@
 % Classe para cálculo do juros, sendo que precisa de arrays pra isso
 % Versão 0.1: 31/03/2024: versão feita a partir de pesquisas no Google
+% Versão 0.2:    04/2024: trocada avaliação soZero por acumulador == 0
 
 classdef Juros
     properties

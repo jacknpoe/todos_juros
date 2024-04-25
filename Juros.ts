@@ -1,6 +1,7 @@
 // Classe que faz o cálculo do juros, sendo que precisa de arrays pra isso
 // Versão 0.1: 03/03/2024: cópia do código JavaScript e definição das propriedades
 //        0.2: 03/03/2024: colocados tipos e ";"s
+//        0.3:    04/2024: trocada avaliação soZero por acumulador == 0
 
 export class Juros{
     public Quantidade: number;

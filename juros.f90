@@ -1,5 +1,6 @@
 ! Calculo dos juros, sendo que precisa de arrays para isso
-! Versão 0.1: 03/04/2024: versao feita a partir de pesquisas no Google
+! Versao 0.1: 03/04/2024: versao feita a partir de pesquisas no Google
+! Versao 0.2:    04/2024: trocada avaliacao soZero por acumulador == 0
 module juros
 implicit none
     ! estrutura basica para simplificar as chamadas

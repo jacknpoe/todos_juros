@@ -1,5 +1,6 @@
 // Cálculo do juros, sendo que precisa de arrays pra isso
 // Versão 0.1: 27/03/2024: versão feita a partir de pesquisas no Google no jdoodle.com e POW com expoente inteiro
+// Versão 0.2:    04/2024: trocada avaliação soZero por acumulador == 0
 
 #import <Foundation/Foundation.h>
 #include <math.h> 

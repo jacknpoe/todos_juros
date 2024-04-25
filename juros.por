@@ -1,7 +1,9 @@
 // Cálculo do juros, sendo que precisa de arrays pra isso
 // Versão 0.1: 13/04/2024: versão feita sem muito conhecimento de Portugol
+// Versão 0.2:    04/2024: trocada avaliação soZero por acumulador == 0
 
-programa {
+programa
+ {
 	// necessário para usar potencia()
 	inclua biblioteca Matematica --> mat
 
@@ -68,7 +70,8 @@ programa {
 		retorne medJuros
 	}
 
-	funcao inicio() {
+	funcao inicio()
+ {
 		// define os valores para as variáveis globais
 		Quantidade = 3
 		Composto = verdadeiro

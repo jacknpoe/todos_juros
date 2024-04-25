@@ -1,6 +1,7 @@
 -- Cálculo do juros, sendo que precisa de arrays pra isso
 -- Versão 0.1: 26/03/2024: versão feita sem muito conhecimento de Lua
 -- Versão 0.2: 01/04/2024: corrigidos os acentos dos comentários
+-- Versão 0.3:    04/2024: trocada avaliação soZero por acumulador == 0
 
 -- estrutura básica para simplificar as chamadas
 Juros = {

@@ -1,3 +1,5 @@
+// Versão 2.1:    04/2024: trocada avaliação soZero por acumulador == 0
+
 #include <math.h>
 #include <iostream>
 #include <cstdlib>

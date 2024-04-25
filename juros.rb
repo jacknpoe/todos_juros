@@ -1,3 +1,5 @@
+# Versão 0.2:    04/2024: trocada avaliação soZero por acumulador == 0
+
 class Juros
   attr_accessor :quantidade, :composto, :periodo, :pagamentos, :pesos
 

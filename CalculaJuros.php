@@ -7,6 +7,7 @@
 	// 0.1   15/04/2023 - Começo da primeira conversão
 	// 0.2   18/04/2023 - Classe inteiramente convertida
 	// 1.0   20/04/2023 - Versão implantada compatível com a página de testes
+ 	// 1.1	    04/2024 - trocada avaliação soZero por acumulador == 0
 
 	namespace jacknpoe;
 

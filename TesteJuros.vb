@@ -1,3 +1,5 @@
+' Versão 0.2:    04/2024: trocada avaliação soZero por acumulador == 0
+
 Public Class Juros
     Private PQuantidade As Integer
     Public Composto As Boolean

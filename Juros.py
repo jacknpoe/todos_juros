@@ -1,4 +1,5 @@
 # Calcula o acréscimo a partir dos juros e os juros a partir do acréscimo
+# Versão 0.2:    04/2024: trocada avaliação soZero por acumulador == 0
 class Juros:
     """Classe que faz o cálculo do juros, sendo que precisa de arrays pra isso"""
     Quantidade = 0

@@ -1,3 +1,4 @@
+# Versão 0.2:    04/2024: trocada avaliação soZero por acumulador == 0
 Juros <- list(quantidade = 0, composto = FALSE, periodo = 30, pagamentos = c(), pesos = c())
 
 # calcula o peso total de todas as parcelas (números arbitrários)

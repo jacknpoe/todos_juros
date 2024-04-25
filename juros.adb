@@ -1,10 +1,8 @@
--- Versão 0.2:    04/2024: trocada avaliação soZero por acumulador == 0
-
 with Ada.Text_IO, Ada.Long_Float_Text_IO, Ada.Numerics.Generic_Elementary_Functions;
 use  Ada.Text_IO, Ada.Long_Float_Text_IO;
 
 package body juros is
-   -- para exponenciação com pontos flutuantes
+   -- para exponencia��o com pontos flutuantes
    package Value_Functions is new Ada.Numerics.Generic_Elementary_Functions(Long_Float);
    use Value_Functions;
 
@@ -12,7 +10,7 @@ package body juros is
    function getPesototal(sjuros : tjuros) return Long_Float is
       acumulador : Long_Float := 0.0;
    begin
-      for indice in 1 .. sjuros.Quantidade loop
+      for indice in 0 .. sjuros.Quantidade - 1 loop -- 0.4
          acumulador := acumulador + sjuros.Pesos(indice);
       end loop;
       return acumulador;
@@ -31,10 +29,10 @@ package body juros is
          return 0.0;
       end if;
 
-      for indice in 1 .. sjuros.Quantidade loop
+      for indice in 0 .. sjuros.Quantidade - 1 loop -- 0.4
          if sjuros.Composto then
             -- veja que foi convertida a divisao de Pagamentos por Periodo para Natural, entao, quando necessario, precisa usar os juros diarios
-            -- foi corrigida a divisão para ponto flutuante em 12/04/2024
+            -- foi corrigida a divis�o para ponto flutuante em 12/04/2024
             acumulador := acumulador + sjuros.Pesos(indice) / (1.0 + juros / 100.0) ** (sjuros.Pagamentos(indice) / sjuros.Periodo);
          else
             acumulador := acumulador + sjuros.Pesos(indice) / (1.0 + juros / 100.0 * sjuros.Pagamentos(indice) / sjuros.Periodo);

@@ -18,45 +18,46 @@ interest.cpp
 Juros.cs
 TesteJuros.cs
 
-5. Dart (14/04/2024)
+5. Common Lisp (27/04/2024)
+juros.lisp
+
+6. Dart (14/04/2024)
 juros.dart
 
-6. Delphi (28/02/2024)
+7. Delphi (28/02/2024)
 Juros.pas
 TesteJuros.dpr
 
-7. Flutter (14/04/2024)
+8. Flutter (14/04/2024)
 
-8. Fortran (03/04/2024)
+9. Fortran (03/04/2024)
 juros.f90
 
-9. Go (27/02/2024)
+10. Go (27/02/2024)
 juros.go
 
-10. Godot (08/04/2024)
+11. Godot (08/04/2024)
 Juros.gd
 
-11. Java (27/02/2024)
+12. Java (27/02/2024)
 Juros.java
 TesteJuros.java
 
-12. JavaScript (22/11/2023)
+13. JavaScript (22/11/2023)
 CalculaJuros.js
 js_testejuros.html
 
-13. Julia (20/03/2024)
+14. Julia (20/03/2024)
 juros.jl
 testejuros.jl
 
-14. Kotlin (22/02/2024)
+15. Kotlin (22/02/2024)
 Juros.kt
 Main.kt
 
-15. Lazarus (12/04/2024)
+16. Lazarus (12/04/2024)
 Juros.pas
 testajuros.lpr
-
-16. Lisp (27/04/2024)
 
 17. Lua (26/03/2024)
 juros.lua

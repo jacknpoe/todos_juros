@@ -47,7 +47,7 @@
 (defun _jurosSimples(valor juros)
   (if (= valor 0)
     (/ (nth 0 Pesos) (+ 1.0 (* (/ juros 100.0) (/ (nth 0 Pagamentos) Periodo))))
-    (+ (/ (nth 0 Pesos) (+ 1.0 (* (/ juros 100.0) (/ (nth 0 Pagamentos) Periodo)))) (_jurosSimples (- valor 1) juros))
+    (+ (/ (nth valor Pesos) (+ 1.0 (* (/ juros 100.0) (/ (nth valor Pagamentos) Periodo)))) (_jurosSimples (- valor 1) juros))
   )
 )
 

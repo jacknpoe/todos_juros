@@ -10,9 +10,6 @@
 (defvar Pesos '(1.0 1.0 1.0))
 (defvar pesoTotal 0.0)
 (defvar medJuros 0.0)
-(defvar indice 0)
-
-;; (defvar acumulador 0.0)
 
 ;; calcula a somatória de Pesos[]
 (defun getPesoTotal()
@@ -82,5 +79,4 @@
 (terpri)
 (princ "Juros = ")
 (write (acrescimoParaJuros (jurosParaAcrescimo 3.0) 18 100 50.0))
-
 

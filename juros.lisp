@@ -60,7 +60,7 @@
   (_acrescimoParaJuros acrescimo (expt 0.1d0 precisao) maxIteracoes 0.0d0 maxJuros)
 )
 
-;; função recursiva no lugar de um for que realmente calcula o acrésimo
+;; função recursiva no lugar de um for que realmente calcula o acréscimo
 (defun _acrescimoParaJuros(acrescimo minDiferenca iteracaoAtual minJuros maxJuros)
   (setq medJuros (/ (+ minJuros maxJuros) 2.0d0))
   (if (= iteracaoAtual 0) (return-from _acrescimoParaJuros medJuros ))

@@ -82,7 +82,7 @@ defmodule Juros do
     end
   end
 
-  # função recursiva no lugar de um for que realmente calcula o acrésimo
+  # função recursiva no lugar de um for que realmente calcula o acréscimo
   def rAcrescimoParaJuros(ojuros, acrescimo, minDiferenca, iteracaoAtual, minJuros, maxJuros, medJuros) do
     if iteracaoAtual == 0 || (maxJuros - minJuros) < minDiferenca do
       medJuros

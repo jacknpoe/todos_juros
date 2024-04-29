@@ -54,7 +54,7 @@
   (_acrescimoParaJuros acrescimo (expt 0.1d0 precisao) maxIteracoes 0.0d0 maxJuros (/ maxJuros 2.0d0))
 )
 
-;; função recursiva no lugar de um for que realmente calcula o acrésimo
+;; função recursiva no lugar de um for que realmente calcula o acréscimo
 (define (_acrescimoParaJuros acrescimo minDiferenca iteracaoAtual minJuros maxJuros medJuros)
   (if (or (= iteracaoAtual 0) (< (- maxJuros minJuros) minDiferenca))
     medJuros

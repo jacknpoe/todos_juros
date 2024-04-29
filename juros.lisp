@@ -61,13 +61,13 @@
 )
 
 ;; função recursiva no lugar de um for que realmente calcula o acrésimo
-(defun _acrescimoParaJuros(acrescimo minDiferenca iteracaoatual minJuros maxJuros)
+(defun _acrescimoParaJuros(acrescimo minDiferenca iteracaoAtual minJuros maxJuros)
   (setq medJuros (/ (+ minJuros maxJuros) 2.0d0))
-  (if (= iteracaoatual 1) (return-from _acrescimoParaJuros medJuros ))
+  (if (= iteracaoAtual 0) (return-from _acrescimoParaJuros medJuros ))
   (if (< (- maxJuros minJuros) minDiferenca) (return-from _acrescimoParaJuros medJuros))
   (if (< (jurosParaAcrescimo medJuros) acrescimo)
-    (_acrescimoParaJuros acrescimo minDiferenca (- iteracaoatual 1) medJuros maxJuros)
-    (_acrescimoParaJuros acrescimo minDiferenca (- iteracaoatual 1) minJuros medJuros)  
+    (_acrescimoParaJuros acrescimo minDiferenca (- iteracaoAtual 1) medJuros maxJuros)
+    (_acrescimoParaJuros acrescimo minDiferenca (- iteracaoAtual 1) minJuros medJuros)  
   )
 )
 
@@ -79,4 +79,4 @@
 (write (jurosParaAcrescimo 3.0d0))
 (terpri)
 (princ "Juros = ")
-(write (acrescimoParaJuros (jurosParaAcrescimo 3.0d0) 18 100 50.0d0))
+(write (acrescimoParaJuros (jurosParaAcrescimo 3.0d0) 15 100 50.0d0))

@@ -5,6 +5,7 @@ defmodule Juros do
          0.2: 29/04/2024: as três funções e as recursivas (ou seja, todoo cálculo)
   """
 
+  # estrutura básica para simplificar as chamadas
   defstruct quantidade: 0, composto: false, periodo: 0.0, pagamentos: [0.0], pesos: [0.0]
 
   # "Construtor"

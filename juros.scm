@@ -26,8 +26,8 @@
   (if (or (or (<= juros 0.0) (<= Quantidade 0)) (<= Periodo 0.0)) (return-from jurosParaAcrescimo 0.0))
   (if (<= (getPesoTotal) 0.0) (return-from jurosParaAcrescimo 0.0))
   (if (= Composto 1)
-      (* (- (/ (getPesoTotal) (_jurosCompostos(- Quantidade 1) juros)) 1.0d0) 10.0d00)
-      (* (- (/ (getPesoTotal) (_jurosSimples(- Quantidade 1) juros)) 1.0d0) 100.0d0)
+      (* (- (/ (getPesoTotal) (_jurosCompostos (- Quantidade 1) juros)) 1.0d0) 10.0d00)
+      (* (- (/ (getPesoTotal) (_jurosSimples (- Quantidade 1) juros)) 1.0d0) 100.0d0)
   )
 )
 
@@ -56,7 +56,7 @@
 
 ;; função recursiva no lugar de um for que realmente calcula o acrésimo
 (define (_acrescimoParaJuros acrescimo minDiferenca iteracaoAtual minJuros maxJuros medJuros)
-  (if (or (= iteracaoAtual 1) (< (- maxJuros minJuros) minDiferenca))
+  (if (or (= iteracaoAtual 0) (< (- maxJuros minJuros) minDiferenca))
     medJuros
     (if (< (jurosParaAcrescimo medJuros) acrescimo)
       (_acrescimoParaJuros acrescimo minDiferenca (- iteracaoAtual 1) medJuros maxJuros (/ (+ medJuros maxJuros) 2.0d0))

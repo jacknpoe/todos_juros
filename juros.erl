@@ -3,7 +3,7 @@
 %%% @copyright (C) 2024, <COMPANY>
 %%% @doc
 %%% Cálculo do juros, sendo que precisa de listas pra isso
-%%% Versão 0.1: 29/04/2024: começo, sem saber muito sobre Erlang
+%%% Versão 0.1: 29/04/2024: completo, mas sem saber muito sobre Erlang
 %%% @end
 %%% Created : 29. abr. 2024 16:37
 %%%-------------------------------------------------------------------
@@ -28,10 +28,10 @@
 getPesoTotal(OJuros) ->
   rGetPesoTotal(OJuros, OJuros#juros.quantidade).
 
-%% função recursiva que calcula realmente a somatória de pesos[]
+%% função recursiva que realmente calcula a somatória de pesos[]
 rGetPesoTotal(OJuros, Indice) ->
   if Indice == 1 ->
-    nth(1, OJuros#juros.pesos);
+    nth(Indice, OJuros#juros.pesos);
   true ->
     nth(Indice, OJuros#juros.pesos) + rGetPesoTotal(OJuros, Indice-1)
   end.
@@ -95,9 +95,11 @@ rAcrescimoParaJuros(OJuros, Acrescimo, MinDiferenca, IteracaoAtual, MinJuros, Ma
     end
   end.
 
-%% testes
 testajuros() ->
+  %% cria o objeto OJuros para simplificar as chamadas
   OJuros = #juros{quantidade = 3, composto = true, periodo = 30.0, pagamentos = [30.0, 60.0, 90.0], pesos = [1.0, 1.0, 1.0]},
+
+  %% testes
   PesoTotal = getPesoTotal(OJuros),
   io:fwrite("Peso Total = ~f~n", [PesoTotal]),
   Acrescimo = jurosParaAcrescimo(OJuros, 3.0),

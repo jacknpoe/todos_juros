@@ -54,12 +54,12 @@ Var
   Fimfuncao
 
   // calcula os juros a partir do acréscimo e dados comuns (como parcelas)
-  Funcao acrescimoParaJuros( acrescimo: real) : real
+  Funcao acrescimoParaJuros( acrescimo: real; precisao: inteiro; maxIteracao: inteiro; maxJuros: real) : real
   Var
-    pesoTotal, minJuros, medJuros, maxJuros, minDiferenca: real
+    pesoTotal, minJuros, medJuros, minDiferenca: real
     indice: inteiro
   Inicio
-    Se (Quantidade < 1) ou (Periodo <= 0.0) ou (acrescimo <= 0.0) entao
+    Se (Quantidade < 1) ou (Periodo <= 0.0) ou (acrescimo <= 0.0) ou (precisao < 1) ou (maxIteracao < 1) ou (maxJuros <= 0.0) entao
       Retorne 0.0
     Fimse
     pesoTotal <- getPesoTotal()
@@ -67,8 +67,7 @@ Var
       Retorne 0.0
     Fimse
     minJuros <- 0.0
-    maxJuros <- 50.0
-    minDiferenca <- 0.1 ^ 15
+    minDiferenca <- 0.1 ^ precisao
     
     Para indice de 1 ate 100 faca
       medJuros <- (minJuros + maxJuros) / 2.0
@@ -99,6 +98,6 @@ Inicio
   Escreval( "Peso total = ", getPesoTotal())
   Acrescimo <- jurosParaAcrescimo(3.0)
   Escreval( "Acréscimo = ", Acrescimo)
-  Juros <- acrescimoParaJuros(Acrescimo)
+  Juros <- acrescimoParaJuros(Acrescimo, 15, 100, 50.0)
   Escreval( "Juros = ", Juros)
 Fimalgoritmo

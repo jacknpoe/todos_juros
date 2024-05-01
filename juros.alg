@@ -1,4 +1,4 @@
-Algoritmo "testes"
+Algoritmo "juros"
 // Cálculo do juros, sendo que precisa de arrays pra isso
 // Versão 0.1: 01/05/2024: versão feita sem muito conhecimento de VisualG
 

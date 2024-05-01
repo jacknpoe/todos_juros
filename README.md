@@ -6,7 +6,7 @@ Este repositório é sobre codificar, em várias linguagens, a mesma solução e
 
 Dois conceitos que pesaram muito foram a exponenciação de números ponto flutuante (implementada em todas as linguagens) e os arrays dinâmicos (que não foram possíveis em Pascalzim e Portugol, onde os arrays têm mil elementos).
 
-Duas linguagens são consideradas diferentes quando qualquer parte do código tem que ser alterada para ser compilada ou interpretada em ambas.
+Duas linguagens são consideradas diferentes quando qualquer parte do código tem que ser alterada para ser compilado ou interpretado em ambas.
 
 As soluções estão dividas entre as recursivas (Common Lisp, Scheme, Elixir e Erlang) e iterativas (todas as outras linguagens).
 

@@ -6,6 +6,8 @@ Este repositório é sobre codificar, em várias linguagens, a mesma solução e
 
 Dois conceitos que pesaram muito foram a exponenciação de números ponto flutuante (implementada em todas as linguagens) e os arrays dinâmicos (que não foram possíveis em Pascalzim e Portugol, onde os arrays têm mil elementos).
 
+Duas linguagens são consideradas diferentes quando qualquer parte do código tem que ser alterada para ser compilada ou interpretada em ambas.
+
 As soluções estão dividas entre as recursivas (Common Lisp, Scheme, Elixir e Erlang) e iterativas (todas as outras linguagens).
 
 A licença é GNU (https://www.gnu.org/licenses/gpl-3.0.html).
@@ -15,6 +17,8 @@ ENGLISH
 This repository is about coding, in multiple languages, the same solution in financial mathematics. Find the interest from the addition of the dates and weights of the installments. I use the Bisection Method of Numerical Calculation to solve. The idea is that each version adheres to the culture of each language as much as possible. I use as few resources as possible. I avoid adding any libraries I can. (except in VFP, for rights reaons)
 
 Two concepts that weighed heavily were the exponentiation of floating point numbers (implemented in all languages) and dynamic arrays (which were not possible in Pascalzim and Portugol, where arrays have a thousand elements).
+
+Two languages ​​are considered different when any part of the code has to be changed to be compiled or interpreted in both.
 
 The solutions are divided between recursive (Common Lisp, Scheme, Elixir and Erlang) and iterative (all other languages).
 

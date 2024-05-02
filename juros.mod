@@ -1,10 +1,10 @@
 (* Calculo do juros, sendo que precisa de arrays pra isso
    Versao 0.1: 01/05/2024: somente variaveis e testes sem conhecimento de Modula-2
           0.2: 02/05/2024: funcoes e testes
+          0.3: 02/05/2024: com arrays dinamicos
 *)
 MODULE juros;
 FROM InOut IMPORT WriteString, WriteLn;
-(* FROM RealInOut IMPORT WriteReal; *)
 FROM SLongIO IMPORT WriteFloat;
 FROM LongMath IMPORT power;
 FROM Storage IMPORT ALLOCATE, DEALLOCATE;

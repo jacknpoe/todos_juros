@@ -13,6 +13,7 @@ Var
 
   Acrescimo: real
   Juros: real
+  PesoTotal: real
   indice: inteiro
 
   // calcula a somatória de Pesos[]
@@ -96,7 +97,8 @@ Inicio
   Fimpara
 
   // testa as funções
-  Escreval( "Peso total = ", getPesoTotal())
+  PesoTotal <- getPesoTotal()
+  Escreval( "Peso total = ", PesoTotal)
   Acrescimo <- jurosParaAcrescimo(3.0)
   Escreval( "Acréscimo = ", Acrescimo)
   Juros <- acrescimoParaJuros(Acrescimo, 15, 100, 50.0)

@@ -7,12 +7,17 @@ FROM InOut IMPORT WriteString, WriteLn;
 (* FROM RealInOut IMPORT WriteReal; *)
 FROM SLongIO IMPORT WriteFloat;
 FROM LongMath IMPORT power;
+FROM Storage IMPORT ALLOCATE, DEALLOCATE;
+FROM SYSTEM IMPORT ADDADR;
+
+CONST TamLong = SIZE( LONGREAL);
 
     (* estrutura basica para simplificar as chamadas *)
 VAR Quantidade: INTEGER;
     Composto: BOOLEAN;
     Periodo: LONGREAL;
-    Pagamentos, Pesos: ARRAY [1..1000] OF LONGREAL;
+(*    Pagamentos, Pesos: ARRAY [1..1000] OF LONGREAL; *)
+    Pagamentos, Pesos: POINTER TO LONGREAL;
 
     (* variaveis do programa principal *)
     PesoTotal, Acrescimo, Juros: LONGREAL;
@@ -24,7 +29,7 @@ VAR indice: INTEGER;
     acumulador: LONGREAL;
 BEGIN
   acumulador := 0.0;
-  FOR indice := 1 TO Quantidade DO
+  FOR indice := 0 TO Quantidade - 1 DO
     acumulador := acumulador + Pesos[indice];
   END;
   RETURN acumulador;
@@ -41,7 +46,7 @@ BEGIN
   END;
 
   acumulador := 0.0;
-  FOR indice := 1 TO Quantidade DO
+  FOR indice := 0 TO Quantidade - 1 DO
     IF Composto THEN
       acumulador := acumulador + Pesos[indice] / power (1.0 + juros / 100.0, Pagamentos[indice] / Periodo);
     ELSE
@@ -83,6 +88,8 @@ BEGIN (* programa principal *)
   Quantidade := 3;
   Composto := TRUE;
   Periodo := 30.0;
+  ALLOCATE(Pagamentos, Quantidade * TamLong);
+  ALLOCATE(Pesos, Quantidade * TamLong);
   
   FOR indice := 1 TO Quantidade DO
     Pagamentos[indice] := 30.0 * LFLOAT(indice);
@@ -104,4 +111,7 @@ BEGIN (* programa principal *)
   WriteString("Juros = ");
   WriteFloat(Juros, 14, 12);
   WriteLn;
+
+  DEALLOCATE(Pagamentos, Quantidade * TamLong);
+  DEALLOCATE(Pesos, Quantidade * TamLong);
 END juros.

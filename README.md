@@ -4,7 +4,7 @@ PORTUGUÊS
 =========
 Este repositório é sobre codificar, em várias linguagens, a mesma solução em matemática financeira. Achar os juros a partir do acrésimo de das datas e pesos das parcelas. Eu uso o Método da Bisseção do Cálculo Numérico para resolver. A ideia é que cada versão se fixe ao máximo à cultura de cada linguagem. Eu uso o mínimo de recursos possível. Eu evito adicionar qualquer biblioteca que eu puder. (exceto em VFP, por questões de direitos)
 
-Dois conceitos que pesaram muito foram a exponenciação de números ponto flutuante (implementada em todas as linguagens) e os arrays dinâmicos (que não foram possíveis em Modula-2, Pascalzim, Portugol e VisuALG, onde os arrays têm mil elementos ou três, no cado de Modula-2).
+Dois conceitos que pesaram muito foram a exponenciação de números ponto flutuante (implementada em todas as linguagens) e os arrays dinâmicos (que não foram possíveis em Modula-2, Pascalzim, Portugol e VisuALG, onde os arrays têm mil elementos. ou três no caso de Modula-2).
 
 Duas linguagens são consideradas diferentes quando qualquer parte do código tem que ser alterada para ser compilado ou interpretado em ambas.
 

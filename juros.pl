@@ -1,5 +1,5 @@
 % Cálculo do juros, sendo que precisa de arrays para isso
-% Versão 0.1: 03/05/2024: getPesoTotal, rJurosCompostos, rJurosSimples
+% Versão 0.1: 03/05/2024: completa
 % dados gerais
 juros() :-
 %  Quantidade is 3,  % Quantidade ficaria no caminho das três primeiras recursões

@@ -2,13 +2,14 @@
    Versao 0.1: 01/05/2024: somente variaveis e testes sem conhecimento de Modula-2
           0.2: 02/05/2024: funcoes e testes
           0.3: 02/05/2024: com arrays dinamicos
+          0.4: 03/05/2024: com QUANTIDADETOTAL para quantidade
 *)
 MODULE juros;
 FROM InOut IMPORT WriteString, WriteLn;
 FROM SLongIO IMPORT WriteFloat;
 FROM LongMath IMPORT power;
 
-CONST QUANTIDADETOTAL = 1000;
+CONST QUANTIDADETOTAL = 3;
 
     (* estrutura basica para simplificar as chamadas *)
 VAR Quantidade: INTEGER;
@@ -83,7 +84,7 @@ END acrescimoParaJuros;
 BEGIN (* programa principal *)
 
   (* define os valores da estrutura basica *)  
-  Quantidade := 3;
+  Quantidade := QUANTIDADETOTAL;
   Composto := TRUE;
   Periodo := 30.0;
   

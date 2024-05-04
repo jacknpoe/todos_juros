@@ -1,6 +1,5 @@
 -- Cálculo do juros, sendo que precisa de arrays pra isso
 -- Versão 0.1: 04/05/2024: versão feita sem muito conhecimento de Haskell
-{-# OPTIONS -fdefer-type-errors #-}
 import Data.List
 
 -- estrutura básica para simplificar as chamadas
@@ -44,6 +43,7 @@ rAcrescimoParaJuros acrescimo minDiferenca iteracaoAtual minJuros maxJuros medJu
   | jurosParaAcrescimo medJuros < acrescimo = rAcrescimoParaJuros acrescimo minDiferenca (iteracaoAtual - 1) medJuros maxJuros ((medJuros + maxJuros) / 2.0)
   | otherwise = rAcrescimoParaJuros acrescimo minDiferenca (iteracaoAtual - 1) minJuros medJuros ((minJuros + medJuros) / 2.0)
 
+-- testa as funções
 main = do
   putStr "Peso total = "
   putStrLn (show(getPesoTotal))

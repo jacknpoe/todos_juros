@@ -8,7 +8,7 @@ Dois conceitos que pesaram muito foram a exponenciação de números ponto flutu
 
 Duas linguagens são consideradas diferentes quando qualquer parte do código tem que ser alterada para ser compilado ou interpretado em ambas.
 
-As soluções estão dividas entre as recursivas (Common Lisp, Scheme, Elixir e Erlang) e iterativas (todas as outras linguagens).
+As soluções estão dividas entre as recursivas (Common Lisp, Elixir, Erlang, Haskell, Prolog e Scheme) e iterativas (todas as outras linguagens).
 
 A licença é GNU (https://www.gnu.org/licenses/gpl-3.0.html).
 
@@ -20,6 +20,6 @@ Two concepts that weighed heavily were the exponentiation of floating point numb
 
 Two languages ​​are considered different when any part of the code has to be changed to be compiled or interpreted in both.
 
-The solutions are divided between recursive (Common Lisp, Scheme, Elixir and Erlang) and iterative (all other languages).
+The solutions are divided between recursive (Common Lisp, Elixir, Erlang, Haskell, Prolog and Scheme) and iterative (all other languages).
 
 The license is GNU (https://www.gnu.org/licenses/gpl-3.0.html).

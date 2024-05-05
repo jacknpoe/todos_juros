@@ -49,5 +49,5 @@ main = do
   putStrLn (show(getPesoTotal))
   putStr "Juros = "
   putStrLn (show(jurosParaAcrescimo 3.0))
-  putStr "Acréscimo = "
+  putStr "Acrescimo = "
   putStrLn (show( acrescimoParaJuros (jurosParaAcrescimo 3.0) 15 100 50.0))  

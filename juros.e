@@ -42,25 +42,22 @@ feature -- métodos
 		juros_maior_que_zero: juros > 0.0
 		quantidade_maior_que_zero: Quantidade > 0
 		periodo_maior_que_zero: Periodo > 0.0
+		peso_total_maior_que_zero: getPesoTotal > 0.0
 	local
 		pesoTotal, acumulador: REAL_64
 		indice: INTEGER
 	do
 		pesoTotal := getPesoTotal
-		if pesoTotal <= 0 then
-			Result := 0.0
-		else
-			acumulador := 0.0
-			from indice := 1 until indice > Quantidade loop
-				if Composto then
-					acumulador := acumulador + Pesos[indice] / (1.0 + juros / 100.0) ^ (Pagamentos[indice] / Periodo)
-				else
-					acumulador := acumulador + Pesos[indice] / (1.0 + juros / 100.0 * Pagamentos[indice] / Periodo)
-				end
-				indice := indice + 1
+		acumulador := 0.0
+		from indice := 1 until indice > Quantidade loop
+			if Composto then
+				acumulador := acumulador + Pesos[indice] / (1.0 + juros / 100.0) ^ (Pagamentos[indice] / Periodo)
+			else
+				acumulador := acumulador + Pesos[indice] / (1.0 + juros / 100.0 * Pagamentos[indice] / Periodo)
 			end
-			Result := ((pesoTotal / acumulador) - 1.0) * 100.0
+			indice := indice + 1
 		end
+		Result := ((pesoTotal / acumulador) - 1.0) * 100.0
 	end
 
 	-- calcula os juros a partir do acréscimo e dados comuns (como parcelas)
@@ -72,33 +69,29 @@ feature -- métodos
 		periodo_maior_que_zero: Periodo > 0.0
 		acrescimo_maior_que_zero: acrescimo > 0.0
 		maximojuros_maior_que_zero: maximoJuros > 0.0
+		peso_total_maior_que_zero: getPesoTotal > 0.0
 	local
-		pesoTotal, minJuros, medJuros, maxJuros, minDiferenca: REAL_64
+		minJuros, medJuros, maxJuros, minDiferenca: REAL_64
 		indice: INTEGER
 	do
-		pesoTotal := getPesoTotal
-		if pesoTotal <= 0 then
-			Result := 0.0
-		else
-			minJuros := 0.0
-			maxJuros := maximoJuros
-			minDiferenca := 0.1 ^ precisao
+		minJuros := 0.0
+		maxJuros := maximoJuros
+		minDiferenca := 0.1 ^ precisao
 
-			from indice := 1 until indice > maxIteracoes loop
-				medJuros := (minJuros + maxJuros) / 2.0
-				if (maxJuros - minJuros) < minDiferenca then
-					indice := maxIteracoes
+		from indice := 1 until indice > maxIteracoes loop
+			medJuros := (minJuros + maxJuros) / 2.0
+			if (maxJuros - minJuros) < minDiferenca then
+				indice := maxIteracoes
+			else
+				if jurosParaAcrescimo(medJuros)< acrescimo then
+					minJuros := medJuros
 				else
-					if jurosParaAcrescimo(medJuros)< acrescimo then
-						minJuros := medJuros
-					else
-						maxJuros := medJuros
-					end
+					maxJuros := medJuros
 				end
-				indice := indice + 1
 			end
-			Result := medJuros
+			indice := indice + 1
 		end
+		Result := medJuros
 	end
 
 feature -- attributes

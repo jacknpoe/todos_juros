@@ -16,7 +16,7 @@ feature {NONE}
 		juros: JUROS
 		pesoTotal, acrescimoCalculado, jurosCalculado: REAL_64
 	do  -- cria objeto com os valores iniciais
-		create juros.make(3, true, 30.0, <<30.0, 60.0, 90.0>>, <<1.0, 1.0, 1.0>>)
+		juros := create {JUROS}.make(3, true, 30.0, <<30.0, 60.0, 90.0>>, <<1.0, 1.0, 1.0>>)
 
 		-- testa as funções
 		pesoTotal := juros.getPesoTotal

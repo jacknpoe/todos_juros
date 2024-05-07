@@ -4,6 +4,7 @@
 %%% @doc
 %%% Cálculo do juros, sendo que precisa de listas pra isso
 %%% Versão 0.1: 29/04/2024: completo, mas sem saber muito sobre Erlang
+%%%        0.2: 07/05/2024: agora roda diretamente na linha de comando (main)
 %%% @end
 %%% Created : 29. abr. 2024 16:37
 %%%-------------------------------------------------------------------
@@ -13,7 +14,7 @@
 -import(lists,[nth/2]).
 
 %% API
--export([testajuros/0]).
+-export([main/1]).
 
 %% registro básico para simplificar as chamadas
 -record( juros, {
@@ -82,24 +83,25 @@ acrescimoParaJuros(OJuros, Acrescimo, Precisao, MaxIteracoes, MaxJuros) ->
     end
   end.
 
-%% função recursiva no lugar de um for que realmente calcula o acréscimo
+    %% função recursiva no lugar de um for que realmente calcula o acréscimo
 rAcrescimoParaJuros(OJuros, Acrescimo, MinDiferenca, IteracaoAtual, MinJuros, MaxJuros, MedJuros) ->
   if (IteracaoAtual == 0) or ((MaxJuros - MinJuros) < MinDiferenca) ->
     MedJuros;
   true ->
     Calculado = jurosParaAcrescimo(OJuros, MedJuros),
-    if Calculado < Acrescimo->
+    if Calculado < Acrescimo ->
       rAcrescimoParaJuros(OJuros, Acrescimo, MinDiferenca, IteracaoAtual - 1, MedJuros, MaxJuros, (MedJuros + MaxJuros) / 2.0);
     true ->
       rAcrescimoParaJuros(OJuros, Acrescimo, MinDiferenca, IteracaoAtual - 1, MinJuros, MedJuros, (MinJuros + MedJuros) / 2.0)
     end
   end.
 
-testajuros() ->
+main(Args) ->
   %% cria o objeto OJuros para simplificar as chamadas
   OJuros = #juros{quantidade = 3, composto = true, periodo = 30.0, pagamentos = [30.0, 60.0, 90.0], pesos = [1.0, 1.0, 1.0]},
 
   %% testes
+  io:fwrite("Argumentos = ~p~n", [Args]),
   PesoTotal = getPesoTotal(OJuros),
   io:fwrite("Peso Total = ~f~n", [PesoTotal]),
   Acrescimo = jurosParaAcrescimo(OJuros, 3.0),

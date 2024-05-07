@@ -5,7 +5,7 @@ note
 	revision: "$Revision$"
 	-- Versao: 0.1: 06/05/2024: versão feita sem muito conhecimento de Eiffel
 	--         0.2: 07/05/2024: versão com nomes em minúsculas e {ANY} onde precisa
-	-- ATENÇÃO, falta ^ com expoente REAL_64 no compilador Liberty Eiffel, então pode ser necessário o Eiffel Studio
+	-- ATENÇÃO, falta ^ com expoente REAL_64 no compilador Liberty Eiffel, então pode ser necessário o EiffelStudio
 
 class JUROS
 

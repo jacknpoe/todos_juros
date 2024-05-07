@@ -10,6 +10,8 @@ Duas linguagens são consideradas diferentes quando qualquer parte do código te
 
 As soluções estão dividas entre as recursivas (Common Lisp, Elixir, Erlang, Haskell, Prolog e Scheme) e iterativas (todas as outras linguagens).
 
+A lista está organizada em ordem alfabética pelo nome das linguagens em: https://jacknpoeexplicaprogramacao.wordpress.com/2024/03/02/10-resolucoes-de-equacao-transcendente/
+
 A licença é GNU (https://www.gnu.org/licenses/gpl-3.0.html).
 
 ENGLISH
@@ -21,5 +23,7 @@ Two concepts that weighed heavily were the exponentiation of floating point numb
 Two languages ​​are considered different when any part of the code has to be changed to be compiled or interpreted in both.
 
 The solutions are divided between recursive (Common Lisp, Elixir, Erlang, Haskell, Prolog and Scheme) and iterative (all other languages).
+
+The list is organized alphabetically by language name: https://jacknpoeexplicaprogramacao.wordpress.com/2024/03/02/10-resolucoes-de-equacao-transcendente/
 
 The license is GNU (https://www.gnu.org/licenses/gpl-3.0.html).

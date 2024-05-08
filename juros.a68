@@ -1,11 +1,6 @@
 # Cálculo do juros, sendo que precisa de arrays pra isso #
 # Versão 0.1: 07/05/2024: versão feita sem muito conhecimento de ALGOL 68 G #
-
-# estrutura básica para simplificar as chamadas #
-INT quantidade;
-BOOL composto;
-LONG REAL periodo;
-# [quantidade] LONG REAL pagamentos, pesos; #
+#        0.2: 08/05/2024: arrays dinâmicos #
 
 # calcula a somatória de Pesos[] # 
 PROC getpesototal = LONG REAL :
@@ -59,13 +54,15 @@ BEGIN
     FI
 END;
 
-# define os valores da estrutura básica #
+# valores globais (está organizado de forma a pedir a quantidade, de forma dinâmica) #
+INT quantidade;
+BOOL composto := TRUE;
+LONG REAL periodo := 30.0;
+
 print("Digite o numero de parcelas: ");
 read((quantidade, new line));
-# quantidade := 3; #
-composto := TRUE;
-periodo := 30.0;
 [quantidade] LONG REAL pagamentos, pesos;
+
 FOR indice FROM 1 TO quantidade DO
     pagamentos[indice] := 30.0 * indice;
     pesos[indice] := 1.0
@@ -73,9 +70,11 @@ OD;
 
 # testa as funções #
 LONG REAL pesototal, acrescimo, juros;
+
 pesototal := getpesototal;
 acrescimo := jurosparaacrescimo(3.0);
 juros := acrescimoparajuros(acrescimo, 27, 100, 50.0);
+
 print(("Peso Total: ", pesototal, new line));
 print(("Acrescimo: ", acrescimo, new line));
 print(("Juros: ", juros, new line))

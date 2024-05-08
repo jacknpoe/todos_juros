@@ -2,10 +2,10 @@
 # Versão 0.1: 07/05/2024: versão feita sem muito conhecimento de ALGOL 68 G #
 
 # estrutura básica para simplificar as chamadas #
-INT quantidade;
+INT quantidade := 3;
 BOOL composto;
 LONG REAL periodo;
-[1000] LONG REAL pagamentos, pesos;
+[quantidade] LONG REAL pagamentos, pesos;
 
 # calcula a somatória de Pesos[] # 
 PROC getpesototal = LONG REAL :

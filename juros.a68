@@ -1,6 +1,7 @@
 # Cálculo do juros, sendo que precisa de arrays pra isso #
 # Versão 0.1: 07/05/2024: versão feita sem muito conhecimento de ALGOL 68 G #
 #        0.2: 08/05/2024: arrays dinâmicos #
+#        0.3: 08/05/2024: números formatados com fixed() #
 
 # calcula a somatória de Pesos[] # 
 PROC getpesototal = LONG REAL :
@@ -75,6 +76,6 @@ pesototal := getpesototal;
 acrescimo := jurosparaacrescimo(3.0);
 juros := acrescimoparajuros(acrescimo, 27, 100, 50.0);
 
-print(("Peso Total: ", pesototal, new line));
-print(("Acrescimo: ", acrescimo, new line));
-print(("Juros: ", juros, new line))
+print(("Peso Total: ", fixed(pesototal, 0, 27), new line));
+print(("Acrescimo: ", fixed(acrescimo, 0, 27), new line));
+print(("Juros: ", fixed(juros, 0, 27), new line))

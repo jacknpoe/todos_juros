@@ -1,0 +1,78 @@
+# Cálculo do juros, sendo que precisa de arrays pra isso #
+# Versão 0.1: 07/05/2024: versão feita sem muito conhecimento de ALGOL 68 G #
+
+# estrutura básica para simplificar as chamadas #
+INT quantidade;
+BOOL composto;
+LONG REAL periodo;
+[1:1000]LONG REAL pagamentos, pesos;
+
+# calcula a somatória de Pesos[] # 
+PROC getpesototal = LONG REAL :
+BEGIN
+    LONG REAL acumulador := 0.0;
+    FOR indice FROM 1 TO quantidade DO
+        acumulador := acumulador + pesos[indice]
+    OD;
+    acumulador
+END;
+
+# calcula o acréscimo a partir dos juros e dados comuns (como parcelas) #
+PROC jurosparaacrescimo = (LONG REAL juros) LONG REAL :
+BEGIN
+    LONG REAL pesototal := getpesototal, acumulador := 0.0;
+    IF juros <= 0.0 OR quantidade < 1 OR periodo <= 0.0 OR pesototal <= 0.0 THEN
+        0.0
+    ELSE
+        FOR indice FROM 1 TO quantidade DO
+            IF composto THEN
+                acumulador := acumulador + pesos[indice] / (1.0 + juros / 100.0) ** (pagamentos[indice] / periodo)
+            ELSE
+                acumulador := acumulador + pesos[indice] / (1.0 + juros / 100.0 * pagamentos[indice] / periodo)
+            FI
+        OD;
+        (pesototal / acumulador - 1.0) * 100.0
+    FI
+END;
+
+# calcula os juros a partir do acréscimo e dados comuns (como parcelas) #
+PROC acrescimoparajuros = (LONG REAL acrescimo, INT precisao, INT maxiteracoes, LONG REAL maximojuros) LONG REAL :
+BEGIN
+    LONG REAL pesototal := getpesototal, minjuros := 0.0, medjuros, maxjuros := maximojuros,  mindiferenca := 0.1 ** precisao;
+    BOOL continuar := TRUE;
+    IF maxiteracoes < 1 OR quantidade < 1 OR precisao < 1 OR periodo <= 0.0 OR acrescimo <= 0.0 OR maxjuros <= 0.0 OR pesototal <= 0.0 THEN
+        0.0
+    ELSE
+        FOR indice FROM 1 TO maxiteracoes WHILE continuar DO
+            medjuros := (minjuros + maxjuros) / 2.0;
+            IF (maxjuros - minjuros) < mindiferenca THEN
+                continuar := FALSE
+            ELSE
+                IF jurosparaacrescimo(medjuros) < acrescimo THEN
+                    minjuros := medjuros
+                ELSE
+                    maxjuros := medjuros
+                FI
+            FI
+        OD;
+        medjuros
+    FI
+END;
+
+# define os valores da estrutura básica #
+quantidade := 3;
+composto := TRUE;
+periodo := 30.0;
+FOR indice FROM 1 TO quantidade DO
+    pagamentos[indice] := 30.0 * indice;
+    pesos[indice] := 1.0
+OD;
+
+# testa as funções #
+LONG REAL pesototal, acrescimo, juros;
+pesototal := getpesototal;
+acrescimo := jurosparaacrescimo(3.0);
+juros := acrescimoparajuros(acrescimo, 27, 100, 50.0);
+print(("Peso Total: ", pesototal, new line));
+print(("Acrescimo: ", acrescimo, new line));
+print(("Juros: ", juros, new line))

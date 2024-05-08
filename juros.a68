@@ -2,7 +2,7 @@
 # Versão 0.1: 07/05/2024: versão feita sem muito conhecimento de ALGOL 68 G #
 
 # estrutura básica para simplificar as chamadas #
-INT quantidade := 3;
+INT quantidade;
 BOOL composto;
 LONG REAL periodo;
 # [quantidade] LONG REAL pagamentos, pesos; #

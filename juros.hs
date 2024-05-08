@@ -1,6 +1,6 @@
 -- Cálculo do juros, sendo que precisa de arrays pra isso
 -- Versão 0.1: 04/05/2024: versão feita sem muito conhecimento de Haskell
---        0.2: 07/05/2024: corrigidos os putStr Juros e Acrescimo, que estavam invertidos
+--        0.2: 07/05/2024: corrigidos os putStr Juros e Acrescimo que estavam invertidos
 import Data.List
 
 -- estrutura básica para simplificar as chamadas

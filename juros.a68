@@ -60,7 +60,9 @@ BEGIN
 END;
 
 # define os valores da estrutura básica #
-quantidade := 3;
+print("Digite o numero de parcelas: ");
+read((quantidade, new line));
+# quantidade := 3; #
 composto := TRUE;
 periodo := 30.0;
 [quantidade] LONG REAL pagamentos, pesos;

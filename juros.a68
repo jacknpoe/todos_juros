@@ -5,7 +5,7 @@
 INT quantidade;
 BOOL composto;
 LONG REAL periodo;
-[1:1000]LONG REAL pagamentos, pesos;
+[1000] LONG REAL pagamentos, pesos;
 
 # calcula a somatória de Pesos[] # 
 PROC getpesototal = LONG REAL :

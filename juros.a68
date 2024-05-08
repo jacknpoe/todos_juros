@@ -5,7 +5,7 @@
 INT quantidade := 3;
 BOOL composto;
 LONG REAL periodo;
-[quantidade] LONG REAL pagamentos, pesos;
+# [quantidade] LONG REAL pagamentos, pesos; #
 
 # calcula a somatória de Pesos[] # 
 PROC getpesototal = LONG REAL :
@@ -63,6 +63,7 @@ END;
 quantidade := 3;
 composto := TRUE;
 periodo := 30.0;
+[quantidade] LONG REAL pagamentos, pesos;
 FOR indice FROM 1 TO quantidade DO
     pagamentos[indice] := 30.0 * indice;
     pesos[indice] := 1.0

@@ -8,134 +8,137 @@ juros.adb
 juros.ads
 testajuros.adb
 
-2. C (01/03/2024)
+2. ALGOL 68 (07/05/2024)
+juros.a68
+
+3. C (01/03/2024)
 juros.c
 
-3. C++ (17/09/2023)
+4. C++ (17/09/2023)
 interest.cpp
 
-4. C# (21/02/2024)
+5. C# (21/02/2024)
 Juros.cs
 TesteJuros.cs
 
-5. Common Lisp (27/04/2024)
+6. Common Lisp (27/04/2024)
 juros.lisp
 
-6. Dart (14/04/2024)
+7. Dart (14/04/2024)
 juros.dart
 
-7. Delphi (28/02/2024)
+8. Delphi (28/02/2024)
 Juros.pas
 TesteJuros.dpr
 
-8. Eiffel (06/05/2024)
+9. Eiffel (06/05/2024)
 application.e
 juros.e
 
-9. Elixir (29/04/2024)
+10. Elixir (29/04/2024)
 juros.exs
 
-10. Erlang (29/04/2024)
+11. Erlang (29/04/2024)
 juros.erl
 
-11. Flutter (14/04/2024)
+12. Flutter (14/04/2024)
 main.dart
 
-12. Fortran (03/04/2024)
+13. Fortran (03/04/2024)
 juros.f90
 
-13. Go (27/02/2024)
+14. Go (27/02/2024)
 juros.go
 
-14. Godot (08/04/2024)
+15. Godot (08/04/2024)
 Juros.gd
 
-15. Haskell (04/05/2024)
+16. Haskell (04/05/2024)
 juros.hs
 
-16. Java (27/02/2024)
+17. Java (27/02/2024)
 Juros.java
 TesteJuros.java
 
-17. JavaScript (22/11/2023)
+18. JavaScript (22/11/2023)
 CalculaJuros.js
 js_testejuros.html
 
-18. Julia (20/03/2024)
+19. Julia (20/03/2024)
 juros.jl
 testejuros.jl
 
-19. Kotlin (22/02/2024)
+20. Kotlin (22/02/2024)
 Juros.kt
 Main.kt
 
-20. Lazarus (12/04/2024)
+21. Lazarus (12/04/2024)
 Juros.pas
 testajuros.lpr
 
-21. Lua (26/03/2024)
+22. Lua (26/03/2024)
 juros.lua
 
-22. MATLAB (31/03/2024)
+23. MATLAB (31/03/2024)
 Juros.m
 testajuros.m
 
-23. Modula-2 (02/05/2024)
+24. Modula-2 (02/05/2024)
 juros.mod
 
-24. Objective-C (27/03/2024)
+25. Objective-C (27/03/2024)
 juros.m
 
-25. Octave (02/04/2024)
+26. Octave (02/04/2024)
 Juros_octave.m
 testajuros_octave.m
 
-26. Pascal (01/04/2024)
+27. Pascal (01/04/2024)
 testajuros.pas
 
-27. Pascalzim (30/04/2024)
+28. Pascalzim (30/04/2024)
 testajuros _pascalzim.pas
 
-28. Perl (25/04/2024)
+29. Perl (25/04/2024)
 juros.pm
 testajuros.pl
 
-29. PHP (17/09/2023)
+30. PHP (17/09/2023)
 CalculaJuros.php
 php_testejuros.php
 
-30. Portugol Studio (13/04/2024)
+31. Portugol Studio (13/04/2024)
 juros.por
 
-31. Prolog (03/05/2024)
+32. Prolog (03/05/2024)
 juros.pl
 
-32. Python (17/09/2023)
+33. Python (17/09/2023)
 Juros.py
 main.py
 
-33. R (11/03/2024)
+34. R (11/03/2024)
 Juros.R
 
-34. Ruby (12/03/2024)
+35. Ruby (12/03/2024)
 juros.rb
 
-35. Rust (13/03/2024)
+36. Rust (13/03/2024)
 juros.rs
 main.rs
 
-36. Scheme (28/04/2024)
+37. Scheme (28/04/2024)
 juros.scm
 
-37. Swift (23/03/2024)
+38. Swift (23/03/2024)
 juros.swift
 
-38. TypeScript (03/03/2024)
+39. TypeScript (03/03/2024)
 Juros.ts
 TesteJuros.ts
 
-39. Visual Basic .NET (02/03/2024)
+40. Visual Basic .NET (02/03/2024)
 TesteJuros.vb
 
-40. VisuALG (01/05/2024)
+41. VisuALG (01/05/2024)
 juros.alg

@@ -91,7 +91,7 @@ begin
   ! testa as funções ;
   pesoTotal := oJuros.getPesoTotal;
   acrescimo := oJuros.jurosParaAcrescimo(3.0&&0);
-  juros := oJuros.acrescimoParaJuros(acrescimo, 13, 100, 50.0&0);
+  juros := oJuros.acrescimoParaJuros(acrescimo, 13, 100, 50.0&&0);
 
   ! mostra os resultados ;
   OutText("Peso total = ");

@@ -26,11 +26,11 @@ func (this Juros) getPesoTotal() float64 {
 }
 
 func (this Juros) jurosParaAcrescimo(juros float64) float64 {
-	if juros <= 0 || this.Quantidade <= 0 || this.Periodo <= 0 {
+	if juros <= 0.0 || this.Quantidade <= 0 || this.Periodo <= 0.0 {
 		return 0.0
 	}
 	pesoTotal := this.getPesoTotal()
-	if pesoTotal <= 0 {
+	if pesoTotal <= 0.0 {
 		return 0.0
 	}
 
@@ -42,9 +42,9 @@ func (this Juros) jurosParaAcrescimo(juros float64) float64 {
 		// 	soZero = false
 		// }
 		if this.Composto {
-			acumulador += this.Pesos[indice] / math.Pow(1+juros/100, this.Pagamentos[indice]/this.Periodo)
+			acumulador += this.Pesos[indice] / math.Pow(1.0+juros/100.0, this.Pagamentos[indice]/this.Periodo)
 		} else {
-			acumulador += this.Pesos[indice] / (1 + juros/100*this.Pagamentos[indice]/this.Periodo)
+			acumulador += this.Pesos[indice] / (1.0 + juros/100.0*this.Pagamentos[indice]/this.Periodo)
 		}
 	}
 
@@ -52,20 +52,20 @@ func (this Juros) jurosParaAcrescimo(juros float64) float64 {
 	if acumulador <= 0.0 {
 		return 0.0
 	}
-	return (pesoTotal/acumulador - 1) * 100
+	return (pesoTotal/acumulador - 1.0) * 100.0
 }
 
 func (this Juros) acrescimoParaJuros(acrescimo float64, precisao int, maxIteracoes int, maxJuros float64) float64 {
-	if maxIteracoes < 1 || this.Quantidade < 1 || precisao < 1 || this.Periodo <= 0 || acrescimo <= 0 || maxJuros <= 0 {
+	if maxIteracoes < 1 || this.Quantidade < 1 || precisao < 1 || this.Periodo <= 0.0 || acrescimo <= 0.0 || maxJuros <= 0.0 {
 		return 0.0
 	}
 	var minJuros, medJuros, minDiferenca, pesoTotal float64 = 0.0, 0.0, math.Pow(0.1, float64(precisao)), this.getPesoTotal()
-	if pesoTotal <= 0 {
+	if pesoTotal <= 0.0 {
 		return 0.0
 	}
 
 	for indice := 0; indice < maxIteracoes; indice++ {
-		medJuros = (minJuros + maxJuros) / 2
+		medJuros = (minJuros + maxJuros) / 2.0
 		if (maxJuros - minJuros) < minDiferenca {
 			break
 		}
@@ -80,10 +80,10 @@ func (this Juros) acrescimoParaJuros(acrescimo float64, precisao int, maxIteraco
 }
 
 func main() {
-	juros := Juros{3, true, 30, []float64{30.0, 60.0, 90.0}, []float64{1.0, 1.0, 1.0}}
+	juros := Juros{3, true, 30.0, []float64{30.0, 60.0, 90.0}, []float64{1.0, 1.0, 1.0}}
 	pesoTotal := juros.getPesoTotal()
 	acrescimoCalculado := juros.jurosParaAcrescimo(3)
-	jurosCalculado := juros.acrescimoParaJuros(acrescimoCalculado, 15, 100, 50)
+	jurosCalculado := juros.acrescimoParaJuros(acrescimoCalculado, 15, 100, 50.0)
 	fmt.Print("Peso Total = ")
 	fmt.Println(pesoTotal)
 	fmt.Print("Acréscimo = ")

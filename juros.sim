@@ -1,0 +1,108 @@
+! Cálculo do juros, sendo que precisa de arrays pra isso ;
+! Versão 0.1: 08/05/2024: versão feita sem muito conhecimento de Simula ;
+
+begin
+  ! classe tJuros com a estrutura básica para simplificar as chamadas ;
+  class tJuros(Quantidade, Composto, Periodo); integer Quantidade; boolean Composto; long real Periodo;
+  begin
+    long real array Pagamentos(1:Quantidade), Pesos(1:Quantidade);
+
+    ! calcula a somatória de Pesos[] ;
+    long real procedure getPesoTotal;
+    begin
+      integer indice;
+      long real acumulador;
+      acumulador := 0.0&&0;
+      for indice := 1 step 1 until Quantidade do
+        acumulador := acumulador + Pesos(indice);
+      getPesoTotal := acumulador;
+    end--getPesoTotal;
+
+    ! calcula o acréscimo a partir dos juros e dados comuns (como parcelas) ;
+    long real procedure jurosParaAcrescimo(Juros); long real Juros;
+    begin
+      long real pesoTotal, acumulador;
+      integer indice;
+
+      pesoTotal := getPesoTotal;
+
+      if Juros <= 0.0&&0 or Quantidade < 1 or Periodo <= 0.0&&0 or pesoTotal <= 0.0&&0 then
+      begin
+        jurosParaAcrescimo := 0.0&&0
+      end else begin
+        acumulador := 0.0&&0;
+        for indice := 1 step 1 until Quantidade do
+          if Composto then
+            acumulador := acumulador + Pesos(indice) / (1.0&&0 + Juros / 100.0&&0) ** (Pagamentos(indice) / Periodo)
+          else
+            acumulador := acumulador + Pesos(indice) / (1.0&&0 + Juros / 100.0&&0 * Pagamentos(indice) / Periodo);
+        jurosParaAcrescimo := (pesoTotal / acumulador - 1.0&&0) * 100.0&&0
+      end--if;
+    end--jurosParaAcrescimo;
+
+    ! calcula os juros a partir do acréscimo e dados comuns (como parcelas) ;
+    long real procedure acrescimoParaJuros(Acrescimo, Precisao, MaxIteracoes, MaxJuros); long real Acrescimo; integer Precisao; integer MaxIteracoes; long real MaxJuros;
+    begin
+      long real pesoTotal, MinJuros, MedJuros, minDiferenca;
+      integer indice;
+
+      pesoTotal := getPesoTotal;
+
+      if MaxIteracoes < 1 or Quantidade <= 0.0&&0 or Precisao < 1 or Periodo <= 0.0&&0 or Acrescimo <= 0.0&&0 or MaxJuros <= 0.0&&0 or pesoTotal <= 0.0&&0 then
+      begin
+        acrescimoParaJuros := 0.0&&0
+      end else begin
+        MinJuros := 0.0&&0;
+        minDiferenca := 0.1 ** Precisao;
+
+        for indice := 1 step 1 until MaxIteracoes do
+        begin
+          MedJuros := (MinJuros + MaxJuros) / 2.0&&0;
+          if (MaxJuros - MinJuros) < minDiferenca then
+          begin
+            indice := MaxIteracoes
+          end else begin
+            if jurosParaAcrescimo(MedJuros) < acrescimo then
+              MinJuros := MedJuros
+            else
+              MaxJuros := MedJuros;
+          end--if;
+        end--for;
+        acrescimoParaJuros := MedJuros
+      end--if;
+    end--acrescimoParaJuros;
+  end--tJuros;
+
+  ! declarações das variáveis globais ;
+  ref (tJuros) oJuros;
+  long real pesoTotal, acrescimo, juros;
+  integer indice;
+
+  ! cria um objeto do tipo tJuros e define os primeiros três atributos ;
+  oJuros :- New tJuros(3, true, 30.0&&0);
+
+  ! define os outros dois atributos, que são arrays ;
+  for indice := 1 step 1 until 3 do
+  begin
+    oJuros.Pagamentos(indice) := 30.0&&0 * indice;
+    oJuros.Pesos(indice) := 1.0&&0;
+  end;
+
+  ! testa as funções ;
+  pesoTotal := oJuros.getPesoTotal;
+  acrescimo := oJuros.jurosParaAcrescimo(3.0&&0);
+  juros := oJuros.acrescimoParaJuros(acrescimo, 13, 100, 50.0&0);
+
+  ! mostra os resultados ;
+  OutText("Peso total = ");
+  OutFix(pesoTotal, 13, 16);
+  OutImage;
+
+  OutText("Acréscimo = ");
+  OutFix(acrescimo, 13, 16);
+  OutImage;
+
+  OutText("Juros = ");
+  OutFix(juros, 13, 16);
+  OutImage;
+end;

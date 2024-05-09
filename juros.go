@@ -1,4 +1,6 @@
-// Versão 0.2:    04/2024: trocada avaliação soZero por acumulador == 0
+// Cálculo do juros, sendo que precisa de arrays pra isso
+// Versão 0.1: 27/02/2024: versão feita sem muito conhecimento de Go
+//        0.2: 09/05/2024: saídas melhoradas com descrição e mais peso total
 
 package main
 
@@ -79,8 +81,13 @@ func (this Juros) acrescimoParaJuros(acrescimo float64, precisao int, maxIteraco
 
 func main() {
 	juros := Juros{3, true, 30, []float64{30.0, 60.0, 90.0}, []float64{1.0, 1.0, 1.0}}
+	pesoTotal := juros.getPesoTotal()
 	acrescimoCalculado := juros.jurosParaAcrescimo(3)
 	jurosCalculado := juros.acrescimoParaJuros(acrescimoCalculado, 15, 100, 50)
+	fmt.Print("Peso Total = ")
+	fmt.Println(pesoTotal)
+	fmt.Print("Acréscimo = ")
 	fmt.Println(acrescimoCalculado)
+	fmt.Print("Juros = ")
 	fmt.Println(jurosCalculado)
 }

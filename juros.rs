@@ -1,5 +1,3 @@
-// Versão 0.2:    04/2024: trocada avaliação soZero por acumulador == 0
-
 /// "Classe" Juros para os cálculos entre acréscimo e juros
 pub struct Juros {
     pub quantidade: usize,

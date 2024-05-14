@@ -1,7 +1,7 @@
 -- Cálculo do juros, sendo que precisa de arrays pra isso
 -- Versão 0.1: 26/03/2024: versão feita sem muito conhecimento de Lua
--- Versão 0.2: 01/04/2024: corrigidos os acentos dos comentários
--- Versão 0.3:    04/2024: trocada avaliação soZero por acumulador == 0
+--        0.2: 01/04/2024: corrigidos os acentos dos comentários
+--        0.3: 15/05/2024: acrescentadas legendas para os valores
 
 -- estrutura básica para simplificar as chamadas
 Juros = {
@@ -90,6 +90,6 @@ Juros.Pesos[2] = 1
 Juros.Pesos[3] = 1
 
 -- testa as funções
-print(getPesoTotal())
-print(jurosParaAcrescimo(3))
-print(acrescimoParaJuros(jurosParaAcrescimo(3), 15, 100, 50))
+print("Peso total =", getPesoTotal())
+print("Acréscimo =", jurosParaAcrescimo(3))
+print("Juros =", acrescimoParaJuros(jurosParaAcrescimo(3), 15, 100, 50))

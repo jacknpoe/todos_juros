@@ -2,7 +2,7 @@ defmodule Juros do
   @moduledoc """
   Cálculo do juros, sendo que precisa de listas pra isso
   Versão 0.1: 05/04/2024: começo sem conhecer muita coisa necessária, como índices (apenas estrutura e construtor)
-         0.2: 29/04/2024: as três funções e as recursivas (ou seja, todoo cálculo)
+         0.2: 29/04/2024: as três funções e as recursivas (ou seja, todo o cálculo)
   """
 
   # estrutura básica para simplificar as chamadas

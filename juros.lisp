@@ -31,7 +31,7 @@
   (setq pesoTotal (getPesoTotal))
   (if (<= pesoTotal 0.0) (return-from jurosParaAcrescimo 0.0))
   (if (= Composto 1)
-      (* (- (/ pesoTotal (_jurosCompostos(- Quantidade 1) juros)) 1.0d0) 10.0d00)
+      (* (- (/ pesoTotal (_jurosCompostos(- Quantidade 1) juros)) 1.0d0) 100.0d0)
       (* (- (/ pesoTotal (_jurosSimples(- Quantidade 1) juros)) 1.0d0) 100.0d0)
   )
 )

@@ -1,6 +1,7 @@
 ;; Cálculo do juros, sendo que precisa de arrays pra isso
 ;; Versão 0.1: 16/05/2024: versão feita sem muito conhecimento de Clojure: completa
 ;;        0.2: 17/05/2024: versão com os ifs que retornam 0.0 na mesma linha (+ getPesoTotal)
+;;        0.3: 17/05/2024: versão com vetores no lugar de listas
 
 ;; namespace
 (ns jacknpoe.juros (:gen-class))
@@ -9,8 +10,10 @@
 (def Quantidade 3)
 (def Composto true)
 (def Periodo 30.0)
-(def Pagamentos '(30.0 60.0 90.0))
-(def Pesos '(1.0 1.0 1.0))
+(def Pagamentos [30.0 60.0 90.0])
+(def Pesos [1.0 1.0 1.0])
+;;(def Pagamentos '(30.0 60.0 90.0))  ;; se quiser listas, descomentar essas linhas comentadas para pagamentos e pesos
+;;(def Pesos '(1.0 1.0 1.0))  ;; e comentar as duas acima com vetores
 
 ;; função recursiva no lugar de um for com acumulador que realmente calcula a somatória de Pesos[]
 (defn rGetPesoTotal [valor]

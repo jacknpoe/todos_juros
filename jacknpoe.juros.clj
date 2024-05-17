@@ -53,7 +53,7 @@
   )
 )
 
-;; função recursiva no lugar de um for que realmente calcula o acréscimo
+;; função recursiva no lugar de um for que realmente calcula os juros
 (defn rAcrescimoParaJuros [acrescimo minDiferenca iteracaoAtual minJuros maxJuros medJuros]
   (if (or (= iteracaoAtual 0) (< (- maxJuros minJuros) minDiferenca))
     medJuros

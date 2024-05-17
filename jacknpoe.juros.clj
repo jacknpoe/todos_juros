@@ -46,7 +46,7 @@
 ;;  (if (or (or (<= juros 0.0) (<= Quantidade 0)) (<= Periodo 0.0))
   (if (or (<= juros 0.0) (< Quantidade 1) (<= Periodo 0.0) (<= (getPesoTotal) 0.0))
     0.0
-    (if (= Composto true)
+    (if Composto
       (* (- (/ (getPesoTotal) (rJurosCompostos (- Quantidade 1) juros)) 1.0) 100.0)
       (* (- (/ (getPesoTotal) (rJurosSimples (- Quantidade 1) juros)) 1.0) 100.0)
     )

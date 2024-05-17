@@ -1,5 +1,6 @@
 ;; Cálculo do juros, sendo que precisa de arrays pra isso
 ;; Versão 0.1: 16/05/2024: versão feita sem muito conhecimento de Clojure: completa
+;;        0.2: 17/05/2024: versão com os ifs que retornam 0.0 na mesma linha (+ getPesoTotal)
 
 ;; namespace
 (ns jacknpoe.juros (:gen-class))
@@ -43,14 +44,11 @@
 ;; calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
 (defn jurosParaAcrescimo [juros]
 ;;  (if (or (or (<= juros 0.0) (<= Quantidade 0)) (<= Periodo 0.0))
-  (if (or (<= juros 0.0) (< Quantidade 1) (<= Periodo 0.0))
+  (if (or (<= juros 0.0) (< Quantidade 1) (<= Periodo 0.0) (<= (getPesoTotal) 0.0))
     0.0
-    (if (<= (getPesoTotal) 0.0)
-      0.0
-      (if (= Composto true)
-        (* (- (/ (getPesoTotal) (rJurosCompostos (- Quantidade 1) juros)) 1.0) 100.0)
-        (* (- (/ (getPesoTotal) (rJurosSimples (- Quantidade 1) juros)) 1.0) 100.0)
-      )
+    (if (= Composto true)
+      (* (- (/ (getPesoTotal) (rJurosCompostos (- Quantidade 1) juros)) 1.0) 100.0)
+      (* (- (/ (getPesoTotal) (rJurosSimples (- Quantidade 1) juros)) 1.0) 100.0)
     )
   )
 )
@@ -68,12 +66,9 @@
 
 ;; calcula os juros a partir do acréscimo e dados comuns (como parcelas)
 (defn acrescimoParaJuros [acrescimo precisao maxIteracoes maxJuros]
-  (if (or (<= acrescimo 0.0) (< Quantidade 1) (<= Periodo 0.0) (< maxIteracoes 1) (< precisao 1) (<= maxJuros 0.0))
+  (if (or (<= acrescimo 0.0) (< Quantidade 1) (<= Periodo 0.0) (< maxIteracoes 1) (< precisao 1) (<= maxJuros 0.0) (<= (getPesoTotal) 0.0))
     0.0
-    (if (<= (getPesoTotal) 0.0)
-      0.0
-      (rAcrescimoParaJuros acrescimo (Math/pow 0.1 precisao) maxIteracoes 0.0 maxJuros (/ maxJuros 2.0))
-    )  
+    (rAcrescimoParaJuros acrescimo (Math/pow 0.1 precisao) maxIteracoes 0.0 maxJuros (/ maxJuros 2.0))
   )
 )
 

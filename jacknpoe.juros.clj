@@ -47,7 +47,6 @@
 
 ;; calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
 (defn jurosParaAcrescimo [juros]
-;;  (if (or (or (<= juros 0.0) (<= Quantidade 0)) (<= Periodo 0.0))
   (if (or (<= juros 0.0) (< Quantidade 1) (<= Periodo 0.0) (<= (getPesoTotal) 0.0))
     0.0
     (if Composto

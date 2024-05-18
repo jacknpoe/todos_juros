@@ -1,4 +1,5 @@
 ;; Cálculo do juros, sendo que precisa de arrays pra isso
+;; ver também: http://quil.info/sketches/local/70a4cea87aa98c8165fb910013b73aa9820d5ef74030647e2d7e1a9a5912dd66
 ;; Versão 0.1: 16/05/2024: versão feita sem muito conhecimento de Clojure: completa
 ;;        0.2: 17/05/2024: versão com os ifs que retornam 0.0 na mesma linha (+ getPesoTotal)
 ;;        0.3: 17/05/2024: versão com vetores no lugar de listas

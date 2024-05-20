@@ -10,6 +10,6 @@ object TestaJuros {
         println("Acréscimo = " + meuJuros.jurosParaAcrescimo(3.0))
         println("Juros = " + meuJuros.acrescimoParaJuros(meuJuros.jurosParaAcrescimo(3.0), 15, 100, 50.0))
 
-        0
+        return 0
     }
 }

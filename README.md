@@ -15,7 +15,9 @@ Algumas implementações não serão mantidas, porque foram feitas em versões d
 A saída mais comum para os testes é:
 
 Peso total = 3.0
+
 Acréscimo = 6.059108997379403
+
 Juros = 2.999999999999992
 
 A lista está organizada em ordem alfabética pelos nomes das linguagens em: https://jacknpoeexplicaprogramacao.wordpress.com/2024/03/02/10-resolucoes-de-equacao-transcendente/ ou https://github.com/jacknpoe/todos_juros/blob/main/todos_juros.txt
@@ -37,7 +39,9 @@ Some implementations will not be maintained because they were done in trial vers
 The most common output for tests is:
 
 Peso total = 3.0
+
 Acréscimo = 6.059108997379403
+
 Juros = 2.999999999999992
 
 The list is organized alphabetically by languages names: https://jacknpoeexplicaprogramacao.wordpress.com/2024/03/02/10-resolucoes-de-equacao-transcendente/ or https://github.com/jacknpoe/todos_juros/blob/main/todos_juros.txt

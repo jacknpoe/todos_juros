@@ -12,6 +12,12 @@ As soluções estão dividas entre as recursivas (Clojure, Common Lisp, Elixir, 
 
 Algumas implementações não serão mantidas, porque foram feitas em versões de avaliação de ambientes de desenvolvimento pagos, como o Embarcadero Delphi e o EiffelStudio.
 
+A saída mais comum para os testes é:
+
+Peso total = 3.0
+Acréscimo = 6.059108997379403
+Juros = 2.999999999999992
+
 A lista está organizada em ordem alfabética pelos nomes das linguagens em: https://jacknpoeexplicaprogramacao.wordpress.com/2024/03/02/10-resolucoes-de-equacao-transcendente/ ou https://github.com/jacknpoe/todos_juros/blob/main/todos_juros.txt
 
 A licença é GNU (https://www.gnu.org/licenses/gpl-3.0.html).
@@ -27,6 +33,12 @@ Two languages ​​are considered different when any part of the code has to be
 The solutions are divided between recursive (Clojure, Common Lisp, Elixir, Erlang, Haskell, Prolog and Scheme) and iterative (all other languages).
 
 Some implementations will not be maintained because they were done in trial versions of paid development environments such as Embarcadero Delphi and EiffelStudio.
+
+The most common output for tests is:
+
+Peso total = 3.0
+Acréscimo = 6.059108997379403
+Juros = 2.999999999999992
 
 The list is organized alphabetically by languages names: https://jacknpoeexplicaprogramacao.wordpress.com/2024/03/02/10-resolucoes-de-equacao-transcendente/ or https://github.com/jacknpoe/todos_juros/blob/main/todos_juros.txt
 

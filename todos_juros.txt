@@ -1,5 +1,5 @@
-44 resoluções de equação transcendente
-Desde que esse artigo foi publicado, mais 34 resoluções foram acrescentadas ao repositório https://github.com/jacknpoe/todos_juros, totalizando, agora, 44 resoluções.
+45 resoluções de equação transcendente
+Desde que esse artigo foi publicado, mais 35 resoluções foram acrescentadas ao repositório https://github.com/jacknpoe/todos_juros, totalizando, agora, 45 resoluções.
 No artigo Resolução de Equação Transcendente, foi explicado como uma equação que calcula os juros a partir do acréscimo e das parcelas pode ser feita usando cálculo numérico, especificamente o método da bisseção.
 Esta é a relação das resoluções em linguagens diferentes. Algumas contêm o código de teste no mesmo arquivo. Em outras, o arquivo de testes é separado. Caso seja publicada uma nova resolução, ela será adicionada à lista.
 
@@ -130,8 +130,9 @@ juros.rb
 juros.rs
 main.rs
 
-38. Smalltalk (14/05/2024)
-RER-Juros.st
+38. Scala (20/05/2024)
+juros.scala
+testajuros.scala
 
 39. Scheme (28/04/2024)
 juros.scm
@@ -139,15 +140,18 @@ juros.scm
 40. Simula (08/05/2024)
 juros.sim
 
-41. Swift (23/03/2024)
+41. Smalltalk (14/05/2024)
+RER-Juros.st
+
+42. Swift (23/03/2024)
 juros.swift
 
-42. TypeScript (03/03/2024)
+43. TypeScript (03/03/2024)
 Juros.ts
 TesteJuros.ts
 
-43. Visual Basic .NET (02/03/2024)
+44. Visual Basic .NET (02/03/2024)
 TesteJuros.vb
 
-44. VisuALG (01/05/2024)
+45. VisuALG (01/05/2024)
 juros.alg

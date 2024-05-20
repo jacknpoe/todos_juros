@@ -3,8 +3,7 @@
 
 package Juros
 
-import scala.math.pow
-import scala.util.boundary, boundary.break
+import scala.math.pow, scala.util.boundary, boundary.break
 
 // classe com os valores comuns para simplificar as chamadas
 class Juros( var Quantidade: Int, var Composto: Boolean, var Periodo: Double, var Pagamentos: Array[Double], var Pesos: Array[Double]) {

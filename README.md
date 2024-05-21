@@ -10,6 +10,8 @@ Duas linguagens são consideradas diferentes quando qualquer parte do código te
 
 As soluções estão dividas entre as recursivas (Clojure, Common Lisp, Elixir, Erlang, Haskell, Prolog, Racket e Scheme) e iterativas (todas as outras linguagens).
 
+Existem, em algumas soluções, salvaguardas para valores incorretos para uma aplicação real. São valores zerados e negativos. Em algumas linguagens não é verificado, pois entendeu-se que o público-alvo dessas linguagens não cometeria esse tipo de equívoco.
+
 Algumas implementações não serão mantidas, porque foram feitas em versões de avaliação de ambientes de desenvolvimento pagos, como o Embarcadero Delphi e o EiffelStudio.
 
 A saída mais comum para os testes é:
@@ -29,6 +31,8 @@ Two concepts that weighed heavily were the exponentiation of floating point numb
 Two languages ​​are considered different when any part of the code has to be changed to be compiled or interpreted in both.
 
 The solutions are divided between recursive (Clojure, Common Lisp, Elixir, Erlang, Haskell, Prolog, Racket and Scheme) and iterative (all other languages).
+
+There are, in some solutions, safeguards for incorrect values ​​for a real application. These are zero and negative values. In some languages ​​it is not verified, as it was understood that the target audience of these languages ​​would not make this type of mistake.
 
 Some implementations will not be maintained because they were done in trial versions of paid development environments such as Embarcadero Delphi and EiffelStudio.
 

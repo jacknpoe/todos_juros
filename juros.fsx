@@ -51,4 +51,4 @@ let juros = Juros(3, true, 30.0, [|30.0; 60.0; 90.0|], [|1.0; 1.0; 1.0|])
 // testa as funções
 printfn "Peso total = %2.13f" (juros.getPesoTotal())
 printfn "Acréscimo = %2.13f" (juros.jurosParaAcrescimo(3.0))
-printfn "Acréscimo = %2.13f" (juros.acrescimoParaJuros(juros.jurosParaAcrescimo(3.0), 15.0, 100, 50.0))
+printfn "Juros = %2.13f" (juros.acrescimoParaJuros(juros.jurosParaAcrescimo(3.0), 15.0, 100, 50.0))

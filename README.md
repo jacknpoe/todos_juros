@@ -14,6 +14,8 @@ Existem, em algumas soluções, salvaguardas para valores incorretos para uma ap
 
 Algumas implementações não serão mantidas, porque foram feitas em versões de avaliação de ambientes de desenvolvimento pagos, como o Embarcadero Delphi e o EiffelStudio.
 
+Linguagens que não terão a solução, por não terem suporte a recursos necessários: Solidify (não tem números de ponto flutuante), Scratch (não tem exponenciação), Self e Bash (não têm exponenciação de números de ponto flutuante).
+
 A saída mais comum para os testes é:
 
 Peso total = 3.0 / Acréscimo = 6.059108997379403 / Juros = 2.999999999999992
@@ -35,6 +37,8 @@ The solutions are divided between recursive (Clojure, Common Lisp, Elixir, Erlan
 There are, in some solutions, safeguards for incorrect values ​​for a real application. These are zero and negative values. In some languages ​​it is not verified, as it was understood that the target audience of these languages ​​would not make this type of mistake.
 
 Some implementations will not be maintained because they were done in trial versions of paid development environments such as Embarcadero Delphi and EiffelStudio.
+
+Languages ​​that will not have the solution, as they do not support the necessary resources: Solidify (does not have floating point numbers), Scratch (does not have exponentiation), Self and Bash (does not have exponentiation of floating point numbers).
 
 The most common output for tests is:
 

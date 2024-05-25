@@ -20,7 +20,7 @@ struct Juros:
     fn getPesoTotal(inout self) -> Float64:
         var acumulador: Float64 = 0.0
         for indice in range(self.Quantidade):
-            acumulador = acumulador + self.Pesos[indice]
+            acumulador += self.Pesos[indice]
         return acumulador
     
     # calcula o acréscimo a partir dos juros e prestações
@@ -32,9 +32,9 @@ struct Juros:
 
         for indice in range(self.Quantidade):
             if self.Composto:
-                acumulador = acumulador + self.Pesos[indice] / (1.0 + juros / 100.0) ** (self.Pagamentos[indice] / self.Periodo)
+                acumulador += self.Pesos[indice] / (1.0 + juros / 100.0) ** (self.Pagamentos[indice] / self.Periodo)
             else:
-                acumulador = acumulador + self.Pesos[indice] / (1.0 + juros / 100.0 * self.Pagamentos[indice] / self.Periodo)
+                acumulador += self.Pesos[indice] / (1.0 + juros / 100.0 * self.Pagamentos[indice] / self.Periodo)
 
         return (pesoTotal / acumulador - 1.0) * 100.0
 

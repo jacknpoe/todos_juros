@@ -14,7 +14,7 @@ Existem, em algumas soluções, salvaguardas para valores incorretos para uma ap
 
 Algumas implementações não serão mantidas, porque foram feitas em versões de avaliação de ambientes de desenvolvimento pagos, como o Embarcadero Delphi e o EiffelStudio.
 
-Alguns arquivos estão ilegíveis, pois são binários e devem ser abertos ou importandos nos ambientes das linguagens, como Smalltalk, Snap! e GW-BASIC.
+Alguns arquivos estão ilegíveis, pois são binários e devem ser abertos ou importados nos ambientes das linguagens, como Smalltalk, Snap! e GW-BASIC.
 
 Linguagens que não terão a solução, por não terem suporte a recursos necessários: Solidify (não tem números de ponto flutuante), Scratch (não tem exponenciação), Self e Bash (não têm exponenciação de números de ponto flutuante).
 

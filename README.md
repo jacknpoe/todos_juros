@@ -51,3 +51,5 @@ Peso total = 3.0 / Acréscimo = 6.059108997379403 / Juros = 2.999999999999992
 The list is organized alphabetically, by languages names: https://jacknpoeexplicaprogramacao.wordpress.com/2024/03/02/10-resolucoes-de-equacao-transcendente/ or https://github.com/jacknpoe/todos_juros/blob/main/todos_juros.txt
 
 The license is GNU (https://www.gnu.org/licenses/gpl-3.0.html).
+
+![51]([URL_da_Imagem](https://github.com/jacknpoe/todos_juros/blob/main/resolu%C3%A7%C3%B5es.png)

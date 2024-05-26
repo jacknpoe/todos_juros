@@ -52,4 +52,4 @@ The list is organized alphabetically, by languages names: https://jacknpoeexplic
 
 The license is GNU (https://www.gnu.org/licenses/gpl-3.0.html).
 
-![51]([URL_da_Imagem](https://github.com/jacknpoe/todos_juros/blob/main/resolu%C3%A7%C3%B5es.png)
+![51]https://github.com/jacknpoe/todos_juros/blob/main/resolu%C3%A7%C3%B5es.png

@@ -23,7 +23,7 @@ class Juros
         for indice in [0..@Quantidade - 1]
             if @Composto
                 acumulador += @Pesos[indice] / \
-                    Math.pow(1.0 + juros / 100.0, @Pagamentos[indice] / @Periodo)
+                    (1.0 + juros / 100.0) ** ( @Pagamentos[indice] / @Periodo)
             else
                 acumulador += @Pesos[indice] / \
                     (1.0 + juros / 100.0 * @Pagamentos[indice] / @Periodo)
@@ -39,7 +39,7 @@ class Juros
 
         minJuros = 0.0
         medJuros = maxJuros / 2.0
-        minDiferenca = Math.pow(0.1, precisao)
+        minDiferenca = 0.1 ** precisao
 
         for indice in [1..maxIteracoes]
             medJuros = (minJuros + maxJuros) / 2.0

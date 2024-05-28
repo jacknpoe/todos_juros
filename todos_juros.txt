@@ -11,7 +11,7 @@ testajuros.adb
 2. ALGOL 68 (07/05/2024)
 juros.a68
 
-2. AutoIT (28/05/2024)
+2. AutoIt (28/05/2024)
 juros.au3
 
 4. C (01/03/2024)

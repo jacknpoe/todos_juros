@@ -1,6 +1,8 @@
 // Cálculo do juros, sendo que precisa de arrays pra isso
 // Versão 0.1: 29/05/2024: versão feita sem muito conhecimento de Haxe
 
+import Math.pow;
+
 // classe com a estrutura básica para simplificar as chamadas
 class TJuros {
     var Quantidade: Int;
@@ -37,7 +39,7 @@ class TJuros {
 
         for (indice in 0...this.Quantidade) {
             if (this.Composto) {
-                acumulador += this.Pesos[indice] / Math.pow(1.0 + juros / 100.0, this.Pagamentos[indice] / this.Periodo);
+                acumulador += this.Pesos[indice] / pow(1.0 + juros / 100.0, this.Pagamentos[indice] / this.Periodo);
             } else {
                 acumulador += this.Pesos[indice] / (1.0 + juros / 100.0 * this.Pagamentos[indice] / this.Periodo);
             }
@@ -52,7 +54,7 @@ class TJuros {
         if (acrescimo <= 0.0 || this.Quantidade < 1 || this.Periodo <= 0 || pesoTotal <= 0.0 || maxIteracoes < 1 || precisao < 1 || maxJuros <= 0.0) return 0.0;
         var minJuros: Float = 0.0;
         var medJuros: Float = maxJuros / 2.0;
-        var minDiferenca: Float = Math.pow(0.1, precisao);
+        var minDiferenca: Float = pow(0.1, precisao);
 
         for (indice in 0...maxIteracoes) {
             medJuros = (minJuros + maxJuros) / 2.0;

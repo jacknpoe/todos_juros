@@ -77,8 +77,8 @@ class Juros {
         var pesoTotal: Float = juros.getPesoTotal();
         var acrescimoCalculado: Float = juros.jurosParaAcrescimo(3.0);
         var jurosCalculado: Float = juros.acrescimoParaJuros(acrescimoCalculado, 15, 100, 50.0);
-        trace("Peso total = " + pesoTotal);
-        trace("Acréscimo = " + acrescimoCalculado);
-        trace("Juros = " + jurosCalculado);
+        Sys.print("Peso total = " + pesoTotal + "\n");
+        Sys.print("Acréscimo = " + acrescimoCalculado + "\n");
+        Sys.print("Juros = " + jurosCalculado + "\n");
     }
 }

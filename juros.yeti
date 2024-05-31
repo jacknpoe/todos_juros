@@ -1,7 +1,7 @@
 // Cálculo do juros, sendo que precisa de listas pra isso
 // Versão 0.1: 31/05/2024: completo, mas sem saber muito sobre Yeti
 
-// variáveis básicas para simpplificar as chamadas
+// variáveis básicas para simplificar as chamadas
 quantidade = 3;
 composto = true;
 periodo = 30.0;

@@ -52,8 +52,3 @@ jurosCalculado = acrescimoParaJuros acrescimoCalculado 15 100 50.0;
 println "Peso total = \(pesoTotal)";
 println "Acréscimo = \(acrescimoCalculado)";
 println "Juros = \(jurosCalculado)";
-
-// base = 1.03;
-// expoente = 0.5;
-// potencia = exp(expoente * ln(base));
-// println "1,03 ^ 0,5 = \(potencia)"

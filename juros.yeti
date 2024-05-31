@@ -1,0 +1,59 @@
+// Cálculo do juros, sendo que precisa de listas pra isso
+// Versão 0.1: 31/05/2024: completo, mas sem saber muito sobre Yeti
+
+// variáveis básicas para simpplificar as chamadas
+quantidade = 3;
+composto = true;
+periodo = 30.0;
+pagamentos = array [30.0, 60.0, 90.0];
+pesos = array [1.0, 1.0, 1.0];
+
+// função recursiva que realmente calcula a somatória de Pesos[]
+rGetPesoTotal indice =
+    if indice == 0 then pesos[0] else rGetPesoTotal (indice - 1) + pesos[indice] fi;
+
+// perfume que calcula a somatória de Pesos[]
+getPesoTotal = rGetPesoTotal (quantidade - 1);
+
+// calcula a soma do amortecimento de todas as parcelas para juros compostos
+rJurosCompostos indice juros =
+    if indice == 0 then pesos[0] / exp((pagamentos[0] / periodo) * ln(1.0 + juros / 100.0))
+    else rJurosCompostos (indice - 1) juros + pesos[indice] / exp((pagamentos[indice] / periodo) * ln(1.0 + juros / 100.0)) fi;
+
+// calcula a soma do amortecimento de todas as parcelas para juros simples
+rJurosSimples indice juros =
+    if indice == 0 then pesos[0] / (1.0 + juros / 100.0 * pagamentos[0] / periodo)
+    else rJurosSimples (indice - 1) juros + pesos[indice] / (1.0 + juros / 100.0 * pagamentos[indice] / periodo) fi;
+
+// calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
+jurosParaAcrescimo juros =
+    if composto then (getPesoTotal / rJurosCompostos (quantidade - 1) juros - 1.0) * 100.0
+    else (getPesoTotal / rJurosSimples (quantidade - 1) juros - 1.0) * 100.0 fi;
+
+// função recursiva no lugar de um for que realmente calcula o acréscimo
+rAcrescimoParaJuros acrescimo minDiferenca iteracaoAtual minJuros maxJuros medJuros =
+    if iteracaoAtual == 0 or (maxJuros - minJuros) < minDiferenca then medJuros
+    else if jurosParaAcrescimo medJuros < acrescimo
+         then rAcrescimoParaJuros acrescimo minDiferenca (iteracaoAtual - 1) medJuros maxJuros ((medJuros + maxJuros) / 2.0)
+         else rAcrescimoParaJuros acrescimo minDiferenca (iteracaoAtual - 1) minJuros medJuros ((minJuros + medJuros) / 2.0)
+         fi
+    fi;
+
+// calcula os juros a partir do acréscimo e dados comuns (como parcelas)
+acrescimoParaJuros acrescimo precisao maxIteracoes maxJuros =
+    rAcrescimoParaJuros acrescimo (exp(precisao * ln(0.1)))  maxIteracoes 0.0 maxJuros (maxJuros / 2.0);
+
+// faz os cálculos para testes
+pesoTotal = getPesoTotal;
+acrescimoCalculado = jurosParaAcrescimo 3.0;
+jurosCalculado = acrescimoParaJuros acrescimoCalculado 15 100 50.0;
+
+// imprime as variáveis calculadas
+println "Peso total = \(pesoTotal)";
+println "Acréscimo = \(acrescimoCalculado)";
+println "Juros = \(jurosCalculado)";
+
+// base = 1.03;
+// expoente = 0.5;
+// potencia = exp(expoente * ln(base));
+// println "1,03 ^ 0,5 = \(potencia)"

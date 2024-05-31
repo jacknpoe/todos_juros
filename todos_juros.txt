@@ -28,8 +28,10 @@ TesteJuros.cs
 jacknpoe.juros.clj
 
 8. CoffeeScript (27/05/2024)
+juros.coffee
 
 9. ColdFusion Markup Language (30/05/2024)
+base.css
 juros.cfm
 
 10. Common Lisp (27/04/2024)

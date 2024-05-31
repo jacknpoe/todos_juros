@@ -117,7 +117,7 @@ juros.mojo
 34. Objective-C (27/03/2024)
 juros.m
 
-35. Ocaml (30/05/2024)
+35. OCaml (30/05/2024)
 juros.ml
 
 36. Octave (02/04/2024)

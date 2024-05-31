@@ -48,6 +48,6 @@ val acrescimoCalculado = jurosParaAcrescimo 3.0;
 val jurosCalculado = acrescimoParaJuros acrescimoCalculado 15.0 100 50.0;
 
 (* imprime as variáveis calculadas *)
-print "Peso total = "; print (Real.toString(pesoTotal));
-print "Acrescimo = "; print (Real.toString(acrescimoCalculado));
-print "Juros = "; print (Real.toString(jurosCalculado));
+print ("Peso total = " ^ Real.toString(pesoTotal));
+print ("Acrescimo = " ^ Real.toString(acrescimoCalculado));
+print ("Juros = " ^ Real.toString(jurosCalculado));

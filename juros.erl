@@ -83,7 +83,7 @@ acrescimoParaJuros(OJuros, Acrescimo, Precisao, MaxIteracoes, MaxJuros) ->
     end
   end.
 
-    %% função recursiva no lugar de um for que realmente calcula o acréscimo
+%% função recursiva no lugar de um for que realmente calcula o acréscimo
 rAcrescimoParaJuros(OJuros, Acrescimo, MinDiferenca, IteracaoAtual, MinJuros, MaxJuros, MedJuros) ->
   if (IteracaoAtual == 0) or ((MaxJuros - MinJuros) < MinDiferenca) ->
     MedJuros;

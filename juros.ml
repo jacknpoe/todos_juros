@@ -1,8 +1,7 @@
 (* Cálculo do juros, sendo que precisa de listas pra isso
    Versão 0.1: 31/05/2024: completo, mas sem saber muito sobre SML *)
 
-load "Math";
-load "Real";
+load "Math"; load "Real";
 
 (* variáveis básicas para simplificar as chamadas *)
 val quantidade = 3;
@@ -34,8 +33,7 @@ fun jurosParaAcrescimo juros =
 
 (* função recursiva no lugar de um for que realmente calcula o acréscimo *)
 fun rAcrescimoParaJuros acrescimo minDiferenca iteracaoAtual minJuros maxJuros medJuros =
-    if (iteracaoAtual = 0) orelse ((maxJuros - minJuros) < minDiferenca)
-    then medJuros
+    if (iteracaoAtual = 0) orelse ((maxJuros - minJuros) < minDiferenca) then medJuros
     else if (jurosParaAcrescimo medJuros) < acrescimo
          then rAcrescimoParaJuros acrescimo minDiferenca (iteracaoAtual - 1) medJuros maxJuros ((medJuros + maxJuros) / 2.0)
          else rAcrescimoParaJuros acrescimo minDiferenca (iteracaoAtual - 1) minJuros medJuros ((minJuros + medJuros) / 2.0);
@@ -50,9 +48,6 @@ val acrescimoCalculado = jurosParaAcrescimo 3.0;
 val jurosCalculado = acrescimoParaJuros acrescimoCalculado 15.0 100 50.0;
 
 (* imprime as variáveis calculadas *)
-print "Peso total = ";
-print (Real.toString(pesoTotal));
-print "Acrescimo = ";
-print (Real.toString(acrescimoCalculado));
-print "Juros = ";
-print (Real.toString(jurosCalculado));
+print "Peso total = "; print (Real.toString(pesoTotal));
+print "Acrescimo = "; print (Real.toString(acrescimoCalculado));
+print "Juros = "; print (Real.toString(jurosCalculado));

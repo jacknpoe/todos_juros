@@ -88,6 +88,7 @@ TesteJuros.java
 26. JavaScript (22/11/2023)
 CalculaJuros.js
 js_testejuros.html
+js_testejuros.css
 
 27. Julia (20/03/2024)
 juros.jl
@@ -137,6 +138,7 @@ testajuros.pl
 40. PHP (17/09/2023)
 CalculaJuros.php
 php_testejuros.php
+php_testejuros.css
 
 41. Portugol Studio (13/04/2024)
 juros.por

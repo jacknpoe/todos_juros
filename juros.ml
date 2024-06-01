@@ -40,12 +40,12 @@ fun rAcrescimoParaJuros acrescimo minDiferenca iteracaoAtual minJuros maxJuros m
 
 (* calcula os juros a partir do acréscimo e dados comuns (como parcelas) *)
 fun acrescimoParaJuros acrescimo precisao maxIteracoes maxJuros =
-    rAcrescimoParaJuros acrescimo (Math.pow(0.1, precisao)) maxIteracoes 0.0 maxJuros (maxJuros / 2.0);
+    rAcrescimoParaJuros acrescimo (Math.pow(0.1, Real.fromInt(precisao))) maxIteracoes 0.0 maxJuros (maxJuros / 2.0);
 
 (* faz os cálculos para testes *)
 val pesoTotal = getPesoTotal();
 val acrescimoCalculado = jurosParaAcrescimo 3.0;
-val jurosCalculado = acrescimoParaJuros acrescimoCalculado 15.0 100 50.0;
+val jurosCalculado = acrescimoParaJuros acrescimoCalculado 15 100 50.0;
 
 (* imprime as variáveis calculadas *)
 print ("Peso total = " ^ Real.toString(pesoTotal) ^ "\n");

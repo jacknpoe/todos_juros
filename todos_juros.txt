@@ -177,7 +177,7 @@ juros.sim
 RER-Juros.st
 
 51. SML (31/05/2024)
-juros.ml
+juros.sml
 
 53. Snap! (21/05/2024)
 juros.xml

@@ -43,11 +43,11 @@ function jurosParaAcrescimo = |sjuros, juros| {
 # calcula os juros a partir do acréscimo e dados comuns (como parcelas)
 function acrescimoParaJuros = |sjuros, acrescimo, precisao, maxIteracoes, maximoJuros| {
 	let pesoTotal = getPesoTotal(sjuros)
-	if (maxIteracoes < 1 or sjuros: quantidade() < 1 or precisao <= 0.0 or sjuros: periodo() <= 0.0 or acrescimo <= 0.0 or maximoJuros <= 0.0 or pesoTotal <= 0.0) { return 0.0 }
+	if (maxIteracoes < 1 or sjuros: quantidade() < 1 or precisao <= 0 or sjuros: periodo() <= 0.0 or acrescimo <= 0.0 or maximoJuros <= 0.0 or pesoTotal <= 0.0) { return 0.0 }
 	var minJuros = 0.0
 	var medJuros = maximoJuros / 2.0
 	var maxJuros = maximoJuros
-	let minDiferenca = Math.pow(0.1, precisao)
+	let minDiferenca = Math.pow(0.1, precisao * 1.0)
 
 	for(var indice = 0, indice < maxIteracoes, indice = indice + 1) {
 		medJuros = (minJuros + maxJuros) / 2.0
@@ -69,7 +69,7 @@ function main = |args| {
 	# testa os resultados das funções
 	let pesoTotal = getPesoTotal(juros)
 	let acrescimoCalculado = jurosParaAcrescimo(juros, 3.0)
-	let jurosCalculado = acrescimoParaJuros(juros, acrescimoCalculado, 15.0, 100, 50.0)
+	let jurosCalculado = acrescimoParaJuros(juros, acrescimoCalculado, 15, 100, 50.0)
 
 	# imprime os resultados
 	println("Peso total = " + pesoTotal)

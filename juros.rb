@@ -1,4 +1,4 @@
-# Versão 0.2:    04/2024: trocada avaliação soZero por acumulador == 0
+# versão 0.3: 04/06/2024: agora tem legendas nas impressões
 
 class Juros
   attr_accessor :quantidade, :composto, :periodo, :pagamentos, :pesos
@@ -81,7 +81,7 @@ class Juros
   end
 end
 
-#testes
+# cria um objeto juros da classe Juros e coloca os valores
 juros = Juros.new(3, true, 30.0)
 juros.pagamentos[0] = 30.0
 juros.pagamentos[1] = 60.0
@@ -90,6 +90,7 @@ juros.pesos[0] = 1.0
 juros.pesos[1] = 1.0
 juros.pesos[2] = 1.0
 
-puts(juros.getPesoTotal())
-puts(juros.jurosParaAcrescimo(3.0))
-puts(juros.acrescimoParaJuros( juros.jurosParaAcrescimo(3.0)))
+# imprime os valores para teste
+puts("Peso total = " + juros.getPesoTotal().to_s)
+puts("Acréscimo = " + juros.jurosParaAcrescimo(3.0).to_s)
+puts("Juros = " + juros.acrescimoParaJuros( juros.jurosParaAcrescimo(3.0)).to_s)

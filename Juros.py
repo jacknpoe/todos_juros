@@ -1,10 +1,9 @@
 # Calcula o acréscimo a partir dos juros e os juros a partir do acréscimo
-# Versão 0.2:    04/2024: trocada avaliação soZero por acumulador == 0
 class Juros:
     """Classe que faz o cálculo do juros, sendo que precisa de arrays pra isso"""
     Quantidade = 0
     Composto = False
-    Periodo = 30
+    Periodo = 30.0
     Pagamentos = []
     Pesos = []
 
@@ -22,7 +21,7 @@ class Juros:
         else:
             temporaria = pagamentos.split(delimitador)
             for i in range(self.Quantidade):
-                self.Pagamentos.append(int(temporaria[i]))
+                self.Pagamentos.append(float(temporaria[i]))
 
     """Define os pesos a partir de uma string separada pelo delimitador"""
     def setpesos(self, delimitador=",", pesos=""):
@@ -33,7 +32,7 @@ class Juros:
         else:
             temporaria = pesos.split(delimitador)
             for i in range(self.Quantidade):
-                self.Pesos.append(int(temporaria[i]))
+                self.Pesos.append(float(temporaria[i]))
 
     """Retorna a soma total de todos os pesos"""
     def getpesototal(self):
@@ -49,26 +48,29 @@ class Juros:
 
         total = self.getpesototal()
         acumulador = 0
+        sozero = True
 
         for i in range(self.Quantidade):
+            if self.Pagamentos[i] > 0 and self.Pesos[i] > 0:
+                sozero = False
             if self.Composto:
                 acumulador += self.Pesos[i] / ((1 + juros / 100) ** (self.Pagamentos[i] / self.Periodo))
             else:
                 acumulador += self.Pesos[i] / (1 + juros / 100 * self.Pagamentos[i] / self.Periodo)
 
-        if acumulador <= 0:
+        if sozero:
             return 0
 
         return (total / acumulador - 1) * 100
 
     """Calcula os juros a partir do acréscimo"""
-    def acrescimoparajuros(self, acrescimo=0, precisao=12, maximoiteracoes=100, maximojuros=50,
+    def acrescimoparajuros(self, acrescimo=0, precisao=12, maximointeracoes=100, maximojuros=50.0,
                            acrescimocomovalororiginal=False):
-        if maximoiteracoes < 1 or self.Quantidade <= 0 or precisao < 1 or self.Periodo <= 0 or acrescimo <= 0:
+        if maximointeracoes < 1 or self.Quantidade <= 0 or precisao < 1 or self.Periodo <= 0 or acrescimo <= 0:
             return 0
 
-        minimojuros = 0
-        mediojuros = 0
+        minimojuros = 0.0
+        mediojuros = 0.0
         total = self.getpesototal()
 
         if total == 0:
@@ -81,7 +83,7 @@ class Juros:
 
         minimadiferenca = 0.1 ** precisao
 
-        for i in range(maximoiteracoes):
+        for i in range(maximointeracoes):
             mediojuros = (minimojuros + maximojuros) / 2
             if (maximojuros - minimojuros) < minimadiferenca:
                 return mediojuros

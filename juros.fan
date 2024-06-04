@@ -55,18 +55,21 @@ class Juros {
 
         return medJuros
     }
-// echo("1,03 ^ 0,5 = " + (1.03f).pow(0.5f))
 }
 
 class Principal
 {
   static Void main()
   {
-    // cris o objeto juros da classe Juros e inicializa os atributos
+    // cria o objeto juros da classe Juros e inicializa os atributos
     juros := Juros(3, true, 30.0f, [30.0f, 60.0f, 90.0f], [1.0f, 1.0f, 1.0f])
+
+    // chama as funções para testes
     Float pesoTotal := juros.getPesoTotal()
     Float acrescimoCalculado := juros.jurosParaAcrescimo(3.0f)
     Float jurosCalculado := juros.acrescimoParaJuros(acrescimoCalculado, 15.0f, 100, 50.0f)
+
+    // imprime os testes
     echo("Peso total = " + pesoTotal)
     echo("Acrescimo = " + acrescimoCalculado)
     echo("Juros = " + jurosCalculado)

@@ -17,5 +17,5 @@ my $juros = Juros->new( 3, 1, 30.0, \@Pagamentos, \@Pesos);
 
 # testes de cálculo
 print "Peso Total = " . $juros->getPesoTotal() . "\n";
-print "Juros = " . $juros->jurosParaAcrescimo( 3.0) . "\n";
-print "Acrescimo = " . $juros->acrescimoParaJuros( $juros->jurosParaAcrescimo( 3.0), 15, 100, 50.0) . "\n";
+print "Acrescimo = " . $juros->jurosParaAcrescimo( 3.0) . "\n";
+print "Juros = " . $juros->acrescimoParaJuros( $juros->jurosParaAcrescimo( 3.0), 15, 100, 50.0) . "\n";

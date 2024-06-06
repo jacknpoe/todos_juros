@@ -16,7 +16,7 @@ Algumas implementações não serão mantidas, porque foram feitas em versões d
 
 Alguns arquivos estão ilegíveis, pois são binários e devem ser abertos ou importados nos ambientes das linguagens, como GW-BASIC, Smalltalk, Snap! e twinBASIC.
 
-Linguagens que não terão a solução, por não terem suporte a recursos necessários: Solidify (não tem números de ponto flutuante), Scratch (não tem exponenciação), Self e Bash (não têm exponenciação de números de ponto flutuante).
+Linguagens que não terão a solução, por não terem suporte a recursos necessários: Solidify (não tem números de ponto flutuante), Scratch, CHIP-8, Frege e Gosu (não tem exponenciação), Self, Rexx e Bash (não têm exponenciação de números de ponto flutuante). Outras linguagen têm outros problemas, como estarem desatualizadas e não rodam ou compilam nos sistemas atuais.
 
 A saída mais comum para os testes é:
 
@@ -42,7 +42,7 @@ Some implementations will not be maintained because they were done in trial vers
 
 Some files are unreadable, as they are binary and must be opened or imported into the language environments, such as GW-BASIC, Smalltalk, Snap! and twinBASIC.
 
-Languages ​​that will not have the solution, as they do not support the necessary resources: Solidify (does not have floating point numbers), Scratch (does not have exponentiation), Self and Bash (does not have exponentiation of floating point numbers).
+Languages ​​that will not have the solution, as they do not support the necessary resources: Solidify (does not have floating point numbers), Scratch, CHIP-8, Frege and Gosu (does not have exponentiation), Self, Rexx and Bash (does not have exponentiation of floating point numbers). Other languages ​​have other problems, such as being outdated and not running or compiling on current systems.
 
 The most common output for tests is:
 

@@ -68,12 +68,12 @@ for indice : 1 .. Quantidade
     Pesos(indice) := 1.0
 end for
 
-% guarda o resultado de chamadas as funcoes
+% guarda os resultados de chamadas as funcoes
 var pesoTotal := getPesoTotal
 var acrescimoCalculado := jurosParaAcrescimo(3.0)
 var jurosCalculado := acrescimoParaJuros(acrescimoCalculado, 15, 100, 50.0)
 
 % imprime os resultados
-put "Peso total = ", pesoTotal
+put "Peso total = ", frealstr(pesoTotal, 17, 15)
 put "Acrescimo = ", frealstr(acrescimoCalculado, 17, 15)
 put "Juros = ", frealstr(jurosCalculado, 17, 15)

@@ -4,7 +4,6 @@ module Juros.Juros exposing (main)
 
 import Html exposing (pre, text)
 import Array
--- import String
 
 -- estrutura básica para simplificar as chamadas
 quantidade = 3
@@ -58,8 +57,6 @@ acrescimoParaJuros : Float -> Int -> Int -> Float -> Float
 acrescimoParaJuros acrescimo precisao maxIteracoes maxJuros =
     rAcrescimoParaJuros acrescimo (0.1 ^ toFloat(precisao)) maxIteracoes 0.0 maxJuros (maxJuros / 2.0)
 
--- potencia = base ^ expoente
-
 -- calcula e guarda os retornos das funções
 pesoTotal = getPesoTotal
 acrescimoCalculado = jurosParaAcrescimo 3.0
@@ -68,6 +65,6 @@ jurosCalculado = acrescimoParaJuros acrescimoCalculado 15 100 50.0
 main =
     -- imprime o resultado
     pre []
-    [ text("Peso total = " ++ (String.fromFloat pesoTotal) ++ "\n" ++
-        "Acrescimo = " ++ (String.fromFloat acrescimoCalculado) ++ "\n" ++
-        "Juros = " ++ (String.fromFloat jurosCalculado)) ]
+    [ text( "Peso total = " ++ (String.fromFloat pesoTotal) ++ "\n" ++
+            "Acrescimo = " ++ (String.fromFloat acrescimoCalculado) ++ "\n" ++
+            "Juros = " ++ (String.fromFloat jurosCalculado) ) ]

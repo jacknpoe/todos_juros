@@ -31,7 +31,7 @@ fun jurosParaAcrescimo juros =
     if composto then (getPesoTotal() / rJurosCompostos (quantidade - 1) juros - 1.0) * 100.0
     else (getPesoTotal() / rJurosSimples (quantidade - 1) juros - 1.0) * 100.0;
 
-(* função recursiva no lugar de um for que realmente calcula o acréscimo *)
+(* função recursiva no lugar de um for que realmente calcula os juros *)
 fun rAcrescimoParaJuros acrescimo minDiferenca iteracaoAtual minJuros maxJuros medJuros =
     if (iteracaoAtual = 0) orelse ((maxJuros - minJuros) < minDiferenca) then medJuros
     else if (jurosParaAcrescimo medJuros) < acrescimo

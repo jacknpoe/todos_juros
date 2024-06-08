@@ -1,0 +1,69 @@
+# Cálculo do juros, sendo que precisa de arrays pra isso
+# Versão 0.1: 08/06/2024: versão feita sem muito conhecimento de Shark
+import system.io: printf
+import system.math: pow
+
+class Juros
+    # construtor, que inicializa os atributos, para simplificar as chamadas
+    function init(quantidade, composto, periodo, pagamentos, pesos)
+        self.Quantidade = quantidade
+        self.Composto = composto
+        self.Periodo = periodo
+        self.Pagamentos = pagamentos
+        self.Pesos = pesos
+
+    # calcula a somatória de Pesos[]
+    function getPesoTotal()
+        var acumulador = 0.0
+        for indice in range(0, self.Quantidade) do
+            acumulador += self.Pesos[indice]
+        return acumulador
+
+    # calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
+    function jurosParaAcrescimo(juros)
+        var pesoTotal = self.getPesoTotal()
+        if juros <= 0.0 or self.Quantidade < 1 or self.Periodo <= 0.0 or pesoTotal <= 0.0 then
+            return 0.0
+        var acumulador = 0.0
+
+        for indice in range(0, self.Quantidade) do
+            if self.Composto then
+                acumulador += self.Pesos[indice] / pow(1.0 + juros / 100.0, self.Pagamentos[indice] / self.Periodo)
+            else
+                acumulador += self.Pesos[indice] / (1.0 + juros / 100.0 * self.Pagamentos[indice] / self.Periodo)
+
+        return (pesoTotal / acumulador - 1.0) * 100.0
+
+    # calcula os juros a partir do acréscimo e dados comuns (como parcelas)
+    function acrescimoParaJuros(acrescimo, precisao, maxIteracoes, maxJuros)
+        var pesoTotal = self.getPesoTotal()
+        if acrescimo <= 0.0 or self.Quantidade < 1 or self.Periodo <= 0.0 or pesoTotal <= 0.0 or maxIteracoes < 1 or precisao < 1 or maxJuros <= 0.0 then
+            return 0.0
+        var minJuros = 0.0
+        var medJuros = maxJuros / 2.0
+        var minDiferenca = pow(0.1, precisao)
+
+        for indice in range(0, maxIteracoes) do
+            medJuros = (minJuros + maxJuros) / 2.0
+            if (maxJuros - minJuros) < minDiferenca then
+                return medJuros
+            if self.jurosParaAcrescimo(medJuros) < acrescimo then
+                minJuros = medJuros
+            else
+                maxJuros = medJuros
+
+        return medJuros
+
+function main(args)
+    # cria um objeto juros da classe Juros e inicializa os atributos
+    var juros = new Juros(3, true, 30.0, [30.0, 60.0, 90.0], [1.0, 1.0, 1.0])
+
+    # guarda os resultados dos cálculos dos métodos
+    var pesoTotal = juros.getPesoTotal()
+    var acrescimoCalculado = juros.jurosParaAcrescimo(3.0)
+    var jurosCalculado = juros.acrescimoParaJuros(acrescimoCalculado, 15, 100, 50.0)
+
+    # imprime os resultados no console
+    printf("Peso total = %\n", [pesoTotal])
+    printf("Acrescimo = %\n", [acrescimoCalculado])
+    printf("Juros = %\n", [jurosCalculado])

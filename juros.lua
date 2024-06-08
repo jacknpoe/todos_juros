@@ -2,6 +2,7 @@
 -- Versão 0.1: 26/03/2024: versão feita sem muito conhecimento de Lua
 --        0.2: 01/04/2024: corrigidos os acentos dos comentários
 --        0.3: 15/05/2024: acrescentadas legendas para os valores
+--        0.4: 08/06/2024: for para preencher os arrays, em vez de valores fixos
 
 -- estrutura básica para simplificar as chamadas
 Juros = {
@@ -69,7 +70,7 @@ function acrescimoParaJuros(acrescimo, precisao, maxIteracoes, maxJuros)
 		if ((maxJuros - minJuros) < minDiferenca) then
 			return medJuros
 		end
-		if (jurosParaAcrescimo(medJuros)< acrescimo) then
+		if (jurosParaAcrescimo(medJuros) < acrescimo) then
 			minJuros = medJuros
 		else
 			maxJuros = medJuros
@@ -82,12 +83,10 @@ end
 Juros.Quantidade = 3
 Juros.Composto = true
 Juros.Periodo = 30
-Juros.Pagamentos[1] = 30
-Juros.Pagamentos[2] = 60
-Juros.Pagamentos[3] = 90
-Juros.Pesos[1] = 1
-Juros.Pesos[2] = 1
-Juros.Pesos[3] = 1
+for indice = 1, Juros.Quantidade do
+	Juros.Pagamentos[indice] = indice * 30.0
+	Juros.Pesos[indice] = 1.0
+end
 
 -- testa as funções
 print("Peso total =", getPesoTotal())

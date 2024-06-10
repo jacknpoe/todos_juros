@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class name="Juros" enable="true" strideversion="1">
+    <javadoc xml:space="preserve">Cálculo do juros, sendo que precisa de arrays pra isso
+Versão 0.1: 10/06/2024: versão feita sem muito conhecimento de Stride</javadoc>
+    <imports/>
+    <implements/>
+    <fields>
+        <variable access="public" type="int" type-java="int" name="Quantidade" enable="true"/>
+        <variable access="public" type="boolean" type-java="boolean" name="Composto" enable="true"/>
+        <variable access="public" type="double" type-java="double" name="Periodo" enable="true"/>
+        <variable access="public" type="double[]" type-java="double[]" name="Pagamentos" enable="true"/>
+        <variable access="public" type="double[]" type-java="double[]" name="Pesos" enable="true"/>
+    </fields>
+    <constructors>
+        <constructor access="public" enable="true">
+            <javadoc xml:space="preserve">O construtor inicializa todos os atributos</javadoc>
+            <params>
+                <params type="int" type-java="int" name="quantidade"/>
+                <params type="boolean" type-java="boolean" name="composto"/>
+                <params type="double" type-java="double" name="periodo"/>
+                <params type="double[]" type-java="double[]" name="pagamentos"/>
+                <params type="double[]" type-java="double[]" name="pesos"/>
+            </params>
+            <throws/>
+            <body>
+                <assign dest="this.Quantidade" dest-java="this.Quantidade" src="quantidade" src-java="quantidade" enable="true"/>
+                <assign dest="this.Composto" dest-java="this.Composto" src="composto" src-java="composto" enable="true"/>
+                <assign dest="this.Periodo" dest-java="this.Periodo" src="periodo" src-java="periodo" enable="true"/>
+                <assign dest="this.Pagamentos" dest-java="this.Pagamentos" src="pagamentos" src-java="pagamentos" enable="true"/>
+                <assign dest="this.Pesos" dest-java="this.Pesos" src="pesos" src-java="pesos" enable="true"/>
+            </body>
+        </constructor>
+    </constructors>
+    <methods>
+        <method access="public" type="double" type-java="double" name="getPesoTotal" enable="true">
+            <javadoc xml:space="preserve">Retorna a somatória de Pesos[]</javadoc>
+            <params/>
+            <throws/>
+            <body>
+                <variable type="double" type-java="double" name="acumulador" value="0.0" value-java="0.0" enable="true"/>
+                <variable type="int" type-java="int" name="indice" value="0" value-java="0" enable="true"/>
+                <while condition="indice&lt;this.Quantidade" condition-java="indice &lt; this.Quantidade" enable="true">
+                    <assign dest="acumulador" dest-java="acumulador" src="acumulador+this.Pesos[indice]" src-java="acumulador + this.Pesos[indice]" enable="true"/>
+                    <assign dest="indice" dest-java="indice" src="indice+1" src-java="indice + 1" enable="true"/>
+                </while>
+                <return value="acumulador" value-java="acumulador" enable="true"/>
+            </body>
+        </method>
+        <method access="public" type="double" type-java="double" name="jurosParaAcrescimo" enable="true">
+            <javadoc xml:space="preserve">Calcula o acréscimo a partir dos juros e dados comuns (como parcelas)</javadoc>
+            <params>
+                <params type="double" type-java="double" name="juros"/>
+            </params>
+            <throws/>
+            <body>
+                <variable type="double" type-java="double" name="pesoTotal" value="this.getPesoTotal()" value-java="this.getPesoTotal()" enable="true"/>
+                <if condition="juros&lt;=0.0||this.Quantidade&lt;1||this.Periodo&lt;=0.0||pesoTotal&lt;=0.0" condition-java="juros &lt;= 0.0 || this.Quantidade &lt; 1 || this.Periodo &lt;= 0.0 || pesoTotal &lt;= 0.0" enable="true">
+                    <ifStatements>
+                        <return value="0.0" value-java="0.0" enable="true"/>
+                    </ifStatements>
+                </if>
+                <variable type="double" type-java="double" name="acumulador" value="0.0" value-java="0.0" enable="true"/>
+                <variable type="int" type-java="int" name="indice" value="0" value-java="0" enable="true"/>
+                <while condition="indice&lt;this.Quantidade" condition-java="indice &lt; this.Quantidade" enable="true">
+                    <if condition="this.Composto" condition-java="this.Composto" enable="true">
+                        <ifStatements>
+                            <assign dest="acumulador" dest-java="acumulador" src="acumulador+this.Pesos[indice]/Math.pow(1.0+juros/100.0,this.Pagamentos[indice]/this.Periodo)" src-java="acumulador + this.Pesos[indice] / Math.pow(1.0 + juros / 100.0, this.Pagamentos[indice] / this.Periodo)" enable="true"/>
+                        </ifStatements>
+                        <else>
+                            <assign dest="acumulador" dest-java="acumulador" src="acumulador+this.Pesos[indice]/(1.0+juros/100*this.Pagamentos[indice]/this.Periodo)" src-java="acumulador + this.Pesos[indice] / (1.0 + juros / 100 * this.Pagamentos[indice] / this.Periodo)" enable="true"/>
+                        </else>
+                    </if>
+                    <assign dest="indice" dest-java="indice" src="indice+1" src-java="indice + 1" enable="true"/>
+                </while>
+                <return value="(pesoTotal/acumulador-1.0)*100.0" value-java="(pesoTotal / acumulador - 1.0) * 100.0" enable="true"/>
+            </body>
+        </method>
+        <method access="public" type="double" type-java="double" name="acrescimoParaJuros" enable="true">
+            <javadoc xml:space="preserve">Calcula os juros a partir do acréscimo e dados comuns (como parcelas)</javadoc>
+            <params>
+                <params type="double" type-java="double" name="acrescimo"/>
+                <params type="int" type-java="int" name="precisao"/>
+                <params type="int" type-java="int" name="maxIteracoes"/>
+                <params type="double" type-java="double" name="maxJuros"/>
+            </params>
+            <throws/>
+            <body>
+                <variable type="double" type-java="double" name="pesoTotal" value="this.getPesoTotal()" value-java="this.getPesoTotal()" enable="true"/>
+                <if condition="acrescimo&lt;=0.0||precisao&lt;1||maxIteracoes&lt;1||maxJuros&lt;=0.0||this.Quantidade&lt;1||this.Periodo&lt;=0.0" condition-java="acrescimo &lt;= 0.0 || precisao &lt; 1 || maxIteracoes &lt; 1 || maxJuros &lt;= 0.0 || this.Quantidade &lt; 1 || this.Periodo &lt;= 0.0" enable="true">
+                    <ifStatements>
+                        <return value="0.0" value-java="0.0" enable="true"/>
+                    </ifStatements>
+                </if>
+                <variable type="double" type-java="double" name="minJuros" value="0.0" value-java="0.0" enable="true"/>
+                <variable type="double" type-java="double" name="medJuros" value="maxJuros/2.0" value-java="maxJuros / 2.0" enable="true"/>
+                <variable type="double" type-java="double" name="minDiferenca" value="Math.pow(0.1,precisao)" value-java="Math.pow(0.1, precisao)" enable="true"/>
+                <variable type="int" type-java="int" name="indice" value="0" value-java="0" enable="true"/>
+                <while condition="indice&lt;maxIteracoes" condition-java="indice &lt; maxIteracoes" enable="true">
+                    <assign dest="medJuros" dest-java="medJuros" src="(minJuros+maxJuros)/2.0" src-java="(minJuros + maxJuros) / 2.0" enable="true"/>
+                    <if condition="(maxJuros-minJuros)&lt;minDiferenca" condition-java="(maxJuros - minJuros) &lt; minDiferenca" enable="true">
+                        <ifStatements>
+                            <return value="medJuros" value-java="medJuros" enable="true"/>
+                        </ifStatements>
+                    </if>
+                    <if condition="this.jurosParaAcrescimo(medJuros)&lt;acrescimo" condition-java="this.jurosParaAcrescimo(medJuros) &lt; acrescimo" enable="true">
+                        <ifStatements>
+                            <assign dest="minJuros" dest-java="minJuros" src="medJuros" src-java="medJuros" enable="true"/>
+                        </ifStatements>
+                        <else>
+                            <assign dest="maxJuros" dest-java="maxJuros" src="medJuros" src-java="medJuros" enable="true"/>
+                        </else>
+                    </if>
+                    <assign dest="indice" dest-java="indice" src="indice+1" src-java="indice + 1" enable="true"/>
+                </while>
+                <return value="medJuros" value-java="medJuros" enable="true"/>
+            </body>
+        </method>
+    </methods>
+</class>

@@ -1,0 +1,42 @@
+to acrescimo_para_juros :acrescimo :precisao :max_iteracoes :maximo_juros
+	make "peso_total get_peso_total
+	if (or :quantidade < 1 :periodo <= 0.0 :acrescimo <= 0.0 :precisao < 1 :max_iteracoes < 1 :maximo_juros <= 0.0 :peso_total <= 0.0) [output 0.0]
+	make "min_juros 0.0
+	make "med_juros :maximo_juros / 2.0
+	make "max_juros :maximo_juros
+	make "min_diferenca power 0.1 :precisao
+	for [indice 1 :max_iteracoes][
+		make "med_juros (:min_juros + :max_juros) / 2.0
+		if (:max_juros - :min_juros) < :min_diferenca [output :med_juros]
+		ifelse (juros_para_acrescimo :med_juros) < :acrescimo
+		[make "min_juros :med_juros]
+		[make "max_juros :med_juros]
+	]
+	output :med_juros
+end
+
+to get_peso_total
+	make "acumulador 0.0
+	for [indice 1 :quantidade][
+		make "acumulador :acumulador + item :indice :pesos
+	]
+	output :acumulador
+end
+
+to juros_para_acrescimo :juros
+	make "peso_total get_peso_total
+	if (or :quantidade < 1 :periodo <= 0.0 :juros <= 0.0 :peso_total <= 0.0) [output 0.0]
+	make "acumulador 0.0
+	for [indice 1 :quantidade][
+		ifelse :composto = 1
+		[make "acumulador :acumulador + (item :indice :pesos) / power (1.0 + :juros / 100.0) ((item :indice :pagamentos) / :periodo)]
+		[make "acumulador :acumulador + (item :indice :pesos) / (1.0 + :juros / 100.0 * (item :indice :pagamentos) / :periodo)]
+	]
+	output (:peso_total / :acumulador - 1.0) * 100.0
+end
+
+Make "pagamentos [30.0 60.0 90.0]
+Make "periodo 30
+Make "peso_total 3
+Make "pesos [1.0 1.0 1.0]
+Make "quantidade 3

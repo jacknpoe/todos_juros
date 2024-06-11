@@ -1,0 +1,3 @@
+print get_peso_total
+print juros_para_acrescimo 3.0
+print acrescimo_para_juros (juros_para_acrescimo 3.0) 15 100 50.0

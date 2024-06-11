@@ -1,0 +1,71 @@
+// Cálculo do juros, sendo que precisa de arrays pra isso
+// Versão 0.1: 10/06/2024: versão feita sem muito conhecimento de Spider
+use console;
+
+// classe e construtor que inicializam os atributos
+fn Juros(quantidade, composto, periodo, pagamentos, pesos) {
+	this.quantidade = quantidade;
+	this.composto = composto;
+	this.periodo = periodo;
+	this.pagamentos = pagamentos;
+	this.pesos = pesos;
+
+	// calcula a somatória de pesos[]
+	this.getPesoTotal = fn () {
+		var acumulador = 0.0;
+		for var indice = 0; indice < this.quantidade; indice++
+			{ acumulador += this.pesos[indice]; }
+		return acumulador;
+	};
+
+	// calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
+	this.jurosParaAcrescimo = fn (juros) {
+		var pesoTotal = this.getPesoTotal();
+		if juros <= 0.0 or this.quantidade < 1 or this.periodo <= 0.0 or pesoTotal <= 0.0 { return 0.0; }
+		var acumulador = 0.0;
+
+		for var indice = 0; indice < this.quantidade; indice++ {
+			if this.composto {
+				acumulador += this.pesos[indice] / ((1.0 + juros / 100.0) ** (this.pagamentos[indice] / this.periodo));
+			} else {
+				acumulador += this.pesos[indice] / (1.0 + juros / 100.0 * this.pagamentos[indice] / this.periodo);
+			}
+		}
+
+		return (pesoTotal / acumulador - 1.0) * 100.0;
+	};
+
+	// calcula os juros a partir do acréscimo e dados comuns (como parcelas)
+	this.acrescimoParaJuros = fn (acrescimo, precisao = 15, maxIteracoes = 100, maxJuros = 50.0) {
+		var pesoTotal = this.getPesoTotal();
+		if acrescimo <= 0.0 or this.quantidade < 1 or this.periodo <= 0.0 or pesoTotal <= 0.0 or precisao < 1 or maxIteracoes < 1 or maxJuros <= 0.0 { return 0.0; }
+		var minJuros = 0.0;
+		var medJuros = maxJuros / 2.0;
+		var minDiferenca = 0.1 ** precisao;
+
+		for var indice = 0; indice < maxIteracoes; indice++ {
+			medJuros = (minJuros + maxJuros) / 2.0;
+			if (maxJuros - minJuros) < minDiferenca { return medJuros; }
+			if this.jurosParaAcrescimo(medJuros) < acrescimo {
+				minJuros = medJuros;
+			} else {
+				maxJuros = medJuros;
+			}
+		}
+
+		return medJuros;
+	};
+}
+
+// cria um objeto juros do tipo Juros e inicializa os parâmetros
+var juros = new Juros(3, true, 30.0, [30.0, 60.0, 90.0], [1.0, 1.0, 1.0]);
+
+// calcula e guarda os resultados das chamadas aos métodos
+var pesoTotal = juros.getPesoTotal();
+var acrescimoCalculado = juros.jurosParaAcrescimo(3.0);
+var jurosCalculado = juros.acrescimoParaJuros(acrescimoCalculado);
+
+// loga os resultados no console
+console.log("Peso total = " + pesoTotal);
+console.log("Acréscimo = " + acrescimoCalculado);
+console.log("Juros = " + jurosCalculado);

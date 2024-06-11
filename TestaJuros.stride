@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class name="TestaJuros" enable="true" strideversion="1">
-    <javadoc xml:space="preserve"/>
+    <javadoc xml:space="preserve">Testa a classe de Juros.</javadoc>
     <imports/>
     <implements/>
     <fields/>
     <constructors>
         <constructor access="public" enable="true">
-            <javadoc xml:space="preserve">Constructor for objects of class testajuros</javadoc>
+            <javadoc xml:space="preserve">O construtor não precisa fazer nada.</javadoc>
             <params/>
             <throws/>
             <body/>
@@ -14,7 +14,7 @@
     </constructors>
     <methods>
         <method access="public" type="void" type-java="void" name="testa" enable="true">
-            <javadoc xml:space="preserve"/>
+            <javadoc xml:space="preserve">Cria um objeto juros da classe Juros, chama os métodos e imprime os resultados.</javadoc>
             <params/>
             <throws/>
             <body>

@@ -8,14 +8,14 @@
 Juros = {
 	Quantidade = 0,
 	Composto = false,
-	Periodo = 0,
+	Periodo = 0.0,
 	Pagamentos = {},
 	Pesos = {}
 }
 
 -- calcula a somatória de Pesos[]
 function getPesoTotal()
-	acumulador = 0
+	acumulador = 0.0
 	for indice = 1, Juros.Quantidade do
 		acumulador = acumulador + Juros.Pesos[indice]
 	end
@@ -24,14 +24,14 @@ end
 
 -- calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
 function jurosParaAcrescimo(juros)
-	if (juros <= 0 or Juros.Quantidade <= 0 or Juros.Periodo <= 0) then
-		return 0
+	if (juros <= 0.0 or Juros.Quantidade <= 0 or Juros.Periodo <= 0.0) then
+		return 0.0
 	end
 	pesoTotal = getPesoTotal()
 	if (pesoTotal <= 0.0) then
-		return 0
+		return 0.0
 	end
-	acumulador = 0
+	acumulador = 0.0
 	-- soZero = true
 	
 	for indice = 1, Juros.Quantidade do
@@ -39,9 +39,9 @@ function jurosParaAcrescimo(juros)
 		--  	soZero = false
 		-- end
 		if (Juros.Composto) then
-			acumulador = acumulador + Juros.Pesos[indice] / (1 + juros / 100) ^ (Juros.Pagamentos[indice] / Juros.Periodo)
+			acumulador = acumulador + Juros.Pesos[indice] / (1.0 + juros / 100.0) ^ (Juros.Pagamentos[indice] / Juros.Periodo)
 		else
-			acumulador = acumulador + Juros.Pesos[indice] / (1 + juros / 100 * Juros.Pagamentos[indice] / Juros.Periodo)
+			acumulador = acumulador + Juros.Pesos[indice] / (1.0 + juros / 100.0 * Juros.Pagamentos[indice] / Juros.Periodo)
 		end
 	end
 	
@@ -49,24 +49,24 @@ function jurosParaAcrescimo(juros)
 	if acumulador <= 0.0 then
 		return 0
 	end
-	return (pesoTotal / acumulador - 1) * 100
+	return (pesoTotal / acumulador - 1.0) * 100.0
 end
 
 -- calcula os juros a partir do acréscimo e dados comuns (como parcelas)
 function acrescimoParaJuros(acrescimo, precisao, maxIteracoes, maxJuros)
-	if (maxIteracoes < 1 or Juros.Quantidade <= 0 or precisao < 1 or Juros.Periodo <= 0 or acrescimo <= 0 or maxJuros <= 0) then
-		return 0
+	if (maxIteracoes < 1 or Juros.Quantidade <= 0 or precisao < 1 or Juros.Periodo <= 0.0 or acrescimo <= 0.0 or maxJuros <= 0.0) then
+		return 0.0
 	end
 	pesoTotal = getPesoTotal()
 	if (pesoTotal <= 0.0) then
-		return 0
+		return 0.0
 	end
-	minJuros = 0
-	medJuros = maxJuros / 2
+	minJuros = 0.0
+	medJuros = maxJuros / 2.0
 	minDiferenca = 0.1 ^ precisao
 	
 	for indice = 1, maxIteracoes do
-		medJuros = (minJuros + maxJuros) / 2
+		medJuros = (minJuros + maxJuros) / 2.0
 		if ((maxJuros - minJuros) < minDiferenca) then
 			return medJuros
 		end
@@ -82,7 +82,7 @@ end
 -- define os valores de Juros
 Juros.Quantidade = 3
 Juros.Composto = true
-Juros.Periodo = 30
+Juros.Periodo = 30.0
 for indice = 1, Juros.Quantidade do
 	Juros.Pagamentos[indice] = indice * 30.0
 	Juros.Pesos[indice] = 1.0
@@ -90,5 +90,5 @@ end
 
 -- testa as funções
 print("Peso total =", getPesoTotal())
-print("Acréscimo =", jurosParaAcrescimo(3))
-print("Juros =", acrescimoParaJuros(jurosParaAcrescimo(3), 15, 100, 50))
+print("Acréscimo =", jurosParaAcrescimo(3.0))
+print("Juros =", acrescimoParaJuros(jurosParaAcrescimo(3.0), 15, 100, 50.0))

@@ -60,8 +60,6 @@ class Juros
 
         return medJuros
 
-// print "1,03 ^ 0,5 = " + Math.pow(1.03, 0.5).to_string()
-
 init
     Intl.setlocale( LocaleCategory.ALL, "" )
     

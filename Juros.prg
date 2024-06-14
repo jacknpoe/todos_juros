@@ -1,9 +1,6 @@
 ﻿// Cálculo do juros, sendo que precisa de arrays pra isso
 // Versão 0.1: 14/06/2024: versão feita sem muito conhecimento de X#
 
-// USING System
-// USING System.Collections.Generic
-
 // atributos para simplificar as chamadas
 CLASS Juros
 	PUBLIC Quantidade AS INT
@@ -69,5 +66,3 @@ CLASS Juros
 		RETURN medJuros	
 		
 END CLASS
-
-

@@ -5,7 +5,7 @@
 	oJuros := Juros{}
 	oJuros.Init(3, TRUE, 30.0, {30.0, 60.0, 90.0}, {1.0, 1.0, 1.0})
 	
-	// calcula e guarda o resultado dos métodos
+	// calcula e guarda os resultados dos métodos
 	LOCAL pesoTotal AS FLOAT, acrescimoCalculado AS FLOAT, jurosCalculado AS FLOAT
 	pesoTotal := oJuros.getPesoTotal()
 	acrescimoCalculado := oJuros.jurosParaAcrescimo(3.0)

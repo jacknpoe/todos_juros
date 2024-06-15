@@ -18,7 +18,6 @@ FUNCTION Main
     jurosCalculado := acrescimoParaJuros(Quantidade, Composto, Periodo, Pagamentos, Pesos, acrescimoCalculado, 15, 100, 50.0)
 
     // imprime os resultados
-    SET DECIMALS TO 15
     ? "Peso total = " + AllTrim(Str(pesoTotal, 17, 15))
     ? "Acrescimo = " + AllTrim(Str(acrescimoCalculado, 17, 15))
     ? "Juros = " + AllTrim(Str(jurosCalculado, 17, 15))

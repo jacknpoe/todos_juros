@@ -9,15 +9,15 @@ const Juros = struct {
     quantidade: i16,
     composto: bool,
     periodo: f64,
-    pagamentos: [3]f64, // alterar esses valores
-    pesos: [3]f64, // para sua necessidade
+    pagamentos: std.ArrayList(f64), // alterar esses valores
+    pesos: std.ArrayList(f64), // para sua necessidade
 
     // calcula a somatória de pesos[]
     pub fn getPesoTotal(self: Juros) f64 {
         var acumulador: f64 = 0.0;
         var indice: usize = 0;
         while (indice < self.quantidade) {
-            acumulador += self.pesos[indice];
+            acumulador += self.pesos.items[indice];
             indice += 1;
         }
         return acumulador;
@@ -34,9 +34,9 @@ const Juros = struct {
 
         while (indice < self.quantidade) {
             if (self.composto) {
-                acumulador += self.pesos[indice] / math.pow(f64, 1 + juros / 100.0, self.pagamentos[indice] / self.periodo);
+                acumulador += self.pesos.items[indice] / math.pow(f64, 1 + juros / 100.0, self.pagamentos.items[indice] / self.periodo);
             } else {
-                acumulador += self.pesos[indice] / (1 + juros / 100.0 * self.pagamentos[indice] / self.periodo);
+                acumulador += self.pesos.items[indice] / (1 + juros / 100.0 * self.pagamentos.items[indice] / self.periodo);
             }
             indice += 1;
         }
@@ -76,11 +76,21 @@ const Juros = struct {
 
 pub fn main() !void {
     const stdout = std.io.getStdOut().writer();
+    const alocador = std.heap.page_allocator;
+    const quantidade = 3;
+
+    // cria os arrays de pagamentos e pesos
+    var pagamentos = std.ArrayList(f64).init(alocador);
+    var pesos = std.ArrayList(f64).init(alocador);
+    var indice: f64 = 0;
+    while (indice < quantidade) {
+        try pagamentos.append((indice + 1.0) * 30.0);
+        try pesos.append(1.0);
+        indice += 1;
+    }
 
     // cria um objeto oJuros do tipo Juros e incializa os valores
-    const pagamentos = [_]f64{ 30.0, 60.0, 90.0 };
-    const pesos = [_]f64{ 1.0, 1.0, 1.0 };
-    const oJuros = Juros{ .quantidade = 3, .composto = true, .periodo = 30.0, .pagamentos = pagamentos, .pesos = pesos };
+    const oJuros = Juros{ .quantidade = quantidade, .composto = true, .periodo = 30.0, .pagamentos = pagamentos, .pesos = pesos };
 
     // calcula e guarda os retornos das funções
     const pesoTotal: f64 = oJuros.getPesoTotal();

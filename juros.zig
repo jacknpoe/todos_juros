@@ -45,7 +45,7 @@ const Juros = struct {
     }
 
     // calcula os juros a partir do acréscimo e parcelas
-    pub fn acrescimoParaJuros(self: Juros, acrescimo: f64, precisao: f64, maxIteracoes: i16, maximoJuros: f64) f64 {
+    pub fn acrescimoParaJuros(self: Juros, acrescimo: f64, precisao: i8, maxIteracoes: i16, maximoJuros: f64) f64 {
         const pesoTotal = self.getPesoTotal();
         if (acrescimo <= 0.0 or self.quantidade < 1 or self.periodo <= 0.0 or pesoTotal <= 0.0 or precisao < 1 or maxIteracoes < 1 or maximoJuros <= 0.0) {
             return 0.0;
@@ -53,7 +53,7 @@ const Juros = struct {
         var minJuros: f64 = 0.0;
         var medJuros: f64 = maximoJuros / 2.0;
         var maxJuros: f64 = maximoJuros;
-        const minDiferenca: f64 = math.pow(f64, 0.1, precisao);
+        const minDiferenca: f64 = math.pow(f64, 0.1, @floatFromInt(precisao));
         var indice: usize = 0;
 
         while (indice < maxIteracoes) {
@@ -82,9 +82,9 @@ pub fn main() !void {
     // cria os arrays de pagamentos e pesos
     var pagamentos = std.ArrayList(f64).init(alocador);
     var pesos = std.ArrayList(f64).init(alocador);
-    var indice: f64 = 0;
+    var indice: usize = 0;
     while (indice < quantidade) {
-        try pagamentos.append((indice + 1.0) * 30.0);
+        try pagamentos.append(@floatFromInt((indice + 1) * 30));
         try pesos.append(1.0);
         indice += 1;
     }
@@ -95,7 +95,7 @@ pub fn main() !void {
     // calcula e guarda os retornos das funções
     const pesoTotal: f64 = oJuros.getPesoTotal();
     const acrescimoCalculado: f64 = oJuros.jurosParaAcrescimo(3.0);
-    const jurosCalculado: f64 = oJuros.acrescimoParaJuros(acrescimoCalculado, 15.0, 100, 50);
+    const jurosCalculado: f64 = oJuros.acrescimoParaJuros(acrescimoCalculado, 15, 100, 50);
 
     // imprime os resultados
     try stdout.print("Peso total = {d}\n", .{pesoTotal});

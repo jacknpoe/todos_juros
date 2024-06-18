@@ -1,5 +1,5 @@
-83 resoluções de equação transcendente
-Desde que esse artigo foi publicado, mais 73 resoluções foram acrescentadas ao repositório https://github.com/jacknpoe/todos_juros, totalizando, agora, 83 resoluções.
+84 resoluções de equação transcendente
+Desde que esse artigo foi publicado, mais 74 resoluções foram acrescentadas ao repositório https://github.com/jacknpoe/todos_juros, totalizando, agora, 84 resoluções.
 No artigo Resolução de Equação Transcendente, foi explicado como uma equação que calcula os juros a partir do acréscimo e das parcelas pode ser feita usando cálculo numérico, especificamente o método da bisseção.
 Esta é a relação das resoluções em linguagens diferentes. Algumas contêm o código de teste no mesmo arquivo. Em outras, o arquivo de testes é separado. Caso seja publicada uma nova resolução, ela será adicionada à lista.
 
@@ -198,86 +198,89 @@ juros.rkt
 57. Raku (06/06/2024)
 juros.raku
 
-58. Ruby (12/03/2024)
+58. Ring (18/06/2024)
+juros.ring
+
+59. Ruby (12/03/2024)
 juros.rb
 
-59. Rust (13/03/2024)
+60. Rust (13/03/2024)
 juros.rs
 main.rs
 
-60. S-Lang (12/06/2024)
+61. S-Lang (12/06/2024)
 juros.sl
 
-61. Scala (20/05/2024)
+62. Scala (20/05/2024)
 juros.scala
 testajuros.scala
 
-62. Scheme (28/04/2024)
+63. Scheme (28/04/2024)
 juros.scm
 
-63. Shark (08/06/2024)
+64. Shark (08/06/2024)
 juros.shk
 
-64. Simula (08/05/2024)
+65. Simula (08/05/2024)
 juros.sim
 
-65. Smalltalk (14/05/2024)
+66. Smalltalk (14/05/2024)
 RER-Juros.st
 
-66. SML (31/05/2024)
+67. SML (31/05/2024)
 juros.sml
 
-67. Snap! (21/05/2024)
+68. Snap! (21/05/2024)
 juros.xml
 
-68. Spider (10/06/2024)
+69. Spider (10/06/2024)
 juros.spider
 testajuros.html
 
-69. Squirrel (18/06/2024)
+70. Squirrel (18/06/2024)
 juros.nut
 
-70. Stride (10/06/2024)
+71. Stride (10/06/2024)
 Juros.stride
 TestaJuros.stride
 
-71. Swift (23/03/2024)
+72. Swift (23/03/2024)
 juros.swift
 
-72. Tcl (05/06/2024)
+73. Tcl (05/06/2024)
 juros.tcl
 
-73. Turing (07/06/2024)
+74. Turing (07/06/2024)
 juros.t
 
-74. twinBASIC (28/05/2024)
+75. twinBASIC (28/05/2024)
 juros.twinproj
 
-75. TypeScript (03/03/2024)
+76. TypeScript (03/03/2024)
 Juros.ts
 TesteJuros.ts
 
-76. V (11/06/2024)
+77. V (11/06/2024)
 juros.v
 
-77. Vala (14/06/2024)
+78. Vala (14/06/2024)
 juros.vala
 
-78. Visual Basic .NET (02/03/2024)
+79. Visual Basic .NET (02/03/2024)
 TesteJuros.vb
 
-79. VisuALG (01/05/2024)
+90. VisuALG (01/05/2024)
 juros.alg
 
-80. X# (14/06/2024)
+81. X# (14/06/2024)
 Juros.prg
 Start.prg
 
-81. Xtend (03/06/2024)
+82. Xtend (03/06/2024)
 Juros.xtend
 
-82. Yeti (31/05/2024)
+83. Yeti (31/05/2024)
 juros.yeti
 
-83. Zig (17/06/2024)
+84. Zig (17/06/2024)
 juros.zig

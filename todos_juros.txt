@@ -187,7 +187,7 @@ Juros.py
 main.py
 
 54. QB64 (12/06/2024)
-juros.bas
+juros_qb64.bas
 
 55. R (11/03/2024)
 Juros.R

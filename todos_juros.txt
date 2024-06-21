@@ -163,7 +163,7 @@ juros.mojo
 juros.nim
 
 48. Objective-C (27/03/2024)
-juros.m
+juros_objective_c.m
 
 49. OCaml (30/05/2024)
 juros.ml

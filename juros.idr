@@ -1,6 +1,7 @@
 -- Cálculo dos juros, sendo que precisa de parcelas pra isso
 -- Versão 0.1: 26/06/2024: variáveis sem muito conhecimento de Lua
---        0.2: 27/06/2024: 
+--        0.2: 27/06/2024: todas as funções
+--        0.3: 27/06/2024: precisao inteiro
 module Main
 
 -- estrutura básica para simplificar as chamadas
@@ -50,13 +51,13 @@ rAcrescimoParaJuros acrescimo minDiferenca iteracaoAtual minJuros maxJuros medJu
          else rAcrescimoParaJuros acrescimo minDiferenca (iteracaoAtual - 1) minJuros medJuros ((minJuros + medJuros) / 2.0)
 
 -- calcula os juros a partir do acréscimo e dados comuns (como parcelas)
-acrescimoParaJuros : Double -> Double -> Int -> Double -> Double
-acrescimoParaJuros acrescimo precisao maxIteracoes maxJuros = rAcrescimoParaJuros acrescimo (pow 0.1 precisao) maxIteracoes 0.0 maxJuros (maxJuros / 2.0)
+acrescimoParaJuros : Double -> Int -> Int -> Double -> Double
+acrescimoParaJuros acrescimo precisao maxIteracoes maxJuros = rAcrescimoParaJuros acrescimo (Prelude.pow 0.1 (cast precisao)) maxIteracoes 0.0 maxJuros (maxJuros / 2.0)
 
 -- calcula e guarda o resultado das funções
 pesoTotal = getPesoTotal
 acrescimoCalculado = jurosParaAcrescimo 3.0
-jurosCalculado = acrescimoParaJuros acrescimoCalculado 15.0 100 50.0
+jurosCalculado = acrescimoParaJuros acrescimoCalculado 15 100 50.0
 
 main : IO ()
 main = do

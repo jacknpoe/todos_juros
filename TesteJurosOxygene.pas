@@ -31,12 +31,9 @@ implementation
     jurosCalculado := juros.acrescimoParaJuros(acrescimoCalculado);
 
     // imprime os resultados
-    write("Peso total = ");
-    writeLn(pesoTotal);
-    write("Acrescimo = ");
-    writeLn(acrescimoCalculado);
-    write("Juros = ");
-    writeLn(jurosCalculado);
+    write("Peso total = "); writeLn(pesoTotal);
+    write("Acrescimo = "); writeLn(acrescimoCalculado);
+    write("Juros = "); writeLn(jurosCalculado);
 
     exit 0;
   end;

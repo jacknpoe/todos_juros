@@ -26,12 +26,12 @@ juros.bal
 7. C (01/03/2024)
 juros.c
 
-8. C++ (17/09/2023)
-interest.cpp
-
-9. C# (21/02/2024)
+8. C# (21/02/2024)
 Juros.cs
 TesteJuros.cs
+
+9. C++ (17/09/2023)
+interest.cpp
 
 10. Circle (19/06/2024)
 juros.cxx

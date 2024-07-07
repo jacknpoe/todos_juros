@@ -1,6 +1,10 @@
 module juros
 import StdEnv
 
+// Cálculo dos juros, sendo que precisa de parcelas pra isso
+// Versão 0.1: 21/06/2024: versão feita sem muito conhecimento de Clean
+//        0.2: 07/07/2024: comentários de versões
+
 // define varíáveis globais para simplificar as chamadas
 quantidade :: Int
 quantidade = 3

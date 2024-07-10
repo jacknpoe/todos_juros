@@ -46,7 +46,7 @@ class Juros {
 
     """Retorna a soma total de todos os pesos"""
     def getpesototal(self) {
-        acumulador = 0
+        acumulador = 0.0
         for i in range(self.Quantidade) {
             acumulador += self.Pesos[i]
         }
@@ -61,11 +61,11 @@ class Juros {
             return 0.0
         }
 
-        acumulador = 0
+        acumulador = 0.0
         sozero = True
 
         for i in range(self.Quantidade) {
-            if self.Pagamentos[i] > 0 and self.Pesos[i] > 0 {
+            if self.Pagamentos[i] > 0.0 and self.Pesos[i] > 0.0 {
                 sozero = False
             }
             if self.Composto {

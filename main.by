@@ -1,0 +1,11 @@
+# Calcula o acréscimo a partir dos juros e os juros a partir do acréscimo
+# Versão 0.1: 10/07/2024: início, feito a partir de Python, sabendo um pouco de Bython
+import Juros
+
+juros = Juros.Juros(3, True, 30)
+juros.setpagamentos(",", "30.0,60.0,90.0")
+juros.setpesos(",", "1.0,1.0,1.0")
+
+print("Peso total = " + str(juros.getpesototal()))
+print("Acréscimo = " + str(juros.jurosparaacrescimo(3.0)))
+print("Juros = " + str(juros.acrescimoparajuros(juros.jurosparaacrescimo(3.0), 18)))

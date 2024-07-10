@@ -36,55 +36,54 @@ class Juros:
 
     """Retorna a soma total de todos os pesos"""
     def getpesototal(self):
-        acumulador = 0
+        acumulador = 0.0
         for i in range(self.Quantidade):
             acumulador += self.Pesos[i]
         return acumulador
 
     """Calcula o acréscimo a partir dos juros"""
     def jurosparaacrescimo(self, juros=0):
-        if juros == 0 or self.Quantidade == 0 or self.Periodo == 0:
-            return 0
-
         total = self.getpesototal()
-        acumulador = 0
+
+        if juros <= 0.0 or self.Quantidade < 1 or self.Periodo <= 0.0 or total <= 0.0:
+            return 0.0
+
+        acumulador = 0.0
         sozero = True
 
         for i in range(self.Quantidade):
-            if self.Pagamentos[i] > 0 and self.Pesos[i] > 0:
+            if self.Pagamentos[i] > 0.0 and self.Pesos[i] > 0.0:
                 sozero = False
             if self.Composto:
-                acumulador += self.Pesos[i] / ((1 + juros / 100) ** (self.Pagamentos[i] / self.Periodo))
+                acumulador += self.Pesos[i] / ((1.0 + juros / 100.0) ** (self.Pagamentos[i] / self.Periodo))
             else:
-                acumulador += self.Pesos[i] / (1 + juros / 100 * self.Pagamentos[i] / self.Periodo)
+                acumulador += self.Pesos[i] / (1.0 + juros / 100.0 * self.Pagamentos[i] / self.Periodo)
 
         if sozero:
-            return 0
+            return 0.0
 
-        return (total / acumulador - 1) * 100
+        return (total / acumulador - 1.0) * 100.0
 
     """Calcula os juros a partir do acréscimo"""
     def acrescimoparajuros(self, acrescimo=0, precisao=12, maximointeracoes=100, maximojuros=50.0,
                            acrescimocomovalororiginal=False):
-        if maximointeracoes < 1 or self.Quantidade <= 0 or precisao < 1 or self.Periodo <= 0 or acrescimo <= 0:
+        total = self.getpesototal()
+
+        if maximointeracoes < 1 or self.Quantidade < 1 or precisao < 1 or self.Periodo <= 0.0 or acrescimo <= 0.0 or total <= 0.0:
             return 0
 
         minimojuros = 0.0
         mediojuros = 0.0
-        total = self.getpesototal()
-
-        if total == 0:
-            return 0
 
         if acrescimocomovalororiginal:      # nesse caso, os pesos totais dão o valor cobrado e o acrescimo é o original
-            acrescimo = 100 * (total / acrescimo - 1)
-            if acrescimo <= 0:
-                return 0
+            acrescimo = 100.0 * (total / acrescimo - 1.0)
+            if acrescimo <= 0.0:
+                return 0.0
 
         minimadiferenca = 0.1 ** precisao
 
         for i in range(maximointeracoes):
-            mediojuros = (minimojuros + maximojuros) / 2
+            mediojuros = (minimojuros + maximojuros) / 2.0
             if (maximojuros - minimojuros) < minimadiferenca:
                 return mediojuros
             if self.jurosparaacrescimo(mediojuros) <= acrescimo:       # if "mágico" da bisseção

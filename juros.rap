@@ -47,7 +47,6 @@ fun ACRESCIMOPARAJUROS(acrescimo, precisao, maxIteracoes, maxJuros)
     fi
     minJuros := 0.0
     medJuros := maxJuros / 2.0
-    maxJuros := maxJuros
     minDiferenca := 0.1 ** precisao
     for indice from 1 to maxIteracoes do
         medJuros := (minJuros + maxJuros) / 2.0

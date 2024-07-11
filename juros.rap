@@ -1,0 +1,74 @@
+\ Calculo dos juros, sendo que precisa de parcelas pra isso
+\ Versao 0.1: 11/07/2024: versao feita sem muito conhecimento de Rapira
+
+\ estrutura basica para simplificar as chamadas
+
+QUANTIDADE := 3
+COMPOSTO := yes
+PERIODO := 30.0
+PAGAMENTOS := <* 30.0, 60.0, 90.0 *>
+PESOS := <* 1.0, 1.0, 1.0 *>
+
+\ calcula a somatoria do array Pesos
+fun GETPESOTOTAL()
+    extern: PESOS, QUANTIDADE
+    acumulador := 0.0
+    for indice from 1 to QUANTIDADE do
+        acumulador := acumulador + PESOS[indice]
+    od
+    return acumulador
+end
+
+\ calcula o acrescimo a partir dos juros e parcelas
+fun JUROSPARAACRESCIMO(juros)
+    extern: QUANTIDADE, COMPOSTO, PERIODO, PAGAMENTOS, PESOS, GETPESOTOTAL
+    pesoTotal := GETPESOTOTAL()
+    if juros <= 0.0 or QUANTIDADE < 1 or PERIODO <= 0.0 or pesoTotal <= 0.0 then
+        return 0.0
+    fi
+    acumulador := 0.0
+    for indice from 1 to QUANTIDADE do
+        if COMPOSTO then
+            acumulador := acumulador + PESOS[indice] / (1.0 + juros / 100.0) ** (PAGAMENTOS[indice] / PERIODO)
+        else
+            acumulador := acumulador + PESOS[indice] / (1.0 + juros / 100.0 * PAGAMENTOS[indice] / PERIODO)
+        fi
+    od
+    return (pesoTotal / acumulador - 1.0) * 100.0
+end
+
+\ calcula os juros a partir do acrescimo e parcelas
+fun ACRESCIMOPARAJUROS(acrescimo, precisao, maxIteracoes, maximoJuros)
+    extern: JUROSPARAACRESCIMO, QUANTIDADE, COMPOSTO, PERIODO, PAGAMENTOS, PESOS, GETPESOTOTAL
+    pesoTotal := GETPESOTOTAL()
+    if acrescimo <= 0.0 or QUANTIDADE < 1 or PERIODO <= 0.0 or precisao < 1 or maxIteracoes < 1 or maximoJuros <= 0.0 then
+
+        return 0.0
+    fi
+    minJuros := 0.0
+    medJuros := maximoJuros / 2.0
+    maxJuros := maximoJuros
+    minDiferenca := 0.1 ** precisao
+    for indice from 1 to maxIteracoes do
+        medJuros := (minJuros + maxJuros) / 2.0
+        if (maxJuros - minJuros) < minDiferenca then
+            return medJuros
+        fi
+        if JUROSPARAACRESCIMO(medJuros) < acrescimo then
+            minJuros := medJuros
+        else
+            maxJuros := medJuros
+        fi
+    od
+    return medJuros
+end
+
+\ calcula e guarda os resultados das funcoes
+pesoTotal := GETPESOTOTAL()
+acrescimoCalculado := JUROSPARAACRESCIMO(3.0)
+jurosCalculado := ACRESCIMOPARAJUROS(acrescimoCalculado, 15, 100, 50.0)
+
+\ imprime os resultados
+output: "Peso total = ", pesoTotal
+output: "Acréscimo = ", acrescimoCalculado
+output: "Juros = ", jurosCalculado

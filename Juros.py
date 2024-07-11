@@ -70,7 +70,7 @@ class Juros:
         total = self.getpesototal()
 
         if maximointeracoes < 1 or self.Quantidade < 1 or precisao < 1 or self.Periodo <= 0.0 or acrescimo <= 0.0 or total <= 0.0:
-            return 0
+            return 0.0
 
         minimojuros = 0.0
         mediojuros = 0.0

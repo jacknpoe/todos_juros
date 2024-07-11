@@ -236,11 +236,11 @@ Juros.R
 69. Racket (20/05/2024)
 juros.rkt
 
-70. Rapira (11/07/2024)
-juros.rap
-
-71. Raku (06/06/2024)
+70. Raku (06/06/2024)
 juros.raku
+
+71. Rapira (11/07/2024)
+juros.rap
 
 72. ReScript (30/06/2024)
 Demo.res

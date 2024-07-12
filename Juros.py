@@ -49,17 +49,14 @@ class Juros:
             return 0.0
 
         acumulador = 0.0
-        sozero = True
 
         for i in range(self.Quantidade):
-            if self.Pagamentos[i] > 0.0 and self.Pesos[i] > 0.0:
-                sozero = False
             if self.Composto:
                 acumulador += self.Pesos[i] / ((1.0 + juros / 100.0) ** (self.Pagamentos[i] / self.Periodo))
             else:
                 acumulador += self.Pesos[i] / (1.0 + juros / 100.0 * self.Pagamentos[i] / self.Periodo)
 
-        if sozero:
+        if acumulador <= 0.0:
             return 0.0
 
         return (total / acumulador - 1.0) * 100.0

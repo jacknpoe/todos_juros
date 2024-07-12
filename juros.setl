@@ -1,0 +1,71 @@
+-- Cálculo dos juros, sendo que precisa de parcelas pra isso
+-- Versão 0.1: 12/07/2024: versão feita sem muito conhecimento de SETL
+
+program juros;
+    -- variáveis globais para simplificar as chamadas
+    var Quantidade := 3;
+    var Composto := TRUE;
+    var Periodo := 30.0;
+    var Pagamentos := [30.0, 60.0, 90.0];
+    var Pesos := [1.0, 1.0, 1.0];
+
+    -- calcula e guarda os resultados das funções
+    pesoTotal := getPesoTotal();
+    acrescimoCalculado := jurosParaAcrescimo(3.0);
+    jurosCalculado := acrescimoParaJuros(acrescimoCalculado, 15, 100, 50.0);
+
+    -- imprime os resultados
+    print("Peso total =", pesoTotal);
+    print("Acrescimo =", acrescimoCalculado);
+    print("Juros =", jurosCalculado);
+
+    -- calcula a somatória do array Pesos[]
+    proc getPesoTotal();
+        var acumulador := 0.0;
+        loop for indice in [1..Quantidade] do
+            acumulador +:= Pesos(indice);
+        end loop;
+        return acumulador;
+    end proc getPesoTotal;
+
+    -- calcula o acréscimo a partir dos juros e parcelas
+    proc jurosParaAcrescimo(juros);
+        var pesoTotal := getPesoTotal();
+        var acumulador := 0.0;
+        if juros <= 0.0 or Quantidade < 1 or Periodo <= 0.0 or pesoTotal <= 0.0 then
+            return 0.0;
+        end if;
+
+        loop for indice in [1..Quantidade] do
+            if Composto then
+                acumulador +:= Pesos(indice) / (1.0 + juros / 100.0) ** (Pagamentos(indice) / Periodo);
+            else
+                acumulador +:= Pesos(indice) / (1.0 + juros / 100.0 * Pagamentos(indice) / Periodo);
+            end if;
+        end loop;
+
+        return (pesoTotal / acumulador - 1.0) * 100.0;
+    end proc jurosParaAcrescimo;
+
+    -- calcula os juros a partir do acréscimo e parcelas
+    proc acrescimoParaJuros(acrescimo, precisao, maxIteracoes, maxJuros);
+        var pesoTotal := getPesoTotal();
+        var minJuros := 0.0;
+        var medJuros := maxJuros / 2.0;
+        var minDiferenca := 0.1 ** precisao;
+
+        loop for indice in [1..maxIteracoes] do
+            medJuros := (minJuros + maxJuros) / 2.0;
+            if (maxJuros - minJuros) < minDiferenca then
+                return medJuros;
+            end if;
+            if jurosParaAcrescimo(medJuros) < acrescimo then
+                minJuros := medJuros;
+            else
+                maxJuros := medJuros;
+            end if;
+        end loop;
+
+        return medJuros;
+    end proc acrescimoParaJuros;
+end program juros;

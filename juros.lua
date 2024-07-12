@@ -5,6 +5,7 @@
 --        0.4: 08/06/2024: for para preencher os arrays, em vez de valores fixos
 --        0.5: 18/06/2024: revisados os comentários
 --        0.6: 12/07/2024: corrigido o 0 para 0.0 na linha 51
+--        0.7: 12/07/2024: retirado soZero, reposicionado pesoTotal, incluídas variáveis de retorno e melhorada saída (espaços)
 
 -- estrutura básica de propriedades para simplificar as chamadas
 Juros = {
@@ -26,20 +27,14 @@ end
 
 -- calcula o acréscimo a partir dos juros e parcelas
 function jurosParaAcrescimo(juros)
-	if (juros <= 0.0 or Juros.Quantidade <= 0 or Juros.Periodo <= 0.0) then
-		return 0.0
-	end
 	pesoTotal = getPesoTotal()
-	if (pesoTotal <= 0.0) then
+	if (juros <= 0.0 or Juros.Quantidade <= 0 or Juros.Periodo <= 0.0 or pesoTotal <= 0.0) then
 		return 0.0
 	end
+
 	acumulador = 0.0
-	-- soZero = true
 	
 	for indice = 1, Juros.Quantidade do
-		-- if (Juros.Pagamentos[indice] > 0 and Juros.Pesos[indice] > 0) then
-		--  	soZero = false
-		-- end
 		if (Juros.Composto) then
 			acumulador = acumulador + Juros.Pesos[indice] / (1.0 + juros / 100.0) ^ (Juros.Pagamentos[indice] / Juros.Periodo)
 		else
@@ -47,7 +42,6 @@ function jurosParaAcrescimo(juros)
 		end
 	end
 	
-	-- if (soZero) then
 	if acumulador <= 0.0 then
 		return 0.0
 	end
@@ -56,13 +50,11 @@ end
 
 -- calcula os juros a partir do acréscimo e parcelas
 function acrescimoParaJuros(acrescimo, precisao, maxIteracoes, maxJuros)
-	if (maxIteracoes < 1 or Juros.Quantidade <= 0 or precisao < 1 or Juros.Periodo <= 0.0 or acrescimo <= 0.0 or maxJuros <= 0.0) then
-		return 0.0
-	end
 	pesoTotal = getPesoTotal()
-	if (pesoTotal <= 0.0) then
+	if (maxIteracoes < 1 or Juros.Quantidade <= 0 or precisao < 1 or Juros.Periodo <= 0.0 or acrescimo <= 0.0 or maxJuros <= 0.0 or pesoTotal <= 0.0) then
 		return 0.0
 	end
+
 	minJuros = 0.0
 	medJuros = maxJuros / 2.0
 	minDiferenca = 0.1 ^ precisao
@@ -90,7 +82,12 @@ for indice = 1, Juros.Quantidade do
 	Juros.Pesos[indice] = 1.0
 end
 
+-- calcula e guarda o resultado das funções
+pesoTotal = getPesoTotal()
+acrescimoCalculado = jurosParaAcrescimo(3.0)
+jurosCalculado = acrescimoParaJuros(acrescimoCalculado, 15, 100, 50.0)
+
 -- testa as funções
-print("Peso total =", getPesoTotal())
-print("Acréscimo =", jurosParaAcrescimo(3.0))
-print("Juros =", acrescimoParaJuros(jurosParaAcrescimo(3.0), 15, 100, 50.0))
+print("Peso total = " .. tostring(pesoTotal))
+print("Acréscimo = " .. tostring(acrescimoCalculado))
+print("Juros = " .. tostring(jurosCalculado))

@@ -4,6 +4,7 @@
 --        0.3: 15/05/2024: acrescentadas legendas para os valores
 --        0.4: 08/06/2024: for para preencher os arrays, em vez de valores fixos
 --        0.5: 18/06/2024: revisados os comentários
+--        0.6: 12/07/2024: corrigido o 0 para 0.0 na linha 51
 
 -- estrutura básica de propriedades para simplificar as chamadas
 Juros = {
@@ -48,7 +49,7 @@ function jurosParaAcrescimo(juros)
 	
 	-- if (soZero) then
 	if acumulador <= 0.0 then
-		return 0
+		return 0.0
 	end
 	return (pesoTotal / acumulador - 1.0) * 100.0
 end

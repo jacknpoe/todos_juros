@@ -1,5 +1,6 @@
 -- Cálculo dos juros, sendo que precisa de parcelas pra isso
 -- Versão 0.1: 12/07/2024: versão feita sem muito conhecimento de MoonScript
+--        0.2: 13/07/2024: retirados os returns desnecessários
 
 -- estrutura básica global para simplificar as chamadas (não funcionava estrutura)
 export Quantidade = 0
@@ -13,7 +14,7 @@ getPesoTotal = ->
 	acumulador = 0.0
 	for indice = 1, Quantidade
 		acumulador += Pesos[indice]
-	return acumulador
+	acumulador
 
 -- calcula o acréscimo a partir dos juros e parcelas
 jurosParaAcrescimo = (juros) ->
@@ -31,7 +32,7 @@ jurosParaAcrescimo = (juros) ->
 	
 	if acumulador <= 0.0
 	    return 0.0
-	return (pesoTotal / acumulador - 1.0) * 100.0
+	(pesoTotal / acumulador - 1.0) * 100.0
 
 -- calcula os juros a partir do acréscimo e parcelas
 acrescimoParaJuros = (acrescimo, precisao=15, maxIteracoes=100, maxJuros=50.0) ->
@@ -50,7 +51,7 @@ acrescimoParaJuros = (acrescimo, precisao=15, maxIteracoes=100, maxJuros=50.0) -
 			minJuros = medJuros
 		else
 			maxJuros = medJuros
-	return medJuros
+	medJuros
 
 -- define os valores
 Quantidade = 3

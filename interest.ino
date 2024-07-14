@@ -114,12 +114,12 @@ double Interest::IncreaseToInterestRate( double increase, char precision, short 
 Interest::~Interest() { free( Payments); free( Weights); }
 
 void setup() {
-	Interest interest;
+  Interest interest;
 
-	double weight, increase, interestrate;
+  double weight, increase, interestrate;
 
   // set the basic values
-	interest.setQuant( 3);
+  interest.setQuant( 3);
   interest.setCompounded( true);
   interest.setPeriod( 30.0);
   for( short index = 0; index < 3; index++) {

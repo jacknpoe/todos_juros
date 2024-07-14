@@ -6,7 +6,7 @@ Este repositório é sobre codificar, em várias linguagens, a mesma solução e
 
 Dois conceitos que pesaram muito foram a exponenciação de números ponto flutuante (implementada em todas as linguagens) e os arrays dinâmicos (que não foram possíveis em Modula-2, Pascalzim, Portugol e VisuALG, onde os arrays têm mil elementos, ou três no caso de Modula-2).
 
-Duas linguagens são consideradas diferentes quando qualquer parte do código tem que ser alterada para ser compilado ou interpretado em ambas.
+Duas linguagens são consideradas diferentes quando qualquer parte do código tem que ser alterada para ser compilado ou interpretado em ambas. Essa questão ficaria muito complicada, se fosse escolhido um critério mais rígido sobre o quanto uma linguagem precisa ser diferente de outra, o que seria impraticável.
 
 As soluções estão divididas entre as recursivas (Alice, Clean, Clojure, Common Lisp, Elixir, Elm, Erlang, Haskell, Idris, Lean, Miranda, Ocaml, Prolog, Racket, ReScript, Scheme, SML e Yeti) e iterativas (todas as outras linguagens, incluindo F#).
 
@@ -17,6 +17,8 @@ Algumas implementações não serão mantidas, porque foram feitas em versões d
 Alguns arquivos estão ilegíveis, pois são binários e devem ser abertos ou importados nos ambientes das linguagens, como GW-BASIC, Smalltalk, Snap! e twinBASIC.
 
 Linguagens que não terão a solução, por não terem suporte a recursos necessários: Solidify (não tem números de ponto flutuante), Scratch, CHIP-8, Frege e Gosu (não tem exponenciação), Self, Rexx e Bash (não têm exponenciação de números de ponto flutuante). Outras linguagen têm outros problemas, como estarem desatualizadas e não rodam ou compilam nos sistemas atuais.
+
+Porque eu não tenho uma placa Arduino, essa versão não pôde ser testada de forma adequada.
 
 A saída mais comum para os testes é:
 
@@ -32,7 +34,7 @@ This repository is about coding, in multiple languages, the same solution in fin
 
 Two concepts that weighed heavily were the exponentiation of floating point numbers (implemented in all languages) and dynamic arrays (which were not possible in Modula-2, Pascalzim, Portugol and VisuALG, where arrays have a thousand elements, or three in tne Modula-2 case).
 
-Two languages ​​are considered different when any part of the code has to be changed to be compiled or interpreted in both.
+Two languages ​​are considered different when any part of the code has to be changed to be compiled or interpreted in both. This issue would become very complicated if a stricter criterion were chosen regarding how much one language needs to be different from another, which would be impractical.
 
 The solutions are divided between recursive (Alice, Clean, Clojure, Common Lisp, Elixir, Elm, Erlang, Haskell, Idris, Lean, Miranda, Ocaml, Prolog, Racket, ReScript, Scheme, SML and Yeti) and iterative (all other languages, including F#).
 
@@ -43,6 +45,8 @@ Some implementations will not be maintained because they were done in trial vers
 Some files are unreadable, as they are binary and must be opened or imported into the language environments, such as GW-BASIC, Smalltalk, Snap! and twinBASIC.
 
 Languages ​​that will not have the solution, as they do not support the necessary resources: Solidify (does not have floating point numbers), Scratch, CHIP-8, Frege and Gosu (does not have exponentiation), Self, Rexx and Bash (does not have exponentiation of floating point numbers). Other languages ​​have other problems, such as being outdated and not running or compiling on current systems.
+
+Because I don't have an Arduino board, this version couldn't be tested properly.
 
 The most common output for tests is:
 

@@ -1,3 +1,5 @@
+// Version: 0.1: 14/07/2024: starter, without much knowledge about Arduino
+
 #include <math.h>
 #include <stdlib.h>
 
@@ -29,14 +31,17 @@ public:
   double IncreaseToInterestRate( double increase, char precision = 8, short maxiterations = 100, double maxinterestrate = 50.0, bool increaseasoriginalvalue = false);
 };
 
+// initializer
 void Interest::init( short quant, bool compounded, double period) {
   Payments = NULL;  Weights = NULL;  Quant = 0;
   setQuant( quant);  Compounded = compounded;  Period = period;
 }
 
+// constructors
 Interest::Interest( short quant, bool compounded, double period) { init( quant, compounded, period); }
 Interest::Interest( bool compounded, double period) { init( 0, compounded, period); }
 
+// set and get quant / setQuant is special because of the allocs
 bool Interest::setQuant( short quant) {
   if( quant < 0 ) return false; if( quant == Quant) return true;
   Payments = (double *) realloc( Payments, sizeof(double) * quant);
@@ -48,15 +53,18 @@ bool Interest::setQuant( short quant) {
 }
 short Interest::getQuant( void) { return Quant; }
 
+// set and get compounded
 void Interest::setCompounded( bool compounded) { Compounded = compounded; }
 bool Interest::getCompounded( void) { return Compounded; }
 
+// set and get period
 bool Interest::setPeriod( double period) {
   if( period <= 0.0 ) return false;
   Period = period; return true;
 }
 double Interest::getPeriod( void) { return Period; }
 
+// set and get payment
 bool Interest::setPayment( short index, double value) {
   if( index < 0 || index >= Quant || value < 0.0) return false;
   Payments[ index] = value; return true;
@@ -65,6 +73,7 @@ double Interest::getPayment( short index) {
   if( index < 0 || index >= Quant) return 0; else return Payments[ index];
 }
 
+// set and get weight
 bool Interest::setWeight( short index, double value) {
   if( index < 0 || index >= Quant || value < 0.0) return false;
   Weights[ index] = value; return true;
@@ -73,12 +82,14 @@ double Interest::getWeight( short index) {
   if( index < 0 || index >= Quant) return 0; else return Weights[ index];
 }
 
+// calc the sum of Weights[]
 double Interest::getTotalWeight( void) {
   double accumulator = 0;
   for( short index = 0; index < Quant; index++) accumulator += Weights[ index];
   return accumulator;
 }
 
+// calc interest rate from increase
 double Interest::InterestRateToIncrease( double interestrate) {
   if( interestrate <= 0 || Quant == 0 ) return 0.0;   double total = getTotalWeight();
   if( total <= 0) return 0.0;   if( Period <= 0.0) return 0;
@@ -92,6 +103,7 @@ double Interest::InterestRateToIncrease( double interestrate) {
   return ( total / accumulator - 1.0 ) * 100.0;
 }
 
+// calc increase from interest rate
 double Interest::IncreaseToInterestRate( double increase, char precision, short maxiterations, double maxinterestrate, bool increaseasoriginalvalue)
 {
   double mininterestrate = 0.0, medinterestrate, min_diff;
@@ -111,11 +123,12 @@ double Interest::IncreaseToInterestRate( double increase, char precision, short 
   return medinterestrate;
 }
 
+// destructor may free
 Interest::~Interest() { free( Payments); free( Weights); }
 
 void setup() {
+  // object from class Interest and variables to keep the calcs
   Interest interest;
-
   double weight, increase, interestrate;
 
   // set the basic values

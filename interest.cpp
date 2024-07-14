@@ -1,5 +1,3 @@
-// Versão 2.1:    04/2024: trocada avaliação soZero por acumulador == 0
-
 #include <math.h>
 #include <iostream>
 #include <cstdlib>
@@ -11,7 +9,7 @@ namespace jacknpoe {
 	class Interest {
 	protected:
 		short Quant;		// number of payments (all payments with 0 will be considered a valid payment in cash)
-		bool Compounded;		// compounded (InterestRate�, InterestRate�)
+		bool Compounded;		// compounded
 		long double Period;		// period fot the InterestRate (like 30 for a 30 days interest rate)
 		long double *Payments;		// payment days in periods like in days { 0, 30, 60, 90}
 		long double *Weights;		// payment weights (in any unit, value, apportionment...)

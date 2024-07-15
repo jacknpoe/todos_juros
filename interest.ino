@@ -1,8 +1,8 @@
 // Version: 0.1: 14/07/2024: starter, without much knowledge about Arduino
 //          0.2: 15/07/2024: with delay and code in loop
 
-#include <math.h>
-#include <stdlib.h>
+// #include <math.h>  // unnecessary
+// #include <stdlib.h>  // unnecessary
 
 //--------------------------- Interest class
 class Interest {

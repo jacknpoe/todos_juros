@@ -1,4 +1,5 @@
 // Version: 0.1: 14/07/2024: starter, without much knowledge about Arduino
+//          0.2: 15/07/2024: with delay and code in loop
 
 #include <math.h>
 #include <stdlib.h>
@@ -127,6 +128,10 @@ double Interest::IncreaseToInterestRate( double increase, char precision, short 
 Interest::~Interest() { free( Payments); free( Weights); }
 
 void setup() {
+  // nothing to do here
+}
+
+void loop() {
   // object from class Interest and variables to keep the calcs
   Interest interest;
   double weight, increase, interestrate;
@@ -148,12 +153,11 @@ void setup() {
   // print the results
   Serial.print( "Total weight = ");
   Serial.println( weight, 15);
+  delay(3000);
   Serial.print( "Increase = ");
   Serial.println( increase, 15);
+  delay(3000);
   Serial.print( "Interest rate = ");
   Serial.println( interestrate, 15);
-}
-
-void loop() {
-  // put your main code here, to run repeatedly:
+  delay(3000);
 }

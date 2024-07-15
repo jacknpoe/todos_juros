@@ -18,8 +18,6 @@ Alguns arquivos estão ilegíveis, pois são binários e devem ser abertos ou im
 
 Linguagens que não terão a solução, por não terem suporte a recursos necessários: Solidify (não tem números de ponto flutuante), Scratch, CHIP-8, Frege e Gosu (não tem exponenciação), Self, Rexx e Bash (não têm exponenciação de números de ponto flutuante). Outras linguagen têm outros problemas, como estarem desatualizadas e não rodam ou compilam nos sistemas atuais.
 
-Porque eu não tenho uma placa Arduino, essa versão não pôde ser testada de forma adequada.
-
 A saída mais comum para os testes é:
 
 Peso total = 3.0 / Acréscimo = 6.059108997379403 / Juros = 2.999999999999992
@@ -45,8 +43,6 @@ Some implementations will not be maintained because they were done in trial vers
 Some files are unreadable, as they are binary and must be opened or imported into the language environments, such as GW-BASIC, Smalltalk, Snap! and twinBASIC.
 
 Languages ​​that will not have the solution, as they do not support the necessary resources: Solidify (does not have floating point numbers), Scratch, CHIP-8, Frege and Gosu (does not have exponentiation), Self, Rexx and Bash (does not have exponentiation of floating point numbers). Other languages ​​have other problems, such as being outdated and not running or compiling on current systems.
-
-Because I don't have an Arduino board, this version couldn't be tested properly.
 
 The most common output for tests is:
 

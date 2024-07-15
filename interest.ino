@@ -1,8 +1,11 @@
 // Version: 0.1: 14/07/2024: starter, without much knowledge about Arduino
 //          0.2: 15/07/2024: with delay and code in loop
+//          0.3: 15/07/2024: changed the output to work with WOKWI
+// Location: D:\WOKWI\interest\interest.ino
 
-// #include <math.h>  // unnecessary
-// #include <stdlib.h>  // unnecessary
+#include <LiquidCrystal_I2C.h>
+
+LiquidCrystal_I2C LCD = LiquidCrystal_I2C(0x27, 16, 2);
 
 //--------------------------- Interest class
 class Interest {
@@ -128,7 +131,9 @@ double Interest::IncreaseToInterestRate( double increase, char precision, short 
 Interest::~Interest() { free( Payments); free( Weights); }
 
 void setup() {
-  // nothing to do here
+  // init and start the LCD
+  LCD.init();
+  LCD.backlight();
 }
 
 void loop() {
@@ -151,13 +156,22 @@ void loop() {
   interestrate = interest.IncreaseToInterestRate( increase, 15);
 
   // print the results
-  Serial.print( "Total weight = ");
-  Serial.println( weight, 15);
+  LCD.clear();
+  LCD.setCursor(0, 0);
+  LCD.print( "Total weight:");
+  LCD.setCursor(0, 1);
+  LCD.println( weight, 15);
   delay(3000);
-  Serial.print( "Increase = ");
-  Serial.println( increase, 15);
+  LCD.clear();
+  LCD.setCursor(0, 0);
+  LCD.print( "Increase:");
+  LCD.setCursor(0, 1);
+  LCD.println( increase, 15);
   delay(3000);
-  Serial.print( "Interest rate = ");
-  Serial.println( interestrate, 15);
+  LCD.clear();
+  LCD.setCursor(0, 0);
+  LCD.print( "Interest Rate:");
+  LCD.setCursor(0, 1);
+  LCD.println( interestrate, 15);
   delay(3000);
 }

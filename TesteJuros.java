@@ -15,9 +15,9 @@ public class TesteJuros {
     	Juros juros = new Juros(3, true, 30.0);
 
     	// inicializa o array Pesos[]
-        juros.Pesos[0] = 1;
-        juros.Pesos[1] = 1;
-        juros.Pesos[2] = 1;
+        juros.Pesos[0] = 1.0;
+        juros.Pesos[1] = 1.0;
+        juros.Pesos[2] = 1.0;
         
         // inicializa o array Pagamentos[]
         juros.Pagamentos[0] = 30.0;
@@ -27,7 +27,7 @@ public class TesteJuros {
         // guarda o retorno dos cálculos
         double pesoTotal = juros.getPesoTotal();
         double acrescimoCalculado = juros.jurosParaAcrescimo(3);        
-        double jurosCalculado = juros.acrescimoParaJuros(acrescimoCalculado, 15, 100, 50);
+        double jurosCalculado = juros.acrescimoParaJuros(acrescimoCalculado, 15, 100, 50.0);
         
         // imprime os valores no console
         System.out.println("Peso total = " + Double.toString(pesoTotal));        

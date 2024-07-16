@@ -119,24 +119,24 @@ begin
   end;
 end;
 
-function TJuros.acrescimoParaJuros(acrescimo: double; precisao: integer = 15; maxIteracoes: integer = 100; maxJuros: double = 50): double;
+function TJuros.acrescimoParaJuros(acrescimo: double; precisao: integer = 15; maxIteracoes: integer = 100; maxJuros: double = 50.0): double;
 var
   minJuros, medJuros, minDiferenca, pesoTotal: double;
   indice: integer;
 begin
   pesoTotal := getPesoTotal;
-  if (maxIteracoes < 1) or (Quantidade <= 0) or (precisao <= 0) or (Periodo <= 0.0) or (acrescimo <= 0.0) or (maxJuros <= 0) or (pesoTotal <= 0) then
+  if (maxIteracoes < 1) or (Quantidade <= 0) or (precisao <= 0) or (Periodo <= 0.0) or (acrescimo <= 0.0) or (maxJuros <= 0.0) or (pesoTotal <= 0.0) then
   begin
     result := 0.0;
     exit;
   end;
-  minJuros := 0;
-  medJuros := maxJuros / 2;
+  minJuros := 0.0;
+  medJuros := maxJuros / 2.0;
   minDiferenca := Power(0.1, precisao);
 
   for indice := 0 to (maxIteracoes - 1) do
   begin
-    medJuros := (minJuros + maxJuros) / 2;
+    medJuros := (minJuros + maxJuros) / 2.0;
     if (maxJuros - minJuros) < minDiferenca then
     begin
       result := medJuros;

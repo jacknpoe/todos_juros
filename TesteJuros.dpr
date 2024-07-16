@@ -11,15 +11,15 @@ var
   acrescimoCalculado, jurosCalculado: double;
 begin
   try
-    juros := TJuros.Create(3, true, 30);
+    juros := TJuros.Create(3, true, 30.0);
 
     juros.Pesos[0] := 1.0;
     juros.Pesos[1] := 1.0;
     juros.Pesos[2] := 1.0;
 
-    juros.Pagamentos[0] := 30;
-    juros.Pagamentos[1] := 60;
-    juros.Pagamentos[2] := 90;
+    juros.Pagamentos[0] := 30.0;
+    juros.Pagamentos[1] := 60.0;
+    juros.Pagamentos[2] := 90.0;
 
     acrescimoCalculado := juros.jurosParaAcrescimo(3.0);
     jurosCalculado := juros.acrescimoParaJuros(acrescimoCalculado);

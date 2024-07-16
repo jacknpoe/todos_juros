@@ -1,4 +1,4 @@
-// Versão 0.2:    04/2024: trocada avaliação soZero por acumulador == 0
+// Versão 0.3: 16/07/2024: mudado de integer para double o array Pagamentos e Periodo
 
 unit Juros;
 
@@ -12,25 +12,25 @@ TJuros = class
   private
     fQuantidade: integer;
     fComposto: boolean;
-    fPeriodo: integer;
-    fPagamentos: array of integer;
+    fPeriodo: double;
+    fPagamentos: array of double;
     fPesos: array of double;
   public
     function GetQuantidade: integer;
     procedure SetQuantidade(valor: integer);
-    function GetPagamentos(indice: integer): integer;
-    procedure SetPagamentos(indice: integer; valor: integer);
+    function GetPagamentos(indice: integer): double;
+    procedure SetPagamentos(indice: integer; valor: double);
     function GetPesos(indice: integer): double;
     procedure SetPesos(indice: integer; valor: double);
-    constructor Create(quantidade: integer = 0; composto: boolean = false; periodo: integer = 30);
+    constructor Create(quantidade: integer = 0; composto: boolean = false; periodo: double = 30.0);
     function getPesoTotal: double;
     function jurosParaAcrescimo(juros: double): double;
-    function acrescimoParaJuros(acrescimo: double; precisao: integer = 15; maxIteracoes: integer = 100; maxJuros: double = 50): double;
+    function acrescimoParaJuros(acrescimo: double; precisao: integer = 15; maxIteracoes: integer = 100; maxJuros: double = 50.0): double;
 
     property Quantidade: integer read GetQuantidade write SetQuantidade;
     property Composto: boolean read fComposto write fComposto;
-    property Periodo: integer read fPeriodo write fPeriodo;
-    property Pagamentos[indice: integer]: integer read GetPagamentos write SetPagamentos;
+    property Periodo: double read fPeriodo write fPeriodo;
+    property Pagamentos[indice: integer]: double read GetPagamentos write SetPagamentos;
     property Pesos[indice: integer]: double read GetPesos write SetPesos;
 end;
 
@@ -48,12 +48,12 @@ begin
   SetLength(fPesos, valor);
 end;
 
-function TJuros.GetPagamentos(indice: integer): integer;
+function TJuros.GetPagamentos(indice: integer): double;
 begin
   result := fPagamentos[indice];
 end;
 
-procedure TJuros.SetPagamentos(indice: integer; valor: integer);
+procedure TJuros.SetPagamentos(indice: integer; valor: double);
 begin
   fPagamentos[indice] := valor;
 end;
@@ -68,7 +68,7 @@ begin
   fPesos[indice] := valor;
 end;
 
-constructor TJuros.Create(quantidade: integer = 0; composto: boolean = false; periodo: integer = 30);
+constructor TJuros.Create(quantidade: integer = 0; composto: boolean = false; periodo: double = 30.0);
 begin
   SetQuantidade(quantidade);
   fComposto := composto;
@@ -91,24 +91,18 @@ end;
 function TJuros.jurosParaAcrescimo(juros: double): double;
 var
   pesoTotal, acumulador: double;
-  // soZero: boolean;
   indice: integer;
 begin
   pesoTotal := getPesoTotal;
-  if (juros <= 0.0) or (Quantidade <= 0) or (Periodo <= 0) or (pesoTotal <= 0.0) then
+  if (juros <= 0.0) or (Quantidade <= 0) or (Periodo <= 0.0) or (pesoTotal <= 0.0) then
   begin
     result := 0.0;
     exit;
   end;
   acumulador := 0.0;
-  // soZero := true;
 
   for indice := 0 to (Quantidade - 1) do
   begin
-    // if (Pagamentos[indice] > 0) and (Pesos[indice] > 0) then
-    // begin
-    //  soZero := false;
-    // end;
     if Composto then
     begin
       acumulador := acumulador + Pesos[indice] / Power(1 + juros / 100, Pagamentos[indice] / Periodo);
@@ -131,7 +125,7 @@ var
   indice: integer;
 begin
   pesoTotal := getPesoTotal;
-  if (maxIteracoes < 1) or (Quantidade <= 0) or (precisao <= 0) or (Periodo <= 0) or (acrescimo <= 0.0) or (maxJuros <= 0) or (pesoTotal <= 0) then
+  if (maxIteracoes < 1) or (Quantidade <= 0) or (precisao <= 0) or (Periodo <= 0.0) or (acrescimo <= 0.0) or (maxJuros <= 0) or (pesoTotal <= 0) then
   begin
     result := 0.0;
     exit;

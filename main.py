@@ -3,6 +3,7 @@
 #          0.2: 25/08/2023: Cálculos e testes com prints
 #          0.3: 10/07/2024: melhorados alguns ifs (depois de total) e números ponto flutuantes com .0
 #          0.4: 12/07/2024: corrigido o soZero, que não deveria existir
+#          0.5: 16/07/2024: corrigidos alguns valores padrão que não estavam em ponto flutuante
 import Juros
 
 juros = Juros.Juros(3, True, 30.0)

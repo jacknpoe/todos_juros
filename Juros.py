@@ -7,7 +7,7 @@ class Juros:
     Pagamentos = []
     Pesos = []
 
-    def __init__(self, quantidade=0, composto=False, periodo=30):
+    def __init__(self, quantidade=0, composto=False, periodo=30.0):
         self.Quantidade = quantidade
         self.Composto = composto
         self.Periodo = periodo
@@ -42,7 +42,7 @@ class Juros:
         return acumulador
 
     """Calcula o acréscimo a partir dos juros"""
-    def jurosparaacrescimo(self, juros=0):
+    def jurosparaacrescimo(self, juros=0.0):
         total = self.getpesototal()
 
         if juros <= 0.0 or self.Quantidade < 1 or self.Periodo <= 0.0 or total <= 0.0:
@@ -62,7 +62,7 @@ class Juros:
         return (total / acumulador - 1.0) * 100.0
 
     """Calcula os juros a partir do acréscimo"""
-    def acrescimoparajuros(self, acrescimo=0, precisao=12, maximointeracoes=100, maximojuros=50.0,
+    def acrescimoparajuros(self, acrescimo=0.0, precisao=12, maximointeracoes=100, maximojuros=50.0,
                            acrescimocomovalororiginal=False):
         total = self.getpesototal()
 

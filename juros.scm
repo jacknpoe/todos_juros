@@ -1,6 +1,7 @@
 ;; Cálculo do juros, sendo que precisa de arrays pra isso
 ;; Versão 0.1: 28/04/2024: variáveis, getPesosTotal, jurosParaAcrescimo
 ;;        0.2: 29/04/2024: acrescimoParaJuros
+;;        0.3: 17/07/2024: corrige um erro em que multiplica por 10 em vez de 100 na linha 31 e não mostra pagamentos
 
 ;; Variáveis
 (define Quantidade 3)
@@ -27,7 +28,7 @@
   (if (or (or (<= juros 0.0) (<= Quantidade 0)) (<= Periodo 0.0)) (return-from jurosParaAcrescimo 0.0))
   (if (<= (getPesoTotal) 0.0) (return-from jurosParaAcrescimo 0.0))
   (if (= Composto 1)
-      (* (- (/ (getPesoTotal) (_jurosCompostos (- Quantidade 1) juros)) 1.0d0) 10.0d00)
+      (* (- (/ (getPesoTotal) (_jurosCompostos (- Quantidade 1) juros)) 1.0d0) 100.0d00)
       (* (- (/ (getPesoTotal) (_jurosSimples (- Quantidade 1) juros)) 1.0d0) 100.0d0)
   )
 )
@@ -67,9 +68,6 @@
 )
 
 ;; testes
-(display "Pagamentos = ")
-(display Pagamentos)
-(newline)
 (display "Peso total = ")
 (display (getPesoTotal))
 (newline)

@@ -329,7 +329,7 @@ juros.v
 juros.vala
 
 99. Virtual Breadboard (15/07/2024)
-juros.vbb
+juros_vbb.java
 
 100. Visual Basic .NET (02/03/2024)
 TesteJuros.vb

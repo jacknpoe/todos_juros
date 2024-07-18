@@ -28,7 +28,7 @@
   (if (or (or (<= juros 0.0) (<= Quantidade 0)) (<= Periodo 0.0)) (return-from jurosParaAcrescimo 0.0))
   (if (<= (getPesoTotal) 0.0) (return-from jurosParaAcrescimo 0.0))
   (if (= Composto 1)
-      (* (- (/ (getPesoTotal) (_jurosCompostos (- Quantidade 1) juros)) 1.0d0) 100.0d00)
+      (* (- (/ (getPesoTotal) (_jurosCompostos (- Quantidade 1) juros)) 1.0d0) 100.0d0)
       (* (- (/ (getPesoTotal) (_jurosSimples (- Quantidade 1) juros)) 1.0d0) 100.0d0)
   )
 )

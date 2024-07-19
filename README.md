@@ -8,7 +8,7 @@ Dois conceitos que pesaram muito foram a exponenciação de números ponto flutu
 
 Duas linguagens são consideradas diferentes quando qualquer parte do código tem que ser alterada para ser compilado ou interpretado em ambas. Essa questão ficaria muito complicada, se fosse escolhido um critério mais rígido sobre o quanto uma linguagem precisa ser diferente de outra, o que seria impraticável.
 
-As soluções estão divididas entre as recursivas (Alice, Clean, Clojure, Common Lisp, Elixir, Elm, Erlang, Haskell, Idris, Lean, Miranda, Ocaml, Prolog, Racket, ReScript, Scheme, SML e Yeti) e iterativas (todas as outras linguagens, incluindo F#).
+As soluções estão divididas entre as recursivas (Alice, Clean, Clojure, Common Lisp, DataWeave, Elixir, Elm, Erlang, Haskell, Idris, Lean, Miranda, Ocaml, Prolog, Racket, ReScript, Scheme, SML e Yeti) e iterativas (todas as outras linguagens, incluindo F#).
 
 Existem, em algumas soluções, salvaguardas para valores incorretos para uma aplicação real. São valores zerados e negativos. Em algumas linguagens não é verificado, pois entendeu-se que o público-alvo dessas linguagens não cometeria esse tipo de equívoco.
 
@@ -34,7 +34,7 @@ Two concepts that weighed heavily were the exponentiation of floating point numb
 
 Two languages ​​are considered different when any part of the code has to be changed to be compiled or interpreted in both. This issue would become very complicated if a stricter criterion were chosen regarding how much one language needs to be different from another, which would be impractical.
 
-The solutions are divided between recursive (Alice, Clean, Clojure, Common Lisp, Elixir, Elm, Erlang, Haskell, Idris, Lean, Miranda, Ocaml, Prolog, Racket, ReScript, Scheme, SML and Yeti) and iterative (all other languages, including F#).
+The solutions are divided between recursive (Alice, Clean, Clojure, Common Lisp, DataWeave, Elixir, Elm, Erlang, Haskell, Idris, Lean, Miranda, Ocaml, Prolog, Racket, ReScript, Scheme, SML and Yeti) and iterative (all other languages, including F#).
 
 There are, in some solutions, safeguards for incorrect values ​​for a real application. These are zero and negative values. In some languages ​​it is not verified, as it was understood that the target audience of these languages ​​would not make this type of mistake.
 

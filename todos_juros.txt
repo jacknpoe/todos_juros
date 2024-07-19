@@ -1,5 +1,5 @@
-106 resoluções de equação transcendente
-Desde que esse artigo foi publicado, mais 96 resoluções foram acrescentadas ao repositório https://github.com/jacknpoe/todos_juros, totalizando, agora, 106 resoluções.
+107 resoluções de equação transcendente
+Desde que esse artigo foi publicado, mais 97 resoluções foram acrescentadas ao repositório https://github.com/jacknpoe/todos_juros, totalizando, agora, 107 resoluções.
 No artigo Resolução de Equação Transcendente, foi explicado como uma equação que calcula os juros a partir do acréscimo e das parcelas pode ser feita usando cálculo numérico, especificamente o método da bisseção.
 Esta é a relação das resoluções em linguagens diferentes. Algumas contêm o código de teste no mesmo arquivo. Em outras, o arquivo de testes é separado. Caso seja publicada uma nova resolução, ela será adicionada à lista.
 
@@ -72,283 +72,286 @@ juros.d
 21. Dart (14/04/2024)
 juros.dart
 
-22. Delphi (28/02/2024)
+22. DataWeave (19/07/2024)
+juros.dwl
+
+23. Delphi (28/02/2024)
 Juros.pas
 TesteJuros.dpr
 
-23. Eiffel (06/05/2024)
+24. Eiffel (06/05/2024)
 application.e
 juros.e
 
-24. Elixir (29/04/2024)
+25. Elixir (29/04/2024)
 juros.exs
 
-25. Elm (08/06/2024)
+26. Elm (08/06/2024)
 Juros.elm
 
-26. Erlang (29/04/2024)
+27. Erlang (29/04/2024)
 juros.erl
 
-27. Euphoria (05/07/2024)
+28. Euphoria (05/07/2024)
 juros.ex
 
-28. F# (23/05/2024)
+29. F# (23/05/2024)
 juros.fsx
 
-29. Fantom (04/06/2024)
+30. Fantom (04/06/2024)
 juros.fan
 
-30. Flutter (14/04/2024)
+31. Flutter (14/04/2024)
 main.dart
 
-31. Fortran (03/04/2024)
+32. Fortran (03/04/2024)
 juros.f90
 
-32. Genie (13/06/2024)
+33. Genie (13/06/2024)
 juros.gs
 
-33. Go (27/02/2024)
+34. Go (27/02/2024)
 juros.go
 
-34. Godot (08/04/2024)
+35. Godot (08/04/2024)
 Juros.gd
 
-35. Golo (03/06/2024)
+36. Golo (03/06/2024)
 juros.golo
 
-36. Groovy (06/06/2024)
+37. Groovy (06/06/2024)
 Juros.groovy
 TesteJuros.groovy
 
-37. GW-BASIC (26/05/2024)
+38. GW-BASIC (26/05/2024)
 JUROS.BAS
 
-38. Harbour (15/06/2024)
+39. Harbour (15/06/2024)
 juros_harbour.prg
 
-39. Haskell (04/05/2024)
+40. Haskell (04/05/2024)
 juros.hs
 
-40. Haxe (29/05/2024)
+41. Haxe (29/05/2024)
 Juros.hx
 
-41. Icon (07/07/2024)
+42. Icon (07/07/2024)
 juros.icn
 
-42. Idris (27/06/2024)
+43. Idris (27/06/2024)
 juros.idr
 
-43. Java (27/02/2024)
+44. Java (27/02/2024)
 Juros.java
 TesteJuros.java
 
-44. JavaScript (22/11/2023)
+45. JavaScript (22/11/2023)
 CalculaJuros.js
 js_testejuros.html
 js_testejuros.css
 js_testejuros.png
 
-45. Julia (20/03/2024)
+46. Julia (20/03/2024)
 juros.jl
 testejuros.jl
 
-46. Jython (04/06/2024)
+47. Jython (04/06/2024)
 Juros_jython.py
 main_jython.py
 
-47. Kotlin (22/02/2024)
+48. Kotlin (22/02/2024)
 Juros.kt
 Main.kt
 
-48. Lazarus (12/04/2024)
+49. Lazarus (12/04/2024)
 Juros.pas
 testajuros.lpr
 
-49. Lean (20/06/2024)
+50. Lean (20/06/2024)
 juros.lean
 
-50. Logo (11/06/2024)
+51. Logo (11/06/2024)
 juros.lgo
 testajuros.lgo
 
-51. Lua (26/03/2024)
+52. Lua (26/03/2024)
 juros.lua
 
-52. MATLAB (31/03/2024)
+53. MATLAB (31/03/2024)
 Juros.m
 testajuros.m
 
-53. Miranda (21/06/2024)
+54. Miranda (21/06/2024)
 juros_miranda.m
 
-54. Modula-2 (02/05/2024)
+55. Modula-2 (02/05/2024)
 juros.mod
 
-55. Mojo (25/05/2024)
+56. Mojo (25/05/2024)
 juros.mojo
 
-56. MoonScript (12/07/2024)
+57. MoonScript (12/07/2024)
 juros.moon
 
-57. Nim (02/06/2024)
+58. Nim (02/06/2024)
 juros.nim
 
-58. Objective-C (27/03/2024)
+59. Objective-C (27/03/2024)
 juros_objective_c.m
 
-59. OCaml (30/05/2024)
+60. OCaml (30/05/2024)
 juros.ml
 
-60. Octave (02/04/2024)
+61. Octave (02/04/2024)
 Juros_octave.m
 testajuros_octave.m
 
-61. Oxygene (29/06/2024)
+62. Oxygene (29/06/2024)
 JurosOxygene.pas
 TesteJurosOxygene.pas
 
-62. Pascal (01/04/2024)
+63. Pascal (01/04/2024)
 testajuros.pas
 
-63. PascalABC.NET (22/06/2024)
+64. PascalABC.NET (22/06/2024)
 juros_PascalABC.pas
 
-64. Pascalzim (30/04/2024)
+65. Pascalzim (30/04/2024)
 testajuros _pascalzim.pas
 
-65. Perl (25/04/2024)
+66. Perl (25/04/2024)
 juros.pm
 testajuros.pl
 
-66. PHP (17/09/2023)
+67. PHP (17/09/2023)
 CalculaJuros.php
 php_testejuros.php
 php_testejuros.css
 php_testejuros.png
 
-67. Portugol Studio (13/04/2024)
+68. Portugol Studio (13/04/2024)
 juros.por
 
-68. Prolog (03/05/2024)
+69. Prolog (03/05/2024)
 juros.pl
 
-69. Python (17/09/2023)
+70. Python (17/09/2023)
 Juros.py
 main.py
 
-70. QB64 (12/06/2024)
+71. QB64 (12/06/2024)
 juros_qb64.bas
 
-71. R (11/03/2024)
+72. R (11/03/2024)
 Juros.R
 
-72. Racket (20/05/2024)
+73. Racket (20/05/2024)
 juros.rkt
 
-73. Raku (06/06/2024)
+74. Raku (06/06/2024)
 juros.raku
 
-74. Rapira (11/07/2024)
+75. Rapira (11/07/2024)
 juros.rap
 
-75. ReScript (30/06/2024)
+76. ReScript (30/06/2024)
 Demo.res
 
-76. Ring (18/06/2024)
+77. Ring (18/06/2024)
 juros.ring
 
-77. Ruby (12/03/2024)
+78. Ruby (12/03/2024)
 juros.rb
 
-78. Rust (13/03/2024)
+79. Rust (13/03/2024)
 juros.rs
 main.rs
 
-79. S-Lang (12/06/2024)
+80. S-Lang (12/06/2024)
 juros.sl
 
-80. Scala (20/05/2024)
+81. Scala (20/05/2024)
 juros.scala
 testajuros.scala
 
-81. Scheme (28/04/2024)
+82. Scheme (28/04/2024)
 juros.scm
 
-82. SETL (12/07/2024)
+83. SETL (12/07/2024)
 juros.setl
 
-83. Shark (08/06/2024)
+84. Shark (08/06/2024)
 juros.shk
 
-84. Simula (08/05/2024)
+85. Simula (08/05/2024)
 juros.sim
 
-85. Smalltalk (14/05/2024)
+86. Smalltalk (14/05/2024)
 RER-Juros.st
 
-86. SML (31/05/2024)
+87. SML (31/05/2024)
 juros.sml
 
-87. Snap! (21/05/2024)
+88. Snap! (21/05/2024)
 juros.xml
 
-88. Spider (10/06/2024)
+89. Spider (10/06/2024)
 juros.spider
 testajuros.html
 
-89. Squirrel (18/06/2024)
+90. Squirrel (18/06/2024)
 juros.nut
 
-90. Stride (10/06/2024)
+91. Stride (10/06/2024)
 Juros.stride
 TestaJuros.stride
 
-91. SuperPascal (16/07/2024)
+92. SuperPascal (16/07/2024)
 juros.sp
 
-92. Swift (23/03/2024)
+93. Swift (23/03/2024)
 juros.swift
 
-93. Tcl (05/06/2024)
+94. Tcl (05/06/2024)
 juros.tcl
 
-94. Turing (07/06/2024)
+95. Turing (07/06/2024)
 juros.t
 
-95. twinBASIC (28/05/2024)
+96. twinBASIC (28/05/2024)
 juros.twinproj
 
-96. TypeScript (03/03/2024)
+97. TypeScript (03/03/2024)
 Juros.ts
 TesteJuros.ts
 
-97. V (11/06/2024)
+98. V (11/06/2024)
 juros.v
 
-98. Vala (14/06/2024)
+99. Vala (14/06/2024)
 juros.vala
 
-99. Virtual Breadboard (15/07/2024)
+100. Virtual Breadboard (15/07/2024)
 juros_vbb.java
 
-100. Visual Basic .NET (02/03/2024)
+101. Visual Basic .NET (02/03/2024)
 TesteJuros.vb
 
-101. VisuALG (01/05/2024)
+102. VisuALG (01/05/2024)
 juros.alg
 
-102. X# (14/06/2024)
+103. X# (14/06/2024)
 Juros.prg
 Start.prg
 
-103. XC=BASIC (16/07/2024
+104. XC=BASIC (16/07/2024
 juros_xc.bas
 
-104. Xtend (03/06/2024)
+105. Xtend (03/06/2024)
 Juros.xtend
 
-105. Yeti (31/05/2024)
+106. Yeti (31/05/2024)
 juros.yeti
 
-106. Zig (17/06/2024)
+107. Zig (17/06/2024)
 juros.zig

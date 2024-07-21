@@ -1,0 +1,77 @@
+// Cálculo dos juros, sendo que precisa de parcelas pra isso
+// Versão 0.1: 20/07/2024: versão feita sem muito conhecimento de Umple
+
+// require java.lang.Math;	// para Math.pow()
+
+// classe com uma estrutura básica que simplifica as chamadas
+class Juros {
+  Integer quantidade = 3;
+  Boolean composto = true;
+  Double periodo = 30.0;
+  Double[] pagamentos = {30.0, 60.0, 90.0};
+  Double[] pesos = {1.0, 1.0, 1.0};
+  
+  // calcula a somatória de Pesos[]
+  public Double getPesoTotal() {
+    Double acumulador = 0.0;
+    for(int indice = 0; indice < getQuantidade(); indice++)
+      acumulador += getPesos()[indice];
+    return acumulador;
+  }
+
+  // calcula o acréscimo a partir dos juros e parcelas
+  public Double jurosParaAcrescimo(Double juros) {
+    Double pesoTotal = getPesoTotal();
+    if(juros <= 0.0 || getQuantidade() < 1 || getPeriodo() <= 0.0 || pesoTotal <= 0.0) return 0.0;
+    Double acumulador = 0.0;
+    
+    for(int indice = 0; indice < getQuantidade(); indice++) {
+      if(getComposto()) {
+        acumulador += getPesos()[indice] / Math.pow(1.0 + juros / 100.0, getPagamentos()[indice] / getPeriodo());
+      } else {
+        acumulador += getPesos()[indice] / (1.0 + juros / 100.0 * getPagamentos()[indice] / getPeriodo());
+      }
+    }
+    
+    return (pesoTotal / acumulador - 1.0) * 100.0;
+  }
+  
+  // calcula os juros a partir do acréscimo e das parcelas
+  public Double acrescimoParaJuros(Double acrescimo, Integer precisao, Integer maxIteracoes, Double maxJuros) {
+    Double pesoTotal = getPesoTotal();
+    if(acrescimo <= 0.0 || getQuantidade() < 1 || getPeriodo() <= 0.0 || pesoTotal <= 0.0 || precisao < 1 || maxIteracoes < 1 || maxJuros <= 0.0) return 0.0;
+	Double minJuros = 0.0;
+    Double medJuros = maxJuros / 2.0;
+    Double minDiferenca = Math.pow(0.1, precisao);
+    
+    for(int indice = 0; indice < maxIteracoes; indice++){
+      medJuros = (minJuros + maxJuros) / 2.0;
+      if((maxJuros - minJuros) < minDiferenca) return medJuros;
+      if(jurosParaAcrescimo(medJuros) < acrescimo) {
+        minJuros = medJuros;
+      } else {
+        maxJuros = medJuros;
+      }
+    }
+    
+    return medJuros;
+  }
+}
+
+class TestaJuros {
+  public static void main(String [] args) {
+    // cria um objeto juros da classe Juros e inicializa as propriedades
+    Juros juros = new Juros();
+
+    // calcula e guarda os valores dos resultados das funções
+    Double pesoTotal = juros.getPesoTotal();
+    Double acrescimoCalculado = juros.jurosParaAcrescimo(3.0);
+    Double jurosCalculado = juros.acrescimoParaJuros(acrescimoCalculado, 15, 100, 50.0);
+    
+    // imprime os resultados
+    System.out.println("Peso total = " + Double.toString(pesoTotal));
+//    System.out.println("boi");
+    System.out.println("Acréscimo = " + Double.toString(acrescimoCalculado));
+    System.out.println("Juros = " + Double.toString(jurosCalculado));
+  }
+}

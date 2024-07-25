@@ -1,89 +1,74 @@
-REM Cálculo dos juros, sendo que precisa de parcelas pra isso
-REM Versão 0.1: 16/07/2024: versão feita sem muito conhecimento de XC=BASIC
+' Calculo do juros, sendo que precisa de arrays pra isso
+' Versao 1.0: 12/06/2024: versao feita sem muito conhecimento de VB64
+' define os valores gerais
+Let quantidade% = 3
+Let composto% = 1
+Let periodo# = 30.0
+Dim pagamentos#(quantidade%)
+Dim pesos#(quantidade%)
 
-REM variáveis globais para simplificar as chamadas
-CONST QUANTIDADE = 3
-DIM Composto AS BYTE
-DIM Periodo AS FLOAT
-DIM Pagamentos(QUANTIDADE) AS FLOAT
-DIM Pesos(QUANTIDADE) AS FLOAT
+For indice% = 1 To quantidade%
+    Let pagamentos#(indice%) = 30.0 * indice%
+    Let pesos#(indice%) = 1.0
+Next indice%
 
-REM inicializa as variáveis locais
-Composto = 1
-Periodo = 30.0
 
-FOR indice AS BYTE = 0 to QUANTIDADE - 1
-    Pagamentos(indice) = (indice + 1) * 30.0
-    Pesos(indice) = 1.0
-NEXT indice
+' calcula, guarda os resultados das funcoes e imprime
+GoSub getPesoTotal
+Print "Peso total = "; Using "#.###############"; pesoTotal#
 
-REM calcula a somatória de Pesos()
-FUNCTION getPesoTotal AS FLOAT () STATIC
-    DIM acumulador AS FLOAT
-    acumulador = 0.0
-    FOR indice AS BYTE = 0 to QUANTIDADE - 1
-        acumulador = acumulador + Pesos(indice)
-    NEXT indice
-    RETURN acumulador
-END FUNCTION
+Let juros# = 3.0
+GoSub jurosParaAcrescimo
+Print "Acrescimo = "; Using "#.###############"; acrescimoCalculado#
 
-REM calcula o acréscimo a partir dos juros e parcelas
-FUNCTION jurosParaAcrescimo AS FLOAT (juros AS FLOAT) STATIC
-    DIM pesoTotal AS FLOAT
-    pesoTotal = getPesoTotal()
-    IF juros <= 0.0 OR QUANTIDADE < 1 OR Periodo <= 0.0 OR pesoTotal <= 0.0 THEN RETURN 0.0
+Let acrescimo# = acrescimoCalculado#
+Let precisao# = 15
+Let maxIteracoes% = 100
+Let maxJuros# = 50.0
+GoSub acrescimoParaJuros
+Print "Juros = "; Using "#.###############"; jurosCalculado#
+End
 
-    DIM acumulador AS FLOAT
-    acumulador = 0.0
+' calcula a somatoria de pesos()
+getPesoTotal:
+Let acumulador# = 0.0
+For indice% = 1 To quantidade%
+    Let acumulador# = acumulador# + pesos#(indice%)
+Next indice%
+Let pesoTotal# = acumulador#
+Return
 
-    FOR indice AS BYTE = 0 to QUANTIDADE - 1
-        IF Composto = 1 THEN
-            acumulador = acumulador + Pesos(indice) / EXP(Pagamentos(indice) / Periodo * LOG(1.0 + juros / 100.0))
-        ELSE
-            acumulador = acumulador + Pesos(indice) / (1.0 + juros / 100 * Pagamentos(indice) / Periodo)
-        END IF
-    NEXT indice
+' calcula o acrescimo a partir dos juros e dados comuns (como parcelas)
+jurosParaAcrescimo:
+Let acrescimoCalculado# = 0.0
+If juros# <= 0.0 Or quantidade% < 1 Or periodo# <= 0.0 Or pesoTotal# <= 0.0 Then Return
+Let acumulador# = 0.0
+For indice% = 1 To quantidade%
+    If composto% = 1 Then
+        acumulador# = acumulador# + pesos#(indice%) / (1.0 + juros# / 100.0) ^ (pagamentos#(indice%) / periodo#)
+    Else
+        acumulador# = acumulador# + pesos#(indice%) / (1.0 + juros# / 100.0 * pagamentos#(indice%) / periodo#)
+    End If
+Next indice%
+Let acrescimoCalculado# = (pesoTotal# / acumulador# - 1.0) * 100.0
+Return
 
-    RETURN (pesoTotal / acumulador - 1.0) * 100.0
-END FUNCTION
-
-REM calcula os juros a partir do acréscimo e parcelas
-FUNCTION acrescimoParaJuros AS FLOAT (acrescimo AS FLOAT, precisao AS BYTE, maxIteracoes AS BYTE, maxJuros AS FLOAT) STATIC
-    DIM pesoTotal AS FLOAT
-    pesoTotal = getPesoTotal()
-    IF acrescimo <= 0.0 OR QUANTIDADE < 1 OR Periodo <= 0.0 OR pesoTotal <= 0.0 OR precisao < 1 OR maxIteracoes < 1 OR maxJuros <= 0.0 THEN RETURN 0.0
-
-    DIM minJuros AS FLOAT
-    DIM medJuros AS FLOAT
-    DIM minDiferenca AS FLOAT
-    minJuros = 0.0
-    medJuros = maxJuros / 2.0
-    minDiferenca = EXP(precisao * LOG(0.1))
-
-    FOR indice AS BYTE = 0 to maxIteracoes
-        medJuros = (minJuros + maxJuros) / 2.0
-        IF (maxJuros - minJuros) < minDiferenca THEN RETURN medJuros
-        IF jurosParaAcrescimo(medJuros) < acrescimo THEN
-            minJuros = medJuros
-        ELSE
-            maxJuros = medJuros
-        END IF
-    NEXT indice
-
-    RETURN medJuros
-END FUNCTION
-
-REM variáveis para guardar os resultados
-DIM pesoTotal AS FLOAT
-DIM acrescimoCalculado AS FLOAT
-DIM jurosCalculado AS FLOAT
-
-REM calcula e guarda os resultados das funções
-pesoTotal = getPesoTotal()
-acrescimoCalculado = jurosParaAcrescimo(3.0)
-jurosCalculado = acrescimoParaJuros(acrescimoCalculado, 5, 100, 50.0)
-
-REM imprime os resultados
-PRINT "peso total = ", pesoTotal
-PRINT "acrescimo = ", acrescimoCalculado
-PRINT "juros = ", jurosCalculado
+' calcula os juros a partir do acrescimo e dados comuns (como parcelas)
+acrescimoParaJuros:
+Let jurosCalculado# = 0.0
+If acrescimo# <= 0.0 Or quantidade% < 1 Or periodo# <= 0.0 Or pesoTotal# <= 0.0 Or precisao# < 1 Or maxIteracoes% < 1 Or maxJuros# <= 0.0 Then Return
+Let minJuros# = 0.0
+Let jurosCalculado# = maxJuros# / 2.0
+Let minDiferenca# = 0.1 ^ precisao#
+For indice% = 1 To maxIteracoes%
+    Let jurosCalculado# = (minJuros# + maxJuros#) / 2.0
+    If (maxJuros# - minJuros#) < minDiferenca# Then Return
+    Let juros# = jurosCalculado#
+    GoSub jurosParaAcrescimo
+    If acrescimoCalculado# < acrescimo# Then
+        Let minJuros# = jurosCalculado#
+    Else
+        Let maxJuros# = jurosCalculado#
+    End If
+Next indice%
+Return

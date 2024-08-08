@@ -1,7 +1,6 @@
 -- Cálculo dos juros, sendo que precisa de parcelas pra isso
--- Versão 0.1: 26/06/2024: variáveis sem muito conhecimento de Lua
---        0.2: 27/06/2024: todas as funções
---        0.3: 27/06/2024: precisao inteiro
+-- Versão 0.1: 27/06/2024: versão sem muito conhecimento de Idris
+--        0.2: 08/08/2024: corrigidos comentários de versões
 module Main
 
 -- estrutura básica para simplificar as chamadas

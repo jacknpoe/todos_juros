@@ -79,13 +79,6 @@ procedure main()
     puts(STDOUT, "Juros = ")
     printf(STDOUT, "%2.14f", jurosCalculado)
     puts(STDOUT, "\n")
-
---    atom base = 1.03
---    atom expoente = 0.5
---    atom potencia = power(base, expoente)
---    puts(STDOUT, "1,03 ^ 0,5 = ")
---    print(STDOUT, potencia)
---    puts(STDOUT, "\n")
 end procedure
 
 main()

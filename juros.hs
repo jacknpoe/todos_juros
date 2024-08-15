@@ -2,7 +2,7 @@
 -- Versão 0.1: 04/05/2024: versão feita sem muito conhecimento de Haskell
 --        0.2: 07/05/2024: corrigidos os putStr Juros e Acrescimo que estavam invertidos
 --        0.3: 15/08/2024: adicionadas "assinaturas explícitas"
---        0.4: 15/08/2024: trocados tipos de Float para Double
+--        0.4: 15/08/2024: trocados tipos de "Float" para "Double"
 import Data.List
 
 -- estrutura básica para simplificar as chamadas

@@ -3,6 +3,7 @@
 --        0.2: 07/05/2024: corrigidos os putStr Juros e Acrescimo que estavam invertidos
 --        0.3: 15/08/2024: adicionadas "assinaturas explícitas"
 --        0.4: 15/08/2024: trocados tipos de "Float" para "Double"
+--        0.5: 16/08/2024: trocado o código que calcula o peso total "à mão" por "sum"
 import Data.List
 
 -- estrutura básica para simplificar as chamadas
@@ -18,13 +19,14 @@ pesos = [1.0, 1.0, 1.0]
 -- calcula a somatória de Pesos[]
 getPesoTotal :: Double
 getPesoTotal =
-   rGetPesoTotal pesos
+  sum pesos
+--   rGetPesoTotal pesos
 
 -- função recursiva que realmente calcula a somatória de pesos[]
-rGetPesoTotal :: [Double] -> Double
-rGetPesoTotal (h:t)
-   | t == [] = h
-   | otherwise = h + rGetPesoTotal t
+-- rGetPesoTotal :: [Double] -> Double
+-- rGetPesoTotal (h:t)
+--    | t == [] = h
+--    | otherwise = h + rGetPesoTotal t
 
 -- calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
 jurosParaAcrescimo :: Double -> Double

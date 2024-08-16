@@ -10,7 +10,7 @@ Fórmula para os juros simples:
 
 Fórmula para os juros compostos:
 
-![Juros Compostos](https://github.com/jacknpoe/todos_juros/blob/main/JurosCompostps.png)
+![Juros Compostos](https://github.com/jacknpoe/todos_juros/blob/main/JurosCompostos.png)
 
 Dois conceitos que pesaram muito foram a exponenciação de números ponto flutuante (implementada em todas as linguagens) e os arrays dinâmicos (que não foram possíveis em Chapel, Modula-2, Pascalzim, Portugol, SuperPascal, VisuALG e XC=BASIC, onde os arrays têm mil elementos, ou três nos casos de Modula-2 e XC=BASIC).
 
@@ -46,7 +46,7 @@ Formula for simple interest:
 
 Formula for compound interest:
 
-![Compound Interest](https://github.com/jacknpoe/todos_juros/blob/main/JurosCompostps.png)
+![Compound Interest](https://github.com/jacknpoe/todos_juros/blob/main/JurosCompostos.png)
 
 
 Two concepts that weighed heavily were the exponentiation of floating point numbers (implemented in all languages) and dynamic arrays (which were not possible in Chapel, Modula-2, Pascalzim, Portugol, SuperPascal, VisuALG and XC=BASIC, where arrays have a thousand elements, or three in tne Modula-2 and XC=BASIC cases).

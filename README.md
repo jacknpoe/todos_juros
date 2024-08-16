@@ -48,6 +48,7 @@ Formula for calculating the increase from compound interest:
 
 ![Compound Interest](https://github.com/jacknpoe/todos_juros/blob/main/JurosCompostos.png)
 
+(pesoTotal = totalWeight; quantidade = quantity; pesos = weights; juros = interest; pagamentos = payments; periodo = period)
 
 Two concepts that weighed heavily were the exponentiation of floating point numbers (implemented in all languages) and dynamic arrays (which were not possible in Chapel, Modula-2, Pascalzim, Portugol, SuperPascal, VisuALG and XC=BASIC, where arrays have a thousand elements, or three in tne Modula-2 and XC=BASIC cases).
 

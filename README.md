@@ -4,6 +4,14 @@ PORTUGUÊS
 =========
 Este repositório é sobre codificar, em várias linguagens, a mesma solução em matemática financeira. Achar os juros a partir do acréscimo, das datas e pesos das parcelas. Eu uso o Método da Bisseção do Cálculo Numérico para resolvê-la. A ideia é que cada versão se fixe ao máximo à cultura de cada linguagem. Eu uso o mínimo de recursos possível. Eu evito adicionar qualquer biblioteca que eu puder.
 
+Fórmula para os juros simples:
+
+![Juros Simples](https://github.com/jacknpoe/todos_juros/blob/main/JurosSimples.png)
+
+Fórmula para os juros compostos:
+
+![Juros Compostos](https://github.com/jacknpoe/todos_juros/blob/main/JurosCompostps.png)
+
 Dois conceitos que pesaram muito foram a exponenciação de números ponto flutuante (implementada em todas as linguagens) e os arrays dinâmicos (que não foram possíveis em Chapel, Modula-2, Pascalzim, Portugol, SuperPascal, VisuALG e XC=BASIC, onde os arrays têm mil elementos, ou três nos casos de Modula-2 e XC=BASIC).
 
 Duas linguagens são consideradas diferentes quando qualquer parte do código tem que ser alterada para ser compilado ou interpretado em ambas. Essa questão ficaria muito complicada, se fosse escolhido um critério mais rígido sobre o quanto uma linguagem precisa ser diferente de outra, o que seria impraticável.
@@ -31,6 +39,15 @@ A licença é GNU (https://www.gnu.org/licenses/gpl-3.0.html).
 ENGLISH
 =======
 This repository is about coding, in multiple languages, the same solution in financial mathematics. To find the interest based on the increase, dates and weights of the installments. I use the Bisection Method of Numerical Calculus to solve it. The idea is that each version adheres to the culture of each language as much as possible. I use as few resources as possible. I avoid adding any libraries I can.
+
+Formula for simple interest:
+
+![Simple Interest](https://github.com/jacknpoe/todos_juros/blob/main/JurosSimples.png)
+
+Formula for compound interest:
+
+![Compound Interest](https://github.com/jacknpoe/todos_juros/blob/main/JurosCompostps.png)
+
 
 Two concepts that weighed heavily were the exponentiation of floating point numbers (implemented in all languages) and dynamic arrays (which were not possible in Chapel, Modula-2, Pascalzim, Portugol, SuperPascal, VisuALG and XC=BASIC, where arrays have a thousand elements, or three in tne Modula-2 and XC=BASIC cases).
 

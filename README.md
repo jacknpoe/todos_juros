@@ -69,7 +69,7 @@ Peso total = 3.0 / Acréscimo = 6.059108997379403 / Juros = 2.999999999999992
 
 The list is organized alphabetically, by languages names: https://jacknpoeexplicaprogramacao.wordpress.com/2024/03/02/10-resolucoes-de-equacao-transcendente/ or https://github.com/jacknpoe/todos_juros/blob/main/todos_juros.txt
 
-As versões em JavaScript e PHP podem ser testadas a partir de: https://jacknpoe.rf.gd/
+JavaScript and PHP versions can be tested from: https://jacknpoe.rf.gd/
 
 The license is GNU (https://www.gnu.org/licenses/gpl-3.0.html).
 

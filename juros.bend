@@ -13,14 +13,6 @@ def zip(a, b):
     case List/Nil:
       return []
 
-# gera uma lista de numeros de 0 a n (não inclusivo)
-def range(n):
-  bend i = 0 with n:
-    when i < n:
-      return List/Cons(i, fork(i + 1, n))
-    else:
-      return List/Nil
-
 # calcula, recursivamente, a somatória de pesos
 def getPesoTotal(pesos):
   fold pesos:

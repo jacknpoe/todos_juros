@@ -60,7 +60,7 @@ def acrescimoParaJuros(composto, periodo, pagamentos, pesos, quantidade, acresci
       elif jurosParaAcrescimo(composto, periodo, pagamentos, pesos, quantidade, medJuros) < acrescimo:
         return fork(iteracaoAtual - 1, (medJuros + maxJuros) / 2.0)
       else:
-        return fork(iteracaoAtual - 1, (medJuros + maxJuros) / 2.0)
+        return fork(iteracaoAtual - 1, (minJuros + medJuros) / 2.0)
     else:
       return medJuros
 

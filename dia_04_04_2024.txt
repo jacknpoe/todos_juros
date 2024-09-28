@@ -1,3 +1,6 @@
+PORTUGUÊS
+=========
+
 Entre as 08:15 e as 10:30 do dia 04/04/2024, quinta-feira, tirando quinze minutos em que eu fui na farmácia, eu:
 • encontrei o nome do arquivo no repositório do GitHub;
 • verifiquei se era da classe de problemas para atualizar;
@@ -12,3 +15,21 @@ Entre as 08:15 e as 10:30 do dia 04/04/2024, quinta-feira, tirando quinze minuto
 • em alguns casos, corrigi erros de digitação;
 • atualizei a solução no GitHub.
 Eu fiz isso para 23 linguagens de programação diferentes. Em duas horas, pouco mais de cinco minutos por solução.
+
+ENGLISH
+=======
+
+Between 08:15 and 10:30 on 04/04/2024, Thursday, excluding the fifteen minutes I spent at the pharmacy, I:
+• found the name of the file in the GitHub repository;
+• checked if it was in the class of problems to update;
+• found the editor in the language;
+• found the compiler, interpreter or online service;
+• in some cases, I started the Apache service;
+• found the source code by searching on two disks;
+• commented out the code that had become obsolete;
+• wrote the new code;
+• compiled or ran it in the interpreter;
+• checked the result with data that generates known values;
+• in some cases, I corrected typos;
+• updated the solution on GitHub.
+I did this for 23 different programming languages. In two hours, a little over five minutes per solution.

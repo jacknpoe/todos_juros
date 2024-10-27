@@ -240,6 +240,7 @@ CalculaJuros.php
 php_testejuros.php
 php_testejuros.css
 php_testejuros.png
+php_testejuros.js
 
 72. Portugol Studio (13/04/2024)
 juros.por

@@ -1,10 +1,11 @@
 // Versão 0.2:    04/2024: trocada avaliação soZero por acumulador == 0
+// Versão 0.3: 22/12/2024: adicionados comentários para os includes
 
-#include <math.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <locale.h>
+#include <math.h>      // para usar pow()
+#include <stdio.h>     // para usar printf() e gets()
+#include <stdlib.h>    // para usar malloc() e free()
+#include <stdbool.h>   // para usar o tipo booleano
+#include <locale.h>    // para usar setlocale()
 
 struct Juros {
 	short Quantidade;

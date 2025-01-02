@@ -203,7 +203,7 @@ juros.mojo
 juros.moon
 
 61. MSX Basic (02/01/2025)
-juros.zip
+JUROSMSX.BAS
 
 62. MySQL (07/08/2024)
 juros.sql

@@ -1,5 +1,6 @@
 3 REM Calculo dos juros, sendo que precisa de arrays para isso
-6 REM Versao 1.0: 02/01/2025 Copiada de GW-BASIC
+6 REM Versao 0.1: 02/01/2025 Copiada de GW-BASIC
+9 REM        0.2: 04/01/2025 retirada linha 1210 e alterado acumulador de AC para AM e linha 1600
 95 REM variaveis globais e atribuicao de valores
 100 QT = 3
 110 CM = 1
@@ -37,15 +38,14 @@
 1030 IF PR <= 0# THEN RETURN
 1040 GOSUB 500
 1050 IF PT <= 0# THEN RETURN
-1060 AC = 0#
+1060 AM = 0#
 1070 FOR I = 0 TO QT-1
 1080 IF CM = 1 THEN 1100 ELSE 1200
-1100 AC = AC + PE(I) / (1# + JU / 100#) ^ (PA(I)/PR)
+1100 AM = AM + PE(I) / (1# + JU / 100#) ^ (PA(I) / PR)
 1110 GOTO 1300
-1200 AC = AC + PE(I) / (1# + JU / 100# * PA(I)/PR)
-1210 GOTO 1300
+1200 AM = AM + PE(I) / (1# + JU / 100# * PA(I) / PR)
 1300 NEXT I
-1310 AC = (PT/AC-1#)*100
+1310 AC = (PT / AM - 1#) * 100
 1320 RETURN
 1495 REM calcula os juros a partir do acrescimo e parcelas
 1500 JU = 0
@@ -58,7 +58,6 @@
 1570 GOSUB 500
 1580 IF PT <= 0# THEN RETURN
 1590 MN = 0#
-1600 JU = MX / 2#
 1610 MD = .1# ^ PC
 1620 FOR J = 1 TO IN
 1630 JU = (MN + MX) / 2#

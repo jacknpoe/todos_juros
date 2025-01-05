@@ -12,7 +12,7 @@ Fórmula para calcular o acréscimo a partir dos juros compostos:
 
 ![Juros Compostos](https://github.com/jacknpoe/todos_juros/blob/main/JurosCompostos.png)
 
-Dois conceitos que pesaram muito foram a exponenciação de números ponto flutuante (implementada em todas as linguagens) e os arrays dinâmicos (que não foram possíveis em Chapel, Modula-2, Pascalzim, Portugol, SuperPascal, VisuALG e XC=BASIC, onde os arrays têm mil elementos, ou três nos casos de Modula-2 e XC=BASIC).
+Dois conceitos que pesaram muito foram a exponenciação de números ponto flutuante (implementada em todas as linguagens) e os arrays dinâmicos (que não foram possíveis em Chapel, Modula-2, MSX Turbo Pascal, Pascalzim, Portugol, SuperPascal, VisuALG e XC=BASIC, onde os arrays têm mil elementos, ou três nos casos de Modula-2, MSX Turbo Pascal e XC=BASIC).
 
 Duas linguagens são consideradas diferentes quando qualquer parte do código tem que ser alterada para ser compilado ou interpretado em ambas. Essa questão ficaria muito complicada, se fosse escolhido um critério mais rígido sobre o quanto uma linguagem precisa ser diferente de outra, o que seria impraticável.
 
@@ -50,7 +50,7 @@ Formula for calculating the increase from compound interest:
 
 (pesoTotal = totalWeight; quantidade = quantity; pesos = weights; juros = interest; pagamentos = payments; periodo = period)
 
-Two concepts that weighed heavily were the exponentiation of floating point numbers (implemented in all languages) and dynamic arrays (which were not possible in Chapel, Modula-2, Pascalzim, Portugol, SuperPascal, VisuALG and XC=BASIC, where arrays have a thousand elements, or three in tne Modula-2 and XC=BASIC cases).
+Two concepts that weighed heavily were the exponentiation of floating point numbers (implemented in all languages) and dynamic arrays (which were not possible in Chapel, Modula-2, MSX Turbo Pascal, Pascalzim, Portugol, SuperPascal, VisuALG and XC=BASIC, where arrays have a thousand elements, or three in tne Modula-2, MSX Turbo Pascal and XC=BASIC cases).
 
 Two languages ​​are considered different when any part of the code has to be changed to be compiled or interpreted in both. This issue would become very complicated if a stricter criterion were chosen regarding how much one language needs to be different from another, which would be impractical.
 

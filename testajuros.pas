@@ -13,7 +13,7 @@ type
 		Pesos: array of real;
 	end;
 
-// calcula a somat¢ria de pesos[]
+// calcula a somatï¿½ria de pesos[]
 function getPesoTotal(sJuros: rJuros): real;
 var
  	acumulador: real;
@@ -25,34 +25,30 @@ begin
 	getPesoTotal := acumulador;
 end;
 
-// calcula o acr‚scimo a partir dos juros e dos dados comuns (como parcelas)
+// calcula o acrescimo a partir dos juros e dos dados comuns (como parcelas)
 function jurosParaAcrescimo(sJuros: rJuros; juros: real): real;
 var
     pesoTotal: real;
     acumulador: real;
-    soZero: boolean;
     indice: integer;
 begin
     if ((juros <= 0) or (sJuros.Quantidade <= 0) or (sJuros.Periodo <= 0.0)) then exit(0.0);
     pesoTotal := getPesoTotal(sJuros);
     if (pesoTotal <= 0.0) then exit(0.0);
     acumulador := 0.0;
-    // soZero := true;
 
     for indice := 0 to (sJuros.Quantidade - 1) do
     begin
-        // if ((sJuros.Pagamentos[indice] > 0.0) and (sJuros.Pesos[indice] > 0.0)) then soZero := false;
         if (sJuros.Composto)
         then acumulador := acumulador + sJuros.Pesos[indice] / (1 + juros / 100) ** (sJuros.Pagamentos[indice] / sJuros.Periodo)
         else acumulador := acumulador + sJuros.Pesos[indice] / (1 + juros / 100 * sJuros.Pagamentos[indice] / sJuros.Periodo);
     end;
 
-    // if (soZero) then exit(0.0);
     if (acumulador <= 0.0) then exit(0.0);
     jurosParaAcrescimo := (pesoTotal / acumulador - 1) * 100;
 end;
 
-// calcula os juros a partir do acr‚scimo e dos dados comuns (como parcelas)
+// calcula os juros a partir do acrï¿½scimo e dos dados comuns (como parcelas)
 function acrescimoParaJuros(sJuros: rJuros; acrescimo: real; precisao, maxIteracoes: integer; maxJuros: real): real;
 var
     pesoTotal, minJuros, medJuros, minDiferenca: real;
@@ -80,7 +76,7 @@ var
 	juros: rJuros;
 
 begin
-	// defini‡Æo dos dados
+	// definiï¿½ï¿½o dos dados
 	juros.Quantidade := 3;
 	juros.Composto := true;
 	juros.Periodo := 30.0;
@@ -95,6 +91,6 @@ begin
 
 	// testes
 	writeln('Soma dos pesos = ', getPesoTotal(juros));
-	writeln('Acréscimo = ', jurosParaAcrescimo(juros, 3.0));
+	writeln('Acrï¿½scimo = ', jurosParaAcrescimo(juros, 3.0));
 	writeln('Juros = ', acrescimoParaJuros(juros, jurosParaAcrescimo(juros, 3.0), 15, 100, 50.0));
 end.

@@ -13,7 +13,7 @@ type
 		Pesos: array of real;
 	end;
 
-// calcula a somat�ria de pesos[]
+// calcula a somatoria de pesos[]
 function getPesoTotal(sJuros: rJuros): real;
 var
  	acumulador: real;
@@ -48,7 +48,7 @@ begin
     jurosParaAcrescimo := (pesoTotal / acumulador - 1) * 100;
 end;
 
-// calcula os juros a partir do acr�scimo e dos dados comuns (como parcelas)
+// calcula os juros a partir do acrescimo e dos dados comuns (como parcelas)
 function acrescimoParaJuros(sJuros: rJuros; acrescimo: real; precisao, maxIteracoes: integer; maxJuros: real): real;
 var
     pesoTotal, minJuros, medJuros, minDiferenca: real;
@@ -76,7 +76,7 @@ var
 	juros: rJuros;
 
 begin
-	// defini��o dos dados
+	// definicao dos dados
 	juros.Quantidade := 3;
 	juros.Composto := true;
 	juros.Periodo := 30.0;

@@ -1,0 +1,102 @@
+// Calculo dos juros, sendo que precisa de parcelas para isso
+// Versao 0.1: 06/01/2025: versao feita sem muito conhecimento de Dragon, a partir da versao em Lua
+
+select "math"   // para usar pow()
+select "std"    // para usar newarray()
+
+// estrutura basica de propriedades para simplificar as chamadas
+class Juros {
+    // construtor
+    func Juros(quantidade, composto, periodo) {
+        this.Quantidade = quantidade
+        this.Composto = composto
+        this.Periodo = periodo
+    	this.Pesos = newarray(quantidade)
+    	this.Pagamentos = newarray(quantidade)
+    }
+
+    // define um valor para o indice em Pesos[]
+    func setPeso(indice, valor) {
+        this.Pesos[indice] = valor
+    }
+
+    // define um valor para o indice em Pagamentos[]
+    func setPagamento(indice, valor) {
+        this.Pagamentos[indice] = valor
+    }
+
+    // calcula a somatoria de Pesos[]
+    func getPesoTotal() {
+        acumulador = 0.0
+        for (indice = 0, indice < this.Quantidade, indice++)
+        {
+            acumulador = acumulador + this.Pesos[indice]
+        }
+        return acumulador
+    }
+
+    // calcula o acrescimo a partir dos juros e parcelas
+    func jurosParaAcrescimo(juros) {
+        pesoTotal = this.getPesoTotal()
+        if (juros <= 0.0) || (this.Quantidade <= 0) || (this.Periodo <= 0.0) || (pesoTotal <= 0.0) {
+            return 0.0
+        }
+
+        acumulador = 0.0
+
+        for (indice = 0, indice < this.Quantidade, indice++) {
+            if (this.Composto) {
+                acumulador += this.Pesos[indice] / pow(1.0 + juros / 100.0, this.Pagamentos[indice] / this.Periodo)
+            } else {
+                acumulador += this.Pesos[indice] / (1.0 + juros / 100.0 * this.Pagamentos[indice] / this.Periodo)
+            }
+        }
+
+        if (acumulador <= 0.0) {
+            return 0.0
+        }
+        return (pesoTotal / acumulador - 1.0) * 100.0
+    }
+
+    // calcula os juros a partir do acrescimo e parcelas
+    func acrescimoParaJuros(acrescimo, precisao, maxIteracoes, maxJuros) {
+        pesoTotal = this.getPesoTotal()
+        if (maxIteracoes < 1) || (this.Quantidade <= 0) || (precisao < 1) || (this.Periodo <= 0.0) || (acrescimo <= 0.0) || (maxJuros <= 0.0) || (pesoTotal <= 0.0) {
+            return 0.0
+        }
+
+        minJuros = 0.0
+        minDiferenca = pow(0.1, precisao)
+
+        for (indice = 0, indice < maxIteracoes, indice++) {
+            medJuros = (minJuros + maxJuros) / 2.0
+            if ((maxJuros - minJuros) < minDiferenca) {
+                return medJuros
+            }
+            if (this.jurosParaAcrescimo(medJuros) < acrescimo) {
+                minJuros = medJuros
+            } else {
+                maxJuros = medJuros
+            }
+        }
+
+        return medJuros
+    }
+}
+
+// define valores para os atributos de oJuros
+oJuros = new Juros(3, true, 30.0)
+for (indice = 0, indice < oJuros.Quantidade, indice++) {
+    oJuros.setPeso(indice, 1.0)
+    oJuros.setPagamento(indice, 30.0 * (indice + 1))
+}
+
+// calcula e guarda os retornos dos metodos
+pesoTotal = oJuros.getPesoTotal()
+acrescimo = oJuros.jurosParaAcrescimo(3.0)
+juros = oJuros.acrescimoParaJuros(acrescimo, 15, 100, 50.0)
+
+// imprime os resultados
+showln "Peso total = " + pesoTotal
+showln "Acrescimo = " + acrescimo
+showln "Juros = " + juros

@@ -6,11 +6,11 @@ Este repositório é sobre codificar, em várias linguagens, a mesma solução e
 
 Fórmula para calcular o acréscimo a partir dos juros simples:
 
-![Juros Simples](https://github.com/jacknpoe/todos_juros/blob/main/JurosSimples.png)
+![Juros Simples](https://github.com/jacknpoe/todos_juros/blob/main/JurosSimples.jpg)
 
 Fórmula para calcular o acréscimo a partir dos juros compostos:
 
-![Juros Compostos](https://github.com/jacknpoe/todos_juros/blob/main/JurosCompostos.png)
+![Juros Compostos](https://github.com/jacknpoe/todos_juros/blob/main/JurosCompostos.jpg)
 
 Dois conceitos que pesaram muito foram a exponenciação de números ponto flutuante (implementada em todas as linguagens) e os arrays dinâmicos (que não foram possíveis em Chapel, Modula-2, MSX Turbo Pascal, Pascalzim, Portugol, SuperPascal, VisuALG e XC=BASIC, onde os arrays têm mil elementos, ou três nos casos de Modula-2, MSX Turbo Pascal e XC=BASIC).
 
@@ -42,11 +42,11 @@ This repository is about coding, in multiple languages, the same solution in fin
 
 Formula for calculating the increase from simple interest:
 
-![Simple Interest](https://github.com/jacknpoe/todos_juros/blob/main/JurosSimples.png)
+![Simple Interest](https://github.com/jacknpoe/todos_juros/blob/main/JurosSimples.jpg)
 
 Formula for calculating the increase from compound interest:
 
-![Compound Interest](https://github.com/jacknpoe/todos_juros/blob/main/JurosCompostos.png)
+![Compound Interest](https://github.com/jacknpoe/todos_juros/blob/main/JurosCompostos.jpg)
 
 (pesoTotal = totalWeight; quantidade = quantity; pesos = weights; juros = interest; pagamentos = payments; periodo = period)
 

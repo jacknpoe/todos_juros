@@ -1,5 +1,6 @@
 { Calculo dos juros, sendo que precisa de parcelas pra isso
-  Versao 0.1: 05/01/2025: versao feita sem muito conhecimento de MSX Turbo Pascal }
+  Versao 0.1: 05/01/2025: versao feita sem muito conhecimento de MSX Turbo Pascal
+         0.2: 15/01/2025: criada variavel "simples" para simplificar juros simples }
 
 program Juros;
 
@@ -30,7 +31,7 @@ end;
 { calcula o acrescimo a partir dos juros e dos dados comuns (como parcelas) }
 function jurosParaAcrescimo(sJuros : rJuros; juros : real) : real;
 var
-    pesoTotal, acumulador, expoente, base: real;
+    pesoTotal, acumulador, expoente, base, simples: real;
     indice: integer;
 begin
     pesoTotal := getPesoTotal(sJuros);
@@ -50,7 +51,8 @@ begin
             expoente := sJuros.Pagamentos[indice] / sJuros.Periodo;
             acumulador := acumulador + sJuros.Pesos[indice] / exp(expoente * ln(base));
         end else begin
-            acumulador := acumulador + sJuros.Pesos[indice] / (1 + juros / 100 * sJuros.Pagamentos[indice] / sJuros.Periodo);
+            simples := (1 + juros / 100 * sJuros.Pagamentos[indice] / sJuros.Periodo);
+            acumulador := acumulador + sJuros.Pesos[indice] / simples;
         end;
     end;
 

@@ -1,12 +1,13 @@
 # Calculo dos juros, sendo que precisa de parcelas pra isso
 # Versao 0.1: 08/01/2025: versao feita sem muito conhecimento de Windows PowerShell
+#        0.2: 15/01/2025: double[] incluidos e retiradas linhas extras
 
 # variaveis globais
 [int]$Quantidade = 3
 [bool]$Composto = $true
 [double]$Periodo = 30.0
-$Pagamentos = 30.0, 60.0, 90.0
-$Pesos = 1.0, 1.0, 1.0
+[double[]]$Pagamentos = 30.0, 60.0, 90.0
+[double[]]$Pesos = 1.0, 1.0, 1.0
 
 # calcula a somatoria do array Pesos[]
 function getPesoTotal {
@@ -70,19 +71,16 @@ function acrescimoParaJuros ( [double]$acrescimo, [int]$precisao, [int]$maxItera
 }
 
 # calcula e guarda os retornos das funcoes
-
 [double]$cPesoTotal = getPesoTotal
 [double]$cAcrescimo = jurosParaAcrescimo 3.0
 [double]$cJuros = acrescimoParaJuros $cAcrescimo 15 100 50.0
 
 # cria as strings de saida
-
 [string]$sPesoTotal = "Peso total = " + $cPesoTotal
 [string]$sAcrescimo = "Acrescimo = " + $cAcrescimo
 [string]$sJuros = "Juros = " + $cJuros
 
 # imprime os resultados
-
 Write-Output $sPesoTotal
 Write-Output $sAcrescimo
 Write-Output $sJuros

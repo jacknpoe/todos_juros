@@ -1,5 +1,6 @@
 // Versão 0.2:    04/2024: trocada avaliação soZero por acumulador == 0
-// Versão 0.3: 22/12/2024: adicionados comentários para os includes
+//        0.3: 22/12/2024: adicionados comentários para os includes
+//        0.4: 16/01/2025: adicionado cálculo de peso total
 
 #include <math.h>      // para usar pow()
 #include <stdio.h>     // para usar printf() e gets()
@@ -83,7 +84,7 @@ double acrescimoParaJuros(struct Juros *juros, double valor, short precisao, sho
 
 int main() {
 	struct Juros juros;
-	double acrescimoCalculado = 0, jurosCalculado = 0;
+	double pesoTotal = 0, acrescimoCalculado = 0, jurosCalculado = 0;
 	char buffer[256];
 
 	setlocale( LC_ALL, "");	
@@ -100,7 +101,9 @@ int main() {
 	juros.Pagamentos[0] = 30.0;
 	juros.Pagamentos[1] = 60.0;
 	juros.Pagamentos[2] = 90.0;
-	
+
+	pesoTotal = getPesoTotal(&juros);
+	printf("Peso total: %3.15f\n", pesoTotal);
 	acrescimoCalculado = jurosParaAcrescimo(&juros, 3);
 	printf("Acréscimo calculado: %3.15f\n", acrescimoCalculado);
 	jurosCalculado = acrescimoParaJuros(&juros, acrescimoCalculado, 15, 100, 50.0);

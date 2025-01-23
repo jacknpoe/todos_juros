@@ -1,0 +1,6 @@
+         MACRO
+.* The BC macro changes conditional D(X,B) type instructions to
+.* relative branching
+&LABEL   BC
+&LABEL   JC      &SYSLIST(1),&SYSLIST(2)
+         MEND

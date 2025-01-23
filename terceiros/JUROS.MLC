@@ -1,0 +1,863 @@
+*
+* Transcendent function program
+*
+         TITLE   'TRANSCENDENT FUNCTION PROGRAM'
+         COPY  FUNCBRC.MAC
+TRANS    SUBENTRY CSECT=YES,RENT=NO,BASES=(R13,R11,R10)
+         PRINT NOGEN
+         EQUREGS
+         EQUREGS REGS=FPR
+         DCBD
+         PRINT GEN
+
+         SAM64
+         LMH   R0,R15,=16F'0'
+*        *ESTAE RECOVERY_ROUTINE,CT
+         MVC   ACRESCIMOCALCULADO,=DB'+0.0'
+         MVC   JUROSCALCULADO,=DB'+0.0'
+         LAY   R14,=H'3'
+         LAY   R15,=X'FF'                    "True"
+         LAY   R0,=DB'+30.0'
+         LLGT  R9,=A(SETVALORES)
+         CALL (R9),(JUROS_STORAGE,(R14),(R15),(R0)),VL,                X
+               LINKINST=BASR
+         IF (LTR,R15,NZ,R15)
+            WTO 'Erro ao definir os valores da estrutura juros!'
+            LGHI  R15,8
+         ELSE
+            LAY   R3,JUROS_STORAGE
+            USING JUROS,R3
+            LG    R14,PESOS
+            MVC   0(8,R14),=DB'+1.0'
+            MVC   8(8,R14),=DB'+1.0'
+            MVC   16(8,R14),=DB'+1.0'
+            LG    R14,PAGAMENTOS
+            MVC   0(8,R14),=DB'+30.0'
+            MVC   8(8,R14),=DB'+60.0'
+            MVC   16(8,R14),=DB'+90.0'
+
+            LLGT  R9,=A(GETPESOTOTAL)
+            CALL (R9),((R3)),VL,LINKINST=BASR,TYPECON=A
+            STD   F0,PESOTOTAL
+            LLGT  R9,=A(CONVERT_DB_TO_TEXT)
+            CALL (R9),(PESOTOTAL,READABLE_TEXT),VL,LINKINST=BASR
+            MVC   WTO_1+8+21(35),READABLE_TEXT
+WTO_1       WTO 'Peso Total:                                           X
+                                            '
+            LA    R14,=DB'+3.0'
+            LLGT  R9,=A(JUROSPARAACRESCIMO)
+            CALL (R9),((R3),(R14)),VL,LINKINST=BASR
+            STD   F0,ACRESCIMOCALCULADO
+            LLGT  R9,=A(CONVERT_DB_TO_TEXT)
+            CALL (R9),(ACRESCIMOCALCULADO,READABLE_TEXT),VL,           X
+               LINKINST=BASR
+            MVC   WTO_2+8+21(35),READABLE_TEXT
+WTO_2       WTO 'Acrescimo calculado:                                  X
+                                            '
+            LAY   R14,=H'15'
+            LAY   R15,=H'100'
+            LAY   R0,=DB'+50.0'
+            LLGT  R9,=A(ACRESCIMOPARAJUROS)
+            CALL (R9),((R3),ACRESCIMOCALCULADO,(R14),(R15),(R0)),VL,   X
+               LINKINST=BASR
+            STD   F0,JUROSCALCULADO
+            LLGT  R9,=A(CONVERT_DB_TO_TEXT)
+            CALL (R9),(JUROSCALCULADO,READABLE_TEXT),VL,LINKINST=BASR
+            MVC   WTO_3+8+21(35),READABLE_TEXT
+WTO_3       WTO 'Juros calculado:                                      X
+                                            '
+            LLGT  R9,=A(LIBERAMEMORIA)
+            CALL (R9),LINKINST=BASR
+            LGHI  R15,0                 
+         ENDIF
+         
+RETURN   SUBEXIT RC=(R15)                    Standard exit macro
+         LTORG
+
+***********************************************************************
+*
+* This appears to be a routine to free two arrays of floats.  Skipping.
+* Since we are using static storage areas instead, do nothing.
+*
+***********************************************************************
+LIBERAMEMORIA   SUBENTRY CSECT=NO,RENT=NO,BASES=(R12)
+
+  LGHI   R15,0
+
+  SUBEXIT RC=(R15)
+  DROP  R12
+  LTORG
+
+***********************************************************************
+*
+* This appears to be a dynamic allocation of resources routine.  We'll
+* just overallocate a static area and error if request is beyond the
+* the overallocated size.
+*
+***********************************************************************
+SETQUANTIDADE  SUBENTRY CSECT=NO,RENT=NO,BASES=(R12)
+
+  LLGT  R3,0(,R1)                            Get @JUROS control struct
+  USING JUROS,R3
+  LLGT  R15,4(,R1)                           @ OF QUANTIDADE parm
+  IF (CHHSI,0(R15),GT,15),OR,                Past max value?           X
+               (CHHSI,0(R15),LT,0)
+     MVHHI QUANTIDADE,0                      No can do.
+     LGHI  R15,12                            ERROR
+  ELSE
+     IF (CH,R15,EQ,QUANTIDADE)
+         LGHI  R15,0
+     ELSE
+        MVC   QUANTIDADE,0(R15)              Store in control structure
+        LAY   R0,PAGAMENTOS_STORAGE_ARRAY    Array of extended floats
+        STG   R0,PAGAMENTOS                  Store pointer
+        LAY   R0,PESOS_STORAGE_ARRAY         Array of extended floats
+        STG   R0,PESOS                       Store pointer
+        LGHI  R15,0                          Success
+     ENDIF
+  ENDIF
+  DROP  R3
+
+  SUBEXIT RC=(R15)
+  DROP  R12
+
+***********************************************************************
+*
+* Initialize the control struct
+*
+***********************************************************************
+SETVALORES  SUBENTRY CSECT=NO,RENT=NO,BASES=(R12)
+
+  LLGT  R3,0(,R1)                            Get @JUROS
+  USING JUROS,R3
+  LLGT  R4,4(,R1)                            Get @QUANTIDADE
+  LLGT  R5,8(,R1)                            Get @COMPOSTO
+  LLGT  R6,12(,R1)                           Get @PERIODO
+  LLGT  R9,=A(SETQUANTIDADE)
+  CALL (R9),((R3),(R4)),VL,LINKINST=BASR
+  IF (CHI,R15,EQ,0)                          Good RC?
+     MVC   COMPOSTO,0(R5)                    Init COMPOSTO
+     MVC   PERIODO,0(R6)                     Init PERIODO
+  ELSE
+     MVI   COMPOSTO,X'00'
+     XC    PERIODO,PERIODO
+  ENDIF
+  DROP  R3
+
+  SUBEXIT RC=(R15)                           Propagate RC
+  DROP  R12
+***********************************************************************
+*
+* This looks a tally routine
+*
+***********************************************************************
+GETPESOTOTAL  SUBENTRY CSECT=NO,RENT=NO,BASES=(R12)
+
+  LLGT  R3,0(,R1)                            Get @ of JUROS
+  USING JUROS,R3
+  LD    F0,=DB'+0.0'                         ACCUMULATOR
+  LHI   R0,0                                 INDICE
+  LG    R2,PESOS                             @ of PESOS array
+  DO WHILE=(CH,R0,LT,QUANTIDADE)
+     LLGFR R14,R0
+     SLL   R14,3
+     ADB   F0,0(R14,R2)                      Add indexed DB
+     AHI   R0,1
+  ENDDO
+  DROP  R3
+
+  SUBEXIT RC=0                               F0 is passed back
+  DROP  R12
+
+***********************************************************************
+*
+* Another summing routine
+*
+***********************************************************************
+JUROSPARAACRESCIMO  SUBENTRY CSECT=NO,RENT=NO,BASES=(R12)
+
+  LLGT  R3,0(,R1)                            Get @ of JUROS
+  USING JUROS,R3
+  LLGT  R2,4(,R1)                            Get @ of VALOR
+  LD    F4,0(,R2)                            Get VALOR (F4)
+  IF (CDB,F4,LE,=DB'+0.0')
+     LGHI  R15,0
+     LD    F0,=DB'+0.0'
+     J     JUROSPARAACRESCIMO_EXIT
+  ELSE
+     IF (CHHSI,QUANTIDADE,LE,0)
+        LGHI  R15,0
+        LD    F0,=DB'+0.0'
+        J     JUROSPARAACRESCIMO_EXIT
+     ELSE
+        LD    F0,PERIODO
+        IF (CDB,F0,LE,=DB'+0.0')
+           LGHI  R15,0
+           LD    F0,=DB'+0.0'
+           J     JUROSPARAACRESCIMO_EXIT
+	ENDIF
+     ENDIF
+  ENDIF
+  STD   F4,JUROS_SAVE_F4
+  LLGT  R9,=A(GETPESOTOTAL)
+  CALL (R9),((R3)),VL,LINKINST=BASR
+  LD    F4,JUROS_SAVE_F4
+  STD   F0,JUROS_PESOTOTAL
+  LD    F3,=DB'0.0'                          Acumulador
+  MVHI  JUROS_INDEX,0                        Indice
+  L     R0,JUROS_INDEX
+  DO WHILE=(CH,R0,LT,QUANTIDADE)
+     IF (CLI,COMPOSTO,EQ,X'FF')              "True" indication?
+        LDR   F0,F4                          Temp operation on VALOR
+        DDB   F0,=DB'+100.0'
+        ADB   F0,=DB'+1.0'
+        STD   F0,JUROS_BASE_NUMBER
+        LG    R14,PAGAMENTOS
+        LLGF  R15,JUROS_INDEX
+        SLL   R15,3
+        LD    F0,0(R15,R14)                  Indexed PAGAMENTOS
+        DDB   F0,PERIODO
+        STD   F0,JUROS_EXPONENT
+        STD   F3,JUROS_SAVE_F3
+        STD   F4,JUROS_SAVE_F4
+        LLGT  R9,=A(POWER_OF)
+        CALL (R9),(JUROS_BASE_NUMBER,JUROS_EXPONENT),VL,LINKINST=BASR
+        LD    F3,JUROS_SAVE_F3
+        LD    F4,JUROS_SAVE_F4
+        LG    R14,PESOS
+        LLGF  R15,JUROS_INDEX
+        SLL   R15,3
+        LD    F1,0(R15,R14)                  Indexed PESOS
+        DDBR  F1,F0
+        ADBR  F3,F1                          Accumulate iteration
+     ELSE
+        LDR   F0,F4                          Temp operation on VALOR
+        DDB   F0,=DB'+100.0'
+        LG    R14,PAGAMENTOS
+        LLGF  R15,JUROS_INDEX
+        SLL   R15,3
+        MDB   F0,0(R15,R14)                  Indexed PAGAMENTOS
+        DDB   F0,PERIODO
+        ADB   F0,=DB'+1.0'
+        LG    R14,PESOS
+        LLGF  R15,JUROS_INDEX
+        SLL   R15,3
+        LD    F1,0(R15,R14)                  Indexed PESOS
+        DDBR  F1,F0
+        ADBR  F3,F1                          Accumulate iteration
+     ENDIF
+     ASI   JUROS_INDEX,1
+     L     R0,JUROS_INDEX
+  ENDDO
+
+  IF (CDB,F3,LE,=DB'+0.0'                    Accumulator
+     LD    F0,=DB'+0.0'
+  ELSE
+     LD    F0,JUROS_PESOTOTAL
+     DDBR  F0,F3
+     SDB   F0,=DB'+1.0'
+     MDB   F0,=DB'+100.0'
+  ENDIF
+  LGHI  R15,0
+  DROP  R3
+
+JUROSPARAACRESCIMO_EXIT     DS     0S
+
+  SUBEXIT RC=(R15)
+  DROP  R12
+
+JUROS_PESOTOTAL             DS     DB
+JUROS_BASE_NUMBER           DS     DB
+JUROS_EXPONENT              DS     DB
+JUROS_SAVE_F3               DS     DB
+JUROS_SAVE_F4               DS     DB
+JUROS_INDEX                 DS     F
+
+***********************************************************************
+*
+* Outer interating routine
+*
+***********************************************************************
+ACRESCIMOPARAJUROS     SUBENTRY  CSECT=NO,RENT=NO,BASES=(R12)
+
+  LLGT  R3,0(,R1)                            Get @ of JUROS
+  USING JUROS,R3
+  LLGT  R2,4(,R1)                            Get @ of VALOR
+  LD    F4,0(,R2)                            Get VALOR (F4)
+  LLGT  R2,8(,R1)                            Get @P of RECISAO
+  LLGH  R4,0(,R2)                            Get PRECISAO (R4)
+  LLGT  R2,12(,R1)                           Get @ of MAXITERACOES
+  LLGH  R5,0(,R2)                            Get MAXITERACOES (R5)
+  LLGT  R2,16(,R1)                           Get @ of MAXJUROS
+  LD    F5,0(,R2)                            Get MAXJUROS (F5)
+
+  MVC   ACRES_MINJUROS,=DB'+0.0'
+  MVC   ACRES_MEDJUROS,=DB'+0.0'
+  MVC   ACRES_MINDIFERENCA,=DB'+0.0'
+  MVC   ACRES_PESOTOTAL,=DB'+0.0'
+  MVHI  ACRES_INDEX,0
+  LD    F0,PERIODO
+
+  IF (CHI,R5,LT,1),OR,                                                 X
+               (CHHSI,QUANTIDADE,LE,0),OR,                             X
+               (CHI,R4,LT,1),OR,                                       X
+               (CDB,F4,LE,=DB'+0.0'),OR,                               X
+               (CDB,F0,LE,=DB'+0.0')
+     LD    F0,=DB'+0.0'
+     LGHI  R15,0
+     J     ACRESCIMOPARAJUROS_EXIT
+  ENDIF
+  STD   F4,ACRES_SAVE_F4
+  STD   F5,ACRES_SAVE_F5
+  LLGT  R9,=A(GETPESOTOTAL)
+  CALL (R9),((R3)),VL,LINKINST=BASR
+  LD    F4,ACRES_SAVE_F4
+  LD    F5,ACRES_SAVE_F5
+  STD   F0,ACRES_PESOTOTAL
+  IF (CDB,F0,LE,=DB'+0.0')
+     LD    F0,=DB'+0.0'
+     LGHI  R15,0
+     J     ACRESCIMOPARAJUROS_EXIT
+  ENDIF
+  MVC   ACRES_BASE_NUMBER,=DB'+0.1'
+  CDFBR F0,R4
+  STD   F0,ACRES_EXPONENT
+  STD   F4,ACRES_SAVE_F4
+  STD   F5,ACRES_SAVE_F5
+  LLGT  R9,=A(POWER_OF)
+  CALL (R9),(ACRES_BASE_NUMBER,ACRES_EXPONENT),VL,LINKINST=BASR
+  LD    F4,ACRES_SAVE_F4
+  LD    F5,ACRES_SAVE_F5
+  STD   F0,ACRES_MINDIFERENCA
+
+  MVHI  ACRES_INDEX,0
+  L     R0,ACRES_INDEX
+  DO WHILE=(CR,R0,LT,R5)
+     LD   F0,ACRES_MINJUROS
+     ADBR F0,F5
+     DDB  F0,=DB'+2.0'
+     STD  F0,ACRES_MEDJUROS
+     LDR  F0,F5
+     SDB  F0,ACRES_MINJUROS
+     IF (CDB,F0,LT,ACRES_MINDIFERENCA
+        LD    F0,ACRES_MEDJUROS
+        J     ACRESCIMOPARAJUROS_EXIT
+     ENDIF
+     STD   F4,ACRES_SAVE_F4
+     STD   F5,ACRES_SAVE_F5
+     LLGT  R9,=A(JUROSPARAACRESCIMO)
+     CALL (R9),((R3),ACRES_MEDJUROS),VL,LINKINST=BASR
+     LD    F4,ACRES_SAVE_F4
+     LD    F5,ACRES_SAVE_F5
+     IF (CDBR,F0,LE,F4)
+        MVC   ACRES_MINJUROS,ACRES_MEDJUROS
+     ELSE
+        LD    F5,ACRES_MEDJUROS
+     ENDIF
+
+     ASI   ACRES_INDEX,1
+     L     R0,ACRES_INDEX
+  ENDDO
+  LD    F0,ACRES_MEDJUROS
+  DROP  R3
+
+ACRESCIMOPARAJUROS_EXIT      DS     0H
+
+  SUBEXIT RC=(R15)
+  DROP  R12
+
+ACRES_MINJUROS                  DS     DB
+ACRES_MEDJUROS                  DS     DB
+ACRES_MINDIFERENCA              DS     DB
+ACRES_PESOTOTAL                 DS     DB
+ACRES_BASE_NUMBER               DS     DB
+ACRES_EXPONENT                  DS     DB
+ACRES_SAVE_F4                   DS     DB
+ACRES_SAVE_F5                   DS     DB
+ACRES_INDEX                     DS     F
+***********************************************************************
+*
+* POW(x,y) C function/exponentiation function of two DB variables.
+* Return result in F0 = x ^ y or in C syntax F0/result = pow(x,y);
+* 
+***********************************************************************
+POWER_OF   SUBENTRY CSECT=NO,RENT=NO,BASES=(R12)
+
+  LLGT  R2,0(,R1)                            @ of base number
+  LD    F0,0(,R2)                            Get base number
+  LLGT  R2,4(,R1)                            @ of exponent
+  LD    F1,0(,R2)                            Get exponent
+
+  STD   F0,BASE_NUMBER_X
+  STD   F1,EXPONENT_Y
+  LLGT  R9,=A(LOGARITHM)
+  CALL (R9),(BASE_NUMBER_X),VL,LINKINST=BASR Get ln
+  MDB   F0,EXPONENT_Y                        Get intermediate product
+  STD   F0,INTERMEDIATE_PRODUCT
+  LLGT  R9,=A(ANTI_LOGARITHM)
+  CALL (R9),(INTERMEDIATE_PRODUCT),VL,LINKINST=BASR
+
+  SUBEXIT RC=0                               F0 has # = x^y
+  DROP  R12
+
+BASE_NUMBER_X          DS     DB
+EXPONENT_Y             DS     DB
+INTERMEDIATE_PRODUCT   DS     DB
+***********************************************************************
+* Determine the anti natural logarithm of incoming DB field and pass
+* the result back in F0.  If x is < 0, the result is modified to
+* 1 / result.
+* Series to determine the anti natural logarithm of a positive
+* number 'x' is:
+*
+* double my_exp(double x) {
+*
+*    double result = 1.0;
+*    double term = 1.0;
+*    int n = 1;
+*
+*    while (fabs(term) > 1e-10) { // Adjust precision as needed
+*        term *= x / n;
+*        result += term;
+*        n++;
+*    }
+*    return result
+* }
+*
+***********************************************************************
+ANTI_LOGARITHM   SUBENTRY CSECT=NO,RENT=NO,BASES=(R12)
+
+  LLGT  R2,0(,R1)                            @ of input DB
+  LD    F0,0(,R2)                            Get number to exp(x)
+  IF (CDB,F0,LT,=DB'+0.0')
+     MVI   ANTI_SIGN,C'-'
+     MDB   F0,=DB'-1.0'                      Force ABS(x)
+  ELSE
+     MVI   ANTI_SIGN,C'+'
+  ENDIF
+
+  LD    F1,=DB'+1.0'                         Iterated result
+  LD    F2,=DB'+1.0'                         Term
+  LD    F3,=DB'+1.0'                         Iteration number
+
+  LDR   F4,F2                                Temp work on term
+  IF (CDB,F4,LT,=DB'0.0')                    Get absolute value
+     MDB   F4,=DB'-1.0'                       of the term
+  ENDIF
+  DO WHILE=(CDB,F4,GT,=DB'+1E-12')           Repeat until desired
+      LDR   F4,F0                             precision met
+      DDBR  F4,F3                            Temp work on term
+      MDBR  F2,F4
+      ADBR  F1,F2                            Accumulate into result
+      ADB   F3,=DB'+1.0'                     Iteration counter
+
+      LDR   F4,F2                            Temp work on term
+      IF (CDB,F4,LT,=DB'0.0')
+         MDB   F4,=DB'-1.0'                  Get absolute value
+      ENDIF
+  ENDDO
+
+  LDR   F0,F1                                Returned result in F0
+  IF (CLI,ANTI_SIGN,EQ,C'-')                 Input was a negative #?
+     LD    F1,=DB'+1.0'                      Result = +1.0 / Result
+     DDBR  F1,F0
+     LDR   F0,F1                             Updated result
+  ENDIF
+
+  SUBEXIT RC=0
+  DROP  R12
+ANTI_SIGN               DS     C 
+
+***********************************************************************
+*
+* Determine the natural logarithm of incoming DB field and pass the 
+* result back in F0.
+* Series to determine natural logarithm of number 'u' is:
+* 2/1((u-1)/(u+1))^1 + 2/3((u-1)/(u+1))^3 + 2/5((u-1)/(u+1))^5 +
+* 2/7((u-1)/(u+1))^7 + 2/9((u-1)/(u+1))^9 + 2/11((u-1)/(u+1))^11 ...
+* Iterate the odd number at least 50 times in the series.
+* The series uses as input 'u,' which is the number to solve, and 
+* an odd number increasing by two for each iteration in the leading
+* divisor and the trailing exponent.
+*
+* This algoritm works well for numbers less than 1, but diverges to
+* the point of being useless even with small whole numbers like 50.
+* To solve this, there is a way to scale the larger numbers to a
+* factor and a small number that can be accurately determined.  The
+* answer for u=15 is:
+* 15 / 2 / 2 / 2 / 2 = 0.9375
+* ln(15)=4 x ln(2) + ln(0.9375)
+* Count the number of times it takes to divide 15 by 2 until the
+* quotient is < 1 (4 times).  Then multiply the ln(2) (fixed number)
+* by that number (4) and add the ln of the remaining fraction.
+*
+***********************************************************************
+LOGARITHM   SUBENTRY CSECT=NO,RENT=NO,BASES=(R12)
+
+  LLGT  R2,0(,R1)                            @ of input DB
+
+  LD    F0,0(,R2)                            Get u
+  LD    F1,=DB'+0.0'
+  DO WHILE=(CDB,F0,GT,=DB'+1.0')             Scale number down
+     DDB   F0,=DB'+2.0'
+     ADB   F1,=DB'+1.0'                      Count # of halves
+  ENDDO
+  STD   F1,SCALING_MULTIPLIER
+
+  LDR   F2,F0
+  SDB   F0,=DB'+1.0'                         u - 1
+  ADB   F2,=DB'+1.0'                         u + 1
+  DDBR  F0,F2                                F0 = ((u-1)/(u+1))
+  STD   F0,MULTIPLIER_FOR_EXPONENTIATION
+  
+  LD    F8,=DB'0'                            Zero accumulator
+  LD    F12,=DB'+1.0'                        F12 = 1.0 initially
+  MVHI  LOOP_COUNTER,1                        for leading divisor
+  DO WHILE=(CHSI,LOOP_COUNTER,LE,50)         Iterate 50 times
+     IF (CHSI,LOOP_COUNTER,NE,1)             Do the exponentiation?
+        MDB   F0,MULTIPLIER_FOR_EXPONENTIATION Raise to the next odd
+        MDB   F0,MULTIPLIER_FOR_EXPONENTIATION  power (3, 5, 7, ...)
+     ENDIF
+     STD   F0,ITERATION_OF_U                 Save term
+     LD    F1,=DB'2.0'
+     DDBR  F1,F12                            F1 = leading fraction
+     MDBR  F0,F1                             Completed iteration
+     ADBR  F8,F0                             Accumulate iteration
+
+     LD    F0,ITERATION_OF_U                 Restore for the
+     ASI   LOOP_COUNTER,1                     next iteration
+     ADB   F12,=DB'+2.0'                     Add two to leading divisor
+  ENDDO
+  
+  LD    F0,SCALING_MULTIPLIER
+  IF (CDB,F0,EQ,=DB'+0.0')
+     LDR   F0,F8                             Smaller u result in F0
+  ELSE
+     LD    F0,LN_OF_2
+     MDB   F0,SCALING_MULTIPLIER
+     ADBR  F0,F8                             Result back in F0
+  ENDIF
+
+  SUBEXIT RC=0
+  DROP  R12
+
+LN_OF_2                 DC   DB'+0.69314718055994530941723212145818'
+SCALING_MULTIPLIER      DS   DB
+LOOP_COUNTER            DS   F
+
+***********************************************************************
+*
+* Convert a double binary float to human readable form and return the
+* text string into the passed buffer address.
+*
+***********************************************************************
+CONVERT_DB_TO_TEXT    SUBENTRY CSECT=NO,RENT=NO,BASES=(R12)
+
+  LLGT  R2,0(,R1)
+  LG    R0,0(,R2)                            Get the double to convert
+  LLGT  R2,4(,R1)
+  STG   R2,PASSBACK_RESULT_ADDR
+  IF (LTGR,R0,Z,R0)
+     MVC   0(35,R2),=CL35'+0.0 '
+     SUBEXIT
+  ENDIF
+  LGR   R1,R0
+  NIHH  R1,X'FFF0'
+  SRLG  R1,R1,4
+  IF (TMHH,R1,O,X'0800')                     Negative number?
+     MVI   SIGN_OF_NUMBER,C'-'
+     NIHH  R1,X'F7FF'                        Turn off for processing
+  ELSE
+     MVI   SIGN_OF_NUMBER,C'+'
+  ENDIF
+  STCMH R1,B'1100',EXPONENT                  Absolute value of exponent
+  SLLG  R0,R0,11
+  OIHH  R0,X'8000'                           Turn implied first bit on
+  STG   R0,MANTISSA
+
+  LLGH  R0,EXPONENT                          See if less than 1.0
+  AHI   R0,-1023
+  IF (LTR,R0,NM,R0)                          Zero or highter,
+     AHI   R0,1                               whole number+fraction,
+     IIHF  R0,53                             53 bits of significance
+     LG    R2,MANTISSA                       R0 low=# of bits of whole
+     LGR   R3,R0
+     AGHI  R3,-1
+     MGHI  R3,L'WHOLE_POWER_0
+     LA    R3,WHOLE_NUMBER_TABLE_OF_2(R3)
+     ZAP   SUMMING_WHOLE_PART,=P'0'
+     DO WHILE=((CHI,R0,GT,0),AND,            For each whole part bit   X
+               (CIH,R0,GT,0))                 and # of bits altogether
+        IF (TMHH,R2,O,X'8000')               Bit of significance on?
+           AP   SUMMING_WHOLE_PART,0(L'WHOLE_POWER_0,R3)
+        ENDIF
+        AHI   R0,-1
+        AGHI  R3,-L'WHOLE_POWER_0
+        SLLG  R2,R2,1
+        AIH   R0,-1                          Total bits down by 1
+     ENDDO ,                                 Now do fractional part
+     ZAP   SUMMING_FRACTION_PART,=P'0'
+     LA    R3,FRACTION_NUMBER_TABLE_OF_2
+     DO WHILE=(CIH,R0,GT,0)
+        IF (TMHH,R2,O,X'8000')               Bit of significance on?
+           AP    SUMMING_FRACTION_PART,0(L'FRACTION_POWER_1,R3)
+        ENDIF
+        AGHI  R3,L'FRACTION_POWER_1
+        SLLG  R2,R2,1
+        AIH   R0,-1
+     ENDDO
+  ELSE ,                                     Fraction only number
+     LPR   R0,R0                             Invert to get # of bits
+     IIHF  R0,53
+     ZAP   SUMMING_WHOLE_PART,=P'0'          Whole part
+     ZAP   SUMMING_FRACTION_PART,=P'0'       Start from zero
+     LG    R2,MANTISSA
+     LGFR  R3,R0
+     AGHI  R3,-1
+     MGHI  R3,L'FRACTION_POWER_1
+     LA    R3,FRACTION_NUMBER_TABLE_OF_2(R3)
+     DO WHILE=((CHI,R0,GT,0),AND,            For each fraction part bitX
+               (CIH,R0,GT,0),AND,                                      X
+               (CG,R3,LT,END_OF_FRACTION_TABLE))
+        IF (TMHH,R2,O,X'8000')               Bit of significance on?
+           AP    SUMMING_FRACTION_PART,0(L'FRACTION_POWER_1,R3)
+        ENDIF
+        AGHI  R3,L'FRACTION_POWER_1
+        SLLG  R2,R2,1
+        AIH   R0,-1
+     ENDDO
+  ENDIF   
+  
+  LG    R3,PASSBACK_RESULT_ADDR
+  MVC   0(L'SIGN_OF_NUMBER,R3),SIGN_OF_NUMBER
+  LA    R3,1(,R3)
+  UNPK  0(15,R3),SUMMING_WHOLE_PART(8)
+  UNPK  14(15,R3),SUMMING_WHOLE_PART+7(8)
+  UNPK  28(3,R3),SUMMING_WHOLE_PART+14(2)
+  OI    30(R3),X'F0'
+  LGHI  R1,0               Emulator bug TRT not zeroing high half of R1
+  IF (TRT,1(30,R3),EQ,FIND_NOT_ZERO_TAB)     No non-zeros found
+     MVI   1(R3),C'.'
+     LA    R3,2(,R3)                         Addr to put down fraction
+  ELSE
+     SLGRK R2,R1,R3                          Left justify whole part
+     LGHI  R15,32
+     SGR   R15,R2
+     AGHI  R15,-1                            For EX instruction
+     EX    R15,MVC_COMPRESS_WHOLE
+     LA    R3,0(R15,R3)
+     MVI   0(R3),C'.'
+     LA    R3,1(,R3)                         Addr to put down fraction
+  ENDIF
+  UNPK  0(15,R3),SUMMING_FRACTION_PART(8)
+  UNPK  14(15,R3),SUMMING_FRACTION_PART+7(8)
+  UNPK  28(3,R3),SUMMING_FRACTION_PART+14(2)
+  OI    30(R3),X'F0'
+  LG    R14,PASSBACK_RESULT_ADDR
+  TRT   0(64,R14),FIND_A_BLANK_TAB
+  AGHI  R1,-1
+  DO WHILE=(CLI,0(R1),EQ,C'0')
+     MVI   0(R1),C' '
+     AGHI  R1,-1
+  ENDDO
+  IF (CLI,0(R1),EQ,C'.')
+     MVI   1(R1),C'0'
+  ENDIF
+
+  SUBEXIT RC=0
+
+MVC_COMPRESS_WHOLE  MVC  0(0,R3),0(R1)
+WHOLE_NUMBER_TABLE_OF_2   DS    0H
+WHOLE_POWER_0             DC    PL9'1'
+WHOLE_POWER_1             DC    PL9'2'
+WHOLE_POWER_2             DC    PL9'4'
+WHOLE_POWER_3             DC    PL9'8'
+WHOLE_POWER_4             DC    PL9'16'
+WHOLE_POWER_5             DC    PL9'32'
+WHOLE_POWER_6             DC    PL9'64'
+WHOLE_POWER_7             DC    PL9'128'
+WHOLE_POWER_8             DC    PL9'256'
+WHOLE_POWER_9             DC    PL9'512'
+WHOLE_POWER_10            DC    PL9'1024'
+WHOLE_POWER_11            DC    PL9'2048'
+WHOLE_POWER_12            DC    PL9'4096'
+WHOLE_POWER_13            DC    PL9'8192'
+WHOLE_POWER_14            DC    PL9'16384'
+WHOLE_POWER_15            DC    PL9'32768'
+WHOLE_POWER_16            DC    PL9'65536'
+WHOLE_POWER_17            DC    PL9'131072'
+WHOLE_POWER_18            DC    PL9'262144'
+WHOLE_POWER_19            DC    PL9'524288'
+WHOLE_POWER_20            DC    PL9'1048576'
+WHOLE_POWER_21            DC    PL9'2097152'
+WHOLE_POWER_22            DC    PL9'4194304'
+WHOLE_POWER_23            DC    PL9'8388608'
+WHOLE_POWER_24            DC    PL9'16777216'
+WHOLE_POWER_25            DC    PL9'33554432'
+WHOLE_POWER_26            DC    PL9'67108864'
+WHOLE_POWER_27            DC    PL9'134217728'
+WHOLE_POWER_28            DC    PL9'268435456'
+WHOLE_POWER_29            DC    PL9'536870912'
+WHOLE_POWER_30            DC    PL9'1073741824'
+WHOLE_POWER_31            DC    PL9'2147483648'
+WHOLE_POWER_32            DC    PL9'4294967296'
+WHOLE_POWER_33            DC    PL9'8589934592'
+WHOLE_POWER_34            DC    PL9'17179869184'
+WHOLE_POWER_35            DC    PL9'34359738368'
+WHOLE_POWER_36            DC    PL9'68719476736'
+WHOLE_POWER_37            DC    PL9'137438953472'
+WHOLE_POWER_38            DC    PL9'274877906944'
+WHOLE_POWER_39            DC    PL9'549755813888'
+WHOLE_POWER_40            DC    PL9'1099511627776'
+WHOLE_POWER_41            DC    PL9'2199023255552'
+WHOLE_POWER_42            DC    PL9'4398046511104'
+WHOLE_POWER_43            DC    PL9'8796093022208'
+WHOLE_POWER_44            DC    PL9'17592186044416'
+WHOLE_POWER_45            DC    PL9'35184372088832'
+WHOLE_POWER_46            DC    PL9'70368744177664'
+WHOLE_POWER_47            DC    PL9'140737488355328'
+WHOLE_POWER_48            DC    PL9'281474976710656'
+WHOLE_POWER_49            DC    PL9'562949953421312'
+WHOLE_POWER_50            DC    PL9'1125899906842624'
+WHOLE_POWER_51            DC    PL9'2251799813685248'
+WHOLE_POWER_52            DC    PL9'4503599627370496'
+WHOLE_POWER_53            DC    PL9'9007199254740992'
+FRACTION_NUMBER_TABLE_OF_2  DS  0D
+FRACTION_POWER_1          DC    PL16'5000000000000000000000000000000'
+FRACTION_POWER_2          DC    PL16'2500000000000000000000000000000'
+FRACTION_POWER_3          DC    PL16'1250000000000000000000000000000'
+FRACTION_POWER_4          DC    PL16'0625000000000000000000000000000'
+FRACTION_POWER_5          DC    PL16'0312500000000000000000000000000'
+FRACTION_POWER_6          DC    PL16'0156250000000000000000000000000'
+FRACTION_POWER_7          DC    PL16'0078125000000000000000000000000'
+FRACTION_POWER_8          DC    PL16'0039062500000000000000000000000'
+FRACTION_POWER_9          DC    PL16'0019531250000000000000000000000'
+FRACTION_POWER_10         DC    PL16'0009765625000000000000000000000'
+FRACTION_POWER_11         DC    PL16'0004882812500000000000000000000'
+FRACTION_POWER_12         DC    PL16'0002441406250000000000000000000'
+FRACTION_POWER_13         DC    PL16'0001220703125000000000000000000'
+FRACTION_POWER_14         DC    PL16'0000610351562500000000000000000'
+FRACTION_POWER_15         DC    PL16'0000305175781250000000000000000'
+FRACTION_POWER_16         DC    PL16'0000152587890625000000000000000'
+FRACTION_POWER_17         DC    PL16'0000076293945312500000000000000'
+FRACTION_POWER_18         DC    PL16'0000038146972656250000000000000'
+FRACTION_POWER_19         DC    PL16'0000019073486328125000000000000'
+FRACTION_POWER_20         DC    PL16'0000009536743164062500000000000'
+FRACTION_POWER_21         DC    PL16'0000004768371582031250000000000'
+FRACTION_POWER_22         DC    PL16'0000002384185791015625000000000'
+FRACTION_POWER_23         DC    PL16'0000001192092895507812500000000'
+FRACTION_POWER_24         DC    PL16'0000000596046447753906250000000'
+FRACTION_POWER_25         DC    PL16'0000000298023223876953125000000'
+FRACTION_POWER_26         DC    PL16'0000000149011611938476562500000'
+FRACTION_POWER_27         DC    PL16'0000000074505805969238281250000'
+FRACTION_POWER_28         DC    PL16'0000000037252902984619140625000'
+FRACTION_POWER_29         DC    PL16'0000000018626451492309570312500'
+FRACTION_POWER_30         DC    PL16'0000000009313225746154785156250'
+FRACTION_POWER_31         DC    PL16'0000000004656612873077392578125'
+FRACTION_POWER_32         DC    PL16'0000000002328306436538696289062'
+FRACTION_POWER_33         DC    PL16'0000000001164153218269348144531'
+FRACTION_POWER_34         DC    PL16'0000000000582076609134674072265'
+FRACTION_POWER_35         DC    PL16'0000000000291038304567337036132'
+FRACTION_POWER_36         DC    PL16'0000000000145519152283668518066'
+FRACTION_POWER_37         DC    PL16'0000000000072759576141834259033'
+FRACTION_POWER_38         DC    PL16'0000000000036379788070917129516'
+FRACTION_POWER_39         DC    PL16'0000000000018189894035458564758'
+FRACTION_POWER_40         DC    PL16'0000000000009094947017729282379'
+FRACTION_POWER_41         DC    PL16'0000000000004547473508864641189'
+FRACTION_POWER_42         DC    PL16'0000000000002273736754432320594'
+FRACTION_POWER_43         DC    PL16'0000000000001136868377216160297'
+FRACTION_POWER_44         DC    PL16'0000000000000568434188608080148'
+FRACTION_POWER_45         DC    PL16'0000000000000284217094304040074'
+FRACTION_POWER_46         DC    PL16'0000000000000142108547152020037'
+FRACTION_POWER_47         DC    PL16'0000000000000071054273576010018'
+FRACTION_POWER_48         DC    PL16'0000000000000035527136788005009'
+FRACTION_POWER_49         DC    PL16'0000000000000017763568394002504'
+FRACTION_POWER_50         DC    PL16'0000000000000008881784197001252'
+FRACTION_POWER_51         DC    PL16'0000000000000004440892098500626'
+FRACTION_POWER_52         DC    PL16'0000000000000002220446049250313'
+FRACTION_POWER_53         DC    PL16'0000000000000001110223024625156'
+FRACTION_POWER_54         DC    PL16'0000000000000000555111512312578'
+FRACTION_POWER_55         DC    PL16'0000000000000000277555756156289'
+FRACTION_POWER_56         DC    PL16'0000000000000000138777878078144'
+END_OF_FRACTION_TABLE     DC    AD(END_OF_FRACTION_TABLE)
+FIND_NOT_ZERO_TAB         DC    256X'00'
+                          ORG   FIND_NOT_ZERO_TAB+C'1'
+                          DC    C'123456789'
+                          ORG
+FIND_A_BLANK_TAB          DC    256X'00'
+                          ORG   FIND_A_BLANK_TAB+C' '
+                          DC    X'FF'
+                          ORG
+
+SUMMING_WHOLE_PART        DC    PL16'0'
+SUMMING_FRACTION_PART     DC    PL16'0'
+
+  DROP  R12
+***********************************************************************
+* Provide a recovery point to print the floating point registers and
+* the general registers on an abend.
+***********************************************************************
+RECOVERY_ROUTINE   DS   0S
+
+  PUSH USING
+  SLLG  R12,R12,32                           Shift original contents
+  BASR  R12,0
+  USING *,R12
+  SAM31
+  STFPC FP_CONTROL
+  STMG  R0,R15,RECOVERY_ROUTINE_REGS
+  STD   F0,RECOVERY_ROUTINE_FREGS+0
+  STD   F1,RECOVERY_ROUTINE_FREGS+8*1
+  STD   F2,RECOVERY_ROUTINE_FREGS+8*2
+  STD   F3,RECOVERY_ROUTINE_FREGS+8*3
+  STD   F4,RECOVERY_ROUTINE_FREGS+8*4
+  STD   F5,RECOVERY_ROUTINE_FREGS+8*5
+  STD   F6,RECOVERY_ROUTINE_FREGS+8*6
+  STD   F7,RECOVERY_ROUTINE_FREGS+8*7
+  STD   F8,RECOVERY_ROUTINE_FREGS+8*8
+  STD   F9,RECOVERY_ROUTINE_FREGS+8*9
+  STD   F10,RECOVERY_ROUTINE_FREGS+8*10
+  STD   F11,RECOVERY_ROUTINE_FREGS+8*11
+  STD   F12,RECOVERY_ROUTINE_FREGS+8*12
+  STD   F13,RECOVERY_ROUTINE_FREGS+8*13
+  STD   F14,RECOVERY_ROUTINE_FREGS+8*14
+  STD   F15,RECOVERY_ROUTINE_FREGS+8*15
+
+  DC    X'0000'
+  POP   USING
+
+*************************************
+* Local storage
+*************************************
+PESOTOTAL                      DS     DB
+ACRESCIMOCALCULADO             DS     DB
+JUROSCALCULADO                 DS     DB
+ITERATION_OF_U                 DS     DB
+MULTIPLIER_FOR_EXPONENTIATION  DS     DB
+PAGAMENTOS_STORAGE_ARRAY       DS     15DB       15 should be enough
+PESOS_STORAGE_ARRAY            DS     15DB       2nd 15 Double floats
+DOUBLE                         DS     DB
+READABLE_TEXT                  DC     CL100' '
+SIGN_OF_NUMBER                 DS     C
+PASSBACK_RESULT_ADDR           DS     AD
+                               CNOP   6,8
+EXPONENT                       DS     H
+MANTISSA                       DS     FD
+                               DS     0FD
+JUROS_STORAGE                  DS     CL(JUROS_L)
+FP_CONTROL                     DS     F
+RECOVERY_ROUTINE_REGS          DS     16FD
+RECOVERY_ROUTINE_FREGS         DS     16DB
+
+* MYWTO           WTOREGS MF=L
+               
+         LTORG
+JUROS           DSECT
+QUANTIDADE      DS     H
+COMPOSTO        DS     X
+PERIODO         DS     DB
+PAGAMENTOS      DS     AD
+PESOS           DS     AD
+JUROS_L         EQU    *-JUROS
+
+         END   TRANS

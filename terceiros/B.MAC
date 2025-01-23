@@ -1,0 +1,6 @@
+         MACRO
+.* The B macro changes the B D(X,B) type instruction to
+.* relative branching
+&LABEL   B
+&LABEL   J       &SYSLIST(1)
+         MEND

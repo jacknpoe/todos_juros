@@ -1,0 +1,4 @@
+B_       OPSYN    B
+BC_      OPSYN    BC
+         COPY     B.MAC
+         COPY     BC.MAC

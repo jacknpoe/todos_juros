@@ -4,6 +4,8 @@ PORTUGUÊS
 =========
 Este repositório é sobre codificar, em várias linguagens, a mesma solução em matemática financeira. Achar os juros a partir do acréscimo, das datas e pesos das parcelas. Eu uso o Método da Bisseção do Cálculo Numérico para resolvê-la. A ideia é que cada versão se fixe ao máximo à cultura de cada linguagem. Eu uso o mínimo de recursos possível. Eu evito adicionar qualquer biblioteca que eu puder.
 
+O foco é resolver o problema de Matemática Financeira usando Cálculo Numérico. Então, algumas linguagens que exigiriam um conhecimento maior de matemática, como exponenciação de números de ponto flutuante, estão sendo preteridas até o momento.
+
 Fórmula para calcular o acréscimo a partir dos juros simples:
 
 ![Juros Simples](https://github.com/jacknpoe/todos_juros/blob/main/JurosSimples.jpg)
@@ -39,6 +41,8 @@ A licença é GNU (https://www.gnu.org/licenses/gpl-3.0.html).
 ENGLISH
 =======
 This repository is about coding, in multiple languages, the same solution in financial mathematics. To find the interest based on the increase, dates and weights of the installments. I use the Bisection Method of Numerical Calculus to solve it. The idea is that each version adheres to the culture of each language as much as possible. I use as few resources as possible. I avoid adding any libraries I can.
+
+The focus is to solve the Financial Mathematics problem using Numerical Calculus. Therefore, some languages ​​that would require greater knowledge of mathematics, such as exponentiation of floating point numbers, are being deprecated for now.
 
 Formula for calculating the increase from simple interest:
 

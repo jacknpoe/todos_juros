@@ -40,7 +40,7 @@
         RETURN (pesoTotal / acumulador - 1.0) * 100.0;
     END jurosParaAcrescimo;
 
-    /* calcua os juros a partir do acréscimo e parcelas */
+    /* calcula os juros a partir do acréscimo e parcelas */
     FUNCTION acrescimoParaJuros(acrescimo DOUBLE PRECISION, precisao INT,
         maxIteracoes INT, maximoJuros DOUBLE PRECISION) RETURN DOUBLE PRECISION IS
         pesoTotal DOUBLE PRECISION;

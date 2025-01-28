@@ -1,18 +1,25 @@
 // Cálculo dos juros, sendo que precisa de parcelas pra isso
 // Versão 0.1:  27/01/2025: versão feita sem muito conhecimento de GML
+//        0.2:  28/01/2025: generalizada toString() para todo tipo de número (negativos e menores que um)
 
 // essa função converte um Real em String, respeitando o númnero de casas depois da vírgula
 function toString(valor, casas) {
+	var sinal = "";
+	if (valor <= 0.0) {
+		valor *= (-1.0);
+		sinal = "-";
+	}
+
 	valor *= round(power(10, casas));
-	acumulador = "";
+	var acumulador = "";
 	
-	while (valor > 0 || string_length(acumulador) < casas) {
+	while (valor > 0 || string_length(acumulador) < (casas + 2)) {
 		if (string_length(acumulador) == casas) { acumulador = "," + acumulador; }
-		temp = valor % 10;
+		temp = round(valor % 10);
 		valor = floor(valor / 10);
 		acumulador = string("{0}", temp) + acumulador;
 	}
-	return acumulador;
+	return sinal + acumulador;
 }
 
 // calcula a somatória do array Pesos[]

@@ -1,0 +1,84 @@
+PROGRAM juros
+REM Cálculo dos juros, sendo que precisa de parcelas pra isso
+REM Versão 0.1: 29/01/2025: versão feita sem muito conhecimento de True BASIC
+
+REM variávei globais para simplificar as chamadas às funções e inicializa variáveis escalares
+LET quantidade = 3
+LET composto = 1
+LET periodo = 30.0
+DIM pagamentos(3)
+DIM pesos(3)
+
+REM calcula a somatória de pesos()
+DEF getPesoTotal
+    LET acumulador = 0.0
+    FOR indice = 1 TO quantidade
+        LET acumulador = acumulador + pesos(indice)
+    NEXT indice
+    LET getPesoTotal = acumulador
+END DEF
+
+REM calcula o acréscimo a partir dos juros e parcelas
+DEF jurosParaAcrescimo(juros)
+    LET pesoTotal = getPesoTotal
+    IF juros <= 0.0 OR quantidade < 1 OR periodo <= 0.0 OR pesoTotal <= 0.0 THEN
+       LET jurosParaAcrescimo = 0.0
+    ELSE
+       LET acumulador = 0.0
+
+        FOR indice = 1 TO quantidade
+           IF composto = 1 THEN
+              LET acumulador = acumulador + pesos(indice) / (1.0 + juros / 100.0) ^ (pagamentos(indice) / periodo)
+           ELSE
+              LET acumulador = acumulador + pesos(indice) / (1.0 + juros / 100.0 * pagamentos(indice) / periodo)
+           END IF
+       NEXT indice
+
+       IF acumulador <= 0.0 THEN
+          LET jurosParaAcrescimo = 0.0
+       ELSE
+          LET jurosParaAcrescimo = (pesoTotal / acumulador - 1.0) * 100.0
+       END IF
+    END IF
+END DEF
+
+REM calcula os juros a partir do acréscimo e parcelas
+DEF acrescimoParaJuros(acrescimo, precisao, maxIteracoes, maxJuros)
+    LET pesoTotal = getPesoTotal
+    IF acrescimo <= 0.0 OR quantidade < 1 OR periodo <= 0.0 OR pesoTotal <= 0.0 OR precisao < 1 OR maxIteracoes < 1 OR maxJuros <= 0.0 THEN
+       LET acrescimoParaJuros = 0.0
+    ELSE
+        LET minJuros = 0.0
+        LET medJuros = maxJuros / 2.0
+        LET minDiferenca = 0.1 ^ precisao
+
+        FOR indice = 1 TO maxIteracoes
+            LET medJuros = (minJuros + maxJuros) / 2.0
+            IF (maxJuros - minJuros) < minDiferenca THEN EXIT FOR
+            IF jurosParaAcrescimo(medJuros) < acrescimo THEN
+                LET minJuros = medJuros
+            ELSE
+                LET maxJuros = medJuros
+            END IF
+        NEXT indice
+
+        LET acrescimoParaJuros = medJuros
+    END IF
+END DEF
+
+REM inicializa valores para os arrays
+FOR indice = 1 to quantidade
+    LET pagamentos(indice) = 30.0 * indice
+    LET pesos(indice) = 1.0
+NEXT indice
+
+REM calcula e guarda os retornos das funções
+LET pesoTotal = getPesoTotal
+LET acrescimoCalculado = jurosParaAcrescimo(3.0)
+LET jurosCalculado = acrescimoParaJuros(acrescimoCalculado, 15, 100, 50.0)
+
+REM imprime os resultados
+PRINT "Peso total =", pesoTotal
+PRINT "Acréscimo =", acrescimoCalculado
+PRINT "Juros =", jurosCalculado
+END

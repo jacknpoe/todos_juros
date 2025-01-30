@@ -614,10 +614,14 @@ juros_xc.bas
 
 Juros.xtend
 
-136. Yeti (31/05/2024)
+136. Yabasic (30/01/2025)
+
+JUROSYB.BAS
+
+137. Yeti (31/05/2024)
 
 juros.yeti
 
-137. Zig (17/06/2024)
+138. Zig (17/06/2024)
 
 juros.zig

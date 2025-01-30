@@ -3,13 +3,6 @@ PROGRAM JUROSDB
 REM Cálculo dos juros, sendo que precisa de parcelas pra isso
 REM Versão 0.1:  30/01/2025: versão feita sem muito conhecimento de Decimal BASIC
 
-REM variáveis globais para simplificar as chamadas
-REM PUBLIC NUMERIC Quantidade
-REM PUBLIC NUMERIC Composto
-REM PUBLIC NUMERIC Periodo
-REM PUBLIC NUMERIC Pagamentos(1000)
-REM PUBLIC NUMERIC Pesos(1000)
-
 REM calcula a somatória de Pesos()
 FUNCTION getPesoTotal
    LET acumulador = 0.0

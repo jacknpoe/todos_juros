@@ -1,6 +1,6 @@
-136 resoluções de equação transcendente
+137 resoluções de equação transcendente
 
-Desde que esse artigo foi publicado, mais 126 resoluções foram acrescentadas ao repositório https://github.com/jacknpoe/todos_juros, totalizando, agora, 136 resoluções.
+Desde que esse artigo foi publicado, mais 127 resoluções foram acrescentadas ao repositório https://github.com/jacknpoe/todos_juros, totalizando, agora, 137 resoluções.
 
 No artigo Resolução de Equação Transcendente, foi explicado como uma equação que calcula os juros a partir do acréscimo e das parcelas pode ser feita usando Cálculo Numérico, especificamente o Método da Bisseção.
 
@@ -512,108 +512,112 @@ juros.spider
 
 testajuros.html
 
-112. Squirrel (18/06/2024)
+112. Squint (30/01/2025)
+
+jacknpoe.juros.cljs
+
+113. Squirrel (18/06/2024)
 
 juros.nut
 
-113. Stride (10/06/2024)
+114. Stride (10/06/2024)
 
 Juros.stride
 
 TestaJuros.stride
 
-114. SuperPascal (16/07/2024)
+115. SuperPascal (16/07/2024)
 
 juros.sp
 
-115. Swift (23/03/2024)
+116. Swift (23/03/2024)
 
 juros.swift
 
-116. Tcl (05/06/2024)
+117. Tcl (05/06/2024)
 
 juros.tcl
 
-117. True BASIC (29/01/2025)
+118. True BASIC (29/01/2025)
 
 juros.tru
 
-118. Turing (07/06/2024)
+119. Turing (07/06/2024)
 
 juros.t
 
-119. twinBASIC (28/05/2024)
+120. twinBASIC (28/05/2024)
 
 juros.twinproj
 
-120. TypeScript (03/03/2024)
+121. TypeScript (03/03/2024)
 
 Juros.ts
 
 TesteJuros.ts
 
-121. Umple (21/07/2024)
+122. Umple (21/07/2024)
 
 TestaJuros.ump
 
-122. Unified Parallel C (01/08/2024)
+123. Unified Parallel C (01/08/2024)
 
 juros.upc
 
-123. V (11/06/2024)
+124. V (11/06/2024)
 
 juros.v
 
-124. Vala (14/06/2024)
+125. Vala (14/06/2024)
 
 juros.vala
 
-125. Virtual Breadboard (15/07/2024)
+126. Virtual Breadboard (15/07/2024)
 
 juros_vbb.java
 
-126. Visual Basic .NET (02/03/2024)
+127. Visual Basic .NET (02/03/2024)
 
 TesteJuros.vb
 
-127. VisuALG (01/05/2024)
+128. VisuALG (01/05/2024)
 
 juros.alg
 
-128. Windows PowerShell (08/01/2025)
+129. Windows PowerShell (08/01/2025)
 
 juros.ps1
 
-129. WLanguage (06/08/2024)
+130. WLanguage (06/08/2024)
 
 juros.wl
 
-130. WolframScript (22/07/2024)
+131. WolframScript (22/07/2024)
 
 juros.wls
 
-131. X# (14/06/2024)
+132. X# (14/06/2024)
 
 Juros.prg
 
 Start.prg
 
-132. X10 (02/08/2024)
+133. X10 (02/08/2024)
 
 TestaJuros.x10
 
-133. XC=BASIC (16/07/2024)
+134. XC=BASIC (16/07/2024)
 
 juros_xc.bas
 
-134. Xtend (03/06/2024)
+135. Xtend (03/06/2024)
 
 Juros.xtend
 
-135. Yeti (31/05/2024)
+136. Yeti (31/05/2024)
 
 juros.yeti
 
-136. Zig (17/06/2024)
+137. Zig (17/06/2024)
 
 juros.zig

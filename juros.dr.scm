@@ -1,6 +1,6 @@
 #lang scheme
 ;; Cálculo do juros, sendo que precisa de arrays pra isso
-;; Versão 0.1: 31/01/2025: a partir da versão em Scheme, alterados os IFs  para não terem return-from
+;; Versão 0.1: 31/01/2025: a partir da versão em Scheme, alterados os IFs para não terem return-from
 
 ;; Variáveis globais para simplificar as chamadas
 (define Quantidade 3)

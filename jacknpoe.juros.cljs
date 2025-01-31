@@ -1,9 +1,5 @@
 ;; Cálculo do juros, sendo que precisa de arrays pra isso
-;; ver também: http://quil.info/sketches/local/b713344d3290c888e5e3c39d5ab707db54d283938ecc971c5a1d9f32a1baffc0
-;; Versão 0.1: 16/05/2024: versão feita sem muito conhecimento de Clojure: completa
-;;        0.2: 17/05/2024: versão com os ifs que retornam 0.0 na mesma linha (+ getPesoTotal)
-;;        0.3: 17/05/2024: versão com vetores no lugar de listas
-;;        0.4: 17/05/2024: dec no lugar de - 1
+;; Versão 0.1: 30/01/2025: versão feita a partir de Clojure, alterados os prints
 
 ;; namespace
 (ns jacknpoe.juros (:gen-class))

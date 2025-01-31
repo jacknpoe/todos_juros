@@ -1,5 +1,5 @@
 ' Calculo do juros, sendo que precisa de arrays pra isso
-' Versao 1.0: 12/06/2024: versao feita sem muito conhecimento de VB64
+' Versao 0.1: 30/01/2025: versao feita a partir de QB64, mas com um looping alterado
 ' define os valores gerais
 Let quantidade% = 3
 Let composto% = 1

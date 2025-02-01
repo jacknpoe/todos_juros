@@ -91,6 +91,3 @@ e = [1.0, 1.0, 1.0];
 
 // executa a função de testes
 ~teste.value();
-
-//var potencia = base ** expoente;
-// ("Potência =" + potencia.asString).postln;

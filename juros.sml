@@ -18,7 +18,7 @@ fun getPesoTotal () = rGetPesoTotal (quantidade - 1);
 
 (* calcula a soma do amortecimento de todas as parcelas para juros compostos *)
 fun rJurosCompostos indice juros =
-    if indice = 0 then List.nth( pesos, 0) / Math.pow(1.0 + juros / 100.0, List.nth(pagamentos, 0) / periodo)
+    if indice = 0 then List.nth(pesos, 0) / Math.pow(1.0 + juros / 100.0, List.nth(pagamentos, 0) / periodo)
     else rJurosCompostos (indice - 1) juros + List.nth(pesos, indice) / Math.pow(1.0 + juros / 100.0, List.nth(pagamentos, indice) / periodo);
 
 (* calcula a soma do amortecimento de todas as parcelas para juros simples *)

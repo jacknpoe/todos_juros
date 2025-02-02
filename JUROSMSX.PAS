@@ -117,7 +117,7 @@ begin
         juros.Pesos[indice] := 1.0;
     end;
 
-    { testa as funções }
+    { testa as funcoes }
     pesoTotal := getPesoTotal(juros);
     acrescimo := jurosParaAcrescimo(juros, 3.0);
     juroscalculado := acrescimoParaJuros(juros, acrescimo, 15, 100, 50.0);

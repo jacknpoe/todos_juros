@@ -1,5 +1,3 @@
-' Versão 0.2:    04/2024: trocada avaliação soZero por acumulador == 0
-
 Public Class Juros
     Private PQuantidade As Integer
     Public Composto As Boolean
@@ -54,20 +52,20 @@ Public Class Juros
         Return (pesoTotal / acumulador - 1) * 100
     End Function
 
-    Public Function AcrescimoParaJuros(ByVal acrescimo As Double, ByVal precisao As Integer, ByVal maxIteracoes As Integer, ByVal maxJuros As Double)
+    Public Function AcrescimoParaJuros(ByVal acrescimo As Double, ByVal precisao As Integer, ByVal maxIteracoes As Integer, ByVal maxJuros As Double) As Double
         Dim minJuros As Double = 0.0
         Dim medJuros As Double
         Dim minDiferenca As Double
         Dim PesoTotal As Double
         If maxIteracoes < 1 Or Quantidade < 1 Or precisao < 1 Or Periodo <= 0.0 Or acrescimo <= 0 Or maxJuros <= 0 Then Return 0.0
-        pesoTotal = GetPesoTotal
-        If pesoTotal <= 0.0 Then Return 0.0
+        PesoTotal = GetPesoTotal()
+        If PesoTotal <= 0.0 Then Return 0.0
         minDiferenca = 0.1 ^ precisao
 
-        For Indice as Integer = 0 to maxIteracoes - 1
+        For Indice As Integer = 0 To maxIteracoes - 1
             medJuros = (minJuros + maxJuros) / 2
             If (maxJuros - minJuros) < minDiferenca Then Return medJuros
-            if JurosParaAcrescimo(medJuros) <= acrescimo Then
+            If JurosParaAcrescimo(medJuros) <= acrescimo Then
                 minJuros = medJuros
             Else
                 maxJuros = medJuros

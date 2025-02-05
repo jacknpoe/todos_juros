@@ -1,7 +1,7 @@
 -- =============================================
 -- Author:		Ricardo Erick Rebêlo
 -- Create date: 04/02/2025
--- Description:	calcula os juros a partir do acréscimo e parcelas
+-- Description:	calcula o acréscimo a partir dos juros e parcelas
 -- =============================================
 CREATE OR ALTER FUNCTION jurosParaAcrescimo (@Juros float, @Composto int, @Periodo float)
 RETURNS float

@@ -1,0 +1,61 @@
+maintenance: 
+    title: Acrescimo Para Juros;;
+    mlmname: acrescimoParaJuros;;
+    arden: version 2.5;;
+    version: 0.1;;
+    institution: Jacknpoe;;
+    author: Ricardo Erick Rebelo;;
+    specialist: ;;
+    date: 2025-02-06;;
+    validation: testing;;
+
+library: 
+    purpose: calcula os juros;;
+    explanation: a partir do percentual do acrescimo e das parcelas, calcula o peercentual dos juros;;
+    keywords: acrescimo para juros;;
+    citations: ;;
+    links: https://github.com/jacknpoe/todos_juros;;
+
+knowledge:
+    type: data_driven;;
+
+    data:
+       	(juros, composto, periodo, pesos, pagamentos, precisao, maxIteracoes, maxJuros) := ARGUMENT;
+    	acumulador := 0.0;
+    	minJuros := 0.0;
+    	indice := 1;
+    	jurosParaAcrescimo := MLM 'jurosParaAcrescimo';
+    ;;
+
+    evoke: ;;
+
+    logic:
+    	acrescimoCalculado := CALL jurosParaAcrescimo WITH juros, composto, periodo, pesos, pagamentos, TRUE;
+
+		IF acrescimoCalculado <= 0.0 OR precisao < 1 OR maxIteracoes < 1 OR maxJuros <= 0.0 THEN
+			resultado := 0.0;
+		ELSE
+			minDiferenca := 0.1 ** precisao;
+			WHILE indice <= maxIteracoes DO
+				medJuros := (minJuros + maxJuros) / 2.0;
+				IF (maxJuros - minJuros) < minDiferenca THEN
+					indice := maxIteracoes;
+				ENDIF;
+				parcial :=  CALL jurosParaAcrescimo WITH medJuros, composto, periodo, pesos, pagamentos, FALSE;
+				IF parcial < acrescimoCalculado THEN
+					minJuros := medJuros;
+				ELSE
+					maxJuros := medJuros;
+				ENDIF;
+				indice := indice + 1;
+			ENDDO;
+			resultado := medJuros;
+		ENDIF; 
+    	CONCLUDE TRUE;
+    ;;
+
+    action:
+    	WRITE "Acrescimo = " || acrescimoCalculado;
+    	RETURN resultado; 
+    ;;
+end:

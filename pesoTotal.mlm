@@ -1,0 +1,40 @@
+maintenance: 
+    title: Peso Total;;
+    mlmname: pesoTotal;;
+    arden: version 2.5;;
+    version: 0.1;;
+    institution: Jacknpoe;;
+    author: Ricardo Erick Rebelo;;
+    specialist: ;;
+    date: 2025-02-06;;
+    validation: testing;;
+
+library: 
+    purpose: calcula a somatoria da lista pesos;;
+    explanation: incrementa um contador com os valores contidos na lista pesos;;
+    keywords: peso total;;
+    citations: ;;
+    links: https://github.com/jacknpoe/todos_juros;;
+
+knowledge:
+    type: data_driven;;
+
+    data:
+    	(pesos) := ARGUMENT;
+    	acumulador := 0.0; 
+    ;;
+
+    evoke: ;;
+
+    logic:
+    	tamanho := COUNT pesos;
+    	FOR indice IN (1 SEQTO tamanho) DO
+    		acumulador := acumulador + pesos[indice];
+    	ENDDO;
+        CONCLUDE TRUE;
+    ;;
+
+    action:
+    	RETURN acumulador; 
+    ;;
+end:

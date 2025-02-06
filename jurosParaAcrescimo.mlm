@@ -1,0 +1,58 @@
+maintenance: 
+    title: Juros Para Acrescimo;;
+    mlmname: jurosParaAcrescimo;;
+    arden: version 2.5;;
+    version: 0.1;;
+    institution: Jacknpoe;;
+    author: Ricardo Erick Rebelo;;
+    specialist: ;;
+    date: 2025-02-06;;
+    validation: testing;;
+
+library: 
+    purpose: calcula o acrescimo;;
+    explanation: a partir do percentual dos juros e das parcelas, calcula o peercentual do acrescimo;;
+    keywords: juros para acrescimo;;
+    citations: ;;
+    links: https://github.com/jacknpoe/todos_juros;;
+
+knowledge:
+    type: data_driven;;
+
+    data:
+       	(juros, composto, periodo, pesos, pagamentos, imprimir) := ARGUMENT;
+    	acumulador := 0.0;
+       	pesoTotal:= MLM 'pesoTotal';   	
+    ;;
+
+    evoke: ;;
+
+    logic:
+    	pesoTotalCalculado := CALL pesoTotal WITH pesos;
+		IF pesoTotalCalculado <= 0.0 OR juros <= 0.0 OR periodo < 0.0 THEN
+			resultado := 0.0;
+		ELSE
+			tamanho := COUNT pesos;
+			FOR indice IN (1 SEQTO tamanho) DO
+				IF composto THEN
+					acumulador := acumulador + pesos[indice] / (1.0 + juros / 100.0) ** (pagamentos[indice] / periodo);
+				ELSE
+					acumulador := acumulador + pesos[indice] / (1.0 + juros / 100.0 * pagamentos[indice] / periodo);
+				ENDIF;
+			ENDDO;
+			IF acumulador <= 0.0 THEN
+				resultado := 0.0;
+			ELSE
+				resultado := (pesoTotalCalculado / acumulador - 1.0) * 100.0;
+			ENDIF;
+		ENDIF; 
+    	CONCLUDE TRUE;
+    ;;
+
+    action:
+    	IF imprimir THEN
+    		WRITE "Peso total = " || pesoTotalCalculado;
+    	ENDIF;
+    	RETURN resultado; 
+    ;;
+end:

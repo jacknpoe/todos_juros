@@ -1,0 +1,40 @@
+maintenance: 
+    title: Testa Juros ;;
+    mlmname: TestaJuros;;
+    arden: version 2.5;;
+    version: 0.1;;
+    institution: Jacknpoe;;
+    author: Ricardo Erick Rebelo;;
+    specialist: ;;
+    date: 2025-02-06;;
+    validation: testing;;
+
+library: 
+    purpose: testar funcoes de juros;;
+    explanation: testa as funcoes que calculam os juros que, em uma linguagem normal, estariam no mesmo lugar;;
+    keywords: juros, acrescimo, peso total;;
+    citations: ;;
+    links: https://github.com/jacknpoe/todos_juros;;
+
+knowledge:
+    type: data_driven;;
+
+    data:
+    	composto := TRUE;
+    	periodo := 30.0;
+    	pesos := (1.0, 1.0, 1.0);
+    	pagamentos := (30.0, 60.0, 90.0);
+    	acrescimoParaJuros := MLM 'acrescimoParaJuros';
+    ;;
+
+    evoke: ;;
+
+    logic:
+    	jurosCalculado := CALL acrescimoParaJuros WITH 3.0, composto, periodo, pesos, pagamentos, 15, 100, 50.0;
+        CONCLUDE TRUE;
+    ;;
+
+    action:
+  		WRITE "Juros = " || jurosCalculado;
+    ;;
+end:

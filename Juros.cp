@@ -19,7 +19,7 @@ VAR
     indice: INTEGER;
 
 (* calcula a somatória do array pesos[] *)
-PROCEDURE getPesoTotal(rJuros: TJUROS): REAL;
+PROCEDURE getPesoTotal(): REAL;
 VAR
     acumulador: REAL;
     indice: INTEGER;
@@ -32,12 +32,12 @@ BEGIN
 END getPesoTotal;
 
 (* calcula o acréscimo a partir dos juros e parcelas *)
-PROCEDURE jurosParaAcrescimo(rJuros: TJUROS; juros: REAL): REAL;
+PROCEDURE jurosParaAcrescimo(juros: REAL): REAL;
 VAR
     acumulador, pesoTotal: REAL;
     indice: INTEGER;
 BEGIN
-    pesoTotal := getPesoTotal(rJuros);
+    pesoTotal := getPesoTotal();
     IF (pesoTotal <= 0.0) OR (rJuros.quantidade < 1) OR (rJuros.periodo <= 0.0) OR (juros <= 0.0) THEN
         RETURN 0.0;
     END;
@@ -56,12 +56,12 @@ END jurosParaAcrescimo;
 
 
 (* calcula os juros a partir do acréscimo e parcelas *)
-PROCEDURE acrescimoParaJuros(rJuros: TJUROS; acrescimo: REAL; precisao, maxIteracoes: INTEGER; maxJuros: REAL): REAL;
+PROCEDURE acrescimoParaJuros(acrescimo: REAL; precisao, maxIteracoes: INTEGER; maxJuros: REAL): REAL;
 VAR
     minJuros, medJuros, minDiferenca, pesoTotal: REAL;
     indice: INTEGER;
 BEGIN
-    pesoTotal := getPesoTotal(rJuros);
+    pesoTotal := getPesoTotal();
     IF (pesoTotal <= 0.0) OR (rJuros.quantidade < 1) OR (rJuros.periodo <= 0.0) OR (acrescimo <= 0.0) OR (precisao < 1) OR (maxIteracoes < 1) OR (maxJuros <= 0.0) THEN
         RETURN 0.0;
     END;
@@ -73,7 +73,7 @@ BEGIN
         IF (maxJuros - minJuros) < minDiferenca THEN
             RETURN medJuros;
         END;
-        IF jurosParaAcrescimo(rJuros, medJuros) < acrescimo THEN
+        IF jurosParaAcrescimo(medJuros) < acrescimo THEN
             minJuros := medJuros;
         ELSE
             maxJuros := medJuros;
@@ -94,9 +94,9 @@ BEGIN
     END;
 
     (* calcula e guarda o resultado das procedures *)
-    pesoTotal := getPesoTotal(rJuros);
-    acrescimoCalculado := jurosParaAcrescimo(rJuros, 3.0);
-    jurosCalculado := acrescimoParaJuros(rJuros, acrescimoCalculado, 15, 100, 50.0);
+    pesoTotal := getPesoTotal();
+    acrescimoCalculado := jurosParaAcrescimo(3.0);
+    jurosCalculado := acrescimoParaJuros(acrescimoCalculado, 15, 100, 50.0);
 
     (* imprime os resultados *)
     Out.String ("Peso total = "); Out.Real(pesoTotal, 15); Out.Ln;

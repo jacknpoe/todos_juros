@@ -1,0 +1,11 @@
+[Project]
+ProjectName=Juros
+
+[Compiler]
+Module=Priv/Mod/Juros.cp
+CompilerOptions=
+
+[Linker]
+LinkedMods=Kernel$+ Math Strings Console HostConsole HostInit Init Out PrivJuros#
+LinkerMode=Exe
+OutputFile=Juros.exe

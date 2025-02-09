@@ -1,5 +1,5 @@
        *> Cálculo dos juros, sendo que precisa de parcelas pra isso
-       *> Versão 0.1: 07/02/2025: versão feita sem muito conhecimento
+       *> Versão 0.1: 08/02/2025: versão feita sem muito conhecimento
        *>                         de GnuCOBOL
 
        *> programa principal

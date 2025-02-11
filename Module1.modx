@@ -1,0 +1,94 @@
+MODULE Module1
+    ! Cálculo dos juros, sendo que precisa de parcelas pra isso
+    ! Versão 0.1: 11/02/2025: versão feita sem muito conhecimento de RAPID
+    
+    ! variáveis globais para simplificar as chamadas
+    VAR num Quantidade;
+    VAR bool Composto;
+    VAR num Periodo;
+    VAR num Pagamentos{1000};
+    VAR num Pesos{1000};
+    
+    ! calcula a somatória de Pesos()
+    FUNC num getPesoTotal()
+        VAR num acumulador := 0.0;
+        FOR indice FROM 1 TO Quantidade DO
+            acumulador := acumulador + Pesos{indice};
+        ENDFOR
+        RETURN acumulador;
+    ENDFUNC
+    
+    ! calcula o acréscimo a partir dos juros e parcelas
+    FUNC num jurosParaAcrescimo(num juros)
+        VAR num acumulador := 0.0;
+        VAR num pesoTotal;
+
+        pesoTotal := getPesoTotal();
+        IF juros <= 0.0 OR Quantidade < 1 OR Periodo <= 0.0 OR pesoTotal <= 0.0 THEN
+            RETURN 0.0;
+        ENDIF
+        
+        FOR indice FROM 1 TO Quantidade DO
+            IF Composto THEN
+                acumulador := acumulador + Pesos{indice} / Pow(1.0 + juros / 100.0, Pagamentos{indice} / Periodo);
+            ELSE
+                acumulador := acumulador + Pesos{indice} / (1.0 + juros / 100.0 * Pagamentos{indice} / Periodo);
+            ENDIF
+        ENDFOR
+        
+        RETURN (pesoTotal / acumulador - 1.0) * 100.0;
+    ENDFUNC
+
+    ! calcula os juros a partir do acréscimo e parcelas
+    FUNC num acrescimoParaJuros(num acrescimo, num precisao, num maxIteracoes, num maxJuros)
+        VAR num pesoTotal;
+        VAR num minJuros := 0;
+        VAR num medJuros;
+        VAR num minDiferenca;
+        
+        pesoTotal := getPesoTotal();
+        IF acrescimo <= 0.0 OR Quantidade < 1 OR Periodo <= 0.0 OR pesoTotal <= 0.0 OR precisao < 1 OR maxIteracoes < 1 OR maxJuros <= 0.0 THEN
+            RETURN 0.0;
+        ENDIF
+    
+        minDiferenca := Pow(0.1, precisao);
+        FOR indice FROM 1 TO maxIteracoes DO
+            medJuros := (minJuros + maxJuros) / 2.0;
+            IF (maxJuros - minJuros) < minDiferenca THEN
+                RETURN medJuros;
+            ENDIF
+            IF jurosParaAcrescimo(medJuros) < acrescimo THEN
+                minJuros := medJuros;
+            ELSE
+                maxJuros := medJuros;
+            ENDIF
+        ENDFOR
+        
+        RETURN medJuros;
+    ENDFUNC    
+    
+    PROC main()
+        VAR num pesoTotal;
+        VAR num acrescimoCalculado;
+        VAR num jurosCalculado;
+
+        ! inicializa as variáveis globais
+        Quantidade := 3;
+        Composto := TRUE;
+        Periodo := 30.0;
+        FOR indice FROM 1 TO Quantidade DO
+            Pagamentos{indice} := 30.0 * indice;
+            Pesos{indice} := 1.0;
+        ENDFOR
+        
+        ! calcula e guarda os resultados das funções
+        pesoTotal := getPesoTotal();
+        acrescimoCalculado := jurosParaAcrescimo(3.0);
+        jurosCalculado := acrescimoParaJuros(acrescimoCalculado, 15, 100, 50.0);
+        
+        ! imprime os resultados
+        TPWrite "Peso total = " \Num:=pesoTotal;
+        TPWrite "Acréscimo = " \Num:=acrescimoCalculado;
+        TPWrite "Juros = " \Num:=jurosCalculado;
+    ENDPROC
+ENDMODULE

@@ -222,17 +222,17 @@ juros.frink
 
 Juros.gml
 
-49. Genie (13/06/2024)
+49. GDScript (08/04/2024)
+
+Juros.gd
+
+50. Genie (13/06/2024)
 
 juros.gs
 
-50. Go (27/02/2024)
+51. Go (27/02/2024)
 
 juros.go
-
-51. Godot (08/04/2024)
-
-Juros.gd
 
 52. Golo (03/06/2024)
 

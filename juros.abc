@@ -1,0 +1,61 @@
+\ Cálculo dos juros, sendo que precisa de parcelas pra isso
+\ Versão 0.1: 13/02/2025: versão feita sem muito conhecimento de ABC
+
+\ calcula a somatória de pesos[]
+HOW TO RETURN getpesototal (quantidade, pesos):
+    PUT 0.0 IN acumulador
+    FOR indice IN {1..quantidade}:
+        PUT acumulador + pesos[indice] IN acumulador
+    RETURN acumulador
+
+\ calcula os juros a partir do acréscimo e das parcelas
+HOW TO RETURN jurosparaacrescimo (juros, quantidade, composto, periodo, pagamentos, pesos):
+    PUT getpesototal (quantidade, pesos) IN pesototal
+    IF pesototal <= 0.0 OR juros <= 0.0 OR quantidade < 1 OR periodo <= 0.0:
+        RETURN 0
+    PUT 0.0 IN acumulador
+    FOR indice IN {1..quantidade}:
+        SELECT:
+            composto = 1: PUT acumulador + pesos[indice] / (1.0 + juros / 100.0) ** (pagamentos[indice] / periodo) IN acumulador
+            ELSE: PUT acumulador + pesos[indice] / (1.0 + ((juros / 100.0) * pagamentos[indice]) / periodo) IN acumulador
+    IF acumulador <= 0.0:
+        RETURN 0.0
+    RETURN (pesototal / acumulador - 1.0) * 100.0
+
+\ calcula o acrésicmo a partir dos juros e das parcelas
+HOW TO RETURN acrescimoparajuros (acrescimo, precisao, maxiteracoes, maximojuros, quantidade, composto, periodo, pagamentos, pesos):
+    PUT getpesototal (quantidade, pesos) IN pesototal
+    IF pesototal <= 0.0 OR acrescimo <= 0.0 OR quantidade < 1 OR periodo <= 0.0 OR precisao < 1 OR maxiteracoes < 1 OR maximojuros <= 0.0:
+        RETURN 0
+    PUT 0.0 IN minjuros
+    PUT maximojuros IN maxjuros
+    PUT 0.1 ** precisao IN mindiferenca
+    FOR indice IN {1..maxiteracoes}:
+        PUT (minjuros + maxjuros) / 2.0 IN medjuros
+        IF (maxjuros - minjuros) < mindiferenca:
+            RETURN medjuros
+        SELECT:
+            jurosparaacrescimo (medjuros, quantidade, composto, periodo, pagamentos, pesos) < acrescimo: PUT medjuros IN minjuros
+            ELSE: PUT medjuros IN maxjuros
+    RETURN medjuros
+
+\ variáveis em comum
+PUT 3 IN quantidade
+PUT 1 IN composto
+PUT 30.0 IN periodo
+PUT {} IN pagamentos
+PUT {} IN pesos
+
+\ inicializa os arrays
+FOR indice IN {1..quantidade}:
+    PUT indice * 30.0 IN pagamentos[indice]
+    PUT 1.0 IN pesos[indice]
+
+\ calcula e guarda os retornos das funções
+PUT getpesototal (quantidade, pesos) IN pesototal
+PUT jurosparaacrescimo (3.0, quantidade, composto, periodo, pagamentos, pesos) IN acrescimocalculado
+PUT acrescimoparajuros (acrescimocalculado, 15, 100, 50.0, quantidade, composto, periodo, pagamentos, pesos) IN juroscalculado
+
+WRITE "Peso total =", pesototal / 
+WRITE "Acrescimo =", acrescimocalculado /
+WRITE "Juros =", juroscalculado /

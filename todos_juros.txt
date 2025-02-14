@@ -1,6 +1,6 @@
-159 resoluções de equação transcendente
+160 resoluções de equação transcendente
 
-Desde que esse artigo foi publicado, mais 149 resoluções foram acrescentadas ao repositório https://github.com/jacknpoe/todos_juros, totalizando, agora, 159 resoluções.
+Desde que esse artigo foi publicado, mais 160 resoluções foram acrescentadas ao repositório https://github.com/jacknpoe/todos_juros, totalizando, agora, 160 resoluções.
 
 No artigo Resolução de Equação Transcendente, foi explicado como uma equação que calcula os juros a partir do acréscimo e das parcelas pode ser feita usando Cálculo Numérico, especificamente o Método da Bisseção.
 
@@ -682,48 +682,52 @@ Juros.frm
 
 TesteJuros.vb
 
-149. VisuALG (01/05/2024)
+149. Visual FoxPro (14/02/2025)
+
+jurosVFP.prg
+
+150. VisuALG (01/05/2024)
 
 juros.alg
 
-150. Windows PowerShell (08/01/2025)
+151. Windows PowerShell (08/01/2025)
 
 juros.ps1
 
-151. WLanguage (06/08/2024)
+152. WLanguage (06/08/2024)
 
 juros.wl
 
-152. WolframScript (22/07/2024)
+153. WolframScript (22/07/2024)
 
 juros.wls
 
-153. X# (14/06/2024)
+154. X# (14/06/2024)
 
 Juros.prg
 
 Start.prg
 
-154. X10 (02/08/2024)
+155. X10 (02/08/2024)
 
 TestaJuros.x10
 
-155. XC=BASIC (16/07/2024)
+156. XC=BASIC (16/07/2024)
 
 juros_xc.bas
 
-156. Xtend (03/06/2024)
+157. Xtend (03/06/2024)
 
 Juros.xtend
 
-157. Yabasic (30/01/2025)
+158. Yabasic (30/01/2025)
 
 JUROSYB.BAS
 
-158. Yeti (31/05/2024)
+159. Yeti (31/05/2024)
 
 juros.yeti
 
-159. Zig (17/06/2024)
+160. Zig (17/06/2024)
 
 juros.zig

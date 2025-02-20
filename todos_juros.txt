@@ -1,6 +1,6 @@
-166 resoluções de equação transcendente
+167 resoluções de equação transcendente
 
-Desde que esse artigo foi publicado, mais 156 resoluções foram acrescentadas ao repositório https://github.com/jacknpoe/todos_juros, totalizando, agora, 166 resoluções.
+Desde que esse artigo foi publicado, mais 157 resoluções foram acrescentadas ao repositório https://github.com/jacknpoe/todos_juros, totalizando, agora, 167 resoluções.
 
 No artigo Resolução de Equação Transcendente, foi explicado como uma equação que calcula os juros a partir do acréscimo e das parcelas pode ser feita usando Cálculo Numérico, especificamente o Método da Bisseção.
 
@@ -748,18 +748,22 @@ juros.xojo_binary_project
 
 juros.xpl
 
-163. Xtend (03/06/2024)
+163. XSB (19/02/2025)
+
+juros.P
+
+164. Xtend (03/06/2024)
 
 Juros.xtend
 
-164. Yabasic (30/01/2025)
+165. Yabasic (30/01/2025)
 
 JUROSYB.BAS
 
-165. Yeti (31/05/2024)
+166. Yeti (31/05/2024)
 
 juros.yeti
 
-166. Zig (17/06/2024)
+167. Zig (17/06/2024)
 
 juros.zig

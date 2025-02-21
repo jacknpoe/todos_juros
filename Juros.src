@@ -3,33 +3,6 @@
 
 Use Windows.pkg
 
-// a classe cJuros tem propriedades que simplificam as chamadas a métodos
-/* Class cJuros is an cObject
-    Procedure Construct_Object
-        Forward Send Construct_Object
-        Property Integer piQuantidade 0
-        Property Boolean pbComposto False
-        Property Real prPeriodo 0.0
-        Property Real[] prPagamentos
-        Property Real[] prPesos
-    End_Procedure  
-End_Class
-
-// o objeto juros tem as propriedades inicializadas
-Object juros is a cJuros
-    Integer indice, quantidade
-
-    Set piQuantidade to 3
-    Set pbComposto to True
-    Set prPeriodo to 30.0
-
-    Get piQuantidade to quantidade
-    For indice from 0 to (quantidade - 1)
-        Set prPagamentos[indice] to (30.0 * (indice + 1.0))
-        Set prPesos[indice] to 1.0
-    Loop
-End_Object */
-
 // variáveis globais que simplificam as chamadas a métodos (não é orientado a objetos porque a sintaxe atrapalha a leitura
 Integer Quantidade
 Boolean Composto

@@ -1,6 +1,6 @@
-167 resoluções de equação transcendente
+168 resoluções de equação transcendente
 
-Desde que esse artigo foi publicado, mais 157 resoluções foram acrescentadas ao repositório https://github.com/jacknpoe/todos_juros, totalizando, agora, 167 resoluções.
+Desde que esse artigo foi publicado, mais 158 resoluções foram acrescentadas ao repositório https://github.com/jacknpoe/todos_juros, totalizando, agora, 168 resoluções.
 
 No artigo Resolução de Equação Transcendente, foi explicado como uma equação que calcula os juros a partir do acréscimo e das parcelas pode ser feita usando Cálculo Numérico, especificamente o Método da Bisseção.
 
@@ -694,76 +694,80 @@ juros.v
 
 juros.vala
 
-150. Virtual Breadboard (15/07/2024)
+150. Vim script (20/02/2025)
+
+juros.vim
+
+151. Virtual Breadboard (15/07/2024)
 
 juros_vbb.java
 
-151. Visual Basic (13/02/2025)
+152. Visual Basic (13/02/2025)
 
 Juros.frm
 
-152. Visual Basic .NET (02/03/2024)
+153. Visual Basic .NET (02/03/2024)
 
 TesteJuros.vb
 
-153. Visual FoxPro (14/02/2025)
+154. Visual FoxPro (14/02/2025)
 
 jurosVFP.prg
 
-154. VisuALG (01/05/2024)
+155. VisuALG (01/05/2024)
 
 juros.alg
 
-155. Windows PowerShell (08/01/2025)
+156. Windows PowerShell (08/01/2025)
 
 juros.ps1
 
-156. WLanguage (06/08/2024)
+157. WLanguage (06/08/2024)
 
 juros.wl
 
-157. WolframScript (22/07/2024)
+158. WolframScript (22/07/2024)
 
 juros.wls
 
-158. X# (14/06/2024)
+159. X# (14/06/2024)
 
 Juros.prg
 
 Start.prg
 
-159. X10 (02/08/2024)
+160. X10 (02/08/2024)
 
 TestaJuros.x10
 
-160. XC=BASIC (16/07/2024)
+161. XC=BASIC (16/07/2024)
 
 juros_xc.bas
 
-161. Xojo (18/02/2025)
+162. Xojo (18/02/2025)
 
 juros.xojo_binary_project
 
-162. XPL0 (19/02/2025)
+163. XPL0 (19/02/2025)
 
 juros.xpl
 
-163. XSB (19/02/2025)
+164. XSB (19/02/2025)
 
 juros.P
 
-164. Xtend (03/06/2024)
+165. Xtend (03/06/2024)
 
 Juros.xtend
 
-165. Yabasic (30/01/2025)
+166. Yabasic (30/01/2025)
 
 JUROSYB.BAS
 
-166. Yeti (31/05/2024)
+167. Yeti (31/05/2024)
 
 juros.yeti
 
-167. Zig (17/06/2024)
+168. Zig (17/06/2024)
 
 juros.zig

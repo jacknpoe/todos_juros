@@ -1,0 +1,104 @@
+﻿// Cálculo dos juros, sendo que precisa de parcelas pra isso
+// Versão 0.1: 21/02/2025: versão feita sem muito conhecimento de Visual DataFlex
+
+Use Windows.pkg
+
+// a classe cJuros tem propriedades que simplificam as chamadas a métodos
+/* Class cJuros is an cObject
+    Procedure Construct_Object
+        Forward Send Construct_Object
+        Property Integer piQuantidade 0
+        Property Boolean pbComposto False
+        Property Real prPeriodo 0.0
+        Property Real[] prPagamentos
+        Property Real[] prPesos
+    End_Procedure  
+End_Class
+
+// o objeto juros tem as propriedades inicializadas
+Object juros is a cJuros
+    Integer indice, quantidade
+
+    Set piQuantidade to 3
+    Set pbComposto to True
+    Set prPeriodo to 30.0
+
+    Get piQuantidade to quantidade
+    For indice from 0 to (quantidade - 1)
+        Set prPagamentos[indice] to (30.0 * (indice + 1.0))
+        Set prPesos[indice] to 1.0
+    Loop
+End_Object */
+
+// variáveis globais que simplificam as chamadas a métodos (não é orientado a objetos porque a sintaxe atrapalha a leitura
+Integer Quantidade
+Boolean Composto
+Real Periodo
+Real[] Pagamentos, Pesos
+
+// calcula a somatória de Pesos[]
+Function GetPesoTotal Returns Real
+    Real acumulador
+    Integer indice
+    Move 0.0 to acumulador
+    For indice from 0 to (Quantidade - 1)
+        Move (acumulador + Pesos[indice]) to acumulador
+    Loop
+    Function_Return acumulador
+End_Function
+
+// calcula o acréscimo a partir dos juros e parcelas
+Function JurosParaAcrescimo Real juros Returns Real
+    Real pesoTotal, acumulador
+    Integer indice
+    Get GetPesoTotal to pesoTotal
+    If (juros <= 0.0 or Quantidade < 1 or Periodo <= 0.0 or pesoTotal < 0.0) Function_Return 0.0
+    
+    Move 0.0 to acumulador
+    For indice from 0 to (Quantidade - 1)
+        If (Composto) Move (acumulador + (Pesos[indice] / ((1.0 + (juros / 100.0)) ^ (Pagamentos[indice] / Periodo)))) to acumulador
+        Else Move (acumulador + (Pesos[indice] / (1.0 + (juros / 100.0 * Pagamentos[indice] / Periodo)))) to acumulador
+    Loop
+    
+    If (acumulador <= 0.0) Function_Return 0.0
+    Function_Return ((pesoTotal / acumulador - 1.0) * 100.0)
+End_Function
+
+// calcula os juros a partir do acréscimo e parcelas
+Function AcrescimoParaJuros Real acrescimo Integer precisao Integer maxIteracoes Real maxJuros Returns Real
+    Real pesoTotal, minJuros, minDiferenca, medJuros, acrescimoCalculado
+    Integer indice
+    Get GetPesoTotal to pesoTotal
+    If (acrescimo <= 0.0 or Quantidade < 1 or Periodo <= 0.0 or pesoTotal < 0.0 or precisao < 1 or maxIteracoes < 1 or maxJuros < 0.0) Function_Return 0.0
+    
+    Move 0.0 to minJuros
+    Move (0.1 ^ precisao) to minDiferenca
+    For indice from 1 to maxIteracoes
+        Move ((minJuros + maxJuros) / 2.0) to medJuros
+        If ((maxJuros - minJuros) < minDiferenca) Function_Return medJuros
+        Get JurosParaAcrescimo medJuros to acrescimoCalculado
+        If (acrescimoCalculado < acrescimo) Move medJuros to minJuros
+        Else Move medJuros to maxJuros
+    Loop
+    
+    Function_Return medJuros
+End_Function
+
+// inicializa as variáveis globais
+Integer indice
+Move 3 to Quantidade
+Move True to Composto
+Move 30.0 to Periodo
+
+For indice from 0 to (Quantidade - 1)
+    Move (30.0 * (indice + 1.0)) to Pagamentos[indice]
+    Move 1.0 to Pesos[indice]
+Loop
+
+// calcula e guarda os retornos das funções
+Real pesoTotal, acrescimoCalculado, jurosCalculado
+Get GetPesoTotal to pesoTotal
+Get JurosParaAcrescimo 3.0 to acrescimoCalculado
+Get AcrescimoParaJuros acrescimoCalculado 15 100 50.0 to jurosCalculado
+
+Send Info_Box (SFormat("Peso total = %1, acréscimo = %2, juros = %3.", pesoTotal, acrescimoCalculado, jurosCalculado)) "Teste de Juros!"

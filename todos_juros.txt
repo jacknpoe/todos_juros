@@ -1,6 +1,6 @@
-168 resoluções de equação transcendente
+169 resoluções de equação transcendente
 
-Desde que esse artigo foi publicado, mais 158 resoluções foram acrescentadas ao repositório https://github.com/jacknpoe/todos_juros, totalizando, agora, 168 resoluções.
+Desde que esse artigo foi publicado, mais 159 resoluções foram acrescentadas ao repositório https://github.com/jacknpoe/todos_juros, totalizando, agora, 169 resoluções.
 
 No artigo Resolução de Equação Transcendente, foi explicado como uma equação que calcula os juros a partir do acréscimo e das parcelas pode ser feita usando Cálculo Numérico, especificamente o Método da Bisseção.
 
@@ -710,64 +710,68 @@ Juros.frm
 
 TesteJuros.vb
 
-154. Visual FoxPro (14/02/2025)
+154. Visual DataFlex (21/02/2025)
+
+Juros.src
+
+155. Visual FoxPro (14/02/2025)
 
 jurosVFP.prg
 
-155. VisuALG (01/05/2024)
+156. VisuALG (01/05/2024)
 
 juros.alg
 
-156. Windows PowerShell (08/01/2025)
+157. Windows PowerShell (08/01/2025)
 
 juros.ps1
 
-157. WLanguage (06/08/2024)
+158. WLanguage (06/08/2024)
 
 juros.wl
 
-158. WolframScript (22/07/2024)
+159. WolframScript (22/07/2024)
 
 juros.wls
 
-159. X# (14/06/2024)
+160. X# (14/06/2024)
 
 Juros.prg
 
 Start.prg
 
-160. X10 (02/08/2024)
+161. X10 (02/08/2024)
 
 TestaJuros.x10
 
-161. XC=BASIC (16/07/2024)
+162. XC=BASIC (16/07/2024)
 
 juros_xc.bas
 
-162. Xojo (18/02/2025)
+163. Xojo (18/02/2025)
 
 juros.xojo_binary_project
 
-163. XPL0 (19/02/2025)
+164. XPL0 (19/02/2025)
 
 juros.xpl
 
-164. XSB (19/02/2025)
+165. XSB (19/02/2025)
 
 juros.P
 
-165. Xtend (03/06/2024)
+166. Xtend (03/06/2024)
 
 Juros.xtend
 
-166. Yabasic (30/01/2025)
+167. Yabasic (30/01/2025)
 
 JUROSYB.BAS
 
-167. Yeti (31/05/2024)
+168. Yeti (31/05/2024)
 
 juros.yeti
 
-168. Zig (17/06/2024)
+169. Zig (17/06/2024)
 
 juros.zig

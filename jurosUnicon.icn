@@ -1,0 +1,66 @@
+# Cálculo dos juros, sendo que precisa de parcelas pra isso
+# Versão 0.1: 07/07/2024: versão feita sem muito conhecimento de Icon
+
+# classe com propriedades para simplificar as chamadas
+class cJuros(Quantidade, Composto, Periodo, Pagamentos, Pesos)
+	# calcula a somatória do array Pesos[]
+	method getPesoTotal()
+	    acumulador := 0.0
+	    every indice := 1 to Quantidade do acumulador +:= Pesos[indice]
+	    return acumulador
+	end
+
+	# calcula o acréscimo a partir dos juros e parcelas
+	method jurosParaAcrescimo(juros)
+	    pesoTotal := getPesoTotal()
+	    if (juros <= 0.0) | (Quantidade < 1) | (Periodo <= 0.0) | (pesoTotal <= 0.0) then return 0.0
+	    acumulador := 0.0
+	
+	    every indice := 1 to Quantidade do {
+	        if Composto > 0
+	            then acumulador +:= Pesos[indice] / (1.0 + juros / 100.0) ^ (Pagamentos[indice] / Periodo)
+	            else acumulador +:= Pesos[indice] / (1.0 + juros / 100.0 * Pagamentos[indice] / Periodo)
+	    }
+	
+	    return (pesoTotal / acumulador - 1.0) * 100.0
+	end
+
+	# calcula os juros a partir do acréscimo e parcelas
+	method acrescimoParaJuros(acrescimo, precisao, maxIteracoes, maxJuros)
+	    pesoTotal := getPesoTotal()
+	    if (acrescimo <= 0.0) | (Quantidade < 1) | (Periodo <= 0.0) | (pesoTotal <= 0.0) | (precisao < 1) | (maxIteracoes < 1) | (maxJuros <= 0.0) then return 0.0
+	    minJuros := 0.0
+	    medJuros := maxJuros / 2.0
+	    minDiferenca := 0.1 ^ precisao
+	
+	    every indice := 1 to maxIteracoes do {
+	        medJuros := (minJuros + maxJuros) / 2.0
+	        if (maxJuros - minJuros) < minDiferenca then return medJuros
+	        if jurosParaAcrescimo(medJuros) < acrescimo then minJuros := medJuros else maxJuros := medJuros
+	    }
+	
+	    return medJuros
+	end
+
+initially(pQuantidade, pComposto, pPeriodo, pPagamentos, pPesos)
+	Quantidade := pQuantidade
+	Composto := pComposto
+	Periodo := pPeriodo
+	Pagamentos := pPagamentos
+	Pesos := pPesos
+end
+
+procedure main()
+	# cria um objeto juros da classe cJuros
+	juros := cJuros(3, 1, 30.0, [30.0, 60.0, 90.0], [1.0, 1.0, 1.0])
+
+	# calcula e guarda os valores dos resultados das funções
+	pesoTotal := juros.getPesoTotal()
+	acrescimoCalculado := juros.jurosParaAcrescimo(3.0)
+	jurosCalculado := juros.acrescimoParaJuros(acrescimoCalculado, 15, 100, 50.0)
+
+	# imprime os resultados
+	write("Peso total = ", pesoTotal)
+	write("Acrescimo = ", acrescimoCalculado)
+	write("Juros = ", jurosCalculado)
+end

@@ -45,9 +45,9 @@ If juros# <= 0.0 Or quantidade% < 1 Or periodo# <= 0.0 Or pesoTotal# <= 0.0 Then
 Let acumulador# = 0.0
 For indice% = 1 To quantidade%
     If composto% = 1 Then
-        acumulador# = acumulador# + pesos#(indice%) / (1.0 + juros# / 100.0) ^ (pagamentos#(indice%) / periodo#)
+        Let acumulador# = acumulador# + pesos#(indice%) / (1.0 + juros# / 100.0) ^ (pagamentos#(indice%) / periodo#)
     Else
-        acumulador# = acumulador# + pesos#(indice%) / (1.0 + juros# / 100.0 * pagamentos#(indice%) / periodo#)
+        Let acumulador# = acumulador# + pesos#(indice%) / (1.0 + juros# / 100.0 * pagamentos#(indice%) / periodo#)
     End If
 Next indice%
 Let acrescimoCalculado# = (pesoTotal# / acumulador# - 1.0) * 100.0

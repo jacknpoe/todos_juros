@@ -1,0 +1,57 @@
+call simple.util.Console
+call simple.util.Math
+import simple.core
+
+Quantidade = 3
+Composto = 1
+Periodo = 30.0
+Pagamentos = 0 : (Quantidade-1)
+Pesos = 0 : (Quantidade-1)
+
+block main()
+    for indice = 0 to Quantidade-1 {
+        Pagamentos[indice] = 30.0 * (indice + 1.0)
+        Pesos[indice] = 1.0
+    }
+
+    pesoTotal = getPesoTotal()
+    acrescimoCalculado = jurosParaAcrescimo(3.0)
+    jurosCalculado = acrescimoParaJuros(acrescimoCalculado, 15, 100, 50.0)
+
+    stdout.printf("Peso total = %n\n", pesoTotal)
+    stdout.printf("Acrescimo = %n\n", acrescimoCalculado)
+    stdout.printf("Juros = %n\n", jurosCalculado)
+
+block getPesoTotal()
+    acumulador = 0.0
+    for indice = 0 to Quantidade-1 { acumulador = acumulador + Pesos[indice] }
+    return acumulador
+
+block jurosParaAcrescimo(juros)
+    pesoTotal = getPesoTotal()
+    if juros <= 0.0 or Quantidade < 1 or Periodo <= 0.0 or pesoTotal <= 0.0 { return 0.0 }
+
+    acumulador = 0.0
+    for indice = 0 to Quantidade-1 {
+        if Composto == 1 {
+            acumulador = acumulador + Pesos[indice] / pow(1.0 + juros / 100.0, Pagamentos[indice] / Periodo)
+        else
+            acumulador = acumulador + Pesos[indice] / (1.0 + juros / 100.0 * Pagamentos[indice] / Periodo)
+        }
+    }
+    
+    if acumulador <= 0.0 { return 0.0}
+    return (pesoTotal / acumulador - 1.0) * 100.0
+
+block acrescimoParaJuros(acrescimo, precisao, maxIteracoes, maxJuros)
+    pesoTotal = getPesoTotal()
+    if acrescimo <= 0.0 or Quantidade < 1 or Periodo <= 0.0 or pesoTotal <= 0.0 or precisao < 1 or maxIteracoes < 1 or maxJuros <= 0.0 { return 0.0 }
+
+    minJuros = 0.0
+    minDiferenca = pow(0.1, precisao)
+    for indice = 1 to maxIteracoes {
+        medJuros = (minJuros + maxJuros) / 2.0
+        if (maxJuros - minJuros) < minDiferenca { return medJuros }
+        if jurosParaAcrescimo(medJuros) < acrescimo { minJuros = medJuros else maxJuros = medJuros }
+    }
+    return medJuros

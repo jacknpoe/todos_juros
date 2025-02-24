@@ -1,0 +1,67 @@
+// Cálculo do juros, sendo que precisa de arrays pra isso
+// Versão 0.1: 24/02/2025: versão de testes a partir da de Node.js e Haskell
+
+// valores globais para simplificar as chamadas
+let Composto = true;
+let Periodo = 30.0;
+let Pagamentos = list(30.0, 60.0, 90.0);
+let Pesos = list(1.0, 1.0, 1.0);
+
+// função recursiva que retorna a soma total de todos os pesos
+function rGetPesoTotal(lPesos){
+    return is_null(lPesos)
+        ? 0
+        : head(lPesos) + rGetPesoTotal(tail(lPesos));
+}
+
+// função inicial que retorna a soma total de todos os pesos
+function getPesoTotal(){
+    return rGetPesoTotal(Pesos);
+}
+
+// calcula a soma do amortecimento de todas as parcelas para juros compostos
+function rJurosCompostos(juros, lPagamentos, lPesos){
+    return is_null(lPesos)
+        ? 0
+        : head(lPesos) / math_pow(1.0 + juros / 100.0, head(lPagamentos) / Periodo) + rJurosCompostos(juros, tail(lPagamentos), tail(lPesos));
+}
+
+// calcula a soma do amortecimento de todas as parcelas para juros simples
+function rJurosSimples(juros, lPagamentos, lPesos){
+    return is_null(lPesos)
+        ? 0
+        : head(lPesos) / (1.0 + juros / 100.0 * head(lPagamentos) / Periodo) + rJurosSimples(juros, tail(lPagamentos), tail(lPesos));
+}
+
+// calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
+function jurosParaAcrescimo(juros){
+    return Composto
+        ? (getPesoTotal() / rJurosCompostos(juros, Pagamentos, Pesos) - 1.0) * 100.0
+        : (getPesoTotal() / rJurosSimples(juros, Pagamentos, Pesos) - 1.0) * 100.0;
+}
+
+// função recursiva no lugar de um for que realmente calcula o acréscimo
+function rAcrescimoParaJuros(acrescimo, minDiferenca, iteracaoAtual, minJuros, maxJuros, medJuros){
+    return iteracaoAtual === 0
+        ? medJuros
+        : (maxJuros - minJuros) < minDiferenca
+            ? medJuros
+            : jurosParaAcrescimo(medJuros) < acrescimo
+                ? rAcrescimoParaJuros(acrescimo, minDiferenca, iteracaoAtual - 1, medJuros, maxJuros, (medJuros + maxJuros) / 2.0)
+                : rAcrescimoParaJuros(acrescimo, minDiferenca, iteracaoAtual - 1, minJuros, medJuros, (minJuros + medJuros) / 2.0);
+}
+
+// calcula os juros a partir do acréscimo e dados comuns (como parcelas)
+function acrescimoParaJuros(acrescimo, precisao, maxIteracoes, maxJuros){
+    return rAcrescimoParaJuros(acrescimo, math_pow(0.1, precisao), maxIteracoes, 0.0, maxJuros, maxJuros / 2.0);
+}
+
+// caLcula e guarda os resultados das funções
+let pesoTotal = getPesoTotal();
+let acrescimoCalculado = jurosParaAcrescimo(3.0);
+let jurosCalculado = acrescimoParaJuros(acrescimoCalculado, 18, 100, 50.0);
+
+// imprime os resultados
+display(pesoTotal, "Peso total = ");
+display(acrescimoCalculado, "Acréscimo = ");
+display(jurosCalculado, "Juros = ");

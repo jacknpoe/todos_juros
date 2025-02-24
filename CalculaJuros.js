@@ -22,7 +22,7 @@ export class CalculaJuros{
 				this.Pagamentos[c] = (1.0 + c) * this.Periodo;
 			}
 		} else {
-			let temporaria = pagamentos.split(delimitador)
+			let temporaria = pagamentos.split(delimitador);
 			for(let c = 0; c < this.Quantidade; c++){
 				if(isNaN(Number(temporaria[c]))) return false;
 				this.Pagamentos[c] = Number(temporaria[c]);
@@ -38,7 +38,7 @@ export class CalculaJuros{
 				this.Pesos[c] = 1.0;
 			}
 		} else {
-			let temporaria = pesos.split(delimitador)
+			let temporaria = pesos.split(delimitador);
 			for(let c = 0; c < this.Quantidade; c++){
 				if(isNaN(Number(temporaria[c]))) return false;
 				this.Pesos[c] = Number(temporaria[c]);

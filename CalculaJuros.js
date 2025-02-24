@@ -3,7 +3,8 @@
 //        1.1: 26/09/2023: versão separada no arquivo CalculaJuros.js
 //        1.2: 03/03/2024: correção (não aceitava acréscimo menor que 1%)
 //        1.3: 16/10/2024: adicionado botão "Valores Exemplo"
-//        1.4: 23/02/2025: separando a classe das funções
+//        1.4: 23/02/2025: separando a classe das funções (+ ; e .0)
+//        1.5: 24/02/2025: (+ ; e .0)
 
 export class CalculaJuros{
 	constructor(quantidade=0, composto=false, periodo=30.0){
@@ -27,7 +28,7 @@ export class CalculaJuros{
 				this.Pagamentos[c] = Number(temporaria[c]);
 			}
 		}
-		return true
+		return true;
 	}
 
 	// "Define as datas de pagamento a partir de uma string separada pelo delimitador
@@ -43,12 +44,12 @@ export class CalculaJuros{
 				this.Pesos[c] = Number(temporaria[c]);
 			}
 		}
-		return true
+		return true;
 	}
 
 	// Retorna a soma total de todos os pesos
 	getPesoTotal(){
-		let acumulador = 0
+		let acumulador = 0.0;
 		for(let c = 0; c < this.Quantidade; c++){
 			acumulador += this.Pesos[c];
 		}
@@ -56,7 +57,7 @@ export class CalculaJuros{
 	}
 
 	// Calcula o acréscimo a partir dos juros
-	jurosParaAcrescimo(juros=0){
+	jurosParaAcrescimo(juros=0.0){
 		let pesoTotal = this.getPesoTotal();
 		if(juros <= 0.0 || this.Quantidade < 1 || this.Periodo <= 0.0 || pesoTotal <= 0.0) return 0.0;
 
@@ -70,7 +71,7 @@ export class CalculaJuros{
 			}
 		}
 
-		if (acumulador <= 0) return 0.0;
+		if (acumulador <= 0.0) return 0.0;
 		return (pesoTotal / acumulador - 1.0) * 100.0;
 	}
 

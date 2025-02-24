@@ -1,11 +1,12 @@
 // Cálculo do juros, sendo que precisa de arrays pra isso
 // Versão 0.1: 24/02/2025: versão de testes a partir da de Node.js e Haskell
+//        0.2: 25/02/2025: const no lugar de let para rodar a partir do Source §2
 
 // valores globais para simplificar as chamadas
-let Composto = true;
-let Periodo = 30.0;
-let Pagamentos = list(30.0, 60.0, 90.0);
-let Pesos = list(1.0, 1.0, 1.0);
+const Composto = true;
+const Periodo = 30.0;
+const Pagamentos = list(30.0, 60.0, 90.0);
+const Pesos = list(1.0, 1.0, 1.0);
 
 // função recursiva que retorna a soma total de todos os pesos
 function rGetPesoTotal(lPesos){
@@ -57,9 +58,9 @@ function acrescimoParaJuros(acrescimo, precisao, maxIteracoes, maxJuros){
 }
 
 // caLcula e guarda os resultados das funções
-let pesoTotal = getPesoTotal();
-let acrescimoCalculado = jurosParaAcrescimo(3.0);
-let jurosCalculado = acrescimoParaJuros(acrescimoCalculado, 18, 100, 50.0);
+const pesoTotal = getPesoTotal();
+const acrescimoCalculado = jurosParaAcrescimo(3.0);
+const jurosCalculado = acrescimoParaJuros(acrescimoCalculado, 18, 100, 50.0);
 
 // imprime os resultados
 display(pesoTotal, "Peso total = ");

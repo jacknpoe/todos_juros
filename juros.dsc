@@ -91,4 +91,4 @@ Exit @fmul(@fsub(@fdiv(%%PesoTotal, %%Acumulador), 1.0), 100.0)
   Wend
 
 Exit %%MedJuros
-# If @not(@both(@both(@both(@both(@both(@both(@greater(%%Quantidade, 0), @greater(%%Periodo, 0.0)), @greater(1, 0)), @greater(3, 2)), @greater(4, 3)), @greater(5, 4)), @greater(6, 5)))
+

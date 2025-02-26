@@ -1,0 +1,107 @@
+# Cálculo dos juros, sendo que precisa de parcelas pra isso
+# Versão 0.1: 26/02/2025: versão feita sem muito conhecimento de Seed7
+
+$ include "seed7_05.s7i";
+  include "float.s7i";
+
+# estrutura para simplificar as chamadas às funções
+const type: sJuros is new struct
+    var integer: Quantidade is 0;
+    var boolean: Composto is FALSE;
+    var float: Periodo is 30.0;
+    var array float: Pagamentos is 0 times 0.0;
+    var array float: Pesos is 0 times 0.0;
+end struct;
+
+# calcula a somatória de Pesos[]
+const func float: getPesoTotal(in sJuros: aJuros) is func
+result
+    var float: acumulador is 0.0;
+local
+    var integer: indice is 0;
+begin
+    for indice range 1 to aJuros.Quantidade do
+        acumulador := acumulador + aJuros.Pesos[indice];
+    end for;
+end func;
+
+# calcula o acréscimo a partir dos juros e parcelas
+const func float: jurosParaAcrescimo(in sJuros: aJuros, in float: juros) is func
+result
+    var float: resultado is 0.0;
+local
+    var float: pesoTotal is 0.0;
+    var float: acumulador is 0.0;
+    var integer: indice is 0;
+begin
+    pesoTotal := getPesoTotal(aJuros);
+    if juros <= 0.0 or aJuros.Quantidade < 1 or aJuros.Periodo <= 0.0 or pesoTotal <= 0.0 then
+        resultado := 0.0;
+    else
+        for indice range 1 to aJuros.Quantidade do
+            if aJuros.Composto then
+                acumulador := acumulador + aJuros.Pesos[indice] / (1.0 + juros / 100.0) ** (aJuros.Pagamentos[indice] / aJuros.Periodo);
+            else
+                acumulador := acumulador + aJuros.Pesos[indice] / (1.0 + juros / 100.0 * aJuros.Pagamentos[indice] / aJuros.Periodo);
+            end if;
+        end for;
+        resultado := (pesoTotal / acumulador - 1.0) * 100.0;
+    end if;
+end func;
+
+# calcula os juros a partir do acréscimo e parcelas
+const func float: acrescimoParaJuros(in sJuros: aJuros, in float: acrescimo, in integer: precisao, in integer: maxIteracoes, in var float: maxJuros) is func
+result
+    var float: medJuros is 0.0;
+local
+    var float: pesoTotal is 0.0;
+    var float: minJuros is 0.0;
+    var float: minDiferenca is 0.0;
+    var integer: indice is 0;
+begin
+    pesoTotal := getPesoTotal(aJuros);
+    if not( acrescimo <= 0.0 or aJuros.Quantidade < 1 or aJuros.Periodo <= 0.0 or pesoTotal <= 0.0 or precisao < 1 or maxIteracoes < 1 or maxJuros <= 0.0 ) then
+        minDiferenca := 0.1 ** flt(precisao);
+        while indice < maxIteracoes do
+            medJuros := (minJuros + maxJuros) / 2.0;
+            if (maxJuros - minJuros) < minDiferenca then
+                indice := maxIteracoes;
+            else
+                if jurosParaAcrescimo(aJuros, medJuros) < acrescimo then
+                    minJuros := medJuros;
+                else
+                    maxJuros := medJuros;
+                end if;
+            end if;
+            indice := indice + 1;
+        end while;
+    end if
+end func;
+
+const proc: main is func
+local
+    var sJuros: aJuros is sJuros.value;
+    var integer: indice is 0;
+    var float: pesoTotal is 0.0;
+    var float: acrescimoCalculado is 0.0;
+    var float: jurosCalculado is 0.0;
+begin
+    # inicializa as variáveis na estrutura aJuros
+    aJuros.Quantidade := 3;
+    aJuros.Composto := TRUE;
+    aJuros.Periodo := 30.0;  # redundante, mas didático
+    for indice range 1 to aJuros.Quantidade do
+        insert(aJuros.Pagamentos, indice, 30.0 * flt(indice));
+        insert(aJuros.Pesos, indice, 1.0);
+    end for;
+
+    # calcula e guarda os resultados das funções
+    pesoTotal := getPesoTotal(aJuros);
+    acrescimoCalculado := jurosParaAcrescimo(aJuros, 3.0);
+    jurosCalculado := acrescimoParaJuros(aJuros, acrescimoCalculado, 15, 100, 50.0);
+
+    # imprime os resultados
+    writeln("Peso total = " <& pesoTotal digits 15 <& "!");
+    writeln("Acrescimo = " <& acrescimoCalculado digits 15 <& "!");
+    writeln("Juros = " <& jurosCalculado digits 15 <& "!");
+end func;

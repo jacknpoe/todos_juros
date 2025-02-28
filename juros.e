@@ -1,81 +1,109 @@
--> C√°lculo dos juros, sendo que precisa de parcelas pra isso
--> Vers√£o 0.1: 28/02/2025: vers√£o feita sem muito conhecimento de PortablE
+note
+	description: "Classe de c·lculo do juros, sendo que precisa de arrays pra isso"
+	author: "Ricardo Erick RebÍlo"
+	date: "$Date$"
+	revision: "$Revision$"
+	-- Versao: 0.1: 06/05/2024: vers„o feita sem muito conhecimento de Eiffel
+	--         0.2: 07/05/2024: vers„o com nomes em min˙sculas e {ANY} onde precisa
+	-- ATEN«√O, falta ^ com expoente REAL_64 no compilador Liberty Eiffel, ent„o pode ser necess·rio o EiffelStudio
 
--> globais para simplificar as chamadas √†s procedures
-DEF Quantidade:INT, Composto:BOOL, Periodo:FLOAT, Pagamentos:ARRAY OF FLOAT, Pesos:ARRAY OF FLOAT
+class JUROS
 
--> calcula a somat√≥ria de Pesos[]
-PROC getPesoTotal() RETURNS acumulador:FLOAT
-    DEF indice:INT
-    acumulador := 0.0
-    FOR indice := 0 TO Quantidade - 1 DO acumulador := acumulador + Pesos[indice]
-ENDPROC
+inherit	ANY
 
--> calcula o acr√©scimo a partir dos juros e parcelas
-PROC jurosParaAcrescimo(juros:FLOAT) RETURNS resultado:FLOAT
-    DEF pesoTotal:FLOAT, acumulador:FLOAT, indice:INT
-    pesoTotal := getPesoTotal()
-    IF (juros <= 0.0) OR (Quantidade < 1) OR (Periodo <= 0.0) OR (pesoTotal <= 0.0)
-        resultado := 0.0
-    ELSE
-        acumulador := 0.0
-        FOR indice := 0 TO Quantidade - 1
-            IF Composto
-                acumulador := acumulador + (Pesos[indice] / Fpow(1.0 + (juros / 100.0), Pagamentos[indice] / Periodo))
-            ELSE
-                acumulador := acumulador + (Pesos[indice] / (1.0 + (juros / 100.0 * Pagamentos[indice] / Periodo)))
-            ENDIF
-        ENDFOR
-        IF acumulador <= 0.0
-            resultado := 0.0
-        ELSE
-            resultado := (pesoTotal / acumulador - 1.0) * 100.0
-        ENDIF
-    ENDIF
-ENDPROC
+create {ANY} make
 
--> calcula os juros a partir do acr√©scimo e parcelas
-PROC acrescimoParaJuros(acrescimo:FLOAT, precisao:INT, maxIteracoes:INT, maxJuros:FLOAT) RETURNS medJuros:FLOAT
-    DEF pesoTotal:FLOAT, minJuros:FLOAT, minDiferenca:FLOAT, indice:INT
-    pesoTotal := getPesoTotal()
-    IF (acrescimo <= 0.0) OR (Quantidade < 1) OR (Periodo <= 0.0) OR (pesoTotal <= 0.0) OR (precisao < 1) OR (maxIteracoes < 1) OR (maxJuros <= 0.0)
-        medJuros := 0.0
-    ELSE
-        minJuros := 0.0
-        minDiferenca := Fpow(0.1, precisao)
-        FOR indice := 1 TO maxIteracoes
-            medJuros := (minJuros + maxJuros) / 2.0
-            IF jurosParaAcrescimo(medJuros) < acrescimo THEN minJuros := medJuros ELSE maxJuros := medJuros
-        ENDFOR IF (maxJuros - minJuros) < minDiferenca
-    ENDIF
-ENDPROC
+feature {ANY} -- construtor
+	make (pquantidade: INTEGER; pcomposto: BOOLEAN; pperiodo: REAL_64; ppagamentos, ppesos: ARRAY[REAL_64])
+	do
+		quantidade := pquantidade
+		composto := pcomposto
+		periodo := pperiodo
+		pagamentos := ppagamentos
+		pesos := ppesos
+	end
 
-->resultado := Fpow(base, expoente)
+feature {ANY} -- mÈtodos
+	-- calcula a somatÛria de Pesos[]
+	getpesototal: REAL_64
+	local
+		indice: INTEGER
+		acumulador: REAL_64
+	do
+		acumulador := 0.0
+		from indice := 1 until indice > quantidade loop
+			acumulador := acumulador + pesos.item(indice)
+			indice := indice + 1
+		end
+		Result := acumulador
+	end
 
-PROC main()
-    DEF indice:INT, pesoTotal:FLOAT, acrescimoCalculado:FLOAT, jurosCalculado:FLOAT, s[8]:STRING
+	-- calcula o acrÈscimo a partir dos juros e dados comuns (como parcelas)
+	jurosparaacrescimo(juros: REAL_64): REAL_64
+	require
+		juros_maior_que_zero: juros > 0.0
+		quantidade_maior_que_zero: quantidade > 0
+		periodo_maior_que_zero: periodo > 0.0
+		peso_total_maior_que_zero: getpesototal > 0.0
+	local
+		pesototal, acumulador: REAL_64
+		indice: INTEGER
+	do
+		pesototal := getpesototal
+		acumulador := 0.0
+		from indice := 1 until indice > quantidade loop
+			if composto then
+				acumulador := acumulador + pesos.item(indice) / (1.0 + juros / 100.0) ^ (pagamentos.item(indice) / periodo)
+			else
+				acumulador := acumulador + pesos.item(indice) / (1.0 + juros / 100.0 * pagamentos.item(indice) / periodo)
+			end
+			indice := indice + 1
+		end
+		Result := ((pesototal / acumulador) - 1.0) * 100.0
+	end
 
-    -> inicializa as vari√°veis globais
-    Quantidade := 3
-    Composto := TRUE
-    Periodo := 30.0
-    NEW Pagamentos[Quantidade]
-    NEW Pesos[Quantidade]
-    FOR indice := 0 TO Quantidade - 1
-        Pagamentos[indice] := 30.0 * (indice + 1.0)
-        Pesos[indice] := 1.0
-    ENDFOR
+	-- calcula os juros a partir do acrÈscimo e dados comuns (como parcelas)
+	acrescimoparajuros(acrescimo: REAL_64; precisao, maxiteracoes: INTEGER; maximojuros: REAL_64): REAL_64
+	require
+		maxiteracoes_maior_que_zero: maxiteracoes > 1
+		quantidade_maior_que_zero: quantidade > 0
+		precisao_maior_que_zero: precisao > 0
+		periodo_maior_que_zero: periodo > 0.0
+		acrescimo_maior_que_zero: acrescimo > 0.0
+		maximojuros_maior_que_zero: maximojuros > 0.0
+		peso_total_maior_que_zero: getpesototal > 0.0
+	local
+		minjuros, medjuros, maxjuros, mindiferenca: REAL_64
+		indice: INTEGER
+	do
+		minjuros := 0.0
+		maxjuros := maximojuros
+		mindiferenca := 0.1 ^ precisao
 
-    -> calcula e guarda os retornos das procedures
-    pesoTotal := getPesoTotal()
-    acrescimoCalculado := jurosParaAcrescimo(3.0)
-    jurosCalculado := acrescimoParaJuros(acrescimoCalculado, 15, 100, 50.0)
+		from indice := 1 until indice > maxiteracoes loop
+			medjuros := (minjuros + maxjuros) / 2.0
+			if (maxjuros - minjuros) < mindiferenca then
+				indice := maxiteracoes
+			else
+				if jurosparaacrescimo(medjuros)< acrescimo then
+					minjuros := medjuros
+				else
+					maxjuros := medjuros
+				end
+			end
+			indice := indice + 1
+		end
+		Result := medjuros
+	end
 
-    -> imprime os resultados
-    Print('Peso total = \s\n', RealF(s, pesoTotal, 5))
-    Print('Acrescimo = \s\n', RealF(s, acrescimoCalculado, 5))
-    Print('Juros = \s\n', RealF(s, jurosCalculado, 5))
+feature {ANY} -- attributes
+	quantidade: INTEGER
+	composto: BOOLEAN
+	periodo: REAL_64
+	pagamentos: ARRAY [REAL_64]
+	pesos: ARRAY [REAL_64]
+invariant
+	valid_quantidade: 0 < quantidade
+	valid_periodo: 0.0 < periodo
+end
 
-    END Pagamentos
-    END Pesos
-ENDPROC

@@ -9,6 +9,7 @@
 //        0.3: 04/04/2004: trocado de avaliar soZero para se acumulador <= 0.0
 //        0.4: 06/06/2024: com comentários e legendas
 //        0.5: 15/07/2024: todos os valores double com .0 no final e retirados comentários com soZero
+//        0.6: 01/03/2025: agora, inicializa os arrays com um laço for
 
 package jacknpoe.testejuros;
 

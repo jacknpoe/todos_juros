@@ -14,15 +14,11 @@ public class TesteJuros {
     	// cria um objeto juros da classe Juros e inicializa Quantidade, Composto e Periodo
     	Juros juros = new Juros(3, true, 30.0);
 
-    	// inicializa o array Pesos[]
-        juros.Pesos[0] = 1.0;
-        juros.Pesos[1] = 1.0;
-        juros.Pesos[2] = 1.0;
-        
-        // inicializa o array Pagamentos[]
-        juros.Pagamentos[0] = 30.0;
-        juros.Pagamentos[1] = 60.0;
-        juros.Pagamentos[2] = 90.0;
+    	// inicializa os arrays
+        for(int indice = 0; indice < juros.getQuantidade(); indice++) {
+            juros.Pagamentos[indice] = 30.0 * (indice + 1.0);
+            juros.Pesos[indice] = 1.0;
+        }
 
         // guarda o retorno dos cálculos
         double pesoTotal = juros.getPesoTotal();

@@ -48,7 +48,7 @@ fillArray(Array(Quantidade), lambda(i) = 1.0) >Pesos>
 -- calcula e guarda o resultado das funções
 pesoTotal.write(getPesoTotal(Quantidade, Pesos)) >>
 acrescimoCalculado.write(jurosParaAcrescimo(Quantidade, Composto, Periodo, Pagamentos, Pesos, 3.0)) >>
-jurosCalculado.write(acrescimoParaJuros(Quantidade, Composto, Periodo, Pagamentos, Pesos, acrescimoCalculado.read(), 15, 100, 50.0) >>
+jurosCalculado.write(acrescimoParaJuros(Quantidade, Composto, Periodo, Pagamentos, Pesos, acrescimoCalculado.read(), 15, 100, 50.0)) >>
 
 -- imprime os resultados
 Println("Peso total = " + pesoTotal.read()) >>

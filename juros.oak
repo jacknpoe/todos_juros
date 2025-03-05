@@ -1,0 +1,70 @@
+// Cálculo dos juros, sendo que precisa de parcelas pra isso
+// Versão 0.1: 05/03/2025: versão feita sem muito conhecimento de Oak
+std := import('std')
+
+Quantidade := 3
+Composto := true
+Periodo := 30.0
+Pagamentos := []
+Pesos := []
+
+// função que preenche os arrays
+fn preenche(indice) if indice {
+    0 -> ?
+    _ -> {
+        preenche(indice - 1)
+        Pagamentos << (indice * 30.0)
+        Pesos << 1.0
+    }
+}
+
+// função recursiva que realmente calcula a somatória de Pesos[]
+fn rGetPesoTotal(indice) if indice {
+    0 -> Pesos.0
+    _ -> Pesos.(int(indice)) + rGetPesoTotal(indice - 1)
+}
+
+// perfume que calcula a somatória de Pesos[]
+fn getPesoTotal() rGetPesoTotal(Quantidade - 1)
+
+// calcula a soma do amortecimento de todas as parcelas para juros compostos
+fn rJurosCompostos(indice, juros) if indice {
+    0 -> Pesos.0 / pow(1.0 + juros / 100.0, Pagamentos.0 / Periodo)
+    _ -> rJurosCompostos(indice - 1, juros) + Pesos.(int(indice)) / pow(1.0 + juros / 100.0, Pagamentos.(int(indice)) / Periodo)
+}
+
+// calcula a soma do amortecimento de todas as parcelas para juros simples
+fn rJurosSimples(indice, juros) if indice {
+    0 -> Pesos.0 / (1.0 + juros / 100.0 * Pagamentos.0 / Periodo)
+    _ -> rJurosSimples(indice - 1, juros) + Pesos.(int(indice)) / (1.0 + juros / 100.0 * Pagamentos.(int(indice)) / Periodo)
+}
+
+// calcula o acréscimo a partir dos juros e parcelas
+fn jurosParaAcrescimo(juros) if Composto {
+    true -> (getPesoTotal() / rJurosCompostos(Quantidade - 1, juros) - 1.0) * 100.0
+    _ -> (getPesoTotal() / rJurosSimples(Quantidade - 1, juros) - 1.0) * 100.0
+}
+
+// função recursiva no lugar de um for que realmente calcula os juros
+fn rAcrescimoParaJuros(acrescimo, minDiferenca, iteracaoAtual, minJuros, maxJuros, medJuros) if iteracaoAtual = 0 | (maxJuros - minJuros) < minDiferenca {
+    true -> medJuros
+    _ -> if jurosParaAcrescimo(medJuros) < acrescimo {
+        true -> rAcrescimoParaJuros(acrescimo, minDiferenca, iteracaoAtual - 1, medJuros, maxJuros, (medJuros + maxJuros) / 2.0)
+        _ -> rAcrescimoParaJuros(acrescimo, minDiferenca, iteracaoAtual - 1, minJuros, medJuros, (minJuros + medJuros) / 2.0)
+    }
+}
+
+// calcula os juros a partir do acréscimo e parcelas
+fn acrescimoParaJuros(acrescimo, precisao, maxIteracoes, maxJuros) rAcrescimoParaJuros(acrescimo, pow(0.1, precisao), maxIteracoes, 0.0, maxJuros, maxJuros / 2.0)
+
+// para preencher os arrays com o tamanho de Quantidade e com os valores 30.0, 60.0, 90.0... e 1.0 ,1.0 , 1.0...
+preenche(Quantidade)
+
+// calcula e guarda os resultados das funções
+pesoTotal := getPesoTotal()
+acrescimoCalculado := jurosParaAcrescimo(3.0)
+jurosCalculado := acrescimoParaJuros(acrescimoCalculado, 15, 100, 50.0)
+
+std.println('Peso total = ' + string(pesoTotal))
+std.println('Acréscimo = ' + string(acrescimoCalculado))
+std.println('Juros = ' + string(jurosCalculado))

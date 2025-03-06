@@ -1,0 +1,88 @@
+% Cálculo dos juros, sendo que precisa de parcelas pra isso;
+% Versão 0.1: 06/03/2025: versão feita sem muito conhecimento de Nial;
+
+% globais para simplificar as chamadas às funções;
+Quantidade := 3;
+Composto := true;
+Periodo := 30.0;
+Pagamentos := [];
+Pesos := [];
+
+% calcula a somatória de Pesos[];
+getPesoTotal is {
+    acumulador := 0.0;
+    indice := 0;
+    WHILE indice < Quantidade DO
+        acumulador := acumulador + Pesos@indice;
+        indice := indice + 1;
+    ENDWHILE;
+    acumulador
+}
+
+% calcula o acréscimo a partir dos juros e parcelas;
+jurosParaAcrescimo is operation juros {
+    pesoTotal := getPesoTotal;
+    IF (pesoTotal <= 0.0) or (Quantidade < 1) or (Periodo <= 0.0) or (juros <= 0.0) THEN
+        0.0
+    ELSE
+        acumulador := 0.0;
+        indice := 0;
+        WHILE indice < Quantidade DO
+            IF Composto THEN
+                acumulador := acumulador + (Pesos@indice / ((1.0 + (juros / 100.0)) power (Pagamentos@indice / Periodo)));
+            ELSE
+                acumulador := acumulador + (Pesos@indice / (1.0 + (juros / 100.0 * Pagamentos@indice / Periodo)));
+            ENDIF;
+            indice := indice + 1;
+        ENDWHILE;
+        IF acumulador <= 0.0 THEN
+            0.0
+        ELSE
+            (pesoTotal / acumulador - 1.0) * 100.0
+        ENDIF
+    ENDIF
+}
+
+% calcula os juros a partir do acréscimo e parcelas;
+acrescimoParaJuros is operation acrescimo precisao maxIteracoes maxJuros {
+    pesoTotal := getPesoTotal;
+    IF (pesoTotal <= 0.0) or (Quantidade < 1) or (Periodo <= 0.0) or (acrescimo <= 0.0) or (precisao < 1) or (maxIteracoes < 1) or (maxJuros <= 0.0) THEN
+        0.0
+    ELSE
+        minJuros := 0.0;
+        minDiferenca := (0.1) power (precisao);
+        indice := 0;
+        WHILE indice < maxIteracoes DO
+            medJuros := (minJuros + maxJuros) / 2.0;
+            IF (maxJuros - minJuros) < minDiferenca THEN 
+                indice := maxIteracoes;
+            ELSE
+                IF jurosParaAcrescimo medJuros < acrescimo THEN
+                    minJuros := medJuros;
+                ELSE
+                    maxJuros := medJuros;
+                ENDIF
+            ENDIF;
+            indice := indice + 1;
+        ENDWHILE;
+        medJuros
+    ENDIF
+}
+
+% inicializa os arrays de forma mais interessante do que com literais;
+indice := 1;
+WHILE indice <= Quantidade DO
+    Pagamentos := Pagamentos append (30.0 * indice);
+    Pesos := Pesos append 1.0;
+    indice := indice + 1;
+ENDWHILE;
+
+% calcula e guarda os resultados das funções;
+pesoTotal := getPesoTotal;
+acrescimoCalculado := jurosParaAcrescimo 3.0;
+jurosCalculado := acrescimoParaJuros acrescimoCalculado 15 100 50.0;
+
+% imprime os resultados;
+write 'Peso total = ' pesoTotal;
+write 'Acrescimo = ' acrescimoCalculado;
+write 'Juros = ' jurosCalculado;

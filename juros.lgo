@@ -35,8 +35,9 @@ to juros_para_acrescimo :juros
 	output (:peso_total / :acumulador - 1.0) * 100.0
 end
 
-Make "pagamentos [30.0 60.0 90.0]
-Make "periodo 30
-Make "peso_total 3
-Make "pesos [1.0 1.0 1.0]
 Make "quantidade 3
+Make "periodo 30
+Make "composto 1  ;; EM 07/03/2025
+;; Make "peso_total 3  NÃO TESTADO, EM 07/03/2025
+Make "pagamentos [30.0 60.0 90.0]
+Make "pesos [1.0 1.0 1.0]

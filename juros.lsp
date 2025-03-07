@@ -1,5 +1,6 @@
 ; Calculo do juros, sendo que precisa de arrays pra isso
 ; Versao 0.1: 13/02/2025: versao sem muito conhecimento de AutoLisp
+;        0.2: 07/03/2025: na linha 48 verificado se iteracaoAtual = 0
 ; AVISO: algumas verificacoes foram retiradas, entao os calculos sao indefinidos para valores incorretos
 
 ; variaveis
@@ -44,7 +45,7 @@
 
 ; funcao recursiva no lugar de um for que realmente calcula os juros
 (defun _pJuros (acrescimo minDiferenca iteracaoAtual minJuros maxJuros)
-  (if (< (- maxJuros minJuros) minDiferenca)
+  (if (or (< (sub maxJuros minJuros) minDiferenca) (= iteracaoAtual 0))  ; OR NAO TESTADO
     (/ (+ minJuros maxJuros) 2.0)
     (if (< (dJuros (/ (+ minJuros maxJuros) 2.0)) acrescimo)
       (_pJuros acrescimo minDiferenca (- iteracaoAtual 1) (/ (+ minJuros maxJuros) 2.0) maxJuros)

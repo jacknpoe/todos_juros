@@ -3,6 +3,7 @@
           0.2: 02/05/2024: funcoes e testes
           0.3: 02/05/2024: com arrays dinamicos
           0.4: 03/05/2024: com QUANTIDADETOTAL para quantidade
+          0.5: 08/03/2025: correção de um RETURN que faltava na linha 83
 *)
 MODULE juros;
 FROM InOut IMPORT WriteString, WriteLn;
@@ -79,6 +80,7 @@ BEGIN
       maxJuros := medJuros;
     END;
   END;
+  RETURN medJuros;  (* correção 08/03/2025 *)
 END acrescimoParaJuros;
 
 BEGIN (* programa principal *)

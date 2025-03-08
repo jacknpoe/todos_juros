@@ -1,0 +1,85 @@
+// Cálculo dos juros, sendo que precisa de parcelas pra isso
+// Versão 0.1: 08/03/2025: versão feita sem muito conhecimento de Neko
+
+var math_pow = $loader.loadprim("std@math_pow", 2)  // para usar math_pow (**/^)
+
+// cria um objeto juros vazio (por enquanto)
+juros = $new(null);
+
+// calcula a somatória de Pesos[]
+juros.getPesoTotal = function() {
+    var acumulador = 0.0;
+    var indice = 0;
+    while indice < this.Quantidade {
+        acumulador += this.Pesos[indice];
+        indice += 1;
+    }
+    return acumulador;
+}
+
+// calcula o acréscimo a partir dos juros e parcelas
+juros.jurosParaAcrescimo = function(juros) {
+    var pesoTotal = this.getPesoTotal();
+    if juros <= 0.0 || this.Quantidade < 1 || this.Periodo <= 1.0 || pesoTotal <= 0.0 return 0.0;
+
+    var indice = 0;
+    var acumulador = 0.0;
+    while indice < this.Quantidade {
+        if this.Composto acumulador += this.Pesos[indice] / math_pow(1.0 + juros / 100.0, this.Pagamentos[indice] / this.Periodo)
+            else acumulador += this.Pesos[indice] / (1.0 + juros / 100.0 * this.Pagamentos[indice] / this.Periodo);
+        indice += 1;
+    }
+
+    if acumulador <= 0.0 return 0.0;
+    return (pesoTotal / acumulador - 1.0) * 100.0;
+}
+
+// calcula os juros a partir do acréscimo e parcelas
+juros.acrescimoParaJuros = function(acrescimo, precisao, maxIteracoes, maxJuros) {
+    var pesoTotal = this.getPesoTotal();
+    if acrescimo <= 0.0 || this.Quantidade < 1 || this.Periodo <= 1.0 || pesoTotal <= 0.0 || precisao <= 1 || maxIteracoes < 1 || maxJuros <= 0.0 return 0.0;
+
+    var minJuros = 0.0;
+    var medJuros = maxJuros / 2.0;
+    var minDiferenca = math_pow(0.1, precisao);
+    var indice = 0;
+    while indice < maxIteracoes {
+        medJuros = (minJuros + maxJuros) / 2.0;
+        if (maxJuros - minJuros) < minDiferenca return medJuros;
+        if this.jurosParaAcrescimo(medJuros) < acrescimo minJuros = medJuros else maxJuros = medJuros;
+        indice += 1;
+    }
+
+    return medJuros;
+}
+
+// insere propriedades no objeto juros para simplificar as chamadas aos métodos
+juros.Quantidade = 3;
+juros.Composto = true;
+juros.Periodo = 30.0;
+juros.Pagamentos = $amake(juros.Quantidade);
+juros.Pesos = $amake(juros.Quantidade);
+
+// inicialização dos arrays dinamicamente
+var indice = 0;
+while indice < juros.Quantidade {
+    juros.Pagamentos[indice] = 30.0 * (indice + 1.0);
+    juros.Pesos[indice] = 1.0;
+    indice += 1;
+}
+
+// calcula e guarda os resultados dos métodos
+var pesoTotal = juros.getPesoTotal();
+var acrescimoCalculado = juros.jurosParaAcrescimo(3.0);
+var jurosCalculado = juros.acrescimoParaJuros(acrescimoCalculado, 15, 100, 50.0);
+
+// imprime os resultados
+$print("Peso total = " + pesoTotal + "\n");
+$print("Acrescimo = " + acrescimoCalculado + "\n");
+$print("Juros = " + jurosCalculado + "\n");
+
+// var base = 1.03;
+// var expoente = 0.5;
+// var potencia = math_pow(base, expoente);
+// $print("1,03 ^ 0,5 = " + potencia + "\n");
+

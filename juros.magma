@@ -1,0 +1,79 @@
+// Cálculo dos juros, sendo que precisa de parcelas pra isso
+// Versão 0.1: 10/03/2025: versão feita sem muito conhecimento de Magma
+
+// variáveis globais para simplificar as chamadas
+Quantidade := 3;
+Composto := true;
+Periodo := 30.0;
+Pagamentos := [];
+Pesos := [];
+
+// inicia os arrays dinamicamente, o que generaliza os casos especiais mais comuns
+for indice := 1 to Quantidade do
+    Pagamentos[indice] := indice * 30.0;
+    Pesos[indice] := 1.0;
+end for;
+
+// calcula a somatória de Pesos[]
+getPesoTotal := function()
+    acumulador := 0.0;
+    for indice := 1 to Quantidade do
+        acumulador := acumulador + Pesos[indice];
+    end for;
+    return acumulador;
+end function;
+
+// calcula o acréscimo a partir dos juros e parcelas
+jurosParaAcrescimo := function(juros)
+    pesoTotal := getPesoTotal();
+    if pesoTotal le 0.0 or juros le 0.0 or Periodo le 0.0 or Quantidade lt 1 then
+        return 0.0;
+    end if;
+
+    acumulador := 0.0;
+    for indice := 1 to Quantidade do
+        if Composto then
+            acumulador := acumulador + Pesos[indice] / (1.0 + juros / 100.0) ^ (Pagamentos[indice] / Periodo);
+        else
+            acumulador := acumulador + Pesos[indice] / (1.0 + juros / 100.0 * Pagamentos[indice] / Periodo);
+        end if;
+    end for;
+
+    if acumulador le 0.0 then
+        return 0.0;
+    end if;
+    return (pesoTotal / acumulador - 1.0) * 100.0;
+end function;
+
+// calcula os juros a partir do acréscimo e parcelas
+acrescimoParaJuros := function(acrescimo, precisao, maxIteracoes, maxJuros)
+    pesoTotal := getPesoTotal();
+    if pesoTotal le 0.0 or acrescimo le 0.0 or Periodo le 0.0 or maxJuros le 0.0 or Quantidade lt 1 or precisao lt 1 or maxIteracoes lt 1 then
+        return 0.0;
+    end if;
+
+    minJuros := 0.0;
+    minDiferenca := 0.1 ^ precisao;
+    for indice := 1 to maxIteracoes do
+        medJuros := (minJuros + maxJuros) / 2.0;
+        if (maxJuros - minJuros) lt minDiferenca then
+            return medJuros;
+        end if;
+        if jurosParaAcrescimo(medJuros) lt acrescimo then
+            minJuros := medJuros;
+        else
+            maxJuros := medJuros;
+        end if;
+    end for;
+    return medJuros;
+end function;
+
+// calcula e guarda os resultados das funções
+pesoTotal := getPesoTotal();
+acrescimoCalculado := jurosParaAcrescimo(3.0);
+jurosCalculado := acrescimoParaJuros(acrescimoCalculado, 29, 120, 50.0);
+
+// imprime os resultados
+print "Peso total =", pesoTotal;
+print "Acrescimo =", acrescimoCalculado;
+print "Juros =", jurosCalculado;

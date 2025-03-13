@@ -1,0 +1,83 @@
+# Cálculo dos juros, sendo que precisa de parcelas pra isso
+# Versão 0.1: 13/03/2025: versão feita sem muito conhecimento de Lil
+
+# variáveis globais para simplificar as chamadas âs funções
+Quantidade : 3
+Composto : 1  # 1 - true, qualquer outro = false
+Periodo : 30.0
+Pagamentos : ()
+Pesos : ()
+
+# inicializa as listas
+indice : 0
+while indice < Quantidade
+    Pagamentos : Pagamentos, (30.0 * (indice + 1.0))
+    Pesos : Pesos, 1.0
+    indice : indice + 1
+end
+
+# calcula a somatória de Pesos[]
+on getPesoTotal do
+    acumulador : 0.0
+    indice : 0
+    while indice < Quantidade
+        acumulador : acumulador + Pesos[indice]
+        indice : indice + 1
+    end
+    acumulador
+end
+
+# calcula o acréscimo a partir dos juros e parcelas
+on jurosParaAcrescimo juros do
+    pesoTotal : getPesoTotal[]
+    if pesoTotal < 0.0 | pesoTotal = 0.0 | Quantidade < 1 | Periodo < 0.0 | Periodo = 0.0 | juros < 0.0 | juros = 0.0
+        0.0
+    else
+        acumulador : 0.0
+        indice : 0
+        while indice < Quantidade
+            if Composto = 1
+                acumulador : acumulador + (Pesos[indice] / ((1.0 + (juros / 100.0)) ^ (Pagamentos[indice] / Periodo)))
+            else
+                acumulador : acumulador + (Pesos[indice] / (1.0 + ((juros / 100.0) * Pagamentos[indice] / Periodo)))
+            end
+            indice : indice + 1
+        end
+        ((pesoTotal / acumulador) - 1.0) * 100.0
+    end
+end
+
+# calcula os juros a partir do acréscimo e parcelas
+on acrescimoParaJuros acrescimo precisao maxIteracoes maxJuros do
+    pesoTotal : getPesoTotal[]
+    if pesoTotal < 0.0 | pesoTotal = 0.0 | Quantidade < 1 | Periodo < 0.0 | Periodo = 0.0 | acrescimo < 0.0 | acresimo = 0.0 | precisao < 1 | maxIteracoes < 1 | maxJuros < 0.0 | maxJuros = 0.0
+        0.0
+    else
+        minJuros : 0.0
+        minDiferenca : 0.1 ^ precisao
+        iteracao : 0
+        while iteracao < maxIteracoes
+            medJuros : (minJuros + maxJuros) / 2.0
+            if (maxJuros - minJuros) < minDiferenca
+                iteracao : maxIteracoes
+            end
+            if jurosParaAcrescimo[medJuros] < acrescimo
+                minJuros : medJuros
+            else
+                maxJuros : medJuros
+            end
+            iteracao : iteracao + 1
+        end
+        medJuros
+    end
+end
+
+# calcula e guarda os resultados das funções
+pesoTotal : getPesoTotal[]
+acrescimoCalculado : jurosParaAcrescimo[3.0]
+jurosCalculado : acrescimoParaJuros[acrescimoCalculado 15 100 50.0]
+
+# imprime os resultados
+print["Peso total = ", pesoTotal]
+print["Acrescimo = ", acrescimoCalculado]
+print["Juros = ", jurosCalculado]

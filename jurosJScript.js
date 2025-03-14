@@ -90,5 +90,5 @@ var jurosCalculado = juros.acrescimoParaJuros(acrescimoCalculado, 18, 100, 50.0,
 
 // imprime os resultados
 print( "Peso total = " + pesoTotal)
-print( "Acréscimo = " + acrescimoCalculado)
+print( "Acrescimo = " + acrescimoCalculado)
 print( "Juros = " + jurosCalculado)

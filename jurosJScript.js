@@ -1,5 +1,6 @@
 // Cálculo do juros, sendo que precisa de arrays pra isso
 // Versão 0.1: 14/03/2025: versão de testes a partir da de JScript
+//             15/03/2025: alterado de "print" para "Console.WriteLine"
 
 import System
 

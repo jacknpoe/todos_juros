@@ -32,7 +32,7 @@
     (* (- (/ pesoTotal acumulador) 1.0) 100.0)
 )
 
-; calcula os juros a partid do acréscimo e parcelas
+; calcula os juros a partir do acréscimo e parcelas
 (defn acrescimoParaJuros [Quantidade Composto Periodo Pagamentos Pesos acrescimo precisao maxIteracoes maxJuros]
     (setv minJuros 0.0 medJuros (/ maxJuros 2.0) minDiferenca (** 0.1 precisao) indice 0)
     (while (< indice maxIteracoes)

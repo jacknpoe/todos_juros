@@ -1,6 +1,8 @@
 // Cálculo do juros, sendo que precisa de arrays pra isso
 // Versão 0.1: 14/03/2025: versão de testes a partir da de JScript
 
+import System
+
 // classe com os valores globais para simplificar as chamadas
 class Juros {
 	var Quantidade
@@ -89,6 +91,6 @@ var acrescimoCalculado = juros.jurosParaAcrescimo(3.0)
 var jurosCalculado = juros.acrescimoParaJuros(acrescimoCalculado, 18, 100, 50.0, false)
 
 // imprime os resultados
-print( "Peso total = " + pesoTotal)
-print( "Acrescimo = " + acrescimoCalculado)
-print( "Juros = " + jurosCalculado)
+Console.WriteLine( "Peso total = " + pesoTotal)
+Console.WriteLine( "Acrescimo = " + acrescimoCalculado)
+Console.WriteLine( "Juros = " + jurosCalculado)

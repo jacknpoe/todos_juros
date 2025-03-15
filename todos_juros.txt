@@ -322,7 +322,7 @@ Juros.py
 
 main.html.jinja
 
-70. JScript (14/03/2025)
+70. JScript .NET (14/03/2025)
 
 jurosJScript.js
 

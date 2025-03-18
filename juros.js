@@ -107,7 +107,7 @@ let juros = new Juros(3, true, 30.0)
 juros.setPagamentos(",", "30,60,90")
 juros.setPesos(",", "1,1,1")
 
-// caLcula e guarda os resultados das funções
+// calcula e guarda os resultados das funções
 let pesoTotal = juros.getPesoTotal()
 let acrescimoCalculado = juros.jurosParaAcrescimo(3.0)
 let jurosCalculado = juros.acrescimoParaJuros(acrescimoCalculado, 18, 100, 50.0, false)

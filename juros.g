@@ -58,7 +58,7 @@ acrescimoParaJuros := function(acrescimo, precisao, maxIteracoes, maxJuros)
     return medJuros;
 end;
 
-# calcula e guarda os resultados das funçõe
+# calcula e guarda os resultados das funções
 pesoTotal := getPesoTotal();
 acrescimoCalculado := jurosParaAcrescimo(3.0);
 jurosCalculado := acrescimoParaJuros(acrescimoCalculado, 15, 100, 50.0);

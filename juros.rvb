@@ -1,0 +1,93 @@
+Option Explicit
+
+' Calculo dos juros, sendo que precisa de parcelas pra isso
+' Versao 0.1: 19/03/2025: versao feita sem muito conhecimento de RhinoScript
+
+' não dá para colocar arrays como globais, então vão nas chamadas de função
+Dim Quantidade, Composto, Periodo
+
+' calcula a somatoria de Pesos()
+Function GetPesoTotal(Pesos)
+	Dim acumulador, indice
+	For indice = 0 To Quantidade - 1
+		acumulador = acumulador + Pesos(indice)
+	Next
+	GetPesoTotal = acumulador
+End Function
+
+' calcula o acrescimo a partir dos juros e parcelas
+Function JurosParaAcrescimo(Pagamentos, Pesos, ByVal juros)
+	Dim pesoTotal, acumulador, indice
+	pesoTotal = GetPesoTotal(Pesos)
+	If juros <= 0.0 Or Quantidade <= 0 Or Periodo <= 0.0 Or pesoTotal <= 0.0 Then
+		JurosParaAcrescimo = 0.0
+	Else
+		For indice = 0 To Quantidade - 1
+			If Composto Then
+				acumulador = acumulador + Pesos(indice) / (1.0 + juros / 100.0) ^ (Pagamentos(indice) / Periodo)
+			Else
+				acumulador = acumulador + Pesos(indice) / (1.0 + juros / 100.0 * Pagamentos(indice) / Periodo)
+			End If
+		Next
+
+		If acumulador <= 0.0 Then
+			JurosParaAcrescimo = 0.0
+		Else
+			JurosParaAcrescimo = (pesoTotal / acumulador - 1.0) * 100.0
+		End If
+	End If
+End Function
+
+' calcula os juros a partir do acrescimo e parcelas
+Function AcrescimoParaJuros(Pagamentos, Pesos, ByVal acrescimo, ByVal precisao, ByVal maxIteracoes, ByVal maxJuros)
+	Dim minJuros, medJuros, minDiferenca, pesoTotal, indice
+	pesoTotal = GetPesoTotal(Pesos)
+	If maxIteracoes < 1 Or Quantidade < 1 Or precisao < 1 Or Periodo <= 0.0 Or acrescimo <= 0.0 Or maxJuros <= 0.0 Or pesoTotal <= 0.0 Then
+		AcrescimoParaJuros = 0.0
+	Else
+		minJuros = 0.0
+		medJuros = maxJuros / 2.0
+		minDiferenca = 0.1 ^ precisao
+		
+		Do While indice < maxIteracoes
+			If (maxJuros - minJuros) < minDiferenca Then
+				indice = maxIteracoes
+			End If
+			If JurosParaAcrescimo(Pagamentos, Pesos, medJuros) < acrescimo Then
+				minJuros = medJuros
+			Else
+				maxJuros = medJuros
+			End If
+			medJuros = (minJuros + maxJuros) / 2.0
+			indice = indice + 1
+		Loop
+
+		AcrescimoParaJuros = medJuros
+	End If
+End Function
+
+Call Main()
+Sub Main()
+	Dim pesoTotal, acrescimoCalculado, jurosCalculado, indice, Pagamentos(), Pesos()
+
+	' inicializa as variaveis globais, os arrays dinamicamente
+	Quantidade = 3
+	Composto = True
+	Periodo = 30.0
+	ReDim Pagamentos(Quantidade - 1)
+	ReDim Pesos(Quantidade - 1)
+
+	For indice = 0 To Quantidade - 1
+		Pagamentos(indice) = (indice + 1.0) * Periodo
+		Pesos(indice) = 1.0
+	Next
+
+	' calcula e guarda os retornos das funcoes
+	pesoTotal = getPesoTotal(Pesos)
+	acrescimoCalculado = JurosParaAcrescimo(Pagamentos, Pesos, 3.0)
+	jurosCalculado = AcrescimoParaJuros(Pagamentos, Pesos, acrescimoCalculado, 15, 100, 50.0)
+
+	MsgBox "Peso total = " & pesoTotal
+	MsgBox "Acréscimo = " & acrescimoCalculado
+	MsgBox "Juros = " & jurosCalculado
+End Sub

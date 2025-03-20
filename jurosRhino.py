@@ -2,7 +2,7 @@
 # coding: latin1
 
 # Cálculo dos juros, sendo que precisa de parcelas pra isso
-# Versão 0.1: 19/03/2025: versão feita sem muito conhecimento de Rhino Script
+# Versão 0.1: 19/03/2025: versão feita sem muito conhecimento de Rhino Python
 
 # Calcula o acréscimo a partir dos juros e os juros a partir do acréscimo
 class Juros:

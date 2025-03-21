@@ -14,6 +14,8 @@ Fórmula para calcular o acréscimo a partir dos juros compostos:
 
 ![Juros Compostos](https://github.com/jacknpoe/todos_juros/blob/main/JurosCompostos.jpg)
 
+Apenas soluções que compilaram (ou foram corretamente interpretadas), que realmente rodaram, e retornaram resultados corretos, são publicadas.
+
 Dois conceitos que pesaram muito foram a exponenciação de números ponto flutuante (implementada em todas as linguagens) e os arrays dinâmicos (que não foram possíveis, por exemplo, em Chapel, Modula-2, MSX Turbo Pascal, Pascalzim, Portugol, VisuALG e XC=BASIC, e os arrays podem ter mil ou três elementos).
 
 Duas linguagens são consideradas diferentes quando qualquer parte do código tem que ser alterada para ser compilado ou interpretado em ambas. Essa questão ficaria muito complicada, se fosse escolhido um critério mais rígido sobre o quanto uma linguagem precisa ser diferente de outra, o que seria impraticável. Quando duas ou mais linguagens rodam exatamente o mesmo código (como Chez Scheme, Guile e Scheme ou ClojureScript e Squint), apenas uma das linguagens será considerada. Tecnologias que exigem alteração no código de outras linguagens também estão listadas.
@@ -53,6 +55,8 @@ Formula for calculating the increase from compound interest:
 ![Compound Interest](https://github.com/jacknpoe/todos_juros/blob/main/JurosCompostos.jpg)
 
 (pesoTotal = totalWeight; quantidade = quantity; pesos = weights; juros = interest; pagamentos = payments; periodo = period)
+
+Only solutions that compiled (or were correctly interpreted), actually ran, and returned correct results are published.
 
 Two concepts that weighed heavily were the exponentiation of floating point numbers (implemented in all languages) and dynamic arrays (which were not possible, for example, in Chapel, Modula-2, MSX Turbo Pascal, Pascalzim, Portugol, VisuALG and XC=BASIC, and arrays can have one thousand or three elements).
 

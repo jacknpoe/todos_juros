@@ -1,5 +1,5 @@
 // Cálculo do juros, sendo que precisa de listas pra isso
-// Versão 0.1: 20/03/2025: versão sem saber muito sobre Alice Flix
+// Versão 0.1: 20/03/2025: versão sem saber muito sobre Flix
 
 /// calcula a somatória de qualquer lista com Float64, mas vai ser usada com Pesos[]
 def getTotal(lista: List[Float64]): Float64 =

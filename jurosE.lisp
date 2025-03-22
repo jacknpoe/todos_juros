@@ -1,7 +1,5 @@
 ;; Cálculo do juros, sendo que precisa de arrays pra isso
-;; Versão 0.1: 26/04/2024: variáveis
-;;        0.2: 27/04/2024: implementação das funções
-;;        0.3: 28/04/2024: valores envolvidos em cálculos mudados para double para maior precisão
+;; Versão 0.1: 21/03/2025: criado a partir da versão em Common Lisp sem muito conhecimento de Emacs Lisp
 
 ;; Variáveis
 (defvar Quantidade 3)

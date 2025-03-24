@@ -9,7 +9,7 @@ FUNCTION Main
     LOCAL Pagamentos := {30.0, 60.0, 90.0}
     LOCAL Pesos := {1.0, 1.0, 1.0}
 
-     // variáveis resultado
+    // variáveis resultado
     LOCAL pesoTotal, acrescimoCalculado, jurosCalculado
 
     // faz os cálculos e guarda os resultados das funções

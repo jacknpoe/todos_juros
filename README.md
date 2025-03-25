@@ -20,7 +20,7 @@ Dois conceitos que pesaram muito foram a exponenciação de números ponto flutu
 
 Duas linguagens são consideradas diferentes quando qualquer parte do código tem que ser alterada para ser compilado ou interpretado em ambas. Essa questão ficaria muito complicada, se fosse escolhido um critério mais rígido sobre o quanto uma linguagem precisa ser diferente de outra, o que seria impraticável. Quando duas ou mais linguagens rodam exatamente o mesmo código (como Chez Scheme, Guile e Scheme ou ClojureScript e Squint), apenas uma das linguagens será considerada. Tecnologias que exigem alteração no código de outras linguagens também estão listadas.
 
-As soluções estão divididas entre as recursivas (Alice, AutoLISP, Bend, Clean, Clojure, Common Lisp, DataWeave, DrScheme, Elixir, Elm, Emacs Lisp, Erlang, Flix, Gleam, Haskell, Idris, ISLISP, Lean, Miranda, NewLISP, Oak, OCaml, Orc, Otus Lisp, Prolog, PureScript, Racket, ReasonML, ReScript, Scheme, SML, Source, Squint, Visual LISP, XSB e Yeti) e iterativas (todas as outras linguagens, incluindo F#).
+As soluções estão divididas entre as recursivas (Alice, AutoLISP, Bend, Caml, Clean, Clojure, Common Lisp, DataWeave, DrScheme, Elixir, Elm, Emacs Lisp, Erlang, Flix, Gleam, Haskell, Idris, ISLISP, Lean, Miranda, NewLISP, Oak, OCaml, Orc, Otus Lisp, Prolog, PureScript, Racket, ReasonML, ReScript, Scheme, SML, Source, Squint, Visual LISP, XSB e Yeti) e iterativas (todas as outras linguagens, incluindo F#).
 
 Existem, em algumas soluções, salvaguardas para valores incorretos para uma aplicação real. São valores zerados e negativos. Em algumas linguagens não é verificado, pois entendeu-se que o público-alvo dessas linguagens não cometeria esse tipo de equívoco.
 
@@ -62,7 +62,7 @@ Two concepts that weighed heavily were the exponentiation of floating point numb
 
 Two languages ​​are considered different when any part of the code has to be changed to be compiled or interpreted in both. This issue would become very complicated if a stricter criterion were chosen regarding how much one language needs to be different from another, which would be impractical. When two or more languages ​​run exactly the same code (such as Chez Scheme, Guile and Scheme  or ClojureScript and Squint), only one of the languages ​​will be considered. Technologies that require changes to code from other languages ​​are also listed.
 
-The solutions are divided between recursive (AutoLISP, Bend, Clean, Clojure, Common Lisp, DataWeave, DrScheme, Elixir, Elm, Emacs Lisp, Erlang, Flix, Gleam, Haskell, Idris, ISLISP, Lean, Miranda, NewLISP, Oak, OCaml, Orc, Otus Lisp, Prolog, PureScript, Racket, ReasonML, ReScript, Scheme, SML, Source, Squint, Visual LISP, XSB and Yeti) and iterative (all other languages, including F#).
+The solutions are divided between recursive (AutoLISP, Bend, Caml, Clean, Clojure, Common Lisp, DataWeave, DrScheme, Elixir, Elm, Emacs Lisp, Erlang, Flix, Gleam, Haskell, Idris, ISLISP, Lean, Miranda, NewLISP, Oak, OCaml, Orc, Otus Lisp, Prolog, PureScript, Racket, ReasonML, ReScript, Scheme, SML, Source, Squint, Visual LISP, XSB and Yeti) and iterative (all other languages, including F#).
 
 There are, in some solutions, safeguards for incorrect values ​​for a real application. These are zero and negative values. In some languages ​​it is not verified, as it was understood that the target audience of these languages ​​would not make this type of mistake.
 

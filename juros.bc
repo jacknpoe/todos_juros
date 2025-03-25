@@ -1,0 +1,76 @@
+/* RODAR COM: bc -l -q juros.bc */
+/* Cálculo dos juros, sendo que precisa de parcelas pra isso
+   Versão 0.1: 25/03/2025: versão feita sem muito conhecimento de bc */
+
+/* variáveis globais para simplificar as chamadas */
+quantidade = 3;
+composto = 1;   /* 1 = TRUE */
+periodo = 30.0;
+
+/* os arrays são inicializados dinamicamente */
+for(indice = 0; indice < quantidade; indice++) {
+    pagamentos[indice] = (indice + 1.0) * periodo;
+    pesos[indice] = 1;
+}
+
+/* função para simplificar os cálculos de exponenciação */
+define power(base, expoente) {
+    return e(expoente * l (base));
+}
+
+/* calcula a somatória de pesos[] */
+define get_peso_total() {
+    acumulador = 0.0;
+    for(indice = 0; indice < quantidade; indice++) { acumulador += pesos[indice]; }
+    return acumulador;
+}
+
+/* calcula o acréscimo a partir dos juros e parcelas */
+define juros_para_acrescimo(juros) {
+    peso_total = get_peso_total();
+    if(quantidade < 1 || periodo <= 0.0 || juros <= 0.0 || peso_total <= 0.0) return 0.0;
+
+    acumulador = 0.0;
+    for(indice = 0; indice < quantidade; indice++) {
+        if(composto == 1) {
+            acumulador += pesos[indice] / power(1.0 + juros / 100.0, pagamentos[indice] / periodo);
+        } else {
+            acumulador += pesos[indice] / (1.0 + juros / 100.0 * pagamentos[indice] / periodo);
+        }
+    }
+
+    if(acumulador <= 0.0) return 0.0;
+    return (peso_total / acumulador - 1.0) * 100.0;
+}
+
+/* calcula os juros a partir do acréscimo e parcelas */
+define acrescimo_para_juros(acrescimo, precisao, max_iteracoes, max_juros) {
+    peso_total = get_peso_total();
+    if(quantidade < 1 || periodo <= 0.0 || acrescimo <= 0.0 || precisao < 1 || max_iteracoes < 1 || max_juros <= 0.0 || peso_total <= 0.0) return 0.0;
+    
+    min_juros = 0.0;
+    med_juros = max_juros / 2.0;
+    min_diferenca = power(0.1, precisao);
+    for(indice = 0; indice < max_iteracoes; indice++) {
+        if(max_juros - min_juros < min_diferenca) return med_juros;
+        if(juros_para_acrescimo(med_juros) < acrescimo) min_juros = med_juros else max_juros = med_juros;
+        med_juros = (min_juros + max_juros) / 2.0;
+    }
+    return med_juros;
+}
+
+/* calcula e guarda os retornos das funções */
+peso_total = get_peso_total();
+acrescimo_calculado = juros_para_acrescimo(3.0);
+juros_calculado = acrescimo_para_juros(acrescimo_calculado, 15, 100, 50.0);
+
+/* imprime os resultados */
+print "Peso total = ";
+print (peso_total);
+print "\n";
+print "Acrescimo = ";
+print (acrescimo_calculado);
+print "\n";
+print "Juros = ";
+print (juros_calculado);
+print "\n";

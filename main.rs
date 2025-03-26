@@ -6,7 +6,7 @@ mod juros;
 ///         0.4 04/04/2024: trocada avaliação soZero por acumulador == 0
 ///         0.4 11/04/2024: melhorados comentários e colocadas legendas nos testes
 fn main() {
-    /// testes das funções
+    // testes das funções
     let pagamentos: Vec<f64> = vec![30.0, 60.0, 90.0];
     let pesos: Vec<f64> = vec![1.0, 1.0, 1.0];
     let juros = juros::Juros::novo(3, true, 30.0, &pagamentos, &pesos);

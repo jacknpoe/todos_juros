@@ -1,0 +1,68 @@
+// Cálculo dos juros, sendo que precisa de parcelas pra isso
+// Versão 0.1: 27/03/2025: versão feita sem muito conhecimento de Yoix
+
+import yoix.stdio.printf;
+import yoix.math.pow;
+
+// variáveis para simplificar as chamadas a funções
+int Quantidade = 3;
+int Composto = 1;  // 1 = TRUE
+double Periodo = 30.0;
+Array Pagamentos[Quantidade];
+Array Pesos[Quantidade];
+
+// a inicialização dos arrays é dinâmica
+int indice;
+for(indice = 0; indice < Quantidade; indice++) {
+    Pagamentos[indice] = (indice + 1.0) * Periodo;
+    Pesos[indice] = 1.0;
+}
+
+// calcula a somatória de Pesos[]
+getPesoTotal() {
+    double acumulador = 0.0;
+    for(indice = 0; indice < Quantidade; indice++) acumulador += Pesos[indice];
+    return acumulador;
+}
+
+// calcula o acréscimo a partir dos juros e parcelas
+jurosParaAcrescimo(double juros) {
+    double pesoTotal = getPesoTotal();
+    if(Quantidade < 1 || Periodo <= 0.0 || juros <= 0.0 || pesoTotal <= 0.0) return 0.0;
+
+    double acumulador = 0.0;
+    int indice;
+    for(indice = 0; indice < Quantidade; indice++)
+        if(Composto) acumulador += Pesos[indice] / pow(1.0 + juros / 100.0, Pagamentos[indice] / Periodo);
+            else acumulador += Pesos[indice] / (1.0 + juros / 100.0 * Pagamentos[indice] / Periodo);
+
+    if(acumulador <= 0.0) return 0.0;
+    return (pesoTotal / acumulador - 1.0) * 100.0;
+}
+
+// calcula os juros a partir do acréscimo e parcelas
+acrescimoParaJuros(double acrescimo, int precisao, int maxIteracoes, double maxJuros) {
+    double pesoTotal = getPesoTotal();
+    if(Quantidade < 1 || Periodo <= 0.0 || acrescimo <= 0.0 || pesoTotal <= 0.0 || precisao < 1 || maxIteracoes < 1 || maxJuros <= 0.0) return 0.0;
+
+    double minJuros = 0.0;
+    double medJuros = maxJuros / 2.0;
+    double minDiferenca = pow(0.1, precisao);
+    int indice;
+    for(indice = 0; indice < maxIteracoes; indice++) {
+        if(maxJuros - minJuros < minDiferenca) return medJuros;
+        if(jurosParaAcrescimo(medJuros) < acrescimo) minJuros = medJuros; else maxJuros = medJuros;
+        medJuros = (minJuros + maxJuros) / 2.0;
+    }
+    return medJuros;
+}
+
+// calcula e guarda os resultados das funções
+double pesoTotal = getPesoTotal();
+double acrescimoCalculado = jurosParaAcrescimo(3.0);
+double jurosCalculado = acrescimoParaJuros(acrescimoCalculado, 15, 100, 50.0);
+
+// imprime os resultados
+printf("Peso total = %2.15f\n", pesoTotal);
+printf("Acrescimo = %2.15f\n", acrescimoCalculado);
+printf("Juros = %2.15f\n", jurosCalculado);

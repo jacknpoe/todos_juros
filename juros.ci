@@ -1,0 +1,72 @@
+// Cálculo dos juros, sendo que precisa de parcelas pra isso
+// Versão 0.1:  28/03/2025: versão feita sem muito conhecimento de Ć
+// transpile para Python e teste com testajurosCI.py
+
+public class Juros {
+    int Quantidade;
+    bool Composto;
+    double Periodo;
+    double[]# Pagamentos;  // FAZER: Pagamentos = new double[Quantidade];
+    double[]# Pesos;
+
+    // construtor, que inicializa escalarres
+    public Juros() {
+        // ?nada?, porque construtores em Ć não permitem parâmetros
+    }
+
+    /// define escalares e aloca arrays
+    public void Init(int quant, bool comp, double per) {
+        Quantidade = quant;
+        Composto = comp;
+        Periodo = per;
+        Pagamentos = new double[quant];
+        Pesos = new double[quant];
+    }
+
+    /// define Pagamentos[indice] como valor
+    public void setPagamentos(int indice, double valor) {
+        Pagamentos[indice] = valor;
+    }
+
+    /// define Pesos[indice] como valor
+    public void setPesos(int indice, double valor) {
+        Pesos[indice] = valor;
+    }
+
+    /// calcula a somnatória de Pesos[]
+    public double getPesoTotal() {
+        double acumulador = 0.0;
+        for(int indice = 0; indice < Quantidade; indice++) acumulador += Pesos[indice];
+        return acumulador;
+    }
+
+    /// calcula o acréscimo a partir dos juros e parcelas
+    public double jurosParaAcrescimo(double juros) {
+        double pesoTotal = getPesoTotal();
+        if(Quantidade < 1 || Periodo <= 0.0 || juros <= 0.0 || pesoTotal <= 0.0) return 0.0;
+
+        double acumulador = 0.0;
+        for(int indice = 0; indice < Quantidade; indice++)
+            if(Composto) acumulador += Pesos[indice] / Math.Pow(1.0 + juros / 100.0, Pagamentos[indice] / Periodo);
+                else acumulador += Pesos[indice] / (1.0 + juros / 100.0 * Pagamentos[indice] / Periodo);
+        
+        if(acumulador <= 0.0) return 0.0;
+        return (pesoTotal / acumulador - 1.0) * 100.0;
+    }
+
+    /// calcula os juros a partir do acréscimo e parcelas
+    public double acrescimoParaJuros(double acrescimo, int precisao, int maxIteracoes, double maxJuros) {
+        double pesoTotal = getPesoTotal();
+        if(Quantidade < 1 || Periodo <= 0.0 || acrescimo <= 0.0 || pesoTotal <= 0.0 || precisao < 1 || maxIteracoes < 1 || maxJuros <= 0.0) return 0.0;
+
+        double minJuros = 0.0;
+        double medJuros = maxJuros / 2.0;
+        double minDiferenca = Math.Pow(0.1, precisao);
+        for(int indice = 0; indice < maxIteracoes; indice++) {
+            if(maxJuros - minJuros < minDiferenca) return medJuros;
+            if(jurosParaAcrescimo(medJuros) < acrescimo) minJuros = medJuros; else maxJuros = medJuros;
+            medJuros = (minJuros + maxJuros) / 2.0;
+        }
+        return medJuros;
+    }
+}

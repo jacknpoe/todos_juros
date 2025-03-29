@@ -1,0 +1,80 @@
+&AtClient
+Procedure CommandProcessing(CommandParameter, CommandExecuteParameters)
+	// variáveis que serão passadas por parâmetro
+	Quantidade = 3;
+	Composto = True;
+	Periodo = 30.0;
+	Pagamentos = New Array;
+	Pesos = New Array;
+
+	// inicialização dos arrays
+	For indice = 1 to Quantidade Do
+		Pagamentos.Add(indice * Periodo);
+		Pesos.Add(1.0);
+	EndDo;
+	
+	// calcula e guarda os resultados das funções
+	pesoTotal = getPesoTotal(Quantidade, Pesos);
+	acrescimoCalculado = jurosParaAcrescimo(Quantidade, Composto, Periodo, Pagamentos, Pesos, 3.0);
+	jurosCalculado = acrescimoParaJuros(Quantidade, Composto, Periodo, Pagamentos, Pesos, acrescimoCalculado, 20, 100, 50.0);
+	
+	// mostra os resultados
+	Message("Peso total = " + pesoTotal);
+	Message("Acréscimo = " + acrescimoCalculado);
+	Message("Juros = " + jurosCalculado);
+EndProcedure
+
+// calcula a somatória de Pesos[]
+Function getPesoTotal(Quantidade, Pesos)
+	acumulador = 0.0;
+	For indice = 0 To Quantidade - 1 Do
+		acumulador = acumulador + Pesos[indice];
+	EndDo;
+	Return acumulador;
+EndFunction
+
+// calcula o acréscimo a partir dos juros e parcelas
+Function jurosParaAcrescimo(Quantidade, Composto, Periodo, Pagamentos, Pesos, juros)
+	pesoTotal = getPesoTotal(Quantidade, Pesos);
+	If Quantidade < 1 Or Periodo <= 0.0 Or juros <= 0.0 Or pesoTotal <= 0.0 Then
+		Return 0.0;
+	EndIf;
+	
+	acumulador = 0.0;
+	For indice = 0 To Quantidade - 1 Do
+		If Composto Then
+			acumulador = acumulador + Pesos[indice] / Pow(1.0 + juros / 100.0, Pagamentos[indice] / Periodo);
+		Else
+			acumulador = acumulador + Pesos[indice] / (1.0 + juros / 100.0 * Pagamentos[indice] / Periodo);
+		EndIf;
+	EndDo;
+	
+	If acumulador <= 0.0 Then
+		Return 0.0;
+	EndIf;
+	Return (pesoTotal / acumulador - 1.0) * 100.0;
+EndFunction
+
+// calcula os juros a partir do acréscimo e parcelas
+Function acrescimoParaJuros(Quantidade, Composto, Periodo, Pagamentos, Pesos, acrescimo, precisao, maxIteracoes, maxJuros)
+	pesoTotal = getPesoTotal(Quantidade, Pesos);
+	If Quantidade < 1 Or Periodo <= 0.0 Or acrescimo <= 0.0 Or pesoTotal <= 0.0 Or precisao < 1 Or maxIteracoes < 1 Or maxJuros <= 0.0 Then
+		Return 0.0;
+	EndIf;
+
+	minJuros = 0.0;
+	medJuros = maxJuros / 2.0;
+	minDiferenca = Pow(0.1, precisao);
+	For indice = 1 To maxIteracoes Do
+		If maxJuros - minJuros < minDiferenca Then
+			Return medJuros;
+		EndIf;
+		If jurosParaAcrescimo(Quantidade, Composto, Periodo, Pagamentos, Pesos, medJuros) < acrescimo Then
+			minJuros = medJuros;
+		Else
+			maxJuros = medJuros;
+		EndIf;
+		medJuros = (minJuros + maxJuros) / 2.0;
+	EndDo;
+	Return medJuros;
+EndFunction

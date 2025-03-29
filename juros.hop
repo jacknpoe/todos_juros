@@ -1,0 +1,37 @@
+dec criaPagamentos : num -> list (num);
+--- criaPagamentos (indice) <= if indice = 1 then [30.0] else criaPagamentos (indice - 1) <> [indice * 30.0];
+
+dec criaPesos : num -> list (num);
+--- criaPesos (indice) <= if indice = 1 then [1.0] else 1.0 :: criaPesos (indice-1);
+
+dec getPesoTotal : list (num) -> num;
+--- getPesoTotal (head::tail) <= head + getPesoTotal (tail);
+--- getPesoTotal (nil) <= 0.0;
+
+dec rJurosCompostos : num # list (num) # list (num) # num -> num;
+--- rJurosCompostos (periodo, (hpag::tpag), (hpes::tpes), juros) <= rJurosCompostos (periodo, tpag, tpes, juros) + hpes / pow(1.0 + juros / 100.0, hpag / periodo);
+--- rJurosCompostos (periodo, nil, nil, juros) <= 0.0;
+
+dec rJurosSimples : num # list (num) # list (num) # num -> num;
+--- rJurosSimples (periodo, (hpag::tpag), (hpes::tpes), juros) <= rJurosSimples (periodo, tpag, tpes, juros) + hpes / (1.0 + juros / 100.0 * hpag / periodo);
+--- rJurosSimples (periodo, nil, nil, juros) <= 0.0;
+
+dec jurosParaAcrescimo : num # num # list (num) # list (num) # num -> num;
+--- jurosParaAcrescimo (composto, periodo, pagamentos, pesos, juros) <=
+        if composto = 1 then (getPesoTotal (pesos) / rJurosCompostos (periodo, pagamentos, pesos, juros) - 1.0) * 100.0
+                        else (getPesoTotal (pesos) / rJurosSimples (periodo, pagamentos, pesos, juros) - 1.0) * 100.0;
+
+dec rAcrescimoParaJuros : num # num # list (num) # list (num) # num # num # num # num # num # num -> num;
+--- rAcrescimoParaJuros (composto, periodo, pagamentos, pesos, acrescimo, mindiferenca, iteracaoatual, minjuros, maxjuros, medjuros) <=
+    if iteracaoatual = 0 or maxjuros - minjuros < mindiferenca then medjuros
+    else if jurosParaAcrescimo (composto, periodo, pagamentos, pesos, medjuros) < acrescimo
+        then rAcrescimoParaJuros (composto, periodo, pagamentos, pesos, acrescimo, mindiferenca, iteracaoatual - 1, medjuros, maxjuros, (medjuros + maxjuros) / 2.0)
+        else rAcrescimoParaJuros (composto, periodo, pagamentos, pesos, acrescimo, mindiferenca, iteracaoatual - 1, minjuros, medjuros, (minjuros + medjuros) / 2.0);
+
+dec acrescimoParaJuros : num # num # list (num) # list (num) # num # num # num # num -> num;
+--- acrescimoParaJuros (composto, periodo, pagamentos, pesos, acrescimo, precisao, maxiteracoes, maxjuros) <=
+    rAcrescimoParaJuros (composto, periodo, pagamentos, pesos, acrescimo, pow(0.1, precisao), maxiteracoes, 0.0, maxjuros,  maxjuros / 2.0);
+
+getPesoTotal (criaPesos (3));
+jurosParaAcrescimo (1, 30.0, criaPagamentos (3), criaPesos (3), 3.0);
+acrescimoParaJuros (1, 30.0, criaPagamentos (3), criaPesos (3), jurosParaAcrescimo (1, 30.0, criaPagamentos (3), criaPesos (3), 3.0), 15, 100, 50.0);

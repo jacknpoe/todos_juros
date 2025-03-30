@@ -1,0 +1,95 @@
+    3 REM Calculo dos juros, sendo que precisa de arrays para isso
+    6 REM Versao 0.1: 30/03/2025: adaptado da versao em GW-BASIC para Bywater BASIC
+   95 REM variaveis globais e atribuicao de valores
+  100 QUANTIDADE% = 3
+  110 COMPOSTO% = 1
+  120 PERIODO# = 30!
+  130 DIM PAGAMENTOS#(QUANTIDADE%)
+  140 DIM PESOS#(QUANTIDADE%)
+  200 FOR INDICE% = 1 TO QUANTIDADE%
+  210   PAGAMENTOS#(INDICE%) = 30 * INDICE%
+  220   PESOS#(INDICE%) = 1!
+  230 NEXT INDICE%
+  295 REM testa os retornos das funcoes
+  300 GOSUB 500
+  310 PRINT "Peso total = "; USING "#.###############"; PESOTOTAL#
+  320 JUROS# = 3!
+  330 GOSUB 1000
+  340 PRINT "Acrescimo = "; USING "#.###############"; ACRESCIMO#
+  350 PRECISAO% = 15
+  360 MAXITERACOES% = 100
+  370 MAXJUROS# = 50!
+  380 ACRESCIMOPARAM# = ACRESCIMO#
+  390 GOSUB 1500
+  400 PRINT "Juros = "; USING "#.###############"; JUROS#
+  450 END
+  495 REM calcula a somatoria dos pesos
+  500 PESOTOTAL# = 0!
+  510 FOR INDICE% = 1 TO QUANTIDADE%
+  520   PESOTOTAL# = PESOTOTAL# + PESOS#(INDICE%)
+  530 NEXT INDICE%
+  540 RETURN
+  995 REM calcula o acrescimo a partir dos juros e parcelas
+ 1000 ACRESCIMO# = 0!
+ 1010 IF JUROS# <= 0! THEN
+    :   RETURN
+    : END IF
+ 1020 IF QUANTIDADE% < 1 THEN
+    :   RETURN
+    : END IF
+ 1030 IF PERIODO# <= 0! THEN
+    :   RETURN
+    : END IF
+ 1040 GOSUB 500
+ 1050 IF PESOTOTAL# <= 0! THEN
+    :   RETURN
+    : END IF
+ 1060 ACUMULADOR# = 0!
+ 1070 FOR INDICE% = 1 TO QUANTIDADE%
+ 1080   IF COMPOSTO% = 1 THEN 1100 ELSE 1200
+ 1100   ACUMULADOR# = ACUMULADOR# + PESOS#(INDICE%) / (1! + JUROS# / 100!) ^ (PAGAMENTOS#(INDICE%) / PERIODO#)
+ 1110   GOTO 1300
+ 1200   ACUMULADOR# = ACUMULADOR# + PESOS#(INDICE%) / (1! + JUROS# / 100! * PAGAMENTOS#(INDICE%) / PERIODO#)
+ 1300 NEXT INDICE%
+ 1310 ACRESCIMO# = (PESOTOTAL# / ACUMULADOR# - 1!) * 100!
+ 1320 RETURN
+ 1495 REM calcula os juros a partir do acrescimo e parcelas
+ 1500 JUROS# = 0!
+ 1510 IF MAXITERACOES% < 1 THEN
+    :   RETURN
+    : END IF
+ 1520 IF QUANTIDADE% < 1 THEN
+    :   RETURN
+    : END IF
+ 1530 IF PRECISAO% < 1 THEN
+    :   RETURN
+    : END IF
+ 1540 IF PERIODO# <= 0! THEN
+    :   RETURN
+    : END IF
+ 1550 IF ACRESCIMOPARAM# <= 0! THEN
+    :   RETURN
+    : END IF
+ 1560 IF MAXJUROS# <= 0! THEN
+    :   RETURN
+    : END IF
+ 1570 GOSUB 500
+ 1580 IF PESOTOTAL# <= 0! THEN
+    :   RETURN
+    : END IF
+ 1590 MINJUROS# = 0!
+ 1610 MINDIFERENCA# = .1 ^ PRECISAO%
+ 1620 FOR INDICE% = 1 TO MAXITERACOES%
+ 1630   JUROS# = (MINJUROS# + MAXJUROS#) / 2!
+ 1640   IF (MAXJUROS# - MINJUROS#) < MINDIFERENCA# THEN
+    :     RETURN
+    :   END IF
+ 1650   GOSUB 1000
+ 1660   IF ACRESCIMO# < ACRESCIMOPARAM# THEN
+    :     MINJUROS# = JUROS#
+    :   ELSE
+    :     MAXJUROS# = JUROS#
+    :   END IF
+ 1670 NEXT INDICE%
+ 1680 RETURN
+

@@ -48,14 +48,17 @@
 
 ; funcao recursiva no lugar de um for que realmente calcula os juros
 (defun _acrescimoParaJuros (acrescimo minDiferenca iteracaoAtual minJuros maxJuros)
-  (if (or (< (- maxJuros minJuros) minDiferenca) (= iteracaoAtual 0))
-    (quotient (+ minJuros maxJuros) 2.0)
-    (if (< (jurosParaAcrescimo (quotient (+ minJuros maxJuros) 2.0)) acrescimo)
-      (_acrescimoParaJuros acrescimo minDiferenca (- iteracaoAtual 1) (quotient (+ minJuros maxJuros) 2.0) maxJuros)
-      (_acrescimoParaJuros acrescimo minDiferenca (- iteracaoAtual 1) minJuros (quotient (+ minJuros maxJuros) 2.0))
+  (if (< (- maxJuros minJuros) minDiferenca)
+    (/ (+ minJuros maxJuros) 2.0)
+    (if (= iteracaoAtual 0)
+      (if (< (jurosParaAcrescimo (/ (+ minJuros maxJuros) 2.0)) acrescimo)
+        (_acrescimoParaJuros acrescimo minDiferenca (- iteracaoAtual 1) (/ (+ minJuros maxJuros) 2.0) maxJuros)
+        (_acrescimoParaJuros acrescimo minDiferenca (- iteracaoAtual 1) minJuros (/ (+ minJuros maxJuros) 2.0))
+      )
     )
   )
 )
+
 
 ; calcula os juros a partir do acrescimo e dados comuns (como parcelas)
 (defun acrescimoParaJuros (acrescimo precisao maxIteracoes maxJuros)

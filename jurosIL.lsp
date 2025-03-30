@@ -51,6 +51,7 @@
   (if (< (- maxJuros minJuros) minDiferenca)
     (/ (+ minJuros maxJuros) 2.0)
     (if (= iteracaoAtual 0)
+      (/ (+ minJuros maxJuros) 2.0)
       (if (< (jurosParaAcrescimo (/ (+ minJuros maxJuros) 2.0)) acrescimo)
         (_acrescimoParaJuros acrescimo minDiferenca (- iteracaoAtual 1) (/ (+ minJuros maxJuros) 2.0) maxJuros)
         (_acrescimoParaJuros acrescimo minDiferenca (- iteracaoAtual 1) minJuros (/ (+ minJuros maxJuros) 2.0))

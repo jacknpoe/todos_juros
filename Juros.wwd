@@ -1,4 +1,7 @@
 '#Language "WWB-COM"
+' Cálculo dos juros, sendo que precisa de parcelas pra isso
+' Versão 0.1: 30/03/2025: versão feita sem muito conhecimento de WWB-COM
+'        0.2: 01/04/2025: alterados os ReDims para Quantidade - 1
 
 Option Explicit
 
@@ -65,8 +68,8 @@ Sub Main
 	Quantidade = 3
 	Composto = True
 	Periodo = 30.0
-	ReDim Pagamentos(Quantidade) As Double
-	ReDim Pesos(Quantidade) As Double
+	ReDim Pagamentos(Quantidade - 1) As Double
+	ReDim Pesos(Quantidade - 1) As Double
 
 	For indice = 0 To Quantidade - 1
 		Pagamentos(indice) = (indice + 1.0) * Periodo

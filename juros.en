@@ -1,0 +1,59 @@
+﻿// Cálculo dos juros, sendo que precisa de parcelas pra isso
+// Versão 0.1: 01/04/2025: versão feita sem muito conhecimento de Euler Math Toolbox
+
+// variáveis globais para simplificar as chamadas
+>Quantidade = 3
+>Composto = true
+>Periodo = 30.0
+>Pagamentos = Periodo:Periodo:Periodo*Quantidade
+>Pesos = Pagamentos ^ 0
+
+// calcula a somatória de Pesos()
+>function getPesoTotal()
+$   global Quantidade, Pesos;
+$   acumulador = 0.0;
+$   for indice = 1 to Quantidade;
+$      acumulador = acumulador + Pesos[indice];
+$   end;
+$   return acumulador;
+$endfunction
+
+// calcula o acréscimo a partir dos juros e parcelas
+>function jurosParaAcrescimo(juros)
+$   global Quantidade, Composto, Pesos, Periodo, Pagamentos, Pesos;
+$   pesoTotal = getPesoTotal();
+$   acumulador = 0.0;
+$   if Quantidade < 1 or Periodo <= 0.0 or pesoTotal <= 0.0 or juros <= 0.0 then return 0.0; endif;
+$   for indice = 1 to Quantidade;
+$       if Composto then acumulador = acumulador + Pesos[indice] / (1.0 + juros / 100.0) ^ (Pagamentos[indice] / Periodo);
+$           else acumulador = acumulador + Pesos[indice] / (1.0 + juros / 100.0 * Pagamentos[indice] / Periodo); endif;
+$   end;
+$   if acumulador <= 0.0 return 0.0; endif;
+$   return (pesoTotal / acumulador - 1.0) * 100.0;
+$endfunction
+
+// calcula os juros a partir do acréscimo e parcelas
+>function acrescimoParaJuros(acrescimo, precisao, maxIteracoes, maxJuros)
+$   global Quantidade, Periodo
+$   pesoTotal = getPesoTotal();
+$   minJuros = 0.0;
+$   medJuros = maxJuros / 2.0;
+$   minDiferenca = 0.1 ^ precisao;
+$   if Quantidade < 1 or Periodo <= 0.0 or pesoTotal <= 0.0 or acrescimo <= 0.0 or precisao < 1 or maxIteracoes < 1 or maxJuros <= 0.0 then return 0.0; endif;
+$   for indice = 1 to maxIteracoes;
+$       if maxJuros - minJuros < minDiferenca then return medJuros; endif;
+$       if jurosParaAcrescimo(medJuros) < acrescimo then minJuros = medJuros; else maxJuros = medJuros; endif;
+$       medJuros = (minJuros + maxJuros) / 2.0;
+$   end;
+$   return medJuros;
+$endfunction
+
+// calcula e guarda os resultados das funções
+>pesoTotal = getPesoTotal()
+>acrescimoCalculado = jurosParaAcrescimo(3.0)
+>jurosCalculado = acrescimoParaJuros(acrescimoCalculado, 15, 100, 50.0)
+
+// imprime os resultados
+>"Peso total =", longest pesoTotal
+>"Acréscimo =", longest acrescimoCalculado
+>"Juros =", longest jurosCalculado

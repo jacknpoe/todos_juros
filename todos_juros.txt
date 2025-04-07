@@ -838,7 +838,7 @@ juros.nut
 
 185. StarLogo Nova (07/04/2025)
 
-Juros
+https://www.slnova.org/jacknpoe/projects/941781/
 
 186. Stateflow (03/04/2025)
 

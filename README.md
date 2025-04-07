@@ -26,7 +26,7 @@ Existem, em algumas soluções, salvaguardas para valores incorretos para uma ap
 
 Algumas implementações não serão mantidas, porque foram feitas em versões de avaliação de ambientes de desenvolvimento pagos, como o Embarcadero Delphi e o EiffelStudio. Após dia 29 de maio de 2024, as linguagens menos utilizadas não terão mais suporte, mesmo tendo IDEs gratuitas.
 
-Alguns arquivos estão ilegíveis, pois são binários e devem ser abertos ou importados nos ambientes das linguagens, como AppleSoft BASIC, Smalltalk, Snap! e twinBASIC.
+Alguns arquivos estão ilegíveis, pois são binários e devem ser abertos ou importados nos ambientes das linguagens, como AppleSoft BASIC, Smalltalk, Snap! e twinBASIC. StarLogo Nova não salva em arquivo, então somente a URL está disponibilizada.
 
 Linguagens que não terão a solução, por não terem suporte a recursos necessários: Solidify (não tem números de ponto flutuante), Scratch, CHIP-8, Frege e Gosu (não têm exponenciação), Self, Rexx e Bash (não têm exponenciação de números de ponto flutuante). Outras linguagen têm outros problemas, como estarem desatualizadas e não rodam ou compilam nos sistemas atuais. Linguagens que são, na verdade, Turing tarpits, como Agda, são ignoradas.
 
@@ -68,7 +68,7 @@ There are, in some solutions, safeguards for incorrect values ​​for a real a
 
 Some implementations will not be maintained because they were done in trial versions of paid development environments such as Embarcadero Delphi and EiffelStudio. After May 29, 2024, less used languages ​​will no longer be supported, even though they have free IDEs.
 
-Some files are unreadable, as they are binary and must be opened or imported into the language environments, such as AppleSoft BASIC, Smalltalk, Snap! and twinBASIC.
+Some files are unreadable, as they are binary and must be opened or imported into the language environments, such as AppleSoft BASIC, Smalltalk, Snap! and twinBASIC. StarLogo Nova does not save to a file, so only the URL is available.
 
 Languages ​​that will not have the solution, as they do not support the necessary resources: Solidify (does not have floating point numbers), Scratch, CHIP-8, Frege and Gosu (does not have exponentiation), Self, Rexx and Bash (does not have exponentiation of floating point numbers). Other languages ​​have other problems, such as being outdated and not running or compiling on current systems. Languages that are actually Turing tarpits, like Agda, are ignored.
 

@@ -1,0 +1,85 @@
+' Cálculo dos juros, sendo que precisa de parcelas pra isso
+' Versão 0.1: 08/04/2025: versão feita sem muito conhecimento de Small Basic
+
+' variáveis globais para simplificar as chamadas
+Quantidade = 3
+Composto = 1  ' 1 = true, qualquer outra coisa será considerado false
+Periodo = 30.0
+
+' os arrays são definidos dinamicamente
+For indice = 1 To Quantidade
+  Pagamentos[indice] = indice * Periodo
+  Pesos[indice] = 1.0
+EndFor
+
+' calcula e guarda os resultados das funções e imprime os resultados
+getPesoTotal()
+TextWindow.WriteLine("Peso total = " + pesoTotal)
+ 
+juros = 3.0
+jurosParaAcrescimo()
+TextWindow.WriteLine("Acréscimo = " + acrescimoCalculado)
+
+acrescimo = acrescimoCalculado
+precisao = 15
+maxIteracoes = 100
+maxJuros = 50.0
+acrescimoParaJuros()
+TextWindow.WriteLine("Juros = " + jurosCalculado)
+ 
+' calcula a somatória de Pesos[]
+Sub getPesoTotal
+  pesoTotal = 0.0
+  For indice = 1 To Quantidade
+    pesoTotal = pesoTotal + Pesos[indice]
+  EndFor
+EndSub
+
+' calcula o acréscimo a partir dos juros e parcelas
+Sub jurosParaAcrescimo
+  ' getPesoTotal()  ' não é necessário, porque já é executada anteriormente, mas pode ser que seja necessário, se não chamar getPesoTotal() antes
+  If(Quantidade < 1 Or Periodo <= 0.0 Or pesoTotal <= 0.0 Or juros <= 0.0) Then
+    acrescimoCalculado = 0.0
+  Else
+    acumulador = 0.0
+    For indice = 1 To Quantidade
+      If(Composto = 1) Then
+        acumulador = acumulador + Pesos[indice] / Math.Power(1.0 + juros / 100.0, Pagamentos[indice] / Periodo)
+      Else
+        acumulador = acumulador + Pesos[indice] / (1.0 + juros / 100.0 * Pagamentos[indice] / Periodo)
+      EndIf
+    EndFor
+    If(acumulador <= 0.0) Then
+      acrescimoCalculado = 0.0
+    Else
+      acrescimoCalculado = (pesoTotal / acumulador - 1.0) * 100.0
+    EndIf  
+  EndIf
+EndSub
+
+' calcula os juros a partir do acréscimo e parcelas
+Sub acrescimoParaJuros
+  ' getPesoTotal()  ' não é necessário, porque já é executada anteriormente, mas pode ser que seja necessário, se não chamar getPesoTotal() antes
+  If(Quantidade < 1 Or Periodo <= 0.0 Or pesoTotal <= 0.0 Or acrescimo <= 0.0 Or precisao < 1 Or maxIteracoes < 1 Or maxJuros <= 0.0) Then
+    jurosCalculado = 0.0
+  Else
+    minJuros = 0.0
+    juros = maxJuros / 2.0
+    minDiferenca = Math.Power(0.1, precisao)
+    iteracao = 0
+    While(iteracao < maxIteracoes)
+      If(maxJuros - minJuros < minDiferenca) Then
+        iteracao = maxIteracoes
+      EndIf
+      jurosParaAcrescimo()
+      If(acrescimoCalculado < acrescimo) Then
+        minJuros = juros
+      Else
+        maxJuros = juros
+      EndIf
+      juros = (minJuros + maxJuros) / 2.0
+      iteracao = iteracao + 1
+    EndWhile
+    jurosCalculado = juros
+  EndIf
+EndSub

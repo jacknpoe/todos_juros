@@ -1,0 +1,69 @@
+// Cálculo dos juros, sendo que precisa de parcelas pra isso
+// Versão 0.1:  26/03/2024: versão feita sem muito conhecimento de Lua
+
+// variáveis globais para simplificar as chamadas
+int Quantidade;
+boolean Composto;
+double Periodo;
+double Pagamentos[];
+double Pesos[];
+
+void main() {
+	// inicializa as variáveis globais, os arrays dinamicamente
+	Quantidade = 3;
+	Composto = true;
+	Periodo = 30.0;
+	Pagamentos = new double[Quantidade];
+	Pesos = new double[Quantidade];
+
+	for(int indice = 0; indice < Quantidade; indice++) {
+		Pagamentos[indice] = (indice + 1.0) * Periodo;
+		Pesos[indice] = 1.0;
+	}
+
+	// calcula e guarda os retornos das funções
+	double pesoTotal = getPesoTotal();
+	double acrescimoCalculado = jurosParaAcrescimo(3.0);
+	double jurosCalculado = acrescimoParaJuros(acrescimoCalculado, 15, 100, 50.0);
+
+	// imprime os resultados
+	printLine("Peso total = " + pesoTotal);
+	printLine("Acréscimo = " + acrescimoCalculado);
+	printLine("Juros = " + jurosCalculado);
+}
+
+// retorna a somatória de Pesos[]
+double getPesoTotal() {
+	double acumulador = 0.0;
+	for(int indice = 0; indice < Quantidade; indice++) acumulador += Pesos[indice];
+	return acumulador;
+}
+
+// calcula o acréscimo a partir dos juros e parcelas
+double jurosParaAcrescimo(double juros) {
+	double pesoTotal = getPesoTotal();
+	if(Quantidade < 1 || Periodo <= 0.0 || pesoTotal <= 0.0 || juros <= 0.0) return 0.0;
+
+	double acumulador = 0.0;
+	for(int indice = 0; indice < Quantidade; indice++)
+		if(Composto) acumulador += Pesos[indice] / power(1.0 + juros / 100.0, Pagamentos[indice] / Periodo);
+			else acumulador += Pesos[indice] / (1.0 + juros / 100.0 * Pagamentos[indice] / Periodo);
+	if(acumulador <= 0.0) return 0.0;
+	return (pesoTotal / acumulador - 1.0) * 100.0;
+}
+
+// calcula os juros a partir do acréscimo e parcelas
+double acrescimoParaJuros(double acrescimo, int precisao, int maxIteracoes, double maxJuros) {
+	double pesoTotal = getPesoTotal();
+	if(Quantidade < 1 || Periodo <= 0.0 || pesoTotal <= 0.0 || acrescimo <= 0.0 || precisao < 1 || maxIteracoes < 1 || maxJuros <= 0.0) return 0.0;
+
+	double minJuros = 0.0;
+	double medJuros = maxJuros / 2.0;
+	double minDiferenca = power(0.1, precisao);
+	for(int indice = 0; indice < maxIteracoes; indice++) {
+		if(maxJuros - minJuros < minDiferenca) return medJuros;
+		if(jurosParaAcrescimo(medJuros) < acrescimo) minJuros = medJuros; else maxJuros = medJuros;
+		medJuros = (minJuros + maxJuros) / 2.0;
+	}
+	return medJuros;
+}

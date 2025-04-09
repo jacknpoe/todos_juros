@@ -1,0 +1,70 @@
+// Cálculo dos juros, sendo que precisa de parcelas pra isso
+// Versão 0.1: 09/04/2025: versão feita sem muito conhecimento de Judoscript
+
+// classe Juros com atributos que simplificam as chamadas aos métodos
+class Juros {
+    // o construtor inicializa os atributos escalares e cria os arrays vazios
+    constructor qtd, cmp, per {
+        this.Quantidade = qtd;
+        this.Composto = cmp;
+        this.Periodo = per;
+        this.Pagamentos = new array;
+        this.Pesos = new array;
+    }
+
+    // calcula a somatória de Pesos[]
+    function getPesoTotal {
+        acumulador = 0.0;
+        for indice from 0 to this.Quantidade - 1 { acumulador += Pesos[indice]; }
+        return acumulador;
+    }
+
+    // calcula o acréscimo a partir dos juros e parcelas
+    function jurosParaAcrescimo juros {
+        pesoTotal = this.getPesoTotal();
+        if this.Quantidade < 1 || this.Periodo <= 0.0 || pesoTotal <= 0.0 || juros <= 0.0 { return 0.0; }
+
+        acumulador = 0.0;
+        for indice from 0 to this.Quantidade - 1 {
+            if this.Composto { acumulador += this.Pesos[indice] / (1.0 + juros / 100.0).pow(this.Pagamentos[indice] / this.Periodo); }
+                else { acumulador += this.Pesos[indice] / (1.0 + juros / 100.0 * this.Pagamentos[indice] / this.Periodo); }
+        }
+
+        if acumulador <= 0.0 { return 0.0; }
+        return (pesoTotal / acumulador - 1.0) * 100.0;
+    }
+
+    // calcula os juros a partir do acréscimo e parcelas
+    function acrescimoParaJuros acrescimo, precisao, maxIteracoes, maxJuros {
+        pesoTotal = this.getPesoTotal();
+        if this.Quantidade < 1 || this.Periodo <= 0.0 || pesoTotal <= 0.0 || acrescimo <= 0.0 || precisao < 1 || maxIteracoes < 1 || maxJuros <= 0.0 { return 0.0; }
+
+        minJuros = 0.0;
+        medJuros = maxJuros / 2.0;
+        minDiferenca = (0.1).pow(precisao);
+        for indice from 1 to maxIteracoes {
+            if maxJuros - minJuros < minDiferenca { return medJuros; }
+            if this.jurosParaAcrescimo(medJuros) < acrescimo { minJuros = medJuros; } else { maxJuros = medJuros; }
+            medJuros = (minJuros + maxJuros) / 2.0;
+        }
+        return medJuros;
+    }
+}
+
+// cria um objeto juros da classe Juros e inicializa os atributos, sendo os arrays dinamicamente
+juros = new Juros(3, true, 30.0);
+
+for indice from 0 to juros.Quantidade - 1 {
+    juros.Pagamentos[indice] = (indice + 1.0) * juros.Periodo;
+    juros.Pesos[indice] = 1.0;
+} 
+
+// calcula e guarda os resultados dos métodos
+pesoTotal = juros.getPesoTotal();
+acrescimoCalculado = juros.jurosParaAcrescimo(3.0);
+jurosCalculado = juros.acrescimoParaJuros(acrescimoCalculado, 15, 100, 50.0);
+
+// imprime os resultados
+println "Peso total = ", pesoTotal;
+println "Acréscimo = ", acrescimoCalculado;
+println "Juros = ", jurosCalculado;

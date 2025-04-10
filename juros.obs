@@ -1,0 +1,100 @@
+# Cálculo dos juros, sendo que precisa de parcelas pra isso
+# Versão 0.1: 10/04/2025: versão feita sem muito conhecimento de Objeck
+
+# classe Juros com atributos que simplificam as chamadas aos métodos
+class Juros {
+    @Quantidade : Int;
+    @Composto : Bool;
+    @Periodo : Float;
+    @Pagamentos : Float[];
+    @Pesos : Float[];
+
+    # construtor, açúcar sintático
+    New(qtd : Int, cmp : Bool, per : Float) {
+        SetEscalares(qtd, cmp, per);
+    }
+
+    # inicializa os atributos escalares e aloca os arrays
+    method : public : SetEscalares(qtd : Int, cmp : Bool, per : Float) ~ Nil {
+        @Quantidade := qtd;
+        @Composto := cmp;
+        @Periodo := per;
+        @Pagamentos := Float->New[qtd];
+        @Pesos := Float->New[qtd];
+    }
+
+    # muda o valor de Pagamentos[indice]
+    method : public : SetPagamentos(indice : Int, valor : Float) ~ Nil {
+        @Pagamentos[indice] := valor;
+    }
+
+    # muda o valor de Pesos[indice]
+    method : public : SetPesos(indice : Int, valor : Float) ~ Nil {
+        @Pesos[indice] := valor;
+    }
+
+    # calcula a somatória de Pesos[]
+    method : public : getPesoTotal() ~ Float {
+        acumulador : Float := 0.0;
+        for(indice := 0; indice < @Quantidade; indice++;) { acumulador += @Pesos[indice]; }
+        return acumulador;
+    }
+
+    # calcula o acréscimo a partir dos juros e parcelas
+    method : public : jurosParaAcrescimo(juros : Float) ~ Float {
+        pesoTotal : Float := getPesoTotal();
+        if(@Quantidade < 1 | @Periodo <= 0.0 | pesoTotal <= 0.0 | juros <= 0.0 ) { return 0.0; }
+
+        acumulador : Float := 0.0;
+        for(indice := 0; indice < @Quantidade; indice++;) {
+            if(@Composto) { acumulador += @Pesos[indice] / Float->Pow(1.0 + juros / 100.0, @Pagamentos[indice] / @Periodo); }
+                else { acumulador += @Pesos[indice] / (1.0 + juros / 100.0 * @Pagamentos[indice] / @Periodo); }
+        }
+
+        if(acumulador <= 0.0) { return 0.0; }
+        return (pesoTotal / acumulador - 1.0) * 100.0;
+    }
+
+    # calcula os juros a partir do acréscimo e parcelas
+    method : public : acrescimoParaJuros(acrescimo : Float, precisao : Int, maxIteracoes : Int, maxJuros : Float) ~ Float {
+        pesoTotal : Float := getPesoTotal();
+        if(@Quantidade < 1 | @Periodo <= 0.0 | pesoTotal <= 0.0 | acrescimo <= 0.0 | precisao < 1 | maxIteracoes < 1 | maxJuros <= 0.0) { return 0.0; }
+
+        minJuros : Float := 0.0;
+        medJuros : Float := maxJuros / 2.0;
+        minDiferenca : Float := Float->Pow(0.1, precisao);
+        for(indice := 0; indice < maxIteracoes; indice++;) {
+            if(maxJuros - minJuros < minDiferenca) { return medJuros; }
+            if(jurosParaAcrescimo(medJuros) < acrescimo) { minJuros := medJuros; } else { maxJuros := medJuros; }
+            medJuros := (minJuros + maxJuros) / 2.0;
+        }
+        return medJuros;
+    }
+}
+
+class Main {
+  function : Main(args : String[]) ~ Nil {
+    # variáveis para melhorar a leitura
+    Quantidade : Int := 3;
+    Composto : Bool := true;
+    Periodo : Float := 30.0;
+
+    # cria um objeto juros da classe Juros e inicializa os atributos, os arrays dinamicamente
+    juros := Juros->New(Quantidade, Composto, Periodo);
+
+    for(indice := 0; indice < Quantidade; indice++;) {
+        juros->SetPagamentos(indice, (indice + 1.0) * Periodo);
+        juros->SetPesos(indice, 1.0);
+    }
+
+    # calcula e guarda os resultados dos métodos
+    pesoTotal : Float := juros->getPesoTotal();
+    acrescimoCalculado : Float := juros->jurosParaAcrescimo(3.0);
+    jurosCalculado : Float := juros->acrescimoParaJuros(acrescimoCalculado, 15, 100, 50.0);
+
+    # imprime os resultados
+    "Peso total = "->Print(); pesoTotal->ToString()->PrintLine();
+    "Acréscimo = "->Print(); acrescimoCalculado->ToString()->PrintLine();
+    "Juros = "->Print(); jurosCalculado->ToString()->PrintLine();
+  }
+}

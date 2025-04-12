@@ -1,0 +1,85 @@
+REM Cálculo dos juros, sendo que precisa de parcelas pra isso
+REM Versão 0.1: 12/04/2025: versão feita sem muito conhecimento de Mobile BASIC
+
+SUB Main
+	REM as variáveis simplificam as chamadas com GOSUB
+	true% = 1
+	false% = 0
+	Quantidade% = 3
+	Composto% = true%
+	Periodo = 30.0
+	DIM Pagamentos(Quantidade%)
+	DIM Pesos(Quantidade%)
+
+	REM os arrays são inicializados dinamicamente
+	FOR indice% = 0 TO Quantidade% - 1
+		Pagamentos(indice%) = (indice% + 1.0) * Periodo
+		Pesos(indice%) = 1.0
+	NEXT indice%
+
+	REM chama os GOSUB e imprime os resultados
+	GOSUB getPesoTotal
+	PRINT "Peso total = " + STR$(pesoTotal)
+
+	juros = 3.0
+	GOSUB jurosParaAcrescimo
+	PRINT "Acréscimo = " + STR$(acrescimoCalculado)
+
+	acrescimo = acrescimoCalculado
+	precisao% = 15
+	maxIteracoes% = 100
+	maxJuros = 50.0
+	GOSUB acrescimoParaJuros
+	PRINT "Juros = " + STR$(jurosCalculado)
+
+	END
+
+REM calcula a somatória de Pesos()
+getPesoTotal:
+	pesoTotal = 0.0
+	FOR indice% = 0 TO Quantidade% - 1
+		pesoTotal = pesoTotal + Pesos(indice%)
+	NEXT indice%
+	RETURN
+
+REM calcula o acréscimo a partir dos juros e parcelas
+jurosParaAcrescimo:
+	REM nesse teste, o GOSUB abaixo é desnecessário, mas pode ser necessário em uso direto
+	GOSUB getPesoTotal
+	acrescimoCalculado = 0.0
+	IF (Quantidade% < 1 OR Periodo <= 0.0 OR pesoTotal <= 0.0 OR juros <= 0.0) THEN RETURN
+	acumulador = 0.0
+	FOR indice% = 0 TO Quantidade% - 1
+		IF (Composto% = true%) THEN 
+			acumulador = acumulador + Pesos(indice%) / POW(1.0 + juros / 100.0, Pagamentos(indice%) / Periodo)
+		ELSE
+			acumulador = acumulador + Pesos(indice%) / (1.0 + juros / 100.0 * Pagamentos(indice%) / Periodo)
+		ENDIF
+	NEXT indice%
+	IF (acumulador <= 0.0) THEN RETURN
+	acrescimoCalculado = (pesoTotal / acumulador - 1.0) * 100.0
+	RETURN
+
+REM calcula os juros a partir do acréscimo e parcelas
+acrescimoParaJuros:
+	REM nesse teste, o GOSUB abaixo é desnecessário, mas pode ser necessário em uso direto
+	GOSUB getPesoTotal
+	jurosCalculado = 0.0
+	PRINT 1
+	IF (Quantidade% < 1 OR Periodo <= 0.0 OR pesoTotal <= 0.0 OR acrescimo <= 0.0 OR precisao% < 1 OR maxIteracoes% < 1 OR maxJuros <= 0.0) THEN RETURN
+	minJuros = 0.0
+	jurosCalculado = maxJuros / 2.0
+	minDiferenca = POW(0.1, precisao%)
+	FOR iteracao% = 1 TO maxIteracoes%
+		IF (maxJuros - minJuros < minDIferenca) THEN RETURN
+		juros = jurosCalculado
+		GOSUB jurosParaAcrescimo
+		IF (acrescimoCalculado < acrescimo) THEN
+			minJuros = jurosCalculado
+		ELSE
+			maxJuros = jurosCalculado
+		ENDIF
+		jurosCalculado = (minJuros + maxJuros) / 2.0
+	NEXT iteracao%
+	RETURN
+ENDSUB

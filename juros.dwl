@@ -45,16 +45,18 @@ fun rAcrescimoParaJuros(acrescimo, minDiferenca, iteracaoAtual, minJuros, maxJur
         rAcrescimoParaJuros(acrescimo, minDiferenca, iteracaoAtual - 1, medJuros, maxJuros, (medJuros + maxJuros) / 2.0)
         else rAcrescimoParaJuros(acrescimo, minDiferenca, iteracaoAtual - 1, minJuros, medJuros, (minJuros + medJuros) / 2.0)
 
-// 
+// calcula os juros a partir do acréscimo e dados comuns (como parcelas)
+fun acrescimoParaJuros(acrescimo, precisao, maxIteracoes, maxJuros) =
+    rAcrescimoParaJuros(acrescimo, 0.1 pow precisao, maxIteracoes, 0.0, maxJuros, maxJuros / 2.0)
 
 // calcula e guarda os resultados
-var pesoTotal = getPesoTotal()
+var pesoTotalCalculado = getPesoTotal()
 var acrescimoCalculado = jurosParaAcrescimo(3.0)
+var jurosCalculado = acrescimoParaJuros(acrescimoCalculado, 33, 110, 50.0)
 ---
 {
     // retorna os valores
-    potencia: 1.03 pow 0.5,
-    pagamentos1: Pagamentos[1],
-    peso_total: pesoTotal,
-    acrescimo: acrescimoCalculado
+    pesoTotal: pesoTotalCalculado,
+    acrescimo: acrescimoCalculado,
+    juros: jurosCalculado
 }

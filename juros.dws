@@ -1,0 +1,174 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Teste de Juros</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+    <body><?pas
+        { Cálculo dos juros, sendo que precisa de parcelas pra isso
+          Versão 0.1: 13/04/2025: versão feita sem muito conhecimento de DelphiWebScript }
+
+        Type
+        TJuros = class
+        private
+            fQuantidade: Integer;
+            fComposto: boolean;
+            fPeriodo: Float;
+            fPagamentos: array[0..999] of Float;
+            fPesos: array[0..999] of Float;  { diferente de Delphi, DelphiWebScript não tem arrays dinâmicos reais }
+        public
+            function GetQuantidade: Integer;
+            procedure SetQuantidade(valor: Integer);
+            function GetPagamentos(indice: Integer): Float;
+            procedure SetPagamentos(indice: Integer; valor: Float);
+            function GetPesos(indice: Integer): Float;
+            procedure SetPesos(indice: Integer; valor: Float);
+            constructor Create(quantidade: Integer = 0; composto: boolean = false; periodo: Float = 30.0);
+            function getPesoTotal: Float;
+            function jurosParaAcrescimo(juros: Float): Float;
+            function acrescimoParaJuros(acrescimo: Float; precisao: Integer = 15; maxIteracoes: Integer = 100; maxJuros: Float = 50.0): Float;
+
+            property Quantidade: Integer read GetQuantidade write SetQuantidade;
+            property Composto: boolean read fComposto write fComposto;
+            property Periodo: Float read fPeriodo write fPeriodo;
+            property Pagamentos[indice: Integer]: Float read GetPagamentos write SetPagamentos;
+            property Pesos[indice: Integer]: Float read GetPesos write SetPesos;
+        end;
+
+        function TJuros.GetQuantidade: Integer;
+        begin
+            result := fQuantidade;
+        end;
+
+        procedure TJuros.SetQuantidade(valor: Integer);
+        begin
+            fQuantidade := valor;
+            { SetLength(fPagamentos, valor);
+            SetLength(fPesos, valor); }
+        end;
+
+        function TJuros.GetPagamentos(indice: Integer): Float;
+        begin
+            result := fPagamentos[indice];
+        end;
+
+        procedure TJuros.SetPagamentos(indice: Integer; valor: Float);
+        begin
+            fPagamentos[indice] := valor;
+        end;
+
+        function TJuros.GetPesos(indice: Integer): Float;
+        begin
+            result := fPesos[indice];
+        end;
+
+        procedure TJuros.SetPesos(indice: Integer; valor: Float);
+        begin
+            fPesos[indice] := valor;
+        end;
+
+        constructor TJuros.Create(quantidade: Integer = 0; composto: boolean = false; periodo: Float = 30.0);
+        begin
+            SetQuantidade(quantidade);
+            fComposto := composto;
+            fPeriodo := periodo;
+        end;
+
+        function TJuros.getPesoTotal: Float;
+        var
+            acumulador: Float;
+            indice: Integer;
+        begin
+            acumulador := 0.0;
+            for indice := 0 to (Quantidade - 1) do
+            begin
+                acumulador := acumulador + Pesos[indice];
+            end;
+            result := acumulador;
+        end;
+
+        function TJuros.jurosParaAcrescimo(juros: Float): Float;
+        var
+            pesoTotal, acumulador: Float;
+            indice: Integer;
+        begin
+            pesoTotal := getPesoTotal;
+            if (juros <= 0.0) or (Quantidade <= 0) or (Periodo <= 0.0) or (pesoTotal <= 0.0) then
+            begin
+                result := 0.0;
+                exit;
+            end;
+            acumulador := 0.0;
+
+            for indice := 0 to (Quantidade - 1) do
+            begin
+                if Composto then
+                begin
+                acumulador := acumulador + Pesos[indice] / Power(1.0 + juros / 100.0, Pagamentos[indice] / Periodo);
+                end else begin
+                acumulador := acumulador + Pesos[indice] / (1.0 + juros / 100.0 * Pagamentos[indice] / Periodo);
+                end;
+            end;
+            if acumulador <= 0.0 then
+            begin
+                result := 0.0;
+            end else begin
+                result := (pesoTotal / acumulador - 1.0) * 100.0;
+            end;
+        end;
+
+        function TJuros.acrescimoParaJuros(acrescimo: Float; precisao: Integer = 15; maxIteracoes: Integer = 100; maxJuros: Float = 50.0): Float;
+        var
+            minJuros, medJuros, minDiferenca, pesoTotal: Float;
+            indice: Integer;
+        begin
+            pesoTotal := getPesoTotal;
+            if (maxIteracoes < 1) or (Quantidade <= 0) or (precisao <= 0) or (Periodo <= 0.0) or (acrescimo <= 0.0) or (maxJuros <= 0.0) or (pesoTotal <= 0.0) then
+            begin
+                result := 0.0;
+                exit;
+            end;
+            minJuros := 0.0;
+            medJuros := maxJuros / 2.0;
+            minDiferenca := Power(0.1, precisao);
+
+            for indice := 0 to (maxIteracoes - 1) do
+            begin
+                medJuros := (minJuros + maxJuros) / 2.0;
+                if (maxJuros - minJuros) < minDiferenca then
+                begin
+                    result := medJuros;
+                exit;
+                end;
+                if jurosParaAcrescimo(medJuros) <= acrescimo then
+                begin
+                    minJuros := medJuros;
+                end else begin
+                    maxJuros := medJuros;
+                end;
+            end;
+
+            result := medJuros;
+        end;
+
+        var juros : TJuros;
+        var indice : Integer;
+        var pesoTotal, acrescimoCalculado, JurosCalculado : Float;
+
+        juros := TJuros.Create(3, true, 30.0);
+
+        for indice := 0 to (juros.Quantidade - 1) do
+        begin
+            juros.Pagamentos[indice] := (indice + 1.0) * juros.Periodo;
+            juros.Pesos[indice] := 1.0;
+        end;
+
+        pesoTotal := juros.getPesoTotal();
+        acrescimoCalculado := juros.jurosParaAcrescimo(3.0);
+        jurosCalculado := juros.acrescimoParaJuros(acrescimoCalculado);
+        Print("<b>Peso total = </b>"); Print(pesoTotal);
+        Print("<br><b>Acr&eacute;scimo = </b>"); Print(acrescimoCalculado);
+        Print("<br><b>Juros = </b>"); Print(jurosCalculado);
+        Print("<br>");
+    ?></body>
+</html>

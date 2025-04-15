@@ -1,0 +1,92 @@
+<MvCOMMENT>
+    Cálculo dos juros, sendo que precisa de parcelas pra isso
+    Versão 0.1: 14/04/2025: versão feita sem muito conhecimento de MIVA Script
+</MvCOMMENT>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Teste de Juros</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+    <body>
+        <MvCOMMENT> variáveis globais para simplificar as chamadas às funções </MvCOMMENT>
+        <MvASSIGN NAME="g.quantidade" VALUE="{ 3 }">
+        <MvASSIGN NAME="g.composto" VALUE="{ 1 }">  <MvCOMMENT> 1 = true </MvCOMMENT>
+        <MvASSIGN NAME="g.periodo" VALUE="{ 30.0 }">
+
+        <MvCOMMENT> os arrays são iniciados dinamicamente </MvCOMMENT>
+        <MvASSIGN NAME="g.indice" VALUE="{ 1 }">
+        <MvWHILE EXPR="{ g.indice LE g.quantidade }">
+            <MvASSIGN NAME="g.pagamentos" INDEX="{ g.indice }" VALUE="{ g.indice * g.periodo }">
+            <MvASSIGN NAME="g.pesos" INDEX="{ g.indice }" VALUE="{ 1.0 }">
+            <MvASSIGN NAME="g.indice" VALUE="{ g.indice + 1 }">
+        </MvWHILE>
+
+        <MvCOMMENT> calcula e guarda os retornos das funções </MvCOMMENT>
+        <MvASSIGN NAME="g.pesoTotal" VALUE="{ getPesoTotal() }">
+        <MvASSIGN NAME="g.acrescimoCalculado" VALUE="{ jurosParaAcrescimo(3.0) }">
+        <MvASSIGN NAME="g.jurosCalculado" VALUE="{ acrescimoParaJuros(g.acrescimoCalculado, 15, 100, 50.0) }">
+
+        <MvCOMMENT> imprime os resultados </MvCOMMENT>
+        <MvEVAL EXPR="{ '<b>Peso total = </b>' $ g.pesoTotal $ '<br />' }">
+        <MvEVAL EXPR="{ '<b>Acr&eacute;scimo = </b>' $ g.acrescimoCalculado $ '<br />' }">
+        <MvEVAL EXPR="{ '<b>Juros = </b>' $ g.jurosCalculado $ '<br />' }">
+    </body>
+</html>
+
+<MvCOMMENT> calcula a somatória de g.pesos[] </MvCOMMENT>
+<MvFUNCTION NAME="getPesoTotal">
+    <MvASSIGN NAME="l.acumulador" VALUE="{ 0.0 }">
+    <MvFOR INDEX = "l.indice" COUNT = "{ g.quantidade }">
+        <MvASSIGN NAME="l.acumulador" VALUE="{ l.acumulador + g.pesos[l.indice] }">
+    </MvFOR>
+    <MvFUNCTIONRETURN VALUE="{ l.acumulador }">
+</MvFUNCTION>
+
+<MvCOMMENT> calcula o acréscimo a partir dos juros e parcelas </MvCOMMENT>
+<MvFUNCTION NAME="jurosParaAcrescimo" PARAMETERS="juros">
+    <MvASSIGN NAME="l.pesoTotal" VALUE="{ getPesoTotal() }">
+    <MvIF EXPR = "{ l.pesoTotal LE 0.0 OR g.quantidade LT 1 OR g.periodo LE 0.0 OR l.juros LE 0.0 }">
+        <MvFUNCTIONRETURN VALUE = "{ 0.0 }">
+    <MvELSE>    
+        <MvASSIGN NAME="l.acumulador" VALUE="{ 0.0 }">
+        <MvFOR INDEX = "l.indice" COUNT = "{ g.quantidade }">
+            <MvIF EXPR = "{ g.composto EQ 1 }">
+                <MvASSIGN NAME="l.acumulador" VALUE="{ l.acumulador + g.pesos[l.indice] / (1.0 + l.juros / 100.0) POW (g.pagamentos[l.indice] / g.periodo) }">
+            <MvELSE>
+                <MvASSIGN NAME="l.acumulador" VALUE="{ l.acumulador + g.pesos[l.indice] / (1.0 + l.juros / 100.0 * g.pagamentos[l.indice] / g.periodo) }">
+            </MvIF>
+        </MvFOR>
+        <MvIF EXPR = "{ l.acumulador LE 0.0 }">
+            <MvFUNCTIONRETURN VALUE = "{ 0.0 }">
+        <MvELSE>    
+            <MvFUNCTIONRETURN VALUE = "{ (l.pesoTotal / l.acumulador - 1.0) * 100.0 }">
+        </MvIF>
+    </MvIF>
+</MvFUNCTION>
+
+<MvCOMMENT> calcula os juros a partir do acréscimo e parcelas </MvCOMMENT>
+<MvFUNCTION NAME="acrescimoParaJuros" PARAMETERS="acrescimo, precisao, maxIteracoes, maxJuros">
+    <MvASSIGN NAME="l.pesoTotal" VALUE="{ getPesoTotal() }">
+    <MvIF EXPR = "{ l.pesoTotal LE 0.0 OR g.quantidade LT 1 OR g.periodo LE 0.0 OR l.acrescimo LE 0.0 OR l.precisao LT 1 OR l.maxIteracoes LT 1 OR l.maxJuros LE 0.0 }">
+        <MvFUNCTIONRETURN VALUE = "{ 0.0 }">
+    <MvELSE>    
+        <MvASSIGN NAME="l.minJuros" VALUE="{ 0.0 }">
+        <MvASSIGN NAME="l.medJuros" VALUE="{ l.maxJuros / 2.0 }">
+        <MvASSIGN NAME="l.minDiferenca" VALUE="{ 0.1 POW l.precisao }">
+        <MvASSIGN NAME="l.iteracao" VALUE="{ 0 }">
+        <MvWHILE EXPR="{ l.iteracao LT l.maxIteracoes }">
+            <MvIF EXPR="{ l.maxJuros - l.minJuros LT l.minDiferenca }">
+                <MvASSIGN NAME="l.iteracao" VALUE="{ l.maxIteracoes }">
+            </MvIF>
+            <MvIF EXPR="{ jurosParaAcrescimo(l.medJuros) LT l.acrescimo }">
+                <MvASSIGN NAME="l.minJuros" VALUE="{ l.medJuros }">
+            <MvELSE>
+                <MvASSIGN NAME="l.maxJuros" VALUE="{ l.medJuros }">
+            </MvIF>
+            <MvASSIGN NAME="l.medJuros" VALUE="{ (l.minJuros + l.maxJuros) / 2.0 }">
+            <MvASSIGN NAME="l.iteracao" VALUE="{ l.iteracao + 1 }">
+        </MvWHILE>
+        <MvFUNCTIONRETURN VALUE = "{ l.medJuros }">
+    </MvIF>
+</MvFUNCTION>

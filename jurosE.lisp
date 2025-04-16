@@ -1,21 +1,21 @@
-;; Cálculo do juros, sendo que precisa de arrays pra isso
-;; Versão 0.1: 21/03/2025: criado a partir da versão em Common Lisp sem muito conhecimento de Emacs Lisp
+;; Cï¿½lculo do juros, sendo que precisa de arrays pra isso
+;; Versï¿½o 0.1: 21/03/2025: criado a partir da versï¿½o em Common Lisp sem muito conhecimento de Emacs Lisp
+;;         0.2: 16/04/2025: retirada variÃ¡vel medJuros
 
-;; Variáveis
+;; Variï¿½veis
 (defvar Quantidade 3)
 (defvar Composto 1)
 (defvar Periodo 30.0)
 (defvar Pagamentos '(30.0 60.0 90.0))
 (defvar Pesos '(1.0 1.0 1.0))
 (defvar pesoTotal 0.0)
-(defvar medJuros 0.0)
 
-;; calcula a somatória de Pesos[]
+;; calcula a somatï¿½ria de Pesos[]
 (defun getPesoTotal()
   (_getPesoTotal(- Quantidade 1))
 )
 
-;; função recursiva no lugar de um for com acumulador que realmente calcula a somatória de Pesos[]
+;; funï¿½ï¿½o recursiva no lugar de um for com acumulador que realmente calcula a somatï¿½ria de Pesos[]
 (defun _getPesoTotal(valor)
   (if (= valor 0)
     (nth 0 Pesos)
@@ -23,7 +23,7 @@
   )
 )
 
-;; calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
+;; calcula o acrï¿½scimo a partir dos juros e dados comuns (como parcelas)
 (defun jurosParaAcrescimo(juros)
   (setq pesoTotal (getPesoTotal))
   (if (= Composto 1)
@@ -48,12 +48,12 @@
   )
 )
 
-;; calcula os juros a partir do acréscimo e dados comuns (como parcelas)
+;; calcula os juros a partir do acrï¿½scimo e dados comuns (como parcelas)
 (defun acrescimoParaJuros(acrescimo precisao maxIteracoes maxJuros)
   (_acrescimoParaJuros acrescimo (expt 0.1 precisao) maxIteracoes 0.0 maxJuros)
 )
 
-;; função recursiva no lugar de um for que realmente calcula os juros
+;; funï¿½ï¿½o recursiva no lugar de um for que realmente calcula os juros
 (defun _acrescimoParaJuros(acrescimo minDiferenca iteracaoAtual minJuros maxJuros)
   (if (or (< (- maxJuros minJuros) minDiferenca) (= iteracaoAtual 0))
     (/ (+ minJuros maxJuros) 2.0)
@@ -67,4 +67,5 @@
 ;; testes
 (message "Peso total = %2.15f" (getPesoTotal))
 (message "Acrescimo = %2.15f" (jurosParaAcrescimo 3.0))
-(message "Juros = %2.15f" (acrescimoParaJuros (jurosParaAcrescimo 3.0) 15 100 50.0))
+(message "Juros = %2.15f" (acrescimoParaJuros (jurosParaAcrescimo 3.0) 15 100 50.0)
+)

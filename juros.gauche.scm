@@ -1,7 +1,7 @@
 ;; Cálculo dos juros, sendo que precisa de parcelas pra isso
-;; Versão 0.1: 16/04/2025: versão feita sem muito conhecimento de CLOS
+;; Versão 0.1: 16/04/2025: versão feita sem muito conhecimento de Gauche
 
-;; classe juros com propriedades para simplificar as chamadas aos metodos
+;; classe cJuros com propriedades para simplificar as chamadas aos metodos
 (define-class cJuros ()
     (
         (quantidade :init-value 0    :init-keyword :quantidade :accessor quantidade)

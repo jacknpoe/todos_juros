@@ -67,6 +67,7 @@ main() -> (
     // calcula e guarda os resultados das funções
     let pesoTotal := getPesoTotal(), acrescimoCalculado := jurosParaAcrescimo(3.0),
         jurosCalculado := acrescimoParaJuros(acrescimoCalculado, 15, 100, 50.0) in (
+        // imprime os resultados
         printf("\nPeso total = ~S\n", pesoTotal),
         printf("Acréscimo = ~S\n", acrescimoCalculado),
         printf("Juros = ~S\n", jurosCalculado)

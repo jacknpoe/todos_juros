@@ -1,12 +1,8 @@
 (* Cálculo do juros, sendo que precisa de listas pra isso
-   Versão 0.1: 31/05/2024: versão a partir de SML, sem saber muito sobre SML/NJ (retirados loads) *)
+   Versão 0.1: 19/04/2025: versão a partir de SML, sem saber muito sobre SML/NJ (retirados loads) *)
 
 (* variáveis básicas para simplificar as chamadas *)
-val quantidade = 3;
-val composto = true;
-val periodo = 30.0;
-val pagamentos = [30.0, 60.0, 90.0];
-val pesos = [1.0, 1.0, 1.0];
+val quantidade = 3; val composto = true; val periodo = 30.0; val pagamentos = [30.0, 60.0, 90.0]; val pesos = [1.0, 1.0, 1.0];
 
 (* função recursiva que realmente calcula a somatória de Pesos[] *)
 fun rGetPesoTotal indice = if indice = 0 then List.nth(pesos, 0) else rGetPesoTotal (indice - 1) + List.nth(pesos, indice) ;

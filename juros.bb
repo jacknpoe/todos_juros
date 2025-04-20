@@ -2,8 +2,8 @@
 ; Versão 0.1: 20/04/2025: versão feita sem muito conhecimento de Blitz3D
 
 ; variáveis globais para simplificar as chamadas  COMPOSTO: 0 = False, outros = True
-Const QUANTIDADE = 3 
-Global Composto=1, Periodo#=30.0, Pagamentos[QUANTIDADE], Pesos[QUANTIDADE]
+Const QUANTIDADE = 3
+Global Composto = 1, Periodo# = 30.0, Pagamentos[QUANTIDADE-1], Pesos[QUANTIDADE-1]
 
 ; calcula a somatória de Pesos[]
 Function getPesoTotal#()

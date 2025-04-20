@@ -23,7 +23,7 @@ Type TJuros
 		Local acumulador:Double = 0.0, indice:Int
 		For indice = 0 To Self.Quantidade - 1
 			acumulador :+ Self.Pesos[indice]
-		Next Indice
+		Next indice
 		Return acumulador
 	End Method
 
@@ -38,7 +38,7 @@ Type TJuros
 			Else
 				acumulador :+ Self.Pesos[indice] / (1.0 + juros / 100.0 * Self.Pagamentos[indice] / Self.Periodo)
 			End If
-		Next Indice
+		Next indice
 		If acumulador <= 0.0 Then Return 0.0
 		Return (pesoTotal / acumulador - 1.0) * 100.0
 	End Method

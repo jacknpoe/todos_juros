@@ -80,6 +80,6 @@
 (defglobal pesoTotal (getPesoTotal juros))
 (format (standard-output) "Peso total = ~G~%" pesoTotal)
 (defglobal acrescimoCalculado (jurosParaAcrescimo juros 3.0))
-(format (standard-output) "Acréscimo = ~G~%" acrescimoCalculado)
+(format (standard-output) "Acrescimo = ~G~%" acrescimoCalculado)
 (defglobal jurosCalculado (acrescimoParaJuros juros acrescimoCalculado 15 100 50.0))
 (format (standard-output) "Juros = ~G~%" jurosCalculado)

@@ -1,5 +1,6 @@
 ;; Cálculo dos juros, sendo que precisa de parcelas pra isso
 ;; Versão 0.1: 26/04/2025: versão feita sem muito conhecimento de ILOS
+;;        0.2: 26/04/2025: trocados temporariamente "setq" por "defglobal" porque dava erro unbound variable no interpretador
 
 ;; classe cJuros com propriedades para simplificar as chamadas aos metodos
 (defclass <cJuros> ()
@@ -73,12 +74,12 @@
 )
 
 ;; cria instância
-(setq juros (cJuros 1 30.0 (list 30.0 60.0 90.0) (list 1.0 1.0 1.0)))
+(defglobal juros (cJuros 1 30.0 (list 30.0 60.0 90.0) (list 1.0 1.0 1.0)))
 
 ;; testes
-(setq pesoTotal (getPesoTotal juros))
+(defglobal pesoTotal (getPesoTotal juros))
 (format (standard-output) "Peso total = ~G~%" pesoTotal)
-(setq acrescimoCalculado (jurosParaAcrescimo juros 3.0))
-(format (standard-output) "Acrescimo = ~G~%" acrescimoCalculado)
-(setq jurosCalculado (acrescimoParaJuros juros acrescimoCalculado 15 100 50.0))
+(defglobal acrescimoCalculado (jurosParaAcrescimo juros 3.0))
+(format (standard-output) "Acréscimo = ~G~%" acrescimoCalculado)
+(defglobal jurosCalculado (acrescimoParaJuros juros acrescimoCalculado 15 100 50.0))
 (format (standard-output) "Juros = ~G~%" jurosCalculado)

@@ -21,7 +21,7 @@
 (define-method _getPesoTotal ((ojuros cJuros) indice)
     (if (= indice 0)
         (list-ref (pesos ojuros) 0)
-        (+ (list-ref (pesos ojuros) 0) (_getPesoTotal ojuros (- indice 1)))
+        (+ (list-ref (pesos ojuros) indice) (_getPesoTotal ojuros (- indice 1)))
     )
 )
 

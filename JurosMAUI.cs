@@ -8,7 +8,7 @@ namespace TesteJuros
 {
     public class JurosMAUI(int quantidade = 0, bool composto = false, double periodo = 30.0)
     {
-        private int _quantidade = quantidade;
+        private int _quantidade = (quantidade > 0) ? quantidade : 0;
         public bool Composto = composto;
         public double Periodo = periodo;
         public double[] Pagamentos = new double[quantidade];

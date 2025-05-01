@@ -1,0 +1,72 @@
+# Cálculo dos juros, sendo que precisa de parcelas pra isso
+# Versão 0.1: 01/05/2025: versão feita sem muito conhecimento de Langur
+
+# calcula a somatória de Pesos[]
+val getPesoTotal = fn(quantidade, pesos) {
+    var acumulador = 0.0;
+    for indice = 1; indice <= quantidade; indice += 1 {
+        acumulador += pesos[indice];
+    }
+    return acumulador;
+}
+
+# calcula o acréscimo a partir dos juros e parcelas
+val jurosParaAcrescimo = fn(quantidade, composto, periodo, pagamentos, pesos, juros) {
+    val pesoTotal = getPesoTotal(quantidade, pesos);
+    if quantidade < 1 or periodo <= 0.0 or pesoTotal <= 0.0 or juros <= 0.0 : return 0.0;
+
+    var acumulador = 0.0;
+    for indice = 1; indice <= quantidade; indice += 1 {
+        if composto {
+            acumulador += pesos[indice] / (1.0 + juros / 100.0) ^ (pagamentos[indice] / periodo);
+        } else {
+            acumulador += pesos[indice] / (1.0 + juros / 100.0 * pagamentos[indice] / periodo);
+        }
+    }
+
+    if acumulador <= 0.0 : return 0.0;
+    return (pesoTotal / acumulador - 1.0) * 100.0;
+}
+
+# calcula os juros a partir do acréscimo e parcelas
+val acrescimoParaJuros = fn(quantidade, composto, periodo, pagamentos, pesos, acrescimo, precisao, maxIteracoes, maximoJuros) {
+    val pesoTotal = getPesoTotal(quantidade, pesos);
+    if quantidade < 1 or periodo <= 0.0 or pesoTotal <= 0.0 or acrescimo <= 0.0 or precisao < 1 or maxIteracoes < 1 or maximoJuros <= 0.0 : return 0.0;
+
+    var minJuros = 0.0;
+    var medJuros = maximoJuros / 2.0;
+    var maxJuros = maximoJuros;
+    val minDiferenca = 0.1 ^ precisao;
+    for indice = 0; indice < maxIteracoes; indice += 1 {
+        if maxJuros - minJuros < minDiferenca : return medJuros;
+        if jurosParaAcrescimo(quantidade, composto, periodo, pagamentos, pesos, medJuros) < acrescimo {
+            minJuros = medJuros;
+        } else {
+            maxJuros = medJuros;
+        }
+        medJuros = (minJuros + maxJuros) / 2.0;
+    }
+    return medJuros;
+}
+
+# variáveis, os arrays inicializados dinamicamente
+var Quantidade = 3;
+var Composto = true;
+var Periodo = 30.0;
+var Pagamentos = [];
+var Pesos = [];
+
+for indice = 1; indice <= Quantidade; indice += 1 {
+    Pagamentos = Pagamentos ~ [indice * Periodo];
+    Pesos = Pesos ~ [1.0];
+}
+
+# calcula e guarda os resultados das funções
+ val pesoTotal = getPesoTotal(Quantidade, Pesos);
+ val acrescimoCalculado = jurosParaAcrescimo(Quantidade, Composto, Periodo, Pagamentos, Pesos, 3.0);
+ val jurosCalculado = acrescimoParaJuros(Quantidade, Composto, Periodo, Pagamentos, Pesos, acrescimoCalculado, 34, 120, 50.0);
+
+# imprime os resultados
+writeln "Peso total = " ~ string(pesoTotal);
+writeln "Acréscimo = " ~ string(acrescimoCalculado);
+writeln "Juros = " ~ string(jurosCalculado);

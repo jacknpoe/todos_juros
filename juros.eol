@@ -1,0 +1,69 @@
+// Cálculo dos juros, sendo que precisa de parcelas pra isso
+// Versão 0.1: 03/05/2025: versão feita sem muito conhecimento de Lua
+
+// variáveis globais para simplificar as chamadas às operações
+var Quantidade : Integer = 3;
+var Composto : Boolean = true;
+var Periodo : Real = 30.0;
+var Pagamentos : new List;
+var Pesos : new List;
+
+// inicializa os arrays dinamicamente (para questão de generalização)
+for (indice in Sequence{0..Quantidade-1}) {
+	Pagamentos.add((indice + 1.0) * Periodo);
+	Pesos.add(1.0);
+}
+
+// chama e guarda os resultados das operações
+var pesoTotal : Real = getPesoTotal();
+var acrescimoCalculado : Real = jurosParaAcrescimo(3.0);
+var jurosCalculado : Real = acrescimoParaJuros(acrescimoCalculado, 15, 100, 50.0);
+
+// imprime os resultados
+"Peso total = ".print(); pesoTotal.println();
+"Acrescimo = ".print(); acrescimoCalculado.println();
+"Juros = ".print(); jurosCalculado.println();
+
+// FIM
+
+// calcula a somatória de Pesos[]
+operation getPesoTotal() : Real {
+	var acumulador : Real = 0.0;
+	for (indice in Sequence{0..Quantidade-1}) {
+		acumulador += Pesos[indice];
+	}
+	return acumulador;
+}
+
+// calcula o acréscimo a partir dos juros e parcelas
+operation jurosParaAcrescimo(juros : Real) : Real {
+	var pesoTotal : Real = getPesoTotal();
+	if (Quantidade < 1 or Periodo <= 0.0 or pesoTotal <= 0.0 or juros <= 0.0) { return 0.0; }
+	
+	var acumulador : Real = 0.0;
+	for (indice in Sequence{0..Quantidade-1}) {
+		if (Composto) {
+			acumulador += Pesos[indice] / (1.0 + juros / 100.0).pow(Pagamentos[indice] / Periodo);
+		} else {
+			acumulador += Pesos[indice] / (1.0 + juros / 100.0 * Pagamentos[indice] / Periodo);
+		}
+	}
+	if (acumulador <= 0.0) { return 0.0; }
+	return (pesoTotal / acumulador - 1.0) * 100.0;
+}
+
+// calcula os juros a partir do acréscimo e parcelas
+operation acrescimoParaJuros(acrescimo : Real, precisao : Integer, maxIteracoes : Integer, maxJuros : Real) : Real {
+	var pesoTotal : Real = getPesoTotal();
+	if (Quantidade < 1 or Periodo <= 0.0 or pesoTotal <= 0.0 or acrescimo <= 0.0 or precisao < 1 or maxIteracoes < 1 or maxJuros < 0.0) { return 0.0; }
+	
+	var minJuros : Real = 0.0;
+	var medJuros : Real = maxJuros / 2.0;
+	var minDiferenca : Real = (0.1).pow(precisao);
+	for (indice in Sequence{1..maxIteracoes}) {
+		if (maxJuros - minJuros < minDiferenca) { return medJuros; }
+		if (jurosParaAcrescimo(medJuros) < acrescimo) { minJuros = medJuros; } else { maxJuros = medJuros; }
+		medJuros = (minJuros + maxJuros) / 2.0;
+	}
+	return medJuros;
+}

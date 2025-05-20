@@ -1204,6 +1204,6 @@ JUROSZ.BAS
 
 juros.zig
 
-272. ZX Spectrum BASIC (05/05/2025)
+272. ZX Spectrum 128 BASIC (05/05/2025)
 
 juros.z80

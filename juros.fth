@@ -1,6 +1,7 @@
 \ Cálculo dos juros, sendo que precisa de parcelas pra isso
 \ Versão 0.1: 19/06/2025: versão feita sem muito conhecimento de Forth
 \        0.2: 20/06/2025: retirado -1 = da avaliação de COMPOSTO em JUROSPARAACRESCIMO
+\                         aumentada a precisão para 16
 
 \ variáveis globais para simnplificar as chamadas, definições e inicializações
 VARIABLE QUANTIDADE
@@ -111,6 +112,7 @@ ACRESCIMOCALCULADO F@ 15 100 50.0e ACRESCIMOPARAJUROS JUROSCALCULADO F!
 
 \ imprime os resultados
 CR
+16 SET-PRECISION
 ." Peso total = " PESOTOTAL F@ F. CR
 ." Acrescimo = " ACRESCIMOCALCULADO F@ F. CR
 ." Juros = " JUROSCALCULADO F@ F. CR

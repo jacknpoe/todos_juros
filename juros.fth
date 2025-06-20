@@ -1,9 +1,7 @@
 \ Cálculo dos juros, sendo que precisa de parcelas pra isso
 \ Versão 0.1: 19/06/2025: versão feita sem muito conhecimento de Forth
 
-\ variáveis globais para simnplificar as chamadas
-\ ------------------------------------------------------------------------------
-\ definições e inicializações de variáveis escalares
+\ variáveis globais para simnplificar as chamadas definições e inicializações
 VARIABLE QUANTIDADE
 3 QUANTIDADE !
 VARIABLE COMPOSTO

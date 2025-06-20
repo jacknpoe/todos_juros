@@ -1,5 +1,6 @@
 \ Cálculo dos juros, sendo que precisa de parcelas pra isso
 \ Versão 0.1: 19/06/2025: versão feita sem muito conhecimento de Forth
+\        0.2: 20/06/2025: retirado -1 = da avaliação de COMPOSTO em JUROSPARAACRESCIMO
 
 \ variáveis globais para simnplificar as chamadas, definições e inicializações
 VARIABLE QUANTIDADE
@@ -41,7 +42,7 @@ FVARIABLE JPAJUROS
 	ELSE
 		0.0e JPAACUMULADOR F!
 		QUANTIDADE @ 0 DO
-			COMPOSTO @ -1 = IF
+			COMPOSTO @ IF
 				I PESOS F@ 1.0e JPAJUROS F@ 100.0e F/ F+ I PAGAMENTOS F@ PERIODO F@ F/ F** F/ JPAACUMULADOR F+!
 			ELSE
 				I PESOS F@ 1.0e JPAJUROS F@ 100.0e F/ I PAGAMENTOS F@ F* PERIODO F@ F/ F+ F/ JPAACUMULADOR F+!

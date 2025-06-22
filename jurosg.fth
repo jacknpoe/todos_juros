@@ -1,5 +1,6 @@
 \ Cálculo dos juros, sendo que precisa de parcelas pra isso
 \ Versão 0.1: 20/06/2025: versão adaptada de Forth, feita sem muito conhecimento de GForth
+\        0.2: 22/06/2025: retirados CRs inúteis
 
 \ variáveis globais para simnplificar as chamadas, definições e inicializações
 VARIABLE QUANTIDADE
@@ -109,8 +110,7 @@ GETPESOTOTAL PESOTOTAL F!
 ACRESCIMOCALCULADO F@ 15 100 50.0e ACRESCIMOPARAJUROS JUROSCALCULADO F!
 
 \ imprime os resultados
-CR
 16 SET-PRECISION
 ." Peso total = " PESOTOTAL F@ F. CR
 ." Acrescimo = " ACRESCIMOCALCULADO F@ F. CR
-." Juros = " JUROSCALCULADO F@ F. CR
+." Juros = " JUROSCALCULADO F@ F.

@@ -50,6 +50,10 @@ Private Function jurosParaAcrescimo(juros As Double) As Double
     Dim pesoTotal As Double
     Dim acumulador As Double
     pesoTotal = getPesoTotal()
+    
+    
+    
+    
     If pesoTotal <= 0# Or Quantidade < 1 Or Periodo <= 0# Or juros <= 0# Then
         jurosParaAcrescimo = 0#
         Return
@@ -103,7 +107,7 @@ Private Sub Botao_Click()
     Composto = True
     Periodo = 30#
     ReDim Pagamentos(0 To Quantidade - 1)
-    ReDim Pesos(o To Quantidade - 1)
+    ReDim Pesos(0 To Quantidade - 1)
     For indice = 0 To Quantidade - 1
         Pagamentos(indice) = 30# * (indice + 1#)
         Pesos(indice) = 1#

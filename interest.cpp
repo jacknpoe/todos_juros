@@ -2,7 +2,7 @@
 
 #include <math.h>	// pow
 #include <iostream>	// std
-#include <cstdlib>	// allocs
+#include <cstdlib>	// allocs e system
 #include <locale>  // acentos
 
 namespace jacknpoe {
@@ -217,7 +217,7 @@ int main() {
 		}
 
 		std::cout << "\n\n";
-		system( "PAUSE");
+		system( "PAUSE");	
 		std::cout << "\n\n";
 	}
 	std::cout << "\n\n"; exit( 0);

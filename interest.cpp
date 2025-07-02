@@ -1,8 +1,9 @@
-#include <math.h>
-#include <iostream>
-#include <cstdlib>
-#include <cstdio>
-#include <locale>
+// 02/07/2025: excluded stdio and comments on #includes
+
+#include <math.h>	// pow
+#include <iostream>	// std
+#include <cstdlib>	// allocs
+#include <locale>  // acentos
 
 namespace jacknpoe {
 //--------------------------- Interest class

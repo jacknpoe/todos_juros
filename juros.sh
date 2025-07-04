@@ -4,7 +4,7 @@
 # Versão 0.1: 04/07/2025: versão feita sem muito conhecimento de Bash
 # ATENÇÃO: como os cálculos de ponto flutuante são feitos usando o comando "bc -l", que é lento no Git Bash,
 #          nesse ambiente os resultados podem demorar demais, principalmente para muitas parcelas. Trocando o
-#          comando por "awk", que é relativamente mais rápido, o número de casas decimais será apenas cinco.
+#          comando por "awk", que é relativamente mais rápido, o número de casas decimais será apenas quatro.
 
 # variáveis globais para simplificar as chamadas
 Quantidade=3

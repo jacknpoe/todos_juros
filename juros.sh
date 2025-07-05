@@ -2,9 +2,10 @@
 
 # Cálculo dos juros, sendo que precisa de parcelas pra isso
 # Versão 0.1: 04/07/2025: versão feita sem muito conhecimento de Bash
-# ATENÇÃO: como os cálculos de ponto flutuante são feitos usando o comando "bc -l", que é lento no Git Bash,
-#          nesse ambiente os resultados podem demorar demais, principalmente para muitas parcelas. Trocando o
+# ATENÇÃO: Como os cálculos de ponto flutuante são feitos usando o comando "bc -l", que é lento no Git Bash,
+#          nesse ambiente os resultados podem demorar demais, principalmente com muitas parcelas. Trocando o
 #          comando por "awk", que é relativamente mais rápido, o número de casas decimais será apenas quatro.
+#          Testes (Ubuntu 23.10 e Debian 12.0.0 em VirtualBox) executaram em cerca de um segundo por parcela.
 
 # variáveis globais para simplificar as chamadas
 Quantidade=3

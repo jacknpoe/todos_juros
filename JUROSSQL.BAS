@@ -14,6 +14,10 @@
 299 CLS
 300 pesoTotal = getPesoTotal
 310 PRINT "Peso total = "; pesoTotal
+320 acrescimoCalculado = jurosParaAcrescimo(3)
+330 PRINT "Acrescimo = "; acrescimoCalculado
+340 jurosCalculado = acrescimoParaJuros(acrescimoCalculado, 15, 100, 50)
+350 PRINT "Juros = "; jurosCalculado
 450 STOP
 495 REMark calcula a somatoria dos pesos
 500 DEFine FuNction getPesoTotal

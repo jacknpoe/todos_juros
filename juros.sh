@@ -15,7 +15,7 @@ declare -a Pagamentos
 declare -a Pesos
 
 # inicializa os arrays Pagamentos e Pesos
-for ((indice=0; indice<$Quantidade; indice++ )) do
+for ((indice=0; indice<$Quantidade; indice++)) do
     Pagamentos[indice]=$(echo "($indice + 1) * $Periodo" | bc -l)
     Pesos[indice]="1.0"
 done
@@ -23,7 +23,7 @@ done
 # calcula a somatória do array Pesos
 getPesoTotal() {
     local acumulador="0.0"
-    for ((indice=0; indice<$Quantidade; indice++ )) do
+    for ((indice=0; indice<$Quantidade; indice++)) do
         acumulador=$(echo "$acumulador + ${Pesos[$indice]}" | bc -l)
     done
     echo "$acumulador"
@@ -40,7 +40,7 @@ jurosParaAcrescimo() {
     fi
 
     local acumulador="0.0"
-    for ((indice=0; indice<$Quantidade; indice++ )) do
+    for ((indice=0; indice<$Quantidade; indice++)) do
         if [ "$Composto" -eq 1 ]; then
             acumulador=$(echo "$acumulador + ${Pesos[$indice]} / e(${Pagamentos[$indice]} / $Periodo * l(1.0 + $juros / 100.0))" | bc -l)
         else
@@ -74,7 +74,7 @@ acrescimoParaJuros() {
     local medJuros=$(echo "$maxJuros / 2.0" | bc -l)
     local minDiferenca=$(echo "e($precisao * l(0.1))" | bc -l)
 
-    for ((indice=0; indice<$maxIteracoes; indice++ )) do
+    for ((indice=0; indice<$maxIteracoes; indice++)) do
         if (( $(echo "$maxJuros - $minJuros < $minDiferenca" | bc -l) )); then
             echo "$medJuros"
             return 0

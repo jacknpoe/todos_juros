@@ -26,6 +26,8 @@ As soluções estão divididas entre as recursivas (Alice, Arc, AutoLISP, Bend, 
 
 Existem, em algumas soluções, salvaguardas para valores incorretos para uma aplicação real. São valores zerados e negativos. Em algumas linguagens não é verificado, pois entendeu-se que o público-alvo dessas linguagens não cometeria esse tipo de equívoco.
 
+Tenha em mente que algumas das soluções (como as em BASIC para microcomputadores de oito bits e Bash/Dash), pelas próprias naturezas de suas tecnologias, são extremamente lentas. Algumas sãoi lentas na função de exponenciação, outras dependem de outros processos para a matemática de ponto flutuante. Com centenas de pagamentos, algumas soluções podem demorar minutos para darem resultados. Os testes devem ser realizados, inicialmente, em menos parcelas. Faça a regra de três para determinar se vale a pena fazer testes com números extraordinários de parcelas.
+
 Algumas implementações não serão mantidas, porque foram feitas em versões de avaliação de ambientes de desenvolvimento pagos, como o Embarcadero Delphi e o EiffelStudio. Após dia 29 de maio de 2024, as linguagens menos utilizadas não terão mais suporte, mesmo tendo IDEs gratuitas.
 
 Alguns arquivos estão ilegíveis, pois são binários e devem ser abertos ou importados nos ambientes das linguagens, como AppleSoft BASIC, Smalltalk, Snap! e twinBASIC. StarLogo Nova não salva em arquivo, então somente a URL está disponibilizada: https://www.slnova.org/jacknpoe/projects/941781/.
@@ -70,6 +72,8 @@ The solutions are divided between recursive (Alice, Arc, AutoLISP, Bend, Caml, C
 
 There are, in some solutions, safeguards for incorrect values ​​for a real application. These are zero and negative values. In some languages ​​it is not verified, as it was understood that the target audience of these languages ​​would not make this type of mistake.
 
+Keep in mind that some solutions (such as those in BASIC for eight-bit microcomputers and Bash/Dash), by the very nature of their technologies, are extremely slow. Some are slow in the exponentiation function, others rely on other processes for floating-point mathematics. With hundreds of payments, some solutions can take minutes to yield results. Tests should initially be performed on fewer installments. Use the rule of three to determine whether it's worth testing with an extraordinary number of installments.
+
 Some implementations will not be maintained because they were done in trial versions of paid development environments such as Embarcadero Delphi and EiffelStudio. After May 29, 2024, less used languages ​​will no longer be supported, even though they have free IDEs.
 
 Some files are unreadable, as they are binary and must be opened or imported into the language environments, such as AppleSoft BASIC, Smalltalk, Snap! and twinBASIC. StarLogo Nova does not save to a file, so only the URL is available: https://www.slnova.org/jacknpoe/projects/941781/.
@@ -83,6 +87,8 @@ Peso total = 3.0 / Acréscimo = 6.059108997379403 / Juros = 2.999999999999992
 The list is organized alphabetically, by languages names: https://jacknpoeexplicaprogramacao.wordpress.com/2024/03/02/10-resolucoes-de-equacao-transcendente/ or https://github.com/jacknpoe/todos_juros/blob/main/todos_juros.txt
 
 JavaScript and PHP versions can be tested from: https://jacknpoe.rf.gd/
+
+The C++ dialect versions of the solution were written in English.
 
 The license is GNU (https://www.gnu.org/licenses/gpl-3.0.html).
 

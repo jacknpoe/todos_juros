@@ -5,7 +5,8 @@
 # ATENÇÃO: Como os cálculos de ponto flutuante são feitos usando o comando "bc -l", que é lento no Git Bash,
 #          nesse ambiente os resultados podem demorar demais, principalmente com muitas parcelas. Trocando o
 #          comando por "awk", que é relativamente mais rápido, o número de casas decimais será apenas quatro.
-#          Testes (Ubuntu 23.10 e Debian 12.0.0 em VirtualBox) executaram em cerca de um segundo por parcela.
+#          Testes (em VirtualBox) executaram em cerca de 0,74 segundo por parcela no Debian 12.0.0, e 1,97
+#          segundos por parcela no Ubuntu 23.10. Em Debian nativo em cerca de 0.13 segundo por parcela.
 
 # variáveis globais para simplificar as chamadas
 Quantidade=3

@@ -1,0 +1,32 @@
+' Gambas module file
+
+' Cálculo dos juros, sendo que precisa de parcelas pra isso
+' Versão 0.1: 09/07/2025: versão feita sem muito conhecimento de Gambas
+
+Public Sub Main()
+  Dim indice As Integer
+  
+  ' cria um objeto juros da classe Juros
+  Dim juros As Juros
+  juros = New Juros
+
+  ' inicializa as propriedades
+  juros.setQuantidade(3)
+  juros.Composto = True
+  juros.Periodo = 30.0
+  For indice = 0 To juros.getQuantidade() - 1
+    juros.Pagamentos[indice] = (indice + 1.0) * juros.Periodo
+    juros.Pesos[indice] = 1.0
+  Next
+
+  ' calcula e guarda os resultados dos métodos
+  Dim pesoTotal, acrescimoCalculado, jurosCalculado As Float
+  pesoTotal = juros.getPesoTotal()
+  acrescimoCalculado = juros.jurosParaAcrescimo(3.0)
+  jurosCalculado = juros.acrescimoParaJuros(acrescimoCalculado, 15, 100, 50.0)
+
+  ' imprime os resultados
+  Print "Peso total = "; pesoTotal
+  Print "Acréscimo = "; acrescimoCalculado
+  Print "Juros = "; jurosCalculado
+End

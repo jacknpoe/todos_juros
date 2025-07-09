@@ -1,0 +1,82 @@
+' Gambas class file
+
+' classe Juros, com propriedades para simplificar as chamadas aos métodos
+
+Class Juros
+  Private Quantidade As Integer
+  Public Composto As Boolean
+  Public Periodo As Float
+  Public Pagamentos As New Float[1]
+  Public Pesos As New Float[1]
+  
+' calcula a somatória de Pesos[]
+Public Function getPesoTotal() As Float
+  Dim indice As Integer
+  Dim acumulador As Float
+  For indice = 0 To Quantidade - 1
+    acumulador += Pesos[indice] 
+  Next 
+  Return acumulador
+End
+
+' calcula o acréscimo a partir dos juros e parcelas
+Public Function jurosParaAcrescimo(juros As Float) As Float
+  Dim pesoTotal, acumulador As Float
+  Dim indice As Integer
+  pesoTotal = getPesoTotal()
+  If Quantidade < 1 Or Periodo <= 0.0 Or pesoTotal <= 0.0 Or juros <= 0.0 Then
+    Return 0.0
+  Endif
+
+  acumulador = 0.0
+  For indice = 0 To Quantidade - 1
+    If Composto Then
+      acumulador += Pesos[indice] / (1.0 + juros / 100.0) ^ (Pagamentos[indice] / Periodo)
+    Else
+      acumulador += Pesos[indice] / (1.0 + juros / 100.0 * Pagamentos[indice] / Periodo)
+    Endif
+  Next
+  
+  If acumulador <= 0.0 Then 
+    Return 0.0
+  Endif
+  Return (pesoTotal / acumulador - 1.0) * 100.0
+End
+
+' calcula os juros a partir do acréscimo e parcelas
+Public Function acrescimoParaJuros(acrescimo As Float, precisao As Integer, maxIteracoes As Integer, maxJuros As Float) As Float
+  Dim pesoTotal, minJuros, medJuros, minDiferenca As Float
+  Dim indice As Integer
+  pesoTotal = getPesoTotal()
+  If Quantidade < 1 Or Periodo <= 0.0 Or pesoTotal <= 0.0 Or acrescimo <= 0.0 Or precisao < 1 Or maxIteracoes < 1 Or maxJuros <= 0.0 Then
+    Return 0.0
+  Endif
+  
+  minJuros = 0.0
+  medJuros = maxJuros / 2.0
+  minDiferenca = 0.1 ^ precisao
+  For indice = 1 To maxIteracoes
+    If maxJuros - minJuros < minDiferenca Then 
+      Return medJuros
+    Endif
+    If jurosParaAcrescimo(medJuros) < acrescimo Then 
+      minJuros = medJuros
+    Else
+      maxJuros = medJuros
+    Endif
+    medJuros = (minJuros + maxJuros) / 2.0
+  Next
+  Return medJuros
+End
+
+' set e get de Quantidade
+
+Public Sub setQuantidade(Value As Integer)
+  Quantidade = Value
+  Pagamentos.Resize(Quantidade)
+  Pesos.Resize(Quantidade)
+End
+
+Public Function getQuantidade() As Integer
+  Return Quantidade
+End

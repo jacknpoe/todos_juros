@@ -6,7 +6,6 @@
 #          Os cálculos de ponto flutuante são feitos usando o comando "bc -l", os resultados podem demorar
 #          demais, principalmente com muitas parcelas. Trocando o comando por "awk", que é relativamente mais
 #          rápido, o número de casas decimais será apenas quatro.
-#          Testes (Ubuntu 23.10 e Debian 12.0.0 em VirtualBox) executaram em cerca de 1.77 segundo/parcela.
 #          Testes (em VirtualBox) executaram em cerca de 1,77 segundo por parcela no Debian 12.0.0, e 2,19
 #          segundos por parcela no Ubuntu 23.10. Em Debian nativo em cerca de 0.155 segundo por parcela.
 

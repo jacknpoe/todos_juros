@@ -1,8 +1,9 @@
-// C·lculo dos juros, sendo que precisa de parcelas pra isso
-// Vers„o 0.2:    04/2024: trocada avaliaÁ„o soZero por acumulador == 0
-//        0.3: 22/12/2024: adicionados coment·rios para os includes
-//        0.4: 16/01/2025: adicionado c·lculo de peso total
-//        0.5: 26/01/2025: adicionados coment·rios para estrutura, funÁıes e main
+// C√°lculo dos juros, sendo que precisa de parcelas pra isso
+// Vers√£o 0.2:    04/2024: trocada avalia√ß√£o soZero por acumulador == 0
+//        0.3: 22/12/2024: adicionados coment√°rios para os includes
+//        0.4: 16/01/2025: adicionado c√°lculo de peso total
+//        0.5: 26/01/2025: adicionados coment√°rios para estrutura, fun√ß√µes e main
+//        0.6: 10/07/2025: alteradas atribui√ß√µes dos arrays para um for calculado
 
 #include <math.h>      // para usar pow()
 #include <stdio.h>     // para usar printf() e gets()
@@ -10,7 +11,7 @@
 #include <stdbool.h>   // para usar o tipo booleano
 #include <locale.h>    // para usar setlocale()
 
-// estrutura b·sica de propriedades para simplificar as chamadas
+// estrutura b√°sica de propriedades para simplificar as chamadas
 struct Juros {
 	short Quantidade;
 	bool Composto;
@@ -19,7 +20,7 @@ struct Juros {
 	double *Pesos;
 };
 
-// para liberar a memÛria alocada aos ponteiros no final
+// para liberar a mem√≥ria alocada aos ponteiros no final
 void liberaMemoria(struct Juros *juros) {
 	if(juros->Quantidade != 0) {
 		free(juros->Pagamentos);
@@ -38,7 +39,7 @@ bool setQuantidade(struct Juros *juros, short quantidade) {
 	juros->Quantidade = quantidade; return true;
 }
 
-// define os valores escalares da estrutura (automaticamente, tambÈm chama setQuantidade)
+// define os valores escalares da estrutura (automaticamente, tamb√©m chama setQuantidade)
 bool setValores(struct Juros *juros, short quantidade, bool composto, double periodo) {
 	if(!setQuantidade(juros, quantidade)) return false;
 	juros->Composto = composto;
@@ -46,7 +47,7 @@ bool setValores(struct Juros *juros, short quantidade, bool composto, double per
 	return true;
 }
 
-// calcula a somatÛria do array Pesos[]
+// calcula a somat√≥ria do array Pesos[]
 double getPesoTotal(struct Juros *juros) {
 	double acumulador = 0.0;
 	short indice;
@@ -54,7 +55,7 @@ double getPesoTotal(struct Juros *juros) {
 	return acumulador;
 }
 
-// calcula o acrÈscimo a partir dos juros e parcelas
+// calcula o acr√©scimo a partir dos juros e parcelas
 double jurosParaAcrescimo(struct Juros *juros, double valor) {
 	if(valor <= 0 || juros->Quantidade <= 0 || juros->Periodo <= 0.0) return 0.0;
 	double pesoTotal = getPesoTotal(juros);
@@ -70,7 +71,7 @@ double jurosParaAcrescimo(struct Juros *juros, double valor) {
 	return(pesoTotal / acumulador - 1) * 100;
 }
 
-// calcula os juros a partir do acrÈscimo e parcelas
+// calcula os juros a partir do acr√©scimo e parcelas
 double acrescimoParaJuros(struct Juros *juros, double valor, short precisao, short maxIteracoes, double maxJuros) {
 	double minJuros = 0, medJuros = 0, minDiferenca = 0, pesoTotal = 0;
 	short indice = 0;
@@ -93,7 +94,7 @@ int main() {
     // define os valores de juros
 	struct Juros juros;
 	double pesoTotal = 0, acrescimoCalculado = 0, jurosCalculado = 0;
-	char buffer[256];
+	short indice;
 
 	setlocale( LC_ALL, "");	
 
@@ -102,26 +103,21 @@ int main() {
 		return -1;
 	}
 
-	juros.Pesos[0] = 1;
-	juros.Pesos[1] = 1;
-	juros.Pesos[2] = 1;
-	
-	juros.Pagamentos[0] = 30.0;
-	juros.Pagamentos[1] = 60.0;
-	juros.Pagamentos[2] = 90.0;
+	for(indice = 0; indice < juros.Quantidade; indice++) {
+		juros.Pagamentos[indice] = (indice + 1) * juros.Periodo;
+		juros.Pesos[indice] = 1;
+	}
 
     // calcula, guarda e imprime os resultados
 	pesoTotal = getPesoTotal(&juros);
 	printf("Peso total: %3.15f\n", pesoTotal);
 	acrescimoCalculado = jurosParaAcrescimo(&juros, 3);
-	printf("AcrÈscimo calculado: %3.15f\n", acrescimoCalculado);
+	printf("Acr√©scimo calculado: %3.15f\n", acrescimoCalculado);
 	jurosCalculado = acrescimoParaJuros(&juros, acrescimoCalculado, 15, 100, 50.0);
 	printf("Juros calculado: %3.15f\n", jurosCalculado);
 
-	// espera pressionar enter
-	gets(buffer);
 
-    // libera a memÛria e finaliza
+    // libera a mem√≥ria e finaliza
 	liberaMemoria(&juros);
 	return 0;
 }

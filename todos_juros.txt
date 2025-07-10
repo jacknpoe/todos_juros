@@ -632,3 +632,45 @@ juros.zig
 juros.z80
 285. ZX81 BASIC (20/05/2025)
 juros.z81
+
+EQUIVALENTES
+Amstrad BASIC = Locomotive BASIC
+Archimedes BBC BASIC = MEMOTECH MTX 512 BBC BASIC
+Boa = Node.js
+Cerberus X = Monkey 2
+Chez Scheme = Scheme
+ClosureScript = Squint
+Coffee = CoffeeScript
+CPC = Locomotive BASIC
+CPython = Python
+Dragon 32 BASIC = TRS-80 BASIC
+Free Pascal = Pascal
+Gambit = Scheme
+Generic Java = Java
+GNU Bourne-Again Shell = Bash
+HashLink = Haxe
+IBM PC BASIC A = GW-BASIC
+Intel Fortran Compiler = Fortran
+Iodine = Java
+IronPython - Python
+JRuby = Ruby
+Monkey X = Monkey 2
+Oberon-07 = Oberon-2
+Objective Caml = OCaml
+PC-BASIC = GW-BASIC
+Pizza = Java
+Pretty C = C
+PRO*C = C
+QB45 = QB64
+QBasic 1.1 = QB64
+QuickC = Turbo C
+QuickPascal = Turbo Pascal
+Reason = ReasonML
+SCM = Scheme
+SICP = DrScheme
+Squeak = Smalltalk
+TOM = Java
+XLISP = Common Lisp
+XLispStat = Common Lisp
+XOTcl = Tcl
+YLISP = Common Lisp

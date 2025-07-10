@@ -1,9 +1,10 @@
-;; C·lculo do juros, sendo que precisa de arrays pra isso
-;; Vers„o 0.1: 26/04/2024: vari·veis
-;;        0.2: 27/04/2024: implementaÁ„o das funÁıes
-;;        0.3: 28/04/2024: valores envolvidos em c·lculos mudados para double para maior precis„o
+;; C√°lculo do juros, sendo que precisa de arrays pra isso
+;; Vers√£o 0.1: 26/04/2024: vari√°veis
+;;        0.2: 27/04/2024: implementa√ß√£o das fun√ß√µes
+;;        0.3: 28/04/2024: valores envolvidos em c√°lculos mudados para double para maior precis√£o
+;;        0.4: 10/07/2025: colocado um √∫ltimo terpri e alterados caracteres especiais
 
-;; Vari·veis
+;; Vari√°veis
 (defvar Quantidade 3)
 (defvar Composto 1)
 (defvar Periodo 30.0d0)
@@ -12,12 +13,12 @@
 (defvar pesoTotal 0.0d0)
 (defvar medJuros 0.0d0)
 
-;; calcula a somatÛria de Pesos[]
+;; calcula a somat√≥ria de Pesos[]
 (defun getPesoTotal()
   (_getPesoTotal(- Quantidade 1))
 )
 
-;; funÁ„o recursiva no lugar de um for com acumulador que realmente calcula a somatÛria de Pesos[]
+;; fun√ß√£o recursiva no lugar de um for com acumulador que realmente calcula a somat√≥ria de Pesos[]
 (defun _getPesoTotal(valor)
   (if (= valor 0)
     (nth 0 Pesos)
@@ -25,7 +26,7 @@
   )
 )
 
-;; calcula o acrÈscimo a partir dos juros e dados comuns (como parcelas)
+;; calcula o acr√©scimo a partir dos juros e dados comuns (como parcelas)
 (defun jurosParaAcrescimo(juros)
   (if (or (or (<= juros 0.0) (<= Quantidade 0)) (<= Periodo 0.0)) (return-from jurosParaAcrescimo 0.0))
   (setq pesoTotal (getPesoTotal))
@@ -52,7 +53,7 @@
   )
 )
 
-;; calcula os juros a partir do acrÈscimo e dados comuns (como parcelas)
+;; calcula os juros a partir do acr√©scimo e dados comuns (como parcelas)
 (defun acrescimoParaJuros(acrescimo precisao maxIteracoes maxJuros)
   (if (or (or (or (or (or (<= acrescimo 0.0) (<= Quantidade 0)) (<= Periodo 0.0)) (< maxIteracoes 1)) (< precisao 1)) (<= maxJuros 0.0)) (return-from acrescimoParaJuros 0.0))
   (setq pesoTotal (getPesoTotal))
@@ -60,7 +61,7 @@
   (_acrescimoParaJuros acrescimo (expt 0.1d0 precisao) maxIteracoes 0.0d0 maxJuros)
 )
 
-;; funÁ„o recursiva no lugar de um for que realmente calcula os juros
+;; fun√ß√£o recursiva no lugar de um for que realmente calcula os juros
 (defun _acrescimoParaJuros(acrescimo minDiferenca iteracaoAtual minJuros maxJuros)
   (setq medJuros (/ (+ minJuros maxJuros) 2.0d0))
   (if (= iteracaoAtual 0) (return-from _acrescimoParaJuros medJuros ))
@@ -80,3 +81,4 @@
 (terpri)
 (princ "Juros = ")
 (write (acrescimoParaJuros (jurosParaAcrescimo 3.0d0) 15 100 50.0d0))
+(terpri)

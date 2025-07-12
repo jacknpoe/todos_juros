@@ -6,7 +6,6 @@ juros() :-
   Periodo is 30.0,
   Pagamentos = [30.0, 60.0, 90.0],
   Pesos = [1.0, 1.0, 1.0],
-% console_write
   % testa as funcoes
   getPesoTotal(Pesos, PesoTotal),
   write('Peso total = '),

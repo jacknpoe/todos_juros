@@ -1243,27 +1243,31 @@ juros.yeti
 
 juros.yx
 
-281. Z (22/05/2025)
+281. Yorick (11/07/2025)
+
+juros.i
+
+282. Z (22/05/2025)
 
 juros.zlang
 
-282. ZBasic (09/03/2025)
+283. ZBasic (09/03/2025)
 
 JUROSZ.BAS
 
-283. Zig (17/06/2024)
+284. Zig (17/06/2024)
 
 juros.zig
 
-284. zsh (11/07/2025)
+285. zsh (11/07/2025)
 
 juros.zsh
 
-285. ZX Spectrum 128 BASIC (05/05/2025)
+286. ZX Spectrum 128 BASIC (05/05/2025)
 
 juros.z80
 
-286. ZX81 BASIC (20/05/2025)
+287. ZX81 BASIC (20/05/2025)
 
 juros.z81
 

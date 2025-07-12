@@ -145,9 +145,9 @@ implicit none
     enddo
 
     ! testes
-    print *, 'Peso total =',getPesoTotal(sJuros)
-    print *, 'Acrescimo =',jurosParaAcrescimo(sJuros, real(3.0, 8))
-    print *, 'Juros =',  acrescimoParaJuros( sJuros, jurosParaAcrescimo(sJuros, real(3.0, 8)), 15, 100, real(50.0, 8))
+    print *, 'Peso total =', getPesoTotal(sJuros)
+    print *, 'Acrescimo =', jurosParaAcrescimo(sJuros, real(3.0, 8))
+    print *, 'Juros =', acrescimoParaJuros( sJuros, jurosParaAcrescimo(sJuros, real(3.0, 8)), 15, 100, real(50.0, 8))
 
     ! desalocacao
     deallocate(sJuros%Pagamentos)

@@ -1278,6 +1278,7 @@ juros.z81
 EQUIVALENTES
 
 Amstrad BASIC = Locomotive BASIC
+Amstrad BASIC = Locomotive BASIC
 Archimedes BBC BASIC = MEMOTECH MTX 512 BBC BASIC
 Boa = Node.js
 Cerberus X = Monkey 2
@@ -1289,10 +1290,10 @@ CPython = Python
 Dragon 32 BASIC = TRS-80 BASIC
 Free Pascal = Pascal
 Gambit = Scheme
-Generic Java = Java
+Generic Java = Java 
 GNU Bourne-Again Shell = Bash
 HashLink = Haxe
-IBM PC BASIC A = GW-BASIC
+IBM PC BASIC A = GW-BASIC 
 Intel Fortran Compiler = Fortran
 Iodine = Java
 IronPython - Python
@@ -1302,6 +1303,7 @@ Oberon-07 = Oberon-2
 Objective Caml = OCaml
 PC-BASIC = GW-BASIC
 Pizza = Java
+PoSh = Windows PowerShell
 Pretty C = C
 PRO*C = C
 QB45 = QB64

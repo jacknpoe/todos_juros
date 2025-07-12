@@ -1,25 +1,25 @@
-% Cálculo do juros, sendo que precisa de arrays para isso
-% Versão 0.1: 03/05/2024: completa
+% CÃ¡lculo do juros, sendo que precisa de arrays para isso
+% VersÃ£o 0.1: 03/05/2024: completa
 % dados gerais
 juros() :-
-%  Quantidade is 3,  % Quantidade ficaria no caminho das três primeiras recursões
+%  Quantidade is 3,  % Quantidade ficaria no caminho das trÃªs primeiras recursÃµes
   Composto is 1,
   Periodo is 30.0,
   Pagamentos = [30.0, 60.0, 90.0],
   Pesos = [1.0, 1.0, 1.0],
-  % testa as funções
+  % testa as funÃ§Ãµes
   getPesoTotal(Pesos, PesoTotal),
   write("Peso total = "),
   write(PesoTotal), nl,
   jurosParaAcrescimo(Composto, Periodo, Pagamentos, Pesos, 3.0, Acrescimo),
-  write("Acréscimo = "),
+  write("AcrÃ©scimo = "),
   write(Acrescimo), nl,
   acrescimoParaJuros(Composto, Periodo, Pagamentos, Pesos, Acrescimo, 15, 100, 50.0, Juros),
   write("Juros = "),
   write(Juros), nl.
 
 
-% função recursiva que calcula a somatória de pesos[]
+% funÃ§Ã£o recursiva que calcula a somatÃ³ria de pesos[]
 getPesoTotal([PesosH|PesosT], PesoTotal) :-
   (
     (PesosT == [], PesoTotal is PesosH)
@@ -27,7 +27,7 @@ getPesoTotal([PesosH|PesosT], PesoTotal) :-
     (PesosT \= [], getPesoTotal(PesosT, PesoTotal1), PesoTotal is PesosH + PesoTotal1)
   ).
 
-% calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
+% calcula o acrÃ©scimo a partir dos juros e dados comuns (como parcelas)
 jurosParaAcrescimo(Composto, Periodo, Pagamentos, Pesos, Juros, Acrescimo) :-
   getPesoTotal(Pesos, PesoTotal),
   (
@@ -58,14 +58,14 @@ rJurosSimples(Periodo, [PagamentosH|PagamentosT], [PesosH|PesosT], Juros, Amorte
       Amortecimento is PesosH / (1.0 + Juros / 100.0 * PagamentosH / Periodo) + Amortecimento1)
   ).
   
-% calcula os juros a partir do acréscimo e dados comuns (como parcelas)
+% calcula os juros a partir do acrÃ©scimo e dados comuns (como parcelas)
 acrescimoParaJuros(Composto, Periodo, Pagamentos, Pesos, Acrescimo, Precisao, MaxIteracoes, MaxJuros, Juros) :-
   rAcrescimoParaJuros(Composto, Periodo, Pagamentos, Pesos, Acrescimo, 0.1 ^ Precisao, MaxIteracoes, 0.0, MaxJuros, MaxJuros / 2.0, Juros).
 
-% função recursiva no lugar de um for que realmente calcula o acréscimo
+% funÃ§Ã£o recursiva no lugar de um for que realmente calcula o acrÃ©scimo
 rAcrescimoParaJuros(Composto, Periodo, Pagamentos, Pesos, Acrescimo, MinDiferenca, IteracaoAtual, MinJuros, MaxJuros, MedJuros, Juros) :-
   (
-    (IteracaoAtual == 0; (MaxJuros - MinJuros) < MinDiferenca, Juros is MedJuros)
+    (IteracaoAtual == 0, (MaxJuros - MinJuros) < MinDiferenca, Juros is MedJuros)
     ;
     (
       ProximaIteracao is IteracaoAtual - 1,

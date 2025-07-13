@@ -18,8 +18,6 @@ program jurosr
         Pesos(indice) = 1.0
     }
 
-    # potencia = base ** expoente
-
     # calcula e guarda os resultados das funções
     pesoTotal = getPesoTotal()
     acrescimoCalculado = jurosParaAcrescimo(real(3.0, 8))

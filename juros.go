@@ -82,7 +82,7 @@ func (this Juros) acrescimoParaJuros(acrescimo float64, precisao int, maxIteraco
 
 func main() {
 	// altere aqui os valores iniciais para outros casos
-	quantidade := 300
+	quantidade := 3
 	composto := true
 	periodo := 30.0
 

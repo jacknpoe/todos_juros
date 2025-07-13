@@ -92,7 +92,6 @@ real*8 function acrescimoParaJuros(acrescimo, precisao, maxIteracoes, mJuros)
         }
         medJuros = (minJuros + maxJuros) / 2.0
     }
-
     return(medJuros)
 end function acrescimoParaJuros
 

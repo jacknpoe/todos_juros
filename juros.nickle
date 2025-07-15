@@ -1,0 +1,58 @@
+# Cálculo dos juros, sendo que precisa de parcelas pra isso
+# Versão 0.1: 15/07/2025: versão feita sem muito conhecimento de Nickle
+
+# variáveis globais para simplificar as chamadas às funções (1 = TRUE)
+int Quantidade = 3, Composto = 1;
+real Periodo = 30.0;
+real[Quantidade] Pagamentos, Pesos;
+
+for(int indice = 0; indice < Quantidade; indice++) {
+    Pagamentos[indice] = (indice + 1.0) * Periodo;
+    Pesos[indice] = 1.0;
+}
+
+# calcula a somatória de Pesos()
+real function getPesoTotal() {
+    real acumulador = 0.0;
+    for(int indice = 0; indice < Quantidade; indice++) {
+        acumulador += Pesos[indice];
+    }
+    return acumulador;
+}
+
+# calcula o acréscimo a partir dos juros e parcelas
+real function jurosParaAcrescimo(real juros) {
+    real pesoTotal = getPesoTotal(), acumulador = 0.0;
+    if(Quantidade < 1 || Periodo <= 0.0 || pesoTotal <= 0.0 || juros <= 0.0) return 0.0;
+
+    for(int indice = 0; indice < Quantidade; indice++) {
+        if(Composto == 1) acumulador += Pesos[indice] / (1.0 + juros / 100.0) ** (Pagamentos[indice] / Periodo);
+                     else acumulador += Pesos[indice] / (1.0 + juros / 100.0 * Pagamentos[indice] / Periodo);
+    }
+    if(acumulador <= 0.0) return 0.0;
+    return (pesoTotal / acumulador - 1.0) * 100.0;
+}
+
+# calcula os juros a partir do acréscimo e parcelas
+real function acrescimoParaJuros(real acrescimo, int precisao, int maxIteracoes, real maxJuros) {
+    real pesoTotal = getPesoTotal(), minJuros = 0.0, medJuros = maxJuros / 2.0, minDiferenca = 0.1 ** precisao;
+    if(Quantidade < 1 || Periodo <= 0.0 || pesoTotal <= 0.0 || acrescimo <= 0.0 || precisao < 1 || maxIteracoes < 1 ||maxJuros <= 0.0) return 0.0;
+
+    for(int indice = 0; indice < maxIteracoes; indice++) {
+        if(maxJuros - minJuros < minDiferenca) return medJuros;
+        if(jurosParaAcrescimo(medJuros) < acrescimo) minJuros = medJuros;
+                                                else maxJuros = medJuros;
+        medJuros = (minJuros + maxJuros) / 2.0;
+    }
+    return medJuros;
+}
+
+# calcula e guarda os resultados das funções
+real pesoTotal = getPesoTotal();
+real acrescimoCalculado = jurosParaAcrescimo(3.0);
+real jurosCalculado = acrescimoParaJuros(acrescimoCalculado, 15, 60, 50.0);
+
+# imprime os resultados (antes de usar time era %52.50f)
+printf("Peso total = %17.15f\n", pesoTotal);
+printf("Acréscimo = %17.15f\n", acrescimoCalculado);
+printf("Juros = %17.15f\n", jurosCalculado);

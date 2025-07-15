@@ -2,7 +2,7 @@
 
 # Cálculo dos juros, sendo que precisa de parcelas pra isso
 # Versão 0.1: 12/07/2025: versão feita sem muito conhecimento de POSIX sh
-#          Testes (UDebian 12) executaram em cerca de 0.16 segundo por parcela.
+#          Testes (Debian 12) executaram em cerca de 0.16 segundo por parcela.
 
 # variáveis globais para simplificar as chamadas
 Quantidade=3

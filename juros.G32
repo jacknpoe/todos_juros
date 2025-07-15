@@ -1,9 +1,9 @@
-' C·lculo dos juros, sendo que precisa de parcelas pra isso
-' Vers„o 0.1: 21/04/2025: vers„o feita sem muito conhecimento de GFA-BASIC
+' C√°lculo dos juros, sendo que precisa de parcelas pra isso
+' Vers√£o 0.1: 21/04/2025: vers√£o feita sem muito conhecimento de GFA-BASIC
 
-Option Base 1  ' os arrays comeÁam por 1
+Option Base 1  ' os arrays come√ßam por 1
 
-' vari·veis globais, para simplificar as chamadas ‡s funÁıes
+' vari√°veis globais, para simplificar as chamadas √†s fun√ß√µes
 Global Quantidade As Integer = 3, Composto As Boolean = True, Periodo As Double = 30.0
 Global Pagamentos(Quantidade) As Float, Pesos(Quantidade) As Float
 
@@ -14,15 +14,14 @@ For indice = 1 To Quantidade
   Pesos(indice) = 1.0
 Next
 
-' chama e guarda os valores das funÁıes
+' chama e guarda os valores das fun√ß√µes
 Local pesoTotal As Double = getPesoTotal()
 Local acrescimoCalculado As Double = jurosParaAcrescimo(3.0)
 Local jurosCalculado As Double = acrescimoParaJuros(acrescimoCalculado, 15, 100, 50.0)
 
 ' imprime os resultados
 Print "PesoTotal = " + Str$(pesoTotal, 17, 15)
-Print "AcrÈscimo = " + Str$(acrescimoCalculado, 17, 15)
-'##E#
+Print "Acr√©scimo = " + Str$(acrescimoCalculado, 17, 15)
 Print "Juros = " + Str$(jurosCalculado, 17, 15)
 
 ' aguarda pressionar ENTER
@@ -30,7 +29,7 @@ Local foo As String
 Input foo
 End
 
-' calcula a somatÛria de Pesos()
+' calcula a somat√≥ria de Pesos()
 Function getPesoTotal() As Double
   Local acumulador As Double = 0.0, indice As Integer
   For indice = 1 To Quantidade
@@ -39,7 +38,7 @@ Function getPesoTotal() As Double
   Return acumulador
 EndFunction
 
-' calcula o acrÈscimo a partir dos juros e parcelas
+' calcula o acr√©scimo a partir dos juros e parcelas
 Function jurosParaAcrescimo(juros As Double) As Double
   Local acumulador As Double = 0.0, pesoTotal = getPesoTotal(), indice As Integer
   If Quantidade < 1 Or Periodo <= 0.0 Or pesoTotal <= 0.0 Or juros <= 0.0 Then Return 0.0
@@ -54,7 +53,7 @@ Function jurosParaAcrescimo(juros As Double) As Double
   Return (pesoTotal / acumulador - 1.0) * 100.0
 EndFunction
 
-' calcula os juros a partir do acrÈscimo e parcelas
+' calcula os juros a partir do acr√©scimo e parcelas
 Function acrescimoParaJuros(acrescimo As Double, precisao As Integer, maxIteracoes As Integer, ByVal maxJuros As Double) As Double
   Local minJuros As Double = 0.0, medJuros As Double = maxJuros / 2.0, minDiferenca As Double = 0.1 ^ precisao, pesoTotal = getPesoTotal(), indice As Integer
   If Quantidade < 1 Or Periodo <= 0.0 Or pesoTotal <= 0.0 Or acrescimo <= 0.0 Or precisao < 1 Or maxIteracoes < 1 Or maxJuros <= 0.0 Then Return 0.0

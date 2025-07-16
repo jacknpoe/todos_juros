@@ -952,6 +952,7 @@ Dragon 32 BASIC = TRS-80 BASIC
 Free Pascal = Pascal
 Gambit = Scheme
 Generic Java = Java
+Gerbil Scheme = Scheme
 GNU Bourne-Again Shell = Bash
 HashLink = Haxe
 IBM PC BASIC A = GW-BASIC

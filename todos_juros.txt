@@ -577,7 +577,7 @@ juros_PascalABC.pas
 testajuros_pascalzim.pas
 
 178. Perl (25/04/2024)
-juros.pm
+Juros.pm
 testajuros.pl
 
 179. PHP (17/09/2023)

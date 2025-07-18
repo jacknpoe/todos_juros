@@ -1,5 +1,6 @@
 # Cálculo dos juros, sendo que precisa de arrays para isso
 # Versão 0.1: 05/06/2024: versão feita sem muito conhecimento de Tcl
+#        0.2: 18/07/2025: variáveis e arrays dinâmicos
 
 # importa pow para o cálculo de juros compostos e mínima diferença
 namespace import ::tcl::mathfunc::pow
@@ -13,12 +14,20 @@ oo::class create Juros {
     variable Pesos
 
     # construtor, para inicializar os atributos
-    constructor { quantidade composto periodo pagamentos pesos } {
+    constructor { quantidade composto periodo } {
         set Quantidade $quantidade
         set Composto $composto
         set Periodo $periodo
-        set Pagamentos $pagamentos
-        set Pesos $pesos
+        array set Pagamentos {}
+        array set Pesos {}
+    }
+
+    method setPagamento { indice valor } {
+        set Pagamentos($indice) $valor
+    }
+
+    method setPeso { indice valor } {
+        set Pesos($indice) $valor
     }
 
     method getQuantidade {} {
@@ -29,7 +38,7 @@ oo::class create Juros {
     method getPesoTotal {} {
         set acumulador 0.0
         for {set indice 0} {$indice < $Quantidade} {set indice [expr $indice + 1]} {
-            set acumulador [expr {$acumulador + [lindex $Pesos $indice]}]
+            set acumulador [expr {$acumulador + $Pesos($indice)}]
         }
         return $acumulador
     }
@@ -44,9 +53,9 @@ oo::class create Juros {
 
         for {set indice 0} {$indice < $Quantidade} {set indice [expr $indice + 1]} {
             if { $Composto == 1 } {
-                set acumulador [expr {$acumulador + [lindex $Pesos $indice] / [pow [expr 1.0 + $juros / 100.0] [expr [lindex $Pagamentos $indice] / $Periodo] ]}]
+                set acumulador [expr {$acumulador + $Pesos($indice) / [pow [expr 1.0 + $juros / 100.0] [expr $Pagamentos($indice) / $Periodo] ]}]
             } else {
-                set acumulador [expr {$acumulador + [lindex $Pesos $indice] / (1.0 + $juros / 100.0 * [lindex $Pagamentos $indice] / $Periodo)}]
+                set acumulador [expr {$acumulador + $Pesos($indice) / (1.0 + $juros / 100.0 * $Pagamentos($indice) / $Periodo)}]
             }
         }
 
@@ -77,8 +86,19 @@ oo::class create Juros {
     }
 }
 
+# variáveis (a partir da versão 0.2) (Composto 1 = TRUE)
+set Quantidade 3
+set Composto 1
+set Periodo 30.0
+
 # cria um objeto juros da classe Juros e inicializa os valores
-Juros create juros 3 1 30.0 { 30.0 60.0 90.0 } { 1.0 1.0 1.0 }
+Juros create juros $Quantidade $Composto $Periodo
+
+# define os valores dos arrays
+for {set indice 0} {$indice < $Quantidade} {set indice [expr $indice + 1]} {
+    juros setPagamento $indice [expr ($indice + 1) * $Periodo]
+    juros setPeso $indice 1.0
+}
 
 # calcula os retornos das funções
 set pesoTotal [juros getPesoTotal]

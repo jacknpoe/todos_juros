@@ -1,5 +1,6 @@
 ' Cálculo do juros, sendo que precisa de arrays pra isso
 ' Versão 0.1: 22/02/2025: versão feita sem muito conhecimento de FreeBASIC
+'        0.2: 18/07/2025: corrigido quantidade indefinida ao dimensionar arrays (dava erro no Linux)
 
 ' declaração de funções
 Declare Function getPesoTotal() As Double
@@ -12,13 +13,14 @@ Print "JUROS"
 Dim Shared quantidade As Integer
 Dim Shared composto As Integer
 Dim Shared periodo As Double
-Dim Shared pagamentos(quantidade) As Double
-Dim Shared pesos(quantidade) As Double
 
 ' incialização das variáveis globais
 quantidade = 3
 composto = 1
 periodo = 30.0
+
+Dim Shared pagamentos(1 To quantidade) As Double
+Dim Shared pesos(1 To quantidade) As Double
 
 Dim indice as Integer
 For indice = 1 To quantidade

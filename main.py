@@ -7,13 +7,14 @@
 #          0.4: 12/07/2024: corrigido o soZero, que não deveria existir
 #          0.5: 16/07/2024: corrigidos alguns valores padrão que não estavam em ponto flutuante
 #          0.6: 20/12/2024: com acentuação (Latin1)
+#          0.7: 18/07/2025: alterada a exponenciação para usar Decimal, porque travava em 3181 parcelas
 
 import Juros
 
-juros = Juros.Juros(3, True, 30.0)
-juros.setpagamentos(",", "30.0,60.0,90.0")
-juros.setpesos(",", "1.0,1.0,1.0")
+juros = Juros.Juros(300000, True, 30.0)
+juros.setpagamentos(",", "")
+juros.setpesos(",", "")
 
 print("Peso total = " + str(juros.getpesototal()))
-print("Acréscimo = " + str(juros.jurosparaacrescimo(3.0)))
+print("Acrescimo = " + str(juros.jurosparaacrescimo(3.0)))
 print("Juros = " + str(juros.acrescimoparajuros(juros.jurosparaacrescimo(3.0), 18)))

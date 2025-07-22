@@ -2,19 +2,15 @@
 
 # Cálculo dos juros, sendo que precisa de parcelas pra isso
 # Versão 0.1: 05/07/2025: versão feita sem muito conhecimento de Dash
-# ATENÇÃO: Não funciona no Linux do Windows, porque bc retorna um carriage return (^M) que o Dash não trata.
-#          Os cálculos de ponto flutuante são feitos usando o comando "bc -l", os resultados podem demorar
-#          demais, principalmente com muitas parcelas. Trocando o comando por "awk", que é relativamente mais
-#          rápido, o número de casas decimais será apenas quatro.
-#          Testes (em VirtualBox) executaram em cerca de 1,77 segundo por parcela no Debian 12.0.0, e 2,19
-#          segundos por parcela no Ubuntu 23.10. Em Debian nativo em cerca de 0.155 segundo por parcela.
+# ATENÇÃO: Não funciona no Linux do Windows, porque bc retorna um carriage return (^M) que o Dash não trata,
+#          Testes (Ubuntu 23.10 e Debian 12.0.0 em VirtualBox) executaram em cerca de um segundo por parcela.
 
 # variáveis globais para simplificar as chamadas
 Quantidade=3
 Periodo="30.0"
 Composto=1  # 1 = TRUE
 
-# Dash não tem arraysm então Pagamentos e Pesos serão funções
+# Dash não tem arrays então Pagamentos e Pesos serão funções
 Pagamentos() {
     echo "($1 + 1) * $Periodo" | bc -l
 }

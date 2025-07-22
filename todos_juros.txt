@@ -984,6 +984,7 @@ MirBSD Korn Shell = ksh
 Monkey X = Monkey 2
 Oberon-07 = Oberon-2
 Objective Caml = OCaml
+oksh = POSIX sh
 PC-BASIC = GW-BASIC
 Pizza = Java
 PoSh = Windows PowerShell

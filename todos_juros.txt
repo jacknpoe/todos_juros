@@ -997,6 +997,7 @@ Reason = ReasonML
 SCM = Scheme
 SICP = DrScheme
 Squeak = Smalltalk
+tcsh = csh
 TOM = Java
 XLISP = Common Lisp
 XLispStat = Common Lisp

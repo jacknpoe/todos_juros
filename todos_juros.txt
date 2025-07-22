@@ -981,6 +981,7 @@ IronPython – Python
 JRuby = Ruby
 Korn Shell = ksh
 MirBSD Korn Shell = ksh
+mksh = POSIX sh
 Monkey X = Monkey 2
 Oberon-07 = Oberon-2
 Objective Caml = OCaml

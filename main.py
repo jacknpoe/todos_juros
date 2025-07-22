@@ -7,11 +7,11 @@
 #          0.4: 12/07/2024: corrigido o soZero, que não deveria existir
 #          0.5: 16/07/2024: corrigidos alguns valores padrão que não estavam em ponto flutuante
 #          0.6: 20/12/2024: com acentuação (Latin1)
-#          0.7: 18/07/2025: alterada a exponenciação para usar Decimal, porque travava em 3181 parcelas
+#          0.7: 22/07/2025: não enviadas as três primeiras parcelas nas linhas 15 e 16
 
 import Juros
 
-juros = Juros.Juros(300000, True, 30.0)
+juros = Juros.Juros(3, True, 30.0)
 juros.setpagamentos(",", "")
 juros.setpesos(",", "")
 

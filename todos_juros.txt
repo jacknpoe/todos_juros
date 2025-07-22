@@ -959,6 +959,7 @@ EQUIVALENTES
 Amstrad BASIC = Locomotive BASIC
 Archimedes BBC BASIC = MEMOTECH MTX 512 BBC BASIC
 Boa = Node.js
+bsh = Java
 Cerberus X = Monkey 2
 Chez Scheme = Scheme
 ClosureScript = Squint

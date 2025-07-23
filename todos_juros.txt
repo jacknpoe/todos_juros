@@ -61,7 +61,7 @@ juros.au3
 16. AutoLISP (13/02/2025)
 juros.lsp
 
-17. AWK (19/06/2024)
+17. awk (19/06/2024)
 jurs.awk
 
 18. B4X (10/02/2025)

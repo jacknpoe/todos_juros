@@ -1,5 +1,5 @@
 ;; Cálculo do juros, sendo que precisa de arrays pra isso
-;; Versão 0.1: 23/07/2025: copiado de Common Lisp e alterado para definir as funções em ordem e a impressão dos resultados
+;; Versão 0.1: 23/07/2025: copiado de Common Lisp para EusLisp e alterado para definir as funções em ordem e a impressão dos resultados
 
 ;; Variáveis
 (defvar Quantidade 3)

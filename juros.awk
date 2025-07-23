@@ -1,5 +1,6 @@
 # Cálculo dos juros, sendo que precisa de parcelas pra isso
 # Versão 0.1: 19/06/2024: versão feita sem muito conhecimento de AWK
+#             23/07/2025: retirados "!' e comentário sem importância de um teste inicial
 
 # calcula a somatória de Pesos[]
 function getPesoTotal() {
@@ -50,6 +51,7 @@ BEGIN {
     Quantidade = 3;
     Composto = 1;
     Periodo = 30.0;
+
     # arrays para simplificar as chamadas
     for(indice = 0; indice < Quantidade; indice++) {
         Pagamentos[indice] = (indice + 1.0) * 30.0;
@@ -62,9 +64,8 @@ BEGIN {
     jurosCalculado = acrescimoParaJuros(acrescimoCalculado, 15, 100, 50.0);
 
     # imprime os resultados
-    printf("Peso total = %.15f!\n", pesoTotal);
-    printf("Acrescimo = %.15f!\n", acrescimoCalculado);
-    printf("Juros = %.15f!\n", jurosCalculado);
-    # printf("%d, %d, %d!", Pagamentos[0], Pagamentos[1], Pagamentos[2])
+    printf("Peso total = %.15f\n", pesoTotal);
+    printf("Acrescimo = %.15f\n", acrescimoCalculado);
+    printf("Juros = %.15f\n", jurosCalculado);
     exit
 }

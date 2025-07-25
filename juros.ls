@@ -2,7 +2,7 @@
 # Versão 0.1: 24/07/2025: versão feita sem muito conhecimento de LiveScript
 
 # variáveis globais para simplificar as chamadas de função (os arrays são inicializados dinamicamente)
-Quantidade = 300000
+Quantidade = 3
 Composto = true
 Periodo = 30.0
 Pagamentos = []
@@ -48,14 +48,14 @@ acrescimoParaJuros = (acrescimo, precisao, maxIteracoes, maxJuros) ->
         minDiferenca = 0.1 ^ precisao
         indice = 0
         while indice < maxIteracoes
-            if maxJuros - minJuros < minDiferenca
-                indice = maxIteracoes
             if jurosParaAcrescimo(medJuros) < acrescimo
                 minJuros = medJuros
             else
                 maxJuros = medJuros
             medJuros = (minJuros + maxJuros) / 2.0
             indice++
+            if maxJuros - minJuros < minDiferenca
+                indice = maxIteracoes
         medJuros
 
 # calcula e guarda os resultados das funções

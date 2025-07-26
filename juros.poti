@@ -1,0 +1,70 @@
+# Cálculo dos juros, sendo que precisa de parcelas pra isso
+# Versão 0.1: 26/07/2025: versão feita sem muito conhecimento de Potigol
+
+# vartiáveis globais para simplificar as chamadas às funções
+Quantidade: Inteiro = 3
+Composto: Lógico = verdadeiro
+Periodo: Real = 30.0
+Pagamentos = para indice de 1 até Quantidade gere indice * Periodo fim  
+Pesos = para indice de 1 até Quantidade gere 1.0 fim  
+
+# calcula a somatória de Pesos[]
+getPesoTotal(): Real
+    var acumulador: Real := 0.0
+    para indice de 1 até Quantidade faça acumulador := acumulador + Pesos[indice] fim
+    retorne acumulador
+fim
+
+# calcula o acréscimo a partir dos juros e parcelas
+jurosParaAcrescimo(juros: Real): Real
+    pesoTotal: Real = getPesoTotal()
+    se Quantidade < 1 ou Periodo <= 0.0 ou pesoTotal <= 0.0 ou juros <= 0.0 então
+        0.0
+    senão
+        var acumulador: Real := 0.0
+        para indice de 1 até Quantidade faça
+            se Composto então
+                acumulador := acumulador + Pesos[indice] / (1.0 + juros / 100.0) ^ (Pagamentos[indice] / Periodo)
+            senão
+                acumulador := acumulador + Pesos[indice] / (1.0 + juros / 100.0 * Pagamentos[indice] / Periodo)
+            fim
+        fim
+
+        se acumulador <= 0.0 então
+            0.0
+        senão
+            (pesoTotal / acumulador - 1.0) * 100.0
+        fim
+    fim
+fim
+
+# calcula os juros a partir do acréscimo e parcelas
+acrescimoParaJuros(acrescimo: Real, precisao, maxIteracoes: Inteiro, mJuros: Real)
+    pesoTotal: Real = getPesoTotal()
+    se Quantidade < 1 ou Periodo <= 0.0 ou pesoTotal <= 0.0 ou acrescimo <= 0.0 ou precisao < 1 ou maxIteracoes < 1 ou mJuros <= 0.0 então
+        0.0
+    senão
+        var minJuros: Real := 0.0
+        var medJuros: Real := mJuros / 2.0
+        var maxJuros: Real := mJuros
+        minDiferanca: Real = 0.1 ^ precisao
+        var indice: Integer := 0
+        enquanto indice < maxIteracoes faça
+            se jurosParaAcrescimo(medJuros) < acrescimo então minJuros := medJuros senão maxJuros := medJuros fim
+            medJuros := (minJuros + maxJuros) / 2.0
+            se maxJuros - minJuros < minDiferanca então indice := maxIteracoes fim
+            indice := indice + 1
+        fim
+        medJuros
+    fim
+fim
+
+# calcula e guarda os resultados das funções
+pesoTotal = getPesoTotal()
+acrescimoCalculado = jurosParaAcrescimo(3.0)
+jurosCalculado = acrescimoParaJuros(acrescimoCalculado, 15, 56, 50.0)
+
+# escreve os resultados
+escreva "Peso total = {pesoTotal}"
+escreva "Acréscimo = {acrescimoCalculado}"
+escreva "Juros = {jurosCalculado}"

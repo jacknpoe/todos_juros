@@ -1,12 +1,13 @@
 # Cálculo dos juros, sendo que precisa de parcelas pra isso
 # Versão 0.1: 26/07/2025: versão feita sem muito conhecimento de Potigol
+#        0.2: 27/07/2025: mais declarações de tipos, trocado iteracao e uma palavra em inglês
 
 # vartiáveis globais para simplificar as chamadas às funções
 Quantidade: Inteiro = 3
 Composto: Lógico = verdadeiro
 Periodo: Real = 30.0
-Pagamentos = para indice de 1 até Quantidade gere indice * Periodo fim  
-Pesos = para indice de 1 até Quantidade gere 1.0 fim  
+Pagamentos: Lista[Real] = para indice de 1 até Quantidade gere indice * Periodo fim  
+Pesos: Lista[Real] = para indice de 1 até Quantidade gere 1.0 fim  
 
 # calcula a somatória de Pesos[]
 getPesoTotal(): Real
@@ -48,12 +49,12 @@ acrescimoParaJuros(acrescimo: Real, precisao, maxIteracoes: Inteiro, mJuros: Rea
         var medJuros: Real := mJuros / 2.0
         var maxJuros: Real := mJuros
         minDiferanca: Real = 0.1 ^ precisao
-        var indice: Integer := 0
-        enquanto indice < maxIteracoes faça
+        var iteracao: Inteiro := 0
+        enquanto iteracao < maxIteracoes faça
             se jurosParaAcrescimo(medJuros) < acrescimo então minJuros := medJuros senão maxJuros := medJuros fim
             medJuros := (minJuros + maxJuros) / 2.0
-            se maxJuros - minJuros < minDiferanca então indice := maxIteracoes fim
-            indice := indice + 1
+            se maxJuros - minJuros < minDiferanca então iteracao := maxIteracoes fim
+            iteracao := iteracao + 1
         fim
         medJuros
     fim

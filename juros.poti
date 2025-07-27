@@ -1,69 +1,80 @@
 # Cálculo dos juros, sendo que precisa de parcelas pra isso
 # Versão 0.1: 26/07/2025: versão feita sem muito conhecimento de Potigol
 #        0.2: 27/07/2025: mais declarações de tipos, trocado iteracao e uma palavra em inglês
+#        0.3: 27/07/2025: versão orientada a objetos
 
-# vartiáveis globais para simplificar as chamadas às funções
+tipo Juros
+    # vartiáveis globais para simplificar as chamadas às funções
+    Quantidade: Inteiro
+    Composto: Lógico
+    Periodo: Real
+    Pagamentos: Lista[Real]
+    Pesos: Lista[Real]
+
+    # calcula a somatória de Pesos[]
+    getPesoTotal(): Real
+        var acumulador: Real := 0.0
+        para indice de 1 até Quantidade faça acumulador := acumulador + Pesos[indice] fim
+        retorne acumulador
+    fim
+
+    # calcula o acréscimo a partir dos juros e parcelas
+    jurosParaAcrescimo(juros: Real): Real
+        pesoTotal: Real = getPesoTotal()
+        se Quantidade < 1 ou Periodo <= 0.0 ou pesoTotal <= 0.0 ou juros <= 0.0 então
+            0.0
+        senão
+            var acumulador: Real := 0.0
+            para indice de 1 até Quantidade faça
+                se Composto então
+                    acumulador := acumulador + Pesos[indice] / (1.0 + juros / 100.0) ^ (Pagamentos[indice] / Periodo)
+                senão
+                    acumulador := acumulador + Pesos[indice] / (1.0 + juros / 100.0 * Pagamentos[indice] / Periodo)
+                fim
+            fim
+
+            se acumulador <= 0.0 então
+                0.0
+            senão
+                (pesoTotal / acumulador - 1.0) * 100.0
+            fim
+        fim
+    fim
+
+    # calcula os juros a partir do acréscimo e parcelas
+    acrescimoParaJuros(acrescimo: Real, precisao, maxIteracoes: Inteiro, mJuros: Real)
+        pesoTotal: Real = getPesoTotal()
+        se Quantidade < 1 ou Periodo <= 0.0 ou pesoTotal <= 0.0 ou acrescimo <= 0.0 ou precisao < 1 ou maxIteracoes < 1 ou mJuros <= 0.0 então
+            0.0
+        senão
+            var minJuros: Real := 0.0
+            var medJuros: Real := mJuros / 2.0
+            var maxJuros: Real := mJuros
+            minDiferanca: Real = 0.1 ^ precisao
+            para iteracao de 1 até maxIteracoes faça
+                se maxJuros - minJuros > minDiferanca então   # a diferença aqui é porque a linguagem não permite "enquanto" dentro de "tipo" e "retorne" não funciona
+                    se jurosParaAcrescimo(medJuros) < acrescimo então minJuros := medJuros senão maxJuros := medJuros fim
+                    medJuros := (minJuros + maxJuros) / 2.0
+                fim
+            fim
+            medJuros
+        fim
+    fim
+fim
+
+# vartiáveis, as listas são criadas dinamicamente, juros é objeto da classe Juros
 Quantidade: Inteiro = 3
 Composto: Lógico = verdadeiro
 Periodo: Real = 30.0
 Pagamentos: Lista[Real] = para indice de 1 até Quantidade gere indice * Periodo fim  
 Pesos: Lista[Real] = para indice de 1 até Quantidade gere 1.0 fim  
 
-# calcula a somatória de Pesos[]
-getPesoTotal(): Real
-    var acumulador: Real := 0.0
-    para indice de 1 até Quantidade faça acumulador := acumulador + Pesos[indice] fim
-    retorne acumulador
-fim
-
-# calcula o acréscimo a partir dos juros e parcelas
-jurosParaAcrescimo(juros: Real): Real
-    pesoTotal: Real = getPesoTotal()
-    se Quantidade < 1 ou Periodo <= 0.0 ou pesoTotal <= 0.0 ou juros <= 0.0 então
-        0.0
-    senão
-        var acumulador: Real := 0.0
-        para indice de 1 até Quantidade faça
-            se Composto então
-                acumulador := acumulador + Pesos[indice] / (1.0 + juros / 100.0) ^ (Pagamentos[indice] / Periodo)
-            senão
-                acumulador := acumulador + Pesos[indice] / (1.0 + juros / 100.0 * Pagamentos[indice] / Periodo)
-            fim
-        fim
-
-        se acumulador <= 0.0 então
-            0.0
-        senão
-            (pesoTotal / acumulador - 1.0) * 100.0
-        fim
-    fim
-fim
-
-# calcula os juros a partir do acréscimo e parcelas
-acrescimoParaJuros(acrescimo: Real, precisao, maxIteracoes: Inteiro, mJuros: Real)
-    pesoTotal: Real = getPesoTotal()
-    se Quantidade < 1 ou Periodo <= 0.0 ou pesoTotal <= 0.0 ou acrescimo <= 0.0 ou precisao < 1 ou maxIteracoes < 1 ou mJuros <= 0.0 então
-        0.0
-    senão
-        var minJuros: Real := 0.0
-        var medJuros: Real := mJuros / 2.0
-        var maxJuros: Real := mJuros
-        minDiferanca: Real = 0.1 ^ precisao
-        var iteracao: Inteiro := 0
-        enquanto iteracao < maxIteracoes faça
-            se jurosParaAcrescimo(medJuros) < acrescimo então minJuros := medJuros senão maxJuros := medJuros fim
-            medJuros := (minJuros + maxJuros) / 2.0
-            se maxJuros - minJuros < minDiferanca então iteracao := maxIteracoes fim
-            iteracao := iteracao + 1
-        fim
-        medJuros
-    fim
-fim
+juros = Juros(Quantidade, Composto, Periodo, Pagamentos, Pesos)
 
 # calcula e guarda os resultados das funções
-pesoTotal = getPesoTotal()
-acrescimoCalculado = jurosParaAcrescimo(3.0)
-jurosCalculado = acrescimoParaJuros(acrescimoCalculado, 15, 56, 50.0)
+pesoTotal: Real = juros.getPesoTotal()
+acrescimoCalculado: Real = juros.jurosParaAcrescimo(3.0)
+jurosCalculado: Real = juros.acrescimoParaJuros(acrescimoCalculado, 15, 56, 50.0)
 
 # escreve os resultados
 escreva "Peso total = {pesoTotal}"

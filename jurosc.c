@@ -103,7 +103,7 @@ int main() {
 
 	setlocale( LC_ALL, "");	
 
-	if(!setValores(&juros, 300000, true, 30.0)) {
+	if(!setValores(&juros, 3, true, 30.0)) {
 		printf("Erro ao definir os valores da estrutura juros!");
 		return 1;
 	}

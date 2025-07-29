@@ -1013,6 +1013,7 @@ Squeak = Smalltalk
 STclos = Gauche/Kawa/Scheme/Steel
 tcsh = csh
 TOM = Java
+Turing+ = Turing
 XLISP = Common Lisp
 XLispStat = Common Lisp
 XOTcl = Tcl

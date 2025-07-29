@@ -3,7 +3,8 @@
 //        0.3: 22/12/2024: adicionados comentários para os includes
 //        0.4: 16/01/2025: adicionado cálculo de peso total
 //        0.5: 26/01/2025: adicionados comentários para estrutura, funções e main
-//        0.6: 10/07/2025: alteradas atribuições dos arrays para um for calculado
+//        0.6: 10/07/2025: alteradas atribuições dos arrays para um for calculado	
+//        0.7: 29/07/2025: agora dá free em Pagamentos se falhar malloc em Pesos
 
 #include <math.h>      // para usar pow()
 #include <stdio.h>     // para usar printf() e gets()
@@ -13,7 +14,7 @@
 
 // estrutura básica de propriedades para simplificar as chamadas
 struct Juros {
-	short Quantidade;
+	int Quantidade;
 	bool Composto;
 	double Periodo;
 	double *Pagamentos;
@@ -29,18 +30,18 @@ void liberaMemoria(struct Juros *juros) {
 }
 
 // define a quantidade de parcelas
-bool setQuantidade(struct Juros *juros, short quantidade) {
+bool setQuantidade(struct Juros *juros, int quantidade) {
 	if(quantidade < 0) return false;
 	if(quantidade == juros->Quantidade) return true;
 	juros->Pagamentos = (double *) malloc(sizeof(double) * quantidade);
 	if(quantidade > 0 && juros->Pagamentos == NULL) { juros->Quantidade = 0; return false; }
 	juros->Pesos = (double *) malloc(sizeof(double) * quantidade);
-	if(quantidade > 0 && juros->Pesos == NULL) { juros->Quantidade = 0; return false; }
+	if(quantidade > 0 && juros->Pesos == NULL) { free(juros->Pagamentos); juros->Quantidade = 0; return false; }
 	juros->Quantidade = quantidade; return true;
 }
 
 // define os valores escalares da estrutura (automaticamente, também chama setQuantidade)
-bool setValores(struct Juros *juros, short quantidade, bool composto, double periodo) {
+bool setValores(struct Juros *juros, int quantidade, bool composto, double periodo) {
 	if(!setQuantidade(juros, quantidade)) return false;
 	juros->Composto = composto;
 	juros->Periodo = periodo;
@@ -50,7 +51,7 @@ bool setValores(struct Juros *juros, short quantidade, bool composto, double per
 // calcula a somatória do array Pesos[]
 double getPesoTotal(struct Juros *juros) {
 	double acumulador = 0.0;
-	short indice;
+	int indice;
 	for(indice = 0; indice < juros->Quantidade; indice++) acumulador += juros->Pesos[indice];
 	return acumulador;
 }
@@ -60,7 +61,7 @@ double jurosParaAcrescimo(struct Juros *juros, double valor) {
 	if(valor <= 0 || juros->Quantidade <= 0 || juros->Periodo <= 0.0) return 0.0;
 	double pesoTotal = getPesoTotal(juros);
 	double acumulador = 0; 
-	short indice;
+	int indice;
 	
 	for(indice = 0; indice < juros->Quantidade; indice++) {
 		if(juros->Composto) acumulador += juros->Pesos[indice] / pow(1 + valor / 100, juros->Pagamentos[indice] / juros->Periodo);
@@ -94,7 +95,7 @@ int main() {
     // define os valores de juros
 	struct Juros juros;
 	double pesoTotal = 0, acrescimoCalculado = 0, jurosCalculado = 0;
-	short indice;
+	int indice;
 
 	setlocale( LC_ALL, "");	
 

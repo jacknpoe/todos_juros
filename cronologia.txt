@@ -1,9 +1,3 @@
-CRONOLOGIA / CHRONOLOGY
------------------------
-
-(* = criação do repositório, a data de criação é anterior; ! = três em um dia; !! = quatro em um dia)
-(* = creation of the repository, the creation date is before; ! = three in a day; !! = four in a day)
-
 C++ (17/09/2023)*
 PHP (17/09/2023)*
 Python (17/09/2023)*
@@ -301,4 +295,11 @@ fish (20/07/2025)
 csh (21/07/2025)
 EusLisp (23/07/2025)
 LiveScript (24/07/2025)
-Potigol (26/04/2025)
+Potigol (26/07/2025)
+Cilk (29/07/2025)
+
+CRONOLOGIA / CHRONOLOGY
+-----------------------
+
+(* = criação do repositório, a data de criação é anterior; ! = três em um dia; !! = quatro em um dia)
+(* = creation of the repository, the creation date is before; ! = three in a day; !! = four in a day)

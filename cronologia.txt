@@ -297,6 +297,7 @@ EusLisp (23/07/2025)
 LiveScript (24/07/2025)
 Potigol (26/07/2025)
 Cilk (29/07/2025)
+Aldor (30/07/2025)
 
 CRONOLOGIA / CHRONOLOGY
 -----------------------

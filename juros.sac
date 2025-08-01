@@ -1,0 +1,93 @@
+// Cálculo dos juros, sendo que precisa de parcelas pra isso
+// Versão 0.1: 01/08/2025: versão feita sem muito conhecimento de SaC
+
+// use StdIO: {printf};
+use StdIO: all;
+use Math: {pow};
+use ScalarArith: all;
+use Array: {sel, genarray, modarray, sum};
+
+#define QUANTIDADE 3  // mude a quantidade aqui, para que os arrays acompanhem o número de parcelas
+
+// estrutura para simplificar as chamadas às funções
+struct Juros {
+    int Quantidade;
+    bool Composto;
+    double Periodo;
+    double[QUANTIDADE] Pagamentos;
+    double[QUANTIDADE] Pesos;
+};
+
+// calcula a somatória de Pesos[] (veja que comentado está a forma extensa, e a versão que roda é a da linguagem)
+double getPesoTotal(struct Juros sJuros) {
+//    acumulador = 0.0;
+//    for(indice = 0; indice < sJuros.Quantidade; indice++) acumulador += sJuros.Pesos[indice];
+//    return acumulador;
+    return sum(sJuros.Pesos);
+}
+
+// calcula o acréscimo a partir dos juros e parcelas
+double jurosParaAcrescimo(struct Juros sJuros, double juros) {
+    pesoTotal = getPesoTotal(sJuros);
+    if(sJuros.Quantidade < 1 || sJuros.Periodo <= 0.0 || pesoTotal <= 0.0 || juros <= 0.0) {
+        resultado = 0.0;
+    } else {
+        acumulador = 0.0;
+        for(indice = 0; indice < sJuros.Quantidade; indice++) {
+            if(sJuros.Composto) {
+                acumulador += sJuros.Pesos[indice] / pow(1.0 + juros / 100.0, sJuros.Pagamentos[indice] / sJuros.Periodo);
+            } else {
+                acumulador += sJuros.Pesos[indice] / (1.0 + juros / 100.0 * sJuros.Pagamentos[indice] / sJuros.Periodo);
+            }
+        }
+        if(acumulador <= 0.0) {
+            resultado = 0.0;
+        } else {
+            resultado = (pesoTotal / acumulador - 1.0) * 100.0;
+        }
+    }
+    return resultado;
+}
+
+// calcula os juros a partir do acréscimo e parcelas
+double acrescimoParaJuros(struct Juros sJuros, double acrescimo, int precisao, int maxIteracoes, double maxJuros) {
+    pesoTotal = getPesoTotal(sJuros);
+    if(sJuros.Quantidade < 1 || sJuros.Periodo <= 0.0 || pesoTotal <= 0.0 || acrescimo <= 0.0 || precisao < 1 || maxIteracoes < 1 || maxJuros <= 0.0) {
+        medJuros = 0.0;
+    } else {
+        minJuros = 0.0;
+        medJuros = maxJuros / 2.0;
+        minDiferenca = pow(0.1, tod(precisao));
+        indice = 0;
+        while(indice < maxIteracoes) {
+            if(jurosParaAcrescimo(sJuros, medJuros) < acrescimo) { minJuros = medJuros; } else { maxJuros = medJuros; }
+            if(maxJuros - minJuros < minDiferenca) { indice = maxIteracoes; }
+            medJuros = (minJuros + maxJuros) / 2.0;
+            indice++;
+        }
+    }
+    return medJuros;
+}
+
+int main () {
+    // estrutura sJuros do tipo Juros com os valores básicos que definem o parcelamento
+    sJuros = Juros {QUANTIDADE, true, 30.0, genarray([QUANTIDADE], 0.0), genarray([QUANTIDADE],0.0)};
+
+    // arrays dinâmicos
+    for(indice = 0; indice < sJuros.Quantidade; indice++) {
+        sJuros.Pagamentos[indice] = (tod(indice) + 1.0) * sJuros.Periodo;
+        sJuros.Pesos[indice] = 1.0;
+    }
+
+    // calcula e guarda os resultados das funções
+    pesoTotal = getPesoTotal(sJuros);
+    acrescimoCalculado = jurosParaAcrescimo(sJuros, 3.0);
+    jurosCalculado = acrescimoParaJuros(sJuros, acrescimoCalculado, 15, 56, 50.0);
+
+    // imprime os resultados
+    printf("Peso total = %1.15f\n", pesoTotal);
+    printf("Acrescimo = %1.15f\n", acrescimoCalculado);
+    printf("Juros = %1.15f\n", jurosCalculado);
+
+    return 0;
+}

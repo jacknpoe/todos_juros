@@ -44,7 +44,7 @@ A lista está organizada em ordem alfabética, pelos nomes dos dialetos, em: htt
 
 As versões em JavaScript e PHP podem ser testadas a partir de: https://jacknpoe.rf.gd/
 
-A licença é GNU (https://www.gnu.org/licenses/gpl-3.0.html).
+A licença é GNU (https://www.gnu.org/licenses/gpl-3.0.html](https://github.com/jacknpoe/todos_juros/blob/main/LICENSE).
 
 ENGLISH
 =======
@@ -94,6 +94,6 @@ JavaScript and PHP versions can be tested from: https://jacknpoe.rf.gd/
 
 The C++ dialect versions of the solution were written in English.
 
-The license is GNU (https://www.gnu.org/licenses/gpl-3.0.html).
+The license is GNU (https://github.com/jacknpoe/todos_juros/blob/main/LICENSE).
 
 ![52](https://github.com/jacknpoe/todos_juros/blob/main/resolu%C3%A7%C3%B5es.jpg)

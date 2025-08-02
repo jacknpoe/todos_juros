@@ -992,6 +992,7 @@ gawk = awk
 Generic Java = Java
 Gerbil Scheme = Kawa/Steel
 GNU Bourne-Again Shell = Bash
+Guile = Kawa/Scheme/Steel
 HashLink = Haxe
 IBM PC BASIC A = GW-BASIC
 Intel Fortran Compiler = Fortran

@@ -2,11 +2,11 @@
 
 PORTUGUÊS
 =========
-Este repositório é sobre codificar, em várias linguagens, a mesma solução em matemática financeira. Achar os juros a partir do acréscimo, das datas e pesos das parcelas. Eu uso o Método da Bisseção do Cálculo Numérico para resolvê-la. A ideia é que cada versão se fixe ao máximo à cultura de cada linguagem. Eu uso o mínimo de recursos possível. Eu evito adicionar qualquer biblioteca que eu puder.
+Este repositório é sobre codificar, em vários dialetos, a mesma solução em matemática financeira. Achar os juros a partir do acréscimo, das datas e pesos das parcelas. Eu uso o Método da Bisseção do Cálculo Numérico para resolvê-la. A ideia é que cada versão se fixe ao máximo à cultura de cada dialeto. Eu uso o mínimo de recursos possível. Eu evito adicionar qualquer biblioteca que eu puder.
 
-O foco é resolver o problema de Matemática Financeira usando Cálculo Numérico. Então, algumas linguagens que exigiriam um conhecimento maior de matemática, como exponenciação de números de ponto flutuante, estão sendo preteridas até o momento.
+O foco é resolver o problema de Matemática Financeira usando Cálculo Numérico. Então, algumas dialetos que exigiriam um conhecimento maior de matemática, como exponenciação de números de ponto flutuante, estão sendo preteridos até o momento.
 
-É uma "Pedra de Roseta" sobre linguagens de programação.
+É uma "Pedra de Roseta" sobre dialetos de programação.
 
 Fórmula para calcular o acréscimo a partir dos juros simples:
 
@@ -20,27 +20,27 @@ Apenas soluções que compilaram (ou foram corretamente interpretadas), que real
 
 Uma das metas é que os compiladores e interpretadores não exibam avisos ao compilar ou rodar as soluções. Em IDEs integradas, os avisos também foram evitados. 
 
-Dois conceitos que pesaram muito foram a exponenciação de números ponto flutuante (implementada em todas as linguagens) e os arrays dinâmicos (que não foram possíveis, por exemplo, em Chapel, Modula-2, MSX Turbo Pascal, Pascalzim, Portugol, VisuALG e XC=BASIC, e os arrays podem ter mil ou três elementos).
+Dois conceitos que pesaram muito foram a exponenciação de números ponto flutuante (implementada em todos os dialetos) e os arrays dinâmicos (que não foram possíveis, por exemplo, em Chapel, Modula-2, MSX Turbo Pascal, Pascalzim, Portugol, VisuALG e XC=BASIC e, nesses casos, os arrays podem ter três ou mil elementos).
 
-Duas linguagens são consideradas diferentes quando qualquer parte do código tem que ser alterada para ser compilado ou interpretado em ambas. Essa questão ficaria muito complicada, se fosse escolhido um critério mais rígido sobre o quanto uma linguagem precisa ser diferente de outra, o que seria impraticável. Quando duas ou mais linguagens rodam exatamente o mesmo código (como Chez Scheme, Guile e Scheme ou ClojureScript e Squint), apenas uma das linguagens será considerada. Tecnologias que exigem alteração no código de outras linguagens também estão listadas. Quando uma linguagem puder ser definida como uma extensão de outra linguagem, e construções novas puderem ser usadas, elas são incluídas e postadas como uma linguagem diferente.
+Dois dialetos são consideradas diferentes quando qualquer parte do código tem que ser alterada para ser compilado ou interpretado em ambos. Essa questão ficaria muito complicada, se fosse escolhido um critério mais rígido sobre o quanto um dialeto precisa ser diferente de outro, o que seria impraticável. Quando dois ou mais dialetos rodam exatamente o mesmo código (como Chez Scheme, Guile e Scheme ou ClojureScript e Squint), apenas um dos dialetos será considerado, e os outros serão adicionados ao final da lista apenas como equivalentes, e não serão contabilizadas. Tecnologias que exigem alteração no código de outros dialetos também estão listadas. Quando um dialeto puder ser definido como uma extensão de outro dialeto, e construções novas puderem ser usadas, ele é incluído e postado como dialeto diferente.
 
-As soluções estão divididas entre as recursivas (Alice, Arc, AutoLISP, Bend, Caml, Clean, Clojure, Common Lisp, DataWeave, DrScheme, Elixir, Elm, Emacs Lisp, Erlang, EusLisp, Flix, Gleam, Haskell, Hope, Idris, ILOS, ISLISP, Kawa, Lean, Miranda, NewLISP, Oak, OCaml, Orc, Otus Lisp, Prolog, PureScript, Racket, ReasonML, ReScript, Scheme, SML, 3, Source, Squint, Steel, Visual LISP, XSB e Yeti) e iterativas (todas as outras linguagens, incluindo F#).
+As soluções estão divididas entre as recursivas (Alice, Arc, AutoLISP, Bend, Caml, Clean, Clojure, Common Lisp, DataWeave, DrScheme, Elixir, Elm, Emacs Lisp, Erlang, EusLisp, Flix, Gleam, Haskell, Hope, Idris, ILOS, ISLISP, Kawa, Lean, Miranda, NewLISP, Oak, OCaml, Orc, Otus Lisp, Prolog, PureScript, Racket, ReasonML, ReScript, Scheme, SML, 3, Source, Squint, Steel, Visual LISP, XSB e Yeti) e iterativas (todos os outros dialetos, incluindo F#).
 
-Existem, em algumas soluções, salvaguardas para valores incorretos para uma aplicação real. São valores zerados e negativos. Em algumas linguagens não é verificado, pois entendeu-se que o público-alvo dessas linguagens não cometeria esse tipo de equívoco.
+Existem, em algumas soluções, salvaguardas para valores incorretos para uma aplicação real. São valores zerados e negativos. Em alguns dialetos não é verificado, pois entendeu-se que o público-alvo desses dialetos não cometeria esse tipo de equívoco.
 
-Tenha em mente que algumas das soluções (como as em BASIC para microcomputadores de oito bits e Bash/Dash), pelas próprias naturezas de suas tecnologias, são extremamente lentas. Algumas são lentas na função de exponenciação, outras dependem de outros processos para a matemática de ponto flutuante. Com centenas de pagamentos, algumas soluções podem demorar minutos para darem resultados. Os testes devem ser realizados, inicialmente, em menos parcelas. Faça a regra de três para determinar se vale a pena fazer testes com números extraordinários de parcelas.
+Tenham em mente que algumas das soluções (como as em BASIC para microcomputadores de oito bits e Bash/Dash), pelas próprias naturezas de suas tecnologias, são extremamente lentas. Algumas são lentas na função de exponenciação, outras dependem de outros processos para a matemática de ponto flutuante. Com centenas de pagamentos, algumas soluções podem demorar minutos para darem resultados. Os testes devem ser realizados, inicialmente, com menos parcelas. Faça a regra de três para determinar se vale a pena fazer testes com números extraordinários de parcelas.
 
-Algumas implementações não serão mantidas, porque foram feitas em versões de avaliação de ambientes de desenvolvimento pagos, como o Embarcadero Delphi e o EiffelStudio. Após dia 29 de maio de 2024, as linguagens menos utilizadas não terão mais suporte, mesmo tendo IDEs gratuitas.
+Algumas implementações não serão mantidas, porque foram feitas em versões de avaliação de ambientes de desenvolvimento pagos, como o Embarcadero Delphi e o EiffelStudio. Os dialetos menos populares não terão suporte, mesmo tendo IDEs gratuitas.
 
-Alguns arquivos estão ilegíveis, pois são binários e devem ser abertos ou importados nos ambientes das linguagens, como AppleSoft BASIC, Smalltalk, Snap! e twinBASIC. StarLogo Nova não salva em arquivo, então somente a URL está disponibilizada: https://www.slnova.org/jacknpoe/projects/941781/.
+Alguns arquivos estão ilegíveis, pois são binários e devem ser abertos ou importados nos ambientes dos dialetos, como AppleSoft BASIC, Smalltalk, Snap! e twinBASIC. StarLogo Nova não salva em arquivo, então somente a URL está disponibilizada: https://www.slnova.org/jacknpoe/projects/941781/.
 
-Linguagens que não terão a solução, por não terem suporte a recursos necessários: Solidify (não tem números de ponto flutuante), CHIP-8, Frege e Gosu (não têm exponenciação), Self e (não têm exponenciação de números de ponto flutuante). Outras linguagen têm outros problemas, como estarem desatualizadas e não rodam ou compilam nos sistemas atuais. Linguagens que são, na verdade, Turing tarpits, como Agda, são ignoradas.
+Exemplos de dialetos que não terão a solução ainda, por não terem suporte a recursos necessários: Solidify (não tem números de ponto flutuante), CHIP-8, Frege e Gosu (não têm exponenciação), Self e (não têm exponenciação de números de ponto flutuante). Outros dialetos têm outros problemas, como estarem desatualizadas e não rodarem ou compilarem nos sistemas atuais. Dialetos que são, na verdade, Turing tarpits, como Agda, serão ignorados.
 
 A saída mais comum para os testes é:
 
 Peso total = 3.0 / Acréscimo = 6.059108997379403 / Juros = 2.999999999999992
 
-A lista está organizada em ordem alfabética, pelos nomes das linguagens, em: https://jacknpoeexplicaprogramacao.wordpress.com/2024/03/02/10-resolucoes-de-equacao-transcendente/ ou https://github.com/jacknpoe/todos_juros/blob/main/todos_juros.txt
+A lista está organizada em ordem alfabética, pelos nomes dos dialetos, em: https://jacknpoeexplicaprogramacao.wordpress.com/2024/03/02/10-resolucoes-de-equacao-transcendente/ ou https://github.com/jacknpoe/todos_juros/blob/main/todos_juros.txt
 
 As versões em JavaScript e PHP podem ser testadas a partir de: https://jacknpoe.rf.gd/
 
@@ -48,11 +48,11 @@ A licença é GNU (https://www.gnu.org/licenses/gpl-3.0.html).
 
 ENGLISH
 =======
-This repository is about coding, in multiple languages, the same solution in financial mathematics. To find the interest based on the increase, dates and weights of the installments. I use the Bisection Method of Numerical Calculus to solve it. The idea is that each version adheres to the culture of each language as much as possible. I use as few resources as possible. I avoid adding any libraries I can.
+This repository is about coding, in multiple dialects, the same solution in financial mathematics. To find the interest based on the increase, dates and weights of the installments. I use the Bisection Method of Numerical Calculus to solve it. The idea is that each version adheres to the culture of each dialect as much as possible. I use as few resources as possible. I avoid adding any libraries I can.
 
-The focus is to solve the Financial Mathematics problem using Numerical Calculus. Therefore, some languages ​​that would require greater knowledge of mathematics, such as exponentiation of floating point numbers, are being deprecated for now.
+The focus is to solve the Financial Mathematics problem using Numerical Calculus. Therefore, some dialects ​​that would require greater knowledge of mathematics, such as exponentiation of floating point numbers, are being deprecated for now.
 
-It's a "Rosetta Stone" of programming languages.
+It's a "Rosetta Stone" of programming dialects.
 
 Formula for calculating the increase from simple interest:
 
@@ -68,27 +68,27 @@ Only solutions that compiled (or were correctly interpreted), actually ran, and 
 
 One of the goals is for compilers and interpreters to avoid displaying warnings when compiling or running the solutions. In integrated IDEs, warnings have also been avoided.
 
-Two concepts that weighed heavily were the exponentiation of floating point numbers (implemented in all languages) and dynamic arrays (which were not possible, for example, in Chapel, Modula-2, MSX Turbo Pascal, Pascalzim, Portugol, VisuALG and XC=BASIC, and arrays can have one thousand or three elements).
+Two concepts that weighed heavily were the exponentiation of floating point numbers (implemented in all dialects) and dynamic arrays (which were not possible, for example, in Chapel, Modula-2, MSX Turbo Pascal, Pascalzim, Portugol, VisuALG and XC=BASIC, and arrays can have one three or a thousand of elements).
 
-Two languages ​​are considered different when any part of the code has to be changed to be compiled or interpreted in both. This issue would become very complicated if a stricter criterion were chosen regarding how much one language needs to be different from another, which would be impractical. When two or more languages ​​run exactly the same code (such as Chez Scheme, Guile and Scheme or ClojureScript and Squint), only one of the languages ​​will be considered. Technologies that require changes to code from other languages ​​are also listed. When a language can be defined as an extension of another language, and new constructs can be used, they are included and posted as a different language.
+Two dialects ​​are considered different when any part of the code has to be changed to be compiled or interpreted in both. This issue would become very complicated if a stricter criterion were chosen regarding how much one dialect needs to be different from another, which would be impractical. When two or more dialects ​​run exactly the same code (such as Chez Scheme, Guile and Scheme or ClojureScript and Squint), only one of the dialects ​​will be considered, and the others will be added to the end of the list only as equivalents, and will not be accounted. Technologies that require changes to code from other dialects ​​are also listed. When a dialect can be defined as an extension of another dialect, and new constructs can be used, they are included and posted as a different dialect.
 
-The solutions are divided between recursive (Alice, Arc, AutoLISP, Bend, Caml, Clean, Clojure, Common Lisp, DataWeave, DrScheme, Elixir, Elm, Emacs Lisp, Erlang, EusLisp, Flix, Gleam, Haskell, Hope, Idris, ILOS, ISLISP, Kawa, Lean, Miranda, NewLISP, Oak, OCaml, Orc, Otus Lisp, Prolog, PureScript, Racket, ReasonML, ReScript, Scheme, SML, SML/NJ, Source, Squint, Steel, Visual LISP, XSB and Yeti) and iterative (all other languages, including F#).
+The solutions are divided between recursive (Alice, Arc, AutoLISP, Bend, Caml, Clean, Clojure, Common Lisp, DataWeave, DrScheme, Elixir, Elm, Emacs Lisp, Erlang, EusLisp, Flix, Gleam, Haskell, Hope, Idris, ILOS, ISLISP, Kawa, Lean, Miranda, NewLISP, Oak, OCaml, Orc, Otus Lisp, Prolog, PureScript, Racket, ReasonML, ReScript, Scheme, SML, SML/NJ, Source, Squint, Steel, Visual LISP, XSB and Yeti) and iterative (all other dialects, including F#).
 
-There are, in some solutions, safeguards for incorrect values ​​for a real application. These are zero and negative values. In some languages ​​it is not verified, as it was understood that the target audience of these languages ​​would not make this type of mistake.
+There are, in some solutions, safeguards for incorrect values ​​for a real application. These are zero and negative values. In some dialects ​​it is not verified, as it was understood that the target audience of these dialects ​​would not make this type of mistake.
 
 Keep in mind that some solutions (such as those in BASIC for eight-bit microcomputers and Bash/Dash), by the very nature of their technologies, are extremely slow. Some are slow in the exponentiation function, others rely on other processes for floating-point mathematics. With hundreds of payments, some solutions can take minutes to yield results. Tests should initially be performed on fewer installments. Use the rule of three to determine whether it's worth testing with an extraordinary number of installments.
 
-Some implementations will not be maintained because they were done in trial versions of paid development environments such as Embarcadero Delphi and EiffelStudio. After May 29, 2024, less used languages ​​will no longer be supported, even though they have free IDEs.
+Some implementations will not be maintained because they were done in trial versions of paid development environments such as Embarcadero Delphi and EiffelStudio. Less popular dialects will not be supported, even though they have free IDEs.
 
-Some files are unreadable, as they are binary and must be opened or imported into the language environments, such as AppleSoft BASIC, Smalltalk, Snap! and twinBASIC. StarLogo Nova does not save to a file, so only the URL is available: https://www.slnova.org/jacknpoe/projects/941781/.
+Some files are unreadable, as they are binary and must be opened or imported into the dialect environments, such as AppleSoft BASIC, Smalltalk, Snap! and twinBASIC. StarLogo Nova does not save to a file, so only the URL is available: https://www.slnova.org/jacknpoe/projects/941781/.
 
-Languages ​​that will not have the solution, as they do not support the necessary resources: Solidify (does not have floating point numbers), CHIP-8, Frege and Gosu (does not have exponentiation), Self and Rexx (does not have exponentiation of floating point numbers). Other languages ​​have other problems, such as being outdated and not running or compiling on current systems. Languages that are actually Turing tarpits, like Agda, are ignored.
+Examples of dialects that will not have the solution yet, as they do not support the necessary resources: Solidify (does not have floating point numbers), CHIP-8, Frege and Gosu (does not have exponentiation), Self and Rexx (does not have exponentiation of floating point numbers). Other dialects ​​have other problems, such as being outdated and not running or compiling on current systems. Dialectss that are actually Turing tarpits, like Agda, are ignored.
 
 The most common output for tests is:
 
 Peso total = 3.0 / Acréscimo = 6.059108997379403 / Juros = 2.999999999999992
 
-The list is organized alphabetically, by languages names: https://jacknpoeexplicaprogramacao.wordpress.com/2024/03/02/10-resolucoes-de-equacao-transcendente/ or https://github.com/jacknpoe/todos_juros/blob/main/todos_juros.txt
+The list is organized alphabetically, by dialects names: https://jacknpoeexplicaprogramacao.wordpress.com/2024/03/02/10-resolucoes-de-equacao-transcendente/ or https://github.com/jacknpoe/todos_juros/blob/main/todos_juros.txt
 
 JavaScript and PHP versions can be tested from: https://jacknpoe.rf.gd/
 

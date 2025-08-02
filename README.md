@@ -44,7 +44,7 @@ A lista está organizada em ordem alfabética, pelos nomes dos dialetos, em: htt
 
 As versões em JavaScript e PHP podem ser testadas a partir de: https://jacknpoe.rf.gd/
 
-A licença é GNU (https://www.gnu.org/licenses/gpl-3.0.html](https://github.com/jacknpoe/todos_juros/blob/main/LICENSE).
+A licença é GNU (https://github.com/jacknpoe/todos_juros/blob/main/LICENSE).
 
 ENGLISH
 =======

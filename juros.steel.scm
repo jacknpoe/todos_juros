@@ -1,5 +1,6 @@
 ;; Cálculo do juros, sendo que precisa de arrays pra isso
 ;; Versão 0.1: 16/04/2025: a partir da versão em Dr.Scheme, alterados os números para compatíveis com Steel
+;;             02/08/2025: as linhas 52 e 54 foram alteradas pasa uma sintaxe melhor, eram (acrescimoParaJuros 0.0) ficaram (0.0)
 
 ;; Variáveis globais para simplificar as chamadas
 (define Quantidade 3)
@@ -48,9 +49,9 @@
 ;; calcula os juros a partir do acréscimo e dados comuns (como parcelas)
 (define (acrescimoParaJuros acrescimo precisao maxIteracoes maxJuros)
   (if (or (or (or (or (or (<= acrescimo 0.0) (<= Quantidade 0)) (<= Periodo 0.0)) (< maxIteracoes 1)) (< precisao 1)) (<= maxJuros 0.0))
-      (acrescimoParaJuros 0.0)
+      (0.0)
       (if (<= (getPesoTotal) 0.0)
-          (acrescimoParaJuros 0.0)
+          (0.0)
           (_acrescimoParaJuros acrescimo (expt 0.1 precisao) maxIteracoes 0.0 maxJuros (/ maxJuros 2.0))
 )))
 
@@ -74,5 +75,4 @@
 (display "Juros = ")
 (define juros (acrescimoParaJuros acrescimo 15 100 50.0))
 (display juros)
-
 (newline)

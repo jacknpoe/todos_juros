@@ -1,5 +1,5 @@
 ;; Cálculo do juros, sendo que precisa de arrays pra isso
-;; Versão 0.1: 16/41/2025: a partir da versão em Dr.Scheme, alterados os números para compatíveis com Steel
+;; Versão 0.1: 16/04/2025: a partir da versão em Dr.Scheme, alterados os números para compatíveis com Steel
 
 ;; Variáveis globais para simplificar as chamadas
 (define Quantidade 3)
@@ -74,4 +74,5 @@
 (display "Juros = ")
 (define juros (acrescimoParaJuros acrescimo 15 100 50.0))
 (display juros)
+
 (newline)

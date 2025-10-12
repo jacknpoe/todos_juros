@@ -41,5 +41,5 @@ acrescimoParaJuros (acrescimo, precisao, maxIteracoes, maxJuros) =
 || calcula os resultados das funções e imprime
 main :: [sys_message]
 main = [ Stdout ( "Peso total = " ++ (show (getPesoTotal())) ++
-                  "\nAcréscimo = " ++ (show (jurosParaAcrescimo(3.0))) ++
-                  "\nJuros = " ++ (show(acrescimoParaJuros(jurosParaAcrescimo(3.0), 15, 100, 50.0)))) ]
+                  "\nAcréscimo = " ++ (show (jurosParaAcrescimo (3.0))) ++
+                  "\nJuros = " ++ (show (acrescimoParaJuros (jurosParaAcrescimo (3.0), 15, 100, 50.0)))) ]

@@ -40,6 +40,8 @@ A saída mais comum para os testes é:
 
 Peso total = 3.0 / Acréscimo = 6.059108997379403 / Juros = 2.999999999999992
 
+ATENÇÃO: existe uma possibilidade de divisão por zero, nos juros simples, por exemplo, se os juros forem 100% e uma das parcelas for -100 vezes o período. Uma verificação desse tipo complicaria o código, para evitar essa eventualidade tão rara.
+
 A lista está organizada em ordem alfabética, pelos nomes dos dialetos, em: https://jacknpoeexplicaprogramacao.wordpress.com/2024/03/02/10-resolucoes-de-equacao-transcendente/ ou https://github.com/jacknpoe/todos_juros/blob/main/todos_juros.txt
 
 As versões em JavaScript e PHP podem ser testadas a partir de: https://jacknpoe.rf.gd/
@@ -87,6 +89,8 @@ Examples of dialects that will not have the solution yet, as they do not support
 The most common output for tests is:
 
 Peso total = 3.0 / Acréscimo = 6.059108997379403 / Juros = 2.999999999999992
+
+WARNING: There is a possibility of division by zero in simple interest, for example, if the interest is 100% and one of the installments is -100 times the period. A check of this type would complicate the code, to avoid this very rare eventuality.
 
 The list is organized alphabetically, by dialects names: https://jacknpoeexplicaprogramacao.wordpress.com/2024/03/02/10-resolucoes-de-equacao-transcendente/ or https://github.com/jacknpoe/todos_juros/blob/main/todos_juros.txt
 

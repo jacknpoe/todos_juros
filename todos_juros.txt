@@ -1006,6 +1006,7 @@ Iodine = Java
 IronPython – Python
 JRuby = Ruby
 Korn Shell = ksh
+Linden Scripting Language = LSL
 MirBSD Korn Shell = ksh
 mksh = POSIX sh
 Monkey X = Monkey 2

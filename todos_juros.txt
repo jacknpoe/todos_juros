@@ -339,7 +339,7 @@ TesteJuros.groovy
 JUROS.BAS
 
 103. Hamilton C shell (17/03/2025)
-uros.csh
+juros_hcs.csh
 
 104. Harbour (15/06/2024)
 juros_harbour.prg

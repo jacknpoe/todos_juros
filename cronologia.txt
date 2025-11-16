@@ -301,6 +301,7 @@ Aldor (30/07/2025)
 SaC (01/08/2025)
 GOOPS (02/08/2025)
 Bigloo (02/08/2025)
+Raspberry Pi (16/11/2025)
 
 CRONOLOGIA / CHRONOLOGY
 -----------------------

@@ -1,4 +1,4 @@
-// Version: 0.1: 16/11/2024: based on Arduino, without much knowledge about Arduino
+// Version: 0.1: 16/11/2024: based on Arduino, without much knowledge about Raspberry Pi
 // on-line: https://wokwi.com/projects/447794347319174145
 
 // LCD1602 and Pi Pico!

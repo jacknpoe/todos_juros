@@ -38,7 +38,7 @@ Algumas implementações não serão mantidas, porque foram feitas em versões d
 
 Alguns arquivos estão ilegíveis, pois são binários e devem ser abertos ou importados nos ambientes dos dialetos, como AppleSoft BASIC, Smalltalk, Snap! e twinBASIC. StarLogo Nova não salva em arquivo, então somente a URL está disponibilizada: https://www.slnova.org/jacknpoe/projects/941781/.
 
-Exemplos de dialetos que não terão a solução ainda, por não terem suporte a recursos necessários: Solidify (não tem números de ponto flutuante), CHIP-8, Frege e Gosu (não têm exponenciação), Self e (não têm exponenciação de números de ponto flutuante). Outros dialetos têm outros problemas, como estarem desatualizadas e não rodarem ou compilarem nos sistemas atuais. Dialetos que são, na verdade, Turing tarpits, como Agda, serão ignorados.
+Exemplos de dialetos que não terão a solução ainda, por não terem suporte a recursos necessários: Solidify (não tem números de ponto flutuante), CHIP-8, Frege e Gosu (não têm exponenciação), Self e Rexx (não têm exponenciação de números de ponto flutuante). Outros dialetos têm outros problemas, como estarem desatualizadas e não rodarem ou compilarem nos sistemas atuais. Dialetos que são, na verdade, Turing tarpits, como Agda, serão ignorados.
 
 A saída mais comum para os testes é:
 

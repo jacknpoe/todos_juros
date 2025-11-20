@@ -46,6 +46,16 @@ A lista está organizada em ordem alfabética, pelos nomes dos dialetos, em: htt
 
 As versões em JavaScript e PHP podem ser testadas a partir de: https://jacknpoe.rf.gd/
 
+A versão em Scratch está publicada em https://scratch.mit.edu/projects/1162953396/
+
+A versão em Snap! está publicada em https://snap.berkeley.edu/project?username=jacknpoe&projectname=juros
+
+A versão on-line em WOKWI de Arduino está publicada em https://wokwi.com/projects/447631899725952001
+
+A versão on-line em WOKWI de Raspberry Pi está publicada em https://wokwi.com/projects/447794347319174145
+
+A versão on-line em WOKWI de MicroPython está publicada em https://wokwi.com/projects/447878410647046145
+
 A licença é GNU (https://github.com/jacknpoe/todos_juros/blob/main/LICENSE).
 
 ENGLISH
@@ -96,7 +106,17 @@ The list is organized alphabetically, by dialects names: https://jacknpoeexplica
 
 JavaScript and PHP versions can be tested from: https://jacknpoe.rf.gd/
 
-The C++ dialect versions of the solution were written in English.
+The Scratch version is published at https://scratch.mit.edu/projects/1162953396/
+
+The Snap! version is published at https://snap.berkeley.edu/project?username=jacknpoe&projectname=juros
+
+The online WOKWI version of Arduino is published at https://wokwi.com/projects/447631899725952001
+
+The online WOKWI version of Raspberry Pi is published at https://wokwi.com/projects/447794347319174145
+
+The online WOKWI version of MicroPython is published at https://wokwi.com/projects/447878410647046145
+
+The C++ dialect versions of the solution were written in English, including Arduino and Raspberry Pi.
 
 The license is GNU (https://github.com/jacknpoe/todos_juros/blob/main/LICENSE).
 

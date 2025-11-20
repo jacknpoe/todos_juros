@@ -8,6 +8,8 @@ O foco é resolver o problema de Matemática Financeira usando Cálculo Numéric
 
 É uma "Pedra de Roseta" sobre dialetos de programação.
 
+Tirando a pasta "terceiros", todas as soluções foram escritas por https://github.com/jacknpoe, sendo que apenas em BBC Basic foi utilizada uma forma simplificada de "tradução", sendo que o código precisou ser completamente revisado para poder rodar apropriadamente.
+
 Fórmula para calcular o acréscimo a partir dos juros simples:
 
 ![Juros Simples](https://github.com/jacknpoe/todos_juros/blob/main/JurosSimples.jpg)
@@ -23,6 +25,8 @@ Uma das metas é que os compiladores e interpretadores não exibam avisos ao com
 Dois conceitos que pesaram muito foram a exponenciação de números ponto flutuante (implementada em todos os dialetos) e os arrays dinâmicos (que não foram possíveis, por exemplo, em Chapel, Modula-2, MSX Turbo Pascal, Pascalzim, Portugol, VisuALG e XC=BASIC e, nesses casos, os arrays podem ter três ou mil elementos).
 
 Dois dialetos são consideradas diferentes quando qualquer parte do código tem que ser alterada para ser compilado ou interpretado em ambos. Essa questão ficaria muito complicada, se fosse escolhido um critério mais rígido sobre o quanto um dialeto precisa ser diferente de outro, o que seria impraticável. Quando dois ou mais dialetos rodam exatamente o mesmo código (como Chez Scheme, Guile e Scheme ou ClojureScript e Squint), apenas um dos dialetos será considerado, e os outros serão adicionados ao final da lista apenas como equivalentes, e não serão contabilizadas. Tecnologias que exigem alteração no código de outros dialetos também estão listadas. Quando um dialeto puder ser definido como uma extensão de outro dialeto, e construções novas puderem ser usadas, ele é incluído e postado como dialeto diferente.
+
+Claro que, para alguns dialetos, algumas soluções são quase completamente idênticas, mas foram publicadas distintamente porque um só código não rodaria em mais de um dialeto. Um exemplo clássico são os dialetos SML e SML/NJ. Uma única linha (que é obrigatória em SML e gera um erro em SML/NJ) impede que uma mesma solução rode em ambos os dialetos. Outro exemplo bem evidente são os dialetos de Forth, que usam arrays distintamente.
 
 As soluções estão divididas entre as recursivas (Alice, Arc, AutoLISP, Bend, Bigloo, Caml, Clean, Clojure, Common Lisp, DataWeave, DrScheme, Elixir, Elm, Emacs Lisp, Erlang, EusLisp, Flix, Gleam, GOOPS, Haskell, Hope, Idris, ILOS, ISLISP, Kawa, Lean, Miranda, NewLISP, Oak, OCaml, Orc, Otus Lisp, Prolog, PureScript, Racket, ReasonML, ReScript, Scheme, SML, 3, Source, Squint, Steel, Visual LISP, XSB e Yeti) e iterativas (todos os outros dialetos, incluindo F#).
 
@@ -66,6 +70,8 @@ The focus is to solve the Financial Mathematics problem using Numerical Calculus
 
 It's a "Rosetta Stone" of programming dialects.
 
+Aside from the "terceiros" folder, all solutions were written by https://github.com/jacknpoe, with only BBC Basic using a simplified "translation" method, requiring a complete code revision to run properly.
+
 Formula for calculating the increase from simple interest:
 
 ![Simple Interest](https://github.com/jacknpoe/todos_juros/blob/main/JurosSimples.jpg)
@@ -83,6 +89,8 @@ One of the goals is for compilers and interpreters to avoid displaying warnings 
 Two concepts that weighed heavily were the exponentiation of floating point numbers (implemented in all dialects) and dynamic arrays (which were not possible, for example, in Chapel, Modula-2, MSX Turbo Pascal, Pascalzim, Portugol, VisuALG and XC=BASIC, and arrays can have one three or a thousand of elements).
 
 Two dialects ​​are considered different when any part of the code has to be changed to be compiled or interpreted in both. This issue would become very complicated if a stricter criterion were chosen regarding how much one dialect needs to be different from another, which would be impractical. When two or more dialects ​​run exactly the same code (such as Chez Scheme, Guile and Scheme or ClojureScript and Squint), only one of the dialects ​​will be considered, and the others will be added to the end of the list only as equivalents, and will not be accounted. Technologies that require changes to code from other dialects ​​are also listed. When a dialect can be defined as an extension of another dialect, and new constructs can be used, they are included and posted as a different dialect.
+
+Of course, for some dialects, some solutions are almost completely identical, but they were published separately because a single code would not run in more than one dialect. A classic example is the SML and SML/NJ dialects. A single line (which is mandatory in SML and generates an error in SML/NJ) prevents the same solution from running in both dialects. Another very clear example is the Forth dialects, which use arrays differently.
 
 The solutions are divided between recursive (Alice, Arc, AutoLISP, Bend, Bigloo, Caml, Clean, Clojure, Common Lisp, DataWeave, DrScheme, Elixir, Elm, Emacs Lisp, Erlang, EusLisp, Flix, Gleam, GOOPS, Haskell, Hope, Idris, ILOS, ISLISP, Kawa, Lean, Miranda, NewLISP, Oak, OCaml, Orc, Otus Lisp, Prolog, PureScript, Racket, ReasonML, ReScript, Scheme, SML, SML/NJ, Source, Squint, Steel, Visual LISP, XSB and Yeti) and iterative (all other dialects, including F#).
 

@@ -1,9 +1,9 @@
-// Version: 0.1: 16/11/2024: based on Arduino, without much knowledge about Raspberry Pi
+// Version: 0.1: 16/11/2025: based on Arduino, without much knowledge about Raspberry Pi
+//          0.2: 23/11/2025: with calc in the setup()
 // on-line: https://wokwi.com/projects/447794347319174145
 
 // LCD1602 and Pi Pico!
 #include <LiquidCrystal.h>
-LiquidCrystal LCD(12, 11, 10, 9, 8, 7);
 
 //--------------------------- Interest class
 class Interest {
@@ -128,15 +128,31 @@ double Interest::IncreaseToInterestRate( double increase, char precision, short 
 // destructor may free
 Interest::~Interest() { free( Payments); free( Weights); }
 
+// globals
+LiquidCrystal LCD(12, 11, 10, 9, 8, 7);
+Interest interest = Interest(3, true, 30.0);  // object from class Interest and variables to keep the calcs
+double weight, increase, interestrate;
+
 void setup() {
   // init the LCD
   LCD.begin(16, 2);
+
+  // set values for Payments and Weights
+  for( short index = 0; index < interest.getQuant(); index++) {
+    interest.setPayment( index, (index + 1.0) * interest.getPeriod());
+    interest.setWeight( index, 1.0);
+  }
+
+  // calculate and keep the functions results
+  weight = interest.getTotalWeight();
+  increase = interest.InterestRateToIncrease( 3.0);
+  interestrate = interest.IncreaseToInterestRate( increase, 15);
 }
 
 void loop() {
   // object from class Interest and variables to keep the calcs
-  Interest interest;
-  double weight, increase, interestrate;
+  //Interest interest;
+  //double weight, increase, interestrate;
 
   // set the basic values
   interest.setQuant( 3);

@@ -1,21 +1,19 @@
-// Version: 0.1: 14/07/2024: starter, without much knowledge about Arduino
+// Version: 0.1: 02/07/2024: starter, without much knowledge about Arduino
 //          0.2: 15/07/2024: with delay and code in loop
 //          0.3: 15/07/2024: changed the output to work with WOKWI
-// Location: D:\WOKWI\interest\interest.ino
+//          0.4: 23/11/2025: change the calc to setup()
 // On-line: https://wokwi.com/projects/447631899725952001
 
-#include <LiquidCrystal_I2C.h>
-
-LiquidCrystal_I2C LCD = LiquidCrystal_I2C(0x27, 16, 2);
+#include <LiquidCrystal_I2C.h>  // you will need to add this library via Manage Library
 
 //--------------------------- Interest class
 class Interest {
 protected:
-  short Quant;		// number of payments (all payments with 0 will be considered a valid payment in cash)
-  bool Compounded;		// compounded
-  double Period;		// period fot the InterestRate (like 30 for a 30 days interest rate)
-  double *Payments;		// payment days in periods like in days { 0, 30, 60, 90}
-  double *Weights;		// payment weights (in any unit, value, apportionment...)
+  short Quant;    // number of payments (all payments with 0 will be considered a valid payment in cash)
+  bool Compounded;    // compounded
+  double Period;    // period fot the InterestRate (like 30 for a 30 days interest rate)
+  double *Payments;   // payment days in periods like in days { 0, 30, 60, 90}
+  double *Weights;    // payment weights (in any unit, value, apportionment...)
   void init( short quant, bool compounded, double period);
 public:
   Interest( short quant = 0, bool compounded = false, double period = 30.0);
@@ -101,7 +99,7 @@ double Interest::InterestRateToIncrease( double interestrate) {
   double accumulator = 0.0;
 
   for( short index = 0; index < Quant; index++) {
-    if( Compounded)	accumulator += Weights[ index] / pow( 1.0 + interestrate / 100.0, Payments[ index] / Period);  // compounded interest
+    if( Compounded) accumulator += Weights[ index] / pow( 1.0 + interestrate / 100.0, Payments[ index] / Period);  // compounded interest
       else accumulator += Weights[ index] / ( 1.0 + interestrate / 100.0 * Payments[ index] / Period);  // simple interest
   }
   if( accumulator <= 0.0 ) return 0.0;
@@ -116,12 +114,12 @@ double Interest::IncreaseToInterestRate( double increase, char precision, short 
   double total = getTotalWeight();   if( total <= 0.0) return 0.0;
   if( Period <= 0.0) return 0;  if( increase <= 0) return 0.0;
   if( increaseasoriginalvalue) {
-    increase = 100.0 * ( total / increase - 1.0 );	  if( increase <= 0.0) return 0.0;
+    increase = 100.0 * ( total / increase - 1.0 );    if( increase <= 0.0) return 0.0;
   }
   min_diff = pow( 0.1, precision);
   for( short index = 0; index < maxiterations; index++) {
     medinterestrate = ( mininterestrate + maxinterestrate) / 2.0;
-    if( ( maxinterestrate - mininterestrate ) < min_diff) break;		// the desired precision was reached
+    if( ( maxinterestrate - mininterestrate ) < min_diff) break;    // the desired precision was reached
     if( InterestRateToIncrease( medinterestrate ) <= increase )
       mininterestrate = medinterestrate; else maxinterestrate = medinterestrate;
   }
@@ -131,23 +129,19 @@ double Interest::IncreaseToInterestRate( double increase, char precision, short 
 // destructor may free
 Interest::~Interest() { free( Payments); free( Weights); }
 
+// globals
+LiquidCrystal_I2C LCD = LiquidCrystal_I2C(0x27, 16, 2);  // object of the Liquid Crystal device
+Interest interest = Interest(3, true, 30.0);  // object from class Interest and variables to keep the calcs
+double weight, increase, interestrate;
+
 void setup() {
   // init and start the LCD
   LCD.init();
   LCD.backlight();
-}
 
-void loop() {
-  // object from class Interest and variables to keep the calcs
-  Interest interest;
-  double weight, increase, interestrate;
-
-  // set the basic values
-  interest.setQuant( 3);
-  interest.setCompounded( true);
-  interest.setPeriod( 30.0);
-  for( short index = 0; index < 3; index++) {
-    interest.setPayment( index, (index + 1.0) * 30.0);
+  // set values for Payments and Weights
+  for( short index = 0; index < interest.getQuant(); index++) {
+    interest.setPayment( index, (index + 1.0) * interest.getPeriod());
     interest.setWeight( index, 1.0);
   }
 
@@ -155,7 +149,9 @@ void loop() {
   weight = interest.getTotalWeight();
   increase = interest.InterestRateToIncrease( 3.0);
   interestrate = interest.IncreaseToInterestRate( increase, 15);
+}
 
+void loop() {
   // print the results
   LCD.clear();
   LCD.setCursor(0, 0);

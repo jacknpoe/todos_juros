@@ -1,4 +1,5 @@
 // Version 0.1: 03/02/2025
+//         0.2: replaced main to mimic juros.c
 
 #include <math.h>
 #include <iostream.h>
@@ -120,147 +121,26 @@ long double Interest::IncreaseToInterestRate( long double increase, char precisi
 Interest::~Interest() { free( Payments); free( Weights); }
 
 int main() {
-	Interest interest;
+	cout.precision(15);
 
- 	cout.precision(15);
+	long double totalWeight, calculatedIncrease, calculatedInterest;
+	int index;
 
-	short option, payments;
-	long double period, increase, interestrate, total, temp_ld;
+	// declares interest of type Interest, initializes the properties and allocates memory
+	Interest interest = Interest(3, 1, 30.0);
 
-	while( 1) {
-		cout << "----------------------------------\n";
-		cout << "| Choose an option               |\n";
-		cout << "----------------------------------\n\n";
-		cout << "     1. Interest Rate to Increase.\n\n";
-		cout << "     2. Increase to Interest Rate.\n\n";
-		cout << "Others. Exit.\n\n\n";
-
-		cin >> option;
-		cout << "\n";
-		if( option != 1 && option != 2) {
-			break;
-		}
-
-		cout << "\n";
-
-		cout << "Number of payments: ";
-		cin >> payments;
-
-		if( payments < 1) {
-			cout << "You must provide at least one payment.\n\n";
-			system( "PAUSE");
-			cout << "\n\n";
-			continue;
-		}
-		interest.setQuant( payments);
-
-		cout << "Interest rate relating to (example: 30 days, 1 month): ";
-		cin >> period;
-
-		if( period <= 0.0) {
-			cout << "Interest rate must relating to at least one period.\n\n";
-			system( "PAUSE");
-			cout << "\n\n";
-			continue;
-		}
-		interest.setPeriod( period);
-
-		for( short index = 0; index < payments; index++) {
-			cout << "Payment " << index + 1 << ": ";
-			cin >> temp_ld;
-			interest.setPayment( index, temp_ld);
-
-			cout << "Weight " << index + 1 << ": ";
-			cin >> temp_ld;
-			interest.setWeight( index, temp_ld);
-		}
-
-		if( option == 1)
-		{
-			cout << "\nFull cash value: ";
-			cin >> total;
-
-			cout << "Interest rate: ";
-			cin >> interestrate;
-
-			interest.setCompounded( 0);	// simple interest
-			increase = interest.InterestRateToIncrease( interestrate);
-			cout << "\n\nSIMPLE INTEREST";
-			cout << "\nIncrease: " << increase << "%, payment value: " << total * ( 1 + increase / 100) / payments;
-			cout << ", total paid: " << total * ( 1 + increase / 100);
-
-			interest.setCompounded( 1);	// compound interest
-			increase = interest.InterestRateToIncrease( interestrate);
-			cout << "\n\nCOMPOUND INTEREST";
-			cout << "\nIncrease: " << increase << "%, payment value: " << total * ( 1 + increase / 100) / payments;
-			cout << ", total paid: " << total * ( 1 + increase / 100);
-		}
-			else
-		{
-			cout << "\nIncrease: ";
-			cin >> increase;
-
-			interest.setCompounded( 0);
-			interestrate = interest.IncreaseToInterestRate( increase, 15);
-			cout << "\n\nSIMPLE INTEREST: " << interestrate;
-
-			interest.setCompounded( 1);
-			interestrate = interest.IncreaseToInterestRate( increase, 15);
-			cout << "\n\nCOMPOUND INTEREST: " << interestrate;
-		}
-
-		cout << "\n\n";
-		system( "PAUSE");
-		cout << "\n\n";
+	for(index = 0; index< interest.getQuant(); index++) {
+		interest.setPayment(index, (index + 1) * interest.getPeriod());
+		interest.setWeight(index, 1);
 	}
-	cout << "\n\n"; return 0;
+
+    // calculates, stores, and prints the results
+	totalWeight = interest.getTotalWeight();
+	cout << "Total weight: " << totalWeight << "\n";
+	calculatedIncrease = interest.InterestRateToIncrease(3.0);
+	cout << "Calculated increase: " << calculatedIncrease << "\n";
+	calculatedInterest = interest.IncreaseToInterestRate(calculatedIncrease, 15, 100, 50.0);
+	cout << "Calculated interest: " << calculatedInterest << "\n";
+
+	return 0;
 }
-
-//
-//----------------------------------
-//| Choose an option               |
-//----------------------------------
-//     1. Interest Rate to Increase.
-//     2. Increase to Interest Rate.
-//Others. Exit.
-
-//2
-
-//Number of payments: 3
-//Interest rate relating to (example: 30 days, 1 month): 30
-//Payment 1: 30
-//Weight 1: 1
-//Payment 2: 60
-//Weight 2: 1
-//Payment 3: 90
-//Weight 3: 1
-
-//Increase: 20
-
-//SIMPLE INTEREST: 10.2936087
-//COMPOUND INTEREST: 9.70102574
-
-//----------------------------------
-//| Choose an option               |
-//----------------------------------
-//     1. Interest Rate to Increase.
-//     2. Increase to Interest Rate.
-//Others. Exit.
-
-//1
-
-//Number of payments: 2
-//Interest rate relating to (example: 30 days, 1 month): 1
-//Payment 1: 1
-//Weight 1: 1
-//Payment 2: 2
-//Weight 2: 1
-
-//Full cash value: 1000
-//Interest rate: 5
-
-//SIMPLE INTEREST
-//Increase: 7.44186047%, payment value: 537.209302, total paid: 1074.4186
-
-//COMPOUND INTEREST
-//Increase: 7.56097561%, payment value: 537.804878, total paid: 1075.60976

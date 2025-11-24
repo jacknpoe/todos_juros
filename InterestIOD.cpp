@@ -2,7 +2,6 @@
 #include <iostream>
 #include <cstdlib>
 #include <cstdio>
-#include <locale>
 
 // Version 0.2: 27/06/2025: added Damping to make for loop in InterestRateToIncrease parallel
 //         0.3: 24/11/2025: removed <locale> and replaced main to mimic juros.c

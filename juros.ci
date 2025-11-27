@@ -69,4 +69,36 @@ public class Juros {
         }
         return medJuros;
     }
+
+    public static void testa() {
+        // para melhorar a leitura
+        int Quantidade = 3;
+        bool Composto = true;
+        double Periodo = 30.0;
+
+        // a declaração precisa ser aqui
+        double pesoTotal;
+        double acrescimoCalculado;
+        double jurosCalculado;
+
+        // cria o objeto juros do tipo Juros e inicializa escalares
+        Juros() juros;
+        juros.Init(Quantidade, Composto, Periodo);
+
+        // inicializa os arrays dinamicamente
+        for(int indice = 0; indice < Quantidade; indice++) {
+            juros.setPagamentos(indice, (indice + 1.0) * Periodo);
+            juros.setPesos(indice, 1.0);
+        }
+
+        // calcula e guarda os retornos das funções
+        pesoTotal = juros.getPesoTotal();
+        acrescimoCalculado = juros.jurosParaAcrescimo(3.0);
+        jurosCalculado = juros.acrescimoParaJuros(acrescimoCalculado, 15, 100, 50.0);
+
+        // imprime os resultados
+        Console.WriteLine($"Peso total = {pesoTotal}");
+        Console.WriteLine($"Acrescimo = {acrescimoCalculado}");
+        Console.WriteLine($"Juros = {jurosCalculado}");
+    }
 }

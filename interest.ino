@@ -156,7 +156,7 @@ void loop() {
   // print the results
   LCD.clear();
   LCD.setCursor(0, 0);
-  LCD.print( "Total weight:");
+  LCD.print( "Total Weight:");
   LCD.setCursor(0, 1);
   LCD.print( weight, 5);
   delay(3000);

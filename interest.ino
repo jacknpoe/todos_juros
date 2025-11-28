@@ -2,6 +2,7 @@
 //          0.2: 15/07/2024: with delay and code in loop
 //          0.3: 15/07/2024: changed the output to work with WOKWI
 //          0.4: 23/11/2025: change the calc to setup() and print instead of println
+//          0.5: 28/11/2025: change to 5 digits because it's the maximum of "double" in Arduino Uno R3
 // On-line: https://wokwi.com/projects/447631899725952001
 
 #include <LiquidCrystal_I2C.h>  // you will need to add this library via Manage Library
@@ -157,18 +158,18 @@ void loop() {
   LCD.setCursor(0, 0);
   LCD.print( "Total weight:");
   LCD.setCursor(0, 1);
-  LCD.print( weight, 15);
+  LCD.print( weight, 5);
   delay(3000);
   LCD.clear();
   LCD.setCursor(0, 0);
   LCD.print( "Increase:");
   LCD.setCursor(0, 1);
-  LCD.print( increase, 15);
+  LCD.print( increase, 5);
   delay(3000);
   LCD.clear();
   LCD.setCursor(0, 0);
   LCD.print( "Interest Rate:");
   LCD.setCursor(0, 1);
-  LCD.print( interestrate, 15);
+  LCD.print( interestrate, 5);
   delay(3000);
 }

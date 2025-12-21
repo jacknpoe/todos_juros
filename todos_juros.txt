@@ -626,7 +626,7 @@ php_estejuros.js
 190. Pike (01/03/2025)
 juros.pike
 
-191. PL/SQL (28/01/2025)
+191. PL/SQL (Oracle) (28/01/2025)
 juros_body_pl.sql
 juros_pl.sql
 

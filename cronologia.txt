@@ -304,6 +304,8 @@ Bigloo (02/08/2025)
 Raspberry Pi (16/11/2025)
 MicroPython (17/11/2025)
 S4A (29/11/2025)
+PostgreSQL (20/12/2025)
+Db2 (23/12/2025)
 
 CRONOLOGIA / CHRONOLOGY
 -----------------------

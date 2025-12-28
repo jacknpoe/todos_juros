@@ -1,8 +1,9 @@
 -- Calcula o acréscimo a partir dos juros e os juros a partir do acréscimo
 -- Versões: 0.1: 23/12/2025: criado a partir do MySQL (MariaDB) conhecendo pouco de DB2
--- cria a tabela parcela com os campos pagamento e peso e popula com dados iniciais para testes
+
 --#SET TERMINATOR @
 
+-- cria a tabela parcela com os campos pagamento e peso e popula com dados iniciais para testes
 CREATE TABLE parcela (pagamento DOUBLE NOT NULL, peso DOUBLE NOT NULL);
 @
 

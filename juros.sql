@@ -1,74 +1,26 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Tempo de geração: 08/08/2024 às 03:27
--- Versão do servidor: 10.4.32-MariaDB
--- Versão do PHP: 8.2.12
+-- Calcula o acréscimo a partir dos juros e os juros a partir do acréscimo
+-- Versões: 0.1: 07/08/2024: versão só para MariaDB
+--          0.2: 28/12/2025: para MySQL também, feita a partir de MariaDB, sem muito conhecimento de MySQL
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
+CREATE DATABASE IF NOT EXISTS juros;
 
+USE juros;
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+-- se existe a tabela, apaga, porque iremos criar e popular
+DROP TABLE IF EXISTS parcela;
 
---
--- Banco de dados: `juros`
---
+-- cria a tabela parcela com os campos pagamento e peso e popula com dados iniciais para testes
+CREATE TABLE parcela ( pagamento double NOT NULL, peso double NOT NULL );
 
-DELIMITER $$
---
--- Procedimentos
---
-CREATE DEFINER=`root`@`localhost` PROCEDURE `TestaJuros` ()   BEGIN
-    DECLARE pesoTotal, acrescimoCalculado, jurosCalculado DOUBLE;
+-- popuia a tabela parcela com três parcelamentos
+INSERT INTO parcela (pagamento, peso) VALUES (30, 1), (60, 1), (90, 1);
 
-    SET pesoTotal = getPesoTotal();
-    SET acrescimoCalculado = jurosParaAcrescimo(3.0, true, 30.0);
-    SET jurosCalculado = acrescimoParaJuros(acrescimoCalculado, true, 30, 15, 100, 50);
+DROP FUNCTION IF EXISTS getPesoTotal;
 
-    SELECT pesoTotal, acrescimoCalculado, jurosCalculado;
-END$$
-
---
--- Funções
---
-CREATE DEFINER=`root`@`localhost` FUNCTION `acrescimoParaJuros` (`acrescimo` DOUBLE, `composto` INT, `periodo` DOUBLE, `precisao` INT, `maxIteracoes` INT, `maxJuros` DOUBLE) RETURNS DOUBLE DETERMINISTIC BEGIN
-    DECLARE minJuros, medJuros, minDiferenca, pesoTotal DOUBLE;
-    DECLARE indice INT DEFAULT 0;
-
-    SET pesoTotal = getPesoTotal();
-
-    IF acrescimo <= 0.0 || periodo <= 0.0 || pesoTotal <= 0.0 || precisao < 1 || maxIteracoes < 1 || maxJuros <= 0.0 THEN
-        RETURN 0.0;
-    END IF;
-
-    SET minJuros = 0.0;
-    SET medJuros = maxJuros / 2.0;
-    SET minDiferenca = POW(0.1, precisao);
-
-    vloop: WHILE indice < maxIteracoes DO
-        SET medJuros = (minJuros + maxJuros) / 2.0;
-        IF (maxJuros - minJuros) < minDiferenca THEN
-            RETURN medJuros;
-        END IF;
-        IF jurosParaAcrescimo(medJuros, composto, periodo) < acrescimo THEN
-            SET minJuros = medJuros;
-        ELSE
-            SET maxJuros = medJuros;
-        END IF;
-        SET indice = indice + 1;
-    END WHILE;
-
-    RETURN medJuros;
-END$$
-
-CREATE DEFINER=`root`@`localhost` FUNCTION `getPesoTotal` () RETURNS DOUBLE DETERMINISTIC READS SQL DATA BEGIN
+-- soma o total dos valores do campo peso
+DELIMITER //
+CREATE FUNCTION getPesoTotal() RETURNS DOUBLE DETERMINISTIC
+BEGIN
     DECLARE done BOOL DEFAULT false;
     DECLARE acumulador DOUBLE DEFAULT 0.0;
     DECLARE vpeso DOUBLE;
@@ -86,9 +38,15 @@ CREATE DEFINER=`root`@`localhost` FUNCTION `getPesoTotal` () RETURNS DOUBLE DETE
     CLOSE vcursor;
 
     RETURN acumulador;
-END$$
+END //
+DELIMITER ;
 
-CREATE DEFINER=`root`@`localhost` FUNCTION `jurosParaAcrescimo` (`juros` DOUBLE, `composto` INT, `periodo` DOUBLE) RETURNS DOUBLE DETERMINISTIC BEGIN
+DROP FUNCTION IF EXISTS jurosParaAcrescimo;
+
+-- calcula o acréscimo equivalente a uma taxa de juros informada
+DELIMITER //
+CREATE FUNCTION jurosParaAcrescimo(juros DOUBLE, composto BOOL, periodo DOUBLE) RETURNS DOUBLE DETERMINISTIC
+BEGIN
     DECLARE done BOOL DEFAULT false;
     DECLARE acumulador DOUBLE DEFAULT 0.0;
     DECLARE vpagamento, vpeso, pesoTotal DOUBLE;
@@ -97,7 +55,7 @@ CREATE DEFINER=`root`@`localhost` FUNCTION `jurosParaAcrescimo` (`juros` DOUBLE,
 
     SET pesoTotal = getPesoTotal();
 
-    IF juros <= 0.0 || periodo <= 0.0 || pesoTotal <= 0.0 THEN
+    IF juros <= 0.0 OR periodo <= 0.0 OR pesoTotal <= 0.0 THEN
         RETURN 0.0;
     END IF;
 
@@ -120,31 +78,57 @@ CREATE DEFINER=`root`@`localhost` FUNCTION `jurosParaAcrescimo` (`juros` DOUBLE,
     END IF;
 
     RETURN (pesoTotal / acumulador - 1.0) * 100.0;
-END$$
-
+END //
 DELIMITER ;
 
--- --------------------------------------------------------
+DROP FUNCTION IF EXISTS acrescimoParaJuros;
 
---
--- Estrutura para tabela `parcela`
---
+-- calcula os juros equivalentes a um acréscimo informado
+DELIMITER //
+CREATE FUNCTION acrescimoParaJuros(acrescimo DOUBLE, composto BOOL, periodo DOUBLE, precisao INT, maxIteracoes INT, maxJuros DOUBLE) RETURNS DOUBLE DETERMINISTIC
+BEGIN
+    DECLARE minJuros, medJuros, minDiferenca, pesoTotal DOUBLE;
+    DECLARE indice INT DEFAULT 0;
 
-CREATE TABLE `parcela` (
-  `pagamento` double NOT NULL,
-  `peso` double NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+    SET pesoTotal = getPesoTotal();
 
---
--- Despejando dados para a tabela `parcela`
---
+    IF acrescimo <= 0.0 OR periodo <= 0.0 OR pesoTotal <= 0.0 OR precisao < 1 OR maxIteracoes < 1 OR maxJuros <= 0.0 THEN
+        RETURN 0.0;
+    END IF;
 
-INSERT INTO `parcela` (`pagamento`, `peso`) VALUES
-(30, 1),
-(60, 1),
-(90, 1);
-COMMIT;
+    SET minJuros = 0.0;
+    SET medJuros = maxJuros / 2.0;
+    SET minDiferenca = POW(0.1, precisao);
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+    vloop: WHILE indice < maxIteracoes DO
+        SET medJuros = (minJuros + maxJuros) / 2.0;
+        IF (maxJuros - minJuros) < minDiferenca THEN
+            RETURN medJuros;
+        END IF;
+        IF jurosParaAcrescimo(medJuros, composto, periodo) < acrescimo THEN
+            SET minJuros = medJuros;
+        ELSE
+            SET maxJuros = medJuros;
+        END IF;
+        SET indice = indice + 1;
+    END WHILE;
+
+    RETURN medJuros;
+END //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS TestaJuros;
+
+-- testa as funções getPesoTotal, jurosParaAcrescimo e acrescimoParaJuros
+DELIMITER //
+CREATE PROCEDURE TestaJuros()
+BEGIN
+    DECLARE pesoTotal, acrescimoCalculado, jurosCalculado DOUBLE;
+
+    SET pesoTotal = getPesoTotal();
+    SET acrescimoCalculado = jurosParaAcrescimo(3.0, true, 30.0);
+    SET jurosCalculado = acrescimoParaJuros(acrescimoCalculado, true, 30, 15, 100, 50);
+
+    SELECT pesoTotal, acrescimoCalculado, jurosCalculado;
+END //
+DELIMITER ;

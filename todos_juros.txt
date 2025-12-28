@@ -1023,6 +1023,7 @@ IronPython – Python
 JRuby = Ruby
 Korn Shell = ksh
 Linden Scripting Language = LSL
+MariaDB = MySQL
 MirBSD Korn Shell = ksh
 mksh = POSIX sh
 Monkey X = Monkey 2

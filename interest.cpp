@@ -1,5 +1,5 @@
 // 23/11/2025: removed <locale> and replaced main to mimic juros.c
-// 29/12/2025: ATTENTION: compile with -lm oprtion to link math library (for pow function)
+// 29/12/2025: ATTENTION: compile with -lm option to link math library (for pow function)
 
 #include <math.h>	// pow
 #include <iostream>	// std

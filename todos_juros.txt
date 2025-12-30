@@ -1016,15 +1016,16 @@ Gerbil Scheme = Kawa/Steel
 GNU Bourne-Again Shell = Bash
 Guile = Kawa/Scheme/Steel
 HashLink = Haxe
-IBM PC BASIC A = GW-BASIC
+IBM PC BASIC A = GW-BASIC 
 Intel Fortran Compiler = Fortran
 Iodine = Java
-IronPython – Python
+IronPython - Python
 JRuby = Ruby
 Korn Shell = ksh
 LibreOffice Basic = OpenOffice Basic
 Linden Scripting Language = LSL
 MariaDB = MySQL
+Microsoft Office Visual Basic for Applications = OpenOffice Basic
 MirBSD Korn Shell = ksh
 mksh = POSIX sh
 Monkey X = Monkey 2
@@ -1050,7 +1051,7 @@ SYCL = Intel oneAPI DPC++
 tcsh = csh
 TOM = Java
 Turing+ = Turing
-Visual Basic for Applications = OpenOffice Basic
+WPS Office Visual Basic for Applications = OpenOffice Basic
 XLISP = Common Lisp
 XLispStat = Common Lisp
 XOTcl = Tcl

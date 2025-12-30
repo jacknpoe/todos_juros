@@ -48,7 +48,7 @@ PUT {} IN pesos
 
 \ inicializa os arrays
 FOR indice IN {1..quantidade}:
-    PUT indice * 30.0 IN pagamentos[indice]
+    PUT indice * pagamentos IN pagamentos[indice]
     PUT 1.0 IN pesos[indice]
 
 \ calcula e guarda os retornos das funções

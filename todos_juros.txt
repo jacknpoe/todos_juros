@@ -406,7 +406,7 @@ juros.judo
 jurosJS.judo
 
 123. Julia (20/03/2024)
-juros.l
+juros.jl
 testejuros.jl
 
 124. Jython (04/06/2024)

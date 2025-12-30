@@ -1050,6 +1050,7 @@ SYCL = Intel oneAPI DPC++
 tcsh = csh
 TOM = Java
 Turing+ = Turing
+Visual Basic for Aplication = OpenOffice Basic
 XLISP = Common Lisp
 XLispStat = Common Lisp
 XOTcl = Tcl

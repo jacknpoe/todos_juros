@@ -326,7 +326,7 @@ juros.gleam
 juros.go
 
 99. Golo (03/06/2024)
-juro+s.golo
+juros.golo
 
 100. Google Apps Script (18/03/2025)
 jurosGAS.gs

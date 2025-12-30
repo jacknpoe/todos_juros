@@ -23,7 +23,7 @@ juros.ads
 testajuros.adb
 
 5. Aldor (30/07/2025)
-uros.as
+juros.as
 
 6. ALGOL 68 (07/05/2024)
 juros.a68

@@ -1,7 +1,7 @@
 306 resoluções de equação transcendente
 ---------------------------------------
 
-Desde que esse artigo foi publicado, mais 298 resoluções foram acrescentadas ao repositório https://github.com/jacknpoe/todos_juros, totalizando, agora, 308 resoluções.
+Desde que esse artigo foi publicado, mais 299 resoluções foram acrescentadas ao repositório https://github.com/jacknpoe/todos_juros, totalizando, agora, 309 resoluções.
 
 No artigo Resolução de Equação Transcendente, foi explicado como uma equação que calcula os juros a partir do acréscimo e das parcelas pode ser feita usando Cálculo Numérico, especificamente o Método da Bisseção.
 
@@ -950,49 +950,52 @@ jurosX11.bas
 jurosXB.prg
 main.prg
 
-294. XC=BASIC (16/07/2024)
+294. XBasic (31/12/2025)
+juros.x
+
+295. XC=BASIC (16/07/2024)
 juros_xc.bas
 
-295. Xojo (18/02/2025)
+296. Xojo (18/02/2025)
 juros.xojo_binary_project
 
-296. XPL0 (19/02/2025)
+297. XPL0 (19/02/2025)
 juros.xpl
 
-297. XSB (19/02/2025)
+298. XSB (19/02/2025)
 juros.P
 
-298. Xtend (03/06/2024)
+299. Xtend (03/06/2024)
 Juros.xtend
 
-299. Yabasic (30/01/2025)
+300. Yabasic (30/01/2025)
 JUROSYB.BAS
 
-300. Yeti (31/05/2024)
+301. Yeti (31/05/2024)
 juros.yeti
 
-301. Yoix (27/03/2025)
+302. Yoix (27/03/2025)
 juros.yx
 
-302. Yorick (11/07/2025)
+303. Yorick (11/07/2025)
 juros.i
 
-303. Z (22/05/2025)
+304. Z (22/05/2025)
 juros.zlang
 
-304. ZBasic (09/03/2025)
+305. ZBasic (09/03/2025)
 JUROSZ.BAS
 
-305. Zig (17/06/2024)
+306. Zig (17/06/2024)
 juros.zig
 
-306. zsh (11/07/2025)
+307. zsh (11/07/2025)
 juros.zsh
 
-307. ZX Spectrum 128 BASIC (05/05/2025)
+308. ZX Spectrum 128 BASIC (05/05/2025)
 juros.z80
 
-308. ZX81 BASIC (20/05/2025)
+309. ZX81 BASIC (20/05/2025)
 juros.z81
 
 EQUIVALENTES
@@ -1016,10 +1019,10 @@ Gerbil Scheme = Kawa/Steel
 GNU Bourne-Again Shell = Bash
 Guile = Kawa/Scheme/Steel
 HashLink = Haxe
-IBM PC BASIC A = GW-BASIC 
+IBM PC BASIC A = GW-BASIC
 Intel Fortran Compiler = Fortran
 Iodine = Java
-IronPython - Python
+IronPython – Python
 JRuby = Ruby
 Korn Shell = ksh
 LibreOffice Basic = OpenOffice Basic

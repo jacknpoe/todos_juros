@@ -306,6 +306,7 @@ MicroPython (17/11/2025)
 S4A (29/11/2025)
 PostgreSQL (20/12/2025)
 Db2 (23/12/2025)
+XBasic (31/12/2025)
 
 CRONOLOGIA / CHRONOLOGY
 -----------------------

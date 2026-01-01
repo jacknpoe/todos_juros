@@ -26,7 +26,6 @@
       END
       REM  calcula a somatoria dos pesos
   500 PESOTOTAL# = 0
-      
       FOR INDICE% = 1 TO QUANTIDADE%
         PESOTOTAL# = PESOTOTAL# + PESOS#(INDICE%)
       NEXT INDICE%

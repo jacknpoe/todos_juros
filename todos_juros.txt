@@ -1034,6 +1034,7 @@ MariaDB = MySQL
 Microsoft Office Visual Basic for Applications = OpenOffice Basic
 MirBSD Korn Shell = ksh
 mksh = POSIX sh
+MMB4L = MMBasic
 Monkey X = Monkey 2
 nawk = awk
 Oberon-07 = Oberon-2

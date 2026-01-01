@@ -88,11 +88,12 @@ FUNCTION DOUBLE acrescimoParaJuros (TJUROS ojuros, DOUBLE acrescimo, UBYTE preci
 
 	minJuros# = 0.0
 	minDiferenca# = POWER (0.1, precisao)
+	medJuros# = (minJuros# + maxJuros) / 2.0
 
 	FOR indice = 1 TO maxIteracoes
-		medJuros# = (minJuros# + maxJuros) / 2.0
 		IF maxJuros - minHuros# < minDiferenca# RETURN medJuros#
 		IF jurosParaAcrescimo (ojuros, medJuros#) < acrescimo THEN minJuros# = medJuros# ELSE maxJuros = medJuros#
+		medJuros# = (minJuros# + maxJuros) / 2.0
 	NEXT indice
 
 	RETURN medJuros#

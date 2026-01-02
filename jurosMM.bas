@@ -1,7 +1,7 @@
 ' Cálculo dos juros, sendo que precisa de parcelas pra isso
 ' Versão 0.1: 01/01/2026: versão feita sem muito conhecimento de MMBasic
 
-' variáveis globais para simplificar o códig
+' variáveis globais para simplificar o código
 quantidade% = 3
 composto% = 1
 periodo = 30.0

@@ -1,7 +1,5 @@
 \ Cálculo dos juros, sendo que precisa de parcelas pra isso
 \ Versão 0.1: 02/01/2026: versão adaptada de GForth, feita sem muito conhecimento de PForth
-\        0.2: 22/06/2025: retirados CRs inúteis
-\        0.3: 17/07/2025: recolocado um CR que é útil no GForth do Linux
 
 \ variáveis globais para simnplificar as chamadas, definições e inicializações
 VARIABLE QUANTIDADE

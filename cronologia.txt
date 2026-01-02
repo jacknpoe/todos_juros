@@ -308,6 +308,7 @@ PostgreSQL (20/12/2025)
 Db2 (23/12/2025)
 XBasic (31/12/2025)
 MMBasic (01/01/2025)
+pForth (02/01/2025)
 
 CRONOLOGIA / CHRONOLOGY
 -----------------------

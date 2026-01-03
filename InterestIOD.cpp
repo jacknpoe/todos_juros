@@ -5,32 +5,33 @@
 
 // Version 0.2: 27/06/2025: added Damping to make for loop in InterestRateToIncrease parallel
 //         0.3: 24/11/2025: removed <locale> and replaced main to mimic juros.c
+//         0.4: 03/01/2026: changed #pragmas omp from target to parallel for
 
 namespace jacknpoe {
 	//--------------------------- Interest class
 	class Interest {
 	protected:
-		short Quant;		// number of payments (all payments with 0 will be considered a valid payment in cash)
+		int Quant;		// number of payments (all payments with 0 will be considered a valid payment in cash)
 		bool Compounded;		// compounded
 		long double Period;		// period fot the InterestRate (like 30 for a 30 days interest rate)
 		long double* Payments;		// payment days in periods like in days { 0, 30, 60, 90}
 		long double* Weights;		// payment weights (in any unit, value, apportionment...)
 		long double* Damping;		// damping to make for loop in InterestRateToIncrease parallel (in any unit, value, apportionment...)
-		void init(short quant, bool compounded, long double period);
+		void init(int quant, bool compounded, long double period);
 	public:
-		Interest(short quant = 0, bool compounded = false, long double period = 30.0);
+		Interest(int quant = 0, bool compounded = false, long double period = 30.0);
 		Interest(bool compounded, long double period = 30.0);
 		~Interest();
-		bool setQuant(short quant);
-		short getQuant(void);
+		bool setQuant(int quant);
+		int getQuant(void);
 		void setCompounded(bool compounded);
 		bool getCompounded(void);
 		bool setPeriod(long double period);
 		long double getPeriod(void);
-		bool setPayment(short index, long double value);
-		long double getPayment(short index);
-		bool setWeight(short index, long double value);
-		long double getWeight(short index);
+		bool setPayment(int index, long double value);
+		long double getPayment(int index);
+		bool setWeight(int index, long double value);
+		long double getWeight(int index);
 		long double getTotalWeight(void);
 		long double InterestRateToIncrease(long double interestrate);
 		long double IncreaseToInterestRate(long double increase, char precision = 8,
@@ -38,15 +39,15 @@ namespace jacknpoe {
 			bool increaseasoriginalvalue = false);
 	};
 
-	void Interest::init(short quant, bool compounded, long double period) {
+	void Interest::init(int quant, bool compounded, long double period) {
 		Payments = NULL;  Weights = NULL;  Damping = NULL;  Quant = 0;
 		setQuant(quant);  Compounded = compounded;  Period = period;
 	}
 
-	Interest::Interest(short quant, bool compounded, long double period) { init(quant, compounded, period); }
+	Interest::Interest(int quant, bool compounded, long double period) { init(quant, compounded, period); }
 	Interest::Interest(bool compounded, long double period) { init(0, compounded, period); }
 
-	bool Interest::setQuant(short quant) {
+	bool Interest::setQuant(int quant) {
 		if (quant < 0) return false; if (quant == Quant) return true;
 		Payments = (long double*)std::realloc(Payments, sizeof(long double) * quant);
 		if (quant != 0 && Payments == NULL) { Quant = 0; return false; }
@@ -54,11 +55,12 @@ namespace jacknpoe {
 		if (quant != 0 && Weights == NULL) { std::free(Payments); Payments = NULL; Quant = 0; return false; }
 		Damping = (long double*)std::realloc(Damping, sizeof(long double) * quant);
 		if (quant != 0 && Damping == NULL) { std::free(Payments); Payments = NULL; std::free(Weights); Weights = NULL; Quant = 0; return false; }
-		#pragma omp target map(to:Payments, Weights)
-		for (short index = Quant; index < quant; index++) { Payments[index] = 0; Weights[index] = 1; }
+		// #pragma omp target map(to:Payments, Weights)
+		#pragma omp parallel for
+		for (int index = Quant; index < quant; index++) { Payments[index] = 0; Weights[index] = 1; }
 		Quant = quant; return true;
 	}
-	short Interest::getQuant(void) { return Quant; }
+	int Interest::getQuant(void) { return Quant; }
 
 	void Interest::setCompounded(bool compounded) { Compounded = compounded; }
 	bool Interest::getCompounded(void) { return Compounded; }
@@ -69,25 +71,25 @@ namespace jacknpoe {
 	}
 	long double Interest::getPeriod(void) { return Period; }
 
-	bool Interest::setPayment(short index, long double value) {
+	bool Interest::setPayment(int index, long double value) {
 		if (index < 0 || index >= Quant || value < 0.0) return false;
 		Payments[index] = value; return true;
 	}
-	long double Interest::getPayment(short index) {
+	long double Interest::getPayment(int index) {
 		if (index < 0 || index >= Quant) return 0; else return Payments[index];
 	}
 
-	bool Interest::setWeight(short index, long double value) {
+	bool Interest::setWeight(int index, long double value) {
 		if (index < 0 || index >= Quant || value < 0) return false;
 		Weights[index] = value; return true;
 	}
-	long double Interest::getWeight(short index) {
+	long double Interest::getWeight(int index) {
 		if (index < 0 || index >= Quant) return 0; else return Weights[index];
 	}
 
 	long double Interest::getTotalWeight(void) {
 		long double accumulator = 0;
-		for (short index = 0; index < Quant; index++) accumulator += Weights[index];
+		for (int index = 0; index < Quant; index++) accumulator += Weights[index];
 		return accumulator;
 	}
 
@@ -96,12 +98,19 @@ namespace jacknpoe {
 		if (total == 0) return 0;   if (Period <= 0.0) return 0;
 		long double accumulator = 0;
 
-		#pragma omp target map(from: Payments, Weights, interestrate, Period), map(to: Damping)
-		for (short index = 0; index < Quant; index++) {
+		// #pragma omp target map(from: Payments, Weights, interestrate, Period), map(to: Damping)
+/*		#pragma omp parallel for
+		for (int index = 0; index < Quant; index++) {
 			if (Compounded)	Damping[index] = Weights[index] / pow(1 + interestrate / 100, Payments[index] / Period);  // compounded interest
 			else Damping[index] = Weights[index] / (1 + interestrate / 100 * Payments[index] / Period);  // simple interest
 		}
-		for (short index = 0; index < Quant; index++) { accumulator += Damping[index]; }  // the first for can be parallel, this for can't
+		for (int index = 0; index < Quant; index++) { accumulator += Damping[index]; }  // the first for can be parallel, this for can't */
+
+		#pragma omp parallel for reduction(+:accumulator)
+		for( int index = 0; index < Quant; index++) {
+			if( Compounded)	accumulator += Weights[ index] / pow( 1 + interestrate / 100, Payments[ index] / Period);  // compounded interest
+				else accumulator += Weights[ index] / ( 1 + interestrate / 100 * Payments[ index] / Period);  // simple interest
+		}		
 		
 		if (accumulator <= 0) return 0;
 		return (total / accumulator - 1) * 100;
@@ -137,7 +146,7 @@ int main() {
 	int index;
 
 	// declares interest of type Interest, initializes the properties and allocates memory
-	Interest interest = Interest(3, true, 30.0);
+	Interest interest = Interest(300000, true, 30.0);
 
 	for(index = 0; index< interest.getQuant(); index++) {
 		interest.setPayment(index, (index + 1) * interest.getPeriod());

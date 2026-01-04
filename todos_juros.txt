@@ -1060,6 +1060,7 @@ SCM = Scheme
 SICP = DrScheme
 Squeak = Smalltalk
 STclos = Gauche/Kawa/Scheme/Steel
+SwiftForth = GForth/pForth
 SYCL = Intel oneAPI DPC++
 tcsh = csh
 TOM = Java

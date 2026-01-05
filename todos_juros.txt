@@ -1036,6 +1036,7 @@ LibreOffice Basic = OpenOffice Basic
 Linden Scripting Language = LSL
 MariaDB = MySQL
 Microsoft Office Visual Basic for Applications = OpenOffice Basic
+MinForth = pForth
 MirBSD Korn Shell = ksh
 mksh = POSIX sh
 MMB4L = MMBasic

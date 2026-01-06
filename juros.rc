@@ -1,0 +1,111 @@
+#!/bin/rc
+
+# Cálculo dos juros, sendo que precisa de parcelas pra isso
+# Versão 0.1: 05/01/2026: versão feita sem muito conhecimento de rc
+# ATENÇÃO: Como os cálculos de ponto flutuante são feitos usando o comando "bc -l", que é lento no rc, nesse
+#          ambiente os resultados podem demorar demais, principalmente com muitas parcelas.       Trocando o
+#          comando por "awk", que é relativamente mais rápido, o número de casas decimais será apenas quatro.
+#          Testes (Debian 12) executaram em cerca de 0.225 segundos por parcela.
+
+# variáveis globais para simplificar as chamadas
+Quantidade = 3
+Periodo = 30.0
+Composto = 1  # 1 = TRUE
+
+# no lugar de um array Pagamentos
+fn Pagamentos {
+    echo `{echo $1^' * '^$Periodo | bc -l }
+    return 0
+}
+
+# no lugar de um arry Pesos
+fn Pesos {
+    echo 1.0
+    return 0
+}
+
+# calcula a somatória do array Pesos
+fn getPesoTotal {
+    acumulador = 0.0
+    for(indice in `{seq 1 $Quantidade}) {
+        acumulador = `{echo $acumulador^' + '^`{Pesos $indice} | bc -l }
+    }
+    echo $acumulador
+    return 0
+}
+
+
+# calcula o acréscimo a partir dos juros e parcelas
+fn jurosParaAcrescimo {
+    juros = $1
+    pesoTotal = `{getPesoTotal}
+    if( ! test `{echo $Quantidade^' < 1 || '^$Periodo^' <= 0.0 || '^$pesoTotal^' <= 0.0 || '^$juros^' <= 0.0' | bc -l } = 0 ) {
+        echo 0.0
+        return 1
+    }
+
+    acumulador = 0.0
+    for(indice in `{seq 1 $Quantidade}) {
+        pagamento = `{Pagamentos $indice}
+        peso = `{Pesos $indice}
+        if( ! test $Composto = 0 ) {
+            acumulador = `{echo $acumulador^' + '^$peso^' / e('^$pagamento^' / '^$Periodo^' * l(1.0 + '^$juros^' / 100.0))' | bc -l }
+        } else {
+            acumulador = `{echo $acumulador^' + '^$peso^' / (1.0 + ('^$juros^' / 100.0 * '^$pagamento^' / '^$Periodo^'))' | bc -l }
+        }
+    }
+
+    if( ! test `{echo $acumulador^' <= 0.0' | bc -l } = 0 ) {
+        echo 0.0
+        return 1
+    }
+
+    echo `{echo '('^$pesoTotal^' / '^$acumulador^' - 1.0) * 100.0' | bc -l }
+    return 0
+}
+
+# calcula os juros a partir do acréscimo e parcelas
+fn acrescimoParaJuros {
+    acrescimo = $1
+    precisao = $2
+    maxIteracoes = $3
+    maxJuros = $4
+    pesoTotal = `{getPesoTotal}
+    if( ! test `{echo $Quantidade^' < 1 || '^$Periodo^' <= 0.0 || '^$pesoTotal^' <= 0.0 || '^$acrescimo^' <= 0.0 || '^$precisao^' < 1 || '^$maxIteracoes^' < 1 || '^$maxJuros^' <= 0.0' | bc -l } = 0 ) {
+        echo 0.0
+        return 1
+    }
+
+    minJuros = 0.0
+    medJuros = `{echo $maxJuros^' / 2.0' | bc -l }
+    minDiferenca = `{echo 'e('^$precisao^' * l(0.1))' | bc -l }
+
+    for(interacao in `{seq 1 $maxIteracoes}) {
+        if( ! test `{echo $maxJuros^' - '^$minJuros^' < '^$minDiferenca | bc -l } = 0 ) {
+            echo $medJuros
+            return 0
+        }
+
+        resultado = `{jurosParaAcrescimo $medJuros}
+        if( ! test `{echo $resultado^' < '^$acrescimo | bc -l } = 0 ) {
+            minJuros = $medJuros
+        } else {
+            maxJuros = $medJuros
+        }
+
+        medJuros = `{echo '('^$minJuros^' + '^$maxJuros^') / 2.0' | bc -l }
+    }
+
+    echo $medJuros
+    return 0
+}
+
+# calcula e guarda os retornos das funções
+pesoTotal = `{getPesoTotal}
+acrescimoCalculado = `{jurosParaAcrescimo 3.0}
+jurosCalculado = `{acrescimoParaJuros $acrescimoCalculado 20 75 50.0}
+
+# imprime os resultados
+echo Peso total = $pesoTotal
+echo Acréscimo = $acrescimoCalculado
+echo Juros = $jurosCalculado

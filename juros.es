@@ -48,8 +48,8 @@ fn jurosParaAcrescimo {
         peso = `{Pesos $indice}
         if { !~ $Composto 0 } {
             acumulador = `{echo $acumulador^' + '^$peso^' / e('^$pagamento^' / '^$Periodo^' * l(1.0 + '^$juros^' / 100.0))' | bc -l }
-        } else {
-            acumulador = `{echo $acumulador^' + '^$peso^' / (1.0 + ('^$juros^' / 100.0 * '^$pagamento^' / '^$Periodo^'))' | bc -l }
+        } {
+            acumulador = `{echo $acumulador^' + '^$peso^' / (1.0 + '^$juros^' / 100.0 * '^$pagamento^' / '^$Periodo^')' | bc -l }
         }
     }
 

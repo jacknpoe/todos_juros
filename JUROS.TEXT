@@ -1,0 +1,168 @@
+{ Calcula o acrescimo a partir dos juros e os juros a partir do acrescimo
+  Versao: 0.1: 12/01/2026: comecando pelas funcoes matematicas
+}
+
+PROGRAM juros;
+
+CONST
+        QUANTIDADE = 3; { porque nao existe vetor dinamico no Apple Pascal }
+
+VAR { variaveis globais }
+        composto : BOOLEAN;
+        periodo : REAL;
+        pagamentos : ARRAY[1..QUANTIDADE] OF REAL;
+        pesos : ARRAY[1..QUANTIDADE] OF REAL;
+        indice : INTEGER;
+        pesoTotal, acrescimoCalculado, jurosCalculado : REAL;
+        
+{ funcao criada pelo ChatGPT, porque Apple Pascal nao tem }
+FUNCTION LN(x : REAL) : REAL;
+CONST
+        ITER = 15;
+VAR
+        i : INTEGER;
+        y, termo, soma : REAL;
+BEGIN
+        y := (x - 1.0) / (x + 1.0);
+        termo := y;
+        soma := 0.0;
+        
+        FOR i := 1 TO ITER DO
+        BEGIN
+                soma := soma + termo / (2 * i - 1);
+                termo := termo * y * y;
+        END;
+        
+        LN := 2.0 * soma;
+END;
+
+{ funcao criada pelo ChatGPT, porque Apple Pascal nao tem }
+FUNCTION EXP(x : REAL) : REAL;
+CONST
+        ITER = 20;
+VAR
+        i : INTEGER;
+        termo, soma : REAL;
+BEGIN
+        termo := 1.0;
+        soma := 1.0;
+        
+        FOR i := 1 TO ITER DO
+        BEGIN
+                termo := termo * x / i;
+                soma := soma + termo;
+        END;
+        
+        EXP := soma;
+END;
+
+{ funcao criada pelo GitHub Copilot, porque Apple Pascao nao tem }
+FUNCTION POWER(base, expoente : REAL) : REAL;
+BEGIN
+        POWER := EXP(LN(base) * expoente);
+END;
+
+{ calcula a somatoria de pesos[] }
+FUNCTION getPesoTotal : REAL;
+VAR
+        acumulador : REAL;
+        indice : INTEGER;
+BEGIN
+        acumulador := 0.0;
+        FOR indice := 1 TO QUANTIDADE DO
+                acumulador := acumulador + pesos[indice];
+        getPesoTotal := acumulador;
+END;
+
+{ calcula o acrescimo a partir dos juros e parcelas }
+FUNCTION jurosParaAcrescimo(juros : REAL) : REAL;
+VAR
+        pesoTotal, acumulador : REAL;
+        indice : INTEGER;
+BEGIN
+  pesoTotal := getPesoTotal;
+  IF (juros <= 0.0) OR (QUANTIDADE < 1) OR (periodo <= 0.0)
+    OR (pesoTotal <= 0.0) THEN
+      jurosParaAcrescimo := 0.0
+  ELSE
+  BEGIN
+        acumulador := 0.0;
+        
+        FOR indice := 1 TO QUANTIDADE DO
+        IF composto THEN
+           acumulador := acumulador + pesos[indice] / 
+           POWER(1.0 + juros / 100.0, pagamentos[indice] / periodo)
+        ELSE
+           acumulador := acumulador + pesos[indice] /
+           (1.0 + juros / 100.0 * pagamentos[indice] / periodo);
+        
+        IF acumulador <= 0.0 THEN
+          jurosParaAcrescimo := 0.0
+        ELSE
+          jurosParaAcrescimo := (pesoTotal / acumulador - 1.0) * 100.0;
+  END;
+END;
+
+{ calcula os juros a partir do acrescimo e parcelas }
+FUNCTION acrescParaJuros(acrescimo : REAL;
+        precisao, maxIteracoes : INTEGER; maxJuros : REAL) : REAL;
+VAR
+        pesoTotal, minJuros, medJuros, minDiferenca : REAL;
+        indice : INTEGER;
+BEGIN
+        pesoTotal := getPesoTotal;
+        IF (maxIteracoes < 1) OR (QUANTIDADE < 1) OR (precisao < 1) OR
+           (periodo <= 0.0) OR (acrescimo <= 0.0) OR (maxJuros <= 0.0) OR
+           (pesoTotal <= 0.0) THEN
+                acrescParaJuros := 0.0
+        ELSE
+        BEGIN
+                minJuros := 0.0;
+                medJuros := maxJuros / 2.0;
+                minDiferenca := 1.0;
+                FOR indice := 1 TO precisao DO
+                        minDiferenca := minDiferenca / 10.0;
+                indice := 0;
+                
+                WHILE indice < maxIteracoes DO
+                        IF (maxJuros - minJuros) < minDiferenca THEN
+                                indice := maxIteracoes
+                        ELSE
+                        BEGIN
+                                IF jurosParaAcrescimo(medJuros) < acrescimo
+                                        THEN minJuros := medJuros
+                                        ELSE maxJuros := medJuros;
+                        
+                                medJuros := (minJuros + maxJuros) / 2.0;
+                                indice := indice + 1;
+                        END;
+                acrescParaJuros := medJuros;
+        END;
+END;
+
+{ main }
+BEGIN
+        { define valores para as cariaveis globais }
+        composto := TRUE;
+        periodo := 30.0;
+        
+        FOR indice := 1 TO QUANTIDADE DO
+        BEGIN
+                pagamentos[indice] := periodo * indice;
+                pesos[indice] := 1.0;
+        END;
+        
+        { calcula e guarda os retornos das funcoes }
+        pesoTotal := getPesoTotal;
+        acrescimoCalculado := jurosParaAcrescimo(3.0);
+        jurosCalculado :=
+          acrescParaJuros(acrescimoCalculado, 6, 26, 50.0);
+        
+        { imprime os resultados }
+        WRITE('Peso total = ');
+        WRITELN(pesoTotal:0:6);
+        WRITE('Acrescimo = ');
+        WRITELN(acrescimoCalculado:0:6);
+        WRITE('Juros = ');
+        WRITELN(jurosCalculado:0:6);
+END.

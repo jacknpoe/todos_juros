@@ -89,7 +89,7 @@ begin
         medJuros := (minJuros + maxJuros) / 2;
         if ((maxJuros - minJuros) < minDiferenca) then
         begin
-            acrescimoParaJuros := 0.0;
+            acrescimoParaJuros := medJuros;
             exit;
         end;
         if (jurosParaAcrescimo(sJuros, medJuros) < acrescimo)

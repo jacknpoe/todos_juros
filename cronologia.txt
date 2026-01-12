@@ -312,6 +312,7 @@ SP-Forth (03/01/2026)
 rc (05/01/2026)
 es (06/01/2026)
 Apple Business Basic (10/01/2026)
+UCSD Pascal (Apple /// implementation) (12/01/2026)
 
 CRONOLOGIA / CHRONOLOGY
 -----------------------

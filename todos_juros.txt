@@ -1057,6 +1057,7 @@ nawk = awk
 Oberon-07 = Oberon-2
 Objective Caml = OCaml
 oksh = POSIX sh
+OpenMP = Intel oneAPI DPC++
 PC-BASIC = GW-BASIC
 Pizza = Java
 PoSh = Windows PowerShell

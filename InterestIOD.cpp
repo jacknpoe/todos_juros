@@ -6,6 +6,7 @@
 // Version 0.2: 27/06/2025: added Damping to make for loop in InterestRateToIncrease parallel
 //         0.3: 24/11/2025: removed <locale> and replaced main to mimic juros.c
 //         0.4: 03/01/2026: changed #pragmas omp from target to parallel for
+//         0.5: 13/01/2026: removed Damping
 
 namespace jacknpoe {
 	//--------------------------- Interest class
@@ -16,7 +17,6 @@ namespace jacknpoe {
 		long double Period;		// period fot the InterestRate (like 30 for a 30 days interest rate)
 		long double* Payments;		// payment days in periods like in days { 0, 30, 60, 90}
 		long double* Weights;		// payment weights (in any unit, value, apportionment...)
-		long double* Damping;		// damping to make for loop in InterestRateToIncrease parallel (in any unit, value, apportionment...)
 		void init(int quant, bool compounded, long double period);
 	public:
 		Interest(int quant = 0, bool compounded = false, long double period = 30.0);
@@ -40,7 +40,7 @@ namespace jacknpoe {
 	};
 
 	void Interest::init(int quant, bool compounded, long double period) {
-		Payments = NULL;  Weights = NULL;  Damping = NULL;  Quant = 0;
+		Payments = NULL;  Weights = NULL;  Quant = 0;
 		setQuant(quant);  Compounded = compounded;  Period = period;
 	}
 
@@ -53,8 +53,6 @@ namespace jacknpoe {
 		if (quant != 0 && Payments == NULL) { Quant = 0; return false; }
 		Weights = (long double*)std::realloc(Weights, sizeof(long double) * quant);
 		if (quant != 0 && Weights == NULL) { std::free(Payments); Payments = NULL; Quant = 0; return false; }
-		Damping = (long double*)std::realloc(Damping, sizeof(long double) * quant);
-		if (quant != 0 && Damping == NULL) { std::free(Payments); Payments = NULL; std::free(Weights); Weights = NULL; Quant = 0; return false; }
 		// #pragma omp target map(to:Payments, Weights)
 		#pragma omp parallel for
 		for (int index = Quant; index < quant; index++) { Payments[index] = 0; Weights[index] = 1; }

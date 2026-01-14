@@ -56,12 +56,10 @@ jurosParaAcrescimo:
     acumulador = 0.0
 
     do indice = 1 to Quantidade
-        if Composto then do
+        if Composto then
             acumulador = acumulador + Pesos.indice / pow(1.0 + juros / 100.0, Pagamentos.indice / Periodo)
-        end
-        else do
+        else
             acumulador = acumulador + Pesos.indice / (1.0 + juros / 100.0 * Pagamentos.indice / Periodo)
-        end
     end
 
     if acumulador <= 0.0 then return 0.0

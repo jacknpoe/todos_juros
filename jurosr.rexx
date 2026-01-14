@@ -94,7 +94,7 @@ pow: procedure
 /* função para calcular o logaritmo natural, adaptado da versão Apple Pascal do ChatGPT */
 ln: procedure
     parse arg x
-    ITER = 15
+    ITER = 20
     y = (x - 1.0) / (x + 1.0);
     termo = y;
     soma = 0.0;
@@ -109,7 +109,7 @@ ln: procedure
 /* função para calcular e elevado a x, adaptado da versão Apple Pascal do ChatGPT */
 exp: procedure
     parse arg x
-    ITER = 20
+    ITER = 60
     termo = 1.0
     soma = 1.0
         

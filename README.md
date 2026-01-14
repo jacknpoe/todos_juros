@@ -38,7 +38,9 @@ Algumas implementações não serão mantidas, porque foram feitas em versões d
 
 Alguns arquivos estão ilegíveis, pois são binários e devem ser abertos ou importados nos ambientes dos dialetos, como AppleSoft BASIC, Smalltalk, Snap! e twinBASIC. StarLogo Nova não salva em arquivo, então somente a URL está disponibilizada: https://www.slnova.org/jacknpoe/projects/941781/.
 
-Exemplos de dialetos que não terão a solução ainda, por não terem suporte a recursos necessários: Solidify (não tem números de ponto flutuante), CHIP-8, Frege e Gosu (não têm exponenciação), Self e Rexx (não têm exponenciação de números de ponto flutuante). Outros dialetos têm outros problemas, como estarem desatualizadas e não rodarem ou compilarem nos sistemas atuais. Dialetos que são, na verdade, Turing tarpits, como Agda, serão ignorados.
+Alguns dialetos não terão a solução ainda, por não terem suporte a recursos necessários, como números de ponto flutuante (por exemplo linguagens como Solidity, que rodam em Ethereum). Outros dialetos têm outros problemas, como estarem desatualizadas e não rodarem ou compilarem nos sistemas atuais. Dialetos que são, na verdade, Turing tarpits, como Agda, serão ignorados.
+
+As versões para UCSD Pascal (Apple /// implementation) e Regina Rexx têm implementações das funções ln() para logaritmo natural e exp() para número de Euler elevado à potência. Então, as funções pow() de exponenciação foram construídas a partir das operações matemáticas básicas. Elas começarão a serem portadas para as linguagens que não têm essas funções, como CHIP-8, Frege e Gosu.
 
 A saída mais comum para os testes é:
 
@@ -102,7 +104,9 @@ Some implementations will not be maintained because they were done in trial vers
 
 Some files are unreadable, as they are binary and must be opened or imported into the dialect environments, such as AppleSoft BASIC, Smalltalk, Snap! and twinBASIC. StarLogo Nova does not save to a file, so only the URL is available: https://www.slnova.org/jacknpoe/projects/941781/.
 
-Examples of dialects that will not have the solution yet, as they do not support the necessary resources: Solidify (does not have floating point numbers), CHIP-8, Frege and Gosu (does not have exponentiation), Self and Rexx (does not have exponentiation of floating point numbers). Other dialects ​​have other problems, such as being outdated and not running or compiling on current systems. Dialectss that are actually Turing tarpits, like Agda, are ignored.
+Some dialects will not yet have the solution because they lack support for necessary features, such as floating-point numbers (for example, languages ​​like Solidity, which run on Ethereum). Other dialects have other problems, such as being outdated and not running or compiling on current systems. Dialects that are, in fact, Turing tarpits, such as Agda, will be ignored.
+
+The versions for UCSD Pascal (Apple /// implementation) and Regina Rexx have implementations of the ln() function for natural logarithms and exp() for Euler's number raised to a power. Therefore, the pow() functions for exponentiation were built from basic mathematical operations. They will begin to be ported to languages ​​that do not have these functions, such as CHIP-8, Frege, and Gosu.
 
 The most common output for tests is:
 

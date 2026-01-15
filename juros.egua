@@ -1,4 +1,6 @@
 // Calcula o acréscimo a partir dos juros e os juros a partir do acréscimo
+// NOTA: para a versão em classes não tem documentação o suficiente; com o que existe, não roda em Delégua;
+//       em Légua (on-line), mesmo tirando a declaração de atributos, ela diz em isto.pagamentos que isto não existe.
 // Versão: 0.1.1: 15/01/2026: convertido de Delégua
 
 // varíaveis globais e atribuições de valores

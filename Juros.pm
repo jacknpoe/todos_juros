@@ -1,12 +1,13 @@
 # Cálculo do juros, sendo que precisa de arrays pra isso
 # Versão 0.1: 25/02/2024: versão feita sem muito conhecimento de Perl
+#        0.2: 16/01/2026: algumas alterações sugeridas pelo ChatGPT para maior aderência às boas práticas
+
+# Pacote com os valores comuns
+package Juros;
 
 # pragmas
 use strict;
 use warnings;
-
-# Pacote com os valores comuns
-package Juros;
 
 # construtor
 sub new {
@@ -26,8 +27,11 @@ sub new {
 sub getPesoTotal {
 	my $self = shift;
 	my $acumulador = 0;
+
+	if(@{ $self->{Pesos} } < $self->{Quantidade}) { return 0.0; }
+
 	for(my $indice = 0; $indice < $self->{Quantidade}; $indice++) {
-		$acumulador += $self->{Pesos}[$indice];
+		$acumulador += $self->{Pesos}->[$indice];
 	}
 	return $acumulador;
 }
@@ -40,13 +44,15 @@ sub jurosParaAcrescimo {
 	if($juros <= 0.0 || $self->{Quantidade} <= 0 || $self->{Periodo} <= 0.0) { return 0.0; }
 	my $pesoTotal = $self->getPesoTotal();
 	if($pesoTotal <= 0.0) { return 0.0; }
+	if(@{ $self->{Pesos} } < $self->{Quantidade}) { return 0.0; }
+	if(@{ $self->{Pagamentos} } < $self->{Quantidade}) { return 0.0; }	
 	my $acumulador = 0.0;
 
 	for(my $indice = 0; $indice < $self->{Quantidade}; $indice++) {
 		if($self->{Composto}) {
-			$acumulador += $self->{Pesos}[$indice] / (1.0 + $juros / 100.0) ** ($self->{Pagamentos}[$indice] / $self->{Periodo});
+			$acumulador += $self->{Pesos}->[$indice] / (1.0 + $juros / 100.0) ** ($self->{Pagamentos}->[$indice] / $self->{Periodo});
 		} else {
-			$acumulador += $self->{Pesos}[$indice] / (1.0 + $juros / 100.0 * $self->{Pagamentos}[$indice] / $self->{Periodo});
+			$acumulador += $self->{Pesos}->[$indice] / (1.0 + $juros / 100.0 * $self->{Pagamentos}->[$indice] / $self->{Periodo});
 		}
 	}
 

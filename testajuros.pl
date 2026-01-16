@@ -6,14 +6,15 @@ use Juros;
 # os arrays para serem referenciados pelos atributos 
 my @Pagamentos;
 my @Pesos;
+my $quantidade = 3;
 
-for(my $indice = 0; $indice < 3; $indice++) {
-	@Pagamentos[$indice] = ($indice + 1) * 30.0;
-	@Pesos[$indice] = 1.0;
+for(my $indice = 0; $indice < $quantidade; $indice++) {
+	$Pagamentos[$indice] = ($indice + 1) * 30.0;
+	$Pesos[$indice] = 1.0;
 }
 
 # cria o objeto $juros com os valores (o número 1 quer dizer TRUE)
-my $juros = Juros->new( 3, 1, 30.0, \@Pagamentos, \@Pesos);
+my $juros = Juros->new( $quantidade, 1, 30.0, \@Pagamentos, \@Pesos);
 
 # testes de cálculo
 print "Peso Total = " . $juros->getPesoTotal() . "\n";

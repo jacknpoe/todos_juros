@@ -16,11 +16,25 @@ sub new {
 		Quantidade => shift,
 		Composto => shift,
 		Periodo => shift,
-		Pagamentos => shift,
-		Pesos => shift
+		Pagamentos => shift // [],
+		Pesos => shift // []
 	};
 	bless $self, $class;
 	return $self;
+}
+
+sub _dadosCompletos {
+    my $self = shift;
+    return @{ $self->{Pesos} } >= $self->{Quantidade}
+        && @{ $self->{Pagamentos} } >= $self->{Quantidade};
+}
+
+# define uma parcela (prazo de pagamento e peso)
+sub setParcela {
+    my ($self, $i, $pagamento, $peso) = @_;
+    return if $i < 0 || $i >= $self->{Quantidade};
+    $self->{Pagamentos}->[$i] = $pagamento;
+    $self->{Pesos}->[$i]      = $peso;
 }
 
 # calcula a somatória de Pesos[]
@@ -44,8 +58,7 @@ sub jurosParaAcrescimo {
 	if($juros <= 0.0 || $self->{Quantidade} <= 0 || $self->{Periodo} <= 0.0) { return 0.0; }
 	my $pesoTotal = $self->getPesoTotal();
 	if($pesoTotal <= 0.0) { return 0.0; }
-	if(@{ $self->{Pesos} } < $self->{Quantidade}) { return 0.0; }
-	if(@{ $self->{Pagamentos} } < $self->{Quantidade}) { return 0.0; }	
+	return 0.0 unless $self->_dadosCompletos;
 	my $acumulador = 0.0;
 
 	for(my $indice = 0; $indice < $self->{Quantidade}; $indice++) {

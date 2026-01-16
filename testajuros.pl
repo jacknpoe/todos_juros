@@ -3,18 +3,18 @@ use strict;
 use warnings;
 use Juros;
 
-# os arrays para serem referenciados pelos atributos 
-my @Pagamentos;
-my @Pesos;
-my $quantidade = 3;
-
-for(my $indice = 0; $indice < $quantidade; $indice++) {
-	$Pagamentos[$indice] = ($indice + 1) * 30.0;
-	$Pesos[$indice] = 1.0;
-}
+# mude esses valores para suas parcelas
+my $Quantidade = 3;
+my $Composto = 1; # verdadeiro
+my $Periodo = 30.0;
 
 # cria o objeto $juros com os valores (o número 1 quer dizer TRUE)
-my $juros = Juros->new( $quantidade, 1, 30.0, \@Pagamentos, \@Pesos);
+my $juros = Juros->new( $Quantidade, $Composto, $Periodo);
+
+# preenche os arrays das parcelas, mude aqui para seu parcelamento
+for(my $indice = 0; $indice < $juros->{Quantidade}; $indice++) {
+	$juros->setParcela( $indice, ($indice + 1) * 30.0, 1.0);
+}
 
 # testes de cálculo
 print "Peso Total = " . $juros->getPesoTotal() . "\n";

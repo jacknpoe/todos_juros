@@ -2,13 +2,14 @@
 
 # Cálculo dos juros, sendo que precisa de parcelas pra isso
 # Versão 0.1: 11/07/2025: versão feita sem muito conhecimento de zsh
+#        0.2: 17/01/2026: melhorias nos espaços entre (( ))
 
 # variáveis globais para simplificar as chamadas às funções
 (( Quantidade=3 ))
 (( Composto=1 ))    # 1 = true
 (( Periodo=30 ))
 
-for (( indice=1; indice<=$(( Quantidade )); indice++)); do
+for (( indice=1; indice<=$(( Quantidade )); indice++ )); do
     (( Pagamentos[indice]=indice*Periodo ))
     (( Pesos[indice]=1.0 ))
 done
@@ -21,7 +22,7 @@ done
 # calcula a somatória de Pesos[]
 getPesoTotal() {
     (( acumulador=0.0 ))
-    for (( indice=1; indice<=$(( Quantidade )); indice++)); do
+    for (( indice=1; indice<=$(( Quantidade )); indice++ )); do
         (( acumulador=acumulador+Pesos[indice] ))
     done
     (( pesoTotal=acumulador ))
@@ -37,11 +38,11 @@ jurosParaAcrescimo() {
     fi
 
     (( acumulador=0.0 ))
-    for (( indice=1; indice<=$(( Quantidade )); indice++)); do
+    for (( indice=1; indice<=$(( Quantidade )); indice++ )); do
         if (( Composto == 1 )); then
-            (( acumulador=acumulador+Pesos[indice]/(1.0+juros/100.0)**(Pagamentos[indice]/Periodo)  ))
+            (( acumulador=acumulador+Pesos[indice]/(1.0+juros/100.0)**(Pagamentos[indice]/Periodo) ))
         else
-            (( acumulador=acumulador+Pesos[indice]/(1.0+juros/100.0*Pagamentos[indice]/Periodo)  ))
+            (( acumulador=acumulador+Pesos[indice]/(1.0+juros/100.0*Pagamentos[indice]/Periodo) ))
         fi
     done
 
@@ -68,16 +69,16 @@ acrescimoParaJuros() {
     (( minJuros=0.0 ))
     (( medJuros=maxJuros/2.0 ))
     (( minDiferenca=0.1**precisao ))
-    for (( iteracao=0; iteracao<$(( maxIteracoes )); iteracao++)); do
+    for (( iteracao=0; iteracao<$(( maxIteracoes )); iteracao++ )); do
         if (( maxJuros - minJuros < minDiferenca )); then
             (( jurosCalculado=medJuros ))
             return
         fi
         jurosParaAcrescimo $medJuros
         if (( acrescimoCalculado < acrescimo )); then
-            (( minJuros=medJuros))
+            (( minJuros=medJuros ))
         else
-            (( maxJuros=medJuros))
+            (( maxJuros=medJuros ))
         fi
         (( medJuros=(minJuros+maxJuros)/2.0 ))
     done
@@ -89,5 +90,5 @@ getPesoTotal
 printf "Peso total = %2.15f\\n" $(( pesoTotal ))
 jurosParaAcrescimo 3.0
 printf "Acréscimo = %2.15f\\n" $(( acrescimoCalculado ))
-acrescimoParaJuros $acrescimoCalculado 15 100 50.0
+acrescimoParaJuros $acrescimoCalculado 15 65 50.0
 printf "Juros = %2.15f\\n" $(( jurosCalculado ))

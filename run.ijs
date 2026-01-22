@@ -4,7 +4,7 @@ NB. Versão 0.1: 22/01/2026: versao feita sem muito conhecimento de J
 9!:11]16  NB. define precisão de impressão
 
 NB. variáveis globais, os arrays começam vazios
-quantidade =: 3
+quantidade =: 300000
 composto =: 1   NB. TRUE
 periodo =: 30.0
 
@@ -83,7 +83,7 @@ NB. para inicializar os arrays
 resetArrays ''
 iniArrays ''
 
-NB. calcula e guarda o resultado das funções
+NB. calcula e guarda os resultados das funções
 pesoTotal =: getPesoTotal ''
 acrescimoCalculado =: jurosParaAcrescimo 3.0
 jurosCalculado =: acrescimoParaJuros (acrescimoCalculado ; 15 ; 65 ; 50.0)

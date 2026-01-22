@@ -4,7 +4,7 @@ NB. Versão 0.1: 22/01/2026: versao feita sem muito conhecimento de J
 9!:11]16  NB. define precisão de impressão
 
 NB. variáveis globais, os arrays começam vazios
-quantidade =: 300000
+quantidade =: 3
 composto =: 1   NB. TRUE
 periodo =: 30.0
 

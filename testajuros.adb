@@ -1,8 +1,9 @@
 -- Calculo do juros, sendo que precisa de arrays pra isso
--- Versao 0.1: 09/04/2024: versao feita sem muito conhecimento de Ada e exponenciacao inteira
--- Versao 0.2: 12/04/2024: versao feita sem muito conhecimento de Ada e exponenciacao ponto flutuante
--- Vers„o 0.3:    04/2024: trocada avaliaÁ„o soZero por acumulador == 0
--- Vers„o 0.4: 25/04/2024: arrays din‚micos
+-- Vers√£o 0.1: 09/04/2024: versao feita sem muito conhecimento de Ada e exponenciacao inteira
+--        0.2: 12/04/2024: versao feita sem muito conhecimento de Ada e exponenciacao ponto flutuante
+--        0.3:    04/2024: trocada avalia√ß√µes soZero por acumulador == 0
+--        0.4: 25/04/2024: arrays din√¢micos
+--        0.5: 22/01/2026: para caracteres do Linux, padronizados Puts e retirados withs e uses desnecess√°rios
 
 with Ada.Text_IO, Ada.Long_Float_Text_IO;
 use  Ada.Text_IO, Ada.Long_Float_Text_IO;
@@ -22,7 +23,7 @@ begin
    end loop;
 
    -- faz os testes
-   Put("O peso total È ="); Put(juros.getPesototal(sjuros)); Put_Line("");
-   Put("O acrÈscimo È ="); Put(juros.jurosParaAcrescimos(sjuros, 3.0)); Put_Line("");
-   Put("Os juros s„o ="); Put( juros.acrescimoParaJuros(sjuros, juros.jurosParaAcrescimos(sjuros, 3.0), 15, 100, 50.0)); Put_Line("");
+   Put("Peso total ="); Put(juros.getPesototal(sjuros)); Put_Line("");
+   Put("Acr√©scimo ="); Put(juros.jurosParaAcrescimos(sjuros, 3.0)); Put_Line("");
+   Put("Juros ="); Put( juros.acrescimoParaJuros(sjuros, juros.jurosParaAcrescimos(sjuros, 3.0), 15, 100, 50.0)); Put_Line("");
 end testajuros;

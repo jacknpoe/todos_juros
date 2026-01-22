@@ -1,12 +1,11 @@
-with Ada.Text_IO, Ada.Long_Float_Text_IO, Ada.Numerics.Generic_Elementary_Functions;
-use  Ada.Text_IO, Ada.Long_Float_Text_IO;
+with Ada.Numerics.Generic_Elementary_Functions;
 
 package body juros is
-   -- para exponencia��o com pontos flutuantes
+   -- para exponenciação com pontos flutuantes
    package Value_Functions is new Ada.Numerics.Generic_Elementary_Functions(Long_Float);
    use Value_Functions;
 
-   -- calcula a somatoria de Pesos[]
+   -- calcula a somatória de Pesos[]
    function getPesototal(sjuros : tjuros) return Long_Float is
       acumulador : Long_Float := 0.0;
    begin
@@ -16,7 +15,7 @@ package body juros is
       return acumulador;
    end getPesototal;
 
-   -- calcula o acrescimo a partir dos juros e dados comuns (como parcelas)
+   -- calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
    function jurosParaAcrescimos(sjuros : tjuros; juros : Long_Float) return Long_FLoat is
       pesoTotal : Long_Float;
       acumulador : Long_Float := 0.0;
@@ -31,8 +30,8 @@ package body juros is
 
       for indice in 0 .. sjuros.Quantidade - 1 loop -- 0.4
          if sjuros.Composto then
-            -- veja que foi convertida a divisao de Pagamentos por Periodo para Natural, entao, quando necessario, precisa usar os juros diarios
-            -- foi corrigida a divis�o para ponto flutuante em 12/04/2024
+            -- veja que foi convertida a divisão de Pagamentos por Periodo para Natural, então, quando necessário, precisa usar os juros diarios
+            -- foi corrigida a divisão para ponto flutuante em 12/04/2024
             acumulador := acumulador + sjuros.Pesos(indice) / (1.0 + juros / 100.0) ** (sjuros.Pagamentos(indice) / sjuros.Periodo);
          else
             acumulador := acumulador + sjuros.Pesos(indice) / (1.0 + juros / 100.0 * sjuros.Pagamentos(indice) / sjuros.Periodo);
@@ -45,7 +44,7 @@ package body juros is
       return (pesoTotal / acumulador - 1.0) * 100.0;
    end jurosParaAcrescimos;
 
-   -- calcula os juros a partir do acrescimo e dados comuns (como parcelas)
+   -- calcula os juros a partir do acréscimo e dados comuns (como parcelas)
    function acrescimoParaJuros(sjuros : tjuros; acrescimo : Long_Float; precisao : Integer; maxIteracoes : Integer; mJuros : Long_Float) return Long_FLoat is
       pesoTotal : Long_Float;
       minJuros : Long_Float := 0.0;

@@ -315,6 +315,7 @@ Apple Business Basic (10/01/2026)
 UCSD Pascal (Apple /// implementation) (12/01/2026)
 Regina Rexx (14/01/2026)
 Égua (15/01/2026)
+J (22/01/2026)
 
 CRONOLOGIA / CHRONOLOGY
 -----------------------

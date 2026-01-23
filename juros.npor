@@ -1,0 +1,161 @@
+função principal()
+    variável comentario
+    comentario = "Cálculo do juros, sendo que precisa de arrays pra isso"
+    comentario = "Versão 0.1: 23/01/2026: versão feita sem muito conhecimento de NPortugol"
+
+    comentario = "variáveis base para o cálculo"
+    variável quantidade, composto, periodo, pagamentos, pesos
+
+    comentario = "variável para o 'para'"
+    variável indice
+
+    comentario = "variáveis que guardam os resultados das funções"
+    variável pesoTotal, acrescimoCalculado
+
+    comentario = "define as variáveis escalares"
+    quantidade = 3
+    composto = verdadeiro
+    periodo = 30.0
+
+    comentario = "define arrays os pagamentos e pesos de forma dinâmica"
+    para indice = 0 até quantidade
+        pagamentos[indice] = periodo * (indice + 1)
+        pesos[indice] = 1.0
+    fim
+
+    comentario = "calculae guarda os valores das funções"
+    pesoTotal = getPesoTotal(quantidade, pesos)
+    acrescimoCalculado = jurosParaAcrescimo(3.0, quantidade, composto, periodo, pagamentos, pesos)
+    jurosCalculado = acresimoParaJuros(acrescimoCalculado, 15, 65, 50.0, quantidade, composto, periodo, pagamentos, pesos)
+
+    comentario = "imprime os resultados"
+    imprima(" | Peso total = ", pesoTotal)
+    imprima(" | Acréscimo = ", acrescimoCalculado)
+    imprima(" | Juros = ", jurosCalculado)
+fim
+
+função acresimoParaJuros(acrescimo, precisao, maxIteracoes, maxJuros, quantidade, composto, periodo, pagamentos, pesos)
+    variável comentario
+    comentario = "calcula os juros a partir do acréscimo e parcelas"
+
+    variável iteracao, minJuros, medJuros, minDiferenca, pesoTotal
+    pesoTotal = getPesoTotal(quantidade, pesos)
+
+    se quantidade < 1 retorne 0.0 fim
+    se periodo <= 0.0 retorne 0.0 fim
+    se acrescimo <= 0.0 retorne 0.0 fim
+    se pesoTotal <= 0.0 retorne 0.0 fim
+    se precisao < 1 retorne 0.0 fim
+    se maxIteracoes < 1 retorne 0.0 fim
+    se maxJuros <= 0.0 retorne 0.0 fim
+
+    minJuros = 0.0
+    medJuros = maxJuros / 2.0
+    minDiferenca = powint(0.1, precisao)
+
+    para iteracao = 0 até maxIteracoes
+        se (maxJuros - minJuros) < minDiferenca retorne medJuros fim
+        se jurosParaAcrescimo(medJuros, quantidade, composto, periodo, pagamentos, pesos) < acrescimo
+            minJuros = medJuros
+        senão
+            maxJuros = medJuros
+        fim
+        medJuros = (minJuros + maxJuros) / 2.0
+    fim
+    
+    retorne medJuros
+fim
+
+função jurosParaAcrescimo(juros, quantidade, composto, periodo, pagamentos, pesos)
+    variável comentario
+    comentario = "calcula o acréscimo a partir dos juros e parcelas"
+
+    variável indice, acumulador, pesoTotal
+    pesoTotal = getPesoTotal(quantidade, pesos)
+
+    se quantidade < 1 retorne 0.0 fim
+    se periodo <= 0.0 retorne 0.0 fim
+    se juros <= 0.0 retorne 0.0 fim
+    se pesoTotal <= 0.0 retorne 0.0 fim
+
+    acumulador = 0.0
+
+    para indice = 0 até quantidade
+        se composto == verdadeiro então
+            acumulador = acumulador + pesos[indice] / pow(1.0 + juros / 100.0, pagamentos[indice] / periodo)
+        senão
+            acumulador = acumulador + pesos[indice] / (1.0 + juros / 100.0 * pagamentos[indice] / periodo)
+        fim
+    fim
+
+    se acumulador <= 0.0 retorne 0.0 fim
+    retorne (pesoTotal / acumulador - 1.0) * 100.0
+fim
+
+função getPesoTotal(quantidade, pesos)
+    variável comentario
+    comentario = "calcula o peso total somando os valores do array pesos"
+
+    variável indice, total
+    total = 0.0
+
+    para indice = 0 até quantidade
+        total = total + pesos[indice]
+    fim
+
+    retorne total
+fim
+
+função powint(base, expoente)
+    variável comentario
+    comentario = "calcula a potência de base elevado a expoente inteiro, para fazer 0.1 elevado a precisao"
+
+    variável resultado, indice
+    resultado = 1.0
+
+    para indice = 0 até expoente
+        resultado = resultado * base
+    fim
+
+    retorne resultado
+fim
+
+função pow(base, expoente)
+    variável comentario
+    comentario = "calcula a potência de base elevado a expoente usando ln e exp"
+
+    retorne exp(ln(base) * expoente)
+fim
+
+função ln(x)
+    variável comentario
+    comentario = "calcula o logaritmo natural de um número x usando a série de Taylor"
+
+    variável indice, y, termo, soma
+    y = (x - 1.0) / (x + 1.0)
+    termo = y
+    soma = 0.0
+
+    para indice = 1 até 20
+        soma = soma + termo / (2.0 * indice - 1.0)
+        termo = termo * y * y
+    fim
+
+    retorne 2.0 * soma
+fim
+
+função exp(x)
+    variável comentario
+    comentario = "calcula o número natural elevado a x usando a série de Taylor"
+
+    variável indice, termo, soma
+    termo = 1.0
+    soma = 1.0
+
+    para indice = 1 até 60
+        termo = termo * x / indice
+        soma = soma + termo
+    fim
+
+    retorne soma
+fim

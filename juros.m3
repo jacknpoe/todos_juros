@@ -8,7 +8,7 @@ FROM Fmt IMPORT LongReal, Style;
 FROM Math IMPORT pow;
 
 TYPE
-    Vetor = REF ARRAY OF LONGREAL;
+  Vetor = REF ARRAY OF LONGREAL;
 
 (* estrutura basica para simplificar as chamadas *)
 VAR

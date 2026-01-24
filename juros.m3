@@ -102,7 +102,7 @@ BEGIN (* programa principal *)
   (* imprime os resultados *)
   Put("Peso Total = ");
   Put(LongReal(PesoTotal, Style.Fix, 15));
-  Put("\nAcrescimo = ");
+  Put("\nAcréscimo = ");
   Put(LongReal(Acrescimo, Style.Fix, 15));
   Put("\nJuros = ");
   Put(LongReal(Juros, Style.Fix, 15));

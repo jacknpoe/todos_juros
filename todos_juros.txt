@@ -1095,6 +1095,7 @@ SCM = Scheme
 SICP = DrScheme
 Squeak = Smalltalk
 STclos = Gauche/Kawa/Scheme/Steel
+SWI-Prolog = Prolog
 SwiftForth = pForth
 SYCL = Intel oneAPI DPC++
 tcsh = csh

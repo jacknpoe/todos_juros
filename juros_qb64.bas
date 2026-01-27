@@ -1,5 +1,5 @@
 ' Calculo do juros, sendo que precisa de arrays pra isso
-' Versao 0.1: 12/06/2024: versao feita sem muito conhecimento de QN64
+' Versao 0.1: 12/06/2024: versao feita sem muito conhecimento de QB64
 ' define os valores gerais
 Let quantidade% = 3
 Let composto% = 1
@@ -11,7 +11,6 @@ For indice% = 1 To quantidade%
     Let pagamentos#(indice%) = 30.0 * indice%
     Let pesos#(indice%) = 1.0
 Next indice%
-
 
 ' calcula, guarda os resultados das funcoes e imprime
 GoSub getPesoTotal

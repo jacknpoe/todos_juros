@@ -77,6 +77,6 @@ acrescimo-calculado: juros-para-acrescimo 3.0
 juros-calculado: acrescimo-para-juros acrescimo-calculado 15 65 50.0
 
 ; imprime os resultados
-print ["Peso Total =" peso-total]
+print ["Peso total =" peso-total]
 print ["Acréscimo =" acrescimo-calculado]
 print ["Juros =" juros-calculado]

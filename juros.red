@@ -81,4 +81,4 @@ jurosCalculado: acrescimoParaJuros acrescimoCalculado 15 100 50.0
 
 print [ "Peso total =" pesoTotal ]
 print [ "Acréscimo =" acrescimoCalculado ]
-print [ "Juros ="jurosCalculado ]
+print [ "Juros =" jurosCalculado ]

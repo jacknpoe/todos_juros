@@ -1,0 +1,108 @@
+* Calcula o acréscimo a partir dos juros e os juros a partir do acréscimo
+* Versões: 0.1: 28/01/2026: versão feita sem muito conhecimento de SNOBOL
+
+* variáveis que são realmente globais para simplificar as chamadas
+        QUANTIDADE = 3
+        COMPOSTO = 1
+        PERIODO = 30.0
+        PAGAMENTOS = ARRAY(QUANTIDADE)
+        PESOS = ARRAY(QUANTIDADE)
+
+* inicializa os arrays
+        INDICE = 1
+INILOOP GT(INDICE, QUANTIDADE) :S(INIFIM)
+        PAGAMENTOS<INDICE> = INDICE * PERIODO
+        PESOS<INDICE> = 1.0
+        INDICE = INDICE + 1
+        :(INILOOP)
+INIFIM
+
+* calcula e imprime o peso total
+        GPTRETORNO = 'RETPES'
+        :(GETPESOTOTAL)
+RETPES  OUTPUT = "Peso total = " PESOTOTAL
+
+* calcula e imprime o acréscimo
+        JUROS = 3.0
+        JPARETORNO = "RETACR"
+        :(JUROSPARAACRESCIMO)
+RETACR  OUTPUT = "Acréscimo = " ACRESCIMO
+
+* calcula e imprime os juros
+        ACRESCIMOPARAM = ACRESCIMO
+        PRECISAO = 15
+        MAXITERACOES = 65
+        MAXJUROS = 50.0
+        APJRETORNO = "RETJUR"
+        :(ACRESCIMOPARAJUROS)
+RETJUR  OUTPUT = "Juros = " JUROS
+
+* vai para o final do programa (para evitar as "funções")
+        :(FIM)
+
+* "função" que calcula o peso total
+GETPESOTOTAL
+        INDICE = 1
+        PESOTOTAL = 0.0
+GPTLOOP GT(INDICE, QUANTIDADE) :S(GPTFIM)
+        PESOTOTAL = PESOTOTAL + PESOS<INDICE>
+        INDICE = INDICE + 1
+        :(GPTLOOP)
+GPTFIM  :($GPTRETORNO)
+
+* "função" que calcula o acréscimo a partir dos juros e parcelas
+JUROSPARAACRESCIMO
+        ACRESCIMO = 0.0
+        GPTRETORNO = "RETJPA"
+        :(GETPESOTOTAL)
+RETJPA  LT(QUANTIDADE, 1) :S(JPARET)
+        LE(PERIODO, 0.0) :S(JPARET)
+        LE(PESOTOTAL, 0.0) :S(JPARET)
+        LE(JUROS, 0.0) :S(JPARET)
+        ACUMULADOR = 0.0
+        INDICE = 1
+JPALOOP GT(INDICE, QUANTIDADE) :S(JPAFIM)
+        EQ(COMPOSTO, 1) :F(CALCSMP)
+        ACUMULADOR = ACUMULADOR + (PESOS<INDICE> / EXP((PAGAMENTOS<INDICE> / PERIODO) * LN(1.0 + (JUROS / 100.0))))
+        :(CALCFIM)
+CALCSMP ACUMULADOR = ACUMULADOR + (PESOS<INDICE> / (1.0 + ((JUROS / 100.0) * (PAGAMENTOS<INDICE> / PERIODO))))
+CALCFIM INDICE = INDICE + 1
+        :(JPALOOP)
+JPAFIM  
+        LE(ACUMULADOR, 0.0) :S(JPARET)
+        ACRESCIMO = ((PESOTOTAL / ACUMULADOR) - 1.0) * 100.0  
+JPARET  :($JPARETORNO)
+
+* "função" que calcula os juros a partir do acréscimo e parcelas
+ACRESCIMOPARAJUROS
+        JUROS = 0.0
+        GPTRETORNO = "RETAPJ1"
+        :(GETPESOTOTAL)
+RETAPJ1 LT(QUANTIDADE, 1) :S(APJRET)
+        LE(PERIODO, 0.0) :S(APJRET)
+        LE(PESOTOTAL, 0.0) :S(APJRET)
+        LE(ACRESCIMOPARAM, 0.0) :S(APJRET)
+        LT(PRECISAO, 1) :S(APJRET)
+        LT(MAXITERACOES, 1) :S(APJRET)
+        LE(MAXJUROS, 0.0) :S(APJRET)
+        MINJUROS = 0.0
+        JUROS = MAXJUROS / 2.0
+        MINDIFERENCA = EXP(PRECISAO * LN(0.1))
+        INTERACAO = 1
+        JPARETORNO = "RETAPJ2"
+APJLOOP GT(INTERACAO, MAXITERACOES) :S(APJRET)
+        LT((MAXJUROS - MINJUROS), MINDIFERENCA) :S(APJRET)
+        :(JUROSPARAACRESCIMO)
+RETAPJ2 LT(ACRESCIMO, ACRESCIMOPARAM) :F(MEDMAX)
+        MINJUROS = JUROS
+        :(MEDFIM)
+MEDMAX  MAXJUROS = JUROS
+MEDFIM  JUROS = (MINJUROS + MAXJUROS) / 2.0
+        INTERACAO = INTERACAO + 1
+        :(APJLOOP)
+
+APJRET  :($APJRETORNO)
+
+* o último goto aponta para o fim do arquivo
+FIM
+END

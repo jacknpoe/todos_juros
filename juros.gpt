@@ -1,0 +1,168 @@
+// Cálculo dos juros, sendo que precisa de parcelas pra isso
+// Versão 0.1: 30/01/2026: versao feita sem muito conhecimento de G-Portugol
+
+algoritmo juros;
+
+// globais incluem os máximos das séries de Taylor, variáveis para simplificar as chamadas, índice do faça e os retornos das funções
+variáveis
+    TOTLN, TOTEXP, quantidade, indice: inteiro;
+    composto: lógico;
+    periodo, pesoTotal, acrescimoCalculado, jurosCalculado: real;
+    pagamentos, pesos: matriz[1000] de reais;
+fim-variáveis
+
+// MAIN
+início
+    // define os máximos das séries de Taylor para ter a precisão simples sem muito custo computacionaç
+    TOTLN := 12;
+    TOTEXP := 20;
+
+    // inicializa as variáveis globais escalares
+    quantidade := 3;
+    composto := verdadeiro;
+    periodo := 30.0;
+
+    // inicializa os elementos das matrizes
+    para indice de 0 até quantidade - 1 faça
+        pagamentos[indice] := periodo * (indice + 1.0);
+        pesos[indice] := 1.0;
+    fim-para
+
+    // calcula e guarda os retornos das funções
+    pesoTotal := getPesoTotal();
+    acrescimoCalculado := jurosParaAcrescimo(3.0);
+    jurosCalculado := acrescimoParaJuros(acrescimoCalculado, 7, 30, 50.0);
+
+    // imprime os resultados
+    imprimaE("Peso total = ", pesoTotal);
+    imprimaE("Acréscimo = ", acrescimoCalculado);
+    imprimaE("Juros = ", jurosCalculado);
+fim
+
+// calcula os juros a partir do acréscimo e parcelas
+função acrescimoParaJuros(acrescimo: real, precisao: inteiro, maxIteracoes: inteiro, maxJuros: real): real
+    indice: inteiro;
+    minJuros, medJuros, minDiferenca: real;
+início
+    pesoTotal := getPesoTotal();
+    se quantidade < 1 ou periodo <= 0.0 ou pesoTotal <= 0.0 ou acrescimo <= 0.0 ou precisao < 1 ou maxIteracoes < 1 ou maxJuros <= 0.0 então
+        retorne 0.0;
+    fim-se
+    minJuros := 0.0;
+    medJuros := maxJuros / 2.0;
+    minDiferenca := powint(0.1, precisao);
+
+    para indice de 1 até maxIteracoes faça
+        se maxJuros - minJuros < minDiferenca então
+            retorne medJuros;
+        fim-se
+        se jurosParaAcrescimo(medJuros) < acrescimo então
+            minJuros := medJuros;
+        senão
+            maxJuros := medJuros;
+        fim-se
+        medJuros := (minJuros + maxJuros) / 2.0;
+    fim-para
+
+    retorne medJuros;
+fim
+
+// calcula o acréscimo a partir dos juros e parcelas
+função jurosParaAcrescimo(juros: real): real
+    indice: inteiro;
+    acumulador, pesoTotal: real;
+início
+    pesoTotal := getPesoTotal();
+    se quantidade < 1 ou periodo <= 0.0 ou pesoTotal <= 0.0 ou juros <= 0.0 então
+        retorne 0.0;
+    fim-se
+    acumulador := 0.0;
+
+    para indice de 0 até quantidade - 1 faça
+        se composto então
+            acumulador := acumulador + pesos[indice] / pow(1.0 + juros / 100.0, pagamentos[indice] / periodo);
+        senão
+            acumulador := acumulador + pesos[indice] / (1.0 + juros / 100.0 * pagamentos[indice] / periodo);
+        fim-se
+    fim-para
+
+    se acumulador <= 0.0 então
+        retorne 0.0;
+    fim-se
+    retorne (pesoTotal / acumulador - 1.0) * 100.0;
+fim
+
+// calcula a somatória da matriz pesos[]
+função getPesoTotal(): real
+    indice: inteiro;
+    acumulador: real;
+início
+    acumulador := 0.0;
+
+    para indice de 0 até quantidade - 1 faça
+        acumulador := acumulador+ pesos[indice];
+    fim-para
+
+    retorne acumulador;
+fim
+
+// imprime com legenda e valor com 6 casas decimais e .E-6
+função imprimaE(legenda: literal, valor: real)
+    temp: inteiro;
+início
+    temp := valor * 1000000;
+    imprima(legenda, temp, ".E-6");
+fim
+
+// essa função é mais precisa com valores mais próximos de 1, como 1.0 a 1.1, que é a faixa em que vai ser usada
+função ln(valor: real): real
+    indice: inteiro;
+    ip, termo, soma: real;
+início
+    ip := (valor - 1.0) / (valor + 1.0);
+    termo := ip;
+    soma := 0.0;
+
+    para indice de 1 até TOTLN faça
+        soma := soma + termo / (2.0 * indice - 1.0);
+        termo := termo * ip * ip;
+    fim-para
+
+    retorne 2.0 * soma;
+fim
+
+// essa função é mais precisa com valores menores do que 5, que é a faixa em que vai ser usada
+função exp(valor: real): real
+    indice: inteiro;
+    termo, soma: real;
+início
+    termo := 1.0;
+    soma := 1.0;
+
+    para indice de 1 até TOTEXP faça
+        termo := termo * valor / indice;
+        soma := soma + termo;
+    fim-para
+
+    retorne soma;
+fim
+
+// essa função tem a precisão boa de acordo com ln() e exp()
+função pow(base: real, expoente: real): real
+início
+    retorne exp(ln(base) * expoente);
+fim
+
+// função para fazer 0.1 ^ precisao
+função powint(base: real, expoente: inteiro): real
+    indice: inteiro;
+    produto: real;
+início
+    produto := 1.0;
+
+    para indice de 1 até expoente faça
+        produto := produto * base;
+    fim-para
+
+    retorne produto;
+fim

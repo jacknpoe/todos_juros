@@ -3,7 +3,7 @@
 --                         compile com   futhark c juros.fut   e rode com   echo 3.0 | ./juros   (troque 3.0 pelos juros, mensais no caso)
 
 -- variáveis globais e funções que mapeiam o equivalente aos arrays em outras linguagens, para simplificar as chamadas
-let Quantidade : i32 = 300000
+let Quantidade : i32 = 3
 let Composto : bool = true
 let Periodo : f64 = 30.0
 def Pesos (_ : i32) : f64 = 1.0  -- colocar o parâmetro para, por exemplo, a primeira parceka maior que as demais (o índice começa por zero)

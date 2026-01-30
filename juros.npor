@@ -10,7 +10,7 @@ função principal()
     variável indice
 
     comentario = "variáveis que guardam os resultados das funções"
-    variável pesoTotal, acrescimoCalculado
+    variável pesoTotal, acrescimoCalculado, jurosCalculado
 
     comentario = "define as variáveis escalares"
     quantidade = 3

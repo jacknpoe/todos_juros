@@ -1090,6 +1090,7 @@ mksh = POSIX sh
 MMB4L = MMBasic
 Monkey X = Monkey 2
 nawk = awk
+NimScript / NimbleScript = Nim
 Oberon-07 = Oberon-2
 Objective Caml = OCaml
 oksh = POSIX sh

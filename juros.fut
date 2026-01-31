@@ -6,7 +6,7 @@
 let Quantidade : i32 = 3
 let Composto : bool = true
 let Periodo : f64 = 30.0
-def Pesos (_ : i32) : f64 = 1.0  -- colocar o parâmetro para, por exemplo, a primeira parceka maior que as demais (o índice começa por zero)
+def Pesos (_ : i32) : f64 = 1.0  -- colocar o parâmetro para, por exemplo, a primeira parcela maior que as demais (o índice começa por zero)
 def Pagamentos (indice : i32) : f64 = Periodo * ((r64 indice) + 1)  -- o + 1 é porque o índice começa por zero, então será uma progração aritmética: 30, 60, 90 ...
 
 -- calcula a somatória de pesos[] para a quantidade de parcelas

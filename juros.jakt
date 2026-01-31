@@ -71,7 +71,7 @@ class Juros {
 }
 
 fn main() {
-    mut juros = Juros(quantidade: 300, composto: true, periodo: 30.0f64, pagamentos: [], pesos: [])
+    mut juros = Juros(quantidade: 3, composto: true, periodo: 30.0f64, pagamentos: [], pesos: [])
     mut indice: usize = 0
     mut indicef: f64 = 1.0f64
 

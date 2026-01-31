@@ -1,0 +1,150 @@
+/// Cálculo do juros, sendo que precisa de arrays pra isso
+/// Versão 0.1: 31/01/2026: versão feita sem muito conhecimento de Jakt
+/// ATENÇÃO: a solução foi testada usando o comando "jakt -r juros.jakt", pois não foi possúvel compilar
+
+/// classe com atributos que simplificam e deixam mais legíveis as chamadas aos métodos
+class Juros {
+    public quantidade: usize
+    public composto: bool
+    public periodo: f64
+    public pagamentos: [f64]
+    public pesos: [f64]
+
+    /// calcula a somatória dos elementos de pesos[]
+    public fn getPesoTotal(mut this) -> f64 {
+        mut indice: usize = 0
+        mut acumulador: f64 = 0.0f64
+
+        while indice < this.quantidade {
+            acumulador += this.pesos[indice]
+            indice += 1
+        }
+
+        return acumulador
+    }
+
+    /// calcula o acréscimo a partir dos juros e parcelas
+    public fn jurosParaAcrescimo(mut this, juros: f64) -> f64 {
+        let pesoTotal: f64 = this.getPesoTotal()
+        if (this.quantidade < 1 or this.periodo <= 0.0f64 or pesoTotal <= 0.0f64 or juros <= 0.0f64) { return 0.0f64 }
+        mut indice: usize = 0
+        mut acumulador: f64 = 0.0f64
+        let fator: f64 = ln(valor: 1.0f64 + juros / 100.0f64)  // otimiza a linha nos juros compostos que chamava pow()
+
+        while indice < this.quantidade {
+            if (this.composto) {
+                acumulador += this.pesos[indice] / exp(valor: fator * this.pagamentos[indice] / this.periodo)
+                // acumulador += this.pesos[indice] / pow(base: 1.0f64 + juros / 100.0f64, expoente: this.pagamentos[indice] / this.periodo)
+            } else {
+                acumulador += this.pesos[indice] / (1.0f64 + juros / 100.0f64 * this.pagamentos[indice] / this.periodo)
+            }
+            indice += 1
+        }
+
+        if (acumulador <= 0.0f64) { return 0.0f64 }
+        return (pesoTotal / acumulador - 1.0f64) * 100.0f64
+    }
+
+    /// calcula os juros a partir do acréscimo e parcelas
+    public fn acrescimoParaJuros(mut this, acrescimo: f64, precisao: usize, maxIteracoes: usize, maxJuros: f64) -> f64 {
+        let pesoTotal: f64 = this.getPesoTotal()
+        if (this.quantidade < 1 or this.periodo <= 0.0f64 or pesoTotal <= 0.0f64 or acrescimo <= 0.0f64 or precisao < 1 or maxIteracoes < 1 or maxJuros <= 0.0f64) 
+            { return 0.0f64 }
+        mut minJuros: f64 = 0.0f64
+        mut medJuros: f64 = maxJuros / 2.0f64
+        mut minDiferenca: f64 = pow(base: 0.1f64, expoente: precisao)
+        mut indice: usize = 0
+
+        while indice < maxIteracoes {
+            if (maxJuros - minJuros < minDiferenca) { return medJuros }
+            if (this.jurosParaAcrescimo(juros: medJuros) < acrescimo) {
+                minJuros = medJuros
+            } else {
+                maxJuros = medJuros
+            }
+            indice += 1
+            medJuros = (minJuros + maxJuros) / 2.0f64
+        }
+
+        return medJuros
+    }
+}
+
+fn main() {
+    mut juros = Juros(quantidade: 300, composto: true, periodo: 30.0f64, pagamentos: [], pesos: [])
+    mut indice: usize = 0
+    mut indicef: f64 = 1.0f64
+
+    // inicializa (via insersão ao final) os arrays do objeto juros
+    while indice < juros.quantidade {
+        juros.pagamentos.push(indicef * juros.periodo)
+        juros.pesos.push(1.0f64)
+        indice += 1
+        indicef += 1.0f64
+    }
+
+    // calcula e guarda o resultado dos métodos
+    let pesoTotal: f64 = juros.getPesoTotal()
+    let acrescimoCalculado: f64 = juros.jurosParaAcrescimo(juros: 3.0f64)
+    let jurosCalculado: f64 = juros.acrescimoParaJuros(acrescimo: acrescimoCalculado, precisao: 15, maxIteracoes: 65, maxJuros: 50.0f64)
+
+    // imprime os resultados
+    println("Peso total = {}", pesoTotal)
+    println("Acréscimo = {}", acrescimoCalculado)
+    println("Juros = {}", jurosCalculado)
+}
+
+/// essa função é mais precisa com valores mais próximos de 1, como 1.0 a 1.1, que é a faixa em que vai ser usada
+fn ln(valor: f64) -> f64 {
+    let TOTLN = 20
+    mut indice: usize = 1
+    mut indicef: f64 = 1.0f64
+    mut ip: f64 = (valor - 1.0f64) / (valor + 1.0f64)
+    mut termo: f64 = ip
+    mut soma: f64 = 0.0f64
+
+    while indice <= TOTLN {
+        soma += termo / (2.0f64 * indicef - 1.0f64)
+        termo *= ip * ip
+        indice += 1
+        indicef += 1.0f64
+    }
+
+    return 2.0 * soma
+}
+
+/// essa função é mais precisa com valores menores do que 5, que é a faixa em que vai ser usada
+fn exp(valor: f64) -> f64 {
+    let TOTEXP = 30
+    mut indice: usize = 1
+    mut indicef: f64 = 1.0f64
+    mut termo: f64 = 1.0f64
+    mut soma: f64 = 1.0f64
+
+    while indice <= TOTEXP {
+        termo *= valor / indicef
+        soma += termo
+        indice += 1
+        indicef += 1.0f64
+    }
+
+    return soma
+}
+
+// /// essa função tem a precisão boa de acordo com ln() e exp() // ficou desnecessária com a otimiização com fator em acrescimoParaJuros
+// fn pow(base: f64, expoente: f64) -> f64 {
+//     return exp(valor: ln(valor: base) * expoente)
+// }
+
+/// função para fazer 0.1 ^ precisao
+fn pow(base: f64, expoente: usize) -> f64 {
+    mut indice: usize = 0
+    mut produto: f64 = 1.0f64
+
+    while indice < expoente {
+        produto *= base
+        indice += 1
+    }
+
+    return produto
+}

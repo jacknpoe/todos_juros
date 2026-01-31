@@ -324,6 +324,7 @@ Rebol (28/01/2026)
 SNOBOL4 (28/01/2026)
 ugBASIC (30/01/2026)
 G-Portugol (30/01/2026)
+Jakt (31/01/2026)
 
 CRONOLOGIA / CHRONOLOGY
 -----------------------

@@ -62,7 +62,7 @@
 
 ; preenche dinamicamente as listas (arrays, tabelas...)
 (for [indice 1 _G.Quantidade]
-  (table.insert _G.Pagamentos (* _G.Periodo indice ))
+  (table.insert _G.Pagamentos (* _G.Periodo indice))
   (table.insert _G.Pesos 1.0))
 
 ; calcula e guarda os resultados das funções

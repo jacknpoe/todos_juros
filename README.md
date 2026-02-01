@@ -40,7 +40,7 @@ Alguns dialetos não terão a solução ainda, por não terem suporte a recursos
 
 Versões como as de UCSD Pascal (Apple /// implementation) e Regina Rexx têm implementações das funções ln() para logaritmo natural e exp() para número de Euler elevado à potência. Então, as funções pow() de exponenciação foram construídas a partir das operações matemáticas básicas. Elas começarão a serem portadas para as linguagens que não têm essas funções, como G-Portugol, Jakt, NPortugol, ugBASIC.
 
-Embora a solução em Jakt inclua implementações próprias das funções ln() e exp(), que foram testadas de forma interpretada e por isso são lentas, a função jurosParaAcrescimo tem uma versão otimizada do cálculo dos juros compostos, reduzindo quase pela metade o tempo necessário. Essa otimização não será aplicada nas outras implementações, para manter a homogeneidade dos algoritmos, e o cálculo normal foi mantido comentado no código.
+A função `jurosParaAcrescimo()` em Jakt tem uma versão otimizada do cálculo dos juros compostos, reduzindo quase pela metade o tempo necessário, embora a solução em Jakt inclua implementações próprias das funções `ln()` e `exp()`, que foram testadas de forma interpretada, e por isso são lentas. Essa otimização não será aplicada nas outras implementações, para manter a homogeneidade dos algoritmos, e o cálculo normal foi mantido comentado no código.
 
 A saída mais comum para os testes é:
 
@@ -106,7 +106,7 @@ Some dialects will not yet have the solution because they lack support for neces
 
 Versions like those in UCSD Pascal (Apple /// implementation) and Regina Rexx have implementations of the ln() function for natural logarithms and exp() for Euler's number raised to a power. Therefore, the pow() functions for exponentiation were built upon basic mathematical operations. They will begin to be ported to languages ​​that do not have these functions, such as G-Portugol, Jakt, NPortugol, amd ugBASIC..
 
-Although the solution in Jakt includes its own implementations of the ln() and exp() functions, which were tested in an interpreted way and are therefore slow, the jurosParaAcrescimo function has an optimized version of the compound interest calculation, reducing the time required by almost half. This optimization will not be applied to the other implementations, to maintain the homogeneity of the algorithms, and the normal calculation has been kept commented out in the code.
+The `jurosParaAcrescimo()` function in Jakt has an optimized version of compound interest calculation, reducing the time required by almost half, although the Jakt solution includes its own implementations of the `ln()` and `exp()` functions, which were tested in an interpreted way, and are therefore slow. This optimization will not be applied to the other implementations, to maintain the homogeneity of the algorithms, and the normal calculation has been kept commented in the code.
 
 The most common output for tests is:
 

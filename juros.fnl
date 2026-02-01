@@ -65,7 +65,7 @@
   (table.insert _G.Pagamentos (* _G.Periodo indice ))
   (table.insert _G.Pesos 1.0))
 
-; calcula e guarda os resultados das fumções
+; calcula e guarda os resultados das funções
 (local pesoTotal (getPesoTotal))
 (local acrescimoCalculado (jurosParaAcrescimo 3.0))
 (local jurosCalculado (acrescimoParaJuros acrescimoCalculado 15 65 50.0))

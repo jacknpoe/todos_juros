@@ -1064,6 +1064,7 @@ Bourne shell = POSIX sh
 bsh = Java
 Cerberus X = Monkey 2
 Chez Scheme = Scheme
+CHICKEN = Scheme
 ClosureScript = Squint
 Coffee = CoffeeScript
 CPC = Locomotive BASIC

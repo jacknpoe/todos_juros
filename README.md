@@ -8,7 +8,7 @@ O foco é resolver o problema de Matemática Financeira usando Cálculo Numéric
 
 É uma "Pedra de Roseta" sobre dialetos de programação.
 
-Tirando a pasta "terceiros", todas as soluções foram escritas por https://github.com/jacknpoe, sendo que apenas em BBC Basic foi utilizada uma forma simplificada de "tradução", sendo que o código precisou ser completamente revisado para poder rodar apropriadamente.
+Tirando a pasta "terceiros", todas as soluções foram escritas por https://github.com/jacknpoe. Em BBC Basic foi utilizada uma forma simplificada de "tradução", sendo que o código precisou ser completamente revisado para poder rodar apropriadamente. QML teve parte do código traduzida de JavaScript pelo ChatGPT nas, de novo, ela teve que ser revisada, com partes que foram ignoradas.
 
 Fórmula para calcular o acréscimo a partir dos juros simples:
 
@@ -74,7 +74,7 @@ The focus is to solve the Financial Mathematics problem using Numerical Calculus
 
 It's a "Rosetta Stone" of programming dialects.
 
-Aside from the "terceiros" folder, all solutions were written by https://github.com/jacknpoe, with only BBC Basic using a simplified "translation" method, requiring a complete code revision to run properly.
+With the exception of the "third parties" folder, all solutions were written by https://github.com/jacknpoe. BBC Basic used a simplified form of "translation," requiring a complete review of the code to run properly. QML had part of its JavaScript code translated by ChatGPT, but again, it had to be revised, with some parts being omitted.
 
 Formula for calculating the increase from simple interest:
 

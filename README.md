@@ -8,7 +8,7 @@ O foco é resolver o problema de Matemática Financeira usando Cálculo Numéric
 
 É uma "Pedra de Roseta" sobre dialetos de programação.
 
-Tirando a pasta "terceiros", todas as soluções foram escritas por https://github.com/jacknpoe. Em BBC Basic foi utilizada uma forma simplificada de "tradução", sendo que o código precisou ser completamente revisado para poder rodar apropriadamente. QML teve parte do código traduzida de JavaScript pelo ChatGPT nas, de novo, ela teve que ser revisada, com partes que foram ignoradas.
+Tirando a pasta "terceiros", todas as soluções foram escritas por https://github.com/jacknpoe. Em BBC Basic foi utilizada uma forma simplificada de "tradução", sendo que o código precisou ser completamente revisado para poder rodar apropriadamente. QML teve parte do código traduzida de JavaScript pelo ChatGPT mas, de novo, ela teve que ser revisada, com partes que foram ignoradas.
 
 Fórmula para calcular o acréscimo a partir dos juros simples:
 

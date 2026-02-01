@@ -4,8 +4,6 @@ PORTUGUÊS
 =========
 Este repositório é sobre codificar, em vários dialetos, a mesma solução em matemática financeira. Achar os juros a partir do acréscimo, das datas e pesos das parcelas. Eu uso o Método da Bisseção do Cálculo Numérico para resolvê-la. A ideia é que cada versão se fixe ao máximo à cultura de cada dialeto. Eu uso o mínimo de recursos possível. Eu evito adicionar qualquer biblioteca que eu puder.
 
-O foco é resolver o problema de Matemática Financeira usando Cálculo Numérico. Então, alguns dialetos que exigiriam um conhecimento maior de matemática, como exponenciação de números de ponto flutuante, estão sendo preteridos até o momento.
-
 É uma "Pedra de Roseta" sobre dialetos de programação.
 
 Tirando a pasta "terceiros", todas as soluções foram escritas por https://github.com/jacknpoe. Em BBC Basic foi utilizada uma forma simplificada de "tradução", sendo que o código precisou ser completamente revisado para poder rodar apropriadamente. QML teve parte do código traduzida de JavaScript pelo ChatGPT mas, de novo, ela teve que ser revisada, com partes que foram ignoradas.
@@ -69,8 +67,6 @@ A licença é GNU (https://github.com/jacknpoe/todos_juros/blob/main/LICENSE).
 ENGLISH
 =======
 This repository is about coding, in multiple dialects, the same solution in financial mathematics. To find the interest based on the increase, dates and weights of the installments. I use the Bisection Method of Numerical Calculus to solve it. The idea is that each version adheres to the culture of each dialect as much as possible. I use as few resources as possible. I avoid adding any libraries I can.
-
-The focus is to solve the Financial Mathematics problem using Numerical Calculus. Therefore, some dialects ​​that would require greater knowledge of mathematics, such as exponentiation of floating point numbers, are being deprecated for now.
 
 It's a "Rosetta Stone" of programming dialects.
 

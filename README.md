@@ -28,7 +28,7 @@ Dois dialetos são consideradas diferentes quando qualquer parte do código tem 
 
 Claro que, para alguns dialetos, algumas soluções são quase completamente idênticas, mas foram publicadas distintamente porque um só código não rodaria em mais de um dialeto. Um exemplo clássico são os dialetos SML e SML/NJ. Uma única linha (que é obrigatória em SML e gera um erro em SML/NJ) impede que uma mesma solução rode em ambos os dialetos. Outro exemplo bem evidente são os dialetos de Forth, que usam arrays distintamente.
 
-As soluções estão divididas entre as recursivas (Alice, Arc, AutoLISP, Bend, Bigloo, Caml, Clean, Clojure, Common Lisp, DataWeave, DrScheme, Elixir, Elm, Emacs Lisp, Erlang, EusLisp, Flix, Gauche, Gleam, GOOPS, Haskell, Hope, Idris, ILOS, ISLISP, Kawa, Lean, Miranda, NewLISP, Oak, OCaml, Orc, Otus Lisp, Prolog, PureScript, Racket, ReasonML, ReScript, Scheme, SML, SML/NJ, Source, Squint, Steel, Visual LISP, XSB e Yeti) e iterativas (todos os outros dialetos, incluindo F#).
+As soluções estão divididas entre as recursivas (Alice, Arc, AutoLISP, Bend, Bigloo, Caml, Clean, Clojure, Common Lisp, DataWeave, DrScheme, Elixir, Elm, Emacs Lisp, Erlang, EusLisp, Frennel, Flix, Gauche, Gleam, GOOPS, Haskell, Hope, Idris, ILOS, ISLISP, Kawa, Lean, Miranda, NewLISP, Oak, OCaml, Orc, Otus Lisp, Prolog, PureScript, Racket, ReasonML, ReScript, Scheme, SML, SML/NJ, Source, Squint, Steel, Visual LISP, XSB e Yeti) e iterativas (todos os outros dialetos, incluindo F#).
 
 Existem, em algumas soluções, salvaguardas para valores incorretos para uma aplicação real. São valores zerados e negativos. Em alguns dialetos não é verificado, pois entendeu-se que o público-alvo desses dialetos não cometeria esse tipo de equívoco.
 
@@ -96,7 +96,7 @@ Two dialects ​​are considered different when any part of the code has to be 
 
 Of course, for some dialects, some solutions are almost completely identical, but they were published separately because a single code would not run in more than one dialect. A classic example is the SML and SML/NJ dialects. A single line (which is mandatory in SML and generates an error in SML/NJ) prevents the same solution from running in both dialects. Another very clear example is the Forth dialects, which use arrays differently.
 
-The solutions are divided between recursive (Alice, Arc, AutoLISP, Bend, Bigloo, Caml, Clean, Clojure, Common Lisp, DataWeave, DrScheme, Elixir, Elm, Emacs Lisp, Erlang, EusLisp, Flix, Gauche, Gleam, GOOPS, Haskell, Hope, Idris, ILOS, ISLISP, Kawa, Lean, Miranda, NewLISP, Oak, OCaml, Orc, Otus Lisp, Prolog, PureScript, Racket, ReasonML, ReScript, Scheme, SML, SML/NJ, Source, Squint, Steel, Visual LISP, XSB and Yeti) and iterative (all other dialects, including F#).
+The solutions are divided between recursive (Alice, Arc, AutoLISP, Bend, Bigloo, Caml, Clean, Clojure, Common Lisp, DataWeave, DrScheme, Elixir, Elm, Emacs Lisp, Erlang, EusLisp, Frennel, Flix, Gauche, Gleam, GOOPS, Haskell, Hope, Idris, ILOS, ISLISP, Kawa, Lean, Miranda, NewLISP, Oak, OCaml, Orc, Otus Lisp, Prolog, PureScript, Racket, ReasonML, ReScript, Scheme, SML, SML/NJ, Source, Squint, Steel, Visual LISP, XSB and Yeti) and iterative (all other dialects, including F#).
 
 There are, in some solutions, safeguards for incorrect values ​​for a real application. These are zero and negative values. In some dialects ​​it is not verified, as it was understood that the target audience of these dialects ​​would not make this type of mistake.
 

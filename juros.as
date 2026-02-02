@@ -1,5 +1,5 @@
 -- Cálculo dos juros, sendo que precisa de parcelas pra isso
--- Versão 0.1: 30/07/2026: versão feita sem muito conhecimento de Aldor
+-- Versão 0.1: 30/07/2025: versão feita sem muito conhecimento de Aldor
 
 #include "aldor"
 #include "aldorio"

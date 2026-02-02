@@ -326,6 +326,7 @@ ugBASIC (30/01/2026)
 G-Portugol (30/01/2026)
 Jakt (31/01/2026)
 Frennel (01/02/2026)
+AngelScript (02/02/2026)
 
 CRONOLOGIA / CHRONOLOGY
 -----------------------

@@ -1114,6 +1114,7 @@ Pascal ISO 7185 = MSX Turbo Pascal
 PC-BASIC = GW-BASIC
 Pizza = Java
 PoSh = Windows PowerShell
+PowerBASIC = Turbo Basic
 Pretty C = C
 PRO*C = C
 QB45 = QB64

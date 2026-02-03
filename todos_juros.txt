@@ -1120,6 +1120,7 @@ QuickPascal = Turbo Pascal
 Reason = ReasonML
 Rebol/Core = Rebol|
 SCM = Scheme
+Scryer Prolog = Prolog
 SICP = DrScheme
 Squeak = Smalltalk
 STclos = Gauche/Kawa/Scheme/Steel}

@@ -1066,6 +1066,7 @@ juros.z81
 EQUIVALENTES
 Amstrad BASIC = Locomotive BASIC
 Archimedes BBC BASIC = MEMOTECH MTX 512 BBC BASIC
+BBC BASIC for SDL 2.0 = BBC BASIC
 Boa = Node.js
 Bourne shell = POSIX sh
 bsh = Java

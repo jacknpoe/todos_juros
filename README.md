@@ -8,6 +8,8 @@ Este repositório é sobre codificar, em vários dialetos, a mesma solução em 
 
 Tirando a pasta "terceiros", todas as soluções foram escritas por https://github.com/jacknpoe. Em BBC Basic foi utilizada uma forma simplificada de "tradução", sendo que o código precisou ser completamente revisado para poder rodar apropriadamente. QML teve parte do código traduzida de JavaScript pelo ChatGPT mas, de novo, ela teve que ser revisada, com partes que foram ignoradas.
 
+Um executor de scripts para AngelScript foi criado pelo ChatGPT a partir das bibliotecas do AngelScript. Trata-se de um código-fonte em C++ (.cpp) que recebe um script como parâmetro e o executa. Ele está disponível junto à solução escrita nessa linguagem de script, para quem quiser compilar e testar a execução (desde que, é claro, as bibliotecas sejam baixadas e colocadas nas pastas adequadas).
+
 Fórmula para calcular o acréscimo a partir dos juros simples:
 
 ![Juros Simples](https://github.com/jacknpoe/todos_juros/blob/main/JurosSimples.jpg)
@@ -71,6 +73,8 @@ This repository is about coding, in multiple dialects, the same solution in fina
 It's a "Rosetta Stone" of programming dialects.
 
 With the exception of the "third parties" folder, all solutions were written by https://github.com/jacknpoe. BBC Basic used a simplified form of "translation," requiring a complete review of the code to run properly. QML had part of its JavaScript code translated by ChatGPT, but again, it had to be revised, with some parts being omitted.
+
+A script executor for AngelScript was created by ChatGPT using the AngelScript libraries. It is a C++ source code (.cpp) that receives a script as a parameter and executes it. It is available along with the solution written in this scripting language, for anyone who wants to compile and test its execution (provided, of course, that the libraries are downloaded and placed in the appropriate folders).
 
 Formula for calculating the increase from simple interest:
 

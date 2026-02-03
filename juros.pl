@@ -1,7 +1,8 @@
 % Cálculo do juros, sendo que precisa de arrays para isso
-% Versão 0.1: 03/05/2024: completa
+% Versão 0.1: 03/02/2026: basicamente copiado de SWI-Prolog e alterado com ajuda do ChatGPT
+
 % dados gerais
-juros() :-
+juros :-
 %  Quantidade is 3,  % Quantidade ficaria no caminho das três primeiras recursões
   Composto is 1,
   Periodo is 30.0,
@@ -9,15 +10,15 @@ juros() :-
   Pesos = [1.0, 1.0, 1.0],
   % testa as funções
   getPesoTotal(Pesos, PesoTotal),
-  write("Peso total = "),
+  write('Peso total = '),
   write(PesoTotal), nl,
   jurosParaAcrescimo(Composto, Periodo, Pagamentos, Pesos, 3.0, Acrescimo),
-  write("Acréscimo = "),
+  write('Acréscimo = '),
   write(Acrescimo), nl,
   acrescimoParaJuros(Composto, Periodo, Pagamentos, Pesos, Acrescimo, 15, 100, 50.0, Juros),
-  write("Juros = "),
-  write(Juros), nl.
-
+  write('Juros = '),
+  write(Juros), nl,
+  halt.
 
 % função recursiva que calcula a somatória de pesos[]
 getPesoTotal([PesosH|PesosT], PesoTotal) :-
@@ -43,10 +44,10 @@ jurosParaAcrescimo(Composto, Periodo, Pagamentos, Pesos, Juros, Acrescimo) :-
 % calcula a soma do amortecimento de todas as parcelas para juros compostos
 rJurosCompostos(Periodo, [PagamentosH|PagamentosT], [PesosH|PesosT], Juros, Amortecimento) :-
   (
-    (PesosT == [], Amortecimento is PesosH / (1.0 + Juros / 100.0) ^ (PagamentosH / Periodo))
+    (PesosT == [], Amortecimento is PesosH / (1.0 + Juros / 100.0) ** (PagamentosH / Periodo))
     ;
     (PesosT \= [], rJurosCompostos(Periodo, PagamentosT, PesosT, Juros, Amortecimento1),
-      Amortecimento is PesosH / (1.0 + Juros / 100.0) ^ (PagamentosH / Periodo) + Amortecimento1)
+      Amortecimento is PesosH / (1.0 + Juros / 100.0) ** (PagamentosH / Periodo) + Amortecimento1)
   ).
   
 % calcula a soma do amortecimento de todas as parcelas para juros simples
@@ -60,7 +61,7 @@ rJurosSimples(Periodo, [PagamentosH|PagamentosT], [PesosH|PesosT], Juros, Amorte
   
 % calcula os juros a partir do acréscimo e dados comuns (como parcelas)
 acrescimoParaJuros(Composto, Periodo, Pagamentos, Pesos, Acrescimo, Precisao, MaxIteracoes, MaxJuros, Juros) :-
-  rAcrescimoParaJuros(Composto, Periodo, Pagamentos, Pesos, Acrescimo, 0.1 ^ Precisao, MaxIteracoes, 0.0, MaxJuros, MaxJuros / 2.0, Juros).
+  rAcrescimoParaJuros(Composto, Periodo, Pagamentos, Pesos, Acrescimo, 0.1 ** Precisao, MaxIteracoes, 0.0, MaxJuros, MaxJuros / 2.0, Juros).
 
 % função recursiva no lugar de um for que realmente calcula o acréscimo
 rAcrescimoParaJuros(Composto, Periodo, Pagamentos, Pesos, Acrescimo, MinDiferenca, IteracaoAtual, MinJuros, MaxJuros, MedJuros, Juros) :-
@@ -81,3 +82,7 @@ rAcrescimoParaJuros(Composto, Periodo, Pagamentos, Pesos, Acrescimo, MinDiferenc
       )
     )
   ).
+
+% executa com scryer-prolog juros.pl
+% executa com swipl -q juros.pl
+:- initialization(juros).

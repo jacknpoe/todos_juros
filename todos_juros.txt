@@ -1,7 +1,7 @@
-331 resoluções de equação transcendente
+332 resoluções de equação transcendente
 ---------------------------------------
 
-Desde que esse artigo foi publicado, mais 321 resoluções foram acrescentadas ao repositório https://github.com/jacknpoe/todos_juros, totalizando, agora, 331 resoluções.
+Desde que esse artigo foi publicado, mais 322 resoluções foram acrescentadas ao repositório https://github.com/jacknpoe/todos_juros, totalizando, agora, 332 resoluções.
 
 No artigo Resolução de Equação Transcendente, foi explicado como uma equação que calcula os juros a partir do acréscimo e das parcelas pode ser feita usando Cálculo Numérico, especificamente o Método da Bisseção.
 
@@ -1004,66 +1004,69 @@ juros.wren
 311. WWB-COM (31/03/2025)
 Juros.wwd
 
-312. X# (14/06/2024)
+312. wxBasic (04/02/2026)
+juros.wxb
+
+313. X# (14/06/2024)
 Juros.prg
 Start.prg
 
-313. X10 (02/08/2024)
+314. X10 (02/08/2024)
 TestaJuros.x10
 
-314. X11-Basic (17/05/2025)
+315. X11-Basic (17/05/2025)
 jurosX11.bas
 
-315. Xbase++ (02/04/2025)
+316. Xbase++ (02/04/2025)
 jurosXB.prg
 main.prg
 
-316. XBasic (31/12/2025)
+317. XBasic (31/12/2025)
 juros.x
 
-317. XC=BASIC (16/07/2024)
+318. XC=BASIC (16/07/2024)
 juros_xc.bas
 
-318. Xojo (18/02/2025)
+319. Xojo (18/02/2025)
 juros.xojo_binary_project
 
-319. XPL0 (19/02/2025)
+320. XPL0 (19/02/2025)
 juros.xpl
 
-320. XSB (19/02/2025)
+321. XSB (19/02/2025)
 juros.P
 
-321. Xtend (03/06/2024)
+322. Xtend (03/06/2024)
 Juros.xtend
 
-322. Yabasic (30/01/2025)
+323. Yabasic (30/01/2025)
 JUROSYB.BAS
 
-323. Yeti (31/05/2024)
+324. Yeti (31/05/2024)
 juros.yeti
 
-324. Yoix (27/03/2025)
+325. Yoix (27/03/2025)
 juros.yx
 
-325. Yorick (11/07/2025)
+326. Yorick (11/07/2025)
 juros.i
 
-326. Z (22/05/2025)
+327. Z (22/05/2025)
 juros.zlang
 
-327. ZBasic (09/03/2025)
+328. ZBasic (09/03/2025)
 JUROSZ.BAS
 
-328. Zig (17/06/2024)
+329. Zig (17/06/2024)
 juros.zig
 
-329. zsh (11/07/2025)
+330. zsh (11/07/2025)
 juros.zsh
 
-330. ZX Spectrum 128 BASIC (05/05/2025)
+331. ZX Spectrum 128 BASIC (05/05/2025)
 juros.z80
 
-331. ZX81 BASIC (20/05/2025)
+332. ZX81 BASIC (20/05/2025)
 juros.z81
 
 EQUIVALENTES

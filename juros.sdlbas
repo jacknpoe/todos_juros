@@ -1,0 +1,114 @@
+' Cálculo dos juros, sendo que precisa de parcelas pra isso
+' Versão 0.1: 05/02/2026: versão feita sem muito conhecimento de sdlBasic
+
+' variáveis globais e inicialização de escalares
+Quantidade = 3
+Composto = true
+Periodo = 30.0
+Dim Pagamentos[Quantidade-1]
+Dim Pesos[Quantidade-1]
+Linha = 0
+
+' converte um "valor" em uma string com "casas" decimais (do ChatGPT, corrigida e melhorada
+Function numToStr(valor, casas)
+    fator = 10 ^ casas
+	valor = valor + 0.5 / fator
+	inteiro = Int(valor)
+    fracao = valor - inteiro
+
+    cadeia = Ltrim$(Str$(inteiro)) + "."
+
+    For indice = 1 To casas
+        fracao = fracao * 10
+        digito = Int(fracao)
+        cadeia = cadeia + Chr$(48 + digito)
+        fracao = fracao - digito
+    Next
+
+    Return cadeia
+End Function
+
+' usada para imprimir na "Linha", com "legenda" e "numero", com 15 casas decimais usando numToStr()
+Sub imprime(legenda, numero)
+	Text(0, 20 * Linha, 16, legenda + " = " + numToStr(numero, 15))
+	Linha = Linha + 1
+End Sub
+
+' calcula a somatória de todos os elementos de Pesos[]
+Function getPesoTotal()
+	acumulador = 0.0
+
+	For indice = 0 To Quantidade - 1
+		acumulador = acumulador + Pesos[indice]
+	Next
+
+	Return acumulador
+End Function
+
+' calcula o acréscimo a partir dos juros e parcelas
+Function jurosParaAcrescimo(juros)
+	pesoTotal = getPesoTotal()
+	If Quantidade < 1 Or Periodo <= 0.0 Or pesoTotal <= 0.0 Or juros <= 0.0 Then
+		Return 0.0
+	End If
+	acumulador = 0.0
+
+	For indice = 0 To Quantidade - 1
+		If Composto Then
+			acumulador = acumulador + Pesos[indice] / (1.0 + juros / 100.0) ^ (Pagamentos[indice] / Periodo)
+		Else
+			acumulador = acumulador + Pesos[indice] / (1.0 + juros / 100.0 * Pagamentos[indice] / Periodo)
+		End If
+	Next
+
+	If acumulador <= 0.0 Then
+		Return 0.0
+	End If
+	Return (pesoTotal / acumulador - 1.0) * 100.0
+End Function
+
+' calcula os juros a partir do acréscimo e parcelas
+Function acrescimoParaJuros(acrescimo, precisao, maxIteracoes, maxJuros)
+	pesoTotal = getPesoTotal()
+	If Quantidade < 1 Or Periodo <= 0.0 Or pesoTotal <= 0.0 Or acrescimo <= 0.0 Or precisao < 1 Or maxIteracoes < 1 Or maxJuros <= 0.0 Then
+		Return 0.0
+	End If
+	minJuros = 0.0
+	medJuros = maxJuros / 2.0
+	minDiferenca = 0.1 ^ precisao
+	maxJuros = maxJuros - 1
+
+	For iteracao = 1 To maxIteracoes
+		If maxJuros - minJuros < minDiferenca Then
+			Return medJuros
+		End If
+		If jurosParaAcrescimo(medJuros) < acrescimo Then
+			minJuros = medJuros
+		Else
+			maxJuros = medJuros
+		End If
+		medJuros = (minJuros + maxJuros) / 2.0
+	Next
+
+	Return medJuros
+End Function
+
+' inicializa os elementos dos arrays
+For indice = 0 To Quantidade - 1
+	Pagamentos[indice] = (indice + 1.0) * Periodo
+	Pesos[indice] = 1.0
+Next
+
+' calcula e guarda os retornos das funções
+pesoTotal = getPesoTotal()
+acrescimoCalculado = jurosParaAcrescimo(3.0)
+jurosCalculado = acrescimoParaJuros(acrescimoCalculado, 15, 65, 50.0)
+
+' imprime os resultados
+imprime("Peso total", pesoTotal)
+imprime("Acrescimo", acrescimoCalculado)
+imprime("Juros", jurosCalculado)
+
+' se não for assim, fecha a tela antes de poder ser lida
+WaitKey
+

@@ -4,7 +4,7 @@
 //          o script também roda, e dá os mesmos resultados, em https://kgabis.github.io/apeplay/
 
 // constantes globais para simplificar as chamadas às funções e inicialização de escalares (converta para var para mais de um teste)
-const Quantidade = 300000
+const Quantidade = 3
 const Composto = true
 const Periodo = 30.0
 const Pagamentos = []

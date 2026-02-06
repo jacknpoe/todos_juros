@@ -331,6 +331,7 @@ Chipmunk Basic (03/02/2026)
 thinBasic (04/02/2026)
 wxBasic (04/02/2026)
 sdlBasic (05/02/2026)
+Ape (06/02/2026)
 
 CRONOLOGIA / CHRONOLOGY
 -----------------------

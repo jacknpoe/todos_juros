@@ -1,0 +1,73 @@
+// Cálculo dos juros, sendo que precisa de parcelas pra isso
+// Versão 0.1: 06/02/2026: versão feita sem muito conhecimento de Ape
+// ATENÇÃO: renomeie ape.c na pasta examples para runApp.c, coloque na raiz, compile com + ape.c como parâmetro e execute com ./runApe juros.ape 
+//          o script também roda, e dá os mesmos resultados, em https://kgabis.github.io/apeplay/
+
+// constantes globais para simplificar as chamadas às funções e inicialização de escalares (converta para var para mais de um teste)
+const Quantidade = 300000
+const Composto = true
+const Periodo = 30.0
+const Pagamentos = []
+const Pesos = []
+
+// calcula a somatória dos elmentos de Pesos[]
+fn getPesoTotal() {
+    var acumulador = 0.0
+    for(var indice = 0; indice < Quantidade; indice++) { acumulador += Pesos[indice] }
+    return acumulador
+}
+
+// calcula o acréscimo a partir dos juros e parcelas
+fn jurosParaAcrescimo(juros) {
+    const pesoTotal = getPesoTotal()
+    if(Quantidade < 1 || Periodo <= 0.0 || pesoTotal <= 0.0 || juros <= 0.0) { return 0.0 }
+    var acumulador = 0.0
+
+    for(var indice = 0; indice < Quantidade; indice++) {
+        if(Composto) {
+            acumulador += Pesos[indice] / pow(1.0 + juros / 100.0, Pagamentos[indice] / Periodo)
+        } else {
+            acumulador += Pesos[indice] / (1.0 + juros / 100.0 * Pagamentos[indice] / Periodo)
+        }
+    }
+
+    if(acumulador <= 0.0) { return 0.0 }
+    return (pesoTotal / acumulador - 1.0) * 100.0
+}
+
+// calcula os juros a partir de acréscimo e parcelas
+fn acrescimoParaJuros(acrescimo, precisao, maxIteracoes, maxJuros) {
+    const pesoTotal = getPesoTotal()
+    if(Quantidade < 1 || Periodo <= 0.0 || pesoTotal <= 0.0 || acrescimo <= 0.0 || precisao < 1 || maxIteracoes < 1 || maxJuros <= 0.0) { return 0.0 }
+    var minJuros = 0.0
+    var medJuros =  maxJuros / 2.0
+    var minDiferenca = pow(0.1, precisao)
+
+    for(var iteracao = 0; iteracao < maxIteracoes; iteracao++) {
+        if(maxJuros - minJuros < minDiferenca) { return medJuros }
+        if(jurosParaAcrescimo(medJuros) < acrescimo) {
+            minJuros = medJuros
+        } else {
+            maxJuros = medJuros
+        }
+        medJuros = (minJuros + maxJuros) / 2.0
+    }
+
+    return medJuros
+}
+
+// inicialização dos elementos dos arrays globais
+for(var indice = 0; indice < Quantidade; indice++) {
+    append(Pagamentos, (indice + 1.0) * Periodo)
+    append(Pesos, 1.0)
+}
+
+// calcula e guarda os resultados das funçõe
+const pesoTotal = getPesoTotal()
+const acrescimoCalculado = jurosParaAcrescimo(3.0)
+const jurosCalculado = acrescimoParaJuros(acrescimoCalculado, 10, 40, 50.0)
+
+// imprime os resultados
+println(`Peso total = ${pesoTotal}`)
+println(`Acréscimo = ${acrescimoCalculado}`)
+println(`Juros = ${jurosCalculado}`)

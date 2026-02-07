@@ -16,7 +16,7 @@ For indice = 0 To Quantidade - 1
 Next
 
 ' Pagamentos() e Pesos() podem ser usadas para substituir os arrays para 128+ parcelas
-' lembre-se de trocar concletes [] por parênteses () onde encontrar chamadas aos arrays
+' lembre-se de trocar colchetes [] por parênteses () onde encontrar chamadas aos arrays
 ' Pagamentos
 'Function Pagamentos(indice)
 '	Return (indice + 1.0) * Periodo

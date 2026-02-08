@@ -334,6 +334,7 @@ sdlBasic (05/02/2026)
 Ape (06/02/2026)
 RCBasic (07/02/2026)
 Just BASIC (08/02/2026)
+lox (jlox Ahmad-Faraj implementation) (08/02/2026)
 
 CRONOLOGIA / CHRONOLOGY
 -----------------------

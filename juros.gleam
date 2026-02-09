@@ -1,3 +1,6 @@
+// Cálculo do juros, sendo que precisa de arrays pra isso
+// Versão 0.1: 18/03/2025: feito sem muito conhecinento de Gleam
+
 import gleam/io
 import gleam/float
 import gleam/result

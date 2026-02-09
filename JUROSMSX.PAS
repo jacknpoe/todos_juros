@@ -1,11 +1,13 @@
 { Calculo dos juros, sendo que precisa de parcelas pra isso
   Versao 0.1: 05/01/2025: versao feita sem muito conhecimento de MSX Turbo Pascal
-         0.2: 15/01/2025: criada variavel "simples" para simplificar juros simples }
+         0.2: 15/01/2025: criada variavel "simples" para simplificar juros simples
+         0.3: 09/02/2026: criada constante cDigitos para Pascal ISO 7185 }
 
 program Juros;
 
 const { constante com a quantidade de parcelas }
     cQuantidade = 3;
+    cDigitos = 10;  { 15 para mostrar todos os dígitos de Pascal ISO 7185 }
 
 type { registro para simplificar as chamadas de funcao }
     rJuros = record
@@ -123,7 +125,7 @@ begin
     juroscalculado := acrescimoParaJuros(juros, acrescimo, 15, 100, 50.0);
 
     { imprime os resultados }
-    Writeln('Peso total: ', pesoTotal:1:10);
-    Writeln('Acrescimo: ', acrescimo:1:10);
-    Writeln('Juros: ', juroscalculado:1:10);
+    Writeln('Peso total: ', pesoTotal:1:cDigitos);
+    Writeln('Acrescimo: ', acrescimo:1:cDigitos);
+    Writeln('Juros: ', juroscalculado:1:cDigitos);
 end.

@@ -1,0 +1,80 @@
+# Cálculo dos juros, sendo que precisa de parcelas pra isso
+# Versão 0.1: 10/02/2026: versao feita sem muito conhecimento de Falcon
+
+# variáveis globais que simplificação as chamadas às funções e inicialização de escalares (como classe, perdia os dados ao chamar getPesoTotal)
+Quantidade = 3
+Composto = 1   # TRUE
+Periodo = 3.0
+Pagamentos = []
+Pesos = []
+
+# calcula a somatória dos elementos de Pesos[]
+func getPesoTotal() {
+    acumulador = 0.0
+    indice = 0
+    while indice < Quantidade {
+        acumulador = acumulador + Pesos[indice]
+        indice = indice + 1
+    }
+    return acumulador
+}
+
+# calcula o acréscimo a partir dos juros e parcelas
+func jurosParaAcrescimo(juros) {
+    pesoTotal = getPesoTotal()
+    if(Quantidade < 1 or Periodo <= 0.0 or pesoTotal <= 0.0 or juros <= 0.0) { return 0.0 }
+    acumulador = 0.0
+    indice = 0
+
+    while indice < Quantidade {
+        if(Composto == 1) {
+            acumulador = acumulador + Pesos[indice] / (1.0 + juros / 100.0) ** (Pagamentos[indice] / Periodo)
+        } 
+        if(Composto == 0) {
+            acumulador = acumulador + Pesos[indice] / (1.0 + juros / 100.0 * Pagamentos[indice] / Periodo)
+        }
+        indice = indice + 1
+    }
+
+    if(acumulador <= 0.0) { return 0.0 }
+    return (pesoTotal / acumulador - 1.0) * 100.0
+}
+
+# calcula os juros a partir do acréscimo e parcelas
+func acrescimoParaJuros(acrescimo, precisao, maxIteracoes, maxJuros) {
+    pesoTotal = getPesoTotal()
+    if(Quantidade < 1 or Periodo <= 0.0 or pesoTotal <= 0.0 or acrescimo <= 0.0 or precisao < 1 or maxIteracoes < 1 or maxJuros <= 0.0) { return 0.0 }
+    minJuros = 0.0
+    medJuros = maxJuros / 2.0
+    minDiferenca = 0.1 ** precisao
+    iteracao = 0
+
+    while iteracao < maxIteracoes {
+        if(maxJuros - minJuros < minDiferenca) { return medJuros }
+        calculado = jurosParaAcrescimo(medJuros)
+        if(calculado < acrescimo) { minJuros = medJuros }
+        if(calculado > acrescimo) { maxJuros = medJuros } 
+        medJuros = (minJuros + maxJuros) / 2.0
+        iteracao = iteracao + 1
+    }
+
+    return medJuros
+}
+
+# inicializa os elementos dos atributos array
+indice = 0
+while indice < Quantidade {
+    Pagamentos.append((indice + 1.0) * Periodo)
+    Pesos.append(1.0)
+    indice = indice + 1
+}
+
+# calcula e guarda os resultados das funções
+pesoTotal = getPesoTotal()
+acrescimoCalculado = jurosParaAcrescimo(3.0)
+jurosCalculado = acrescimoParaJuros(acrescimoCalculado, 15, 65, 50.0)
+
+# imprime os resultados
+print("Peso total =", pesoTotal)
+print("Acréscimo =", acrescimoCalculado)
+print("Juros =", jurosCalculado)

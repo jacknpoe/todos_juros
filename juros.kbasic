@@ -1,0 +1,96 @@
+﻿' Cálculo dos juros, sendo que precisa de parcelas pra isso
+' Versão 0.1: 09/02/2026: versão feita sem muito conhecimento de KBasic
+
+' variáveis globais para simplificar as chamadas às funções e inicializaçao de escalares
+Dim Quantidade As Integer = 3, Composto As Boolean = true, Periodo As Double = 30.0
+Dim Pagamentos(1 To Quantidade), Pesos(1 To Quantidade) As Double
+
+' converte um "valor" em uma string com "casas" decimais (do ChatGPT, corrigida e melhorada)
+Function numToStr(valor As Double, casas as Integer) As String
+  Dim fator, fracao As Double
+  Dim inteiro, indice, digito As Integer
+  Dim cadeia As String
+  fator = 10 ^ casas
+  valor = valor + 0.5 / fator
+  inteiro = Int(valor)
+  fracao = valor - inteiro
+
+  cadeia = Trim$(Str$(inteiro)) + "."
+
+  For indice = 1 To casas
+    fracao = fracao * 10
+    digito = Int(fracao)
+    cadeia = cadeia + Chr$(48 + digito)
+    fracao = fracao - digito
+  Next
+
+  Return cadeia
+End Function
+
+' usada para imprimir na "Linha", com "legenda" e "numero", com 15 casas decimais usando numToStr()
+Sub imprime(legenda As String, numero As Double)
+  Print legenda; " = "; numToStr(numero, 15)
+End Sub
+
+' calcula a somatória dos elementos do array Pesos()
+Function getPesoTotal() As Double
+  Dim acumulador As Double = 0.0, indice As  Integer
+  For indice = 1 To Quantidade
+    acumulador = acumulador + Pesos(indice)
+  Next
+  Return acumulador
+End Function
+
+' calcula o acréscimo a partir dos juros e parcelas
+Function jurosParaAcrescimo(juros As Double) As Double
+  Dim pesoTotal As Double = getPesoTotal()
+  If Quantidade < 1 Or Periodo <= 0.0 Or pesoTotal <= 0.0 Or juros <= 0.0 Then Return 0.0
+  Dim acumulador As Double = 0.0, indice As Integer
+  
+  For indice = 1 To Quantidade
+    If Composto Then
+      acumulador = acumulador + Pesos(indice) / (1.0 + juros / 100.0) ^ (Pagamentos(indice) / Periodo)
+    Else
+      acumulador = acumulador + Pesos(indice) / (1.0 + juros / 100.0 * Pagamentos(indice) / Periodo)
+    End If
+  Next
+  
+  If acumulador <= 0.0 Then Return 0.0
+  Return (pesoTotal / acumulador - 1.0) * 100.0
+End Function
+
+' calcula os juros a partir do acréscimo e parcelas
+Function acrescimoParaJuros(acrescimo As Double, precisao As Integer, maxIteracoes As Integer, maxJuros As Double) As Double
+  Dim pesoTotal As Double = getPesoTotal()
+  If Quantidade < 1 Or Periodo <= 0.0 Or pesoTotal <= 0.0 Or acrescimo <= 0.0 Or precisao < 1 Or maxIteracoes < 1 Or maxJuros <= 0.0 Then Return 0.0
+  Dim minJuros As Double = 0.0, medJuros As Double = maxJuros / 2.0, minDiferenca As Double = 0.1 ^ precisao, iteracao As Integer
+
+  For iteracao = 1 To maxIteracoes
+    If maxJuros - minJuros < minDiferenca Then Return medJuros
+    If jurosParaAcrescimo(medJuros) < acrescimo Then
+      minJuros = medJuros
+    Else
+      maxJuros = medJuros
+    End If
+    medJuros = (minJuros + maxJuros) / 2.0
+  Next
+  
+  Return medJuros
+End Function
+
+' inicializa elementos dos arrays
+Dim indice As Integer
+For indice = 1 To Quantidade
+  Pagamentos(indice) = indice * Periodo
+  Pesos(indice) = 1.0
+Next
+
+' calcula e guarda os resultados das funçoes
+Dim pesoTotal As Double = getPesoTotal()
+Dim acrescimoCalculado As Double = jurosParaAcrescimo(3.0)
+Dim jurosCalculado As Double = acrescimoParaJuros(acrescimoCalculado, 15, 65, 50.0)
+
+' imprime os resultados
+imprime("Peso total", pesoTotal)
+imprime("Acréscimo", acrescimoCalculado)
+imprime("Juros", jurosCalculado)

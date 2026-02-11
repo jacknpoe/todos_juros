@@ -1,0 +1,84 @@
+' Cálculo dos juros, sendo que precisa de parcelas pra isso
+' Versão 0.1: 11/02/2026: versão feita sem muito conhecimento de ScriptBasic
+
+' variáveis globais escalares para simplificar as chamadas às funções e inicialização
+Quantidade = 3
+Composto = TRUE
+Periodo = 30.0
+
+' inicializa elementos de arrays globais
+FOR indice = 0 TO Quantidade - 1
+    Pagamentos[indice] = (indice + 1.0) * Periodo
+    Pesos[indice] = 1.0
+NEXT indice
+
+' calcula a somatória dos elementos em Pesos[]
+FUNCTION getPesoTotal
+    acumulador = 0.0
+    FOR indice = 0 TO Quantidade - 1
+        acumulador += Pesos[indice]
+    NEXT indice
+    getPesoTotal = acumulador
+END FUNCTION
+
+' calcula o acréscimo a partit dos juros e parcelas
+FUNCTION jurosParaAcrescimo(juros)
+    pesoTotal = getPesoTotal()
+    IF Quantidade < 1 OR Periodo <= 0.0 OR pesoTotal <= 0.0 OR juros <= 0.0 THEN
+        jurosParaAcrescimo = 0.0
+    ELSE
+        acumulador = 0.0
+        FOR indice = 0 TO  Quantidade - 1
+            IF Composto THEN
+                acumulador += Pesos[indice] / (1.0 + juros / 100) ^ (Pagamentos[indice] / Periodo)
+            ELSE
+                acumulador += Pesos[indice] / (1.0 + juros / 100 * Pagamentos[indice] / Periodo)
+            END IF
+        NEXT indice
+
+        IF acumulador < 0.0 THEN
+            jurosParaAcrescimo = 0.0
+        ELSE
+            jurosParaAcrescimo = (pesoTotal / acumulador - 1.0) * 100.0
+        END IF
+    END IF
+END FUNCTION
+
+' calcula os juros a partir do acréscimo e parcelas
+FUNCTION acrescimoParaJuros(acrescimo, precisao, maxIteracoes, maxJuros)
+    pesoTotal = getPesoTotal()
+    IF Quantidade < 1 OR Periodo <= 0.0 OR pesoTotal <= 0.0 OR acrescimo <= 0.0 OR precisao < 1 OR maxIteracoes < 1 OR maxJuros <= 0.0 THEN
+        acrescimoParaJuros = 0.0
+    ELSE
+        minJuros = 0.0
+        medJuros = maxJuros / 2.0
+        minDiferenca = 0.1 ^ precisao
+        iterador = 0
+
+        WHILE iterador < maxIteracoes
+            IF (maxJuros - minJuros) < minDiferenca THEN
+                iterador = maxIteracoes
+            ELSE
+                if jurosParaAcrescimo(medJuros) < acrescimo THEN
+                    minJuros = medJuros
+                ELSE
+                    maxJuros = medJuros
+                END IF
+                medJuros = (minJuros + maxJuros) / 2.0
+            END IF
+            iterador += 1
+        WEND
+        
+        acrescimoParaJuros = medJuros
+    END IF
+END FUNCTION
+
+' calcula e guarda o resultado das funções
+pesoTotal = getPesoTotal()
+acrescimoCalculado = jurosParaAcrescimo(3.0)
+jurosCalculado = acrescimoParaJuros(acrescimoCalculado, 15, 65, 50.0)
+
+' imprime os resultados
+PRINT "Peso total = ", FORMAT("%.15f", pesoTotal), "\n"
+PRINT "Acrescimo = ", FORMAT("%.15f", acrescimoCalculado), "\n"
+PRINT "Juros = ", FORMAT("%.15f", jurosCalculado), "\n"

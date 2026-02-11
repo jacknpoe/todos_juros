@@ -59,7 +59,7 @@ FUNCTION acrescimoParaJuros(acrescimo, precisao, maxIteracoes, maxJuros)
             IF (maxJuros - minJuros) < minDiferenca THEN
                 iterador = maxIteracoes
             ELSE
-                if jurosParaAcrescimo(medJuros) < acrescimo THEN
+                IF jurosParaAcrescimo(medJuros) < acrescimo THEN
                     minJuros = medJuros
                 ELSE
                     maxJuros = medJuros

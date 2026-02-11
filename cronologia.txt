@@ -337,6 +337,7 @@ Just BASIC (08/02/2026)
 lox (jlox Ahmad-Faraj implementation) (08/02/2026)
 KBasic (10/02/2026)
 Falcon (10/02/2026)
+ScriptBasic (11/02/2026)
 
 CRONOLOGIA / CHRONOLOGY
 -----------------------

@@ -8,6 +8,7 @@
 	// 0.2   18/04/2023 - Classe inteiramente convertida
 	// 1.0   20/04/2023 - Versão implantada compatível com a página de testes
 	// 1.1   26/10/2024 - adicionado botão "Valores Exemplo"
+	// 1.2   12/02/2026 - arrays e periodo como float
 
 	namespace jacknpoe;
 
@@ -18,7 +19,7 @@
 	{
 		public $Quantidade = 0;
 		public $Composto = false;
-		public $Periodo = 30;
+		public $Periodo = 30.0;
 		public $Pagamentos = array();
 		public $Pesos = array();
 
@@ -44,7 +45,7 @@
 				$temporaria = explode( $delimitador, $pagamentos);
 				for( $indice = 1; $indice <= $this->Quantidade; $indice++)
 				{
-					$this->Pagamentos[ $indice] = intval( $temporaria[ $indice - 1]);
+					$this->Pagamentos[ $indice] = floatval( $temporaria[ $indice - 1]);
 				}
 			}
 		}
@@ -56,7 +57,7 @@
 			{
 				for( $indice = 1; $indice <= $this->Quantidade; $indice++)
 				{
-					$this->Pesos[ $indice] = 1;
+					$this->Pesos[ $indice] = 1.0;
 				}
 			}
 			else
@@ -64,7 +65,7 @@
 				$temporaria = explode( $delimitador, $pesos);
 				for( $indice = 1; $indice <= $this->Quantidade; $indice++)
 				{
-					$this->Pesos[ $indice] = intval( $temporaria[ $indice - 1]);
+					$this->Pesos[ $indice] = floatval( $temporaria[ $indice - 1]);
 				}
 			}
 		}

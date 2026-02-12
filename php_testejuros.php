@@ -30,7 +30,7 @@
 				$valor = $_POST['valor'];
 
 				require_once( 'CalculaJuros.php');
-				$calculajuros = new \jacknpoe\CalculaJuros( (int)$quantidade, ( $tipo === "composto"), (int)$periodo);
+				$calculajuros = new \jacknpoe\CalculaJuros( intval( $quantidade), ( $tipo === "composto"), floatval( $periodo));
 				$calculajuros->setPesos( ",", $pesos);
 				$calculajuros->setPagamentos( ",", $pagamentos);
 				if( $calculo === "jurosparaacrescimo")
@@ -50,7 +50,7 @@
 			<p>Quantidade: <input type="number" name="quantidade" id="quantidade" value="<?php echo htmlspecialchars( $quantidade, ENT_QUOTES | ENT_SUBSTITUTE | ENT_HTML401, "ISO-8859-1"); ?>" style="width: 50px" autofocus></p>
 			<p>Tipo: <input type="radio" name="tipo" value="simples" <?php if( $tipo === "simples") echo "checked"; ?>>simples
 				     <input type="radio" name="tipo" value="composto" <?php if( $tipo === "composto") echo "checked"; ?>>composto</p>
-			<p>Período: <input type="number" name="periodo" id="periodo" value="<?php echo htmlspecialchars( $periodo, ENT_QUOTES | ENT_SUBSTITUTE | ENT_HTML401, "ISO-8859-1"); ?>" style="width: 50px"> dias (período sobre o qual o juros incide, normalmente 30 dias)</p>
+			<p>Perí­odo: <input type="text" name="periodo" id="periodo" value="<?php echo htmlspecialchars( $periodo, ENT_QUOTES | ENT_SUBSTITUTE | ENT_HTML401, "ISO-8859-1"); ?>" style="width: 50px"> dias (período sobre o qual o juros incide, normalmente 30 dias)</p>
 			<p>Pesos: <input type="text" name="pesos" id="pesos" value="<?php echo htmlspecialchars( $pesos, ENT_QUOTES | ENT_SUBSTITUTE | ENT_HTML401, "ISO-8859-1"); ?>" style="width: 200px"> (pesos separados por vírgula, para parcelas iguais deixe vazio ou 1,1,1,1...)</p> 
 			<p>Pagamentos: <input type="text" name="pagamentos" id="pagamentos" value="<?php echo htmlspecialchars( $pagamentos, ENT_QUOTES | ENT_SUBSTITUTE | ENT_HTML401, "ISO-8859-1"); ?>" style="width: 200px"> (prazos de pagamento separados por vírgula, para 30,60,90,120... deixar vazio)</p> 
 			<p>Cálculo: <input type="radio" name="calculo" value="jurosparaacrescimo"<?php if( $calculo === "jurosparaacrescimo") echo "checked"; ?>>juros para acréscimo

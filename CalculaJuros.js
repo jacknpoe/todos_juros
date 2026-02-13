@@ -5,6 +5,7 @@
 //        1.3: 16/10/2024: adicionado botão "Valores Exemplo"
 //        1.4: 23/02/2025: separando a classe das funções (+ ; e .0)
 //        1.5: 24/02/2025: (+ ; e .0)
+//        1.6: 12/02/2026: na linha 88 estava peso em vez de pesoTotal
 
 export class CalculaJuros{
 	constructor(quantidade=0, composto=false, periodo=30.0){
@@ -84,7 +85,7 @@ export class CalculaJuros{
 		let medioJuros = 0.0;
 
 		if(acrescimoComoValorOriginal){
-			acrescimo = 100.0 * (total / acrescimo - 1.0);
+			acrescimo = 100.0 * (pesoTotal / acrescimo - 1.0);
 			if(acrescimo <= 0.0) return 0.0;
 		}
 

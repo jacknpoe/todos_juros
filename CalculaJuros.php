@@ -33,7 +33,7 @@
 			$this->Periodo = $periodo;
 		}
 
-		function setPagamentos(string $delimitador = ",", $pagamentos = "")
+		function setPagamentos(string $delimitador = ",", string $pagamentos = "")
 		{
 			if( $pagamentos === "")
 			{
@@ -52,7 +52,7 @@
 			}
 		}
 
-		function setPesos(string $delimitador = ",", $pesos = "")
+		function setPesos(string $delimitador = ",", string $pesos = "")
 		{
 			if( $pesos === "")
 			{

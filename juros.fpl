@@ -1,5 +1,5 @@
 # Cálculo dos juros, sendo que precisa de parcelas pra isso
-# Versão 0.1: 10/02/2026: versao feita sem muito conhecimento de Falcon
+# Versão 0.1: 10/02/2026: versão feita sem muito conhecimento de Falcon
 
 # variáveis globais que simplificação as chamadas às funções e inicialização de escalares (como classe, perdia os dados ao chamar getPesoTotal)
 Quantidade = 3

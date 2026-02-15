@@ -1,0 +1,109 @@
+-- Cálculo do juros, sendo que precisa de arrays pra isso
+-- Versão 0.1: 15/02/2026: versão feita sem muito conhecimento de Frege a partir de Haskell
+
+module Juros where
+import Data.List
+
+-- estrutura básica para simplificar as chamadas
+composto :: Bool
+composto = True
+periodo :: Double
+periodo = 30.0
+pagamentos :: [Double]
+pagamentos = [30.0, 60.0, 90.0]
+pesos :: [Double]
+pesos = [1.0, 1.0, 1.0]
+
+-- constantes que controlam o número de termos a serem calculados para cada função
+totLogNat :: Int
+totLogNat = 20
+totExpNat :: Int
+totExpNat = 30
+
+-- função a ser chamada paracalcular o logaritmo natural
+lognat :: Double -> Double
+lognat valor = rlognat 1 ((valor - 1.0) / (valor + 1.0)) ((valor - 1.0) / (valor + 1.0)) 0.0
+
+-- função recursiva que calcula o logaritmo natural usando a série de Taylor
+
+rlognat :: Int -> Double -> Double -> Double -> Double
+rlognat indice ip termo soma
+  | indice > totLogNat = 2.0 * soma
+  | otherwise = rlognat (indice + 1) ip (termo * ip * ip) (soma + termo / (2.0 * fromIntegral indice - 1.0))
+
+-- função a ser chamada para calcular o exponencial natural
+expnat :: Double -> Double
+expnat valor = rexpnat 1 valor valor 1.0
+
+-- função recursiva que calcula o exponencial natural usando a série de Taylor
+rexpnat :: Int -> Double -> Double -> Double -> Double
+rexpnat indice valor termo soma
+  | indice > totExpNat = soma
+  | otherwise = rexpnat (indice + 1) valor (termo * valor / fromIntegral (indice + 1)) (soma + termo)
+
+-- calcula base elevado a expoente usando a função expnat e lognat
+power :: Double -> Double -> Double
+power base expoente = expnat (expoente * lognat base)
+
+-- calcula base elevado a expoente inteiro (para 0.1 ^ 15)
+powint :: Double -> Int -> Double
+powint base expoente
+  | expoente == 0 = 1.0
+  | otherwise = base * powint base (expoente - 1)
+
+-- calcula a somatória de Pesos[]
+getPesoTotal :: Double
+getPesoTotal = sum pesos
+--   rGetPesoTotal pesos
+
+-- função recursiva que realmente calcula a somatória de pesos[]
+-- rGetPesoTotal :: [Double] -> Double
+-- rGetPesoTotal (h:t)
+--    | t == [] = h
+--    | otherwise = h + rGetPesoTotal t
+
+-- calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
+jurosParaAcrescimo :: Double -> Double
+jurosParaAcrescimo juros
+  | composto = (getPesoTotal / (rJurosCompostos pagamentos pesos juros) - 1.0) * 100.0
+  | otherwise = (getPesoTotal / (rJurosSimples pagamentos pesos juros) - 1.0) * 100.0
+
+-- calcula a soma do amortecimento de todas as parcelas para juros compostos
+rJurosCompostos :: [Double] -> [Double] -> Double -> Double
+rJurosCompostos [] [] _ = 0.0
+rJurosCompostos [] (_:_) _ = 0.0
+rJurosCompostos (_:_) [] _ = 0.0
+rJurosCompostos (pagH:pagT) (pesH:pesT) juros
+  | pesT == [] = pesH / power (1.0 + juros / 100.0) (pagH / periodo)
+  | otherwise = pesH / power (1.0 + juros / 100.0) (pagH / periodo) + rJurosCompostos pagT pesT juros
+
+-- calcula a soma do amortecimento de todas as parcelas para juros simples
+rJurosSimples :: [Double] -> [Double] -> Double -> Double
+rJurosSimples [] [] _ = 0.0
+rJurosSimples [] (_:_) _ = 0.0
+rJurosSimples (_:_) [] _ = 0.0
+rJurosSimples (pagH:pagT) (pesH:pesT) juros
+  | pesT == [] = pesH / (1.0 + juros / 100.0 * pagH / periodo)
+  | otherwise = pesH / (1.0 + juros / 100.0 * pagH / periodo) + rJurosSimples pagT pesT juros
+
+-- calcula os juros a partir do acréscimo e dados comuns (como parcelas)
+acrescimoParaJuros :: Double -> Int -> Int -> Double -> Double
+acrescimoParaJuros acrescimo precisao maxIteracoes maxJuros =
+  rAcrescimoParaJuros acrescimo (powint 0.1 precisao) maxIteracoes 0.0 maxJuros (maxJuros / 2.0)
+
+-- função recursiva no lugar de um for que realmente calcula o acréscimo
+rAcrescimoParaJuros :: Double -> Double -> Int -> Double -> Double -> Double -> Double
+rAcrescimoParaJuros acrescimo minDiferenca iteracaoAtual minJuros maxJuros medJuros
+  | iteracaoAtual == 0 = medJuros
+  | (maxJuros - minJuros) < minDiferenca = medJuros
+  | jurosParaAcrescimo medJuros < acrescimo = rAcrescimoParaJuros acrescimo minDiferenca (iteracaoAtual - 1) medJuros maxJuros ((medJuros + maxJuros) / 2.0)
+  | otherwise = rAcrescimoParaJuros acrescimo minDiferenca (iteracaoAtual - 1) minJuros medJuros ((minJuros + medJuros) / 2.0)
+
+-- testa as funções
+main _ = do
+  print "Peso total = "
+  println (getPesoTotal)
+  print "Acréscimo = "
+  println (jurosParaAcrescimo 3.0)
+  print "Juros = "
+  println (acrescimoParaJuros (jurosParaAcrescimo 3.0) 15 100 50.0)

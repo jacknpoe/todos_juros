@@ -341,6 +341,7 @@ ScriptBasic (11/02/2026)
 Oxygen Basic (11/02/2026)
 Hack (13/02/2026)
 Twig (13/02/2026)
+Frege (14/02/2026)
 
 CRONOLOGIA / CHRONOLOGY
 -----------------------

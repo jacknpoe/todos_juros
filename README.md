@@ -28,7 +28,7 @@ Dois dialetos são considerados diferentes quando qualquer parte do código tem 
 
 Claro que, para alguns dialetos, algumas soluções são quase completamente idênticas, mas foram publicadas distintamente porque um só código não rodaria em mais de um dialeto. Um exemplo clássico são os dialetos SML e SML/NJ. Uma única linha (que é obrigatória em SML e gera um erro em SML/NJ) impede que uma mesma solução rode em ambos os dialetos. Outro exemplo bem evidente são os dialetos de Forth, que usam arrays distintamente.
 
-As soluções estão divididas entre as recursivas (Alice, Arc, AutoLISP, Bend, Bigloo, Caml, Clean, Clojure, Common Lisp, DataWeave, DrScheme, Elixir, Elm, Emacs Lisp, Erlang, EusLisp, Fennel, Flix, Gauche, Gleam, GOOPS, Haskell, Hope, Idris, ILOS, ISLISP, Kawa, Lean, Miranda, NewLISP, Oak, OCaml, Orc, Otus Lisp, Prolog, PureScript, Racket, ReasonML, ReScript, Scheme, SML, SML/NJ, Source, Squint, Steel, Visual LISP, XSB e Yeti) e iterativas (todos os outros dialetos, incluindo F#).
+As soluções estão divididas entre as recursivas (Alice, Arc, AutoLISP, Bend, Bigloo, Caml, Clean, Clojure, Common Lisp, DataWeave, DrScheme, Elixir, Elm, Emacs Lisp, Erlang, EusLisp, Fennel, Flix, Frege, Gauche, Gleam, GOOPS, Haskell, Hope, Idris, ILOS, ISLISP, Kawa, Lean, Miranda, NewLISP, Oak, OCaml, Orc, Otus Lisp, Prolog, PureScript, Racket, ReasonML, ReScript, Scheme, SML, SML/NJ, Source, Squint, Steel, Visual LISP, XSB e Yeti) e iterativas (todos os outros dialetos, incluindo F#).
 
 Existem, em algumas soluções, salvaguardas para valores incorretos para uma aplicação real. São valores zerados e negativos. Em alguns dialetos não é verificado, pois entendeu-se que o público-alvo desses dialetos não cometeria esse tipo de equívoco.
 
@@ -40,7 +40,7 @@ Alguns arquivos estão ilegíveis, pois são binários e devem ser abertos ou im
 
 Alguns dialetos não terão a solução ainda, por não terem suporte a recursos necessários, como números de ponto flutuante (por exemplo linguagens como Solidity, que rodam em Ethereum). Outros dialetos têm outros problemas, como estarem desatualizadas e não rodarem ou compilarem nos sistemas atuais. Dialetos que são, na verdade, Turing tarpits, como Agda, serão ignorados.
 
-Versões como as de UCSD Pascal (Apple /// implementation) e Regina Rexx têm implementações das funções `ln()` para logaritmo natural e `exp()` para número de Euler elevado à potência. Então, as funções `pow()` de exponenciação foram construídas a partir das operações matemáticas básicas. Elas começarão a serem portadas para as linguagens que não têm essas funções, como G-Portugol, Jakt, NPortugol, ugBASIC.
+Versões como as de UCSD Pascal (Apple /// implementation) e Regina Rexx têm implementações das funções `ln()` para logaritmo natural e `exp()` para número de Euler elevado à potência. Então, as funções `pow()` de exponenciação foram construídas a partir das operações matemáticas básicas. Elas começarão a serem portadas para as linguagens que não têm essas funções, como G-Portugol, Jakt, NPortugol, ugBASIC, lox, Frege.
 
 A função `jurosParaAcrescimo()` em Jakt tem uma versão otimizada do cálculo dos juros compostos, reduzindo quase pela metade o tempo necessário, embora a solução em Jakt inclua implementações próprias das funções `ln()` e `exp()`, que foram testadas de forma interpretada, e por isso são lentas. Essa otimização não será aplicada nas outras implementações, para manter a homogeneidade dos algoritmos, e o cálculo normal foi mantido comentado no código.
 
@@ -96,7 +96,7 @@ Two dialects ​​are considered different when any part of the code has to be 
 
 Of course, for some dialects, some solutions are almost completely identical, but they were published separately because a single code would not run in more than one dialect. A classic example is the SML and SML/NJ dialects. A single line (which is mandatory in SML and generates an error in SML/NJ) prevents the same solution from running in both dialects. Another very clear example is the Forth dialects, which use arrays differently.
 
-The solutions are divided between recursive (Alice, Arc, AutoLISP, Bend, Bigloo, Caml, Clean, Clojure, Common Lisp, DataWeave, DrScheme, Elixir, Elm, Emacs Lisp, Erlang, EusLisp, Fennel, Flix, Gauche, Gleam, GOOPS, Haskell, Hope, Idris, ILOS, ISLISP, Kawa, Lean, Miranda, NewLISP, Oak, OCaml, Orc, Otus Lisp, Prolog, PureScript, Racket, ReasonML, ReScript, Scheme, SML, SML/NJ, Source, Squint, Steel, Visual LISP, XSB and Yeti) and iterative (all other dialects, including F#).
+The solutions are divided between recursive (Alice, Arc, AutoLISP, Bend, Bigloo, Caml, Clean, Clojure, Common Lisp, DataWeave, DrScheme, Elixir, Elm, Emacs Lisp, Erlang, EusLisp, Fennel, Flix, Frege, Gauche, Gleam, GOOPS, Haskell, Hope, Idris, ILOS, ISLISP, Kawa, Lean, Miranda, NewLISP, Oak, OCaml, Orc, Otus Lisp, Prolog, PureScript, Racket, ReasonML, ReScript, Scheme, SML, SML/NJ, Source, Squint, Steel, Visual LISP, XSB and Yeti) and iterative (all other dialects, including F#).
 
 There are, in some solutions, safeguards for incorrect values ​​for a real application. These are zero and negative values. In some dialects ​​it is not verified, as it was understood that the target audience of these dialects ​​would not make this type of mistake.
 
@@ -108,7 +108,7 @@ Some files are unreadable, as they are binary and must be opened or imported int
 
 Some dialects will not yet have the solution because they lack support for necessary features, such as floating-point numbers (for example, languages ​​like Solidity, which run on Ethereum). Other dialects have other problems, such as being outdated and not running or compiling on current systems. Dialects that are, in fact, Turing tarpits, such as Agda, will be ignored.
 
-Versions like those in UCSD Pascal (Apple /// implementation) and Regina Rexx have implementations of the `ln()` function for natural logarithms and `exp()` for Euler's number raised to a power. Therefore, the `pow()` functions for exponentiation were built upon basic mathematical operations. They will begin to be ported to languages ​​that do not have these functions, such as G-Portugol, Jakt, NPortugol, amd ugBASIC..
+Versions like those in UCSD Pascal (Apple /// implementation) and Regina Rexx have implementations of the `ln()` function for natural logarithms and `exp()` for Euler's number raised to a power. Therefore, the `pow()` functions for exponentiation were built upon basic mathematical operations. They will begin to be ported to languages ​​that do not have these functions, such as G-Portugol, Jakt, NPortugol, ugBASIC, lox, Frege.
 
 The `jurosParaAcrescimo()` function in Jakt has an optimized version of compound interest calculation, reducing the time required by almost half, although the Jakt solution includes its own implementations of the `ln()` and `exp()` functions, which were tested in an interpreted way, and are therefore slow. This optimization will not be applied to the other implementations, to maintain the homogeneity of the algorithms, and the normal calculation has been kept commented in the code.
 

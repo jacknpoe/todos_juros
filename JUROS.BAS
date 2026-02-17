@@ -1,5 +1,5 @@
 3 REM Calculo dos juros, sendo que precisa de arrays para isso
-6 REM Versao 0.1: 26/05/2024:
+6 REM Versao 0.1: 26/05/2024: feita sem muito conhecimento de GW-BASIC
 95 REM variaveis globais e atribuicao de valores
 100 QUANTIDADE% = 3
 110 COMPOSTO% = 1
@@ -64,4 +64,5 @@
 1660 IF ACRESCIMO# < ACRESCIMOPARAM# THEN MINJUROS# = JUROS# ELSE MAXJUROS# = JUROS#
 1670 NEXT INDICE%
 1680 RETURN
+
 

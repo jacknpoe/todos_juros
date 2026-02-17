@@ -344,6 +344,7 @@ Twig (13/02/2026)
 MiniScript (14/02/2026)
 Frege (15/02/2026)
 Cakelisp (16/02/2026)
+Embedded C for ARM Cortex-M (17/02/2026)
 
 CRONOLOGIA / CHRONOLOGY
 -----------------------

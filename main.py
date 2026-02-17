@@ -8,6 +8,7 @@
 #          0.5: 16/07/2024: corrigidos alguns valores padrão que não estavam em ponto flutuante
 #          0.6: 20/12/2024: com acentuação (Latin1)
 #          0.7: 22/07/2025: não enviadas as três primeiras parcelas nas linhas 15 e 16
+#          0.8: 17/02/2026: corrigidas posições da documentação dos métodos
 
 import Juros
 

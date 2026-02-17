@@ -50,6 +50,8 @@ Peso total = 3.0 / Acréscimo = 6.059108997379403 / Juros = 2.999999999999992
 
 ATENÇÃO: existe uma possibilidade de divisão por zero, nos juros simples, por exemplo, se os juros forem 100% e uma das parcelas for -100 vezes o período. Uma verificação desse tipo complicaria o código, para evitar essa eventualidade tão rara.
 
+ATENÇÃO: Algumas soluções deste repositório utilizam implementações próprias de funções exponenciais (`ln`, `exp` e `pow`). Essas funções não têm como objetivo substituir implementações genéricas das bibliotecas matemáticas padrão. Elas foram projetadas e validadas exclusivamente para os domínios efetivamente usados nas soluções, em especial valores de juros honestos e um número sensato de parcelas. O uso dessas funções fora desse contexto pode resultar em perda significativa de precisão numérica. A função `powint`, por sua vez, utiliza exponenciação com expoente inteiro e não apresenta essas limitações (além do expoente não ser real).
+
 A lista está organizada em ordem alfabética, pelos nomes dos dialetos, em: https://jacknpoeexplicaprogramacao.wordpress.com/2024/03/02/10-resolucoes-de-equacao-transcendente/ ou https://github.com/jacknpoe/todos_juros/blob/main/todos_juros.txt
 
 As versões em JavaScript e PHP podem ser testadas a partir de: https://jacknpoe.rf.gd/
@@ -117,6 +119,8 @@ The most common output for tests is:
 Peso total = 3.0 / Acréscimo = 6.059108997379403 / Juros = 2.999999999999992
 
 WARNING: There is a possibility of division by zero in simple interest, for example, if the interest is 100% and one of the installments is -100 times the period. A check of this type would complicate the code, to avoid this very rare eventuality.
+
+WARNING: Some solutions in this repository use their own implementations of exponential functions (`ln`, `exp`, and `pow`). These functions are not intended to replace generic implementations from standard mathematical libraries. They were designed and validated exclusively for the domains actually used in the solutions, especially fair interest rates and a reasonable number of installments. Using these functions outside of this context can result in a significant loss of numerical precision. The `powint` function, on the other hand, uses exponentiation with an integer exponent and does not have these limitations (besides the exponent not being real).
 
 The list is organized alphabetically, by dialects names: https://jacknpoeexplicaprogramacao.wordpress.com/2024/03/02/10-resolucoes-de-equacao-transcendente/ or https://github.com/jacknpoe/todos_juros/blob/main/todos_juros.txt
 

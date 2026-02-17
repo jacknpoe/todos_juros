@@ -140,4 +140,4 @@ The C++ dialect versions of the solution were written in English, including Ardu
 
 The license is GNU (https://github.com/jacknpoe/todos_juros/blob/main/LICENSE).
 
-!(https://github.com/jacknpoe/todos_juros/blob/main/resolu%C3%A7%C3%B5es.jpg)
+![ŕesoluções/resolutions](https://github.com/jacknpoe/todos_juros/blob/main/resolu%C3%A7%C3%B5es.jpg)

@@ -117,7 +117,6 @@ int main() {
 	jurosCalculado = acrescimoParaJuros(&juros, acrescimoCalculado, 15, 100, 50.0);
 	printf("Juros calculado: %3.15f\n", jurosCalculado);
 
-
     // libera a memória e finaliza
 	liberaMemoria(&juros);
 	return 0;

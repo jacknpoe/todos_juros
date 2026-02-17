@@ -1,7 +1,8 @@
 // Calculating interest, which requires installments for this
 // Version 0.1: 02/17/2026: copied from a C++ version, without prior experience with Embedded C++
+//         0.2: 02/17/2026: moved application logic to app_main() to avoid ISO C++ restrictions on main() in freestanding startup code
 //              12/29/2025: ATTENTION: compile with -lm option to link math library (for pow function)
-// TO COMPILE: arm-none-eabi-g++ -mcpu=cortex-m3 -mthumb -O2 -Wall -Wextra -Wno-pedantic -fno-exceptions -fno-rtti -fno-unwind-tables -fno-use-cxa-atexit startup.cpp interestELF.cpp -T linker.ld -specs=rdimon.specs -lc -lrdimon -lm -nostartfiles -o interestELF.elf
+// TO COMPILE: arm-none-eabi-g++ -mcpu=cortex-m3 -mthumb -O2 -Wall -Wextra -fno-exceptions -fno-rtti -fno-unwind-tables -fno-use-cxa-atexit startup.cpp interestELF.cpp -T linker.ld -specs=rdimon.specs -lc -lrdimon -lm -nostartfiles -o interestELF.elf
 // TO RUN: qemu-system-arm -M lm3s6965evb -kernel interestELF.elf -nographic -semihosting
 // It should be clear that arm-none-eabi-gcc and qemu-system-arm need to be installed via sudo apt install
 
@@ -141,7 +142,9 @@ namespace jacknpoe {
 }
 
 using namespace jacknpoe;   // this code is awkward because, in reality, this file is a concatenation of a .h and a .cpp (from a library) and the main
-int main() {
+
+// this function exists to avoid: ISO C++ forbids taking address of function '::main' 
+void app_main() {
 #ifndef HOST_BUILD
     initialise_monitor_handles();
 #endif
@@ -168,11 +171,20 @@ int main() {
     std::cout << "Total weight: " << totalWeight << std::endl;
 	std::cout << "Calculated increase: " << calculatedIncrease << std::endl;
 	std::cout << "Calculated interest: " << calculatedInterest << std::endl;
-	return 0;
 #else
     printf("Total weight: %.15Lf\n", totalWeight);
     printf("Calculated increase: %.15Lf\n", calculatedIncrease);
     printf("Calculated interest: %.15Lf\n", calculatedInterest);
+#endif
+}
+
+// this function exists to avoid: ISO C++ forbids taking address of function '::main' 
+int main() {
+	app_main();
+
+#ifdef HOST_BUILD
+	return 0;
+#else
     while(1) {}
 #endif
 }

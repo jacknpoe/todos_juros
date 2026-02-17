@@ -28,13 +28,13 @@ void (* const vector_table[])(void) = {
 }
 
 // Declare main with C linkage to avoid pedantic warning
-extern "C" int main(void);
+extern void app_main(void);
 
 extern "C" void initialise_monitor_handles(void);
 
 extern "C" void Reset_Handler(void) {
     initialise_monitor_handles();
-    main();
+    app_main();
     while (1) {}
 }
 

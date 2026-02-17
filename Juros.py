@@ -12,8 +12,8 @@ class Juros:
         self.Composto = composto
         self.Periodo = periodo
 
-    """Define as datas de pagamento a partir de uma string separada pelo delimitador"""
     def setpagamentos(self, delimitador=",", pagamentos=""):
+        """Define as datas de pagamento a partir de uma string separada pelo delimitador"""
         self.Pagamentos.clear()
         if pagamentos == "":
             for i in range(self.Quantidade):
@@ -23,8 +23,8 @@ class Juros:
             for i in range(self.Quantidade):
                 self.Pagamentos.append(float(temporaria[i]))
 
-    """Define os pesos a partir de uma string separada pelo delimitador"""
     def setpesos(self, delimitador=",", pesos=""):
+        """Define os pesos a partir de uma string separada pelo delimitador"""
         self.Pesos.clear()
         if pesos == "":
             for i in range(self.Quantidade):
@@ -34,15 +34,15 @@ class Juros:
             for i in range(self.Quantidade):
                 self.Pesos.append(float(temporaria[i]))
 
-    """Retorna a soma total de todos os pesos"""
     def getpesototal(self):
+        """Retorna a soma total de todos os pesos"""
         acumulador = 0.0
         for i in range(self.Quantidade):
             acumulador += self.Pesos[i]
         return acumulador
 
-    """Calcula o acréscimo a partir dos juros"""
     def jurosparaacrescimo(self, juros=0.0):
+        """Calcula o acréscimo a partir dos juros"""
         total = self.getpesototal()
 
         if juros <= 0.0 or self.Quantidade < 1 or self.Periodo <= 0.0 or total <= 0.0:
@@ -61,9 +61,9 @@ class Juros:
 
         return (total / acumulador - 1.0) * 100.0
 
-    """Calcula os juros a partir do acréscimo"""
     def acrescimoparajuros(self, acrescimo=0.0, precisao=12, maximointeracoes=100, maximojuros=50.0,
                            acrescimocomovalororiginal=False):
+        """Calcula os juros a partir do acréscimo"""
         total = self.getpesototal()
 
         if maximointeracoes < 1 or self.Quantidade < 1 or precisao < 1 or self.Periodo <= 0.0 or acrescimo <= 0.0 or total <= 0.0 or maximojuros <= 0.0:

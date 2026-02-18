@@ -5,6 +5,7 @@
 //        0.5: 26/01/2025: adicionados comentários para estrutura, funções e main
 //        0.6: 10/07/2025: alteradas atribuições dos arrays para um for calculado	
 //        0.7: 29/07/2025: agora dá free em Pagamentos se falhar malloc em Pesos
+//        0.8: 18/02/2026: verificados pesoTotal no if inicial das funções financeiras
 
 #include <math.h>      // para usar pow()
 #include <stdio.h>     // para usar printf() e gets()
@@ -58,8 +59,8 @@ double getPesoTotal(struct Juros *juros) {
 
 // calcula o acréscimo a partir dos juros e parcelas
 double jurosParaAcrescimo(struct Juros *juros, double valor) {
-	if(valor <= 0 || juros->Quantidade <= 0 || juros->Periodo <= 0.0) return 0.0;
 	double pesoTotal = getPesoTotal(juros);
+	if(valor <= 0 || juros->Quantidade <= 0 || juros->Periodo <= 0.0 || pesoTotal <= 0.0) return 0.0;
 	double acumulador = 0; 
 	int indice;
 	
@@ -76,8 +77,8 @@ double jurosParaAcrescimo(struct Juros *juros, double valor) {
 double acrescimoParaJuros(struct Juros *juros, double valor, short precisao, short maxIteracoes, double maxJuros) {
 	double minJuros = 0, medJuros = 0, minDiferenca = 0, pesoTotal = 0;
 	short indice = 0;
-	if(maxIteracoes < 1 || juros->Quantidade <= 0 || precisao < 1 || valor <= 0 || juros->Periodo <= 0.0) return 0.0;
 	pesoTotal = getPesoTotal(juros);
+	if(maxIteracoes < 1 || juros->Quantidade <= 0 || precisao < 1 || valor <= 0 || juros->Periodo <= 0.0 || pesoTotal <= 0.0) return 0.0;
 	if(pesoTotal <= 0) return 0.0;
 	minDiferenca = pow(0.1, precisao);
 

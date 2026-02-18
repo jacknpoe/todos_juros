@@ -1,5 +1,6 @@
 // Cálculo dos juros, sendo que precisa de parcelas pra isso
 // Versão 0.1: 17/02/2026: a partir da solução para C, sem saber muito sobre Embedded C, com orientação do ChatGPT (principalmente no processo de compilação e execução em ambiente Embedded)
+//        0.2: 18/02/2026: melhoradas validações e atribuições em pesoTotal nas funções
 // COMPILAR COM: arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -O2 -Wall -Wextra -Wpedantic startup.c jurosELF.c -T linker.ld -specs=rdimon.specs -lc -lrdimon -lm -nostartfiles -o jurosELF.elf
 // RODAR COM: qemu-system-arm -M lm3s6965evb -kernel jurosELF.elf -nographic -semihosting
 // deve estar claro que arm-none-eabi-gcc e qemu-system-arm precisam estar instalados via sudo apt install
@@ -59,8 +60,8 @@ double getPesoTotal(struct Juros *juros) {
 
 // calcula o acréscimo a partir dos juros e parcelas
 double jurosParaAcrescimo(struct Juros *juros, double valor) {
-	if(valor <= 0 || juros->Quantidade <= 0 || juros->Periodo <= 0.0) return 0.0;
 	double pesoTotal = getPesoTotal(juros);
+	if(valor <= 0 || juros->Quantidade <= 0 || juros->Periodo <= 0.0 || pesoTotal <= 0.0) return 0.0;
 	double acumulador = 0; 
 	int indice;
 	
@@ -75,11 +76,10 @@ double jurosParaAcrescimo(struct Juros *juros, double valor) {
 
 // calcula os juros a partir do acréscimo e parcelas
 double acrescimoParaJuros(struct Juros *juros, double valor, short precisao, short maxIteracoes, double maxJuros) {
-	double minJuros = 0, medJuros = 0, minDiferenca = 0, pesoTotal = 0;
+	double minJuros = 0, medJuros = 0, minDiferenca = 0;
 	short indice = 0;
-	if(maxIteracoes < 1 || juros->Quantidade <= 0 || precisao < 1 || valor <= 0 || juros->Periodo <= 0.0) return 0.0;
-	pesoTotal = getPesoTotal(juros);
-	if(pesoTotal <= 0) return 0.0;
+	double pesoTotal = getPesoTotal(juros);
+	if(maxIteracoes < 1 || juros->Quantidade <= 0 || precisao < 1 || valor <= 0 || juros->Periodo <= 0.0 || pesoTotal <= 0.0) return 0.0;
 	minDiferenca = pow(0.1, precisao);
 
 	for(indice = 0; indice < maxIteracoes; indice++) {

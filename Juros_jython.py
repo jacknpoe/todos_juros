@@ -12,8 +12,8 @@ class Juros:
         self.Composto = composto
         self.Periodo = periodo
 
-    """Define as datas de pagamento a partir de uma string separada pelo delimitador"""
     def setpagamentos(self, delimitador=",", pagamentos=""):
+        """Define as datas de pagamento a partir de uma string separada pelo delimitador"""
         self.Pagamentos = [] # alterado em Jython
         if pagamentos == "":
             for i in range(self.Quantidade):
@@ -23,8 +23,8 @@ class Juros:
             for i in range(self.Quantidade):
                 self.Pagamentos.append(float(temporaria[i]))
 
-    """Define os pesos a partir de uma string separada pelo delimitador"""
     def setpesos(self, delimitador=",", pesos=""):
+        """Define os pesos a partir de uma string separada pelo delimitador"""
         self.Pesos = [] # alterado em Jython
         if pesos == "":
             for i in range(self.Quantidade):
@@ -34,15 +34,15 @@ class Juros:
             for i in range(self.Quantidade):
                 self.Pesos.append(float(temporaria[i]))
 
-    """Retorna a soma total de todos os pesos"""
     def getpesototal(self):
+        """Retorna a soma total de todos os pesos"""
         acumulador = 0
         for i in range(self.Quantidade):
             acumulador += self.Pesos[i]
         return acumulador
 
-    """Calcula o acrescimo a partir dos juros"""
     def jurosparaacrescimo(self, juros=0):
+        """Calcula o acrescimo a partir dos juros"""
         if juros == 0 or self.Quantidade == 0 or self.Periodo == 0:
             return 0
 
@@ -63,9 +63,9 @@ class Juros:
 
         return (total / acumulador - 1) * 100
 
-    """Calcula os juros a partir do acrescimo"""
     def acrescimoparajuros(self, acrescimo=0.0, precisao=12, maximointeracoes=100, maximojuros=50.0,
                            acrescimocomovalororiginal=False):
+        """Calcula os juros a partir do acrescimo"""
         if maximointeracoes < 1 or self.Quantidade <= 0 or precisao < 1 or self.Periodo <= 0 or acrescimo <= 0:
             return 0
 

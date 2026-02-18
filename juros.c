@@ -75,9 +75,9 @@ double jurosParaAcrescimo(struct Juros *juros, double valor) {
 
 // calcula os juros a partir do acréscimo e parcelas
 double acrescimoParaJuros(struct Juros *juros, double valor, short precisao, short maxIteracoes, double maxJuros) {
-	double minJuros = 0, medJuros = 0, minDiferenca = 0, pesoTotal = 0;
+	double minJuros = 0, medJuros = 0, minDiferenca = 0;
 	short indice = 0;
-	pesoTotal = getPesoTotal(juros);
+	double pesoTotal = getPesoTotal(juros);
 	if(maxIteracoes < 1 || juros->Quantidade <= 0 || precisao < 1 || valor <= 0 || juros->Periodo <= 0.0 || pesoTotal <= 0.0) return 0.0;
 	if(pesoTotal <= 0) return 0.0;
 	minDiferenca = pow(0.1, precisao);

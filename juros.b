@@ -1,5 +1,5 @@
 /* Calculo dos juros, sendo que precisa de parcelas pra isso
-   Versão 0.1: 19/02/2026: ate o momento, a matematica de fixed points, globais, inicializacao e getPesoTotal()
+   Versão 0.1: 19/02/2026: ate o momento, a matematica de fixed-points, globais, inicializacao e getPesoTotal()
           0.2: 20/02/2026: jurosParaAcrecimo() e a acrescimoParaJuros() */
 
 main() {
@@ -94,7 +94,7 @@ getPesoTotal() {
     return (acumulador);
 }
 
-/* calcula a minima diferenca a partir do número de digitos da precisao (inteiro para fixed point) */
+/* calcula a minima diferenca a partir do número de digitos da precisao (inteiro para fixed-point) */
 prectomind(x) {
     extrn DIGITOS;
     auto produto, indice;
@@ -109,17 +109,17 @@ prectomind(x) {
     return (produto);
 }
 
-/* todas as funcoes matematicas de fixed point, exponenciacoes e logaritmos sao precisas (ou mesmo estaveis)
+/* todas as funcoes matematicas de fixed-point, exponenciacoes e logaritmos sao precisas (ou mesmo estaveis)
    somente dentro do dominio do problema (converter entre acrescimo e juros a partir de parcelas com datas e pesos ajustaveis) */
 
-/* potencia em fixed point calculada como expfp( lnfp(base) * expoente ); valida no dominio do problema de matematica financeira;
+/* potencia em fixed-point calculada como expfp( lnfp(base) * expoente ); valida no dominio do problema de matematica financeira;
    herda as limitacoes numericas de lnfp() e expfp() */
 powfp(b, e) {
     extrn expfp, lnfp, mulfp;
     return (expfp(mulfp(e, lnfp(b))));
 }
 
-/* exponencial em fixed point usando serie de Taylor; precisa e estavel no dominio do problema (expoentes pequenos,
+/* exponencial em fixed-point usando serie de Taylor; precisa e estavel no dominio do problema (expoentes pequenos,
    tipicamente derivados de lnfp em matematica financeira); a precisao depende de TOTEXP e da escala fixa adotada */
 expfp(x) {
     extrn mulfp, divfp, inttofp, TOTEXP, UM;
@@ -136,7 +136,7 @@ expfp(x) {
     return (soma);
 }
 
-/* logaritmo natural em fixed point usando serie via (x-1)/(x+1); preciso e estavel no dominio do problema de matematica financeira;
+/* logaritmo natural em fixed-point usando serie via (x-1)/(x+1); preciso e estavel no dominio do problema de matematica financeira;
    apresenta melhor convergencia para valores proximos de 1; a precisao depende de TOTLN e da escala fixa adotada */
 lnfp(x) {
     extrn mulfp, divfp, inttofp, TOTLN, UM;
@@ -155,7 +155,7 @@ lnfp(x) {
     return (2 * soma);
 }
 
-/* operacao * de dois fixed points */
+/* operacao * de dois fixed-points */
 mulfp(a, b) {
     extrn ESCALA;
 
@@ -166,7 +166,7 @@ mulfp(a, b) {
     }
 }
 
-/* operacao * de dois fixed points */
+/* operacao * de dois fixed-points */
 divfp(a, b) {
     extrn ESCALA, INFINITO;
 
@@ -178,14 +178,14 @@ divfp(a, b) {
     }
 }
 
-/* torna um integer em fixed point com DIGITOS de digitos (usando ESCALA que ja esta computada) */
+/* torna um integer em fixed-point com DIGITOS de digitos (usando ESCALA que ja esta computada) */
 inttofp(x) {
     extrn ESCALA;
 
     return (x * ESCALA);
 }
 
-/* CONSTANTES DE FIXED POINTS PARA LEGIBILIDADE (NUMEROS GRANDES ESTAO NO FORMATO FIXED POINT) E ITERACOES EM SERIES DE TAYLOR */
+/* CONSTANTES DE FIXED-POINTS PARA LEGIBILIDADE (NUMEROS GRANDES ESTAO NO FORMATO FIXED-POINT) E ITERACOES EM SERIES DE TAYLOR */
 DIGITOS 8;
 ESCALA 100000000;
 TOTLN 16;

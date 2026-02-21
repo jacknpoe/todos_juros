@@ -1145,6 +1145,7 @@ CPython = Python
 CSNOBOL4 = SNOBOL4
 Delégua = Égua
 Dragon 32 BASIC = TRS-80 BASIC
+eLua = Lua
 Free Pascal = Pascal
 Gambit = Scheme
 gawk = awk

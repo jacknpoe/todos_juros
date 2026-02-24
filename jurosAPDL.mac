@@ -1,0 +1,40 @@
+! Cálculo dos juros, sendo que precisa de parcelas pra isso
+! Versão 0.1: 24/02/2026: versao feita sem muito conhecimento de APDL
+
+/prep7
+/NOPR
+/OUTPUT,jurosAPDL,out
+
+! variáveis globais para simplificar as chamadas
+*SET, Quantidade, 3
+*SET, Composto, 1
+*SET, Periodo, 30.0
+*DIM, Pagamentos, ARRAY, 3
+*DIM, Pesos, ARRAY, 3
+
+! inicializa os arrays
+*DO, indice, 1, Quantidade, 1
+    *SET, Pagamentos(indice), indice*Periodo
+    *SET, Pesos(indice), 1.0
+*ENDDO
+
+! calcula e imprime os resultados
+/INPUT,getPesoTotal,mac
+*VWRITE, pesoTotal
+('Peso total = ', F17.15)
+
+*SET, jurosParametro, 3.0
+/INPUT,jurosParaAcrescimo,mac
+*VWRITE, acrescimo
+('Acréscimo = ', F17.15)
+
+*SET, acrescimoParametro, acrescimo
+*SET, precisao, 15
+*SET, maxIteracoes, 65
+*SET, maxJuros, 50.0
+/INPUT,acrescimoParaJuros,mac
+*VWRITE, juros
+('Juros = ', F20.15)
+
+/OUTPUT
+FINISH

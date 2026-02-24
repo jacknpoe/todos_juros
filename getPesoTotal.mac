@@ -1,0 +1,9 @@
+! calcula a somatória dos elementos do array Pesos()
+
+*SET, acumulador, 0.0
+
+*DO, indice, 1, Quantidade, 1
+    *SET, acumulador, acumulador + Pesos(indice)
+*ENDDO
+
+*SET, pesoTotal, acumulador

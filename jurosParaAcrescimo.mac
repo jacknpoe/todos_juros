@@ -1,0 +1,31 @@
+! calcula o acréscimo a partir dos juros e parcelas
+! parâmetros: jurosParametro
+! retorno: acrescimo
+
+/INPUT,getPesoTotal,mac
+
+*IF, Quantidade, LT, 1, THEN
+    *SET, acrescimo, 0.0
+*ELSEIF, Periodo, LE, 0.0, THEN
+    *SET, acrescimo, 0.0
+*ELSEIF, pesoTotal, LE, 0.0, THEN
+    *SET, acrescimo, 0.0
+*ELSEIF, jurosParametro, LE, 0.0, THEN
+    *SET, acrescimo, 0.0
+*ELSE
+    *SET, acumulador, 0.0
+
+    *DO, indice, 1, Quantidade, 1
+        *IF, Composto, EQ, 1, THEN
+            *SET, acumulador, acumulador+Pesos(indice)/(1.0+jurosParametro/100.0)**(Pagamentos(indice)/Periodo)
+        *ELSE
+            *SET, acumulador, acumulador+Pesos(indice)/(1.0+jurosParametro/100.0*Pagamentos(indice)/Periodo)
+        *ENDIF
+    *ENDDO
+
+    *IF, acumulador, LE, 0.0, THEN
+        *SET, acrescimo, 0.0
+    *ELSE
+        *SET, acrescimo, (pesoTotal/acumulador-1.0)*100.0
+    *ENDIF
+*ENDIF

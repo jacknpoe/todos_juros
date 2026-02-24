@@ -1,0 +1,44 @@
+! calcula os juros a partir do acréscimo e parcelas
+! parâmetros: acrescimoParametro, precisao, maxIteracoes, maxJuros
+! retorno: juros
+
+/INPUT,getPesoTotal,mac
+
+*IF, Quantidade, LT, 1, THEN
+    *SET, juros, 0.0
+*ELSEIF, Periodo, LE, 0.0, THEN
+    *SET, juros, 0.0
+*ELSEIF, pesoTotal, LE, 0.0, THEN
+    *SET, juros, 0.0
+*ELSEIF, acrescimoParametro, LE, 0.0, THEN
+    *SET, juros, 0.0
+*ELSEIF, precisao, LT, 1, THEN
+    *SET, juros, 0.0
+*ELSEIF, maxIteracoes, LT, 1, THEN
+    *SET, juros, 0.0
+*ELSEIF, maxJuros, LE, 0.0, THEN
+    *SET, juros, 0.0
+*ELSE
+    *SET, minJuros, 0.0
+    *SET, medJuros, maxJuros/2.0
+    *SET, minDiferenca, 0.1**precisao
+
+    *DO, iteracao, 1, maxIteracoes, 1
+        *IF, maxJuros-minJuros, LT, minDiferenca, THEN
+            *EXIT
+        *ENDIF
+
+        *SET, jurosParametro, medJuros
+        /INPUT,jurosParaAcrescimo,mac
+
+        *IF, acrescimo, LT, acrescimoParametro, THEN
+            *SET, minJuros, medJuros
+        *ELSE
+            *SET, maxJuros, medJuros
+        *ENDIF
+
+        *SET, medJuros, (minJuros+maxJuros)/2.0
+    *ENDDO
+
+    *SET, juros, medJuros
+*ENDIF

@@ -1,57 +1,40 @@
-/* Cálculo dos juros, sendo que precisa de parcelas pra isso
-   Versão 0.1: 09/03/2025: versão feita sem muito conhecimento de Maxima */
+! Cálculo dos juros, sendo que precisa de parcelas pra isso
+! Versão 0.1: 24/02/2026: versao feita sem muito conhecimento de APDL
 
-/* variáveis globais, para simplificar as chamadas */
-Quantidade: 3;
-Composto: true;
-Periodo: 30.0;
-Pagamentos: [30.0, 60.0, 90.0];
-Pesos: [1.0, 1.0, 1.0];
+/prep7
+/NOPR
+/OUTPUT,juros,out
 
-/* calcula a somatória de Pesos[] */
-getPesoTotal () := block (
-    acumulador: 0.0,
-    for indice: 1 thru Quantidade do acumulador: acumulador + Pesos[indice],
-    acumulador
-);
+! variáveis globais para simplificar as chamadas
+*SET, Quantidade, 3
+*SET, Composto, 1
+*SET, Periodo, 30.0
+*DIM, Pagamentos, ARRAY, 3
+*DIM, Pesos, ARRAY, 3
 
-/* calcula o acréscimo a partir dos juros e parcelas */
-jurosParaAcrescimo (juros) := block (
-    pesoTotal: getPesoTotal(),
-    if (pesoTotal <= 0.0) or (juros <= 0.0) or (Quantidade < 1) or (Periodo <= 0.0) then
-        0.0
-    else block (
-        acumulador: 0.0,
-        for indice: 1 thru Quantidade do
-            if Composto then acumulador: acumulador + Pesos[indice] / (1.0 + juros / 100) ^ (Pagamentos[indice] / Periodo)
-                else acumulador: acumulador + Pesos[indice] / (1.0 + juros / 100 * Pagamentos[indice] / Periodo),
-        float((pesoTotal / acumulador - 1.0) * 100.0)
-    )
-);
+! inicializa os arrays
+*DO, indice, 1, Quantidade, 1
+    *SET, Pagamentos(indice), indice*Periodo
+    *SET, Pesos(indice), 1.0
+*ENDDO
 
-/* calcula os juros a partir do acréscimo e parcelas */
-acrescimoParaJuros (acrescimo, precisao, maxIteracoes, maxJuros) := block (
-    pesoTotal: getPesoTotal(),
-    if (pesoTotal <= 0.0) or (acrescimo <= 0.0) or (Quantidade < 1) or (Periodo <= 0.0) or (precisao < 1) or (maxIteracoes < 1) or (maxJuros <= 0.0) then
-        0.0
-    else block (
-        minJuros: 0.0,
-        minDiferenca: 0.1 ^ precisao,
-        for indice: 1 thru maxIteracoes do block (
-            medJuros: (minJuros + maxJuros) / 2.0,
-            if (maxJuros - minJuros) < minDiferenca then indice: maxIteracoes,
-            if jurosParaAcrescimo(medJuros) < acrescimo then minJuros: medJuros else maxJuros: medJuros
-        ),
-        medJuros
-    )
-);
+! calcula e imprime os resultados
+/INPUT,getPesoTotal,mac
+*VWRITE, pesoTotal
+('Peso total = ', F17.15)
 
-/* calcula e guarda os resultados das funções */
-pesoTotal: getPesoTotal();
-acrescimoCalculado: jurosParaAcrescimo(3.0);
-jurosCalculado: acrescimoParaJuros(acrescimoCalculado,  15, 100, 50.0);
+*SET, jurosParametro, 3.0
+/INPUT,jurosParaAcrescimo,mac
+*VWRITE, acrescimo
+('Acréscimo = ', F17.15)
 
-/* imprime os resultados */
-print("Peso total =", pesoTotal);
-print("Acréscimo =", acrescimoCalculado);
-print("Juros =", jurosCalculado);
+*SET, acrescimoParametro, acrescimo
+*SET, precisao, 15
+*SET, maxIteracoes, 65
+*SET, maxJuros, 50.0
+/INPUT,acrescimoParaJuros,mac
+*VWRITE, juros
+('Juros = ', F20.15)
+
+/OUTPUT
+FINISH

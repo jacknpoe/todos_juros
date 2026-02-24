@@ -348,6 +348,7 @@ Embedded C for ARM Cortex-M (17/02/2026)
 Embedded C++ for ARM Cortex-M (17/02/2026)
 B (BCause implementation) (20/02/2026)
 Structured Text (IEC 61131-3 - CODESYS) (23/02/2026)
+APDL (24/02/2026)
 
 CRONOLOGIA / CHRONOLOGY
 -----------------------

@@ -30,8 +30,9 @@
 
         *SET, jurosParametro, medJuros
         /INPUT,jurosParaAcrescimo,mac
+        *SET, diferenca, acrescimo-acrescimoParametro  ! aqui é necessário porque fazer LT dos dois valores não é preciso
 
-        *IF, acrescimo, LT, acrescimoParametro, THEN
+        *IF, diferenca, LT, 0.0, THEN
             *SET, minJuros, medJuros
         *ELSE
             *SET, maxJuros, medJuros

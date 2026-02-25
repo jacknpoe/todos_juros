@@ -1,5 +1,6 @@
 ! Cálculo dos juros, sendo que precisa de parcelas pra isso
 ! Versão 0.1: 24/02/2026: versao feita sem muito conhecimento de APDL
+!        0.2: 25/02/2026: calculada diferenca, acrescimo-acrescimoParametro antes do *IF por precisão
 
 /prep7
 /NOPR

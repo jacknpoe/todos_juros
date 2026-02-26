@@ -217,7 +217,7 @@ AS
     DECLARE VARIABLE periodo DOUBLE PRECISION;
     DECLARE VARIABLE juros DOUBLE PRECISION;
 BEGIN
-    -- defina aqui as variáveis estáticas para os testes
+    -- defina aqui as variáveis escalares para os testes
     quantidade = 3;
     composto = TRUE;
     periodo = 30.0;

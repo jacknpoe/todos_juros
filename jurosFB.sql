@@ -36,23 +36,22 @@ SET TERM ; !!
 SET TERM !! ;
 
 CREATE OR ALTER PROCEDURE preencheJuros (
-  quantidade INTEGER,
-  periodo    DOUBLE PRECISION
+    quantidade INTEGER,
+    periodo    DOUBLE PRECISION
 )
 AS
-  DECLARE VARIABLE indice INTEGER;
+    DECLARE VARIABLE indice INTEGER;
 BEGIN
-  -- deleta todas as parcelas existentes, evitando acúmulo de mais de um parcelamento
-  DELETE FROM juros;
+    -- deleta todas as parcelas existentes, evitando acúmulo de mais de um parcelamento
+    DELETE FROM juros;
 
-  -- cria as parcelas (ajuste o algoritmo para o parcelamento desejado)
-  indice = 1;
-  WHILE (indice <= quantidade) DO
-  BEGIN
-    INSERT INTO JUROS (PAGAMENTO, PESO) VALUES (:indice * :periodo, 1.0);
-
-    indice = indice + 1;
-  END
+    -- cria as parcelas (ajuste o algoritmo para o parcelamento desejado)
+    indice = 1;
+    WHILE (indice <= quantidade) DO
+    BEGIN
+        INSERT INTO JUROS (PAGAMENTO, PESO) VALUES (:indice * :periodo, 1.0);
+        indice = indice + 1;
+    END
 END!!
 
 SET TERM ; !!
@@ -66,21 +65,19 @@ SET TERM !! ;
 CREATE OR ALTER FUNCTION getPesoTotal ()
 RETURNS DOUBLE PRECISION
 AS
-  DECLARE VARIABLE acumulador DOUBLE PRECISION;
-  DECLARE VARIABLE peso DOUBLE PRECISION;
+    DECLARE VARIABLE acumulador DOUBLE PRECISION;
+    DECLARE VARIABLE peso DOUBLE PRECISION;
 BEGIN
-  acumulador = 0.0;
+    acumulador = 0.0;
 
-  FOR
-    SELECT PESO
-    FROM JUROS
-    INTO :peso
-  DO
-  BEGIN
-    acumulador = acumulador + peso;
-  END
+    FOR
+        SELECT PESO FROM JUROS INTO :peso
+    DO
+    BEGIN
+        acumulador = acumulador + peso;
+    END
 
-  RETURN acumulador;
+    RETURN acumulador;
 END!!
 
 SET TERM ; !!

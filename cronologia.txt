@@ -351,6 +351,7 @@ Structured Text (IEC 61131-3 - CODESYS) (23/02/2026)
 APDL (24/02/2026)
 Suneido (25/02/2026)
 pSQL (Firebird) (26/02/2026)
+TCC (Take Command) (28/02/2026)
 
 CRONOLOGIA / CHRONOLOGY
 -----------------------

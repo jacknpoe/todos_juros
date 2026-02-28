@@ -1,0 +1,89 @@
+:: Cálculo dos juros, sendo que precisa de parcelas pra isso
+:: Versão 0.1: 28/02/2026: versão feita sem muito conhecimento de Take Command
+
+@echo off
+setdos /g.,
+
+:: variáveis globais para simplificar as chamadas de funções e inicialização de escalares
+set QUANTIDADE=3
+set COMPOSTO=1
+set PERIODO=30.0
+:: descomente o unsetarray quando for executar dentro da IDE
+:: unsetarray *
+setarray PAGAMENTOS[%QUANTIDADE]
+setarray PESOS[%QUANTIDADE]
+
+:: inicialização dinâmica de arrays
+do indice = 0 to %@eval[%QUANTIDADE% - 1]
+	set PAGAMENTOS[%indice]=%@eval[(%indice + 1) * %PERIODO]
+	set PESOS[%indice]=1.0
+enddo
+
+::calcula e imprime o retorno das funções
+gosub GETPESOTOTAL
+echo Peso total = %PESOTOTAL%
+
+set JUROSPAR=3.0
+gosub JUROSPARAACRESCIMO
+echo Acréscimo = %ACRESCIMO%
+
+set ACRESCIMOPAR=%ACRESCIMO
+set PRECISAOPAR=10
+set MAXITERACOESPAR=45
+set MAXJUROSPAR=50.0
+gosub ACRESCIMOPARAJUROS
+echo Juros = %JUROS%
+
+quit
+
+:: calcula a somatória dos elementos de PESOS[]
+:GETPESOTOTAL
+	set PESOTOTAL=0.0
+
+	do indice = 0 to %@eval[%QUANTIDADE% - 1]
+		set PESOTOTAL=%@eval[%PESOTOTAL + %PESOS[%indice]]
+	enddo
+
+	return
+
+:: calcula o acréscimo a partir dos juros e parcelas
+:JUROSPARAACRESCIMO
+	gosub GETPESOTOTAL
+	set ACRESCIMO=0.0
+	if %QUANTIDADE LT 1 .or. %PERIODO LE 0.0 .or. %PESOTOTAL LE 0.0 .or. %JUROSPAR LE 0.0 return
+	set ACUMULADOR=0.0
+	
+	do indice = 0 to %@eval[%QUANTIDADE% - 1]
+		iff %COMPOSTO == 1 then
+			set ACUMULADOR=%@eval[%ACUMULADOR + %PESOS[%indice] / (1.0 + %JUROSPAR / 100.0) ** (%PAGAMENTOS[%indice] / %PERIODO)]
+		else
+			set ACUMULADOR=%@eval[%ACUMULADOR + %PESOS[%indice] / (1.0 + %JUROSPAR / 100.0 * %PAGAMENTOS[%indice] / %PERIODO)]
+		endiff
+	enddo
+
+	if %@eval[ACUMULADOR > 0.0] != 0 set ACRESCIMO=%@eval[(%PESOTOTAL / %ACUMULADOR - 1.0) * 100.0]
+	return
+
+:: calcula os juros a partir do acréscimo e parcelas
+:ACRESCIMOPARAJUROS
+	gosub GETPESOTOTAL
+	set JUROS=0.0
+	if QUANTIDADE LT 1 .or. %PERIODO LE 0.0 .or. %PESOTOTAL LE 0.0 .or. %ACRESCIMOPAR LE 0.0 .or. %PRECISAOPAR LT 1 .or. %MAXITERACOESPAR LT 1 .or. %MAXJUROSPAR LE 0.0 return
+	set MINJUROS=0.0
+	set JUROS=%@eval[%MAXJUROSPAR / 2.0]
+	set MINDIFERENCA=%@eval[0.1 ** PRECISAOPAR]
+	set QUASEZERO=%@eval[0.1 ** 15]
+	
+	do iteracao = 1 to %MAXITERACOESPAR
+		if %@eval[%MAXJUROSPAR - %MINJUROS] LT %MINDIFERENCA return
+		set JUROSPAR=%JUROS
+		gosub JUROSPARAACRESCIMO
+		iff %@eval[%ACRESCIMO - %ACRESCIMOPAR] LE 0.0 then
+			set MINJUROS=%JUROS
+		else
+			set MAXJUROSPAR=%JUROS
+		endiff
+		set JUROS=%@eval[(%MINJUROS + %MAXJUROSPAR) / 2.0]
+	enddo
+	
+	return

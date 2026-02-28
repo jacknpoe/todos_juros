@@ -1171,6 +1171,7 @@ Generic Java = Java
 Gerbil Scheme = Kawa/Steel
 GForth = pForth
 GNU Bourne-Again Shell = Bash
+GNU Octave = Octave
 Guile = Kawa/Scheme/Steel
 HashLink = Haxe
 IBM PC BASIC A = GW-BASIC

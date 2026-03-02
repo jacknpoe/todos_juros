@@ -1,0 +1,128 @@
+#!/usr/local/bin/ysh
+
+# Calcula o acréscimo a partir dos juros e os juros a partir do acréscimo
+# Versão: 0.1: 02/03/2026: feita sem muito conhecimento de YSH
+
+const MAXLN = 30
+const MAXEXP = 45
+
+# essa função é mais precisa com valores mais próximos de 1, como 1.0 a 1.1, que é a faixa em que vai ser usada
+func ln(x) {
+    var termo = (x - 1.0) / (x + 1.0)
+    var yy = termo  * termo
+    var soma = 0.0
+    var indice
+
+    for indice in (1 ..= MAXLN) {
+        setvar soma += termo / (2.0 * indice - 1.0)
+        setvar termo *= yy
+    }
+
+    return (2.0 * soma)
+}
+
+# essa função é mais precisa com valores menores do que 5, que é a faixa em que vai ser usada
+func exp(x) {
+    var termo = 1.0
+    var soma = 1.0
+    var indice
+
+    for indice in (1 ..= MAXEXP) {
+        setvar termo *= x / indice
+        setvar soma += termo
+    }
+
+    return (soma)
+}
+
+# essa função tem a precisão boa de acordo com ln() e exp()
+func pow(base, expoente) {
+    return (exp(ln(base) * expoente))
+}
+
+# essa função é especial para expoentes inteiros (optar por inteiros pode aumentar a precisão, a base pode ser negativa)
+# ela é exata para 0.1 ^ precisao, que é muito usada na regra de parada maxJuros - minJuros < minDiferenca, onde minDiferenca = powint(0.1, precisao)
+func powint(base, expoente) {
+    if (expoente < 0) { return (powint(1 / base, expoente * -1)) }
+    if (expoente === 0) { return (1) }
+    if (expoente % 2 === 0) { return (powint(base * base, expoente // 2)) }
+    return (base * powint(base * base, (expoente - 1) // 2))
+}
+
+# variáveis globais para simplificar as chamadas às funções e inicialização de escalares
+var Quantidade = 3
+var Composto = true
+var Periodo = 30.0
+var Pagamentos = []
+var Pesos = []
+
+# inicializa os elementos das listas
+var indice
+for indice in (1 ..= Quantidade) {
+    call Pagamentos->append(indice * Periodo)
+    call Pesos->append(1.0)
+}
+
+# calcula a somatória dos elementos em Pesos[]
+func getPesoTotal () {
+    var acumulador = 0.0
+    var indice
+
+    for indice in (0 ..< Quantidade) {
+        setvar acumulador += Pesos[indice]
+    }
+
+    return (acumulador)
+}
+
+# calcula o acréscimo a partir dos juros e parcelas
+func jurosParaAcrescimo (juros) {
+    var pesoTotal = getPesoTotal()
+    if (Quantidade < 1 or Periodo <= 0.0 or pesoTotal <= 0.0 or juros <= 0.0) { return (0.0) }
+    var acumulador = 0.0
+    var indice
+
+    for indice in (0 ..< Quantidade) {
+        if (Composto) {
+            setvar acumulador += Pesos[indice] / pow(1.0 + juros / 100.0, Pagamentos[indice] / Periodo)
+        } else {
+            setvar acumulador += Pesos[indice] / (1.0 + juros / 100.0 * Pagamentos[indice] / Periodo)
+        }
+    }
+
+    if (acumulador <= 0.0) { return (0.0) }
+
+    var retorno = (pesoTotal / acumulador - 1.0) * 100.0
+    return (retorno)
+}
+
+# calcula os juros a partir do acréscimo e parcelas
+func acrescimoParaJuros (acrescimo, precisao, maxIteracoes, maxJuros) {
+    var pesoTotal = getPesoTotal()
+    if (Quantidade < 1 or Periodo <= 0.0 or pesoTotal <= 0.0 or acrescimo <= 0.0 or precisao < 1 or maxIteracoes < 1 or maxJuros <= 0.0) { return (0.0) }
+    var minJuros = 0.0
+    var medJuros = maxJuros / 2.0
+    var minDiferenca = powint(0.1, precisao)
+
+    for _ in (1 ..= maxIteracoes) {
+        if (maxJuros - minJuros < minDiferenca) { return (medJuros) }
+        if (jurosParaAcrescimo(medJuros) < acrescimo){
+            setvar minJuros = medJuros
+        } else {
+            setvar maxJuros = medJuros
+        }
+        setvar medJuros = (minJuros + maxJuros) / 2.0
+    }
+    
+    return (medJuros)
+}
+
+# calcula e guarda os resultados das funções
+var pesoTotal = getPesoTotal()
+var acrescimoCalculado = jurosParaAcrescimo(3.0)
+var jurosCalculado = acrescimoParaJuros(acrescimoCalculado, 15, 65, 50.0)
+
+# imprime os resultados
+echo "Peso total =" $pesoTotal
+echo "Acréscimo =" $acrescimoCalculado
+echo "Juros =" $jurosCalculado

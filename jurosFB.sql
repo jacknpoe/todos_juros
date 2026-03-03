@@ -37,7 +37,7 @@ SET TERM !! ;
 
 CREATE OR ALTER PROCEDURE preencheJuros (
     quantidade INTEGER,
-    periodo    DOUBLE PRECISION
+    periodo DOUBLE PRECISION
 )
 AS
     DECLARE VARIABLE indice INTEGER;

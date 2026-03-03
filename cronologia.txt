@@ -354,7 +354,8 @@ pSQL (Firebird) (26/02/2026)
 TCC (Take Command) (28/02/2026)
 Nushell (28/02/2026)
 Elvish (01/03/2026)
-YSH (Yarn Shell)
+YSH (Yarn Shell) (02/03/2026)
+Janet (03/03/2026)
 
 CRONOLOGIA / CHRONOLOGY
 -----------------------

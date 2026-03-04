@@ -1,4 +1,4 @@
-359 resoluções de equação transcendente
+360 resoluções de equação transcendente
 ---------------------------------------
 
 Desde que esse artigo foi publicado, mais 349 resoluções foram acrescentadas ao repositório https://github.com/jacknpoe/todos_juros, totalizando, agora, 359 resoluções.
@@ -769,10 +769,13 @@ Main.purs
 Juros.py
 main.py
 
-234. Q (26/01/2026)
+234. q (04/03/2026)
+jurosq.q
+
+235. Q (26/01/2026)
 juros.q
 
-235. Q# (08/01/2025)
+236. Q# (08/01/2025)
 juros.qs
 
 236. QB64 (12/06/2024)

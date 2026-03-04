@@ -357,6 +357,7 @@ Elvish (01/03/2026)
 YSH (Yarn Shell) (02/03/2026)
 Janet (03/03/2026)
 Informix SPL (03/03/2026)
+q (04/03/2026)
 
 CRONOLOGIA / CHRONOLOGY
 -----------------------

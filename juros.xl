@@ -1,0 +1,80 @@
+// Calcula o acréscimo a partir dos juros e os juros a partir do acréscimo
+// Versão: 0.1: 06/03/2026: feita sem muito conhecimento de XL (2011)
+// RODAR COM (compilador em /xl2/native, ambiente testado: Debian 12):
+// ./nxl -I library <arquivo.xl> > <arquivo.c>
+// sed -i 's/%#10\.4g/%3.15f/g' <arquivo.c>
+// gcc <arquivo.c> -o <arquivo> -lm
+// ./arquivo
+
+use XL.UI.CONSOLE
+use XL.ARRAY.BASIC
+
+// variáveis globais para simplificar as chamadas às funções
+Quantidade : integer := 3
+Composto : boolean := true
+Periodo : real := 30.0
+Pagamentos : array[3] of real
+Pesos : array[3] of real
+
+// calcula a somatória dos elementos de Pesos[]
+function getPesoTotal() return real is
+    acumulador : real := 0.0
+    for indice in 0 .. Quantidade - 1 loop
+        acumulador += Pesos[indice]
+    return acumulador
+
+// calcula o acréscimo a partir dos juros e parcelas
+function jurosParaAcrescimo(juros : real) return real is
+    lPesoTotal : real := getPesoTotal()
+    if Quantidade < 1 or Periodo <= 0.0 or lPesoTotal <= 0.0 or juros <= 0.0 then
+        return 0.0
+    acumulador : real := 0.0
+
+    for indice in 0 .. Quantidade - 1 loop
+        if Composto then
+            // acumulador += 1.0
+            acumulador += Pesos[indice] / (1.0 + juros / 100.0) ^ (Pagamentos[indice] / Periodo)
+        else
+            // acumulador += 1.0
+            acumulador += Pesos[indice] / (1.0 + juros / 100.0 * Pagamentos[indice] / Periodo)
+    
+    if acumulador <= 0.0 then
+        return 0.0
+    return (lPesoTotal / acumulador - 1.0) * 100.0
+
+// calcula os juros a partir do acréscimo e parcelas
+function acrescimoParaJuros(acrescimo : real; precisao, maxIteracoes : integer; maxJuros : real) return real is
+    lPesoTotal : real := getPesoTotal()
+    if Quantidade < 1 or Periodo <= 0.0 or lPesoTotal <= 0.0 or acrescimo <= 0.0 or precisao < 1 or maxIteracoes < 1 or maxJuros <= 0.0 then
+        return 0.0
+    minJuros : real := 0.0
+    medJuros : real := maxJuros / 2.0
+    minDiferenca : real := 0.1 ^ precisao
+
+    for iteracao in 1 .. maxIteracoes loop
+        if maxJuros - minJuros < minDiferenca then
+            return medJuros
+        if jurosParaAcrescimo(medJuros) < acrescimo then
+            minJuros := medJuros
+        else
+            maxJuros := medJuros
+        medJuros := (minJuros + maxJuros) / 2.0
+
+    return medJuros
+
+// inicializa os arrays
+temporario : real := Periodo
+for indice in 0 .. Quantidade - 1 loop
+    Pagamentos[indice] := temporario
+    Pesos[indice] := 1.0
+    temporario += Periodo
+
+// calcula e guarda os resultados das funções
+pesoTotal : real := getPesoTotal()
+acrescimoCalculado : real := jurosParaAcrescimo(3.0)
+jurosCalculado : real := acrescimoParaJuros(acrescimoCalculado, 15, 65, 50.0)
+
+// imprime os resultados
+WriteLn "Peso total = ", pesoTotal
+WriteLn "Acréscimo = ", acrescimoCalculado
+WriteLn "Juros = ", jurosCalculado

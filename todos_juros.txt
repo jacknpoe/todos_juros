@@ -1122,7 +1122,7 @@ juros.x
 juros_xc.bas
 
 347. XL2 (06/03/2026)
-juros.xl
+juros.xl2
 
 348. Xojo (18/02/2025)
 juros.xojo_binary_project

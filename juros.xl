@@ -1,5 +1,6 @@
 // Calcula o acréscimo a partir dos juros e os juros a partir do acréscimo
 // Versão: 0.1: 06/03/2026: feita sem muito conhecimento de XL (2011)
+// 2011 significa a versão em https://sourceforge.net/projects/xlr/
 // RODAR COM (compilador em /xl2/native, ambiente testado: Debian 12):
 // ./nxl -I library <arquivo.xl> > <arquivo.c>
 // sed -i 's/%#10\.4g/%3.15f/g' <arquivo.c>

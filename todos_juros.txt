@@ -1,7 +1,7 @@
-362 resoluções de equação transcendente
+363 resoluções de equação transcendente
 ---------------------------------------
 
-Desde que esse artigo foi publicado, mais 352 resoluções foram acrescentadas ao repositório https://github.com/jacknpoe/todos_juros, totalizando, agora, 362 resoluções.
+Desde que esse artigo foi publicado, mais 353 resoluções foram acrescentadas ao repositório https://github.com/jacknpoe/todos_juros, totalizando, agora, 363 resoluções.
 
 No artigo Resolução de Equação Transcendente, foi explicado como uma equação que calcula os juros a partir do acréscimo e das parcelas pode ser feita usando Cálculo Numérico, especificamente o Método da Bisseção.
 
@@ -485,7 +485,7 @@ jurosJB.bas
 Juros_jython.py
 main_jython.py
 
-146. K (04/02/2026)
+146. K (04/03/2026)
 juros.k
 
 147. Kawa (10/04/2025)
@@ -1105,68 +1105,71 @@ juros.wxb
 Juros.prg
 Start.prg
 
-342. X10 (02/08/2024)
+342. x-lang (08/03/2026)
+jurosxlang.x
+
+343. X10 (02/08/2024)
 TestaJuros.x10
 
-343. X11-Basic (17/05/2025)
+344. X11-Basic (17/05/2025)
 jurosX11.bas
 
-344. Xbase++ (02/04/2025)
+345. Xbase++ (02/04/2025)
 jurosXB.prg
 main.prg
 
-345. XBasic (31/12/2025)
+346. XBasic (31/12/2025)
 juros.x
 
-346. XC=BASIC (16/07/2024)
+347. XC=BASIC (16/07/2024)
 juros_xc.bas
 
-347. XL2 (06/03/2026)
+348. XL2 (06/03/2026)
 juros.xl2
 
-348. Xojo (18/02/2025)
+349. Xojo (18/02/2025)
 juros.xojo_binary_project
 
-349. XPL0 (19/02/2025)
+350. XPL0 (19/02/2025)
 juros.xpl
 
-350. XSB (19/02/2025)
+351. XSB (19/02/2025)
 juros.P
 
-351. Xtend (03/06/2024)
+352. Xtend (03/06/2024)
 Juros.xtend
 
-352. Yabasic (30/01/2025)
+353. Yabasic (30/01/2025)
 JUROSYB.BAS
 
-353. Yeti (31/05/2024)
+354. Yeti (31/05/2024)
 juros.yeti
 
-354. Yoix (27/03/2025)
+355. Yoix (27/03/2025)
 juros.yx
 
-355. Yorick (11/07/2025)
+356. Yorick (11/07/2025)
 juros.i
 
-356. YSH (Yarn Shell) (02/03/2026)
+357. YSH (Yarn Shell) (02/03/2026)
 juros.ysh
 
-357. Z (22/05/2025)
+358. Z (22/05/2025)
 juros.zlang
 
-358. ZBasic (09/03/2025)
+359. ZBasic (09/03/2025)
 JUROSZ.BAS
 
-359. Zig (17/06/2024)
+360. Zig (17/06/2024)
 juros.zig
 
-360. zsh (11/07/2025)
+361. zsh (11/07/2025)
 juros.zsh
 
-361. ZX Spectrum 128 BASIC (05/05/2025)
+362. ZX Spectrum 128 BASIC (05/05/2025)
 juros.z80
 
-362. ZX81 BASIC (20/05/2025)
+363. ZX81 BASIC (20/05/2025)
 juros.z81
 
 EQUIVALENTES

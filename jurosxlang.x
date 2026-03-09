@@ -1,5 +1,5 @@
 // Calcula o acréscimo a partir dos juros e os juros a partir do acréscimo
-// Versão: 0.1: 07/03/2026: feita sem muito conhecimento de x-lang
+// Versão: 0.1: 08/03/2026: feita sem muito conhecimento de x-lang
 
 // FUNÇÕES ACESSÓRIAS QUE JÁ DEVERIAM ESTAR NO DIALETO, MAS PRECISARAM SER ESCRITAS PARA SE CHEGAR AO NÍVEL "TÉRREO" DA SOLUÇÃO
 

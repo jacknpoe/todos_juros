@@ -1,0 +1,64 @@
+// Calcula o acréscimo a partir dos juros e os juros a partir do acréscimo
+// Versão: 0.1: 14/03/2026: feita sem muito conhecimnento de 11l
+
+// variáveis globais para simplificar as chamadas e inicialização de escalares e primeira parcela
+V Quantidade = 300000
+V Composto = 1  // TRUE
+V Periodo = 30.0
+V Pagamentos = [Periodo]
+V Pesos = [1.0]
+
+// inicialização dos arrays Pagamentos[] e Pesos[] (exceto primeira parcela)
+L(indice) (2 .. Quantidade)
+    Pagamentos.append(indice * Periodo)
+    Pesos.append(1)
+
+// calcula a somatória dos elementos do array Pesos[]
+F getPesoTotal()
+    V acumulador = 0.0
+    L(indice) (0 .< Quantidade)
+        acumulador = acumulador + Pesos[indice]
+    R acumulador
+
+// calcula o acréscimo a partir dos juros e parcelas
+F jurosParaAcrescimo(juros)
+    V pesoTotal = getPesoTotal()
+    I Quantidade < 1 | Periodo <= 0.0 | pesoTotal <= 0.0 | juros <= 0.0 { R 0.0 }
+    V acumulador = 0.0
+
+    L(indice) (0 .< Quantidade)
+        I Composto
+            acumulador = acumulador + Pesos[indice] / (1.0 + juros / 100.0) ^ (Pagamentos[indice] / Periodo)
+        E
+            acumulador = acumulador + Pesos[indice] / (1.0 + juros / 100.0 * Pagamentos[indice] / Periodo)
+    
+    I acumulador <= 0.0 { R 0.0 }
+    R (pesoTotal / acumulador - 1.0) * 100.0
+
+// calcula os juros a partir do acréscimo e parcelas
+F acrescimoParaJuros(acrescimo, precisao, maxIteracoes, maximoJuros)
+    V pesoTotal = getPesoTotal()
+    I Quantidade < 1 | Periodo <= 0.0 | pesoTotal <= 0.0 | acrescimo <= 0.0 | precisao < 1 | maxIteracoes < 1 | maximoJuros <= 0.0 { R 0.0 }
+    V minJuros = 0.0
+    V medJuros = maximoJuros / 2.0
+    V maxJuros = maximoJuros
+    V minDiferenca = 0.1 ^ precisao
+
+    L(iteracao) (1 .. maxIteracoes)
+        I maxJuros - minJuros < minDiferenca { R medJuros }
+        I jurosParaAcrescimo(medJuros) < acrescimo
+            minJuros = medJuros
+        E
+            maxJuros = medJuros
+        medJuros = (minJuros + maxJuros) / 2.0
+    R medJuros
+
+// chama e calcula o resultados das funções
+V pesoTotal = getPesoTotal()
+V acrescimoCalculado = jurosParaAcrescimo(3.0)
+V jurosCalculado = acrescimoParaJuros(acrescimoCalculado, 15, 65, 50.0)
+
+// imprime os resultados
+print(f:‘Peso total = {pesoTotal:.15}’)
+print(f:‘Acréscimo = {acrescimoCalculado:.15}’)
+print(f:‘Juros = {jurosCalculado:.15}’)

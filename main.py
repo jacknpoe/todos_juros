@@ -9,6 +9,7 @@
 #          0.6: 20/12/2024: com acentuação (Latin1)
 #          0.7: 22/07/2025: não enviadas as três primeiras parcelas nas linhas 15 e 16
 #          0.8: 17/02/2026: corrigidas posições da documentação dos métodos
+#          0.9: 18/03/2026: except pass para o infinito em **
 
 import Juros
 

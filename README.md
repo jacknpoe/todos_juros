@@ -8,7 +8,7 @@ Este repositório é sobre codificar, em vários dialetos, a mesma solução em 
 
 Tirando a pasta "terceiros", todas as soluções foram escritas por https://github.com/jacknpoe. Em BBC Basic foi utilizada uma forma simplificada de "tradução", sendo que o código precisou ser completamente revisado para poder rodar apropriadamente. QML teve parte do código traduzida de JavaScript pelo ChatGPT mas, de novo, ela teve que ser revisada, com partes que foram ignoradas.
 
-Um executor de scripts para AngelScript foi criado pelo ChatGPT a partir das bibliotecas do AngelScript. Trata-se de um código-fonte em C++ (.cpp) que recebe um script como parâmetro e o executa. Ele está disponível junto à solução escrita nessa linguagem de script, para quem quiser compilar e testar a execução (desde que, é claro, as bibliotecas sejam baixadas e colocadas nas pastas adequadas).
+Um executor de scripts para AngelScript foi criado pelo ChatGPT a partir das bibliotecas do AngelScript. Trata-se de um código-fonte em C++ (.cpp) que recebe um script como parâmetro e o executa. Ele está disponível junto à solução escrita nesse dialeto de script, para quem quiser compilar e testar a execução (desde que, é claro, as bibliotecas sejam baixadas e colocadas nas pastas adequadas).
 
 Fórmula para calcular o acréscimo a partir dos juros simples:
 
@@ -44,6 +44,8 @@ Algumas versões têm implementações das funções `ln()` para logaritmo natur
 
 A função `jurosParaAcrescimo()` em Jakt tem uma versão otimizada do cálculo dos juros compostos, reduzindo quase pela metade o tempo necessário, embora a solução em Jakt inclua implementações próprias das funções `ln()` e `exp()`, que foram testadas de forma interpretada, e por isso são lentas. Essa otimização não será aplicada nas outras implementações, para manter a homogeneidade dos algoritmos, e o cálculo normal foi mantido comentado no código.
 
+O dialeto Bend tem duas soluções. A primeira usa um mapa (estrutura {1:..., 2:...}) para simular arrays, o que não é escalável. A segunda usa funções para mapear pagamentos e pesos a partir do índice, sendo escalável. Ambas foram mantidas por motivos históricos e didáticos. A precisão numérica é limitada (float de 24 bits), o que afeta o resultado final.
+
 A saída mais comum para os testes é:
 
 Peso total = 3.0 / Acréscimo = 6.059108997379403 / Juros = 2.999999999999992
@@ -76,7 +78,7 @@ It's a "Rosetta Stone" of programming dialects.
 
 With the exception of the "third parties" folder, all solutions were written by https://github.com/jacknpoe. BBC Basic used a simplified form of "translation," requiring a complete review of the code to run properly. QML had part of its JavaScript code translated by ChatGPT, but again, it had to be revised, with some parts being omitted.
 
-A script executor for AngelScript was created by ChatGPT using the AngelScript libraries. It is a C++ source code (.cpp) that receives a script as a parameter and executes it. It is available along with the solution written in this scripting language, for anyone who wants to compile and test its execution (provided, of course, that the libraries are downloaded and placed in the appropriate folders).
+A script executor for AngelScript was created by ChatGPT using the AngelScript libraries. It is a C++ source code (.cpp) that receives a script as a parameter and executes it. It is available along with the solution written in this scripting dialect, for anyone who wants to compile and test its execution (provided, of course, that the libraries are downloaded and placed in the appropriate folders).
 
 Formula for calculating the increase from simple interest:
 
@@ -108,11 +110,13 @@ Some implementations will not be maintained because they were done in trial vers
 
 Some files are unreadable, as they are binary and must be opened or imported into the dialect environments, such as AppleSoft BASIC, Smalltalk, Snap! and twinBASIC. StarLogo Nova does not save to a file, so only the URL is available: https://www.slnova.org/jacknpoe/projects/941781/.
 
-Some dialects will not yet have the solution because they lack support for necessary features, such as floating-point numbers (for example, languages ​​like Solidity, which run on Ethereum). Other dialects have other problems, such as being outdated and not running or compiling on current systems. Dialects that are, in fact, Turing tarpits, such as Agda, will be ignored.
+Some dialects will not yet have the solution because they lack support for necessary features, such as floating-point numbers (for example, dialects ​​like Solidity, which run on Ethereum). Other dialects have other problems, such as being outdated and not running or compiling on current systems. Dialects that are, in fact, Turing tarpits, such as Agda, will be ignored.
 
 Some versions have implementations of the `ln()` function for natural logarithms and `exp()` for Euler's number raised to a power. Then, the `pow()` exponentiation functions were built from basic mathematical operations. The B (BCause implementation) dialect, in addition to these functions, has implemented fixed-point arithmetic (multiplication, division, conversions).
 
 The `jurosParaAcrescimo()` function in Jakt has an optimized version of compound interest calculation, reducing the time required by almost half, although the Jakt solution includes its own implementations of the `ln()` and `exp()` functions, which were tested in an interpreted way, and are therefore slow. This optimization will not be applied to the other implementations, to maintain the homogeneity of the algorithms, and the normal calculation has been kept commented in the code.
+
+The Bend dialect has two solutions. The first uses a map (structure {1:..., 2:...}) to simulate arrays, which is not scalable. The second uses functions to map payments and weights from the index, which is scalable. Both have been maintained for historical and didactic reasons. Numerical precision is limited (24-bit float), which affects the final result.
 
 The most common output for tests is:
 

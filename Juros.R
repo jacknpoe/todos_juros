@@ -1,6 +1,7 @@
 # Versão 0.2:    04/2024: trocada avaliação soZero por acumulador == 0
-#             21/03/2026: colocados return() porque não estavam corretos os retornos dos ifs e adicionados .0 nos floats
-#                         usando agora ^ e || em vez de ** e |, listas pré-alocadas e cat(sprintf()) (ideias do ChatGPT)
+#             21/03/2026: corrigidos retornos com return() nos ifs; padronização de floats (.0);
+#                         uso de ^ e || (em vez de ** e |)¹; pré-alocação de vetores¹;
+#                         saída formatada com cat(sprintf())¹; ¹ = sugestões do ChatGPT
 
 Juros <- list(quantidade = 0, composto = FALSE, periodo = 30, pagamentos = c(), pesos = c())
 

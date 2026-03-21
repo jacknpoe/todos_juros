@@ -27,9 +27,11 @@ def pAcrescimoParaJuros (acrescimo : f64, minDiferenca : f64, maxIteracoes : i32
         if (jurosParaAcrescimo medJuros) < acrescimo then (indice + 1, medJuros, (medJuros + maxJuros) / 2.0, maxJuros)
             else (indice + 1, minJuros, (minJuros + medJuros) / 2.0, medJuros)
 
+-- açúcar para calcular os juros a partir do acréscimo e parcelas
 def acrescimoParaJuros (acrescimo : f64, precisao : i32, maxIteracoes : i32, mJuros : f64) : (f64) =
     let (_, _, medJuros, _) = pAcrescimoParaJuros (acrescimo, 0.1 ** r64 precisao, maxIteracoes, mJuros) in medJuros
 
+-- a main calcula e guarda em três variáveis e retorna elas para quem chamou o programa
 def main (juros : f64) : (f64, f64, f64) =
     let pesoTotal = getPesoTotal
     let acrescimoCalculado = jurosParaAcrescimo juros

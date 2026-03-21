@@ -38,7 +38,7 @@ Algumas implementações não serão mantidas, porque foram feitas em versões d
 
 Alguns arquivos estão ilegíveis, pois são binários e devem ser abertos ou importados nos ambientes dos dialetos, como AppleSoft BASIC, Smalltalk, Snap! e twinBASIC. StarLogo Nova não salva em arquivo, então somente a URL está disponibilizada: https://www.slnova.org/jacknpoe/projects/941781/.
 
-Alguns dialetos não terão a solução ainda, por não terem suporte a recursos necessários, como números de ponto flutuante (por exemplo linguagens como Solidity, que rodam em Ethereum). Outros dialetos têm outros problemas, como estarem desatualizadas e não rodarem ou compilarem nos sistemas atuais. Dialetos que são, na verdade, Turing tarpits, como Agda, serão ignorados.
+Alguns dialetos não terão a solução ainda, por não terem suporte a recursos necessários, como números de ponto flutuante (ou inteiros de 64 bits para emular). Outros dialetos têm outros problemas, como estarem desatualizadas e não rodarem ou compilarem nos sistemas atuais. Dialetos que são, na verdade, Turing tarpits, como Agda, serão ignorados.
 
 Algumas versões têm implementações das funções `ln()` para logaritmo natural e `exp()` para número de Euler elevado à potência. Então, as funções `pow()` de exponenciação foram construídas a partir das operações matemáticas básicas. O dialeto B (BCause implementation), além dessas funções, teve aritmética (multiplicação, divisão, conversões) de pontos fixos implementada.
 
@@ -110,7 +110,7 @@ Some implementations will not be maintained because they were done in trial vers
 
 Some files are unreadable, as they are binary and must be opened or imported into the dialect environments, such as AppleSoft BASIC, Smalltalk, Snap! and twinBASIC. StarLogo Nova does not save to a file, so only the URL is available: https://www.slnova.org/jacknpoe/projects/941781/.
 
-Some dialects will not yet have the solution because they lack support for necessary features, such as floating-point numbers (for example, dialects ​​like Solidity, which run on Ethereum). Other dialects have other problems, such as being outdated and not running or compiling on current systems. Dialects that are, in fact, Turing tarpits, such as Agda, will be ignored.
+Some dialects will not yet have a solution because they lack support for necessary features, such as floating-point numbers (or 64-bit integers to emulate). Other dialects have other problems, such as being outdated and not running or compiling on current systems. Dialects that are, in fact, Turing tarpits, such as Agda, will be ignored.
 
 Some versions have implementations of the `ln()` function for natural logarithms and `exp()` for Euler's number raised to a power. Then, the `pow()` exponentiation functions were built from basic mathematical operations. The B (BCause implementation) dialect, in addition to these functions, has implemented fixed-point arithmetic (multiplication, division, conversions).
 

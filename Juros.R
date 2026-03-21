@@ -1,4 +1,7 @@
 # Versão 0.2:    04/2024: trocada avaliação soZero por acumulador == 0
+#             21/03/2026: colocados return() porque não estavam corretos os retornos dos ifs e adicionados .0 nos floats
+#                         usando agora ^ e || em vez de ** e |, listas pré-alocadas e cat(sprintf()) (ideias do ChatGPT)
+
 Juros <- list(quantidade = 0, composto = FALSE, periodo = 30, pagamentos = c(), pesos = c())
 
 # calcula o peso total de todas as parcelas (números arbitrários)
@@ -12,62 +15,64 @@ getPesoTotal = function() {
 
 # calcula o acréscimo a partir de juros e parcelas
 jurosParaAcrescimo = function(juros) {
-  if (juros <= 0 | Juros$quantidade < 1 | Juros$periodo <= 0) { 0.0 }
   pesoTotal <- getPesoTotal()
-  if (pesoTotal <= 0) { 0.0 }
-  
+  if (juros <= 0.0 || Juros$quantidade < 1 || Juros$periodo <= 0.0 || pesoTotal <= 0.0) { return(0.0) }
+
   acumulador <- 0.0
-  # soZero <- TRUE
-  
+
   for (indice in 1:Juros$quantidade) {
-    # if (Juros$pagamentos[indice] > 0 & Juros$pesos[indice] > 0) { soZero <- FALSE}
     if (Juros$composto) {
-      acumulador <- acumulador + Juros$pesos[indice] / (1 + juros / 100) ** (Juros$pagamentos[indice] / Juros$periodo)
+      acumulador <- acumulador + Juros$pesos[indice] / (1.0 + juros / 100.0) ^ (Juros$pagamentos[indice] / Juros$periodo)
     } else {
-      acumulador <- acumulador + Juros$pesos[indice] / (1 + juros / 100 * Juros$pagamentos[indice] / Juros$periodo)
+      acumulador <- acumulador + Juros$pesos[indice] / (1.0 + juros / 100.0 * Juros$pagamentos[indice] / Juros$periodo)
     }
   }
   
-  # if (soZero) { 0.0 }
-  if (acumulador <= 0) { 0.0 }
-  (pesoTotal / acumulador - 1) * 100
+  if (acumulador <= 0.0) { return(0.0) }
+  (pesoTotal / acumulador - 1.0) * 100.0
 }
 
 # calcula os juros a partir de acréscimo e parcelas
 acrescimoParaJuros = function(acrescimo, precisao, maximoIteracoes, maximoJuros) {
-  if (maximoIteracoes < 1 | Juros$quantidade < 1 | precisao < 1 | Juros$periodo <= 0 | acrescimo <= 0) { 0.0 }
-  minimoJuros <- 0.0
-  medioJuros <- maximoJuros / 2
-  minimaDiferenca <- 0.1 ** precisao
   pesoTotal <- getPesoTotal()
-  if (pesoTotal <= 0) { 0.0 }
-  
+  if (maximoIteracoes < 1 || Juros$quantidade < 1 || precisao < 1 || Juros$periodo <= 0.0 || acrescimo <= 0.0 || pesoTotal <= 0.0) { return(0.0) }
+  minimoJuros <- 0.0
+  medioJuros <- maximoJuros / 2.0
+  minimaDiferenca <- 0.1 ^ precisao
+
   for (indice in 1:maximoIteracoes) {
-    medioJuros <- (minimoJuros + maximoJuros) / 2
-    if ((maximoJuros - minimoJuros) < minimaDiferenca) { medioJuros }
+    if ((maximoJuros - minimoJuros) < minimaDiferenca) { return(medioJuros) }
     if(jurosParaAcrescimo(medioJuros) <= acrescimo) {
       minimoJuros <- medioJuros 
     } else {
       maximoJuros <- medioJuros
     }
+    medioJuros <- (minimoJuros + maximoJuros) / 2.0
   }
   
   medioJuros
 }
   
-# Testes
+# inicializa escalares
 Juros$quantidade <- 3
 Juros$composto <- TRUE
-Juros$periodo <- 30
+Juros$periodo <- 30.0
 
-Juros$pagamentos[1] <- 30
-Juros$pagamentos[2] <- 60
-Juros$pagamentos[3] <- 90
+# inicializa listas
+Juros$pagamentos <- numeric(Juros$quantidade)
+Juros$pesos <- numeric(Juros$quantidade)
 
-Juros$pesos[1] <- 1
-Juros$pesos[2] <- 1
-Juros$pesos[3] <- 1
+for(indice in 1:Juros$quantidade) {
+  Juros$pagamentos[indice] = indice * Juros$periodo
+  Juros$pesos[indice] = 1.0
+}
 
-getPesoTotal()
-jurosParaAcrescimo(3)
-acrescimoParaJuros(jurosParaAcrescimo(3), 15, 100, 50)
+# calcula e guarda os resultados das funções
+pesoTotal <- getPesoTotal()
+acrescimoCalculado <- jurosParaAcrescimo(3.0)
+jurosCalculado <- acrescimoParaJuros(acrescimoCalculado, 15, 65, 50.0)
+
+# imprime os resultados
+cat(sprintf("Peso total = %.15f\n", pesoTotal))
+cat(sprintf("Acréscimo = %.15f\n", acrescimoCalculado))
+cat(sprintf("Juros = %.15f\n", jurosCalculado))

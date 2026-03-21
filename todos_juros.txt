@@ -109,6 +109,7 @@ juros.bc
 
 31. Bend (08/08/2024)
 juros.bend
+jurosf.bend
 
 32. Bigloo (02/08/2025)
 juros.bigloo.scm

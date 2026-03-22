@@ -18,7 +18,7 @@ Fórmula para calcular o acréscimo a partir dos juros compostos:
 
 ![Juros Compostos](https://github.com/jacknpoe/todos_juros/blob/main/JurosCompostos.jpg)
 
-Apenas soluções que compilaram (ou foram corretamente interpretadas), que realmente rodaram, e retornaram resultados corretos, são publicadas.
+Apenas soluções que compilaram (ou foram corretamente interpretadas), que realmente rodaram, e retornaram resultados corretos, são publicadas. Com exceção de Bend, que apresentou diferença de 0,02 no cálculo dos juros. A solução é mantida para registro histórico e didático.
 
 Uma das metas é que os compiladores e interpretadores não exibam avisos ao compilar ou rodar as soluções. Em IDEs integradas, os avisos também foram evitados. 
 
@@ -90,7 +90,7 @@ Formula for calculating the increase from compound interest:
 
 (pesoTotal = totalWeight; quantidade = quantity; pesos = weights; juros = interest; pagamentos = payments; periodo = period)
 
-Only solutions that compiled (or were correctly interpreted), actually ran, and returned correct results are published.
+Only solutions that compiled (or were correctly interpreted), actually ran, and returned correct results are published. With the exception of Bend, which showed a difference of 0.02 in the interest calculation. The solution is kept for historical and educational record.
 
 One of the goals is for compilers and interpreters to avoid displaying warnings when compiling or running the solutions. In integrated IDEs, warnings have also been avoided.
 

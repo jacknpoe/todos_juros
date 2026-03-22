@@ -1,0 +1,74 @@
+// classe Juros
+
+uses "math.fe";  // para pow() e powint()
+
+// atributos que simplificam as chamadas aos métodos
+class Juros {
+    number quantidade;
+    number composto;
+    number periodo;
+    array pagamentos;
+    array pesos;
+
+    // o construtor inicializa as escalares
+    function constructor( number quantidade, number composto, number periodo ){
+        self.quantidade = quantidade;
+        self.composto = composto;
+        self.periodo = periodo;
+    }
+
+    // calcula a somatória dos elementos no array pesos
+    function getPesoTotal( ){
+        number acumulador = 0.0;
+        number indice;
+
+        for( indice = 0; indice < self.quantidade; indice++ ){
+            acumulador = acumulador + self.pesos[indice];
+        }
+
+        return acumulador;
+    }
+
+    // calcula o acréscimo a partir dos juros e parcelas
+    function jurosParaAcrescimo( number juros ){
+        number acumulador = 0.0;
+        number indice;
+        number pesoTotal = self.getPesoTotal();
+        if( self.quantidade < 1 || self.periodo <= 0.0 || pesoTotal <= 0.0 || juros <= 0.0 ) return 0.0;
+
+        for( indice = 0; indice < self.quantidade; indice++ ){
+            if( self.composto != 0 ) {
+                acumulador = acumulador + self.pesos[indice] / pow(1.0 + juros / 100.0, self.pagamentos[indice] / self.periodo);
+            } else {
+                acumulador = acumulador + self.pesos[indice] / (1.0 + juros / 100.0 * self.pagamentos[indice] / self.periodo);
+            }
+        }
+
+        if( acumulador <= 0.0 ) return 0.0;
+        return (pesoTotal / acumulador - 1.0) * 100.0;
+    }
+
+    // calcula os juros a partir de acréscimo e parcelas
+    function acrescimoParaJuros( number acrescimo, number precisao, number maxIteracoes, number maxJuros ){
+        number minJuros = 0.0;
+        number medJuros = maxJuros / 2.0;
+        number minDiferenca = powint( 0.1, precisao );
+        number iteracao;
+        number pesoTotal = self.getPesoTotal();
+        if( self.quantidade < 1 || self.periodo <= 0.0 || pesoTotal <= 0.0 || acrescimo <= 0.0 || precisao < 1 || maxIteracoes < 1 || maxJuros <= 0.0 ) return 0.0; 
+
+        for( iteracao = 0; iteracao < maxIteracoes; iteracao++ ){
+            if( maxJuros - minJuros < minDiferenca ) return medJuros;
+            if( self.jurosParaAcrescimo(medJuros) < acrescimo ){
+                minJuros = medJuros;
+            } else {
+                maxJuros = medJuros;
+            }
+            medJuros = (minJuros + maxJuros) / 2.0;
+        }
+
+        return medJuros;
+    }
+}
+
+// Console.println( "0.1 ^ 6 = ${ powint(0.1, 6) }" );

@@ -1,0 +1,51 @@
+// implementações próprias de ln(), exp(), pow() e powint() que permitem fazer (1.0 + juros / 100.0) ^ (pagamentos[1] / periodo) e 0.1 ^ precisao
+// usadas para substituir as funções matemáticas ausentes na biblioteca "Math" atual em ferite
+
+global {
+    number MAXLN = 20;
+    number MAXEXP = 30;
+}
+
+// essa função é mais precisa com valores mais próximos de 1, como 1.0 a 1.1, que é a faixa em que vai ser usada
+function ln( number x ){
+    number indice;
+    number termo = (x - 1.0) / (x + 1.0);
+    number yy = termo * termo;
+    number soma = 0.0;
+
+    for( indice = 1; indice <= MAXLN ; indice ++ ) {
+        soma = soma + termo / (2.0 * indice - 1.0);
+        termo = termo * yy;
+    }
+
+    return 2.0 * soma;
+}
+
+// essa função é mais precisa com valores menores do que 5, que é a faixa em que vai ser usada
+function exp( number x ){
+    number indice;
+    number termo = 1.0;
+    number soma = 1.0;
+
+    for( indice = 1; indice <= MAXEXP; indice ++ ) {
+        termo = termo * x / indice;
+        soma = soma + termo;
+    }
+
+    return soma;
+}
+
+// essa função tem a precisão boa de acordo com ln() e exp()
+function pow( number base, number expoente ){
+    return exp(ln(base) * expoente);
+}
+
+// essa função é especial para expoentes inteiros (optar por inteiros pode aumentar a precisão, a base pode ser negativa)
+// ela é exata para 0.1 ^ precisao, que é muito usada na regra de parada maxJuros - minJuros < minDiferenca, onde minDiferenca = powint(0.1, precisao)
+// ATENÇÃO: a função só é exata quando expoente é inteiro
+function powint( number base, number expoente ){
+    if( expoente < 0 ) return powint( 1.0 / base, expoente * -1 );
+    if( expoente == 0 ) return 1;
+    if( expoente % 2 == 0 ) return powint( base * base, expoente / 2 );
+    return base * powint( base * base, (expoente - 1) / 2 );
+}

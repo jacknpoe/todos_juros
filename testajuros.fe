@@ -1,0 +1,31 @@
+// Cálculo dos juros, sendo que precisa de parcelas pra isso
+// Versão 0.1: 22/03/2026: versão feita sem muito conhecimento de ferite
+
+uses "array", "console", "juros.fe";
+
+// valores globais, altere aqui para mudar os parâmetros de teste, variáveis para retornos dos métodos e índice para for
+number quantidade = 300000;
+number composto = 1;  // 0 = FALSE
+number periodo = 30.0;
+
+number pesoTotal, acrescimoCalculado, jurosCalculado;
+number indice;
+
+// objeto juros do tipo Juros, inicializando os atributos escalares
+object juros = new Juros( quantidade, composto, periodo );
+
+// aqui, inicializamos os atributos arrays de juros
+for( indice = 1; indice <= quantidade; indice ++ ){
+    juros.pagamentos.push( indice * periodo );
+    juros.pesos.push( 1.0 );
+}
+
+// calcula e guarda os retornos dos métodos
+pesoTotal = juros.getPesoTotal();
+acrescimoCalculado = juros.jurosParaAcrescimo( 3.0 );
+jurosCalculado = juros.acrescimoParaJuros( acrescimoCalculado, 7, 30, 50.0 );
+
+    // imprime os resultados
+Console.println( "Peso total = $pesoTotal" );
+Console.println( "Acréscimo = $acrescimoCalculado" );
+Console.println( "Juros = $jurosCalculado" );

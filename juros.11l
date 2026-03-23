@@ -2,7 +2,7 @@
 // Versão: 0.1: 14/03/2026: feita sem muito conhecimnento de 11l
 
 // variáveis globais para simplificar as chamadas e inicialização de escalares e primeira parcela
-V Quantidade = 300000
+V Quantidade = 3
 V Composto = 1  // TRUE
 V Periodo = 30.0
 V Pagamentos = [Periodo]

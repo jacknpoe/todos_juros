@@ -3,8 +3,8 @@
 # Calcula o acréscimo a partir dos juros e os juros a partir do acréscimo
 # Versão: 0.1: 02/03/2026: feita sem muito conhecimento de YSH
 
-const MAXLN = 30
-const MAXEXP = 45
+const MAXLN = 20
+const MAXEXP = 30
 
 # essa função é mais precisa com valores mais próximos de 1, como 1.0 a 1.1, que é a faixa em que vai ser usada
 func ln(x) {

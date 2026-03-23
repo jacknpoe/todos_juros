@@ -18,7 +18,7 @@ let mut Pagamentos: f64*;
 let mut Pesos: f64*;
 // porque trava muitos parâmetros
 let Precisao: i64 = 15;
-let MaxIteracoes: i64 = 64;
+let MaxIteracoes: i64 = 65;
 let MaximoJuros: f64 = 50.0;
 
 // essa função é mais precisa com valores mais próximos de 1, como 1.0 a 1.1, que é a faixa em que vai ser usada

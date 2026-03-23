@@ -4,7 +4,7 @@
 uses "array", "console", "juros.fe";
 
 // valores globais, altere aqui para mudar os parâmetros de teste, variáveis para retornos dos métodos e índice para for
-number quantidade = 300000;
+number quantidade = 3;
 number composto = 1;  // 0 = FALSE
 number periodo = 30.0;
 

@@ -25,7 +25,7 @@ pesoTotal = juros.getPesoTotal();
 acrescimoCalculado = juros.jurosParaAcrescimo( 3.0 );
 jurosCalculado = juros.acrescimoParaJuros( acrescimoCalculado, 7, 30, 50.0 );
 
-    // imprime os resultados
+// imprime os resultados
 Console.println( "Peso total = $pesoTotal" );
 Console.println( "Acréscimo = $acrescimoCalculado" );
 Console.println( "Juros = $jurosCalculado" );

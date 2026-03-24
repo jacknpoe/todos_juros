@@ -166,7 +166,7 @@ mulfp(a, b) {
     }
 }
 
-/* operacao * de dois fixed-points */
+/* operacao / de dois fixed-points */
 divfp(a, b) {
     extrn ESCALA, INFINITO;
 

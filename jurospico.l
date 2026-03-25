@@ -175,7 +175,7 @@
 # ; calcula e guarda os resultados das funções
 (setq pesoTotal (getPesoTotal))
 (setq acrescimoCalculado (jurosParaAcrescimo (itof 3)))
-(setq jurosCalculado (acrescimoParaJuros acrescimoCalculado 8 33 (itof 50)))
+(setq jurosCalculado (acrescimoParaJuros acrescimoCalculado DIGITOS (* DIGITOS 4) (itof 50)))
 
 # ; imprime os resultados
 (prinl "Peso total = " (format pesoTotal DIGITOS))

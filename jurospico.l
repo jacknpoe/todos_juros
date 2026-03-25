@@ -4,7 +4,7 @@
 
 # ; a primeira parte não é domínio do problema, mas a matemática mais básica, de ponto fixo, para a parte financeira
 
-# ; variáveis globais para facilitar escrita e leitura (mude apenas DIGITOS e tudo)
+# ; variáveis globais para facilitar escrita e leitura (mude apenas DIGITOS e todos os outros irão mudar em sequência)
 (setq DIGITOS 8)
 (setq ESCALA (** 10 DIGITOS))
 (setq TOTLN (* 2 DIGITOS))

@@ -82,7 +82,6 @@ double acrescimoParaJuros(struct Juros *juros, double valor, short precisao, sho
 	short indice = 0;
 	double pesoTotal = getPesoTotal(juros);
 	if(maxIteracoes < 1 || juros->Quantidade <= 0 || precisao < 1 || valor <= 0 || juros->Periodo <= 0.0 || pesoTotal <= 0.0) return 0.0;
-	if(pesoTotal <= 0) return 0.0;
 	minDiferenca = pow(0.1, precisao);
 
 	for(indice = 0; indice < maxIteracoes; indice++) {

@@ -1,6 +1,7 @@
 Red [Title: "Juros"]
 ; Cálculo dos juros, sendo que precisa de parcelas pra isso
 ; Versão 0.1: 25/01/2025: versão feita sem muito conhecimento de Red (e corrigidos acessos aos arrays)
+;        0.2: 25/03/2026: trocado lugar da linha medJuros: (minJuros + maxJuros) / 2.0
 
 ; variáveis globais para não sobrecarregar os parâmetros das funções
 quantidade: 3
@@ -60,7 +61,6 @@ acrescimoParaJuros: func[acrescimo [float!] precisao [integer!] maxIteracoes [in
         indice: 1
 
         while [indice <= maxIteracoes] [
-            medJuros: (minJuros + maxJuros) / 2.0
             if ((maxJuros - minJuros) < minDiferenca) [
                 break
             ]
@@ -69,6 +69,7 @@ acrescimoParaJuros: func[acrescimo [float!] precisao [integer!] maxIteracoes [in
             ] [
                 maxJuros: medJuros
             ]
+            medJuros: (minJuros + maxJuros) / 2.0
         ]
         medJuros
     ]

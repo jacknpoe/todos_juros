@@ -1,6 +1,6 @@
 # ; Cálculo do juros, sendo que precisa de arrays pra isso
 # ; Versão 0.1: 24/03/2026: versao sem muito conhecimento de Picolisp
-# ;             25/03/2026: (maxJuros - minJuros) <= minDiferenca (em vez de < )
+# ;             25/03/2026: (maxJuros - minJuros) <= minDiferenca (em vez de < ) e (if (not (car pesos) 0 em lugar de sobre cdr
 # ; AVISOS: algumas verificações foram retiradas, então os calculos são indefinidos para valores incorretos
 
 # ; a primeira parte não é domínio do problema, mas a matemática mais básica, de ponto fixo, para a parte financeira
@@ -128,16 +128,16 @@
 
 # ; calcula a soma do amortecimento de todas as parcelas para juros compostos
 (de _jurosCompostos (juros pagamentos pesos)
-  (if (not (cdr pesos))
-    (divfp (car pesos) (powfp (+ UM (/ juros 100)) (divfp (car pagamentos) Periodo)))
+  (if (not (car pesos))
+    0
     (+ (divfp (car pesos) (powfp (+ UM (/ juros 100)) (divfp (car pagamentos) Periodo))) (_jurosCompostos juros (cdr pagamentos) (cdr pesos)))
   )
 )
 
 # ; calcula a soma do amortecimento de todas as parcelas para juros simples
 (de _jurosSimples (juros pagamentos pesos)
-  (if (not (cdr pesos))
-    (divfp (car pesos) (+ UM (mulfp (/ juros 100) (divfp (car pagamentos) Periodo))))
+  (if (not (car pesos))
+    0
     (+ (divfp (car pesos) (+ UM (mulfp (/ juros 100) (divfp (car pagamentos) Periodo)))) (_jurosSimples juros (cdr pagamentos) (cdr pesos)))
   )
 )

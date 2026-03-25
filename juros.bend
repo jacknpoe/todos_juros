@@ -1,6 +1,6 @@
 # Cálculo dos juros, sendo que precisa de parcelas pra isso
 # Versão 0.1: 08/08/2024: versão feita sem muito conhecimento de Bend
-# ATENÇÃO: COMO ESTÁ, A SOLUÇÃO DÁ ERROS DE 0.02 PARA BAIXO
+# ATENÇÃO: ESTA SOLUÇÃO APRESENTA ERRO DE APROX. 0.02 (PARA BAIXO) NOS JUROS
 
 # calcula, recursivamente, a somatória de pesos
 def getPesoTotal(pesos, iteracao):

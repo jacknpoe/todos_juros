@@ -1,7 +1,7 @@
 # Cálculo dos juros, sendo que precisa de parcelas pra isso
 # Versão 0.1: 08/08/2024: versão feita sem muito conhecimento de Bend
 #        0.2: 21/03/2026: versão com mapeamento por funções
-# ATENÇÃO: COMO ESTÁ, A SOLUÇÃO DÁ ERROS DE 0.02 PARA BAIXO
+# ATENÇÃO: ESTA SOLUÇÃO APRESENTA ERRO DE APROX. 0.02 (PARA BAIXO) NOS JUROS
 
 # função que mapeia pagamentos como um array
 def pagamentos(indice, periodo):

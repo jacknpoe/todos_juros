@@ -115,8 +115,8 @@
 
 # ; função recursiva no lugar de um for com acumulador que realmente calcula a somatória de Pesos[]
 (de _getPesoTotal (pesos)
-  (if (not (cdr pesos))
-    (car pesos)
+  (if (not (car pesos))
+    0
     (+ (_getPesoTotal (cdr pesos)) (car pesos))
   )
 )

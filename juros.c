@@ -6,7 +6,7 @@
 //        0.6: 10/07/2025: alteradas atribuições dos arrays para um for calculado	
 //        0.7: 29/07/2025: agora dá free em Pagamentos se falhar malloc em Pesos
 //        0.8: 18/02/2026: verificados pesoTotal no if inicial das funções financeiras
-//        0.9: 25/03/2026: compatibilidade com PicoC (para retornar a imprimir com , no lugar de .em C, descomente #include "locale.h" e setlocale())
+//        0.9: 25/03/2026: compatibilidade com PicoC (para retornar a imprimir com , no lugar de . em C, descomente #include "locale.h" e setlocale())
 
 #include <math.h>      // para usar pow()
 #include <stdio.h>     // para usar printf() e gets()

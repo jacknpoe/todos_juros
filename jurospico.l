@@ -116,7 +116,7 @@
 (de _getPesoTotal (pesos)
   (if (not (cdr pesos))
     (car pesos)
-    (+ (car pesos) (_getPesoTotal (cdr pesos)))
+    (+ (_getPesoTotal (cdr pesos)) (car pesos))
   )
 )
 

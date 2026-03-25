@@ -6,17 +6,20 @@
 //        0.6: 10/07/2025: alteradas atribuições dos arrays para um for calculado	
 //        0.7: 29/07/2025: agora dá free em Pagamentos se falhar malloc em Pesos
 //        0.8: 18/02/2026: verificados pesoTotal no if inicial das funções financeiras
+//        0.9: 25/03/2026: compatibilidade com PicoC (para retornar a imprimir com , no lugar de .em C, descomente #include locale setlocale())
 
 #include <math.h>      // para usar pow()
 #include <stdio.h>     // para usar printf() e gets()
 #include <stdlib.h>    // para usar malloc() e free()
-#include <stdbool.h>   // para usar o tipo booleano
-#include <locale.h>    // para usar setlocale()
+// #include <locale.h>    // para usar setlocale()
+
+#define true 1
+#define false 0
 
 // estrutura básica de propriedades para simplificar as chamadas
 struct Juros {
 	int Quantidade;
-	bool Composto;
+	int Composto;
 	double Periodo;
 	double *Pagamentos;
 	double *Pesos;
@@ -31,7 +34,7 @@ void liberaMemoria(struct Juros *juros) {
 }
 
 // define a quantidade de parcelas
-bool setQuantidade(struct Juros *juros, int quantidade) {
+int setQuantidade(struct Juros *juros, int quantidade) {
 	if(quantidade < 0) return false;
 	if(quantidade == juros->Quantidade) return true;
 	juros->Pagamentos = (double *) malloc(sizeof(double) * quantidade);
@@ -42,7 +45,7 @@ bool setQuantidade(struct Juros *juros, int quantidade) {
 }
 
 // define os valores escalares da estrutura (automaticamente, também chama setQuantidade)
-bool setValores(struct Juros *juros, int quantidade, bool composto, double periodo) {
+int setValores(struct Juros *juros, int quantidade, int composto, double periodo) {
 	if(!setQuantidade(juros, quantidade)) return false;
 	juros->Composto = composto;
 	juros->Periodo = periodo;
@@ -98,7 +101,7 @@ int main() {
 	double pesoTotal = 0, acrescimoCalculado = 0, jurosCalculado = 0;
 	int indice;
 
-	setlocale( LC_ALL, "");	
+//  setlocale( LC_ALL, "");	
 
 	if(!setValores(&juros, 3, true, 30.0)) {
 		printf("Erro ao definir os valores da estrutura juros!");

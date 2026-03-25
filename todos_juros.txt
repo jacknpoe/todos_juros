@@ -1,7 +1,7 @@
-372 resoluções de equação transcendente
+373 resoluções de equação transcendente
 ---------------------------------------
 
-Desde que esse artigo foi publicado, mais 362 resoluções foram acrescentadas ao repositório https://github.com/jacknpoe/todos_juros, totalizando, agora, 372 resoluções.
+Desde que esse artigo foi publicado, mais 363 resoluções foram acrescentadas ao repositório https://github.com/jacknpoe/todos_juros, totalizando, agora, 373 resoluções.
 
 No artigo Resolução de Equação Transcendente, foi explicado como uma equação que calcula os juros a partir do acréscimo e das parcelas pode ser feita usando Cálculo Numérico, especificamente o Método da Bisseção.
 
@@ -848,180 +848,183 @@ jurosREB.r
 259. Red (25/01/2025)
 juros.red
 
-260. Regina Rexx (14/01/2026)
+260. Red/System(25/03/2026)
+juros.reds
+
+261. Regina Rexx (14/01/2026)
 jurosr.rexx
 
-261. ReScript (30/06/2024)
+262. ReScript (30/06/2024)
 Demo.res
 
-262. RhinoC# (19/03/2025)
+263. RhinoC# (19/03/2025)
 jurosRhino.cs
 
-263. RhinoIronPython (20/03/2025)
+264. RhinoIronPython (20/03/2025)
 jurosRhinoIron.py
 
-264. RhinoPython (19/03/2025)
+265. RhinoPython (19/03/2025)
 jurosRhino.py
 
-265. RhinoScript (19/03/2025)
+266. RhinoScript (19/03/2025)
 juros.rvb
 
-266. Ring (18/06/2024)
+267. Ring (18/06/2024)
 juros.ring
 
-267. Roc (18/03/2026)
+268. Roc (18/03/2026)
 juros.roc
 
-268. Ruby (12/03/2024)
+269. Ruby (12/03/2024)
 juros.rb
 
-269. Rust (13/03/2024)
+270. Rust (13/03/2024)
 juros.rs
 main.rs
 
-270. S-Lang (12/06/2024)
+271. S-Lang (12/06/2024)
 juros.sl
 
-271. S4A (29/11/2025)
+272. S4A (29/11/2025)
 jurosS4A.sb
 
-272. SaC (01/08/2025)
+273. SaC (01/08/2025)
 juros.sac
 
-273. Scala (20/05/2024)
+274. Scala (20/05/2024)
 juros.scala
 testajuros.scala
 
-274. Scheme (28/04/2024)
+275. Scheme (28/04/2024)
 juros.scm
 
-275. Scilab (26/02/2025)
+276. Scilab (26/02/2025)
 juros.sce
 
-276. Scratch (17/04/2025)
+277. Scratch (17/04/2025)
 juros.sb3
 
-277. ScriptBasic (11/02/2026)
+278. ScriptBasic (11/02/2026)
 jurosScript.sb
 
-278. sdlBasic (05/02/2026)
+279. sdlBasic (05/02/2026)
 juros.sdlbas
 
-279. Seed7 (26/02/2025)
+280. Seed7 (26/02/2025)
 juros.sd7
 
-280. SETL (12/07/2024)
+281. SETL (12/07/2024)
 juros.setl
 
-281. Shark (08/06/2024)
+282. Shark (08/06/2024)
 juros.shk
 
-282. Simple (23/02/2025)
+283. Simple (23/02/2025)
 jurosSIMP.sim
 
-283. Simula (08/06/2024)
+284. Simula (08/06/2024)
 juros.sim
 
-284. Sinclair SuperBASIC (20/05/2025)
+285. Sinclair SuperBASIC (20/05/2025)
 JUROSSQL.BAS
 
-285. Slash (24/04/2025)
+286. Slash (24/04/2025)
 juros.slash
 
-286. Small Basic (08/04/2025)
+287. Small Basic (08/04/2025)
 juros.sb
 
-287. SmallBASIC (09/07/2025)
+288. SmallBASIC (09/07/2025)
 jurossb.bas
 
-288. Smalltalk (14/05/2024)
+289. Smalltalk (14/05/2024)
 RER-Juros.st
 
-289. SML (31/05/2024)
+290. SML (31/05/2024)
 juros.sml
 
-290. SML/NJ (19/04/2025)
+291. SML/NJ (19/04/2025)
 juros_smlnj.sml
 
-291. Snap! (21/05/2024)
+292. Snap! (21/05/2024)
 juros.xml
 
-292. SnapDevelop C# (23/04/2025)
+293. SnapDevelop C# (23/04/2025)
 JurosSD.cs
 TesteJurosSD.cs
 
-293. SNOBOL4 (28/01/2026)
+294. SNOBOL4 (28/01/2026)
 juros.sno
 
-294. Solar2D (01/04/2025)
+295. Solar2D (01/04/2025)
 main.lua
 
-295. Source (24/02/2025)
+296. Source (24/02/2025)
 juros.source
 
-296. SP-Forth (03/01/2026)
+297. SP-Forth (03/01/2026)
 jurosSP.fth
 
-297. Spider (10/06/2024)
+298. Spider (10/06/2024)
 juros.spider
 testajuros.html
 
-298. Squint (30/01/2025)
+299. Squint (30/01/2025)
 jacknpoe.juros.cljs
 
-299. Squirrel (18/06/2024)
+300. Squirrel (18/06/2024)
 juros.nut
 
-300. Starlark (18/03/2026)
+301. Starlark (18/03/2026)
 juros.star
 
-301. StarLogo Nova (07/04/2025)
+302. StarLogo Nova (07/04/2025)
 https://www.slnova.org/jacknpoe/projects/941781/
 
-302. StarLogo TNG (08/04/2025)
+303. StarLogo TNG (08/04/2025)
 juros.sltng
 
-303. Stateflow (03/04/2025)
+304. Stateflow (03/04/2025)
 juros.slx
 
-304. Steel (16/04/2025)
+305. Steel (16/04/2025)
 juros.steel.scm
 
-305. Stride (10/06/2024)
+306. Stride (10/06/2024)
 Juros.stride
 TestaJuros.stride
 
-306. Structured Text (IEC 61131-3 – CODESYS)
+307. Structured Text (IEC 61131-3 – CODESYS)
 juros.project
 
-307. Suneido (25/02/2026)
+308. Suneido (25/02/2026)
 juroslib.su
 
-308. SuperPascal (16/07/2024)
+309. SuperPascal (16/07/2024)
 juros.sp
 
-309. SuperCollider (31/01/2025)
+310. SuperCollider (31/01/2025)
 juros.scd
 
-310. Swift (23/03/2024)
+311. Swift (23/03/2024)
 juros.swift
 
-311. TCC (Take Command) (28/02/2026)
+312. TCC (Take Command) (28/02/2026)
 juros.btm
 
-312. Tcl (05/06/2024)
+313. Tcl (05/06/2024)
 juros.tcl
 
-313. thinBasic (04/02/2026)
+314. thinBasic (04/02/2026)
 juros.tbasic
 
-314. TI BASIC (24/05/2025)
+315. TI BASIC (24/05/2025)
 JUROSTI.BAS
 
-315. TI Extended BASIC (01/06/2025)
+316. TI Extended BASIC (01/06/2025)
 JUROSTIEX.BAS
 
-316. Transact-SQL (SQL Server) (04/02/2025)
+317. Transact-SQL (SQL Server) (04/02/2025)
 acrescimoParaJuros.sql
 getPesoTotal.sql
 inclui.sql
@@ -1029,177 +1032,177 @@ jurosParaAcrescimo.sql
 parcelas.sql
 testaJuros.sql
 
-317. TRS-80 BASIC (07/05/2025)
+318. TRS-80 BASIC (07/05/2025)
 JURO-STRS.BAS
 
-318. True BASIC (29/01/2025)
+319. True BASIC (29/01/2025)
 juros.tru
 
-319. Turbo Basic (30/01/2025)
+320. Turbo Basic (30/01/2025)
 JUROS_TB.BAS
 
-320. Turbo C (03/02/2025)
+321. Turbo C (03/02/2025)
 JUROSTC.C
 
-321. Turbo C++ (03/02/2025)
+322. Turbo C++ (03/02/2025)
 interestTC.cpp
 
-322. Turbo Pascal (02/02/2025)
+323. Turbo Pascal (02/02/2025)
 JUROSTP.PAS
 
-323. Turing (07/06/2024)
+324. Turing (07/06/2024)
 juros.t
 
-324. Twig (13/02/2026)
+325. Twig (13/02/2026)
 CalculaJuros.php
 juros.html.twig
 twig.php
 
-325. twinBASIC (28/05/2024)
+326. twinBASIC (28/05/2024)
 juros.twinproj
 
-326. TypeScript (03/03/2024)
+327. TypeScript (03/03/2024)
 Juros.ts
 TesteJuros.ts
 
-327. UCSD Pascal (Apple /// implementation) (12/01/2026)
+328. UCSD Pascal (Apple /// implementation) (12/01/2026)
 JUROS.TEXT
 
-328. ugBASIC (30/01/2026)
+329. ugBASIC (30/01/2026)
 jurosug.bas
 
-329. Umple (21/07/2024)
+330. Umple (21/07/2024)
 TestaJuros.ump
 
-330. Unicon (22/02/2025)
+331. Unicon (22/02/2025)
 jurosUnicon.icn
 
-331. Unified Parallel C (01/08/2024)
+332. Unified Parallel C (01/08/2024)
 juros.upc
 
-332. V (11/06/2024)
+333. V (11/06/2024)
 juros.v
 
-333. Vala (14/06/2024)
+334. Vala (14/06/2024)
 juros.vala
 
-334. VFX Forth 64 (19/06/2025)
+335. VFX Forth 64 (19/06/2025)
 juros.fth
 
-335. Vim script (20/02/2025)
+336. Vim script (20/02/2025)
 juros.vim
 
-336. Visual Basic (13/02/2025)
+337. Visual Basic (13/02/2025)
 Juros.frm
 
-337. Visual Basic .NET (02/03/2024)
+338. Visual Basic .NET (02/03/2024)
 TesteJuros.vb
 
-338. Visual DataFlex (21/02/2025)
+339. Visual DataFlex (21/02/2025)
 Juros.src
 
-339. Visual DialogScript (21/02/2025)
+340. Visual DialogScript (21/02/2025)
 juros.dsc
 
-340. Visual FoxPro (14/02/2025)
+341. Visual FoxPro (14/02/2025)
 jurosVFP.prg
 
-341. Visual LISP (22/02/2025)
+342. Visual LISP (22/02/2025)
 jurosVL.lsp
 
-342. VisuALG (01/05/2024)
+343. VisuALG (01/05/2024)
 juros.alg
 
-343. Windows PowerShell (08/01/2025)
+344. Windows PowerShell (08/01/2025)
 juros.ps1
 
-344. WLanguage (06/08/2024)
+345. WLanguage (06/08/2024)
 juros.wl
 
-345. WolframScript (22/07/2024)
+346. WolframScript (22/07/2024)
 juros.wls
 
-346. Wren (02/04/2025)
+347. Wren (02/04/2025)
 juros.wren
 
-347. WWB-COM (31/03/2025)
+348. WWB-COM (31/03/2025)
 Juros.wwd
 
-348. wxBasic (04/02/2026)
+349. wxBasic (04/02/2026)
 juros.wxb
 
-349. X# (14/06/2024)
+350. X# (14/06/2024)
 Juros.prg
 Start.prg
 
-350. X++ (12/03/2026)
+351. X++ (12/03/2026)
 juros.xpp
 
-351. x-lang (08/03/2026)
+352. x-lang (08/03/2026)
 jurosxlang.x
 
-352. X10 (02/08/2024)
+353. X10 (02/08/2024)
 TestaJuros.x10
 
-353. X11-Basic (17/05/2025)
+354. X11-Basic (17/05/2025)
 jurosX11.bas
 
-354. Xbase++ (02/04/2025)
+355. Xbase++ (02/04/2025)
 jurosXB.prg
 main.prg
 
-355. XBasic (31/12/2025)
+356. XBasic (31/12/2025)
 juros.x
 
-356. XC=BASIC (16/07/2024)
+357. XC=BASIC (16/07/2024)
 juros_xc.bas
 
-357. XL2 (06/03/2026)
+358. XL2 (06/03/2026)
 juros.xl2
 
-358. Xojo (18/02/2025)
+359. Xojo (18/02/2025)
 juros.xojo_binary_project
 
-359. XPL0 (19/02/2025)
+360. XPL0 (19/02/2025)
 juros.xpl
 
-360. XSB (19/02/2025)
+361. XSB (19/02/2025)
 juros.P
 
-361. Xtend (03/06/2024)
+362. Xtend (03/06/2024)
 Juros.xtend
 
-362. Yabasic (30/01/2025)
+363. Yabasic (30/01/2025)
 JUROSYB.BAS
 
-363. Yeti (31/05/2024)
+364. Yeti (31/05/2024)
 juros.yeti
 
-364. Yoix (27/03/2025)
+365. Yoix (27/03/2025)
 juros.yx
 
-365. Yorick (11/07/2025)
+366. Yorick (11/07/2025)
 juros.i
 
-366. YSH (Yarn Shell) (02/03/2026)
+367. YSH (Yarn Shell) (02/03/2026)
 juros.ysh
 
-367. Z (22/05/2025)
+368. Z (22/05/2025)
 juros.zlang
 
-368. ZBasic (09/03/2025)
+369. ZBasic (09/03/2025)
 JUROSZ.BAS
 
-369. Zig (17/06/2024)
+370. Zig (17/06/2024)
 juros.zig
 
-370. zsh (11/07/2025)
+371. zsh (11/07/2025)
 juros.zsh
 
-371. ZX Spectrum 128 BASIC (05/05/2025)
+372. ZX Spectrum 128 BASIC (05/05/2025)
 juros.z80
 
-372. ZX81 BASIC (20/05/2025)
+373. ZX81 BASIC (20/05/2025)
 juros.z81
 
 EQUIVALENTES
@@ -1256,8 +1259,8 @@ OpenMP = Intel oneAPI DPC++
 OSH (Oil Shell) = bash
 Pascal ISO 7185 = MSX Turbo Pascal
 PC-BASIC = GW-BASIC
-PicoC = C
 Pizza = Java
+PicoC = C
 PoSh = Windows PowerShell
 PowerBASIC = Turbo Basic
 Pretty C = C

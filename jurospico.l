@@ -1,5 +1,5 @@
 # ; Cálculo do juros, sendo que precisa de arrays pra isso
-# ; Versão 0.1: 24/03/2026: versao sem muito conhecimento de Picolisp
+# ; Versão 0.1: 24/03/2026: versao feita sem muito conhecimento de Picolisp
 # ;             25/03/2026: (maxJuros - minJuros) <= minDiferenca (em vez de < ) e (if (not (car pesos) 0 em lugar de sobre cdr
 # ; AVISOS: algumas verificações foram retiradas, então os calculos são indefinidos para valores incorretos
 

@@ -1,7 +1,8 @@
 /* Calculo dos juros, sendo que precisa de parcelas pra isso
    Versão 0.1: 19/02/2026: ate o momento, a matematica de fixed-points, globais, inicializacao e getPesoTotal()
           0.2: 20/02/2026: jurosParaAcrecimo() e a acrescimoParaJuros()
-          0.3: 24/03/2026: agora termo = mulfp(termo, x / indice); na linha 132, mais simples */
+          0.3: 24/03/2026: agora termo = mulfp(termo, x / indice); na linha 132, mais simples
+          0.4: 25/03/2026: (maxJuros - minJuros) <= minDiferenca (em vez de < )*/
 
 main() {
     extrn printf, p5dec, acrescimoParaJuros, jurosParaAcrescimo, getPesoTotal, inttofp, QUANTIDADE, PERIODO, PAGAMENTOS, PESOS, UM;
@@ -44,7 +45,7 @@ acrescimoParaJuros(acrescimo, precisao, maxIteracoes, maxJuros) {
     iteracao = 0;
 
     while (iteracao < maxIteracoes) {
-        if (maxJuros - minJuros < minDiferenca) return (medJuros);
+        if (maxJuros - minJuros <= minDiferenca) return (medJuros);
         if (jurosParaAcrescimo(medJuros) < acrescimo) {
             minJuros = medJuros;
         } else {

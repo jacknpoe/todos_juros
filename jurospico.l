@@ -1,5 +1,6 @@
 # ; Cálculo do juros, sendo que precisa de arrays pra isso
 # ; Versão 0.1: 24/03/2026: versao sem muito conhecimento de Picolisp
+# ;             25/03/2026: (maxJuros - minJuros) <= minDiferenca (em vez de < )
 # ; AVISOS: algumas verificações foram retiradas, então os calculos são indefinidos para valores incorretos
 
 # ; a primeira parte não é domínio do problema, mas a matemática mais básica, de ponto fixo, para a parte financeira
@@ -151,7 +152,7 @@
 
 # ; função recursiva no lugar de um for que realmente calcula os juros
 (de _acrescimoParaJuros (acrescimo minDiferenca iteracaoAtual minJuros maxJuros)
-  (if (< (- maxJuros minJuros) minDiferenca)
+  (if (<= (- maxJuros minJuros) minDiferenca)
     (/ (+ minJuros maxJuros) 2)
     (if (> iteracaoAtual 0)
       (if (< (jurosParaAcrescimo (/ (+ minJuros maxJuros) 2)) acrescimo)

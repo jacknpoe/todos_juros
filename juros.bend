@@ -1,5 +1,6 @@
 # Cálculo dos juros, sendo que precisa de parcelas pra isso
 # Versão 0.1: 08/08/2024: versão feita sem muito conhecimento de Bend
+# ATENÇÃO: COMO ESTÁ, A SOLUÇÃO DÁ ERROS DE 0.02 PARA BAIXO
 
 # calcula, recursivamente, a somatória de pesos
 def getPesoTotal(pesos, iteracao):
@@ -58,7 +59,7 @@ def main:
   # calcula e guarda os resultados das funções
   pesoTotal = getPesoTotal(pesos, quantidade)
   acrescimoCalculado = jurosParaAcrescimo(composto, periodo, pagamentos, pesos, quantidade, 3.0)
-  jurosCalculado = acrescimoParaJuros(composto, periodo, pagamentos, pesos, quantidade, acrescimoCalculado, 5, 50, 50.0)
+  jurosCalculado = acrescimoParaJuros(composto, periodo, pagamentos, pesos, quantidade, acrescimoCalculado, 15, 65, 50.0)
 
   # imprime os resultads
   return ("Peso total = ", pesoTotal, "Acréscimo = ", acrescimoCalculado, "Juros = ", jurosCalculado)

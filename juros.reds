@@ -4,7 +4,7 @@ Red/System [Title: "Juros"]
 ; Versão 0.1: 25/03/2026: versao feita sem muito conhecimento de Red/System
 
 ; variáveis globais para não sobrecarregar os parâmetros das funções
-quantidade: 300000
+quantidade: 3
 composto: true
 periodo: as float! 30.0
 pagamentos: declare float-ptr!

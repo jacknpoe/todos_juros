@@ -8,6 +8,7 @@ from "array" include Array
 // from e use desnecessários nos testes, descomente se o comportamento da linguagem mudar
 // from "number" include Number
 // use Number.{ (**) }
+
 // variáveis globais para simplificar as chamadas às funções
 let quantidade: Number = 3
 let composto: Bool = true

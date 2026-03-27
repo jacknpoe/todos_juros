@@ -1,0 +1,66 @@
+// Cálculo do juros, sendo que precisa de arrays pra isso
+// Versão 0.1: 27/03/2026: versao feita sem muito conhecimento de Grain
+
+module Juros
+
+from "array" include Array
+
+// from e use desnecessários nos testes, descomente se o comportamento da linguagem mudar
+// from "number" include Number
+// use Number.{ (**) }
+// variáveis globais para simplificar as chamadas às funções
+let quantidade: Number = 3
+let composto: Bool = true
+let periodo: Number = 30.0
+let pagamentos: Array<Number> = Array.init(quantidade, n => (n + 1) * periodo)
+let pesos: Array<Number> = Array.init(quantidade, n => 1.0)
+
+// calcula a somatória dos elementos em pesos[]
+let getPesoTotal = () => {
+    let mut acumulador: Number = 0.0
+    for(let mut indice: Number = 0; indice < quantidade; indice += 1) acumulador += pesos[indice]
+    return acumulador
+}
+
+// calcula o acréscimo a partir dos juros e parcelas
+let jurosParaAcrescimo = (juros: Number) => {
+    let pesoTotal: Number = getPesoTotal()
+    if (quantidade < 1 || periodo <= 0.0 || pesoTotal <= 0.0 || juros <= 0.0) return 0.0
+    let mut acumulador: Number = 0.0
+
+    for(let mut indice: Number = 0; indice < quantidade; indice += 1)
+        if (composto)
+             { acumulador += pesos[indice] / (1.0 + juros / 100.0) ** (pagamentos[indice] / periodo) }
+        else { acumulador += pesos[indice] / (1.0 + juros / 100.0 * pagamentos[indice] / periodo) }
+    
+    if (acumulador <= 0.0) return 0.0
+    return (pesoTotal / acumulador - 1.0) * 100.0
+}
+
+// calcula os juros a partir do acréscimo e parcelas
+let acrescimoParaJuros = (acrescimo: Number, precisao: Number = 15, maxIteracoes: Number = 65, maximoJuros: Number = 50.0) => {
+    let pesoTotal: Number = getPesoTotal()
+    if (quantidade < 1 || periodo <= 0.0 || pesoTotal <= 0.0 || acrescimo <= 0.0 || precisao < 1 || maxIteracoes < 1 || maximoJuros <= 0.0) return 0.0
+    let mut minJuros: Number = 0.0
+    let mut medJuros: Number = maximoJuros / 2.0
+    let mut maxJuros: Number = maximoJuros
+    let minDifenca: Number = 0.1 ** precisao
+
+    for(let mut iteracao: Number = 0; iteracao < maxIteracoes; iteracao += 1) {
+        if (maxJuros - minJuros < minDifenca) return medJuros
+        if (jurosParaAcrescimo(medJuros) < acrescimo) { minJuros = medJuros } else { maxJuros = medJuros }
+        medJuros = (minJuros + maxJuros) / 2.0
+    }
+
+    return medJuros
+}
+
+// calcula e guarda os resultados das funções
+let pesoTotal: Number = getPesoTotal()
+let acrescimoCalculado: Number = jurosParaAcrescimo(3.0)
+let jurosCalculado: Number = acrescimoParaJuros(acrescimoCalculado)
+
+// imprime os resultados
+print("Peso total = " ++ toString(pesoTotal))
+print("Acréscimo = " ++ toString(acrescimoCalculado))
+print("Juros = " ++ toString(jurosCalculado))

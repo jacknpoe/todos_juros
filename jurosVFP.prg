@@ -1,5 +1,9 @@
 * Cálculo dos juros, sendo que precisa de parcelas pra isso
 * Versão 0.1: 14/02/2025: versão feita sem muito conhecimento de VFP 6.0
+*        0.2: 28/03/2026: SET DECIMALS TO 15
+
+* única linha que não foi testada, não vou instalar de novo o VFP 6.0 só para testar isso
+SET DECIMALS TO 15 
 
 * cria um objeto oJuros da classe juros e inicializa os arrays
 oJuros = CREATEOBJECT("Juros", 3, .T., 30.0)

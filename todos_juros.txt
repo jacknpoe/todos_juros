@@ -749,7 +749,7 @@ php_testejuros.css
 php_testejuros.png
 php_estejuros.js
 
-228. Picolisp (24/03/2026)
+228. PicoLisp (24/03/2026)
 jurospico.l
 
 229. Pike (01/03/2025)

@@ -47,7 +47,7 @@
 )
 
 # ; logaritmo natural em fixed-point usando serie via (x-1)/(x+1); preciso e estavel no dominio do problema de matematica financeira;
-# ; apresenta melhor convergencia para valores proximos de 1; a precisao depende de TOTLN e da escala fixa adotada
+# ; apresenta melhor convergencia para valores proximos de 1; a precisao depende de TOTLN e da escala fixa adotada (açúcar)
 (de lnfp(valor)
   (_lnfp 1 (divfp (- valor UM) (+ valor UM)) (divfp (- valor UM) (+ valor UM)) 0)
 )
@@ -61,12 +61,12 @@
 )
 
 # ; exponencial em fixed-point usando serie de Taylor; precisa e estavel no dominio do problema (expoentes pequenos,
-# ; tipicamente derivados de lnfp em matematica financeira); a precisao depende de TOTEXP e da escala fixa adotada */
+# ; tipicamente derivados de lnfp em matematica financeira); a precisao depende de TOTEXP e da escala fixa adotada (açúcar)
 (de expfp (valor)
   (_expfp 1 valor valor UM)
 )
 
-# ; calcula base elevado a expoente usando a função expnat e lognat
+# ; açúcar que calcula base elevado a expoente usando a função expnat e lognat
 (de powfp (base expoente)
   (expfp (mulfp expoente (lnfp base)))
 )
@@ -94,7 +94,7 @@
   )
 )
 
-# ; função que inicializa Pagamentos
+# ; função açúcar que inicializa Pagamentos
 (de initPagamentos ()
   (_initPagamentos Quantidade)
 )
@@ -108,7 +108,7 @@
   )
 )
 
-# ; função que inicializa Pesos
+# ; função açúcar que inicializa Pesos
 (de initPesos ()
   (_initPesos Quantidade)
 )
@@ -121,12 +121,12 @@
   )
 )
 
-# ; calcula a somatória de Pesos[]
+# ; açúcar que calcula a somatória de Pesos[]
 (de getPesoTotal ()
   (_getPesoTotal Pesos)
 )
 
-# ; calcula a soma do amortecimento de todas as parcelas para juros compostos
+# ; função recursiva que calcula a soma do amortecimento de todas as parcelas para juros compostos
 (de _jurosCompostos (juros pagamentos pesos)
   (if (not (car pesos))
     0
@@ -134,7 +134,7 @@
   )
 )
 
-# ; calcula a soma do amortecimento de todas as parcelas para juros simples
+# ; função recursiva que calcula a soma do amortecimento de todas as parcelas para juros simples
 (de _jurosSimples (juros pagamentos pesos)
   (if (not (car pesos))
     0
@@ -142,7 +142,7 @@
   )
 )
 
-# ; calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
+# ; açúcar que calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
 (de jurosParaAcrescimo (juros)
   (if (> Composto 0)
     (* (- (divfp (getPesoTotal) (_jurosCompostos juros Pagamentos Pesos)) UM) 100)
@@ -164,7 +164,7 @@
   )
 )
 
-# ; calcula os juros a partir do acréscimo e dados comuns (como parcelas)
+# ; açúcar que calcula os juros a partir do acréscimo e dados comuns (como parcelas)
 (de acrescimoParaJuros (acrescimo precisao maxIteracoes maxJuros)
   (_acrescimoParaJuros acrescimo (pretomin precisao) maxIteracoes 0 maxJuros)
 )

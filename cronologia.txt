@@ -371,7 +371,8 @@ ooc (21/03/2026)
 ferite (22/03/2026)
 PicoLisp (24/03/2026)
 Red/System (25/03/2026)
-Grain (27/06/2026)
+Grain (27/03/2026)
+Nickel (31/03/2026)
 
 CRONOLOGIA / CHRONOLOGY
 -----------------------

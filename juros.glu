@@ -1,0 +1,83 @@
+// Cálculo do juros, sendo que precisa de arrays pra isso
+// Versão 0.1: 01/04/2026: versao feita sem muito conhecimento de Gluon
+
+let array = import! std.array
+let bool = import! std.bool
+let float = import! std.float
+let io @ { ? } = import! std.io
+
+// globais escalares para simplificar as chamadas às funções, inicializadas
+let quantidade : Int = 300000
+let composto : Bool = True
+let periodo : Float = 30.0
+
+// função recursiva que cria um array para pagamentos
+rec let rGeraPagamentos indice =
+    if indice < 0 then []
+    else array.append (rGeraPagamentos (indice - 1)) [periodo * (float.from_int (indice + 1))]
+
+// função recursiva que cria um array para pesos
+rec let rGeraPesos indice =
+    if indice < 0 then []
+    else array.append (rGeraPesos (indice - 1)) [1.0]
+
+// função recursiva que calcula a somatória dos elementos no array pesos
+rec let rGetPesoTotal pesos indice =
+    if indice < 0 then 0.0
+    else (rGetPesoTotal pesos (indice - 1)) + (array.index pesos indice)
+
+// função recursiva que calcula a somatória das amortizações nos juros compostos
+rec let rJurosCompostos pagamentos pesos juros indice =
+    if indice < 0 then 0.0
+    else (rJurosCompostos pagamentos pesos juros (indice - 1)) + (array.index pesos indice) / (float.powf (1.0 + juros / 100.0) ((array.index pagamentos indice) / periodo))
+
+// função recursiva que calcula a somatória das amortizações nos juros simples
+rec let rJurosSimples pagamentos pesos juros indice =
+    if indice < 0 then 0.0
+    else (rJurosSimples pagamentos pesos juros (indice - 1)) + (array.index pesos indice) / (1.0 + juros / 100.0 * (array.index pagamentos indice) / periodo)
+
+// let mindiferenca = (float.powi pontoum precisao)
+
+(\_ ->
+    // funções açúcares que criam arrays para pagsmentos e pesos
+    let geraPagamentos = rGeraPagamentos (quantidade - 1)
+    let geraPesos = rGeraPesos (quantidade - 1)
+
+    // inicializa os arrays
+    let pagamentos = geraPagamentos
+    let pesos = geraPesos
+
+    // função açúcar que calcula a somatória dos elementos no array pesos
+    let getPesoTotal = rGetPesoTotal pesos (quantidade - 1)
+
+    // função (meio açúcar) que calcula o acréscimo a partir dos juros e parcelas
+    let jurosParaAcrescimo juros =
+        if composto then (getPesoTotal / (rJurosCompostos pagamentos pesos juros (quantidade - 1)) - 1.0) * 100.0
+        else (getPesoTotal / (rJurosSimples pagamentos pesos juros (quantidade - 1)) - 1.0) * 100.0
+
+    // função recursiva que calcula os juros a partir do acréscimo e parcelas
+    rec let rAcrescimoParaJuros pagamentos pesos acrescimo minDiferenca iteracao minJuros maxJuros medJuros =
+        if iteracao < 1 || (maxJuros - minJuros) < minDiferenca then medJuros
+        else if (jurosParaAcrescimo medJuros) < acrescimo
+            then rAcrescimoParaJuros pagamentos pesos acrescimo minDiferenca (iteracao - 1) medJuros maxJuros ((medJuros + maxJuros) / 2.0)
+            else rAcrescimoParaJuros pagamentos pesos acrescimo minDiferenca (iteracao - 1) minJuros medJuros ((minJuros + medJuros) / 2.0)
+
+    (\_ ->
+        // função açúcar que calcula os juros a partir do acréscimo e parcelas
+        let acrescimoParaJuros acrescimo precisao maxIteracoes maxJuros =
+            rAcrescimoParaJuros pagamentos pesos acrescimo (float.powi 0.1 precisao) maxIteracoes 0.0 maxJuros (maxJuros / 2.0)
+
+        // calcula e guarda os resultados das funções
+        let pesoTotal : Float = getPesoTotal
+        let acrescimoCalculado : Float = jurosParaAcrescimo 3.0
+        let jurosCalculado : Float = acrescimoParaJuros acrescimoCalculado 15 65 50.0
+
+        // imprime os resultados
+        seq io.print "Peso total  = "
+        io.println (show pesoTotal)
+        seq io.print "Acréscimo  = "
+        io.println (show acrescimoCalculado)
+        seq io.print "Juros  = "
+        io.println (show jurosCalculado)
+    ) ()
+) ()

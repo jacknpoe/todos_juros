@@ -373,6 +373,7 @@ PicoLisp (24/03/2026)
 Red/System (25/03/2026)
 Grain (27/03/2026)
 Nickel (31/03/2026)
+Gluon (01/04/2026)
 
 CRONOLOGIA / CHRONOLOGY
 -----------------------

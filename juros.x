@@ -14,7 +14,7 @@ TYPE TJUROS  ' estrutura para enviar para as funcoes
 	DOUBLE .periodo
 	DOUBLE .pagamentos[$$MAXIMO]
 	DOUBLE .pesos[$$MAXIMO]
-	DOUBLE .retorno
+	' DOUBLE .retorno  ' acho que é algum resquício inútil de uma versão prévia; se travar, tente descomentar aqui
 END TYPE
 
 DECLARE FUNCTION Entry ()

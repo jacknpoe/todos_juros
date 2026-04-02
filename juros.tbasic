@@ -6,7 +6,7 @@ USes "Console"
 ' variáveis globais para simplificar as chamadas às funções + inicialização de escalares
 Dim Quantidade as Integer = 3
 Dim Composto as Boolean = True
-dim Periodo as Double = 30.0
+Dim Periodo as Double = 30.0
 Dim Pagamentos(Quantidade) as Double
 Dim Pesos(Quantidade) as Double
 

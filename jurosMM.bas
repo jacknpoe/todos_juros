@@ -21,7 +21,7 @@ End Function
 Function jurosParaAcrescimo(juros)
     pesoTotal = getPesoTotal()
     If juros <= 0.0 Or periodo <= 0.0 Or pesoTotal <= 0.0 Or quantidade% < 1 Then
-        jurosParaAcrescimo
+        jurosParaAcrescimo = 0.0
     Else
         acumulador = 0.0
         For indice% = 0 To quantidade% - 1

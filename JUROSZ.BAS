@@ -1,5 +1,6 @@
 00003 REM Calculo dos juros, sendo que precisa de arrays para isso
 00006 REM Versao 0.1: 09/03/2025: feita sem muito conhecimento de ZBasic
+00009 REM        0.2: 04/04/2026: na linha 210 de 30# para PERIODO#
 00095 REM variaveis globais e atribuicao de valores
 00100 QUANTIDADE% = 3
 00110 COMPOSTO% = 1
@@ -7,7 +8,7 @@
 00130 DIM PAGAMENTOS#(2)
 00140 DIM PESOS#(2)
 00200 FOR INDICE% = 0 TO QUANTIDADE% - 1
-00210 PAGAMENTOS#(INDICE%) = 30# * (INDICE% + 1#)
+00210 PAGAMENTOS#(INDICE%) = PERIODO# * (INDICE% + 1#)
 00220 PESOS#(INDICE%) = 1#
 00230 NEXT INDICE%
 00295 REM testa os retornos das funcoes

@@ -18,10 +18,10 @@ basic.Basic(
     Periodo = 30.0
     Maximo = Quantidade - 1
     TamDim = Quantidade * 2 - 1
-    DIM Parcelas(TamDim) AS double
+    DIM Parcelas(TamDim) AS double  ' essa distribuição manual entre "Pagamentos" e "Pesos" é por erro na linguagem
 
     
-    ' inicialização dos elementos nos arrays Pagamentos() e Pesos()
+    ' inicialização dos elementos nos arrays "Pagamentos" e "Pesos"
     FOR indice = 0 TO Maximo
         Parcelas(indice) = (indice + 1.0) * Periodo
         Parcelas(indice + Quantidade) = 1.0

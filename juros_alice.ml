@@ -1,6 +1,6 @@
 (* Calculo do juros, sendo que precisa de listas pra isso
-  Versao 0.1: 31/05/2024: versao sem saber muito sobre Alice
-         0.2: 04/04/2026: versao para rodar tambem em SML/NJ *)
+   Versao 0.1: 31/05/2024: versao sem saber muito sobre Alice
+          0.2: 04/04/2026: versao para rodar tambem em SML/NJ *)
 
 (* variaveis basicas para simplificar as chamadas *)
 val quantidade = 3;

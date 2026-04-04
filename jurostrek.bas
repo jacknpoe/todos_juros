@@ -10,7 +10,7 @@
 95 REM variáveis globais e atribuição de valores a arrays
 
 100 Q=3
-110 C=1
+110 C=1 : REM 0 = false
 120 P1=30.0
 130 DIM P2(Q)
 140 DIM P3(Q)

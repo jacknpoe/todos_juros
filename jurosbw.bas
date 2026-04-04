@@ -1,5 +1,6 @@
     3 REM Calculo dos juros, sendo que precisa de arrays para isso
     6 REM Versao 0.1: 30/03/2025: adaptado da versao em GW-BASIC para Bywater BASIC
+    9 REM        0.2: 04/04/2026: na linha 210, trocado de 30 (?) por PERIODO#
    95 REM variaveis globais e atribuicao de valores
   100 QUANTIDADE% = 3
   110 COMPOSTO% = 1
@@ -7,7 +8,7 @@
   130 DIM PAGAMENTOS#(QUANTIDADE%)
   140 DIM PESOS#(QUANTIDADE%)
   200 FOR INDICE% = 1 TO QUANTIDADE%
-  210   PAGAMENTOS#(INDICE%) = 30 * INDICE%
+  210   PAGAMENTOS#(INDICE%) = PERIODO# * INDICE%
   220   PESOS#(INDICE%) = 1!
   230 NEXT INDICE%
   295 REM testa os retornos das funcoes

@@ -1,6 +1,7 @@
 3 REM Calculo dos juros, sendo que precisa de arrays para isso
-6 REM Versao 0.1: 02/01/2025 Copiada de GW-BASIC
+6 REM Versao 0.1: 02/01/2025 copiada de GW-BASIC
 9 REM        0.2: 04/01/2025 retirada linha 1210 e alterado acumulador de AC para AM e linha 1600
+12 REM       0.3: 04/04/2026 na linha 210 de 30# para PR
 95 REM variaveis globais e atribuicao de valores
 100 QT = 3
 110 CM = 1
@@ -9,7 +10,7 @@
 130 DIM PA(QT-1)
 140 DIM PE(QT-1)
 200 FOR I = 0 TO QT-1
-210 PA(I) = 30# * (I+1)
+210 PA(I) = PR * (I+1)
 220 PE(I) = 1#
 230 NEXT I
 295 REM testa os retornos das funcoes

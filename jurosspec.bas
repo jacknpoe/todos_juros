@@ -1,6 +1,6 @@
 ZXASCII
 AUTO -1
-PROG juros.bas
+PROG jurosspec.bas
 3 REM Calculo dos juros, sendo que precisa de arrays para isso
 6 REM Versao 0.1: 05/04/2026: feito a partir de ZX81, adaptando cabecalho e ^
 95 REM variaveis globais e atribuicao de valores

@@ -1294,6 +1294,7 @@ SCM = Scheme
 Scryer Prolog = Prolog
 SICP = DrScheme
 SML/NJ = Alice
+SpiderBasic = PureBasic
 Squeak = Smalltalk
 STklos = Gauche/Kawa/Scheme/Steel
 SWI-Prolog = Prolog

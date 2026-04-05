@@ -377,6 +377,7 @@ bas (Michael Haardt) (02/04/2026)
 Vintage BASIC (03/04/2026)
 wwwBASIC (03/04/2026)
 TrekBASIC (04/04/2026)
+SpecBAS (05/04/2026)
 
 CRONOLOGIA / CHRONOLOGY
 -----------------------

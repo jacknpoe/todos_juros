@@ -3,12 +3,14 @@
 
 95 REM variáveis globais e atribuição de valores
 
-100 QT = 3
-110 CM = 1
-115 DEFDBL P, J, M, A
-120 PR = 30
-130 DIM PA(QT-1)
-140 DIM PE(QT-1)
+100 DEFINT C, D, I, Q
+110 DEFDBL A, J, M, P
+120 QT = 3
+130 CM = 1
+140 PR = 30
+150 DIM PA(QT-1)
+160 DIM PE(QT-1)
+
 200 FOR I = 0 TO QT-1
 210 PA(I) = PR * (I+1)
 220 PE(I) = 1

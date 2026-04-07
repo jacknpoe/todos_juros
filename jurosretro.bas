@@ -14,7 +14,7 @@
 220 PE(I) = 1
 230 NEXT I
 
-295 REM testa os retornos das funçoes
+295 REM testa os retornos das funções
 
 300 GOSUB 500
 310 PRINT "Peso total = "; : PRINT USING "#.###############"; PT

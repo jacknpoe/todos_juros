@@ -1,5 +1,17 @@
 3 REM Cálculo dos juros, sendo que precisa de arrays para isso
-6 REM Versão 0.1: 06/04/2026 copiado de MSX BASIC, retirados #, separados ELSEs, ajustados PRINTs
+6 REM Versão 0.1: 06/04/2026 copiado de MSX BASIC para RetroBASIC, retirados #, separados ELSEs, ajustados PRINTs
+
+25 REM diferenças de retrobasic, em relação a RetroBASIC:
+30 REM • não tem acentos no PRINT;
+35 REM • comentários com acentos, só UTF-8;
+40 REM • não aceita espaços entre as linhas numeradas;
+45 REM • não aceita DEFINT e DEFDBL;
+50 REM • não entende USING;
+65 REM • floats no lugar de doubles.
+70 REM RetroBASIC roda código retrobasic, mas retrobasic não roda código RetroBASIC
+75 REM os resultados dos testes também são diferentes (Juros = 2.9999971 contra Juros = 3.000000000000003)
+
+85 REM essa versão será mantida porque ela representa melhor as capacidade de RetroBASIC
 
 95 REM variáveis globais e atribuição de valores
 

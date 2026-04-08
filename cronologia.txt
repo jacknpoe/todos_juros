@@ -382,6 +382,7 @@ RetroBASIC (06/04/2026)
 retrobasic (07/04/2026)
 Quite BASIC (07/04/2026)
 PyBasic (08/04/2026)
+pybasic (08/04/2026)
 
 CRONOLOGIA / CHRONOLOGY
 -----------------------

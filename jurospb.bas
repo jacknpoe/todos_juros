@@ -1,4 +1,4 @@
-3 REM Calculo dos juros,sendo que precisa de arrays para isso
+3 REM Calculo dos juros, sendo que precisa de arrays para isso
 6 REM Versao 0.1: 08/04/2026: adaptado de Apple III Business BASIC, sem conhecimento de PyBasic
 
 95 REM variaveis globais e atribuicao de valores a arrays

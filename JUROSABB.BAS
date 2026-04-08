@@ -59,10 +59,10 @@
 1590   minjuros=0.0
 1600   juros=maxjuros/2.0
 1610   mindiferenca=0.1^precisao
-1620   FOR interacao=1 TO maxiteracoes
+1620   FOR iteracao=1 TO maxiteracoes
 1630     IF (maxjuros-minjuros)<mindiferenca THEN RETURN
 1640     GOSUB 1000
 1650     IF acrescimo<acrescimoparam THEN minjuros=juros:ELSE maxjuros=juros
 1660     juros=(minjuros+maxjuros)/2.0
-1670     NEXT interacao
+1670     NEXT iteracao
 1680   RETURN

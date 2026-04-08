@@ -41,7 +41,7 @@
 1080     IF composto=1 THEN GOTO 1100:ELSE GOTO 1200
 1100     acumulador=acumulador+pesos(indice)/(1.0+juros/100.0)^(pagamentos(indice)/periodo)
 1110     GOTO 1300
-1200     acumulador=acumulador+pesos(indice)/(1.0+juros/100*pagamentos(indice)/periodo)
+1200     acumulador=acumulador+pesos(indice)/(1.0+juros/100.0*pagamentos(indice)/periodo)
 1300     NEXT indice
 1310   IF acumulador<=0.0 THEN RETURN
 1320   acrescimo=(pesototal/acumulador-1.0)*100.0

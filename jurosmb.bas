@@ -1,5 +1,5 @@
 ' Cálculo dos juros, sendo que precisa de arrays para isso
-' Versao 0.1: 09/04/2026: feito sem muito conhecimento de my_basic
+' Versao 0.1: 09/04/2026: feito sem muito conhecimento de MY-BASIC
 
 ' converte valor (real) em string com casas decimais
 ' se você alterar o compilador para usar longs edoubles, pode usar mais de 5 casas

@@ -2,7 +2,7 @@
 ' Versao 0.1: 09/04/2026: feito sem muito conhecimento de my_basic
 
 ' converte valor (real) em string com casas decimais
-' se você alterar o compilador para usar double, pode usar mais de 7 casas
+' se você alterar o compilador para usar longs edoubles, pode usar mais de 5 casas
 def numtostr(valor, casas)
     valor = valor + 0.5 * 0.1 ^ casas;
     inteiro = floor(valor);

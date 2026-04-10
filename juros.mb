@@ -1,5 +1,5 @@
 3 REM Cálculo dos juros, sendo que precisa de arrays para isso
-6 REM Versao 0.1: 10/04/2026: feito sem muito conhecimento de MiniBasic
+6 REM Versão 0.1: 10/04/2026: feito sem muito conhecimento de MiniBasic
 
 95 REM variáveis globais e atribuições
 
@@ -35,7 +35,7 @@
 
 450 GOTO 2000
 
-495 REM calcula a somatoria dos pesos
+495 REM calcula a somatória dos pesos
 
 500 LET pesototal = 0.0
 510 FOR indice = 1 TO Quantidade
@@ -43,7 +43,7 @@
 530 NEXT indice
 540 GOTO retpestot
 
-995 REM calcula o acrescimo a partir dos juros e parcelas
+995 REM calcula o acréscimo a partir dos juros e parcelas
 
 1000 LET acrescimo = 0.0
 1010 LET retpestot = 1030
@@ -60,7 +60,7 @@
 1320 LET acrescimo = (pesototal / acumulador - 1.0) * 100.0
 1330 GOTO retjuracr
 
-1495 REM calcula os juros a partir do acrescimo e parcelas
+1495 REM calcula os juros a partir do acréscimo e parcelas
 
 1500 LET juros = 0.0
 1510 LET retpestot = 1530

@@ -1,0 +1,85 @@
+3 REM Cálculo dos juros, sendo que precisa de arrays para isso
+6 REM Versao 0.1: 10/04/2026: feito sem muito conhecimento de MiniBasic
+
+95 REM variáveis globais e atribuições
+
+100 LET Quantidade = 3
+110 LET Composto = 1
+120 LET Periodo = 30.0
+130 DIM Pagamentos(Quantidade)
+140 DIM Pesos(Quantidade)
+
+200 FOR indice = 1 TO Quantidade
+210   LET Pagamentos(indice) = indice * Periodo
+220   LET Pesos(indice) = 1.0
+230  NEXT indice
+
+295 REM testa os valores das funções
+
+300 LET retpestot = 320
+310 GOTO 500
+320 PRINT "Peso total =", pesototal
+
+330 LET juros = 3.0
+340 LET retjuracr = 360
+350 GOTO 1000
+360 PRINT "Acréscimo =", acrescimo
+
+370 LET precisao = 5
+380 LET maxiteracoes = 23
+390 LET maxjuros = 50.0
+400 LET acrescimoparametro = acrescimo
+410 LET retacrjur = 430
+420 GOTO 1500
+430 PRINT "Juros =", juros
+
+450 GOTO 2000
+
+495 REM calcula a somatoria dos pesos
+
+500 LET pesototal = 0.0
+510 FOR indice = 1 TO Quantidade
+520   LET pesototal = pesototal + Pesos(indice)
+530 NEXT indice
+540 GOTO retpestot
+
+995 REM calcula o acrescimo a partir dos juros e parcelas
+
+1000 LET acrescimo = 0.0
+1010 LET retpestot = 1030
+1020 GOTO 500
+1030 IF juros <= 0.0 OR Quantidade < 1 OR Periodo <= 0.0 OR pesototal <= 0.0 THEN retjuracr
+1040 LET acumulador = 0.0
+1050 FOR indice = 1 TO Quantidade
+1060   IF Composto = 0 THEN 1200
+1100   LET acumulador = acumulador + Pesos(indice) / POW((1.0 + juros / 100.0), (Pagamentos(indice) / Periodo))
+1110   GOTO 1300
+1200   LET acumulador = acumulador + Pesos(indice) / (1.0 + juros / 100.0 * Pagamentos(indice) / Periodo)
+1300 NEXT indice
+1310 IF acumulador <= 0.0 THEN retjuracr
+1320 LET acrescimo = (pesototal / acumulador - 1.0) * 100.0
+1330 GOTO retjuracr
+
+1495 REM calcula os juros a partir do acrescimo e parcelas
+
+1500 LET juros = 0.0
+1510 LET retpestot = 1530
+1520 GOTO 500
+1530 IF acrescimoparametro <= 0.0 OR Quantidade < 1 OR Periodo <= 0.0 OR pesototal <= 0.0 OR precisao < 1 OR maxiteracoes < 1 OR maxjuros <= 0.0 THEN retacrjur
+1540 LET minjuros = 0.0
+1550 LET juros = maxjuros / 2.0
+1560 LET mindiferenca = POW(0.1, precisao)
+1570 LET retjuracr = 1610
+1580 FOR iteracao = 1 TO maxiteracoes
+1590   IF maxjuros - minjuros < mindiferenca THEN retacrjur
+1600   GOTO 1000
+1610   IF acrescimo < acrescimoparametro THEN 1640
+1620   LET maxjuros = juros
+1630   GOTO 1650
+1640   LET minjuros = juros
+1650   LET juros = (minjuros + maxjuros) / 2.0
+1660 NEXT iteracao
+1670 GOTO retacrjur
+
+2000 REM fim
+

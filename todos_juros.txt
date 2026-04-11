@@ -587,7 +587,7 @@ juros.mac
 176. MEL (12/03/2025)
 juros.mel
 
-177. MEMOTECH MTX 512 BBC BASIC (19/05/2025)
+177. MEMOTECH MTX 512 BASIC (19/05/2025)
 juros.mfloppy
 
 178. Mercury (05/02/2025)
@@ -1250,7 +1250,6 @@ juros.z81
 
 EQUIVALENTES
 Amstrad BASIC = Locomotive BASIC
-Archimedes BBC BASIC = MEMOTECH MTX 512 BBC BASIC
 BBC BASIC for SDL 2.0 = BBC BASIC
 Boa = Node.js
 Bourne shell = POSIX sh

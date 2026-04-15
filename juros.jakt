@@ -1,6 +1,9 @@
 /// Cálculo do juros, sendo que precisa de arrays pra isso
 /// Versão 0.1: 31/01/2026: versão feita sem muito conhecimento de Jakt
 /// ATENÇÃO: a solução foi testada usando o comando "jakt -r juros.jakt", pois não foi possúvel compilar
+/// A fórmula de juros compostos foi otimizada usando o cálculo de fator, mas a versão dela que corresponde
+/// às demais soluções na página está comentada logo abaixo; comentando a atribuição de fator, comentando a
+/// fórmula atual e descomentando a fórmula original restaura o algoritmo "canônico"
 
 /// classe com atributos que simplificam e deixam mais legíveis as chamadas aos métodos
 class Juros {

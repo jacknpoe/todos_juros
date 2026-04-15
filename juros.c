@@ -7,6 +7,7 @@
 //        0.7: 29/07/2025: agora dá free em Pagamentos se falhar malloc em Pesos
 //        0.8: 18/02/2026: verificados pesoTotal no if inicial das funções financeiras
 //        0.9: 25/03/2026: compatibilidade com PicoC (para retornar a imprimir com , no lugar de . em C, descomente #include "locale.h" e setlocale())
+//        0.10: 15/04/2026: revisados números para double e outras melhorias dedefeitos menores descobertos enquanto criava a versão otimizada
 
 #include <math.h>      // para usar pow()
 #include <stdio.h>     // para usar printf() e gets()
@@ -63,32 +64,31 @@ double getPesoTotal(struct Juros *juros) {
 // calcula o acréscimo a partir dos juros e parcelas
 double jurosParaAcrescimo(struct Juros *juros, double valor) {
 	double pesoTotal = getPesoTotal(juros);
-	if(valor <= 0 || juros->Quantidade <= 0 || juros->Periodo <= 0.0 || pesoTotal <= 0.0) return 0.0;
-	double acumulador = 0; 
+	if(valor <= 0.0 || juros->Quantidade < 1 || juros->Periodo <= 0.0 || pesoTotal <= 0.0) return 0.0;
+	double acumulador = 0.0; 
 	int indice;
 	
 	for(indice = 0; indice < juros->Quantidade; indice++) {
-		if(juros->Composto) acumulador += juros->Pesos[indice] / pow(1 + valor / 100, juros->Pagamentos[indice] / juros->Periodo);
-			else acumulador += juros->Pesos[indice] / (1 + valor / 100 * juros->Pagamentos[indice] / juros->Periodo);
+		if(juros->Composto) acumulador += juros->Pesos[indice] / pow(1.0 + valor / 100.0, juros->Pagamentos[indice] / juros->Periodo);
+			else acumulador += juros->Pesos[indice] / (1.0 + valor / 100.0 * juros->Pagamentos[indice] / juros->Periodo);
 	}
 	
 	if( acumulador <= 0.0 ) return 0.0;
-	return(pesoTotal / acumulador - 1) * 100;
+	return(pesoTotal / acumulador - 1.0) * 100.0;
 }
 
 // calcula os juros a partir do acréscimo e parcelas
 double acrescimoParaJuros(struct Juros *juros, double valor, short precisao, short maxIteracoes, double maxJuros) {
-	double minJuros = 0, medJuros = 0, minDiferenca = 0;
-	short indice = 0;
+	double minJuros = 0.0, medJuros = (minJuros + maxJuros) / 2.0, minDiferenca = pow(0.1, precisao);
+	short indice;
 	double pesoTotal = getPesoTotal(juros);
-	if(maxIteracoes < 1 || juros->Quantidade <= 0 || precisao < 1 || valor <= 0 || juros->Periodo <= 0.0 || pesoTotal <= 0.0) return 0.0;
-	minDiferenca = pow(0.1, precisao);
+	if(maxIteracoes < 1 || juros->Quantidade < 1 || precisao < 1 || valor <= 0.0 || juros->Periodo <= 0.0 || pesoTotal <= 0.0 || maxJuros <= 0.0) return 0.0;
 
 	for(indice = 0; indice < maxIteracoes; indice++) {
-		medJuros = (minJuros + maxJuros) / 2;
 		if((maxJuros - minJuros) < minDiferenca) return medJuros;
 		if(jurosParaAcrescimo(juros, medJuros) <= valor)
 			minJuros = medJuros; else maxJuros = medJuros;
+		medJuros = (minJuros + maxJuros) / 2.0;
 	}
 	
 	return medJuros;
@@ -115,7 +115,7 @@ int main() {
     // calcula, guarda e imprime os resultados
 	pesoTotal = getPesoTotal(&juros);
 	printf("Peso total: %3.15f\n", pesoTotal);
-	acrescimoCalculado = jurosParaAcrescimo(&juros, 3);
+	acrescimoCalculado = jurosParaAcrescimo(&juros, 3.0);
 	printf("Acréscimo calculado: %3.15f\n", acrescimoCalculado);
 	jurosCalculado = acrescimoParaJuros(&juros, acrescimoCalculado, 15, 100, 50.0);
 	printf("Juros calculado: %3.15f\n", jurosCalculado);

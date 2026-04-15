@@ -1,5 +1,5 @@
 ' Cálculo dos juros, sendo que precisa de parcelas pra isso
-' Versão 0.1: 14/04/2026: feita sem muito conhecicmento de EndBASIC
+' Versão 0.1: 14/04/2026: feita sem muito conhecimento de EndBASIC
 
 ' escalares globais para simplificar as chamadas às funções e inicialização
 DIM SHARED Quantidade AS INTEGER

@@ -1,0 +1,82 @@
+// Cálculo dos juros, sendo que precisa de parcelas pra isso
+// Versão 0.1: 15/04/2026: feita sem muito conhecimento de Yacas
+
+// define a precisão geral, PRECISAO para funções N(), e DIGITOS de precisão real (impressão com arredonda())
+DIGITOS := 20;
+PRECISAO := DIGITOS + 3;
+// BuiltinPrecisionSet(PRECISAO);  // aparentemente, não causa diferenças no resultado final
+
+// variáveis globais para simplificar as chamadas de função e inicialização de escalares
+Quantidade := 3;
+Composto := True;
+Periodo := 30.0;
+Pagamentos := {};
+Pesos := {};
+
+// inicialização dos arryas Pagamentos[] e Pesos[]
+For(indice := 1, indice <= Quantidade, indice := indice + 1) [
+    Pagamentos := Append(Pagamentos, indice * Periodo);
+    Pesos := Append(Pesos, 1.0);
+];
+
+// calcula a somatória dos elementos do array Pesos[]
+getPesoTotal() := [
+    acumulador := 0.0;
+    For(indice := 1, indice <= Quantidade, indice := indice + 1) [
+        acumulador := acumulador + Pesos[indice];
+    ];
+    acumulador;
+];
+
+// calcula o acréscimo a partir dos juros e parcelas
+jurosParaAcrescimo(juros) := [
+    pesoTotal := getPesoTotal();    
+    If(Quantidade > 1 And Periodo > 0.0 And pesoTotal > 0.0 And juros > 0.0,
+        [
+            acumulador := 0.0;
+            For(indice := 1, indice <= Quantidade, indice := indice + 1) [
+                If(Composto,
+                    acumulador := N(acumulador + Pesos[indice] / (1.0 + juros / 100.0) ^ (Pagamentos[indice] / Periodo), PRECISAO),
+                    acumulador := N(acumulador + Pesos[indice] / (1.0 + juros / 100.0 * Pagamentos[indice] / Periodo), PRECISAO)
+                );
+            ];
+            If(acumulador > 0.0, N((pesoTotal / acumulador - 1.0) * 100.0, PRECISAO), 0.0);
+        ] ,
+        0.0
+    );
+];
+
+// calcula os juros a partir do acréscimo e parcelas
+acrescimoParaJuros(acrescimo, precisao, maxIteracoes, maxJuros) := [
+    pesoTotal := getPesoTotal();    
+    If(Quantidade > 1 And Periodo > 0.0 And pesoTotal > 0.0 And acrescimo > 0.0 And precisao > 0 And maxIteracoes > 0 And maxJuros >= 0.0,
+        [
+            minJuros := 0.0;
+            medJuros := N(maxJuros / 2.0, PRECISAO);
+            minDiferenca := 0.1 ^ precisao;
+            iteracao := 0;
+
+            While(iteracao < maxIteracoes And maxJuros - minJuros > minDiferenca) [
+                If(jurosParaAcrescimo(medJuros) < acrescimo, minJuros := medJuros, maxJuros := medJuros);
+                medJuros := N((minJuros + maxJuros) / 2.0, PRECISAO);
+                iteracao := iteracao + 1;
+            ];
+            
+            medJuros;
+        ] ,
+        0.0
+    );
+];
+
+// arredonda para DIGITOS decimais
+arredonda(valor) := N(Round(valor * 10.0 ^ DIGITOS) / 10.0 ^ DIGITOS, DIGITOS);
+
+// calcula e guarda os resultados das funções
+pesoTotal := getPesoTotal();
+acrescimoCalculado := jurosParaAcrescimo(3.0);
+juroCalculado := acrescimoParaJuros(acrescimoCalculado, PRECISAO, 74, 50.0);
+
+// imprime os resultados
+Echo("Peso total = ", arredonda(pesoTotal));
+Echo("Acréscimo = ", arredonda(acrescimoCalculado));
+Echo("Juros = ", arredonda(juroCalculado));

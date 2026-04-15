@@ -132,6 +132,7 @@ jurosbw.bas
 
 38. C (01/03/2024)
 juros.c
+otimizado: juros_otimizado.c
 
 39. Ć (28/03/2025)
 juros.ci

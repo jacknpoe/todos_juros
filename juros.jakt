@@ -1,5 +1,6 @@
 /// Cálculo do juros, sendo que precisa de arrays pra isso
 /// Versão 0.1: 31/01/2026: versão feita sem muito conhecimento de Jakt
+///        0.2: 15/04/2026: versão com os comentários da otimização invertidos com a forma padrão
 /// ATENÇÃO: a solução foi testada usando o comando "jakt -r juros.jakt", pois não foi possúvel compilar
 /// A fórmula de juros compostos foi otimizada usando o cálculo de fator, mas a versão dela que corresponde
 /// às demais soluções na página está comentada logo abaixo; comentando a atribuição de fator, comentando a
@@ -32,12 +33,12 @@ class Juros {
         if (this.quantidade < 1 or this.periodo <= 0.0f64 or pesoTotal <= 0.0f64 or juros <= 0.0f64) { return 0.0f64 }
         mut indice: usize = 0
         mut acumulador: f64 = 0.0f64
-        let fator: f64 = ln(valor: 1.0f64 + juros / 100.0f64)  // otimiza a linha nos juros compostos que chamava pow()
+        // let fator: f64 = ln(valor: 1.0f64 + juros / 100.0f64)  // otimiza a linha nos juros compostos que chamava pow()
 
         while indice < this.quantidade {
             if (this.composto) {
-                acumulador += this.pesos[indice] / exp(valor: fator * this.pagamentos[indice] / this.periodo)
-                // acumulador += this.pesos[indice] / pow(base: 1.0f64 + juros / 100.0f64, expoente: this.pagamentos[indice] / this.periodo)
+                // acumulador += this.pesos[indice] / exp(valor: fator * this.pagamentos[indice] / this.periodo)
+                acumulador += this.pesos[indice] / pow(base: 1.0f64 + juros / 100.0f64, expoente: this.pagamentos[indice] / this.periodo)
             } else {
                 acumulador += this.pesos[indice] / (1.0f64 + juros / 100.0f64 * this.pagamentos[indice] / this.periodo)
             }

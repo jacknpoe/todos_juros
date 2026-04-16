@@ -97,21 +97,6 @@ PROCEDURE acrescimoParaJuros[ acrescimo, precisao, maxIteracoes, maxJuros ]
     RETURN medJuros
 END PROC
 
-' Formata o número com casas decimais
-PROCEDURE printNumero[ valor AS SINGLE, casas AS INTEGER ]
-    IF valor < 0.0 THEN
-        PRINT "-";
-        valor = -valor
-    ENDIF
-    parteInteira = INT(valor)
-    parteDecimal = (valor - parteInteira) * 10^casas
-    PRINT parteInteira; ".";
-    FOR i = 1 TO casas
-        PRINT parteDecimal MOD 10;
-        parteDecimal = parteDecimal / 10
-    NEXT
-END PROC
-
 ' FIM DAS FUNÇÕES, ABAIXO É "MAIN"
 
 ' limpa a tela, para não ficar mostrando caracteres aleatórios, e mostra uma mensagem de aguarde

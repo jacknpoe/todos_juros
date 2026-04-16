@@ -2,7 +2,8 @@
    Versão 0.1: 19/02/2026: ate o momento, a matematica de fixed-points, globais, inicializacao e getPesoTotal()
           0.2: 20/02/2026: jurosParaAcrecimo() e a acrescimoParaJuros()
           0.3: 24/03/2026: agora termo = mulfp(termo, x / indice); na linha 132, mais simples
-          0.4: 25/03/2026: (maxJuros - minJuros) <= minDiferenca (em vez de < )*/
+          0.4: 25/03/2026: (maxJuros - minJuros) <= minDiferenca (em vez de < )
+          0.4: 16/04/2026: alterada posicao de p5dec e comentarios sobre dominio do problema */
 
 main() {
     extrn printf, p5dec, acrescimoParaJuros, jurosParaAcrescimo, getPesoTotal, inttofp, QUANTIDADE, PERIODO, PAGAMENTOS, PESOS, UM;
@@ -27,11 +28,7 @@ main() {
     printf("Juros = %d.E-5*n", p5dec(jurosCalculado));
 }
 
-/* para cinco casas decimais (retira três das oito por questão de precisão) */
-p5dec(valor) {
-    extrn MIL;
-    return ((valor + MIL / 2) / MIL);
-}
+/* #################### FUNCOES DENTRO DO DOMINIO DO PROBLEMA (MATEMATICA FINANCEIRA) #################### */
 
 /* calcula os juros a partir do acrescimo e parcelas */
 acrescimoParaJuros(acrescimo, precisao, maxIteracoes, maxJuros) {
@@ -108,6 +105,14 @@ prectomind(x) {
     }
 
     return (produto);
+}
+
+/* #################### FUNCOES FORA DO DOMINIO DO PROBLEMA (MATEMATICA BASICA DE PONTO FIXO, EXPONENCIACAO, ETC.) #################### */
+
+/* para cinco casas decimais (retira três das oito por questão de precisão) */
+p5dec(valor) {
+    extrn MIL;
+    return ((valor + MIL / 2) / MIL);
 }
 
 /* todas as funcoes matematicas de fixed-point, exponenciacoes e logaritmos sao precisas (ou mesmo estaveis)

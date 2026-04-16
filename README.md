@@ -32,7 +32,7 @@ As soluções estão divididas entre as recursivas e iterativas, formando dois c
 
 Existem, em algumas soluções, salvaguardas para valores incorretos para uma aplicação real. São valores zerados e negativos. Em alguns dialetos não é verificado, pois entendeu-se que o público-alvo desses dialetos não cometeria esse tipo de equívoco.
 
-Tenham em mente que algumas das soluções (como as em BASIC para microcomputadores de oito bits e Bash/Dash), pelas próprias naturezas de suas tecnologias, são extremamente lentas. Algumas são lentas na função de exponenciação, outras dependem de outros processos para a matemática de ponto flutuante. Com centenas de pagamentos, algumas soluções podem demorar minutos para darem resultados. Os testes devem ser realizados, inicialmente, com menos parcelas. Faça a regra de três para determinar se vale a pena fazer testes com números extraordinários de parcelas.
+Tenham em mente que algumas das soluções (como as em BASIC para microcomputadores de oito bits e Bash/Dash), pelas próprias naturezas de suas tecnologias, são extremamente lentas. Algumas têm exponenciação ineficiente, outras dependem de processos externos para operações de ponto flutuante. Com centenas de pagamentos, certas soluções podem levar minutos para produzir resultados. Recomenda-se iniciar os testes com poucas parcelas e utilizar regra de três para estimar o tempo em casos maiores, evitando execuções inviáveis.
 
 Algumas implementações não serão mantidas, porque foram feitas em versões de avaliação de ambientes de desenvolvimento pagos, como o Embarcadero Delphi e o EiffelStudio. Os dialetos menos populares não terão suporte, mesmo tendo IDEs gratuitas.
 
@@ -106,7 +106,7 @@ The solutions are divided between recursive and iterative methods, forming two v
 
 There are, in some solutions, safeguards for incorrect values ​​for a real application. These are zero and negative values. In some dialects ​​it is not verified, as it was understood that the target audience of these dialects ​​would not make this type of mistake.
 
-Keep in mind that some solutions (such as those in BASIC for eight-bit microcomputers and Bash/Dash), by the very nature of their technologies, are extremely slow. Some are slow in the exponentiation function, others rely on other processes for floating-point mathematics. With hundreds of payments, some solutions can take minutes to yield results. Tests should initially be performed on fewer installments. Use the rule of three to determine whether it's worth testing with an extraordinary number of installments.
+Keep in mind that some solutions (such as those in BASIC for eight-bit microcomputers and Bash/Dash), due to the very nature of their technologies, are extremely slow. Some have inefficient exponentiation, others depend on external processes for floating-point operations. With hundreds of payments, certain solutions can take minutes to produce results. It is recommended to start testing with a few installments and use the rule of three to estimate the time in larger cases, avoiding unfeasible executions.
 
 Some implementations will not be maintained because they were done in trial versions of paid development environments such as Embarcadero Delphi and EiffelStudio. Less popular dialects will not be supported, even though they have free IDEs.
 

@@ -34,6 +34,8 @@ Existem, em algumas soluções, salvaguardas para valores incorretos para uma ap
 
 Tenham em mente que algumas das soluções (como as em BASIC para microcomputadores de oito bits e Bash/Dash), pelas próprias naturezas de suas tecnologias, são extremamente lentas. Algumas têm exponenciação ineficiente, outras dependem de processos externos para operações de ponto flutuante. Com centenas de pagamentos, certas soluções podem levar minutos para produzir resultados. Recomenda-se iniciar os testes com poucas parcelas e utilizar regra de três para estimar o tempo em casos maiores, evitando execuções inviáveis.
 
+Em ambientes baseados em emulação de microcomputadores antigos, pode ser necessário alternar entre a velocidade original de emulação (1x), para interação, e velocidades mais altas (10x, 100x...) para tornar a execução dos testes viável.
+
 Algumas implementações não serão mantidas, porque foram feitas em versões de avaliação de ambientes de desenvolvimento pagos, como o Embarcadero Delphi e o EiffelStudio. Os dialetos menos populares não terão suporte, mesmo tendo IDEs gratuitas.
 
 Algumas soluções, principalmente as mais antigas em dialetos funcionais, não foram implementadas de forma realmente escalável (em geral têm arrays ou listas atribuídos estaticamente). Os dialetos Cakelisp, Gluon, Koka, Nickel, PicoLisp e Roc são bons exemplos de como soluções funcionais podem ser estruturadas para suportar um número arbitrário de parcelas, mantendo o mesmo modelo algorítmico. Em contraste, a quantidade de soluções escaláveis em dialetos imperativos é significativamente maior, incluindo C, C++, Rust, C#, Fortran 90, Java, GForth, Lua, Go, Perl e Python, entre os mais eficientes e populares. Em ambas as listas, em PicoLisp e Nickel não foi possível executar um benchmark com 300.000 parcelas.
@@ -105,6 +107,8 @@ The solutions are divided between recursive and iterative methods, forming two v
 There are, in some solutions, safeguards for incorrect values ​​for a real application. These are zero and negative values. In some dialects ​​it is not verified, as it was understood that the target audience of these dialects ​​would not make this type of mistake.
 
 Keep in mind that some solutions (such as those in BASIC for eight-bit microcomputers and Bash/Dash), due to the very nature of their technologies, are extremely slow. Some have inefficient exponentiation, others depend on external processes for floating-point operations. With hundreds of payments, certain solutions can take minutes to produce results. It is recommended to start testing with a few installments and use the rule of three to estimate the time in larger cases, avoiding unfeasible executions.
+
+In environments based on emulation of older microcomputers, it may be necessary to switch between the original emulation speed (1x), for interaction, and higher speeds (10x, 100x...) to make running the tests feasible.
 
 Some implementations will not be maintained because they were done in trial versions of paid development environments such as Embarcadero Delphi and EiffelStudio. Less popular dialects will not be supported, even though they have free IDEs.
 

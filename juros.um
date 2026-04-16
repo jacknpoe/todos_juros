@@ -1,0 +1,80 @@
+// Cálculo dos juros, sendo que precisa de parcelas pra isso
+// Versão 0.1: 16/04/2026: feita sem muito conhecimento de Umka
+
+// variáveis globais para simplificar as chamadas às funções e inicialização de escalares
+var Quantidade: int = 3
+var Composto: bool = true
+var Periodo: real = 30.0
+var Pagamentos: []real
+var Pesos: []real
+
+// essa função não está no domínio do problema, e eu não encontrei uma alternativa pronta em Umka
+fn pow(base, expoente: real): real {
+    return exp(log(base) * expoente)
+}
+
+// calcula a somatória dos elementos em Pesos[]
+fn getPesoTotal(): real {
+    var acumulador: real = 0.0
+
+    for indice := 0; indice < Quantidade; indice++ {
+        acumulador += Pesos[indice]
+    }
+
+    return acumulador
+}
+
+// calcula o acréscimo a partir de juros e parcelas
+fn jurosParaAcrescimo(juros: real): real {
+    var pesoTotal: real = getPesoTotal()
+    if Quantidade < 1 || Periodo <= 0.0 || pesoTotal <= 0.0 || juros <= 0.0 { return 0.0 }
+    var acumulador: real = 0.0
+
+    for indice := 0; indice < Quantidade; indice++ {
+        if Composto {
+            acumulador += Pesos[indice] / pow(1.0 + juros / 100.0, Pagamentos[indice] / Periodo)
+        } else {
+            acumulador += Pesos[indice] / (1.0 + juros / 100.0 * Pagamentos[indice] / Periodo)
+        }
+    }
+
+    if acumulador <= 0.0 { return 0.0 }
+    return (pesoTotal / acumulador - 1.0) * 100.0
+}
+
+// calcula os juros a partir do acréscimo e parcelas
+fn acrescimoParaJuros(acrescimo: real, precisao, maxIteracoes: int, maxJuros: real): real {
+    var pesoTotal: real = getPesoTotal()
+    if Quantidade < 1 || Periodo <= 0.0 || pesoTotal <= 0.0 || acrescimo <= 0.0 || precisao < 1 || maxIteracoes < 1 || maxJuros <= 0.0 { return 0.0 }
+    var minJuros, medJuros, minDiferenca: real = 0.0, maxJuros / 2.0, pow(0.1, precisao)
+
+    for iteracao := 0; iteracao < maxIteracoes; iteracao++ {
+        if maxJuros - minJuros <= minDiferenca { return medJuros }
+        if jurosParaAcrescimo(medJuros) < acrescimo { minJuros = medJuros } else { maxJuros = medJuros }
+        medJuros = (minJuros + maxJuros) / 2.0
+    }
+
+    return medJuros
+}
+
+fn main() {
+    // alocação dos arrays Pagamentos[] e Pesos[]
+    Pagamentos = make([]real, Quantidade)
+    Pesos = make([]real, Quantidade)
+
+    // inicialização dos elementos dos arrays Pagamentos[] e Pesos[]
+    for indice := 0; indice < Quantidade; indice++ {
+        Pagamentos[indice] = (indice + 1) * Periodo
+        Pesos[indice] = 1.0
+    }
+
+    // calcula e guarda os resultados das funções
+    var pesoTotal: real = getPesoTotal()
+    var acrescimoCalculado: real = jurosParaAcrescimo(3.0)
+    var jurosCalculado: real = acrescimoParaJuros(acrescimoCalculado, 15, 65, 50.0)
+
+    // imprime os resultados
+    printf("Peso total = %.15f\n", pesoTotal)
+    printf("Acréscimo = %.15f\n", acrescimoCalculado)
+    printf("Juros = %.15f\n", jurosCalculado)
+}

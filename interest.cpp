@@ -1,4 +1,5 @@
 // 23/11/2025: removed <locale> and replaced main to mimic juros.c
+// 17/04/2026: new method to create the interest object
 // 29/12/2025: ATTENTION: compile with -lm option to link math library (for pow function)
 
 #include <math.h>	// pow
@@ -131,7 +132,7 @@ int main() {
 	int index;
 
 	// declares interest of type Interest, initializes the properties and allocates memory
-	Interest interest = Interest(3, true, 30.0);
+	Interest interest(3, true, 30.0);
 
 	for(index = 0; index< interest.getQuant(); index++) {
 		interest.setPayment(index, (index + 1) * interest.getPeriod());
@@ -148,4 +149,3 @@ int main() {
 
 	return 0;
 }
-

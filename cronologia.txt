@@ -391,6 +391,7 @@ JADE (13/04/2026)
 EndBASIC (14/04/2026)
 Yacas (15/04/2026)
 Umka (16/04/2026)
+Typed Racket (17/04/2026)
 
 CRONOLOGIA / CHRONOLOGY
 -----------------------

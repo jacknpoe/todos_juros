@@ -149,7 +149,7 @@ int main() {
 	int index;
 
 	// declares interest of type Interest, initializes the properties and allocates memory
-	Interest interest(300000, true, 30.0);
+	Interest interest(3, true, 30.0);
 
 	for(index = 0; index< interest.getQuant(); index++) {
 		interest.setPayment(index, (index + 1) * interest.getPeriod());

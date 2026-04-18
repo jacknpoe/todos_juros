@@ -1334,6 +1334,7 @@ QBasic 1.1 = QB64
 QuickC = Turbo C
 QuickPascal = Turbo Pascal
 Racket Base = Racket
+Racket Lazy = Racket
 Reason = ReasonML
 Rebol/Core = Rebol|
 SCM = Scheme

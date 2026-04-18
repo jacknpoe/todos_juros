@@ -8,6 +8,7 @@
 //        0.8: 18/02/2026: verificados pesoTotal no if inicial das funções financeiras
 //        0.9: 25/03/2026: compatibilidade com PicoC (para retornar a imprimir com , no lugar de . em C, descomente #include "locale.h" e setlocale())
 //        0.10: 15/04/2026: revisados números para double e outras melhorias dedefeitos menores descobertos enquanto criava a versão otimizada
+//        0.11: 18/04/2026: alterações para colocar NULLs em setValores e verificar NULLs em setQuantidade
 
 #include <math.h>      // para usar pow()
 #include <stdio.h>     // para usar printf() e gets()
@@ -36,8 +37,10 @@ void liberaMemoria(struct Juros *juros) {
 
 // define a quantidade de parcelas
 int setQuantidade(struct Juros *juros, int quantidade) {
-	if(quantidade < 0) return false;
+    if(quantidade < 0) return false;
 	if(quantidade == juros->Quantidade) return true;
+    if(juros->Pagamentos != NULL) free(juros->Pagamentos);
+    if(juros->Pesos != NULL) free(juros->Pesos);
 	juros->Pagamentos = (double *) malloc(sizeof(double) * quantidade);
 	if(quantidade > 0 && juros->Pagamentos == NULL) { juros->Quantidade = 0; return false; }
 	juros->Pesos = (double *) malloc(sizeof(double) * quantidade);
@@ -47,7 +50,8 @@ int setQuantidade(struct Juros *juros, int quantidade) {
 
 // define os valores escalares da estrutura (automaticamente, também chama setQuantidade)
 int setValores(struct Juros *juros, int quantidade, int composto, double periodo) {
-	if(!setQuantidade(juros, quantidade)) return false;
+	juros->Pagamentos = NULL; juros->Pesos = NULL;
+    if(!setQuantidade(juros, quantidade)) return false;
 	juros->Composto = composto;
 	juros->Periodo = periodo;
 	return true;
@@ -70,7 +74,7 @@ double jurosParaAcrescimo(struct Juros *juros, double valor) {
 	
 	for(indice = 0; indice < juros->Quantidade; indice++) {
 		if(juros->Composto) acumulador += juros->Pesos[indice] / pow(1.0 + valor / 100.0, juros->Pagamentos[indice] / juros->Periodo);
-			else acumulador += juros->Pesos[indice] / (1.0 + valor / 100.0 * juros->Pagamentos[indice] / juros->Periodo);
+		else acumulador += juros->Pesos[indice] / (1.0 + valor / 100.0 * juros->Pagamentos[indice] / juros->Periodo);
 	}
 	
 	if( acumulador <= 0.0 ) return 0.0;

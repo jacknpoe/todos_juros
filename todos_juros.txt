@@ -1276,6 +1276,7 @@ BBC BASIC for SDL 2.0 = BBC BASIC
 Boa = Node.js
 Bourne shell = POSIX sh
 bsh = Java
+cbmbasic = Commodore 64 BASIC
 Cerberus X = Monkey 2
 Chez Scheme = Scheme
 CHICKEN = Scheme

@@ -117,11 +117,11 @@ jurosf.bend
 33. Bigloo (02/08/2025)
 juros.bigloo.scm
 
-34. Blitz Max (19/04/2025)
-juros.bmx
-
-35. Blitz3D (20/04/2025)
+34. Blitz3D (20/04/2025)
 juros.bb
+
+35. BlitzMax (19/04/2025)
+juros.bmx
 
 36. Bython (10/07/2024)
 Juros.by

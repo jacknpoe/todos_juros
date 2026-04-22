@@ -1,5 +1,6 @@
 // Cálculo do juros, sendo que precisa de arrays pra isso
 // Versão 0.1: 26/01/2025: versão de testes a partir da de JavaScript
+//        0.2: 22/04/2026: adicionado comentário sobre escalabilidade
 
 // classe com os valores globais para simplificar as chamadas
 class Juros{
@@ -104,13 +105,14 @@ class Juros{
 
 // cria o objeto juros da classe Juros e define os valores
 let juros = new Juros(3, true, 30.0)
+// chamar sem parâmetros torna a solução escalável, pois os arrays são inicializados dinamicamente (1, 1, 1... e 30, 60, 90...)
 juros.setPagamentos(",", "30,60,90")
 juros.setPesos(",", "1,1,1")
 
 // calcula e guarda os resultados das funções
 let pesoTotal = juros.getPesoTotal()
 let acrescimoCalculado = juros.jurosParaAcrescimo(3.0)
-let jurosCalculado = juros.acrescimoParaJuros(acrescimoCalculado, 18, 100, 50.0, false)
+let jurosCalculado = juros.acrescimoParaJuros(acrescimoCalculado, 15, 65, 50.0, false)
 
 // imprime os resultados
 console.log( "Peso total = " + pesoTotal)

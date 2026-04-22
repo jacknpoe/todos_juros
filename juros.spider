@@ -1,5 +1,6 @@
 // Cálculo do juros, sendo que precisa de arrays pra isso
 // Versão 0.1: 10/06/2024: versão feita sem muito conhecimento de Spider
+//             antes de abrir em testajuros.html, compile para JavaScript
 use console;
 
 // classe e construtor que inicializam os atributos

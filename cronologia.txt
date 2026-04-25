@@ -394,7 +394,6 @@ Umka (16/04/2026)
 Typed Racket (17/04/2026)
 Blu (21/04/2026)
 GObject (21/04/2026)
-Mustache (Node.js) (22/04/2026)
 
 CRONOLOGIA / CHRONOLOGY
 -----------------------

@@ -394,6 +394,7 @@ Umka (16/04/2026)
 Typed Racket (17/04/2026)
 Blu (21/04/2026)
 GObject (21/04/2026)
+Sather (28/04/2026)
 
 CRONOLOGIA / CHRONOLOGY
 -----------------------

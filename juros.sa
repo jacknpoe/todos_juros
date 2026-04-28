@@ -1,0 +1,95 @@
+-- Cálculo dos juros, sendo que precisa de parcelas pra isso
+-- Versão 0.1: 28/04/2026: feita sem muito conhecimento de Sather
+
+class JUROS is
+    attr Quantidade : INT;
+    attr Composto : BOOL;
+    attr Periodo : FLTD;
+    attr Pagamentos, Pesos : ARRAY{FLTD};
+
+    -- o construtor inicializa atributos escalares e aloca atributos arrays
+    create(quantidade : INT, composto : BOOL, periodo : FLTD) : SAME is
+        res ::= new;
+        res.Quantidade := quantidade;
+        res.Composto := composto;
+        res.Periodo := periodo;
+        res.Pagamentos := #ARRAY{FLTD}(quantidade);
+        res.Pesos := #ARRAY{FLTD}(quantidade);
+        return res;
+    end;
+
+    -- calcula a somatória dos elementos em Pesos[]
+    getPesoTotal : FLTD is
+        acumulador : FLTD := 0.0d;
+        loop indice ::= 0.upto!(Quantidade-1);
+            acumulador := acumulador + Pesos[indice];
+        end;
+        return acumulador;
+    end;
+
+    -- calcula o acréscimo a partir dos juros e parcelas
+    jurosParaAcrescimo(juros : FLTD) : FLTD is
+        pesoTotal : FLTD := getPesoTotal;
+        if Quantidade < 1 or Periodo <= 0.0d or pesoTotal <= 0.0d or juros <= 0.0d then return 0.0d end;
+        acumulador : FLTD := 0.0d;
+
+        loop indice ::= 0.upto!(Quantidade-1);
+            if Composto then
+                acumulador := acumulador + Pesos[indice] / (1.0d + juros / 100.0d) ^ (Pagamentos[indice] / Periodo);
+            else
+                acumulador := acumulador + Pesos[indice] / (1.0d + juros / 100.0d * Pagamentos[indice] / Periodo);
+            end;
+        end;
+
+        if acumulador <= 0.0d then return 0.0d end;
+        return (pesoTotal / acumulador - 1.0d) * 100.0d;
+    end;
+
+    -- calcula os juros a partir do acréscimo e parcelas
+    acrescimoParaJuros(acrescimo : FLTD, precisao: INT, maxIteracoes : INT, maxJuros : FLTD) : FLTD is
+        pesoTotal : FLTD := getPesoTotal;
+        if Quantidade < 1 or Periodo <= 0.0d or pesoTotal <= 0.0d or acrescimo <= 0.0d or precisao < 1 or maxIteracoes < 1 or maxJuros <= 0.0d then return 0.0d end;
+        minJuros : FLTD := 0.0d;
+        medJuros : FLTD := maxJuros / 2.0d;
+        minDiferenca : FLTD := 0.1d ^ precisao.fltd;
+        
+        loop indice ::= 1.upto!(maxIteracoes);
+            if maxJuros - minJuros < minDiferenca then return medJuros end;
+            if jurosParaAcrescimo(medJuros) < acrescimo then minJuros := medJuros else maxJuros := medJuros end;
+            medJuros := (minJuros + maxJuros) / 2.0d;
+        end;
+        
+        return medJuros;
+    end;
+end;
+
+class MAIN is
+    -- imprime no formato <legenda> = <valor> \n com 15 decimais
+    imprime(legenda : STR, valor : FLTD) is
+        #OUT + legenda + " = " + #FMT("%.15f", valor) + "\n";
+    end;
+
+    -- função main, principal
+    main : INT is
+        -- cria um objeto juros da classe JUROS e inicaliza atributos escalares
+        juros : JUROS := #JUROS(3, true, 30.0d);
+
+        -- inicializa elementos dos atributos array
+        loop indice ::= 0.upto!(juros.Quantidade-1);
+            juros.Pagamentos[indice] := (indice.fltd + 1.0d) * juros.Periodo;
+            juros.Pesos[indice] := 1.0d;
+        end;
+
+        -- calcula e guarda os retornos dos métodos
+        pesoTotal : FLTD := juros.getPesoTotal;
+        acrescimoCalculado : FLTD := juros.jurosParaAcrescimo(3.0d);
+        jurosCalculado : FLTD := juros.acrescimoParaJuros(acrescimoCalculado, 15, 65, 50.0d);
+
+        -- imprime os resultados
+        imprime("Peso total", pesoTotal);
+        imprime("Acréscimo", acrescimoCalculado);
+        imprime("Juros", jurosCalculado);
+
+        return 0;
+    end;
+end;

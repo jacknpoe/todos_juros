@@ -1,0 +1,20 @@
+ROUTINE testajuros
+    SET obj = ##class(User.Juros).%New(3, 1, 30.0)  ; cria um objeto obs da classe Juros, inicializando escalares
+
+    FOR indice = 1:1:obj.Quantidade {
+        SET obj.Pagamentos(indice) = indice * obj.Periodo
+        SET obj.Pesos(indice) = 1.0
+    }
+
+    ; calcula e guarda os resultados dos métodos
+    SET pesoTotal = obj.getPesoTotal()
+    SET acrescimoCalculado = obj.jurosParaAcrescimo(3.0)
+    SET jurosCalculado = obj.acrescimoParaJuros(acrescimoCalculado, 15, 65, 50.0)
+
+    ; imprime os resultados
+    WRITE "Peso total = ", $FNUMBER(pesoTotal, "", 15), !
+    WRITE "Acrescimo = ", $FNUMBER(acrescimoCalculado, "", 15), !
+    WRITE "Juros = ", $FNUMBER(jurosCalculado, "", 15), !
+
+    QUIT
+#;

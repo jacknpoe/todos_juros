@@ -397,6 +397,7 @@ GObject (21/04/2026)
 Sather (28/04/2026)
 ObjectScript (InterSystems IRIS) (29/04/2026)
 Concurnas (01/05/2026)
+cpp2 (05/05/2026)
 
 CRONOLOGIA / CHRONOLOGY
 -----------------------

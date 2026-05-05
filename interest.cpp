@@ -1,11 +1,13 @@
 // VERSION 0.X1: 23/11/2025: removed <locale> and replaced main to mimic juros.c
 //         0.X2: 17/04/2026: new method to create the interest object
 //         0.X3: 18/04/2026: setQuant after ChatGPT and other minor changes; from long double to double
+//         0.X4: 05/05/2026: from precision to setprecision (and 15 real decimals)
 // 29/12/2025: ATTENTION: compile with -lm option to link math library (for pow function)
 
 #include <math.h>	// pow
 #include <iostream>	// std
 #include <cstdlib>	// allocs
+#include <iomanip>  // setprecision
 
 namespace jacknpoe {
 //--------------------------- Interest class
@@ -143,7 +145,8 @@ namespace jacknpoe {
 
 using namespace jacknpoe;   // this code is awkward because, in reality, this file is a concatenation of a .h and a .cpp (from a library) and the main
 int main() {
- 	std::cout.precision(15);
+ 	// std::cout.precision(16);
+    std::cout << std::fixed << std::setprecision(15);
 
 	double totalWeight, calculatedIncrease, calculatedInterest;
 	int index;

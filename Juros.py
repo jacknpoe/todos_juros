@@ -28,7 +28,7 @@ class Juros:
         self.Pesos.clear()
         if pesos == "":
             for i in range(self.Quantidade):
-                self.Pesos.append(1)
+                self.Pesos.append(1.0)
         else:
             temporaria = pesos.split(delimitador)
             for i in range(self.Quantidade):

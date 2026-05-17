@@ -1,0 +1,124 @@
+// Cálculo dos juros, sendo que precisa de parcelas pra isso
+// Versão 0.1: 17/05/2026: feita sem muito conhecimento de Yellow, a partir de Python 3
+
+// repositório de Yellow: https://github.com/ColdGrub1384/Yellow
+// rodou em Debian 12 e Python 3.11.2 depois do código fonte do transpilador ter "print()" e "exec()" alterados
+
+// Há 9 diferenças para o padrão das soluções para as implementações de Python:
+// 1. a classe Juros foi desmembrada em variáveis globais e funções comuns (OO não transpilava corretamente)
+// 2. os parâmetros "self", as referências a "self" e as chamadas a "juros." foram removidas
+// 3. as variáveis escalares globais são inicializadas na declaração
+// 4. as variáveis globais referenciadas são declaradas nas funções com global
+// 5. em relação às soluções compatíveis com Python 3.3 em diante, foi trocado ".clear()" por "= []"
+// 6. foram criadas variáveis para guardar os retornos das funções antes de imprimir
+// 7. as funções "print()" foram trocadas por "console { }"
+// 8. esteticamente, os if ganharam "{ }"
+// 9. os comentários foram trocados, # para //, """ """ para /* */
+
+/* variáveis globais para simplificar as chamadas e inicializações das escalares */
+Quantidade = 3
+Composto = True
+Periodo = 30.0
+Pagamentos = []
+Pesos = []
+
+def setpagamentos(delimitador=",", spagamentos=""):
+    /* Define as datas de pagamento a partir de uma string separada pelo delimitador */
+    global Pagamentos, Quantidade, Periodo
+    Pagamentos = []
+    if {spagamentos == ""}:
+        for i in range(Quantidade):
+            Pagamentos.append((i + 1) * Periodo)
+    else:
+        temporaria = spagamentos.split(delimitador)
+        for i in range(Quantidade):
+            Pagamentos.append(float(temporaria[i]))
+
+def setpesos(delimitador=",", spesos=""):
+    /* Define os pesos a partir de uma string separada pelo delimitador */
+    global Pesos, Quantidade
+    Pesos = []
+    if {spesos == ""}:
+        for i in range(Quantidade):
+            Pesos.append(1.0)
+    else:
+        temporaria = spesos.split(delimitador)
+        for i in range(Quantidade):
+            Pesos.append(float(temporaria[i]))
+
+def getpesototal():
+    /* Retorna a soma total de todos os pesos */
+    global Pesos, Quantidade
+    acumulador = 0.0
+    for i in range(Quantidade):
+        acumulador += Pesos[i]
+    return acumulador
+
+def jurosparaacrescimo(juros=0.0):
+    /* Calcula o acréscimo a partir dos juros */
+    global Quantidade, Composto, Periodo, Pagamentos, Pesos
+
+    total = getpesototal()
+
+    if {juros <= 0.0 or Quantidade < 1 or Periodo <= 0.0 or total <= 0.0}:
+        return 0.0
+
+    acumulador = 0.0
+
+    for i in range(Quantidade):
+        if {Composto}:
+            try:
+                acumulador += Pesos[i] / ((1.0 + juros / 100.0) ** (Pagamentos[i] / Periodo))
+            except OverflowError:
+                pass
+        else:
+            acumulador += Pesos[i] / (1.0 + juros / 100.0 * Pagamentos[i] / Periodo)
+
+    if {acumulador <= 0.0}:
+        return 0.0
+
+    return (total / acumulador - 1.0) * 100.0
+
+def acrescimoparajuros(acrescimo=0.0, precisao=15, maximointeracoes=100, maximojuros=50.0, acrescimocomovalororiginal=False):
+    /* Calcula os juros a partir do acréscimo */
+    total = getpesototal()
+
+    if {maximointeracoes < 1 or Quantidade < 1 or precisao < 1 or Periodo <= 0.0 or acrescimo <= 0.0 or total <= 0.0 or maximojuros <= 0.0}:
+        return 0.0
+
+    minimojuros = 0.0
+    mediojuros = 0.0
+
+    // nesse caso, os pesos totais dão o valor cobrado e o acrescimo é o original
+    if {acrescimocomovalororiginal}:
+        acrescimo = 100.0 * (total / acrescimo - 1.0)
+        if {acrescimo <= 0.0}:
+            return 0.0
+
+    minimadiferenca = 0.1 ** precisao
+
+    for i in range(maximointeracoes):
+        mediojuros = (minimojuros + maximojuros) / 2.0
+        if {(maximojuros - minimojuros) < minimadiferenca}:
+            return mediojuros
+        // if "mágico" da bisseção
+        if {jurosparaacrescimo(mediojuros) <= acrescimo}:
+            minimojuros = mediojuros
+        else:
+            maximojuros = mediojuros
+
+    return mediojuros
+
+/* inicializações dos arrays Pesos[] e Pagamentos[] */
+setpagamentos(",", "")
+setpesos(",", "")
+
+/* calcula e guarda os resultados das funções */
+pesoTotal = getpesototal()
+acrescimoCalculado = jurosparaacrescimo(3.0)
+jurosCalculado = acrescimoparajuros(acrescimoCalculado)
+
+/* imprime os resultados */
+console { "Peso total = " + str(pesoTotal) }
+console { "Acrescimo = " + str(acrescimoCalculado) }
+console { "Juros = " + str(jurosCalculado) }

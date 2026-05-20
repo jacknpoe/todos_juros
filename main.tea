@@ -1,0 +1,30 @@
+// Cálculo dos juros, sendo que precisa de parcelas pra isso
+// Versão 0.1: 20/05/2026: feita sem muito conhecimento de Tea
+
+// este módulo deve ser colocado na pasta <projeto>/src/
+
+// ENTRAR NA PASTA PAI DO PROJETO
+// CRIADO COM: php <pasta>/teac --init juros
+// TRANSPILADO COM: php <pasta>/teac juros
+// CORRIGIDO LF COM: sed -i 's/, LF;/ . PHP_EOL;/g' ./juros/dist/main.php
+// MAIS: sed -i "3irequire __DIR__ . '/juros/__unit.php';" ./juros/dist/main.php
+// RODADO COM: php ./juros/dist/main.php
+
+// cria um objeto juros da classe Juros e inicializa os atributos escalares
+var juros = Juros(3, true, 30.0)
+
+// inicializa os atributos arrays
+for indice in 0 to juros.Quantidade - 1{
+    juros.Pagamentos[indice] = (indice + 1.0) * juros.Periodo
+    juros.Pesos[indice] = 1.0
+}
+
+// calcula e guarda os resultados dos métodos
+var pesoTotal Float = juros.getPesoTotal()
+var acrescimoCalculado Float = juros.jurosParaAcrescimo(3.0)
+var jurosAcrescimo Float = juros.acrescimoParaJuros(acrescimoCalculado, 15, 65, 50.0)
+
+// imprime os resultados
+echo 'Peso total = ${pesoTotal}'
+echo 'Acréscimo = ${acrescimoCalculado}'
+echo 'Juros = ${jurosAcrescimo}'

@@ -1,0 +1,56 @@
+// este módulo deve ser colocado na pasta <projeto>/src/juros
+
+//  classe Juros com atributos que simplificam as chamadas aos métodos
+public class Juros {
+    public Quantidade UInt
+    public Composto Bool
+    public Periodo Float
+    public Pagamentos Float.Array
+    public Pesos Float.Array
+
+    // construtor, inicializa os atributos escalares
+    construct(quantidade UInt, composto Bool, periodo Float) {
+        this.Quantidade = quantidade
+        this.Composto = composto
+        this.Periodo = periodo
+    }
+
+    // calcula a somatória dos elementos em Pesos[]
+    public getPesoTotal() Float {
+        var acumulador Float = 0.0
+        for indice in 0 to this.Quantidade - 1 { acumulador += this.Pesos[indice] }
+        return acumulador
+    }
+
+    // calcula o acréscimo a partir dos juros e parcelas
+    public jurosParaAcrescimo(juros Float) Float {
+        var pesoTotal Float = this.getPesoTotal()
+        if this.Quantidade < 1 or this.Periodo <= 0.0 or pesoTotal <= 0.0 or juros <= 0.0 { return 0.0 }
+        var acumulador Float = 0.0
+
+        for indice in 0 to this.Quantidade - 1 {
+            if this.Composto { acumulador += this.Pesos[indice] / pow(1.0 + juros / 100.0, this.Pagamentos[indice] / this.Periodo) }
+                        else { acumulador += this.Pesos[indice] / (1.0 + juros / 100.0 * this.Pagamentos[indice] / this.Periodo) }
+        }
+
+        if acumulador <= 0.0 { return 0.0 }
+        return (pesoTotal / acumulador - 1.0) * 100.0
+    }
+
+    // calcula os juros a partir do acréscimo e parcelas
+    public acrescimoParaJuros(acrescimo Float, precisao UInt, maxIteracoes UInt, maxJuros Float) Float {
+        var pesoTotal Float = this.getPesoTotal()
+        if this.Quantidade < 1 or this.Periodo <= 0.0 or pesoTotal <= 0.0 or acrescimo <= 0.0 or precisao < 1 or maxIteracoes < 1 or maxJuros <= 0.0 { return 0.0 }
+        var minJuros Float = 0.0
+        var medJuros Float = maxJuros / 2.0
+        var minDiferenca Float = pow(0.1, precisao)
+
+        for iteracao in 1 to maxIteracoes {
+            if maxJuros - minJuros <= minDiferenca { return medJuros }
+            if this.jurosParaAcrescimo(medJuros) < acrescimo { minJuros = medJuros} else { maxJuros = medJuros }
+            medJuros = (minJuros + maxJuros) / 2.0
+        }
+
+        return medJuros
+    }
+}

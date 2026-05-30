@@ -1,0 +1,53 @@
+// Cálculo dos juros, sendo que precisa de parcelas pra isso
+// Versão 0.1: 29/05/2026: feita sem muito conhecimento de Pure
+// Teste de estresse: 73662 parcelas -> OK; 73664 parcelas -> stack_fault em acrescimoParaJuros; 73668 parcelas -> stack_fault em jurosParaAcrescimo
+
+using system;
+
+// variáveis globais para simplificar os chamados às funções
+let Quantidade = 3;
+let Composto = true;
+let Periodo = 30.0;
+let Pagamentos = map (Periodo*) (1..Quantidade);
+let Pesos = take Quantidade (cycle [1.0]);
+
+// função recursiva que retorna a somatória de Pesos[]
+rGetPesoTotal [] = 0.0;
+rGetPesoTotal (car:cdr) = car + rGetPesoTotal cdr;
+
+// função açúcar que retorna a somatória de Pesos[]
+getPesoTotal = rGetPesoTotal(Pesos);
+
+// função recursiva que calcula a amortização dos juros compostos
+rJurosCompostos [] [] juros = 0.0;
+rJurosCompostos (pagH:pagT) (pesH:pesT) juros = (pesH / (1.0 + juros / 100.0) ^ (pagH / Periodo)) + rJurosCompostos pagT pesT juros;
+
+// função recursiva que calcula a amortização dos juros simples
+rJurosSimples [] [] juros = 0.0;
+rJurosSimples (pagH:pagT) (pesH:pesT) juros = (pesH / (1.0 + juros / 100.0 * pagH / Periodo)) + rJurosSimples pagT pesT juros;
+
+// funcão que calcula o acréscimo a partir dos juros e parcelas (relativamente açúcar)
+jurosParaAcrescimo juros = if Composto
+    then ((getPesoTotal / rJurosCompostos Pagamentos Pesos juros) - 1.0) * 100
+    else ((getPesoTotal / rJurosSimples Pagamentos Pesos juros) - 1.0) * 100;
+
+// função recursiva que calcula os juros a partir do acréscimo e parcelas
+rAcrescimoParaJuros acrescimo minDiferenca iteracao minJuros maxJuros medJuros =
+    if iteracao == 0 || maxJuros - minJuros < minDiferenca
+    then medJuros
+    else if jurosParaAcrescimo medJuros < acrescimo
+        then rAcrescimoParaJuros acrescimo minDiferenca (iteracao - 1) medJuros maxJuros ((medJuros + maxJuros) / 2.0)
+        else rAcrescimoParaJuros acrescimo minDiferenca (iteracao - 1) minJuros medJuros ((medJuros + minJuros) / 2.0);
+
+// função açúcar que calcula os juros a partir do acréscimo e parcelas
+acrescimoParaJuros acrescimo precisao maxIteracoes maxJuros = rAcrescimoParaJuros acrescimo (0.1 ^ precisao) maxIteracoes 0.0 maxJuros (maxJuros / 2.0);
+
+// calcula e guarda os resultados
+let pesoTotal = getPesoTotal;
+let acrescimoCalculado = jurosParaAcrescimo 3.0;
+let jurosCalculado = acrescimoParaJuros acrescimoCalculado 15 65 50.0;
+
+// imprime os resultados
+printf "Peso total = %.15f\n" (pesoTotal);
+printf "Acréscimo = %.15f\n" (acrescimoCalculado);
+printf "Juros = %.15f\n" (jurosCalculado);

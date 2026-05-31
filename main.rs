@@ -6,24 +6,30 @@ mod juros;
 ///         0.4 04/04/2024: trocada avaliação soZero por acumulador == 0
 ///         0.4 11/04/2024: melhorados comentários e colocadas legendas nos testes
 ///         0.5 18/07/2025: para mais de três parcelas, com preenchimento dinâmico
-
+///         0.6 31/05/2026: fork em que não existem vetores em main, apenas em juros; construtor apenas aloca vetores
+///                         também criadas variáveis e melhorados os comentários; usando indice para calcular pagamentos
 fn main() {
-    // testes das funções
+    // valores para os atributos escalares
     let quantidade: usize = 3;
     let composto: bool = true;
     let periodo: f64 = 30.0;
-    let mut pagamentos: Vec<f64> = vec![0.0; quantidade];
-    let mut pesos: Vec<f64> = vec![0.0; quantidade];
 
-    let mut prox_pag: f64 = periodo;
+    // dessa vez, criamos um objeto juros mutável, para permitir que o laço abaixo inicialize os vetores
+    let mut juros = juros::Juros::novo(quantidade, composto, periodo);
+
+    // inicializamos os elementos dos atributos vetores
     for indice in 0..quantidade {
-        pagamentos[indice] = prox_pag;
-        pesos[indice] = 1.0;
-        prox_pag = prox_pag + periodo;
+        juros.pagamentos[indice] = periodo * ((indice + 1) as f64);
+        juros.pesos[indice] = 1.0;
     }
+    
+    // calcula e guarda os resultados dos métodos
+    let peso_total: f64 = juros.get_peso_total();
+    let acrescimo_calculado: f64 = juros.juros_para_acrescimo(3.0);
+    let juros_calculado: f64 = juros.acrescimo_para_juros(acrescimo_calculado, 15.0, 100, 50.0);
 
-    let juros = juros::Juros::novo(quantidade, composto, periodo, &pagamentos, &pesos);
-    println!("Peso total = {}", juros.get_peso_total());
-    println!("Acréscimo = {}", juros.juros_para_acrescimo(3.0));
-    println!("Juros = {}", juros.acrescimo_para_juros(juros.juros_para_acrescimo(3.0), 15.0, 100, 50.0));
+    // imprime os resultados
+    println!("Peso total = {}", peso_total);
+    println!("Acréscimo = {}", acrescimo_calculado);
+    println!("Juros = {}", juros_calculado);
 }

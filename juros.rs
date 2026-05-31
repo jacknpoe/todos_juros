@@ -10,13 +10,13 @@ pub struct Juros {
 /// Métodos da "classe" Juros
 impl Juros {
     /// Cria um "objeto" Juros e atribui valores para os "atributos"
-    pub fn novo(quantidade: usize, composto: bool, periodo: f64, pagamentos: &Vec<f64>, pesos: &Vec<f64>) -> Self {
+    pub fn novo(quantidade: usize, composto: bool, periodo: f64) -> Self {
         Self {
             quantidade,
             composto,
             periodo,
-            pagamentos: pagamentos.to_vec(),
-            pesos: pesos.to_vec()
+            pagamentos: vec![0.0; quantidade],
+            pesos: vec![0.0; quantidade]
         }
     }
 
@@ -39,12 +39,8 @@ impl Juros {
             return 0.0;
         } else {
             let mut acumulador: f64 = 0.0;
-            // let mut so_zero: bool = true;
 
             for indice in 0..self.quantidade {
-                // if self.pagamentos[indice] > 0.0 && self.pesos[indice] > 0.0 {
-                //    so_zero = false;
-                // }
                 if self.composto {
                     acumulador += self.pesos[indice] / (1.0 + juros / 100.0).powf(self.pagamentos[indice] / self.periodo);
                 } else {
@@ -52,7 +48,6 @@ impl Juros {
                 }
             }
 
-            // if so_zero {
             if acumulador <= 0.0 {
                 return 0.0;
             } else {

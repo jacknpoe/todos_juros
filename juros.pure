@@ -1,6 +1,11 @@
 // Cálculo dos juros, sendo que precisa de parcelas pra isso
 // Versão 0.1: 29/05/2026: feita sem muito conhecimento de Pure
-// Teste de estresse: 73662 parcelas -> OK; 73664 parcelas -> stack_fault em acrescimoParaJuros; 73668 parcelas -> stack_fault em jurosParaAcrescimo
+// Rodou em um docker com Ubuntu 16.04.7 LTS e LLVM 3.5
+// DEPENDÊNCIAS: autoconf bison flex libgmp-dev libmpfr-dev libreadline-dev llvm-3.5-dev
+// COMPILAR: cd /pure/pure   autoreconf -i   ./configure   make
+// CONFIGURAR: export PURELIB=./lib   export LD_LIBRARY_PATH=.
+// EXECUTAR: ./pure /caminho/<arq>.pure
+// Teste de estresse: 73662 parcelas -> OK; 73663 parcelas -> stack_fault em acrescimoParaJuros; 73668 parcelas -> stack_fault em jurosParaAcrescimo
 
 using system;
 

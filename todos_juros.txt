@@ -152,6 +152,7 @@ TesteJuros.cs
 
 44. C++ (17/09/2023)
 interest.cpp
+recursivo: juros_rec.cpp
 
 45. Cakelisp (16/02/2026)
 juros.cake

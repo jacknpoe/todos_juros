@@ -1,5 +1,5 @@
 -- Cálculo dos juros, sendo que precisa de parcelas pra isso
--- Versão 0.1: 02/06/2026: feita sem muito conhecimento de Curry KICS2
+-- Versão 0.1: 02/06/2026: feita sem muito conhecimento de Curry KiCS2
 
 import Numeric
 

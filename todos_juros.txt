@@ -230,7 +230,7 @@ jurosParaAcrescimo.csh
 Pagamentos.csh
 Pesos.csh
 
-68. Curry (KiCS2) (02/06/2026)
+68. Curry (02/06/2026)
 juros.curry
 
 69. D (22/05/2024)

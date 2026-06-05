@@ -1,6 +1,7 @@
 # Cálculo dos juros, sendo que precisa de arrays para isso
 # Versão 0.1: 05/06/2024: versão feita sem muito conhecimento de Tcl
 #        0.2: 18/07/2025: variáveis e arrays dinâmicos
+#        0.3: 05/06/2026: melhorias nas expressões com ajuda do ChatGPT, incluindo "my" no lugar de "juros"
 
 # importa pow para o cálculo de juros compostos e mínima diferença
 namespace import ::tcl::mathfunc::pow
@@ -37,7 +38,7 @@ oo::class create Juros {
     # retorna o somatório total de Pesos[]
     method getPesoTotal {} {
         set acumulador 0.0
-        for {set indice 0} {$indice < $Quantidade} {set indice [expr $indice + 1]} {
+        for {set indice 0} {$indice < $Quantidade} {incr indice} {
             set acumulador [expr {$acumulador + $Pesos($indice)}]
         }
         return $acumulador
@@ -45,41 +46,41 @@ oo::class create Juros {
 
     # calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
     method jurosParaAcrescimo { juros } {
-        set pesoTotal [juros getPesoTotal]
+        set pesoTotal [my getPesoTotal]
         if { ($pesoTotal <= 0.0) || ($juros <= 0.0) || ($Quantidade < 1) || ($Periodo <= 0.0) } {
             return 0.0
         }
         set acumulador 0.0
 
-        for {set indice 0} {$indice < $Quantidade} {set indice [expr $indice + 1]} {
-            if { $Composto == 1 } {
-                set acumulador [expr {$acumulador + $Pesos($indice) / [pow [expr 1.0 + $juros / 100.0] [expr $Pagamentos($indice) / $Periodo] ]}]
+        for {set indice 0} {$indice < $Quantidade} {incr indice} {
+            if {$Composto} {
+                set acumulador [expr {$acumulador + $Pesos($indice) / pow( 1.0 + $juros / 100.0, $Pagamentos($indice) / $Periodo)}]
             } else {
                 set acumulador [expr {$acumulador + $Pesos($indice) / (1.0 + $juros / 100.0 * $Pagamentos($indice) / $Periodo)}]
             }
         }
 
-        return [expr ($pesoTotal / $acumulador - 1.0) * 100.0 ]
+        return [expr {($pesoTotal / $acumulador - 1.0) * 100.0}]
     }
 
     # calcula os juros a partir do acréscimo e dados comuns (como parcelas)
     method acrescimoParaJuros { acrescimo precisao maxIteracoes maxJuros } {
-        set pesoTotal [juros getPesoTotal]
+        set pesoTotal [my getPesoTotal]
         if { ($pesoTotal <= 0.0) || ($acrescimo <= 0.0) || ($Quantidade < 1) || ($Periodo <= 0.0) || ($precisao < 1) || ($maxIteracoes < 1) || ($maxJuros <= 0.0) } {
             return 0.0
         }
         set minJuros 0.0
-        set medJuros [expr $maxJuros / 2.0]
-        set minDiferenca [pow 0.1 $precisao]
+        set medJuros [expr {$maxJuros / 2.0}]
+        set minDiferenca [expr {pow(0.1, $precisao)}]
 
-        for {set indice 0} {$indice < $maxIteracoes} {set indice [expr $indice + 1]} {
-            set medJuros [expr ($minJuros + $maxJuros) / 2.0]
+        for {set indice 0} {$indice < $maxIteracoes} {incr indice} {
             if { ($maxJuros - $minJuros) < $minDiferenca} { return $medJuros }
-            if { [juros jurosParaAcrescimo $medJuros] < $acrescimo} {
+            if { [my jurosParaAcrescimo $medJuros] < $acrescimo} {
                 set minJuros $medJuros
             } else {
                 set maxJuros $medJuros
             }
+            set medJuros [expr {($minJuros + $maxJuros) / 2.0}]
         }
 
         return $medJuros
@@ -95,8 +96,8 @@ set Periodo 30.0
 Juros create juros $Quantidade $Composto $Periodo
 
 # define os valores dos arrays
-for {set indice 0} {$indice < $Quantidade} {set indice [expr $indice + 1]} {
-    juros setPagamento $indice [expr ($indice + 1) * $Periodo]
+for {set indice 0} {$indice < $Quantidade} {incr indice} {
+    juros setPagamento $indice [expr {($indice + 1) * $Periodo}]
     juros setPeso $indice 1.0
 }
 

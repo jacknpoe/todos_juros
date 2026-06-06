@@ -1,6 +1,6 @@
 // Cálculo do juros, sendo que precisa de arrays pra isso
 // Versão 0.1: 27/03/2024: versão feita a partir de pesquisas no Google no jdoodle.com e POW com expoente inteiro
-//        0.2: 16/02/2026: 15 casas decimais na impressão e excluido potencia: expoente:, optado por po()
+//        0.2: 16/02/2026: 15 casas decimais na impressão agora no output e excluido potencia: expoente:, optado por pow()
 // como está, roda em https://www.onlinegdb.com/online_objectivec_compiler e https://ideone.com/N7eo3l
 // JDoodle não linka libm (pow) / OneCompiler exige código ASCII puro (UTF-8 estrito), retire acento em "Acréscimo = "
 

@@ -1,0 +1,135 @@
+# Cálculo dos juros, sendo que precisa de parcelas pra isso
+# Versão 0.1: 05/06/2026: feita sem muito conhecimento de Picol
+# a precisão observada e validada com a versão de ~02/2026 em z é de aproximadamente 10 dígitos decimais
+
+############### FUNÇÕES FORA DO DOMÍNIO DO PROBLEMA, IMPLEMENTAM EXPONENCIAÇÕES ###############
+
+# essa função é mais precisa com valores mais próximos de 1, como 1.0 a 1.1, que é a faixa do domínio do problema
+proc ln {x} {
+    set termo [expr ($x - 1.0) / ($x + 1.0)]
+    set yy [expr $termo * $termo]
+    set soma 0.0
+
+    set indice 1
+    while {1} {
+        set soma [expr $soma + $termo / (2.0 * $indice - 1.0)]
+        set termo [expr $termo * $yy]
+        if {[expr $soma + $termo] == $soma} { break }
+        set indice [expr $indice + 1]
+    }
+
+    return [expr 2.0 * $soma]
+}
+
+# essa função é mais precisa com valores menores do que 5, que é a faixa do domínio do problema
+proc exp {x} {
+    set termo 1.0
+    set soma 1.0
+
+    set indice 1
+    while {1} {
+        set termo [expr $termo * $x / $indice]
+        set soma [expr $soma + $termo]
+        if {[expr $soma + $termo] == $soma} { break }
+        set indice [expr $indice + 1]
+    }
+
+    return $soma
+}
+
+# essa função tem a precisão boa de acordo com ln() e exp()
+proc pow {base expoente} {
+    return [exp [expr [ln $base] * $expoente]]
+}
+
+# essa função é especial para expoentes inteiros (usada por expn)
+proc powint {base expoente} {
+    set produto 1.0
+
+    set indice 0
+    while {$indice < $expoente} {
+        set produto [expr $produto * $base]
+        set indice [expr $indice + 1]
+    }
+
+    return $produto
+}
+
+############### FUNÇÕES E DECLARAÇÕES DENTRO DO DOMÍNIO DO PROBLEMA (MATEMÁTICA FINANCEIRA) ###############
+
+# variáveis globais para simplificar as chamadas às funções
+set Quantidade 3
+set Composto 1
+set Periodo 30.0
+
+# retorna Pagamentos[indice]
+proc Pagamentos {indice} {
+    return [expr $indice * $Periodo]
+}
+
+# retorna Pesos[indice] (para manter a flexibilidade)
+proc Pesos {indice} {
+    return 1.0
+}
+
+# calcula a somatória dos elementos de Pesos
+proc getPesoTotal {}  {
+    set acumulador 0.0
+
+    set indice 1
+    while {$indice <= $Quantidade} {
+        set acumulador [expr $acumulador + [Pesos $indice]]
+        set indice [expr $indice + 1]
+    }
+
+    return $acumulador
+}
+
+# calcula o acréscimo a partir dos juros e parcelas
+proc jurosParaAcrescimo {juros} {
+    set pesoTotal [getPesoTotal]
+    if {($Quantidade < 1) || ($Periodo <= 0.0) || ($pesoTotal <= 0.0) || ($juros <= 0.0)} { return 0.0 }
+    set acumulador 0.0
+
+    set indice 1
+    while {$indice <= $Quantidade} {
+        if {$Composto} {
+            set acumulador [expr $acumulador + [Pesos $indice] / [pow [expr 1.0 + $juros / 100.0] [expr [Pagamentos $indice] / $Periodo]]]
+        } else {
+            set acumulador [expr $acumulador + [Pesos $indice] / (1.0 + $juros / 100.0 * [Pagamentos $indice] / $Periodo)]
+        }
+        set indice [expr $indice + 1]
+    }
+
+    if {$acumulador <= 0.0} { return 0.0}
+    return [expr ($pesoTotal / $acumulador - 1.0) * 100.0]
+}
+
+# calcula os juros a partir do acréscimo e parcelas
+proc acrescimoParaJuros {acrescimo precisao maxIteracoes maxJuros} {
+    set pesoTotal [getPesoTotal]
+    if {($Quantidade < 1) || ($Periodo <= 0.0) || ($pesoTotal <= 0.0) || ($acrescimo <= 0.0) || ($precisao < 1) || ($maxIteracoes < 1) || ($maxJuros <= 0.0)} { return 0.0 }
+    set minJuros 0.0
+    set medJuros [expr $maxJuros / 2.0]
+    set minDiferenca [powint 0.1 $precisao]
+
+    set iteracao 0
+    while {$iteracao < $maxIteracoes} {
+        if {[expr $maxJuros - $minJuros] < $minDiferenca} { return $medJuros }
+        if {[jurosParaAcrescimo $medJuros] < $acrescimo} { set minJuros $medJuros } else { set maxJuros $medJuros }
+        set medJuros [expr ($minJuros + $maxJuros) / 2.0]
+        set iteracao [expr $iteracao + 1]
+    }
+
+    return $medJuros
+}
+
+# calcula e guarda os resultados das funções
+set pesoTotal [getPesoTotal]
+set acrescimoCalculado [jurosParaAcrescimo 3.0]
+set jurosCalculado [acrescimoParaJuros $acrescimoCalculado 15 65 50.0]
+
+# imprime os resultados
+puts "Peso total = $pesoTotal"
+puts "Acréscimo = $acrescimoCalculado"
+puts "Juros = $jurosCalculado"

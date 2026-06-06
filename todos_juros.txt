@@ -40,13 +40,13 @@ JUROS.AMOS
 jurosAS.as
 runAS.cpp
 
-11.APDL (24/02/2026)
+11. APDL (24/02/2026)
 acrescimoParaJuros.mac
 getPesoTotal.mac
 jurosAPDL.mac
 jurosParaAcrescimo.mac
 
-12. Ape(06/02/2026)
+12. Ape (06/02/2026)
 juros.ape
 
 13. AppGameKit (22/04/2025)
@@ -116,7 +116,7 @@ jurosf.bend
 33. Bigloo (02/08/2025)
 juros.bigloo.scm
 
-34. Blade(08/05/2026)
+34. Blade (08/05/2026)
 jurosblade.b
 
 35. Blitz3D (20/04/2025)
@@ -252,7 +252,7 @@ juros.dwl
 74. Db2 (23/12/2025)
 jurosdb2.sql
 
-75. dBase 2019 (22 /03/2025)
+75. dBase 2019 (22/03/2025)
 juros2019.prg
 
 76. Decimal BASIC (30/01/2025)
@@ -309,7 +309,7 @@ JUROSENT.BAS
 91. Epsilon Object Language (03/05/2025)
 juros.eol
 
-92. Erlang (29/04/2924)
+92. Erlang (29/04/2024)
 juros.erl
 
 93. es (06/01/2026)
@@ -646,7 +646,7 @@ Juros.aia
 195. Miva Script (15/04/2025)
 juros.mv
 
-196. MMBasic (01 /01/2026)
+196. MMBasic (01/01/2026)
 jurosMM.bas
 
 197. Mobile BASIC (12/04/2025)
@@ -916,7 +916,7 @@ jurosREB.r
 281. Red (25/01/2025)
 juros.red
 
-282. Red/System(25/03/2026)
+282. Red/System (25/03/2026)
 juros.reds
 
 283. Regina Rexx (14/01/2026)

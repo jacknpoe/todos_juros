@@ -11,7 +11,7 @@ mod juros;
 ///         0.7 06/06/2026: precisao agora é im i64 que é convertido em f64, Vec::with_capacity(quantidade) no construtor e push no laço
 fn main() {
     // valores para os atributos escalares
-    let quantidade: usize = 3;
+    let quantidade: usize = 300000;
     let composto: bool = true;
     let periodo: f64 = 30.0;
 
@@ -27,7 +27,7 @@ fn main() {
     // calcula e guarda os resultados dos métodos
     let peso_total: f64 = juros.get_peso_total();
     let acrescimo_calculado: f64 = juros.juros_para_acrescimo(3.0);
-    let juros_calculado: f64 = juros.acrescimo_para_juros(acrescimo_calculado, 15, 100, 50.0);
+    let juros_calculado: f64 = juros.acrescimo_para_juros(acrescimo_calculado, 15, 65, 50.0);
 
     // imprime os resultados
     println!("Peso total = {}", peso_total);

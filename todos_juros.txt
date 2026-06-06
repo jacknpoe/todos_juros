@@ -797,7 +797,7 @@ CalculaJuros.php
 php_testejuros.php
 php_testejuros.css
 php_testejuros.png
-php_estejuros.js
+php_testejuros.js
 
 244. PicoLisp (24/03/2026)
 jurospico.l

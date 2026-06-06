@@ -57,14 +57,14 @@ impl Juros {
     }
 
     /// Calcula o total dos juros a partir do acréscimo e dos dados no "objeto"
-    pub fn acrescimo_para_juros (&self, acrescimo: f64, precisao: f64, max_iteracoes: usize, maximo_juros: f64) -> f64 {
-        if max_iteracoes < 1 || self.quantidade <= 0 || precisao < 1.0 || self.periodo <= 0.0 || acrescimo <= 0.0 || maximo_juros <= 0.0 {
+    pub fn acrescimo_para_juros (&self, acrescimo: f64, precisao: i64, max_iteracoes: usize, maximo_juros: f64) -> f64 {
+        if max_iteracoes < 1 || self.quantidade <= 0 || precisao < 1 || self.periodo <= 0.0 || acrescimo <= 0.0 || maximo_juros <= 0.0 {
             return 0.0;
         }
         let mut min_juros: f64 = 0.0;
         let mut med_juros: f64 = maximo_juros / 2.0;
         let mut max_juros: f64 = maximo_juros;
-        let min_diferenca: f64 = 0.1_f64.powf(precisao);
+        let min_diferenca: f64 = 0.1_f64.powf(precisao as f64);
         let peso_total: f64 = self.get_peso_total();
         if peso_total <= 0.0 {
             return 0.0;

@@ -8,6 +8,7 @@ mod juros;
 ///         0.5 18/07/2025: para mais de três parcelas, com preenchimento dinâmico
 ///         0.6 31/05/2026: fork em que não existem vetores em main, apenas em juros; construtor apenas aloca vetores
 ///                         também criadas variáveis e melhorados os comentários; usando indice para calcular pagamentos
+///         0.7 06/06/2026: precisao agora é im i64 que é convertido em f64
 fn main() {
     // valores para os atributos escalares
     let quantidade: usize = 3;
@@ -26,7 +27,7 @@ fn main() {
     // calcula e guarda os resultados dos métodos
     let peso_total: f64 = juros.get_peso_total();
     let acrescimo_calculado: f64 = juros.juros_para_acrescimo(3.0);
-    let juros_calculado: f64 = juros.acrescimo_para_juros(acrescimo_calculado, 15.0, 100, 50.0);
+    let juros_calculado: f64 = juros.acrescimo_para_juros(acrescimo_calculado, 15, 100, 50.0);
 
     // imprime os resultados
     println!("Peso total = {}", peso_total);

@@ -1,6 +1,7 @@
 // Cálculo do juros, sendo que precisa de arrays pra isso
 // Versão 0.1: 27/03/2024: versão feita a partir de pesquisas no Google no jdoodle.com e POW com expoente inteiro
 //        0.2: 16/02/2026: 15 casas decimais na impressão agora no output e excluido potencia: expoente:, optado por pow()
+//        0.3: 06/06/2026: tornada escalável pelo laço for em main()
 // como está, roda em https://www.onlinegdb.com/online_objectivec_compiler e https://ideone.com/N7eo3l
 // JDoodle não linka libm (pow) / OneCompiler exige código ASCII puro (UTF-8 estrito), retire acento em "Acréscimo = "
 
@@ -133,19 +134,23 @@ int main (int argc, const char * argv[])
 {
     NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 
+    int Quantidade = 3;
+    BOOL Composto = YES;
+    double Periodo = 30.0;
+    int indice;
+
     // cria juros e seta as propriedades
     Juros * juros = [[Juros alloc] init];
     [juros aloca];
-    [juros setQuantidade: 3];
-    [juros setComposto: YES];
-    [juros setPeriodo: 30.0];
-    [juros putPagamento: 30.0];
-    [juros putPagamento: 60.0];
-    [juros putPagamento: 90.0];
-    [juros putPeso: 1.0];
-    [juros putPeso: 1.0];
-    [juros putPeso: 1.0];
+    [juros setQuantidade: Quantidade];
+    [juros setComposto: Composto];
+    [juros setPeriodo: Periodo];
 
+    for (indice = 0; indice < Quantidade; indice++) {
+        [juros putPagamento: (indice + 1) * Periodo];
+        [juros putPeso: 1.0];
+    }
+    
     // testes
     double pesoTotal = [juros getPesoTotal];
     double acrescimo = [juros jurosParaAcrescimo: 3.0];

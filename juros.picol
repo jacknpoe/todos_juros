@@ -9,8 +9,8 @@ proc ln {x} {
     set termo [expr ($x - 1.0) / ($x + 1.0)]
     set yy [expr $termo * $termo]
     set soma 0.0
-
     set indice 1
+
     while {1} {
         set soma [expr $soma + $termo / (2.0 * $indice - 1.0)]
         set termo [expr $termo * $yy]
@@ -25,8 +25,8 @@ proc ln {x} {
 proc exp {x} {
     set termo 1.0
     set soma 1.0
-
     set indice 1
+    
     while {1} {
         set termo [expr $termo * $x / $indice]
         set soma [expr $soma + $termo]

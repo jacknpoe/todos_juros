@@ -1344,7 +1344,7 @@ HashLink = Haxe
 IBM PC BASIC A = GW-BASIC
 Intel Fortran Compiler = Fortran
 Iodine = Java
-IronPython – Python
+IronPython = Python
 JRuby = Ruby
 Korn Shell = ksh
 LibreOffice Basic = OpenOffice Basic
@@ -1379,7 +1379,7 @@ QuickPascal = Turbo Pascal
 Racket Base = Racket
 Racket Lazy = Racket
 Reason = ReasonML
-Rebol/Core = Rebol|
+Rebol/Core = Rebol
 SCM = Scheme
 Scryer Prolog = Prolog
 SICP = DrScheme

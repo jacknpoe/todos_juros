@@ -8,7 +8,7 @@ mod juros;
 ///         0.5 18/07/2025: para mais de três parcelas, com preenchimento dinâmico
 ///         0.6 31/05/2026: fork em que não existem vetores em main, apenas em juros; construtor apenas aloca vetores
 ///                         também criadas variáveis e melhorados os comentários; usando indice para calcular pagamentos
-///         0.7 06/06/2026: precisao agora é im i64 que é convertido em f64
+///         0.7 06/06/2026: precisao agora é im i64 que é convertido em f64, Vec::with_capacity(quantidade) no construtor e push no laço
 fn main() {
     // valores para os atributos escalares
     let quantidade: usize = 3;
@@ -20,8 +20,8 @@ fn main() {
 
     // inicializamos os elementos dos atributos vetores
     for indice in 0..quantidade {
-        juros.pagamentos[indice] = periodo * ((indice + 1) as f64);
-        juros.pesos[indice] = 1.0;
+        juros.pagamentos.push(periodo * ((indice + 1) as f64));
+        juros.pesos.push(1.0);
     }
     
     // calcula e guarda os resultados dos métodos

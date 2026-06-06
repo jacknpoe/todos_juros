@@ -15,8 +15,10 @@ impl Juros {
             quantidade,
             composto,
             periodo,
-            pagamentos: vec![0.0; quantidade],
-            pesos: vec![0.0; quantidade]
+            pagamentos: Vec::with_capacity(quantidade),
+            pesos: Vec::with_capacity(quantidade)
+            // pagamentos: vec![0.0; quantidade],
+            // pesos: vec![0.0; quantidade]
         }
     }
 

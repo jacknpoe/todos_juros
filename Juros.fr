@@ -24,7 +24,7 @@ totExpNat = 30
 lognat :: Double -> Double
 lognat valor = rlognat 1 ((valor - 1.0) / (valor + 1.0)) ((valor - 1.0) / (valor + 1.0)) 0.0
 
--- função recursiva que calcula o logaritmo natural usando a série de Taylor
+-- função recursiva que calcula o logaritmo natural usando uma série de Taylor
 rlognat :: Int -> Double -> Double -> Double -> Double
 rlognat indice ip termo soma
   | indice > totLogNat = 2.0 * soma
@@ -34,13 +34,13 @@ rlognat indice ip termo soma
 expnat :: Double -> Double
 expnat valor = rexpnat 1 valor valor 1.0
 
--- função recursiva que calcula o exponencial natural usando a série de Taylor
+-- função recursiva que calcula o exponencial natural usando uma série de Taylor
 rexpnat :: Int -> Double -> Double -> Double -> Double
 rexpnat indice valor termo soma
   | indice > totExpNat = soma
   | otherwise = rexpnat (indice + 1) valor (termo * valor / fromIntegral (indice + 1)) (soma + termo)
 
--- calcula base elevado a expoente usando a função expnat e lognat
+-- calcula base elevado a expoente usando as funções expnat e lognat
 power :: Double -> Double -> Double
 power base expoente = expnat (expoente * lognat base)
 

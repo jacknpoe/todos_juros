@@ -404,7 +404,8 @@ Yellow (17/05/2026)
 TeaLang (20/05/2026)
 Pure (29/05/2026)
 Curry (02/06/2026)
-Picol (06/06/2026)
+Picol (05/06/2026)
+Shen (09/06/2026)
 
 CRONOLOGIA / CHRONOLOGY
 -----------------------

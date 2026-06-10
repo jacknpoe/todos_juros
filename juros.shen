@@ -107,9 +107,12 @@
         (set *Pagamentos* (criaPagamentos))
         (set *Pesos* (criaPesos))
 
+        \\ calcula e guarda os retornos das funções
         (let PesoTotal (getPesoTotal)
              AcrescimoCalculado (jurosParaAcrescimo 3.0)
              JurosCalculado (acrescimoParaJuros AcrescimoCalculado 15 65 50.0)
+
+            \\ imprime os resultados
             (do
                 (output "Peso total = ~A~%" PesoTotal)
                 (output "Acrescimo = ~A~%" AcrescimoCalculado)

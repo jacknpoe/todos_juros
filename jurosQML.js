@@ -9,7 +9,7 @@ function Juros(quantidade, composto, periodo) {
     this.Pesos = [];
 }
 
-// define os pagamentosd
+// define os pagamentos
 Juros.prototype.setPagamentos = function(delimitador, pagamentos) {
     delimitador = delimitador || ",";
     pagamentos = pagamentos || "";

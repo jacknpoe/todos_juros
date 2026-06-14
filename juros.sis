@@ -1,0 +1,139 @@
+% Calculo do juros, sendo que precisa de arrays pra isso
+% Versao 0.1: 14/06/2026: feito sem muito conhecimento de Sisal
+
+define main
+
+type drarray = array[ double_real ]
+
+% função que calcula a somatória dos elementos no array Pesos[]
+function getPesoTotal( pesos : drarray; quantidade : integer returns double_real )
+    for indice in 1, quantidade
+        peso := pesos[indice]
+    returns value of sum peso
+    end for
+end function
+
+% função que calcula o acréscimo a partir dos juros e parcelas
+function jurosParaAcrescimo( juros : double_real; quantidade : integer; composto : boolean; periodo : double_real; pagamentos, pesos : drarray returns double_real )
+    let
+        pesoTotal : double_real;
+        resultado : double_real;
+        acumulador : double_real;
+        
+        pesoTotal := getPesoTotal(pesos, quantidade);
+
+        resultado := if (juros <= 0D0) | (quantidade < 1) | (periodo <= 0D0) | (pesoTotal <= 0D0) then
+            0D0
+        else
+            let
+                acumulador := for indice in 1, quantidade
+                    amortizacao := if composto then
+                        pesos[indice] / exp(1D0 + juros / 100D0, pagamentos[indice] / periodo)
+                    else
+                        pesos[indice] / (1D0 + juros / 100D0 * pagamentos[indice] / periodo)
+                    end if
+                returns value of sum amortizacao
+                end for;
+
+                calculado := if acumulador <= 0D0 then
+                    0D0
+                else
+                    (pesoTotal / acumulador - 1D0) * 100D0
+                end if
+            in
+                calculado
+            end let
+        end if
+    in
+        resultado
+    end let
+end function
+
+% função que calcula os juros a partir do acréscimo e parcelas
+function acrescimoParaJuros( acrescimo : double_real; precisao, maxIteracoes : integer; maximoJuros : double_real; quantidade : integer; composto : boolean; periodo : double_real; pagamentos, pesos : drarray returns double_real )
+    let
+        pesoTotal : double_real;
+        
+        pesoTotal := getPesoTotal(pesos, quantidade);
+
+        resultado := if (acrescimo <= 0D0) | (precisao < 1) | (maxIteracoes < 1) | (maximoJuros <= 0D0) | (quantidade < 1) | (periodo <= 0D0) | (pesoTotal <= 0D0) then
+            0D0
+        else
+            for initial
+                iteracao : integer;
+                minJuros : double_real;
+                medJuros : double_real;
+                maxJuros : double_real;
+                minDiferenca : double_real;
+                temp : double_real;
+
+                iteracao := 0;
+                minJuros := 0D0;
+                medJuros := maximoJuros / 2D0;
+                maxJuros := maximoJuros;
+                minDiferenca := exp(0.1D0, double_real(precisao));
+            while (iteracao < maxIteracoes) & ((maxJuros - minJuros) > minDiferenca) repeat
+                iteracao := old iteracao + 1;
+                temp := jurosParaAcrescimo(old medJuros, quantidade, composto, periodo, pagamentos, pesos);
+
+                minJuros := if temp < acrescimo then
+                    old medJuros
+                else
+                    old minJuros
+                end if;
+
+                maxJuros := if temp < acrescimo then
+                    old maxJuros
+                else
+                    old medJuros
+                end if;
+                
+                medJuros := (minJuros + maxJuros) / 2D0
+            returns value of medJuros
+            end for
+        end if
+    in
+        resultado
+    end let
+end function
+
+% função principal
+function main( returns drarray )
+    let
+        % variáveis
+        Quantidade : integer;
+        Composto : boolean;
+        Periodo : double_real;
+        Pagamentos : drarray;
+        Pesos : drarray;
+        pesoTotal : double_real;
+        acrescimoCalculado : double_real;
+        jurosCalculado :double_real;
+
+        % define variáveis escalares
+        Quantidade := 3;
+        Composto := true;
+        Periodo := 3D1;
+
+        % define Pagamentos
+        Pagamentos := for indice in 1, Quantidade
+            pagamento := double_real(indice) * Periodo
+        returns array of pagamento
+        end for;
+
+        % define Pesos (igual à linha comentada abaixo, mas mais flexível)
+        % Pesos := array_fill(1, Quantidade, 1D0);
+        Pesos := for indice in 1, Quantidade
+            peso := 1D0
+        returns array of peso
+        end for;
+
+        % chama e guarda os resultados das funções
+        pesoTotal := getPesoTotal(Pesos, Quantidade);
+        acrescimoCalculado := jurosParaAcrescimo(3D0, Quantidade, Composto, Periodo, Pagamentos, Pesos);
+        jurosCalculado := acrescimoParaJuros(acrescimoCalculado, 15, 65, 50D0, Quantidade, Composto, Periodo, Pagamentos, Pesos)
+    in
+        % o que é retornado aqui vai ser impresso no terminal
+        array drarray [3 : pesoTotal, acrescimoCalculado, jurosCalculado]
+    end let
+end function

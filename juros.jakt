@@ -1,6 +1,7 @@
 /// Cálculo do juros, sendo que precisa de arrays pra isso
 /// Versão 0.1: 31/01/2026: versão feita sem muito conhecimento de Jakt
 ///        0.2: 15/04/2026: versão com os comentários da otimização invertidos com a forma padrão
+///        0.3: 15/64/2026: descomentada pow(r,r) e alterado nome de pow(r,i) para powint(r,i)
 /// ATENÇÃO: a solução foi testada usando o comando "jakt -r juros.jakt", pois não foi possúvel compilar
 /// A fórmula de juros compostos foi otimizada usando o cálculo de fator, mas a versão dela que corresponde
 /// às demais soluções na página está comentada logo abaixo; comentando a atribuição de fator, comentando a
@@ -56,7 +57,7 @@ class Juros {
             { return 0.0f64 }
         mut minJuros: f64 = 0.0f64
         mut medJuros: f64 = maxJuros / 2.0f64
-        mut minDiferenca: f64 = pow(base: 0.1f64, expoente: precisao)
+        mut minDiferenca: f64 = powint(base: 0.1f64, expoente: precisao)
         mut indice: usize = 0
 
         while indice < maxIteracoes {
@@ -135,13 +136,13 @@ fn exp(valor: f64) -> f64 {
     return soma
 }
 
-// /// essa função tem a precisão boa de acordo com ln() e exp() // ficou desnecessária com a otimiização com fator em acrescimoParaJuros
-// fn pow(base: f64, expoente: f64) -> f64 {
-//     return exp(valor: ln(valor: base) * expoente)
-// }
+/// essa função tem a precisão boa de acordo com ln() e exp() // ficou desnecessária com a otimiização com fator em acrescimoParaJuros
+fn pow(base: f64, expoente: f64) -> f64 {
+    return exp(valor: ln(valor: base) * expoente)
+}
 
 /// função para fazer 0.1 ^ precisao
-fn pow(base: f64, expoente: usize) -> f64 {
+fn powint(base: f64, expoente: usize) -> f64 {
     mut indice: usize = 0
     mut produto: f64 = 1.0f64
 

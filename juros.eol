@@ -1,5 +1,5 @@
 // Cálculo dos juros, sendo que precisa de parcelas pra isso
-// Versão 0.1: 03/05/2025: versão feita sem muito conhecimento de Lua
+// Versão 0.1: 03/05/2025: versão feita sem muito conhecimento de Epsilon Object Language
 
 // variáveis globais para simplificar as chamadas às operações
 var Quantidade : Integer = 3;

@@ -72,6 +72,7 @@ function acrescimoParaJuros( acrescimo : double_real; precisao, maxIteracoes : i
                 medJuros := maximoJuros / 2D0;
                 maxJuros := maximoJuros;
                 minDiferenca := exp(0.1D0, double_real(precisao));
+
             while (iteracao < maxIteracoes) & ((maxJuros - minJuros) > minDiferenca) repeat
                 iteracao := old iteracao + 1;
                 temp := jurosParaAcrescimo(old medJuros, quantidade, composto, periodo, pagamentos, pesos);
@@ -111,7 +112,7 @@ function main( returns drarray )
         jurosCalculado :double_real;
 
         % define variáveis escalares
-        Quantidade := 3;
+        Quantidade := 300000;
         Composto := true;
         Periodo := 3D1;
 

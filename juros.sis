@@ -1,6 +1,6 @@
 % Calculo do juros, sendo que precisa de arrays pra isso
 % Versao 0.1: 14/06/2026: feito sem muito conhecimento de Sisal
-%        0.2: 16/06/2026: atribuição múltipla com if no laço de acrescimoParaJuros
+%        0.2: 16/06/2026: atribuição múltipla com if e eliminada temp no laço de acrescimoParaJuros
 
 define main
 
@@ -76,9 +76,8 @@ function acrescimoParaJuros( acrescimo : double_real; precisao, maxIteracoes : i
 
             while (iteracao < maxIteracoes) & ((maxJuros - minJuros) > minDiferenca) repeat
                 iteracao := old iteracao + 1;
-                temp := jurosParaAcrescimo(old medJuros, quantidade, composto, periodo, pagamentos, pesos);
 
-                minJuros, maxJuros := if temp < acrescimo then
+                minJuros, maxJuros := if jurosParaAcrescimo(old medJuros, quantidade, composto, periodo, pagamentos, pesos) < acrescimo then
                     old medJuros, old maxJuros
                 else
                     old minJuros, old medJuros

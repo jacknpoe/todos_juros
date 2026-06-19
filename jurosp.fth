@@ -1,7 +1,7 @@
 \ Cálculo dos juros, sendo que precisa de parcelas pra isso
 \ Versão 0.1: 02/01/2026: versão adaptada de GForth, feita sem muito conhecimento de pForth
 
-\ variáveis globais para simnplificar as chamadas, definições e inicializações
+\ variáveis globais para simplificar as chamadas, definições e inicializações
 VARIABLE QUANTIDADE
 3 QUANTIDADE !
 VARIABLE COMPOSTO

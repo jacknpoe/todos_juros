@@ -4,7 +4,7 @@
 
 REQUIRE F. lib/include/float2.f  \ para operações com floats
 
-\ variáveis globais para simnplificar as chamadas, definições e inicializações
+\ variáveis globais para simplificar as chamadas, definições e inicializações
 VARIABLE QUANTIDADE
 3 QUANTIDADE !
 VARIABLE COMPOSTO

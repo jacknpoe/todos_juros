@@ -3,7 +3,7 @@
 \        0.2: 20/06/2025: retirado -1 = da avaliação de COMPOSTO em JUROSPARAACRESCIMO
 \                         aumentada a precisão para 16
 
-\ variáveis globais para simnplificar as chamadas, definições e inicializações
+\ variáveis globais para simplificar as chamadas, definições e inicializações
 VARIABLE QUANTIDADE
 3 QUANTIDADE !
 VARIABLE COMPOSTO

@@ -1360,6 +1360,7 @@ Microsoft Office Visual Basic for Applications = OpenOffice Basic
 MinForth = pForth
 MirBSD Korn Shell = ksh
 mksh = POSIX sh
+MLton = Alice
 MMB4L = MMBasic
 Monkey X = Monkey 2
 nawk = awk

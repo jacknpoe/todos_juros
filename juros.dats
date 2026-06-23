@@ -68,8 +68,8 @@ fun jurosParaAcrescimo (juros : double) : double =
 fun rAcrescimoParaJuros (acrescimo : double, minDiferenca : double, iteracao : int, minJuros : double, maxJuros : double, medJuros : double) : double =
     if iteracao = 0 || maxJuros - minJuros < minDiferenca then medJuros
         else if jurosParaAcrescimo(medJuros) < acrescimo
-            then rAcrescimoParaJuros (acrescimo, minDiferenca, iteracao - 1, medJuros, maxJuros, (medJuros + maxJuros) / 2.0)
-            else rAcrescimoParaJuros (acrescimo, minDiferenca, iteracao - 1, minJuros, medJuros, (minJuros + medJuros) / 2.0)
+            then rAcrescimoParaJuros(acrescimo, minDiferenca, iteracao - 1, medJuros, maxJuros, (medJuros + maxJuros) / 2.0)
+            else rAcrescimoParaJuros(acrescimo, minDiferenca, iteracao - 1, minJuros, medJuros, (minJuros + medJuros) / 2.0)
 
 // função açúcar que calcula o acréscimo a partir dos juros e parcelas
 fun acrescimoParaJuros (acrescimo : double, precisao : int, maxIteracoes : int, maxJuros : double ) : double =

@@ -6,7 +6,7 @@ No artigo Resolução de Equação Transcendente, foi explicado como uma equaç�
 
 Esta é a relação das resoluções em linguagens/dialetos diferentes. Algumas contêm o código de teste no mesmo arquivo. Em outras, o arquivo de testes é separado. Caso seja publicada uma nova resolução, ela será adicionada à lista.
 
-⭐ ⇒ solução que considero especialmente interessante por desempenho, sintaxe, conceito, implementação, importância histórica, influência ou popularidade (quando duas ou mais soluções forem elegíveis pelo mesmo motivo, será escolhida a mais antiga).
+⭐ ⇒ solução que considero especialmente interessante por desempenho, sintaxe, conceito, implementação, importância histórica, influência ou popularidade (quando duas ou mais soluções forem elegíveis pelo mesmo motivo, será escolhida a que está a mais tempo na lista).
 
 11l (14/03/2026)
 juros.11l

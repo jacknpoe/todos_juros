@@ -75,7 +75,7 @@ interest.ino
 Atari BASIC (17/05/2025)
 juros.atstate2
 
-ATS2 (22/06/2062) ⭐
+ATS2 (22/06/2026) ⭐
 juros.dats
 
 AutoHotKey (18/02/2025)

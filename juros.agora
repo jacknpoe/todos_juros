@@ -1,0 +1,87 @@
+// Cálculo dos juros, sendo que precisa de parcelas pra isso
+// Versão 0.1: 26/06/2026: versão feita sem muito conhecimento de Agora
+
+fmt := import("fmt")
+math := import("math")
+
+// "objeto" com atributos para simplificar as chamadas aos "métodos" e inicializa escalares
+juros := {
+	Quantidade: 300000,
+	Composto: true,
+	Periodo: 30.0,
+	Pagamentos: {},
+	Pesos: {},
+}
+
+// calcula a somatória dos elementos do array Pesos
+juros.getPesoTotal = func() {
+	acumulador := 0.0
+	for indice := 1; indice <= this.Quantidade; indice++ {
+		acumulador += this.Pesos[indice]
+	}
+	return acumulador
+}
+
+// calcula o acréscimo a partir dos juros e parcelas
+juros.jurosParaAcrescimo = func(juros) {
+	pesoTotal := this.getPesoTotal()
+	if this.Quantidade < 1 || this.Periodo <= 0.0 || pesoTotal <= 0.0 || juros <= 0.0 {
+		return 0.0
+	}
+	acumulador := 0.0
+
+	for indice := 1; indice <= this.Quantidade; indice++ {
+		if this.Composto {
+			acumulador += this.Pesos[indice] / math.Pow(1.0 + juros / 100.0, this.Pagamentos[indice] / this.Periodo)
+		} else {
+			acumulador += this.Pesos[indice] / (1.0 + juros / 100.0 * this.Pagamentos[indice] / this.Periodo)
+		}
+	}
+
+	if acumulador <= 0.0 {
+		return 0.0
+	}
+
+	return (pesoTotal / acumulador - 1.0) * 100.0
+}
+
+// calcula os juros a partir do acréscimo e parcelas
+juros.acrescimoParaJuros = func(acrescimo, precisao, maxIteracoes, maxJuros) {
+	pesoTotal := this.getPesoTotal()
+	if this.Quantidade < 1 || this.Periodo <= 0.0 || pesoTotal <= 0.0 || acrescimo <= 0.0 || precisao < 1 || maxIteracoes < 1 || maxJuros <= 0.0 {
+		return 0.0
+	}
+	minJuros := 0.0
+	medJuros := maxJuros / 2.0
+	minDiferenca := math.Pow(0.1, precisao)
+
+	for indice := 0; indice < maxIteracoes; indice++ {
+		if maxJuros - minJuros <= minDiferenca {
+			return medJuros
+		}
+		if this.jurosParaAcrescimo(medJuros) < acrescimo {
+			minJuros = medJuros
+		} else {
+			maxJuros = medJuros
+		}
+		medJuros = (minJuros + maxJuros) / 2.0
+	}
+
+	return medJuros
+}
+
+// inicializa os arrays Pagamentos e Pesos em juros
+for indice := 1; indice <= juros.Quantidade; indice++ {
+	juros.Pagamentos[indice] = indice * juros.Periodo
+	juros.Pesos[indice] = 1.0
+}
+
+// calcula e guarda os retornos dos métodos
+pesoTotal := juros.getPesoTotal()
+acrescimoCalculado := juros.jurosParaAcrescimo(3.0)
+jurosCalculado := juros.acrescimoParaJuros(acrescimoCalculado, 15, 65, 50.0)
+
+// imprime os resultados
+fmt.Println("Peso total = ", pesoTotal)
+fmt.Println("Acréscimo = ", acrescimoCalculado)
+fmt.Println("Juros = ", jurosCalculado)

@@ -26,6 +26,9 @@ juros.adb
 juros.ads
 testajuros.adb
 
+Agora (26/06/2026)
+juros.agora
+
 Aldor (30/07/2025)
 juros.as
 
@@ -705,10 +708,10 @@ jurosNL.lsp
 Nial (06/03/2025)
 juros.ndf
 
-Nickel (31/03/2026)
+Nickel (31/03/2026) ⭐
 juros.ncl
 
-Nickle (15/07/2025) ⭐
+Nickle (15/07/2025)
 juros.nickle
 
 Nim (02/06/2024)

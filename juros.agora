@@ -6,7 +6,7 @@ math := import("math")
 
 // "objeto" com atributos para simplificar as chamadas aos "métodos" e inicializa escalares
 juros := {
-	Quantidade: 300000,
+	Quantidade: 3,
 	Composto: true,
 	Periodo: 30.0,
 	Pagamentos: {},

@@ -1,0 +1,108 @@
+# Cálculo dos juros, sendo que precisa de parcelas pra isso
+# Versão 0.1: 26/06/2026: versão feita sem muito conhecimento de Darwin
+#
+# COMO RODAR:
+#
+# baixar binário e bibliotecas:
+# https://www.biorecipes.com/darwin/index.html
+#
+# para não estourar a pilha:
+# ulimit -s 65536
+#
+# para executar Darwin de qualquer diretório:
+# export PATH=$PATH:<caminho para o binário de Darwin>
+#
+# para rodar o REPL (localizando as bibliotecas):
+# darwin -l <caminho para a biblioteca de Darwin>
+#
+# dentro do REPL:
+# ReadProgram('juros.darwin');
+# main();
+
+# variáveis globais para simplificar as chamadas às funções
+# (as variáveis que se precisar alterar dentro de main devem estar listadas na primeira linha: global <vars>)
+Quantidade := 300000;
+Composto := true;
+Periodo := 30.0;
+Pagamentos := CreateArray(1..Quantidade);
+Pesos := CreateArray(1..Quantidade);
+
+# calcula a somatória dos elementos do array Pesos[]
+getPesoTotal := proc()
+    acumulador := 0.0;
+
+    for indice from 1 to Quantidade do
+        acumulador := acumulador + Pesos[indice];
+    od;
+
+    return(acumulador);
+end;
+
+# calcula o acréscimo a partir dos juros e parcelas
+jurosParaAcrescimo := proc(juros)
+    pesoTotal := getPesoTotal();
+    if ((Quantidade < 1) or (Periodo <= 0.0) or (pesoTotal <= 0.0) or (juros <= 0.0)) then
+        return(0.0);
+    fi;
+    acumulador := 0.0;
+
+    for indice from 1 to Quantidade do
+        if (Composto) then
+            acumulador := acumulador + Pesos[indice] / (1.0 + juros / 100.0) ^ (Pagamentos[indice] / Periodo);
+        else
+            acumulador := acumulador + Pesos[indice] / (1.0 + juros / 100.0 * Pagamentos[indice] / Periodo);
+        fi;
+    od;
+
+    if (acumulador <= 0.0) then
+        return(0.0);
+    fi;
+
+    return((pesoTotal / acumulador - 1.0) * 100.0);
+end;
+
+# calcula os juros a partir do acréscimo e parcelas
+acrescimoParaJuros := proc(acrescimo, precisao, maxIteracoes, maximoJuros)
+    pesoTotal := getPesoTotal();
+    if ((Quantidade < 1) or (Periodo <= 0.0) or (pesoTotal <= 0.0) or (acrescimo <= 0.0) or (precisao < 1) or (maxIteracoes < 1) or (maximoJuros <= 0.0)) then
+        return(0.0);
+    fi;
+    minJuros := 0.0;
+    medJuros := maximoJuros / 2.0;
+    maxJuros := maximoJuros;
+    minDiferenca := 0.1 ^ precisao;
+
+    for iteracao from 1 to maxIteracoes do
+        if ((maxJuros - minJuros) < minDiferenca) then
+            return(medJuros);
+        fi;
+        if (jurosParaAcrescimo(medJuros) < acrescimo) then
+            minJuros := medJuros;
+        else
+            maxJuros := medJuros;
+        fi;
+        medJuros := (minJuros + maxJuros) / 2.0;
+    od;
+
+    return(medJuros);
+end;
+
+main := proc()
+    global Pagamentos, Pesos;
+
+    # inicializa os arrays globais Pagamentos[] e Pesos[]
+    for indice from 1 to Quantidade do
+        Pagamentos[indice] := indice * Periodo;
+        Pesos[indice] := 1.0;
+    od;
+
+    # calcula e guarda os retornos das funções
+    pesoTotal := getPesoTotal();
+    acrescimoCalculado := jurosParaAcrescimo(3.0);
+    jurosCalculado := acrescimoParaJuros(acrescimoCalculado, 15, 65, 50.0);
+
+    # imprime os resultados
+    printf('Peso total = %.15f\n', pesoTotal);
+    printf('Acréscimo = %.15f\n', acrescimoCalculado);
+    printf('Juros = %.15f\n', jurosCalculado);
+end;

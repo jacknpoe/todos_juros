@@ -1205,7 +1205,7 @@ juros.vim
 Vintage BASIC (03/04/2026)
 jurosvb.bas
 
-Visual Basic (13/02/2025)
+Visual Basic (13/02/2025) ⭐
 Juros.frm
 
 Visual Basic .NET (02/03/2024)

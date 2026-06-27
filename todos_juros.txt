@@ -251,7 +251,7 @@ juros.dba
 Dart (14/04/2024)
 juros.dart
 
-Darwin (26/06/2026) ⭐
+Darwin (26/06/2026)
 juros.darwin
 
 Dash (05/07/2025)

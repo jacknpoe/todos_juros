@@ -18,7 +18,7 @@ juros.1C
 Juros.4dm
 Teste.4dm
 
-ABC (13/02/2025)
+ABC (13/02/2025) ⭐
 juros.abc
 
 Ada (09/04/2024) ⭐

@@ -154,7 +154,7 @@ otimizado: juros_otimizado.c
 juros.ci
 testajurosCI.py
 
-C# (21/02/2024)
+C# (21/02/2024) ⭐
 Juros.cs
 TesteJuros.cs
 

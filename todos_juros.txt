@@ -611,6 +611,9 @@ juros.lua
 Magma (10/03/2025)
 juros.magma
 
+Maple (27/06/2026) ⭐
+juros.maple
+
 MATLAB (31/03/2024) ⭐
 Juros.m
 testajuros.m

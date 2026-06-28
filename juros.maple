@@ -1,0 +1,105 @@
+# Cálculo dos juros, sendo que precisa de parcelas pra isso
+# Versão 0.1: 27/06/2026: versão feita sem muito conhecimento de Maple
+# PARA EXECUTAR OS TESTES: copie e cole todo o arquivo na área de trabalho do Maple e pressione enter
+
+# para imprimir (e supõe-se calcular) com 18 dígitos (na prática, 16 dígitos, incluindo a parte inteira)
+Digits := 18:
+
+# variáveis globais para simplificar as chamadas às funções e inicialização de escalares
+Quantidade := 3:
+Composto := true:
+Periodo := 30.0:
+Pagamentos := Array(1 .. Quantidade):
+Pesos := Array(1 .. Quantidade):
+
+# essa versão simplificada cria Pagamentos com [Periodo, Periodo * 2, Periodo * 3, ...] e Pesos com [1.0, 1.0, 1.0, ...]
+# Pagamentos := Array(1 .. Quantidade, indice -> indice * Periodo):
+# Pesos := Array(1 .. Quantidade, indice -> 1.0):
+
+# calcula a somatória dos elementos no array Pesos[]
+getPesoTotal := proc()
+    global Quantidade, Pesos;
+    local indice, acumulador;
+    acumulador := 0.0;
+
+    for indice from 1 to Quantidade do
+        acumulador := acumulador + Pesos[indice];
+    end do;
+
+    return acumulador;
+end proc:
+
+# calcula o acréscimo a partir dos juros e parcelas
+jurosParaAcrescimo := proc(juros)
+    global Quantidade, Composto, Periodo, Pagamentos, Pesos;
+    local indice, pesoTotal, acumulador;
+    pesoTotal := getPesoTotal();
+    if Quantidade < 1 or Periodo <= 0.0 or pesoTotal <= 0.0 or juros <= 0.0 then
+        return 0.0;
+    end if;
+    acumulador := 0.0;
+
+    for indice from 1 to Quantidade do
+        if Composto then
+            acumulador := acumulador + Pesos[indice] / (1.0 + juros / 100.0) ^ (Pagamentos[indice] / Periodo);
+        else
+            acumulador := acumulador + Pesos[indice] / (1.0 + juros / 100.0 * Pagamentos[indice] / Periodo);
+        end if;
+    end do;
+
+    if acumulador <= 0.0 then
+        return 0.0;
+    end if;
+    return (pesoTotal / acumulador - 1.0) * 100.0;
+end proc:
+
+# calcula os juros a partir do acréscimo e parcelas
+acrescimoParaJuros := proc(acrescimo, precisao, maxIteracoes, maximoJuros)
+    global Quantidade, Periodo;
+    local indice, pesoTotal, minJuros, medJuros, maxJuros, minDiferenca;
+    pesoTotal := getPesoTotal();
+    if Quantidade < 1 or Periodo <= 0.0 or pesoTotal <= 0.0 or acrescimo <= 0.0 or precisao < 1 or maxIteracoes < 1 or maximoJuros <= 0.0 then
+        return 0.0;
+    end if;
+    minJuros := 0.0;
+    medJuros := maximoJuros / 2.0;
+    maxJuros := maximoJuros;
+    minDiferenca := 0.1 ^ precisao;
+
+    for indice from 1 to maxIteracoes do
+        if maxJuros - minJuros < minDiferenca then
+            return medJuros;
+        end if;
+        if jurosParaAcrescimo(medJuros) < acrescimo then
+            minJuros := medJuros;
+        else
+            maxJuros := medJuros;
+        end if;
+        medJuros := (minJuros + maxJuros) / 2.0;
+    end do;
+
+    return 3.0;
+end proc:
+
+main := proc()
+    global Quantidade, Composto, Periodo, Pagamentos, Pesos;
+    local indice, pesoTotal, acrescimoCalculado, jurosCalculado;
+
+    # inicialização dos elementos nos arrays globais
+    for indice from 1 to Quantidade do
+        Pagamentos[indice] := indice * Periodo;
+        Pesos[indice] := 1.0;
+    end do;
+
+    # calcula e guarda o retorno das funções
+    pesoTotal := getPesoTotal();
+    acrescimoCalculado := jurosParaAcrescimo(3.0);
+    jurosCalculado := acrescimoParaJuros(acrescimoCalculado, 15, 65, 50.0);
+
+    # imprime os resultados
+    print(cat("Peso total = ", pesoTotal));
+    print(cat("Acréscimo = ", acrescimoCalculado));
+    print(cat("Juros = ", jurosCalculado));
+end proc:
+
+main();

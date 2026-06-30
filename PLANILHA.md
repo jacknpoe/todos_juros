@@ -1,6 +1,6 @@
 # Planilha
 
-![Planilha](planilha.jpg)
+![Planilha](planilha.png)
 
 PORTUGUÊS
 =========

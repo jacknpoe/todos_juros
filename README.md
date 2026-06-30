@@ -88,11 +88,11 @@ A script executor for AngelScript was created by ChatGPT using the AngelScript l
 
 Formula for calculating the increase from simple interest:
 
-![Simple Interest](https://github.com/jacknpoe/todos_juros/blob/main/JurosSimples.jpg)
+![Simple Interest](JurosSimples.jpg)
 
 Formula for calculating the increase from compound interest:
 
-![Compound Interest](https://github.com/jacknpoe/todos_juros/blob/main/JurosCompostos.jpg)
+![Compound Interest](JurosCompostos.jpg)
 
 (pesoTotal = totalWeight; quantidade = quantity; pesos = weights; juros = interest; pagamentos = payments; periodo = period)
 
@@ -122,9 +122,9 @@ Some files are unreadable, as they are binary and must be opened or imported int
 
 Some dialects will not yet have a solution because they lack support for necessary features, such as floating-point numbers (or 64-bit integers to emulate). Other dialects have other problems, such as being outdated and not running or compiling on current systems. Dialects that are, in fact, Turing tarpits, such as Agda, will be ignored.
 
-A C version, with structural optimizations and computational transformations compared to the standard solutions, was published under the name [juros_otimizado.c](https://github.com/jacknpoe/todos_juros/blob/main/juros_otimizado.c). This version preserves the algorithmic basis of the problem, but alters the calculation method to reduce computational costs, including the upfront calculation of fixed parts of the financial equations, the use of global variables to reduce indirection, and other performance improvements. It is not intended for direct comparison with the other solutions, but can serve as a reference for those seeking greater efficiency or wishing to adapt these ideas to other languages. This version is not the most representative of the Rosetta Stone project. Its goal is not to serve as a mathematical, didactic, or philosophical model for other solutions, but to demonstrate how far it is possible to reduce computational cost while maintaining the same algorithmic basis. It functions as a proof of concept, a glimpse of possible structural optimizations, and a reminder that it is often possible to obtain the same result by doing less work. As the project's benchmarks seek to compare equivalent implementations, none of the other languages ​​or dialects adopt similar optimizations. Furthermore, for scenarios typically found in real-world applications (for example, a few hundred installments and moderate rates), such optimizations are rarely necessary.
+A C version, with structural optimizations and computational transformations compared to the standard solutions, was published under the name [juros_otimizado.c](juros_otimizado.c). This version preserves the algorithmic basis of the problem, but alters the calculation method to reduce computational costs, including the upfront calculation of fixed parts of the financial equations, the use of global variables to reduce indirection, and other performance improvements. It is not intended for direct comparison with the other solutions, but can serve as a reference for those seeking greater efficiency or wishing to adapt these ideas to other languages. This version is not the most representative of the Rosetta Stone project. Its goal is not to serve as a mathematical, didactic, or philosophical model for other solutions, but to demonstrate how far it is possible to reduce computational cost while maintaining the same algorithmic basis. It functions as a proof of concept, a glimpse of possible structural optimizations, and a reminder that it is often possible to obtain the same result by doing less work. As the project's benchmarks seek to compare equivalent implementations, none of the other languages ​​or dialects adopt similar optimizations. Furthermore, for scenarios typically found in real-world applications (for example, a few hundred installments and moderate rates), such optimizations are rarely necessary.
 
-Some dialects had their time measured for 300,000 installments and ranked: [benchmark.png](https://github.com/jacknpoe/todos_juros/blob/main/benchmark.png). There are two versions in C, the version for fair comparison, with the same algorithms as the other dialects, and the optimized version. In C++, an experiment was conducted [juros_func.cpp](https://github.com/jacknpoe/todos_juros/blob/main/juros_rec.cpp) replacing loops with recursion, in a style similar to that of functional languages; this version was also measured.
+Some dialects had their time measured for 300,000 installments and ranked: [benchmark.png](benchmark.png). There are two versions in C, the version for fair comparison, with the same algorithms as the other dialects, and the optimized version. In C++, an experiment was conducted [juros_rec.cpp](juros_rec.cpp) replacing loops with recursion, in a style similar to that of functional languages; this version was also measured.
 
 The Bend dialect has two solutions. The first uses a map (structure {1:..., 2:...}) to simulate arrays, which is not scalable. The second uses functions to map payments and weights from the index, which is scalable. Both have been maintained for historical and didactic reasons. Numerical precision is limited (24-bit float), which affects the final result.
 
@@ -154,6 +154,7 @@ The C++ dialect versions of the solution were written in English, including Ardu
 
 The license is GNU (https://github.com/jacknpoe/todos_juros/blob/main/LICENSE).
 
-The project also includes the spreadsheet [juros.xlsx](https://github.com/jacknpoe/todos_juros/blob/main/juros.xlsx). Besides directly implementing the `jurosParaAcrescimo` algorithm, it allows the use of the `Goal Seek` tool to obtain the result of the `acrescimoParaJuros` algorithm, without needing to implement a numerical method. See [PLANILHA.md](https://github.com/jacknpoe/todos_juros/blob/main/PLANILHA.md).
+The project also includes the spreadsheet [juros.xlsx](juros.xlsx). Besides directly implementing the `jurosParaAcrescimo` algorithm, it allows the use of the `Goal Seek` tool to obtain the result of the `acrescimoParaJuros` algorithm, without needing to implement a numerical method. See [PLANILHA.md](PLANILHA.md).
 
-![ŕesoluções/resolutions](https://github.com/jacknpoe/todos_juros/blob/main/resolu%C3%A7%C3%B5es.jpg)
+
+![ŕesoluções/resolutions](resolu%C3%A7%C3%B5es.jpg)

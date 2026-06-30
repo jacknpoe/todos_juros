@@ -1416,3 +1416,6 @@ XLISP = Common Lisp
 XLispStat = Common Lisp
 XOTcl = Tcl
 YLISP = Common Lisp
+
+PLANILHA
+juros.xlsx

@@ -12,11 +12,11 @@ Um executor de scripts para AngelScript foi criado pelo ChatGPT a partir das bib
 
 Fórmula para calcular o acréscimo a partir dos juros simples:
 
-![Juros Simples](https://github.com/jacknpoe/todos_juros/blob/main/JurosSimples.jpg)
+![Juros Simples](JurosSimples.jpg)
 
 Fórmula para calcular o acréscimo a partir dos juros compostos:
 
-![Juros Compostos](https://github.com/jacknpoe/todos_juros/blob/main/JurosCompostos.jpg)
+![Juros Compostos](JurosCompostos.jpg)
 
 Apenas soluções que compilaram (ou foram corretamente interpretadas), que realmente rodaram, e retornaram resultados corretos, são publicadas. Com exceção de Bend, que apresentou diferença de 0,02 no cálculo dos juros. A solução é mantida para registro histórico e didático.
 
@@ -44,9 +44,9 @@ Alguns arquivos estão ilegíveis, pois são binários e devem ser abertos ou im
 
 Alguns dialetos não terão a solução ainda, por não terem suporte a recursos necessários, como números de ponto flutuante (ou inteiros de 64 bits para emular). Outros dialetos têm outros problemas, como estarem desatualizadas e não rodarem ou compilarem nos sistemas atuais. Dialetos que são, na verdade, Turing tarpits, como Agda, serão ignorados.
 
-Uma versão em C, com otimizações estruturais e transformações computacionais em relação ao padrão das demais soluções, foi publicada com o nome de [juros_otimizado.c](https://github.com/jacknpoe/todos_juros/blob/main/juros_otimizado.c). Essa versão preserva a base algorítmica do problema, mas altera a forma de cálculo para reduzir custos computacionais, incluindo o cálculo antecipado de partes fixas das equações financeiras, uso de variáveis globais para diminuir indireção e outras melhorias de desempenho. Ela não é destinada à comparação direta com as demais soluções, mas pode servir como referência para quem busca maior eficiência ou deseja adaptar essas ideias para outras linguagens. Esta versão não é a mais representativa do projeto Pedra de Roseta. Seu objetivo não é servir como modelo matemático, didático ou filosófico para as demais soluções, mas demonstrar até onde é possível reduzir o custo computacional mantendo a mesma base algorítmica. Ela funciona como uma prova de conceito, um vislumbre de otimizações estruturais possíveis e um lembrete de que muitas vezes é possível obter o mesmo resultado realizando menos trabalho. Como os benchmarks do projeto procuram comparar implementações equivalentes, nenhuma das demais linguagens ou dialetos adota otimizações semelhantes. Além disso, para os cenários normalmente encontrados em aplicações reais (por exemplo, algumas centenas de parcelas e taxas moderadas), tais otimizações raramente são necessárias.
+Uma versão em C, com otimizações estruturais e transformações computacionais em relação ao padrão das demais soluções, foi publicada com o nome de [juros_otimizado.c](juros_otimizado.c). Essa versão preserva a base algorítmica do problema, mas altera a forma de cálculo para reduzir custos computacionais, incluindo o cálculo antecipado de partes fixas das equações financeiras, uso de variáveis globais para diminuir indireção e outras melhorias de desempenho. Ela não é destinada à comparação direta com as demais soluções, mas pode servir como referência para quem busca maior eficiência ou deseja adaptar essas ideias para outras linguagens. Esta versão não é a mais representativa do projeto Pedra de Roseta. Seu objetivo não é servir como modelo matemático, didático ou filosófico para as demais soluções, mas demonstrar até onde é possível reduzir o custo computacional mantendo a mesma base algorítmica. Ela funciona como uma prova de conceito, um vislumbre de otimizações estruturais possíveis e um lembrete de que muitas vezes é possível obter o mesmo resultado realizando menos trabalho. Como os benchmarks do projeto procuram comparar implementações equivalentes, nenhuma das demais linguagens ou dialetos adota otimizações semelhantes. Além disso, para os cenários normalmente encontrados em aplicações reais (por exemplo, algumas centenas de parcelas e taxas moderadas), tais otimizações raramente são necessárias.
 
-Alguns dialetos tiveram o tempo medido para 300.000 parcelas, e classificados: [benchmark.png](https://github.com/jacknpoe/todos_juros/blob/main/benchmark.png). Existem duas versões em C, a versão para comparação justa, com os mesmos algoritmos dos demais dialetos, e a versão otimizada. Já em C++ foi realizado um experimento [juros_func.cpp](https://github.com/jacknpoe/todos_juros/blob/main/juros_rec.cpp) substituindo laços por recursão, em estilo próximo ao das linguagens funcionais; essa versão também foi medida.
+Alguns dialetos tiveram o tempo medido para 300.000 parcelas, e classificados: [benchmark.png](benchmark.png). Existem duas versões em C, a versão para comparação justa, com os mesmos algoritmos dos demais dialetos, e a versão otimizada. Já em C++ foi realizado um experimento [juros_rec.cpp]juros_rec.cpp) substituindo laços por recursão, em estilo próximo ao das linguagens funcionais; essa versão também foi medida.
 
 O dialeto Bend tem duas soluções. A primeira usa um mapa (estrutura {1:..., 2:...}) para simular arrays, o que não é escalável. A segunda usa funções para mapear pagamentos e pesos a partir do índice, sendo escalável. Ambas foram mantidas por motivos históricos e didáticos. A precisão numérica é limitada (float de 24 bits), o que afeta o resultado final.
 
@@ -71,6 +71,8 @@ A versão on-line em WOKWI de Arduino está publicada em https://wokwi.com/proje
 A versão on-line em WOKWI de Raspberry Pi está publicada em https://wokwi.com/projects/447794347319174145
 
 A versão on-line em WOKWI de MicroPython está publicada em https://wokwi.com/projects/447878410647046145
+
+O projeto também inclui a planilha [juros.xlsx](juros.xlsx). Além de implementar diretamente o algoritmo `jurosParaAcrescimo`, ela permite utilizar a ferramenta `Goal Seek` (`Atingir Meta`) para obter o resultado do algoritmo `acrescimoParaJuros`, sem necessidade de implementar um método numérico. Consulte [PLANILHA.md](PLANILHA.md).
 
 A licença é GNU (https://github.com/jacknpoe/todos_juros/blob/main/LICENSE).
 
@@ -151,5 +153,7 @@ The online WOKWI version of MicroPython is published at https://wokwi.com/projec
 The C++ dialect versions of the solution were written in English, including Arduino and Raspberry Pi.
 
 The license is GNU (https://github.com/jacknpoe/todos_juros/blob/main/LICENSE).
+
+The project also includes the spreadsheet [juros.xlsx](https://github.com/jacknpoe/todos_juros/blob/main/juros.xlsx). Besides directly implementing the `jurosParaAcrescimo` algorithm, it allows the use of the `Goal Seek` tool to obtain the result of the `acrescimoParaJuros` algorithm, without needing to implement a numerical method. See [PLANILHA.md](https://github.com/jacknpoe/todos_juros/blob/main/PLANILHA.md).
 
 ![ŕesoluções/resolutions](https://github.com/jacknpoe/todos_juros/blob/main/resolu%C3%A7%C3%B5es.jpg)

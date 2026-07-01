@@ -3,7 +3,8 @@
           0.2: 20/02/2026: jurosParaAcrecimo() e a acrescimoParaJuros()
           0.3: 24/03/2026: agora termo = mulfp(termo, x / indice); na linha 132, mais simples
           0.4: 25/03/2026: (maxJuros - minJuros) <= minDiferenca (em vez de < )
-          0.4: 16/04/2026: alterada posicao de p5dec e comentarios sobre dominio do problema */
+          0.5: 16/04/2026: alterada posicao de p5dec e comentarios sobre dominio do problema
+          0.6: 30/06/2026: melhoria no acúmulo de soma em lnfp(), retirados um divfp e um inttofp */
 
 main() {
     extrn printf, p5dec, acrescimoParaJuros, jurosParaAcrescimo, getPesoTotal, inttofp, QUANTIDADE, PERIODO, PAGAMENTOS, PESOS, UM;
@@ -153,7 +154,7 @@ lnfp(x) {
     indice = 1;
 
     while (indice <= TOTLN) {
-        soma = soma + divfp(termo, inttofp(2 * indice - 1));
+        soma = soma + termo / (2 * indice - 1);
         termo = mulfp(termo, yy);
         indice = indice + 1;
     }

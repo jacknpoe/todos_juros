@@ -49,6 +49,7 @@ class Juros()
 
         every indice := 1 to Quantidade do !e
 
+        &handler := &null
         return (pesoTotal / acumulador - 1.0) * 100.0
     end
 

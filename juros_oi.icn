@@ -1,0 +1,96 @@
+# Cálculo dos juros, sendo que precisa de parcelas pra isso
+# Versão 0.1: 02/07/2026: versão feita sem muito conhecimento de Object Icon a partir de Icon
+
+import io
+$encoding UTF-8
+
+# classe Juros com atributos para simplificar as chamadas aos métodos
+class Juros()
+    public
+        Quantidade,
+        Composto,
+        Periodo,
+        Pagamentos,
+        Pesos
+
+    # construtor que inicializa atributos escalares e cria atributos arrays vazios
+    public new(quantidade, composto, periodo)
+        self.Quantidade := quantidade
+        self.Composto := composto
+        self.Periodo := periodo
+        self.Pagamentos := []
+        self.Pesos := []
+        return
+    end
+
+    # calcula a somatória dos elementos no atributo Pesos[]
+    public getPesoTotal()
+        local acumulador, indice
+        acumulador := 0.0
+        every indice := 1 to Quantidade do acumulador +:= Pesos[indice]
+        return acumulador
+    end
+
+    # calcula o acréscimo a partir dos juros e parcelas
+    public jurosParaAcrescimo(juros)
+        local pesoTotal, acumulador, indice, e
+
+        pesoTotal := getPesoTotal()
+        if (juros <= 0.0) | (Quantidade < 1) | (Periodo <= 0.0) | (pesoTotal <= 0.0) then return 0.0
+        acumulador := 0.0
+
+        e := create
+            if Composto > 0
+                then acumulador +:= Pesos[indice] / (1.0 + juros / 100.0) ^ (Pagamentos[indice] / Periodo)
+                else acumulador +:= Pesos[indice] / (1.0 + juros / 100.0 * Pagamentos[indice] / Periodo)
+
+        &handler := &current
+        errorclear()
+
+        every indice := 1 to Quantidade do !e
+
+        return (pesoTotal / acumulador - 1.0) * 100.0
+    end
+
+    # calcula os juros a partir do acréscimo e parcelas
+    public acrescimoParaJuros(acrescimo, precisao, maxIteracoes, maxJuros)
+        local pesoTotal, minJuros, medJuros, minDiferenca, indice
+        pesoTotal := getPesoTotal()
+        if (acrescimo <= 0.0) | (Quantidade < 1) | (Periodo <= 0.0) | (pesoTotal <= 0.0) | (precisao < 1) | (maxIteracoes < 1) | (maxJuros <= 0.0) then return 0.0
+        minJuros := 0.0
+        medJuros := maxJuros / 2.0
+        minDiferenca := 0.1 ^ precisao
+
+        every indice := 1 to maxIteracoes do {
+            if (maxJuros - minJuros) < minDiferenca then return medJuros
+            if jurosParaAcrescimo(medJuros) < acrescimo then minJuros := medJuros else maxJuros := medJuros
+            medJuros := (minJuros + maxJuros) / 2.0
+        }
+
+        return medJuros
+    end
+end
+
+procedure main()
+    local juros, indice, pesoTotal, acrescimoCalculado, jurosCalculado
+
+    # cria um objeto juros da classe Juros e inicializa atributos escalares
+    juros := Juros(3, 1, 30.0)
+
+    # insere elementos nos atributos arrays Pagamentos[] e Pesos[]
+    every indice := 1 to juros.Quantidade do {
+        put(juros.Pagamentos, indice * juros.Periodo)
+        put(juros.Pesos, 1.0)
+    }
+
+    # calcula e guarda os resultados dos métodos
+    pesoTotal := juros.getPesoTotal()
+    acrescimoCalculado := juros.jurosParaAcrescimo(3.0)
+    jurosCalculado := juros.acrescimoParaJuros(acrescimoCalculado, 9, 40, 50.0)  # PARA USO NORMAL
+    # jurosCalculado := juros.acrescimoParaJuros(acrescimoCalculado, 15, 65, 50.0)  # PARA BENCHMARK
+
+    # imprime os resultados
+    write("Peso total = ", pesoTotal)
+    write(u"Acréscimo = ", acrescimoCalculado)
+    write("Juros = ", jurosCalculado)
+end

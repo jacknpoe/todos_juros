@@ -740,6 +740,9 @@ jurosOB2.mod
 Objeck (10/04/2025)
 juros.obs
 
+Object Icon (02/07/2026)
+juros_oi.icn
+
 Object Pascal (04/03/2025)
 testajurosOP.pas
 

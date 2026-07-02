@@ -1,5 +1,6 @@
 # Cálculo dos juros, sendo que precisa de parcelas pra isso
 # Versão 0.1: 07/07/2024: versão feita sem muito conhecimento de Icon
+#        0.2: 02/07/2026: versão escalável com preenchimento dinâmico dos arrays
 
 # globais para simplificar as chamadas
 global Quantidade
@@ -52,13 +53,19 @@ procedure main()
     Quantidade := 3
     Composto := 1
     Periodo := 30.0
-    Pagamentos := [30.0, 60.0, 90.0]
-    Pesos := [1.0, 1.0, 1.0]
+    Pagamentos := []
+    Pesos := []
+
+    # aloca e inicializa os elementos dos arrays
+    every indice :=1 to Quantidade do {
+        put(Pagamentos, indice * Periodo)
+        put(Pesos, 1.0)
+    }
 
     # calcula e guarda os valores dos resultados das funções
     pesoTotal := getPesoTotal()
     acrescimoCalculado := jurosParaAcrescimo(3.0)
-    jurosCalculado := acrescimoParaJuros(acrescimoCalculado, 15, 100, 50.0)
+    jurosCalculado := acrescimoParaJuros(acrescimoCalculado, 15, 65, 50.0)
 
     # imprime os resultados
     write("Peso total = ", pesoTotal)

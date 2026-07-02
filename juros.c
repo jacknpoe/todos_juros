@@ -7,7 +7,7 @@
 //        0.7: 29/07/2025: agora dá free em Pagamentos se falhar malloc em Pesos
 //        0.8: 18/02/2026: verificados pesoTotal no if inicial das funções financeiras
 //        0.9: 25/03/2026: compatibilidade com PicoC (para retornar a imprimir com , no lugar de . em C, descomente #include "locale.h" e setlocale())
-//        0.10: 15/04/2026: revisados números para double e outras melhorias dedefeitos menores descobertos enquanto criava a versão otimizada
+//        0.10: 15/04/2026: revisados números para double e outras melhorias de defeitos menores descobertos enquanto criava a versão otimizada
 //        0.11: 18/04/2026: alterações para colocar NULLs em setValores e verificar NULLs em setQuantidade
 
 #include <math.h>      // para usar pow()
@@ -112,8 +112,8 @@ int main() {
 	}
 
 	for(indice = 0; indice < juros.Quantidade; indice++) {
-		juros.Pagamentos[indice] = (indice + 1) * juros.Periodo;
-		juros.Pesos[indice] = 1;
+		juros.Pagamentos[indice] = (indice + 1.0) * juros.Periodo;
+		juros.Pesos[indice] = 1.0;
 	}
 
     // calcula, guarda e imprime os resultados

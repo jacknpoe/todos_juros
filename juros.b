@@ -4,11 +4,12 @@
           0.3: 24/03/2026: agora termo = mulfp(termo, x / indice); na linha 132, mais simples
           0.4: 25/03/2026: (maxJuros - minJuros) <= minDiferenca (em vez de < )
           0.5: 16/04/2026: alterada posicao de p5dec e comentarios sobre dominio do problema
-          0.6: 30/06/2026: melhoria no acúmulo de soma em lnfp(), retirados um divfp e um inttofp */
+          0.6: 30/06/2026: melhoria no acúmulo de soma em lnfp(), retirados um divfp e um inttofp
+          0.7: 02/07/2026: criada printfp5 com o ChatGPT para imprimir mais amigavelmente */
 
 main() {
-    extrn printf, p5dec, acrescimoParaJuros, jurosParaAcrescimo, getPesoTotal, inttofp, QUANTIDADE, PERIODO, PAGAMENTOS, PESOS, UM;
-    auto indice, pesoTotal, acrescimoCalculado, jurosCalculado;
+    extrn printf, printfp5, acrescimoParaJuros, jurosParaAcrescimo, getPesoTotal, inttofp, QUANTIDADE, PERIODO, PAGAMENTOS, PESOS, UM;
+    auto indice, pesoTotal, acrescimoCalculado, jurosCalculado, foo;
 
     /* inicializa os arrays PAGAMENTOS[] e PESOS[] */
     indice = 0;
@@ -24,9 +25,15 @@ main() {
     jurosCalculado = acrescimoParaJuros(acrescimoCalculado, 8, 35, inttofp(50));
 
     /* imprime os resultados */
-    printf("Peso total = %d.E-5*n", p5dec(pesoTotal));
-    printf("Acrescimo = %d.E-5*n", p5dec(acrescimoCalculado));
-    printf("Juros = %d.E-5*n", p5dec(jurosCalculado));
+    printf("Peso total = ");
+    foo = printfp5(pesoTotal);
+    printf("*n");
+    printf("Acrescimo = ");
+    foo = printfp5(acrescimoCalculado);
+    printf("*n");
+    printf("Juros = ");
+    foo = printfp5(jurosCalculado);
+    printf("*n");
 }
 
 /* #################### FUNCOES DENTRO DO DOMINIO DO PROBLEMA (MATEMATICA FINANCEIRA) #################### */
@@ -109,6 +116,26 @@ prectomind(x) {
 }
 
 /* #################### FUNCOES FORA DO DOMINIO DO PROBLEMA (MATEMATICA BASICA DE PONTO FIXO, EXPONENCIACAO, ETC.) #################### */
+
+/* imprime um fixed-point com 5 casas decimais (feito pelo ChatGPT) */
+printfp5(valor) {
+    extrn printf, p5dec;
+    auto x, inteiro, fracao;
+
+    x = p5dec(valor);
+
+    inteiro = x / 100000;
+    fracao = x % 100000;
+
+    printf("%d.", inteiro);
+
+    if (fracao < 10000) printf("0");
+    if (fracao < 1000) printf("0");
+    if (fracao < 100) printf("0");
+    if (fracao < 10) printf("0");
+
+    printf("%d", fracao);
+}
 
 /* para cinco casas decimais (retira três das oito por questão de precisão) */
 p5dec(valor) {

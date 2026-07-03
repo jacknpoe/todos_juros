@@ -25,15 +25,9 @@ main() {
     jurosCalculado = acrescimoParaJuros(acrescimoCalculado, 8, 35, inttofp(50));
 
     /* imprime os resultados */
-    printf("Peso total = ");
-    foo = printfp5(pesoTotal);
-    printf("*n");
-    printf("Acrescimo = ");
-    foo = printfp5(acrescimoCalculado);
-    printf("*n");
-    printf("Juros = ");
-    foo = printfp5(jurosCalculado);
-    printf("*n");
+    printf("Peso total = "); foo = printfp5(pesoTotal);
+    printf("Acrescimo = "); foo = printfp5(acrescimoCalculado);
+    printf("Juros = "); foo = printfp5(jurosCalculado);
 }
 
 /* #################### FUNCOES DENTRO DO DOMINIO DO PROBLEMA (MATEMATICA FINANCEIRA) #################### */
@@ -134,7 +128,7 @@ printfp5(valor) {
     if (fracao < 100) printf("0");
     if (fracao < 10) printf("0");
 
-    printf("%d", fracao);
+    printf("%d*n", fracao);
 }
 
 /* para cinco casas decimais (retira três das oito por questão de precisão) */

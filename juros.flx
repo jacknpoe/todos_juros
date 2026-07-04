@@ -2,7 +2,7 @@
 // Versão 0.1: 04/07/2026: feito sem muito conhecimento de Felix
 
 // variáveis globais escalares para simplificar as chamadas às funções
-var Quantidade : int = 30000;
+var Quantidade : int = 3;
 var Composto : bool = true;
 var Periodo : double = 30.0;
 

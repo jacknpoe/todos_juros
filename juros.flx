@@ -7,11 +7,11 @@ var Composto : bool = true;
 var Periodo : double = 30.0;
 
 // funções recursiva + açúcar que cria os elementos da lista Pagamentos
-pure fun rGeraPagamentos (indice : int) : list[double] = { if indice == 0 do return Empty[double]; else return rGeraPagamentos (indice - 1) + indice.double * Periodo; done }
+pure fun rGeraPagamentos (indice : int) : list[double] = { if indice == 0 do return Empty[double]; else return indice.double * Periodo + rGeraPagamentos (indice - 1); done }
 pure fun geraPagamentos () : list[double] = { return rGeraPagamentos(Quantidade); }
 
 // funções recursiva + açúcar que cria os elementos da lista Pesos
-pure fun rGeraPesos (indice : int) : list[double] = { if indice == 0 do return Empty[double]; else return rGeraPesos(indice - 1) + 1.0; done }
+pure fun rGeraPesos (indice : int) : list[double] = { if indice == 0 do return Empty[double]; else return 1.0 + rGeraPesos(indice - 1); done }
 pure fun geraPesos () : list[double] = { return rGeraPesos(Quantidade); }
 
 // listas globais para simplificar as chamadas às funções

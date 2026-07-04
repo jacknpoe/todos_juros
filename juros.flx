@@ -1,0 +1,82 @@
+// Cálculo dos juros, sendo que precisa de parcelas pra isso
+// Versão 0.1: 04/07/2026: feito sem muito conhecimento de Felix
+
+// variáveis globais escalares para simplificar as chamadas às funções
+var Quantidade : int = 30000;
+var Composto : bool = true;
+var Periodo : double = 30.0;
+
+// funções recursiva + açúcar que cria os elementos da lista Pagamentos
+pure fun rGeraPagamentos (indice : int) : list[double] = { if indice == 0 do return Empty[double]; else return rGeraPagamentos (indice - 1) + indice.double * Periodo; done }
+pure fun geraPagamentos () : list[double] = { return rGeraPagamentos(Quantidade); }
+
+// funções recursiva + açúcar que cria os elementos da lista Pesos
+pure fun rGeraPesos (indice : int) : list[double] = { if indice == 0 do return Empty[double]; else return rGeraPesos(indice - 1) + 1.0; done }
+pure fun geraPesos () : list[double] = { return rGeraPesos(Quantidade); }
+
+// listas globais para simplificar as chamadas às funções
+var Pagamentos : list[double] = geraPagamentos();
+var Pesos : list[double] = geraPesos();
+
+// função recursiva que calcula a somatória dos elementos na lista Pesos[] 
+pure fun rGetPesoTotal (pesos : list[double]) : double = {
+    match pesos with
+        | Cons(hPes, tPes) => return rGetPesoTotal(tPes) + hPes;
+        | Empty => return 0.0;
+    endmatch;
+}
+
+// função açúcar que calcula a somatória dosw elementos na lista Pesos[]
+pure fun getPesoTotal () : double = { return rGetPesoTotal Pesos; }
+
+// função recursiva que calcula a somatória das amortizações de juros compostos
+pure fun rJurosCompostos (pagamentos : list[double], pesos : list[double], juros : double) : double = {
+    match (pagamentos, pesos) with
+        | (Cons(hPag, tPag), Cons(hPes, tPes)) => return rJurosCompostos(tPag, tPes, juros) + hPes / (1.0 + juros / 100.0) ^ (hPag / Periodo);
+        | (Empty, Empty) => return 0.0;
+    endmatch;
+}
+
+// função recursiva que calcula a somatória das amortizações de juros compostos
+pure fun rJurosSimples (pagamentos : list[double], pesos : list[double], juros : double) : double = {
+    match (pagamentos, pesos) with
+        | (Cons(hPag, tPag), Cons(hPes, tPes)) => return rJurosSimples(tPag, tPes, juros) + hPes / (1.0 + juros / 100.0 * hPag / Periodo);
+        | (Empty, Empty) => return 0.0;
+    endmatch;
+}
+
+// função (um pouco açúcar) que calcula o acréscimo a partir dos juros e parcelas
+pure fun jurosParaAcrescimo(juros : double) : double = {
+    match Composto with
+        | true => return (getPesoTotal() / rJurosCompostos(Pagamentos, Pesos, juros) - 1.0) * 100.0;
+        | false => return (getPesoTotal() / rJurosSimples(Pagamentos, Pesos, juros) - 1.0) * 100.0;
+    endmatch;
+}
+
+// função recursiva que calcula os juros a partir do acréscimo e parcelas
+pure fun rAcrescimoParaJuros(acrescimo : double, minDiferenca : double, iteracao : int, minJuros : double, maxJuros : double, medJuros : double) : double = {
+    if iteracao == 0 or maxJuros - minJuros < minDiferenca do
+        return medJuros;
+    else
+        if jurosParaAcrescimo(medJuros) < acrescimo do
+            return rAcrescimoParaJuros(acrescimo, minDiferenca, iteracao - 1, medJuros, maxJuros, (medJuros + maxJuros) / 2.0);
+        else
+            return rAcrescimoParaJuros(acrescimo, minDiferenca, iteracao - 1, minJuros, medJuros, (minJuros + medJuros) / 2.0);
+        done
+    done
+}
+
+// função açúcar que calcula os juros a partir do acréscimo e parcelas
+pure fun acrescimoParaJuros(acrescimo : double, precisao : int, maxIteracoes : int, maxJuros : double) : double = {
+    return rAcrescimoParaJuros(acrescimo, 0.1 ^ precisao, maxIteracoes, 0.0, maxJuros, maxJuros / 2.0);
+}
+
+// calcula e guarda os resultados das funções
+var pesoTotal : double = getPesoTotal();
+var acrescimoCalculado : double = jurosParaAcrescimo(3.0);
+var jurosCalculado : double = acrescimoParaJuros(acrescimoCalculado, 15, 65, 50.0);
+
+// imprime os resultados
+println$ f"Peso total = %.15f"(pesoTotal);
+println$ f"Acréscimo = %.15f"(acrescimoCalculado);
+println$ f"Juros = %.15f"(jurosCalculado);

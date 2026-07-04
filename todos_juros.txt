@@ -343,6 +343,9 @@ juros.fpl
 Fantom (04/06/2024)
 juros.fan
 
+Flex (04/07/2026)
+juros.flx
+
 Fennel (01/02/2026) ⭐
 juros.fnl
 

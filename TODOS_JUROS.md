@@ -6,182 +6,182 @@ Esta é a relação dos links para as resoluções em dialetos diferentes ordena
 
 ### 11l (14/03/2026)
 
-- [juros.11l](juros.11l)
+[juros.11l](juros.11l)
 
 ### 1C:Enterprise (29/03/2025)
 
-- [juros.1C](juros.1C)
+[juros.1C](juros.1C)
 
 ### 4D (01/04/2025)
 
-- [Juros.4dm](Juros.4dm)
+[Juros.4dm](Juros.4dm)
 
-- [Teste.4dm](Teste.4dm)
+[Teste.4dm](Teste.4dm)
 
-ABC (13/02/2025) ⭐
-juros.abc
+#### ABC (13/02/2025) ⭐
+[juros.abc](juros.abc)
 
-Ada (09/04/2024) ⭐
-juros.adb
-juros.ads
-testajuros.adb
+#### Ada (09/04/2024) ⭐
+[juros.adb](juros.adb)
+[juros.ads](juros.ads)
+[testajuros.adb](testajuros.adb)
 
-Agora (26/06/2026)
+### Agora (26/06/2026)
 juros.agora
 
-Aldor (30/07/2025)
+### Aldor (30/07/2025)
 juros.as
 
-ALGOL 68 (07/05/2024) ⭐
+### ALGOL 68 (07/05/2024) ⭐
 juros.a68
 
-Alice (24/06/2024)
+### Alice (24/06/2024)
 juros_alice.ml
 
-AMOS Basic (29/06/2025)
+### AMOS Basic (29/06/2025)
 JUROS.AMOS
 
-AngelScript (02/02/2026)
+### AngelScript (02/02/2026)
 jurosAS.as
 runAS.cpp
 
-APDL (24/02/2026) ⭐
+### APDL (24/02/2026) ⭐
 acrescimoParaJuros.mac
 getPesoTotal.mac
 jurosAPDL.mac
 jurosParaAcrescimo.mac
 
-Ape (06/02/2026)
+### Ape (06/02/2026)
 juros.ape
 
-AppGameKit (22/04/2025)
+### AppGameKit (22/04/2025)
 main.agc
 
-Apple Business Basic (10/01/2026)
+### Apple Business Basic (10/01/2026)
 JUROSABB.BAS
 
-AppleSoft BASIC (04/01/2025)
+### AppleSoft BASIC (04/01/2025)
 JUROSASB.BAS
 
-Arc (30/03/2025)
+### Arc (30/03/2025)
 jurosArc.lsp
 
-Arden (06/02/2025)
+### Arden (06/02/2025)
 acrescimoParaJuros.mlm
 jurosParaAcrescimo.mlm
 new_mlm.mlm
 pesoTotal.mlm
 
-Arduino (14/07/2024) ⭐
+### Arduino (14/07/2024) ⭐
 interest.ino
 
-Atari BASIC (17/05/2025)
+### Atari BASIC (17/05/2025)
 juros.atstate2
 
-ATS2 (22/06/2026) ⭐
+### ATS2 (22/06/2026) ⭐
 juros.dats
 
-AutoHotKey (18/02/2025)
+### AutoHotKey (18/02/2025)
 juros.ahk
 
-AutoIt (28/05/2024)
+### AutoIt (28/05/2024)
 juros.au3
 
-AutoLISP (13/02/2025)
+### AutoLISP (13/02/2025)
 juros.lsp
 
-awk (19/06/2024)
+### awk (19/06/2024)
 jurs.awk
 
-B (BCause implementation) (20/02/2026) ⭐
+### B (BCause implementation) (20/02/2026) ⭐
 juros.b
 
-B4X (10/02/2025)
+### B4X (10/02/2025)
 Juros.b4j
 
-Ballerina (25/06/2024)
+### Ballerina (25/06/2024)
 juros.bal
 
-bas (Michael Haardt) (02/04/2026)
+### bas (Michael Haardt) (02/04/2026)
 jurosbas.bas
 
-Bash (04/07/2025) ⭐
+### Bash (04/07/2025) ⭐
 juros.sh
 
-BASIC-256 (08/04/2025)
+### BASIC-256 (08/04/2025)
 juros.kbs
 
-BBC Basic (07/01/2025)
+### BBC Basic (07/01/2025)
 JUROSBBC.BAS
 
-bc (25/03/2025) ⭐
+### bc (25/03/2025) ⭐
 juros.bc
 
-Bend (08/08/2024) ⭐
+### Bend (08/08/2024) ⭐
 juros.bend
 jurosf.bend
 
-Bigloo (02/08/2025)
+### Bigloo (02/08/2025)
 juros.bigloo.scm
 
-Blade (08/05/2026)
+### Blade (08/05/2026)
 jurosblade.b
 
-Blitz3D (20/04/2025)
+### Blitz3D (20/04/2025)
 juros.bb
 
-BlitzMax (19/04/2025)
+### BlitzMax (19/04/2025)
 juros.bmx
 
-Blu (21/04/2026)
+### Blu (21/04/2026)
 juros.blu
 
-Boo (14/05/2026)
+### Boo (14/05/2026)
 juros.boo
 
-Bython (10/07/2024)
+### Bython (10/07/2024)
 Juros.by
 main.by
 
-Bywater BASIC (30/03/2025)
+### Bywater BASIC (30/03/2025)
 jurosbw.bas
 
-C (01/03/2024) ⭐
+### C (01/03/2024) ⭐
 juros.c
 otimizado: juros_otimizado.c
 
-Ć (28/03/2025)
+### Ć (28/03/2025)
 juros.ci
 testajurosCI.py
 
-C# (21/02/2024) ⭐
+### C# (21/02/2024) ⭐
 Juros.cs
 TesteJuros.cs
 
-C++ (17/09/2023) ⭐
+### C++ (17/09/2023) ⭐
 interest.cpp
 recursivo: juros_rec.cpp
 
-Cakelisp (16/02/2026) ⭐
+### Cakelisp (16/02/2026) ⭐
 juros.cake
 
-Caml (25/03/2025)
+### Caml (25/03/2025)
 juros_caml.ml
 
-CFScript (30/05/2024)
+### CFScript (30/05/2024)
 juros.cfm
 base.css
 
-Chapel (31/07/2024) ⭐
+### Chapel (31/07/2024) ⭐
 juros.chpl
 
-Chipmunk Basic (03/02/2026)
+### Chipmunk Basic (03/02/2026)
 jurosCH.bas
 
-Cilk (29/07/2025)
+### Cilk (29/07/2025)
 jurosc.c
 
-Circle (19/06/2024)
+### Circle (19/06/2024)
 juros.cxx
 
 Claire (18/04/2025)

@@ -5,15 +5,12 @@ Esta é a relação dos links para as resoluções em dialetos diferentes ordena
 ⭐ ⇒ solução que considero especialmente interessante por desempenho, sintaxe, conceito, implementação, importância histórica, influência ou popularidade (quando duas ou mais soluções forem elegíveis pelo mesmo motivo, será escolhida a que está há mais tempo na lista).
 
 ### 11l (14/03/2026)
-
 [juros.11l](juros.11l)
 
 ### 1C:Enterprise (29/03/2025)
-
 [juros.1C](juros.1C)
 
 ### 4D (01/04/2025)
-
 [Juros.4dm](Juros.4dm)
 
 [Teste.4dm](Teste.4dm)
@@ -23,7 +20,9 @@ Esta é a relação dos links para as resoluções em dialetos diferentes ordena
 
 ### Ada (09/04/2024) ⭐
 [juros.adb](juros.adb)
+
 [juros.ads](juros.ads)
+
 [testajuros.adb](testajuros.adb)
 
 ### Agora (26/06/2026)
@@ -47,8 +46,11 @@ Esta é a relação dos links para as resoluções em dialetos diferentes ordena
 
 ### APDL (24/02/2026) ⭐
 [acrescimoParaJuros.mac](acrescimoParaJuros.mac)
+
 [getPesoTotal.mac](getPesoTotal.mac)
+
 [jurosAPDL.mac](jurosAPDL.mac)
+
 [jurosParaAcrescimo.mac](jurosParaAcrescimo.mac)
 
 ### Ape (06/02/2026)
@@ -68,8 +70,11 @@ Esta é a relação dos links para as resoluções em dialetos diferentes ordena
 
 ### Arden (06/02/2025)
 [acrescimoParaJuros.mlm](acrescimoParaJuros.mlm)
+
 [jurosParaAcrescimo.mlm](jurosParaAcrescimo.mlm)
+
 [new_mlm.mlm](new_mlm.mlm)
+
 [pesoTotal.mlm](pesoTotal.mlm)
 
 ### Arduino (14/07/2024) ⭐
@@ -119,6 +124,7 @@ Esta é a relação dos links para as resoluções em dialetos diferentes ordena
 
 ### Bend (08/08/2024) ⭐
 mapas: [juros.bend](juros.bend)
+
 funções: [jurosf.bend](jurosf.bend)
 
 ### Bigloo (02/08/2025)
@@ -141,6 +147,7 @@ funções: [jurosf.bend](jurosf.bend)
 
 ### Bython (10/07/2024)
 [Juros.by](Juros.by)
+
 [main.by](main.by)
 
 ### Bywater BASIC (30/03/2025)
@@ -148,18 +155,22 @@ funções: [jurosf.bend](jurosf.bend)
 
 ### C (01/03/2024) ⭐
 [juros.c](juros.c)
+
 otimizado: [juros_otimizado.c](juros_otimizado.c)
 
 ### Ć (28/03/2025)
 [juros.ci](juros.ci)
+
 [testajurosCI.py](testajurosCI.py)
 
 ### C# (21/02/2024) ⭐
 [Juros.cs](Juros.cs)
+
 [TesteJuros.cs](TesteJuros.cs)
 
 ### C++ (17/09/2023) ⭐
 [interest.cpp](interest.cpp)
+
 recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 ### Cakelisp (16/02/2026) ⭐
@@ -170,6 +181,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 ### CFScript (30/05/2024)
 [juros.cfm](juros.cfm)
+
 [base.css](base.css)
 
 ### Chapel (31/07/2024) ⭐
@@ -184,8 +196,8 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 ### Circle (19/06/2024)
 [juros.cxx](juros.cxx)
 
-Claire (18/04/2025)
-juros.cl
+### Claire (18/04/2025)
+[juros.cl](juros.cl)
 
 Clean (21/06/2024)
 juros.icl

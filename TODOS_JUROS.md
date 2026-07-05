@@ -5,20 +5,25 @@ Esta é a relação dos links para as resoluções em dialetos diferentes ordena
 ⭐ ⇒ solução que considero especialmente interessante por desempenho, sintaxe, conceito, implementação, importância histórica, influência ou popularidade (quando duas ou mais soluções forem elegíveis pelo mesmo motivo, será escolhida a que está há mais tempo na lista).
 
 ### 11l (14/03/2026)
+
 [juros.11l](juros.11l)
 
 ### 1C:Enterprise (29/03/2025)
+
 [juros.1C](juros.1C)
 
 ### 4D (01/04/2025)
+
 [Juros.4dm](Juros.4dm)
 
 [Teste.4dm](Teste.4dm)
 
 ### ABC (13/02/2025) ⭐
+
 [juros.abc](juros.abc)
 
 ### Ada (09/04/2024) ⭐
+
 [juros.adb](juros.adb)
 
 [juros.ads](juros.ads)
@@ -26,25 +31,33 @@ Esta é a relação dos links para as resoluções em dialetos diferentes ordena
 [testajuros.adb](testajuros.adb)
 
 ### Agora (26/06/2026)
+
 [juros.agora](juros.agora)
 
 ### Aldor (30/07/2025)
+
 [juros.as](juros.as)
 
 ### ALGOL 68 (07/05/2024) ⭐
+
 [juros.a68](juros.a68)
 
 ### Alice (24/06/2024)
+
 [juros_alice.ml](juros_alice.ml)
 
 ### AMOS Basic (29/06/2025)
+
 [JUROS.AMOS](JUROS.AMOS)
 
 ### AngelScript (02/02/2026)
+
 [jurosAS.as](jurosAS.as)
+
 [runAS.cpp](runAS.cpp)
 
 ### APDL (24/02/2026) ⭐
+
 [acrescimoParaJuros.mac](acrescimoParaJuros.mac)
 
 [getPesoTotal.mac](getPesoTotal.mac)
@@ -54,21 +67,27 @@ Esta é a relação dos links para as resoluções em dialetos diferentes ordena
 [jurosParaAcrescimo.mac](jurosParaAcrescimo.mac)
 
 ### Ape (06/02/2026)
+
 [juros.ape](juros.ape)
 
 ### AppGameKit (22/04/2025)
+
 [main.agc](main.agc)
 
 ### Apple Business Basic (10/01/2026)
+
 [JUROSABB.BAS](JUROSABB.BAS)
 
 ### AppleSoft BASIC (04/01/2025)
+
 [JUROSASB.BAS](JUROSASB.BAS)
 
 ### Arc (30/03/2025)
+
 [jurosArc.lsp](jurosArc.lsp)
 
 ### Arden (06/02/2025)
+
 [acrescimoParaJuros.mlm](acrescimoParaJuros.mlm)
 
 [jurosParaAcrescimo.mlm](jurosParaAcrescimo.mlm)
@@ -78,231 +97,308 @@ Esta é a relação dos links para as resoluções em dialetos diferentes ordena
 [pesoTotal.mlm](pesoTotal.mlm)
 
 ### Arduino (14/07/2024) ⭐
+
 [interest.ino](interest.ino)
 
 ### Atari BASIC (17/05/2025)
+
 [juros.atstate2](juros.atstate2)
 
 ### ATS2 (22/06/2026) ⭐
+
 [juros.dats](juros.dats)
 
 ### AutoHotKey (18/02/2025)
+
 [juros.ahk](juros.ahk)
 
 ### AutoIt (28/05/2024)
+
 [juros.au3](juros.au3)
 
 ### AutoLISP (13/02/2025)
+
 [juros.lsp](juros.lsp)
 
 ### awk (19/06/2024)
+
 [jurs.awk](jurs.awk)
 
 ### B (BCause implementation) (20/02/2026) ⭐
+
 [juros.b](juros.b)
 
 ### B4X (10/02/2025)
+
 [Juros.b4j](Juros.b4j)
 
 ### Ballerina (25/06/2024)
+
 [juros.bal](juros.bal)
 
 ### bas (Michael Haardt) (02/04/2026)
+
 [jurosbas.bas](jurosbas.bas)
 
 ### Bash (04/07/2025) ⭐
+
 [juros.sh](juros.sh)
 
 ### BASIC-256 (08/04/2025)
+
 [juros.kbs](juros.kbs)
 
 ### BBC Basic (07/01/2025)
+
 [JUROSBBC.BAS](JUROSBBC.BAS)
 
 ### bc (25/03/2025) ⭐
+
 [juros.bc](juros.bc)
 
 ### Bend (08/08/2024) ⭐
+
 mapas: [juros.bend](juros.bend)
 
 funções: [jurosf.bend](jurosf.bend)
 
 ### Bigloo (02/08/2025)
+
 [juros.bigloo.scm](juros.bigloo.scm)
 
 ### Blade (08/05/2026)
+
 [jurosblade.b](jurosblade.b)
 
 ### Blitz3D (20/04/2025)
+
 [juros.bb](juros.bb)
 
 ### BlitzMax (19/04/2025)
+
 [juros.bmx](juros.bmx)
 
 ### Blu (21/04/2026)
+
 [juros.blu](juros.blu)
 
 ### Boo (14/05/2026)
+
 [juros.boo](juros.boo)
 
 ### Bython (10/07/2024)
+
 [Juros.by](Juros.by)
 
 [main.by](main.by)
 
 ### Bywater BASIC (30/03/2025)
+
 [jurosbw.bas](jurosbw.bas)
 
 ### C (01/03/2024) ⭐
+
 [juros.c](juros.c)
 
 otimizado: [juros_otimizado.c](juros_otimizado.c)
 
 ### Ć (28/03/2025)
+
 [juros.ci](juros.ci)
 
 [testajurosCI.py](testajurosCI.py)
 
 ### C# (21/02/2024) ⭐
+
 [Juros.cs](Juros.cs)
 
 [TesteJuros.cs](TesteJuros.cs)
 
 ### C++ (17/09/2023) ⭐
+
 [interest.cpp](interest.cpp)
 
 recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 ### Cakelisp (16/02/2026) ⭐
+
 [juros.cake](juros.cake)
 
 ### Caml (25/03/2025)
+
 [juros_caml.ml](juros_caml.ml)
 
 ### CFScript (30/05/2024)
+
 [juros.cfm](juros.cfm)
 
 [base.css](base.css)
 
 ### Chapel (31/07/2024) ⭐
+
 [juros.chpl](juros.chpl)
 
 ### Chipmunk Basic (03/02/2026)
+
 [jurosCH.bas](jurosCH.bas)
 
 ### Cilk (29/07/2025)
+
 [jurosc.c](jurosc.c)
 
 ### Circle (19/06/2024)
+
 [juros.cxx](juros.cxx)
 
 ### Claire (18/04/2025)
+
 [juros.cl](juros.cl)
 
-Clean (21/06/2024)
-juros.icl
+### Clean (21/06/2024)
 
-Clipper (24/03/2025) ⭐
-JUROSCLI.PRG
+[juros.icl](juros.icl)
 
-Clojure (16/05/2024)
-jacknpoe.juros.clj
+### Clipper (24/03/2025) ⭐
 
-COBOL (08/02/2025) ⭐
-juros.cob
+[JUROSCLI.PRG](JUROSCLI.PRG)
 
-CoffeeScript (27/05/2024)
-juros.coffee
+### Clojure (16/05/2024)
 
-Colour Genie BASIC (18/05/2025)
-JUROS.CAS
+[jacknpoe.juros.clj](jacknpoe.juros.clj)
 
-COMAL (23/03/2025) ⭐
-JUROS.COM
+### COBOL (08/02/2025) ⭐
 
-Commodore 64 BASIC (16/05/2025)
-JUROSC64.PRG
+[juros.cob](juros.cob)
 
-Common Lisp (27/04/2024) ⭐
-juros.lisp
+### CoffeeScript (27/05/2024)
 
-Component Pascal (07/02/2025)
-Juros.cp
-Juros.prj
+[juros.coffee](juros.coffee)
 
-Concurnas (01/05/2026)
-juros.conc
+### Colour Genie BASIC (18/05/2025)
 
-CPL (23/01/2025)
-juros.cpl
+[JUROS.CAS](JUROS.CAS)
 
-cpp2 (05/05/2026)
-juros.cpp2
+### COMAL (23/03/2025) ⭐
 
-Crystal (14/06/2024)
-juros.cr
-testajuros.cr
+[JUROS.COM](JUROS.COM)
 
-csh (21/07/2025) ⭐
-acrescimoParaJuros.csh
-getPesoTotal.csh
-juros.csh
-jurosParaAcrescimo.csh
-Pagamentos.csh
-Pesos.csh
+### Commodore 64 BASIC (16/05/2025)
 
-Curry (02/06/2026)
-juros.curry
+[JUROSC64.PRG](JUROSC64.PRG)
 
-D (22/05/2024)
-juros.d
+### Common Lisp (27/04/2024) ⭐
 
-DarkBASIC (11/04/2025)
-juros.dba
+[juros.lisp](juros.lisp)
 
-Dart (14/04/2024)
-juros.dart
+### Component Pascal (07/02/2025)
 
-Darwin (26/06/2026)
-juros.darwin
+[Juros.cp](Juros.cp)
 
-Dash (05/07/2025)
-jurosd.sh
+[Juros.prj](Juros.prj)
 
-DataWeave (19/07/2024)
-juros.dwl
+### Concurnas (01/05/2026)
 
-Db2 (23/12/2025)
-jurosdb2.sql
+[juros.conc](juros.conc)
 
-dBase 2019 (22/03/2025)
-juros2019.prg
+### CPL (23/01/2025)
 
-Decimal BASIC (30/01/2025)
-JUROSDB.BAS
+[juros.cpl](juros.cpl)
 
-Delphi (28/02/2024) ⭐
-Juros.pas
-TesteJuros.dpr
+### cpp2 (05/05/2026)
 
-DelphiWebScript (13/04/2025)
-juros.dws
+[juros.cpp2](juros.cpp2)
 
-Dragon (06/01/2025)
-juros.dgn
+### Crystal (14/06/2024)
 
-DrScheme (31/01/2025)
-juros.dr.scm
+[juros.cr](juros.cr)
 
-Égua (15/01/2026)
-juros.egua
+[testajuros.cr](testajuros.cr)
 
-Eiffel (06/05/2024) ⭐
-application.e
-juros.e
+### csh (21/07/2025) ⭐
 
-Elixir (29/04/2024) ⭐
-juros.exs
+[acrescimoParaJuros.csh](acrescimoParaJuros.csh)
+
+[getPesoTotal.csh](getPesoTotal.csh)
+
+[juros.csh](juros.csh)
+
+[jurosParaAcrescimo.csh](jurosParaAcrescimo.csh)
+
+[Pagamentos.csh](Pagamentos.csh)
+
+[Pesos.csh](Pesos.csh)
+
+### Curry (02/06/2026)
+
+[juros.curry](juros.curry)
+
+### D (22/05/2024)
+
+[juros.d](juros.d)
+
+### DarkBASIC (11/04/2025)
+
+[juros.dba](juros.dba)
+
+### Dart (14/04/2024)
+
+[juros.dart](juros.dart)
+
+### Darwin (26/06/2026)
+
+[juros.darwin](juros.darwin)
+
+### Dash (05/07/2025)
+
+[jurosd.sh](jurosd.sh)
+
+### DataWeave (19/07/2024)
+
+[juros.dwl](juros.dwl)
+
+### Db2 (23/12/2025)
+
+[jurosdb2.sql](jurosdb2.sql)
+
+### dBase 2019 (22/03/2025)
+
+[juros2019.prg](juros2019.prg)
+
+### Decimal BASIC (30/01/2025)
+
+[JUROSDB.BAS](JUROSDB.BAS)
+
+### Delphi (28/02/2024) ⭐
+
+[Juros.pas](Juros.pas)
+
+[TesteJuros.dpr](TesteJuros.dpr)
+
+### DelphiWebScript (13/04/2025)
+
+[juros.dws](juros.dws)
+
+### Dragon (06/01/2025)
+
+[juros.dgn](juros.dgn)
+
+### DrScheme (31/01/2025)
+
+[juros.dr.scm](juros.dr.scm)
+
+### Égua (15/01/2026)
+
+[juros.egua](juros.egua)
+
+### Eiffel (06/05/2024) ⭐
+
+[application.e](application.e)
+
+[juros.e](juros.e)
+
+### Elixir (29/04/2024) ⭐
+
+[juros.exs](juros.exs)
 
 Elm (08/06/2024)
 Juros.elm

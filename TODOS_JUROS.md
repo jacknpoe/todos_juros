@@ -18,171 +18,171 @@ Esta é a relação dos links para as resoluções em dialetos diferentes ordena
 
 [Teste.4dm](Teste.4dm)
 
-#### ABC (13/02/2025) ⭐
+### ABC (13/02/2025) ⭐
 [juros.abc](juros.abc)
 
-#### Ada (09/04/2024) ⭐
+### Ada (09/04/2024) ⭐
 [juros.adb](juros.adb)
 [juros.ads](juros.ads)
 [testajuros.adb](testajuros.adb)
 
 ### Agora (26/06/2026)
-juros.agora
+[juros.agora](juros.agora)
 
 ### Aldor (30/07/2025)
-juros.as
+[juros.as](juros.as)
 
 ### ALGOL 68 (07/05/2024) ⭐
-juros.a68
+[juros.a68](juros.a68)
 
 ### Alice (24/06/2024)
-juros_alice.ml
+[juros_alice.ml](juros_alice.ml)
 
 ### AMOS Basic (29/06/2025)
-JUROS.AMOS
+[JUROS.AMOS](JUROS.AMOS)
 
 ### AngelScript (02/02/2026)
-jurosAS.as
-runAS.cpp
+[jurosAS.as](jurosAS.as)
+[runAS.cpp](runAS.cpp)
 
 ### APDL (24/02/2026) ⭐
-acrescimoParaJuros.mac
-getPesoTotal.mac
-jurosAPDL.mac
-jurosParaAcrescimo.mac
+[acrescimoParaJuros.mac](acrescimoParaJuros.mac)
+[getPesoTotal.mac](getPesoTotal.mac)
+[jurosAPDL.mac](jurosAPDL.mac)
+[jurosParaAcrescimo.mac](jurosParaAcrescimo.mac)
 
 ### Ape (06/02/2026)
-juros.ape
+[juros.ape](juros.ape)
 
 ### AppGameKit (22/04/2025)
-main.agc
+[main.agc](main.agc)
 
 ### Apple Business Basic (10/01/2026)
-JUROSABB.BAS
+[JUROSABB.BAS](JUROSABB.BAS)
 
 ### AppleSoft BASIC (04/01/2025)
-JUROSASB.BAS
+[JUROSASB.BAS](JUROSASB.BAS)
 
 ### Arc (30/03/2025)
-jurosArc.lsp
+[jurosArc.lsp](jurosArc.lsp)
 
 ### Arden (06/02/2025)
-acrescimoParaJuros.mlm
-jurosParaAcrescimo.mlm
-new_mlm.mlm
-pesoTotal.mlm
+[acrescimoParaJuros.mlm](acrescimoParaJuros.mlm)
+[jurosParaAcrescimo.mlm](jurosParaAcrescimo.mlm)
+[new_mlm.mlm](new_mlm.mlm)
+[pesoTotal.mlm](pesoTotal.mlm)
 
 ### Arduino (14/07/2024) ⭐
-interest.ino
+[interest.ino](interest.ino)
 
 ### Atari BASIC (17/05/2025)
-juros.atstate2
+[juros.atstate2](juros.atstate2)
 
 ### ATS2 (22/06/2026) ⭐
-juros.dats
+[juros.dats](juros.dats)
 
 ### AutoHotKey (18/02/2025)
-juros.ahk
+[juros.ahk](juros.ahk)
 
 ### AutoIt (28/05/2024)
-juros.au3
+[juros.au3](juros.au3)
 
 ### AutoLISP (13/02/2025)
-juros.lsp
+[juros.lsp](juros.lsp)
 
 ### awk (19/06/2024)
-jurs.awk
+[jurs.awk](jurs.awk)
 
 ### B (BCause implementation) (20/02/2026) ⭐
-juros.b
+[juros.b](juros.b)
 
 ### B4X (10/02/2025)
-Juros.b4j
+[Juros.b4j](Juros.b4j)
 
 ### Ballerina (25/06/2024)
-juros.bal
+[juros.bal](juros.bal)
 
 ### bas (Michael Haardt) (02/04/2026)
-jurosbas.bas
+[jurosbas.bas](jurosbas.bas)
 
 ### Bash (04/07/2025) ⭐
-juros.sh
+[juros.sh](juros.sh)
 
 ### BASIC-256 (08/04/2025)
-juros.kbs
+[juros.kbs](juros.kbs)
 
 ### BBC Basic (07/01/2025)
-JUROSBBC.BAS
+[JUROSBBC.BAS](JUROSBBC.BAS)
 
 ### bc (25/03/2025) ⭐
-juros.bc
+[juros.bc](juros.bc)
 
 ### Bend (08/08/2024) ⭐
-juros.bend
-jurosf.bend
+mapas: [juros.bend](juros.bend)
+funções: [jurosf.bend](jurosf.bend)
 
 ### Bigloo (02/08/2025)
-juros.bigloo.scm
+[juros.bigloo.scm](juros.bigloo.scm)
 
 ### Blade (08/05/2026)
-jurosblade.b
+[jurosblade.b](jurosblade.b)
 
 ### Blitz3D (20/04/2025)
-juros.bb
+[juros.bb](juros.bb)
 
 ### BlitzMax (19/04/2025)
-juros.bmx
+[juros.bmx](juros.bmx)
 
 ### Blu (21/04/2026)
-juros.blu
+[juros.blu](juros.blu)
 
 ### Boo (14/05/2026)
-juros.boo
+[juros.boo](juros.boo)
 
 ### Bython (10/07/2024)
-Juros.by
-main.by
+[Juros.by](Juros.by)
+[main.by](main.by)
 
 ### Bywater BASIC (30/03/2025)
-jurosbw.bas
+[jurosbw.bas](jurosbw.bas)
 
 ### C (01/03/2024) ⭐
-juros.c
-otimizado: juros_otimizado.c
+[juros.c](juros.c)
+otimizado: [juros_otimizado.c](juros_otimizado.c)
 
 ### Ć (28/03/2025)
-juros.ci
-testajurosCI.py
+[juros.ci](juros.ci)
+[testajurosCI.py](testajurosCI.py)
 
 ### C# (21/02/2024) ⭐
-Juros.cs
-TesteJuros.cs
+[Juros.cs](Juros.cs)
+[TesteJuros.cs](TesteJuros.cs)
 
 ### C++ (17/09/2023) ⭐
-interest.cpp
-recursivo: juros_rec.cpp
+[interest.cpp](interest.cpp)
+recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 ### Cakelisp (16/02/2026) ⭐
-juros.cake
+[juros.cake](juros.cake)
 
 ### Caml (25/03/2025)
-juros_caml.ml
+[juros_caml.ml](juros_caml.ml)
 
 ### CFScript (30/05/2024)
-juros.cfm
-base.css
+[juros.cfm](juros.cfm)
+[base.css](base.css)
 
 ### Chapel (31/07/2024) ⭐
-juros.chpl
+[juros.chpl](juros.chpl)
 
 ### Chipmunk Basic (03/02/2026)
-jurosCH.bas
+[jurosCH.bas](jurosCH.bas)
 
 ### Cilk (29/07/2025)
-jurosc.c
+[jurosc.c](jurosc.c)
 
 ### Circle (19/06/2024)
-juros.cxx
+[juros.cxx](juros.cxx)
 
 Claire (18/04/2025)
 juros.cl

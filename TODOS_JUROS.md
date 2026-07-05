@@ -6,17 +6,17 @@ Esta é a relação dos links para as resoluções em dialetos diferentes ordena
 
 ### 11l (14/03/2026)
 
-[juros.11l](juros.11l)
+- [juros.11l](juros.11l)
 
 ### 1C:Enterprise (29/03/2025)
 
-[juros.1C](juros.1C)
+- [juros.1C](juros.1C)
 
 ### 4D (01/04/2025)
 
-[Juros.4dm](Juros.4dm)
+- [Juros.4dm](Juros.4dm)
 
-[Teste.4dm](Teste.4dm)
+- [Teste.4dm](Teste.4dm)
 
 ABC (13/02/2025) ⭐
 juros.abc

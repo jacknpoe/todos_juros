@@ -58,7 +58,7 @@ ATENÇÃO: existe uma possibilidade de divisão por zero, nos juros simples, por
 
 ATENÇÃO: Algumas soluções deste repositório utilizam implementações próprias de funções exponenciais (`ln`, `exp` e `pow`). Essas funções não têm como objetivo substituir implementações genéricas das bibliotecas matemáticas padrão. Elas foram projetadas e validadas exclusivamente para os domínios efetivamente usados nas soluções, em especial valores de juros honestos e um número sensato de parcelas. O uso dessas funções fora desse contexto pode resultar em perda significativa de precisão numérica. A função `powint`, por sua vez, utiliza exponenciação com expoente inteiro e não apresenta essas limitações (além do expoente não ser real). Alguns dialetos, como B (BCause implementation) e PicoLisp, além dessas funções, tiverram aritmética (multiplicação, divisão, conversões) de pontos fixos implementada.
 
-A lista está organizada em ordem alfabética, pelos nomes dos dialetos, em: https://jacknpoeexplicaprogramacao.wordpress.com/2024/03/02/10-resolucoes-de-equacao-transcendente/ ou [todos_juros.txt](https://github.com/jacknpoe/todos_juros/blob/main/todos_juros.txt)
+A lista está organizada em ordem alfabética, pelos nomes dos dialetos, em: https://jacknpoeexplicaprogramacao.wordpress.com/2024/03/02/10-resolucoes-de-equacao-transcendente/ ou [TODOS_JUROS.md](TODOS_JUROS.md)
 
 As versões em JavaScript e PHP podem ser testadas a partir de: https://jacknpoe.rf.gd/
 
@@ -74,7 +74,7 @@ A versão on-line em WOKWI de MicroPython está publicada em https://wokwi.com/p
 
 O projeto também inclui a planilha [juros.xlsx](juros.xlsx). Além de implementar diretamente o algoritmo `jurosParaAcrescimo`, ela permite utilizar a ferramenta `Goal Seek` (`Atingir Meta`) para obter o resultado do algoritmo `acrescimoParaJuros`, sem necessidade de implementar um método numérico. Consulte [PLANILHA.md](PLANILHA.md).
 
-A licença é GNU (https://github.com/jacknpoe/todos_juros/blob/main/LICENSE).
+A licença é GNU [LICENSE](LICENSE).
 
 ENGLISH
 =======
@@ -136,7 +136,7 @@ WARNING: There is a possibility of division by zero in simple interest, for exam
 
 WARNING: Some solutions in this repository use their own implementations of exponential functions (`ln`, `exp`, and `pow`). These functions are not intended to replace generic implementations from standard mathematical libraries. They were designed and validated exclusively for the domains actually used in the solutions, especially fair interest rates and a reasonable number of installments. Using these functions outside of this context can result in a significant loss of numerical precision. The `powint` function, on the other hand, uses exponentiation with an integer exponent and does not have these limitations (besides the exponent not being real). Some dialects, such as B (BCause implementation) and PicoLisp, in addition to these functions, had fixed-point arithmetic (multiplication, division, conversions) implemented.
 
-The list is organized alphabetically, by dialects names: https://jacknpoeexplicaprogramacao.wordpress.com/2024/03/02/10-resolucoes-de-equacao-transcendente/ or [todos_juros.txt](https://github.com/jacknpoe/todos_juros/blob/main/todos_juros.txt)
+The list is organized alphabetically, by dialects names: https://jacknpoeexplicaprogramacao.wordpress.com/2024/03/02/10-resolucoes-de-equacao-transcendente/ or [TODOS_JUROS.md](TODOS_JUROS.md)
 
 JavaScript and PHP versions can be tested from: https://jacknpoe.rf.gd/
 
@@ -152,7 +152,7 @@ The online WOKWI version of MicroPython is published at https://wokwi.com/projec
 
 The C++ dialect versions of the solution were written in English, including Arduino and Raspberry Pi.
 
-The license is GNU (https://github.com/jacknpoe/todos_juros/blob/main/LICENSE).
+The license is GNU [LICENSE](LICENSE).
 
 The project also includes the spreadsheet [juros.xlsx](juros.xlsx). Besides directly implementing the `jurosParaAcrescimo` algorithm, it allows the use of the `Goal Seek` tool to obtain the result of the `acrescimoParaJuros` algorithm, without needing to implement a numerical method. See [PLANILHA.md](PLANILHA.md).
 

@@ -600,205 +600,205 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 ### GOOPS (02/08/2025) ⭐
 
-juros.GOOPS.scm
+[juros.GOOPS.scm](juros.GOOPS.scm)
 
 ### Grain (27/03/2026)
 
-juros.gr
+[juros.gr](juros.gr)
 
 ### Groovy (06/06/2024)
 
-Juros.groovy
+[Juros.groovy](Juros.groovy)
 
-TesteJuros.groovy
+[TesteJuros.groovy](TesteJuros.groovy)
 
 ### GW-BASIC (26/05/2024) ⭐
 
-JUROS.BAS
+[JUROS.BAS](JUROS.BAS)
 
 ### Hack (13/02/2026)
 
-juros.hack
+[juros.hack](juros.hack)
 
-testajuros.hack
+[testajuros.hack](testajuros.hack)
 
 ### Hamilton C shell (17/03/2025)
 
-juros_hcs.csh
+[juros_hcs.csh](juros_hcs.csh)
 
 ### Harbour (15/06/2024)
 
-juros_harbour.prg
+[juros_harbour.prg](juros_harbour.prg)
 
 ### Hare (17/03/2026)
 
-juros.ha
+[juros.ha](juros.ha)
 
 ### Haskell (04/05/2024) ⭐
 
-juros.hs
+[juros.hs](juros.hs)
 
 ### Haxe (29/05/2024)
 
-Juros.hx
+[Juros.hx](Juros.hx)
 
 ### HolyC (17/03/2025)
 
-juros.hc
+[juros.hc](juros.hc)
 
 ### Hope (29/03/2025) ⭐
 
-juros.hop
+[juros.hop](juros.hop)
 
 ### Hy (15/03/2025)
 
-juros.hy
+[juros.hy](juros.hy)
 
 ### Icon (07/07/2024)
 
-juros.icn
+[juros.icn](juros.icn)
 
 ### Idris (27/06/2024) ⭐
 
-juros.idr
+[juros.idr](juros.idr)
 
 ### ILOS (26/04/2025) ⭐
 
-jurosILOS.lsp
+[jurosILOS.lsp](jurosILOS.lsp)
 
 ### Informix SPL (03/03/2026)
 
-jurosSPL.sql
+[jurosSPL.sql](jurosSPL.sql)
 
 ### Intel oneAPI DPC++ (05/02/2025)
 
-InterestIOD.cpp
+[InterestIOD.cpp](InterestIOD.cpp)
 
 ### Io (31/07/2024)
 
-juros.io
+[juros.io](juros.io)
 
 ### ISLISP (12/03/2025)
 
-jurosIL.lsp
+[jurosIL.lsp](jurosIL.lsp)
 
 ### J (22/01/2026) ⭐
 
-run.ijs
+[run.ijs](run.ijs)
 
 ### JADE (13/04/2026)
 
-juros.cc
+[juros.cc](juros.cc)
 
 ### Jakt (31/01/2026)
 
-juros.jakt
+[juros.jakt](juros.jakt)
 
 ### Janet (03/03/2026)
 
-juros.janet
+[juros.janet](juros.janet)
 
 ### Java (27/02/2024) ⭐
 
-Juros.java
+[Juros.java](Juros.java)
 
-TesteJuros.java
+[TesteJuros.java](TesteJuros.java)
 
 ### JavaScript (22/11/2023) ⭐
 
-CalculaJuros.js
+[CalculaJuros.js](CalculaJuros.js)
 
-js_testejuros.html
+[js_testejuros.html](js_testejuros.html)
 
-js_testejuros.css
+[js_testejuros.css](js_testejuros.css)
 
-js_testejuros.js
+[js_testejuros.js](js_testejuros.js)
 
-js_testejuros.png
+[js_testejuros.png](js_testejuros.png)
 
 ### Jinja (15/02/2025)
 
-Jinja.py
+[Jinja.py](Jinja.py)
 
-Juros.py
+[Juros.py](Juros.py)
 
-main.html.jinja
+[main.html.jinja](main.html.jinja)
 
 ### JScript .NET (14/03/2025)
 
-jurosJScript.js
+[jurosJScript.js](jurosJScript.js)
 
 ### Judo (09/04/2025)
 
-juros.judo
+[juros.judo](juros.judo)
 
 ### Judoscript (09/04/2025)
 
-jurosJS.judo
+[jurosJS.judo](jurosJS.judo)
 
 ### Julia (20/03/2024) ⭐
 
-juros.jl
+[juros.jl](juros.jl)
 
-testejuros.jl
+[testejuros.jl](testejuros.jl)
 
 ### Just BASIC (08/02/2026)
 
-jurosJB.bas
+[jurosJB.bas](jurosJB.bas)
 
 ### Jython (04/06/2024)
 
-Juros_jython.py
+[Juros_jython.py](Juros_jython.py)
 
-main_jython.py
+[main_jython.py](main_jython.py)
 
 ### K (04/03/2026) ⭐
 
-juros.k
+[juros.k](juros.k)
 
 ### Kawa (10/04/2025)
 
-jurosK.scm
+[jurosK.scm](jurosK.scm)
 
 ### Kaya-BASIC (12/04/2026)
 
-juroskb.bas
+[juroskb.bas](juroskb.bas)
 
 ### KBasic (10/02/2026)
 
-juros.kbasic
+[juros.kbasic](juros.kbasic)
 
 ### Kojo (14/03/2025)
 
-juros.kojo
+[juros.kojo](juros.kojo)
 
 ### Koka (20/03/2026) ⭐
 
-juros.kk
+[juros.kk](juros.kk)
 
 ### Kotlin (22/02/2024) ⭐
 
-Juros.kt
+[Juros.kt](Juros.kt)
 
-Main.kt
+[Main.kt](Main.kt)
 
 ### ksh (16/07/2025)
 
-juros.ksh
+[juros.ksh](juros.ksh)
 
 ### Langur (01/05/2025)
 
-juros.langur
+[juros.langur](juros.langur)
 
 ### Lazarus (12/04/2024)
 
-Juros.pas
+[Juros.pas](Juros.pas)
 
-testajuros.lpr
+[testajuros.lpr](testajuros.lpr)
 
 ### Lean (20/06/2024) ⭐
 
-juros.lean
+[juros.lean](juros.lean)
 
 ### Liberty BASIC (12/04/2025)
 

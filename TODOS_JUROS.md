@@ -1445,95 +1445,184 @@ juros.z80
 ZX81 BASIC (20/05/2025)
 juros.z81
 
-EQUIVALENTES
+# EQUIVALENTES
+
 Amstrad BASIC = Locomotive BASIC
+
 BBC BASIC for SDL 2.0 = BBC BASIC
+
 Boa = Node.js
+
 Bourne shell = POSIX sh
+
 bsh = Java
+
 cbmbasic = Commodore 64 BASIC
+
 Cerberus X = Monkey 2
+
 Ch = C
+
 Chez Scheme = Scheme
+
 CHICKEN = Scheme
+
 ClosureScript = Squint
+
 Coffee = CoffeeScript
+
 ColdFusion Markup Language / CFML = CFScript
+
 CPC = Locomotive BASIC
+
 CPython = Python
+
 CSNOBOL4 = SNOBOL4
+
 Delégua = Égua
+
 Dragon 32 BASIC = TRS-80 BASIC
+
 eLua = Lua
+
 Free Pascal = Pascal
+
 Gambit = Scheme
+
 gawk = awk
+
 Generic Java = Java
+
 Gerbil Scheme = Kawa/Steel
+
 Gforth = pForth
+
 GNU Bourne-Again Shell = Bash
+
 GNU Octave = Octave
+
 Guile = Kawa/Scheme/Steel
+
 HashLink = Haxe
+
 IBM PC BASIC A = GW-BASIC
+
 Intel Fortran Compiler = Fortran
+
 Iodine = Java
+
 IronPython = Python
+
 JRuby = Ruby
+
 Korn Shell = ksh
+
 LibreOffice Basic = OpenOffice Basic
+
 Linden Scripting Language = LSL
+
 MaPLe (MPL) = Alice
+
 MariaDB = MySQL
+
 Microsoft Office Visual Basic for Applications = OpenOffice Basic
+
 MinForth = pForth
+
 MirBSD Korn Shell = ksh
+
 mksh = POSIX sh
+
 MLton = Alice
+
 MMB4L = MMBasic
+
 Monkey X = Monkey 2
+
 nawk = awk
+
 NimbleScript = Nim
+
 NimScript = Nim
+
 Oberon-07 = Oberon-2
+
 Objective Caml = OCaml
+
 oksh = POSIX sh
+
 OpenMP = Intel oneAPI DPC++
+
 OSH (Oil Shell) = Bash
+
 Pascal ISO 7185 = MSX Turbo Pascal
+
 PC-BASIC = GW-BASIC
+
 Pizza = Java
+
 PicoC = C
+
 PoSh = Windows PowerShell
+
 PowerBASIC = Turbo Basic
+
 Pretty C = C
+
 PRO*C = C
+
 QB45 = QB64
+
 QBasic 1.1 = QB64
+
 QuickC = Turbo C
+
 QuickPascal = Turbo Pascal
+
 Racket Base = Racket
+
 Racket Lazy = Racket
+
 Reason = ReasonML
+
 Rebol/Core = Rebol
+
 SCM = Scheme
+
 Scryer Prolog = Prolog
+
 SICP = DrScheme
+
 SML/NJ = Alice
+
 SpiderBasic = PureBasic
+
 Squeak = Smalltalk
+
 STklos = Gauche/Kawa/Scheme/Steel
+
 SWI-Prolog = Prolog
+
 SwiftForth = pForth
+
 SYCL = Intel oneAPI DPC++
+
 tcsh = csh
+
 TOM = Java
+
 Turing+ = Turing
+
 WPS Office Visual Basic for Applications = OpenOffice Basic
+
 XLISP = Common Lisp
+
 XLispStat = Common Lisp
+
 XOTcl = Tcl
+
 YLISP = Common Lisp
 
-PLANILHA
+# PLANILHA
+
 juros.xlsx

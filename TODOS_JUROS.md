@@ -458,145 +458,145 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 ### Euphoria (05/07/2024)
 
-juros.ex
+[juros.ex](juros.ex)
 
 ### EusLisp (23/07/2025)
 
-juros.l
+[juros.l](juros.l)
 
 ### F# (23/05/2024)
 
-juros.fsx
+[juros.fsx](juros.fsx)
 
 ### Falcon (10/02/2026)
 
-juros.fpl
+[juros.fpl](juros.fpl)
 
 ### Fantom (04/06/2024)
 
-juros.fan
+[juros.fan](juros.fan)
 
 ### Flex (04/07/2026)
 
-juros.flx
+[juros.flx](juros.flx)
 
 ### Fennel (01/02/2026) ⭐
 
-juros.fnl
+[juros.fnl](juros.fnl)
 
 ### ferite (22/03/2026)
 
-juros.fe
+[juros.fe](juros.fe)
 
-math.fe
+[math.fe](math.fe)
 
-testajuros.fe
+[testajuros.fe](testajuros.fe)
 
 ### fish (20/07/2025)
 
-juros.fish
+[juros.fish](juros.fish)
 
 ### Flix (20/03/2025)
 
-juros.flix
+[juros.flix](juros.flix)
 
 ### Flutter (14/04/2024) ⭐
 
-main.dart
+[main.dart](main.dart)
 
 ### Fortran (03/04/2024) ⭐
 
-juros.f90
+[juros.f90](juros.f90)
 
 ### FreeBASIC (22/02/2025)
 
-jurosFB.bas
+[jurosFB.bas](jurosFB.bas)
 
 ### FreeMat (02/04/2025)
 
-acrescimoParaJurosFM.m
+[acrescimoParaJurosFM.m](acrescimoParaJurosFM.m)
 
-getPesoTotalFM.m
+[getPesoTotalFM.m](getPesoTotalFM.m)
 
-jurosFM.m
+[jurosFM.m](jurosFM.m)
 
-jurosParaAcrescimoFM.m
+[jurosParaAcrescimoFM.m](jurosParaAcrescimoFM.m)
 
-testajurosFM.m
+[testajurosFM.m](testajurosFM.m)
 
 ### Frege (15/02/2026)
 
-Juros.fr
+[Juros.fr](Juros.fr)
 
 ### Frink (07/01/2025)
 
-juros.frink
+[juros.frink](juros.frink)
 
 ### Futhark (18/07/2025) ⭐
 
-juros.fut
+[juros.fut](juros.fut)
 
 ### G-Portugol (30/01/2026)
 
-juros.gpt
+[juros.gpt](juros.gpt)
 
 ### Gambas (09/07/2025)
 
-Juros.class
+[Juros.class](Juros.class)
 
-Main.module
+[Main.module](Main.module)
 
 ### GameMaker Language (27/01/2025)
 
-Juros.gml
+[Juros.gml](Juros.gml)
 
 ### Gamma (03/04/2025)
 
-TesteJuros.g
+[TesteJuros.g](TesteJuros.g)
 
 ### GAP (18/03/2025)
 
-juros.g
+[juros.g](juros.g)
 
 ### Gauche (16/02/2025) ⭐
 
-juros.gauche.scm
+[juros.gauche.scm](juros.gauche.scm)
 
 ### GDScript (08/04/2024)
 
-Juros.gd
+[Juros.gd](Juros.gd)
 
 ### Genie (13/06/2024)
 
-juros.gs
+[juros.gs](juros.gs)
 
 ### GFA-BASIC (21/04/2025)
 
-juros.G32
+[juros.G32](juros.G32)
 
 ### Gleam (18/03/2025) ⭐
 
-juros.gleam
+[juros.gleam](juros.gleam)
 
 ### Gluon (01/04/2026) ⭐
 
-juros.glu
+[juros.glu](juros.glu)
 
 ### Go (27/02/2024) ⭐
 
-juros.go
+[juros.go](juros.go)
 
 ### GObject (21/04/2026) ⭐
 
-jurosgo.c
+[jurosgo.c](jurosgo.c)
 
 ### Golo (03/06/2024)
 
-juros.golo
+[juros.golo](juros.golo)
 
 ### Google Apps Script (18/03/2025)
 
-jurosGAS.gs
+[jurosGAS.gs](jurosGAS.gs)
 
 ### GOOPS (02/08/2025) ⭐
 

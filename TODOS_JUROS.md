@@ -1574,7 +1574,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 ### TRS-80 BASIC (07/05/2025)
 
-[JURO-STRS.BAS](JURO-STRS.BAS)
+[JUROSSTRS.BAS](JUROSSTRS.BAS)
 
 ### True BASIC (29/01/2025)
 

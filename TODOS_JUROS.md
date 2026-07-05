@@ -4,15 +4,15 @@ Esta é a relação dos links para as resoluções em dialetos diferentes ordena
 
 ⭐ ⇒ solução que considero especialmente interessante por desempenho, sintaxe, conceito, implementação, importância histórica, influência ou popularidade (quando duas ou mais soluções forem elegíveis pelo mesmo motivo, será escolhida a que está há mais tempo na lista).
 
-# 11l (14/03/2026)
+### 11l (14/03/2026)
 
 [juros.11l](juros.11l)
 
-# 1C:Enterprise (29/03/2025)
+### 1C:Enterprise (29/03/2025)
 
 [juros.1C](juros.1C)
 
-# 4D (01/04/2025)
+### 4D (01/04/2025)
 
 [Juros.4dm](Juros.4dm)
 

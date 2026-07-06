@@ -58,7 +58,7 @@ ATENÇÃO: existe uma possibilidade de divisão por zero, nos juros simples, por
 
 ATENÇÃO: Algumas soluções deste repositório utilizam implementações próprias de funções exponenciais (`ln`, `exp` e `pow`). Essas funções não têm como objetivo substituir implementações genéricas das bibliotecas matemáticas padrão. Elas foram projetadas e validadas exclusivamente para os domínios efetivamente usados nas soluções, em especial valores de juros honestos e um número sensato de parcelas. O uso dessas funções fora desse contexto pode resultar em perda significativa de precisão numérica. A função `powint`, por sua vez, utiliza exponenciação com expoente inteiro e não apresenta essas limitações (além do expoente não ser real). Alguns dialetos, como B (BCause implementation) e PicoLisp, além dessas funções, tiverram aritmética (multiplicação, divisão, conversões) de pontos fixos implementada.
 
-A lista está organizada em ordem alfabética, pelos nomes dos dialetos, em: https://jacknpoeexplicaprogramacao.wordpress.com/2024/03/02/10-resolucoes-de-equacao-transcendente/ ou [TODOS_JUROS.md](TODOS_JUROS.md)
+A lista está organizada em ordem alfabética, pelos nomes dos dialetos, em: https://jacknpoeexplicaprogramacao.wordpress.com/2024/03/02/10-resolucoes-de-equacao-transcendente/ ou [SOLUCOES.md](SOLUCOES.md)
 
 As versões em JavaScript e PHP podem ser testadas a partir de: https://jacknpoe.rf.gd/
 
@@ -136,7 +136,7 @@ WARNING: There is a possibility of division by zero in simple interest, for exam
 
 WARNING: Some solutions in this repository use their own implementations of exponential functions (`ln`, `exp`, and `pow`). These functions are not intended to replace generic implementations from standard mathematical libraries. They were designed and validated exclusively for the domains actually used in the solutions, especially fair interest rates and a reasonable number of installments. Using these functions outside of this context can result in a significant loss of numerical precision. The `powint` function, on the other hand, uses exponentiation with an integer exponent and does not have these limitations (besides the exponent not being real). Some dialects, such as B (BCause implementation) and PicoLisp, in addition to these functions, had fixed-point arithmetic (multiplication, division, conversions) implemented.
 
-The list is organized alphabetically, by dialects names: https://jacknpoeexplicaprogramacao.wordpress.com/2024/03/02/10-resolucoes-de-equacao-transcendente/ or [TODOS_JUROS.md](TODOS_JUROS.md)
+The list is organized alphabetically, by dialects names: https://jacknpoeexplicaprogramacao.wordpress.com/2024/03/02/10-resolucoes-de-equacao-transcendente/ or [SOLUCOES.md](SOLUCOES.md)
 
 JavaScript and PHP versions can be tested from: https://jacknpoe.rf.gd/
 

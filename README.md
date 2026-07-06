@@ -1,7 +1,16 @@
 # README
 
+
+LISTA
+=====
+
+The list of solutions is organized alphabetically by dialect name in: [SOLUCOES.md](SOLUCOES.md)
+
+A lista de soluções está organizada em ordem alfabética, pelos nomes dos dialetos, em: [SOLUCOES.md](SOLUCOES.md). 
+
 PORTUGUÊS
 =========
+
 Este repositório é sobre codificar, em vários dialetos, a mesma solução em matemática financeira. Achar os juros a partir do acréscimo, das datas e pesos das parcelas. Eu uso o Método da Bisseção do Cálculo Numérico para resolvê-la. A ideia é que cada versão se fixe ao máximo à cultura de cada dialeto. Eu uso o mínimo de recursos possível. Eu evito adicionar qualquer biblioteca que eu puder.
 
 É uma "Pedra de Roseta" sobre dialetos de programação.
@@ -58,8 +67,6 @@ ATENÇÃO: existe uma possibilidade de divisão por zero, nos juros simples, por
 
 ATENÇÃO: Algumas soluções deste repositório utilizam implementações próprias de funções exponenciais (`ln`, `exp` e `pow`). Essas funções não têm como objetivo substituir implementações genéricas das bibliotecas matemáticas padrão. Elas foram projetadas e validadas exclusivamente para os domínios efetivamente usados nas soluções, em especial valores de juros honestos e um número sensato de parcelas. O uso dessas funções fora desse contexto pode resultar em perda significativa de precisão numérica. A função `powint`, por sua vez, utiliza exponenciação com expoente inteiro e não apresenta essas limitações (além do expoente não ser real). Alguns dialetos, como B (BCause implementation) e PicoLisp, além dessas funções, tiverram aritmética (multiplicação, divisão, conversões) de pontos fixos implementada.
 
-A lista está organizada em ordem alfabética, pelos nomes dos dialetos, em: https://jacknpoeexplicaprogramacao.wordpress.com/2024/03/02/10-resolucoes-de-equacao-transcendente/ ou [SOLUCOES.md](SOLUCOES.md)
-
 As versões em JavaScript e PHP podem ser testadas a partir de: https://jacknpoe.rf.gd/
 
 A versão em Scratch está publicada em https://scratch.mit.edu/projects/1162953396/
@@ -76,8 +83,10 @@ O projeto também inclui a planilha [juros.xlsx](juros.xlsx). Além de implement
 
 A licença é GNU [LICENSE](LICENSE).
 
+
 ENGLISH
 =======
+
 This repository is about coding, in multiple dialects, the same solution in financial mathematics. To find the interest based on the increase, dates and weights of the installments. I use the Bisection Method of Numerical Calculus to solve it. The idea is that each version adheres to the culture of each dialect as much as possible. I use as few resources as possible. I avoid adding any libraries I can.
 
 It's a "Rosetta Stone" of programming dialects.

@@ -54,12 +54,36 @@ Iteramos a quantidade de parcelas. Incrementamos `acumulador`, o peso ponderado 
 
 Retornamos zero se `acumulador` for zero ou negativo (porque poderia gerar uma divisão por zero ou resultados absurdos.
 
-O valor do acréscimo é calculado dividindo `pesototal` pelo peso ponderado pelos juros `acumulador`, diminuindo um e multiplicando por cem. Por exemplo, se o valor da divisão for 1,03, o resultado será 3%.
+O valor do acréscimo é calculado dividindo `pesototal` pelo peso ponderado pelos juros `acumulador`, diminuindo **um** e multiplicando por **cem**. Por exemplo, se o valor da divisão for **1,03**, o resultado será **3%**.
 
-Podemos escrever, agora, o método que é o nosso objetivo:
+Podemos escrever, agora, o método que é o objetivo desse repositório, `acrescimoparajuros`:
 
 ![acrescimoparajuros](juros_python_acrescimoparajuros.png)
 
+Os parâmetros desse método já são um pouco mais complicados. Recebemos o `acrescimo`, podemos escolher quantas casas depois da vírgula teremos de `precisao`, o máximo de iterações que o método irá aplicar, `maximoiteracoes`, e o máximo de juros que o método irá usar no começo, `maximojuros` . Apenas `acrescimo` é absolutamente necessário, pois os valores padrão dos outros parâmetros já bastam para fazer o cálculo, na maioria das situações.
 
+Primeiro, calculamos o `pesototal`. Aqui ela não é usada para cálculos, apenas para validação.
+
+Então testamos se alguns valores estão são iguais ou menores a **zero** (`maximoiteracoes`, `Quantidade`, `precisao`, `Periodo`, `acrescimo`, `pesototal` e `maximojuros`), se sim, retornamos **zero**.
+
+Nós iniciamos o minimo de juros como **zero**, `minimojuros` e média de juros como metade de `maximojuros`, `mediojuros`.
+
+Em `minimadiferenca`, guardamos o valor da precisão que queremos, em `precisao` de casas decimais, para podermos avaliar quando o algoritmo pode parar (por exemplo, **0.0001** quando definimos `precisao` como **4**).
+
+Na iteração, pŕimeiro verificamos se os valores atuais em `maximojuros` e `minimojuros` diferirem menos do que `minimadiferenca`, quando nós retornamos a média que se encontra em `mediojuros`, pois já encontramos o resultado com a precisão que queremos.
+
+A **mágica** do algoritmo que estamos implementando estão no próximo `if`. Nós chamamos o método `jurosparaacrescimo` para calcularmos se, com o valor de `mediojuros` atual, o resultado do método fica maior ou menor do que o parâmetro `acrescimo`. Se for menor ou igual, nós alteramos `minimojuros` para `mediojuros`. Se for maior, nós alteramos `maximojuros` para `mediojuros`.
+
+A coisa mais importante, no algoritmo, é que ele tem esses dois valores, `minimojuros` e `maximojuros` que, a cada iteração, têm a sua diferença cortada pela metade. Eventualmente, a diferença pode ficar menor do que a precisão que queremos. Veja que `minimojuros` será sempre menor ou igual e `maximojuros` será sempre maior ou igual ao valor que estamos procurando.
+
+A última coisa feita no laço é atualizar `mediojuros` para ser a média entre `minimojuros` e `maximojuros`.
+
+Se o número de iterações alcançar `maximoiteracoes`, o valor de `mediojuros` será retornado, mesmo que não se alcance a precisão que calculamos em `minimadiferenca`. Isso é muito importante quando, por exemplo, por uma questão de implementação dos números de ponto flutuante, não for possível encontrar uma diferença entre `minimojuros` e `maximojuros` menor do que `minimadiferenca`.
+
+Para mais detalhes, pesquise por **Método da Bisseção**.
+
+Para testar a nossa classe, criamos um main.py:
 
 ![main](juros_python_main.png)
+
+

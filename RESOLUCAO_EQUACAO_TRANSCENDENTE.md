@@ -90,6 +90,8 @@ Nós importamos `Juros`. Criamos um objeto com **três** parcelas, juros **compo
 
 Calculamos o peso total. Calculamos o acréscimo a partir de **3%** de juros. E fazemos o cálculo inverso, usando `acrescimocalculadl` no parâmetro `acrescimo`, sem alterar os valores padrão de `juros.acrescimoparajuros` (**15** para `precisao`, **65** para `maximoiteracoes` e **50.0** para `maximojuros`).
 
+O resultado deve ser algo parecido com isso:
+
 ``` console
 Peso total = 3.0
 Acréscimo = 6.059108997379403

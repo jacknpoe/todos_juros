@@ -34,7 +34,7 @@ Vejamos como são feitos os cálculos.
 
 ![Juros Compostos](JurosCompostos.jpg)
 
-Um método que precisamos definir antes de nossos cálculos é a soma dos pesos das parcelas (`pesoTotal`'):
+Um método que precisamos definir antes de nossos cálculos é a soma dos pesos das parcelas (`pesoTotal`):
 
 ![getpesototal](juros_python_getpesototal.png)
 

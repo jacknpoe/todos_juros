@@ -14,7 +14,7 @@ class Juros:
     Pesos = []
 ```
 
-Temos **três** atributos simples, a quantidade total de pagamentos (`Quantidade`), se os juros são **compostos** (`Composto`), e a quantidade de dias sobre os quais os juros incidem (por exemplo, a cada **30** dias) (`Periodo`). E **dois** atributos arrays: a quantidade de dias de prazo de cada pagamento (por exemplo, **0**, **30**, **60** e **90** dias) (`Pagamentos`), e os pesos de cada pagamento (por exemplo, se a parcela a vista fosse o dobro das demais, ficaria **2.0**, **1.0**, **1.0**, **1.0**) (`Pesos`).
+Temos **três** atributos simples, a quantidade total de pagamentos (`Quantidade`), se os juros são **compostos** (`Composto`), e a quantidade de dias sobre os quais os juros incidem (por exemplo, a cada **30** dias) (`Periodo`). E **dois** atributos *arrays*: a quantidade de dias de prazo de cada pagamento (por exemplo, **0**, **30**, **60** e **90** dias) (`Pagamentos`), e os pesos de cada pagamento (por exemplo, se a parcela a vista fosse o dobro das demais, ficaria **2.0**, **1.0**, **1.0**, **1.0**) (`Pesos`).
 
 Nosso construtor irá permitir a definição dos **três** atributos simples:
 
@@ -26,7 +26,7 @@ Nosso construtor irá permitir a definição dos **três** atributos simples:
         self.Periodo = periodo
 ```
 
-O array `Pagamentos` terá um método para incluir elementos a partir de uma *string*:
+O *array* `Pagamentos` terá um método para incluir elementos a partir de uma *string*:
 
 ```python
     def setpagamentos(self, delimitador=",", pagamentos=""):
@@ -41,9 +41,9 @@ O array `Pagamentos` terá um método para incluir elementos a partir de uma *st
                 self.Pagamentos.append(float(temporaria[i]))
 ```
 
-Ele recebe um delimitador e uma *string* de números separados pelo delimitador (Exemplo: **“,”**, **“0,30,60,90”**). Por padrão, se a *string* for vazia, os valores no array serão incluídos com os valores de `Periodo` vezes o número da parcela (considerando a primeira como **1**). Por exemplo, com `Periodo` = **30.0**, para **30.0**, **60.0**, **90.00**...  até a `Quantidade` de parcelas.
+Ele recebe um delimitador e uma *string* de números separados pelo delimitador (Exemplo: **“,”**, **“0,30,60,90”**). Por padrão, se a *string* for vazia, os valores no *array* serão incluídos com os valores de `Periodo` vezes o número da parcela (considerando a primeira como **1**). Por exemplo, com `Periodo` = **30.0**, para **30.0**, **60.0**, **90.00**...  até a `Quantidade` de parcelas.
 
-O array `Pesos` terá um método parecido:
+O *array* `Pesos` terá um método parecido:
 
 ```python
     def setpesos(self, delimitador=",", pesos=""):
@@ -112,7 +112,7 @@ Esse método recebe o percentual de juros.
 
 Calculamos o peso total, guardando em `pesototal`. A variável será usada para produzir o resultado final.
 
-Avaliamos se ao menos um valor entre `juros`, `Quantidade`, `Periodo` ou `pesototal` é zero ou negativo, o que faz o método retornar **zero**. Essa avaliação elimina boa parte do uso errado do método. Na prática, apenas se um elemento em `Pagamentos` for em negativo vezes `Periodo` causará uma divisão por zero. Mas os arrays não estão sendo avaliados nessa versão, por fins didáticos.
+Avaliamos se ao menos um valor entre `juros`, `Quantidade`, `Periodo` ou `pesototal` é zero ou negativo, o que faz o método retornar **zero**. Essa avaliação elimina boa parte do uso errado do método. Na prática, apenas em casos como `juros` igual a **um** e um elemento em `Pagamentos` for **cem negativo** vezes `Periodo` causará uma divisão por zero. Mas os *arrays* não estão sendo avaliados nessa versão, por fins didáticos.
 
 Inicializamos o `acumulador` que somará o peso ponderado das parcelas (que é a contribuição que cada parcela tem em pagar o valor total, deduzindo-se os juros).
 

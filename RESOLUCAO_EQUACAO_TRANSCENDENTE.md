@@ -6,9 +6,9 @@ Nosso projeto será em `Python`, por simplicidade, mas as outras soluções nest
 
 ![atributos](juros_python_atributos.png)
 
-Temos três atributos simples, a quantidade total de pagamentos (`Quantidade`), se os juros são compostos (`Composto`), e a quantidade de dias sobre os quais os juros incidem (por exemplo, a cada 30 dias) (`Periodo`). E dois atributos arrays: a quantidade de dias de prazo de cada pagamento (por exemplo, 0, 30, 60 e 90 dias) (`Pagamentos`), e os pesos de cada pagamento (por exemplo, se a parcela a vista fosse o dobro das demais, ficaria 2, 1, 1, 1) (`Pesos`).
+Temos **três** atributos simples, a quantidade total de pagamentos (`Quantidade`), se os juros são **compostos** (`Composto`), e a quantidade de dias sobre os quais os juros incidem (por exemplo, a cada **30** dias) (`Periodo`). E **dois** atributos arrays: a quantidade de dias de prazo de cada pagamento (por exemplo, **0**, **30**, **60** e **90** dias) (`Pagamentos`), e os pesos de cada pagamento (por exemplo, se a parcela a vista fosse o dobro das demais, ficaria **2.0**, **1.0**, **1.0**, **1.0**) (`Pesos`).
 
-Nosso construtor irá permitir a definição dos três atributos simples:
+Nosso construtor irá permitir a definição dos **três** atributos simples:
 
 ![construtor](juros_python_construtor.png)
 
@@ -16,21 +16,21 @@ O array `Pagamentos` terá um método para incluir elementos a partir de uma *st
 
 ![setpagamentos](juros_python_setpagamentos.png)
 
-Ele recebe um delimitador e uma *string* de números separados pelo delimitador (Exemplo: “,”, “0,30,60,90”). Por padrão, se a *string* for vazia, os valores no array serão incluídos com os valores de `Periodo` vezes o número da parcela (considerando a primeira como 1). Por exemplo, com `Periodo` = 30.0, para 30.0, 60.0, 90.00...  até a `Quantidade` de parcelas.
+Ele recebe um delimitador e uma *string* de números separados pelo delimitador (Exemplo: **“,”**, **“0,30,60,90”**). Por padrão, se a *string* for vazia, os valores no array serão incluídos com os valores de `Periodo` vezes o número da parcela (considerando a primeira como **1**). Por exemplo, com `Periodo` = **30.0**, para **30.0**, **60.0**, **90.00**...  até a `Quantidade` de parcelas.
 
 O array `Pesos` terá um método parecido:
 
 ![setpesos](juros_python_setpesos.png)
 
-A diferença nesse método é que, se a *string* for vazia, todos os pesos serão incluídos com o valor para 1.0, significando que todas as parcelas têm o mesmo valor.
+A diferença nesse método é que, se a *string* for vazia, todos os pesos serão incluídos com o valor para **1.0**, significando que todas as parcelas têm o mesmo valor.
 
 Vejamos como são feitos os cálculos.
 
-Juros simples:
+**Juros simples**:
 
 ![Juros Simples](JurosSimples.jpg)
 
-Juros copostos:
+**Juros copostos**:
 
 ![Juros Compostos](JurosCompostos.jpg)
 
@@ -86,4 +86,12 @@ Para testar a nossa classe, criamos um main.py:
 
 ![main](juros_python_main.png)
 
+Nós importamos `Juros`. Criamos um objeto com **três** parcelas, juros **compostos** e com períodos de **trinta** dias. Chamamos `juros.setpagamentos` e `juros.setpesos`.
 
+Calculamos o peso total. Calculamos o acréscimo a partir de **3%** de juros. E fazemos o cálculo inverso, usando `acrescimocalculadl` no parâmetro `acrescimo`, sem alterar os valores padrão de `juros.acrescimoparajuros` (**15** para `precisao`, **65** para `maximoiteracoes` e **50.0** para `maximojuros`).
+
+``` console
+Peso total = 3.0
+Acréscimo = 6.059108997379403
+Juros = 3.0000000000000133
+```

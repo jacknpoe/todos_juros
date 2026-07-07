@@ -60,6 +60,31 @@ Podemos escrever, agora, o método que é o objetivo desse repositório, `acresc
 
 ![acrescimoparajuros](juros_python_acrescimoparajuros.png)
 
+``` python
+    def jurosparaacrescimo(self, juros=0.0):
+        """Calcula o acréscimo a partir dos juros"""
+        pesototal = self.getpesototal()
+
+        if juros <= 0.0 or self.Quantidade < 1 or self.Periodo <= 0.0 or pesototal <= 0.0:
+            return 0.0
+
+        acumulador = 0.0
+
+        for i in range(self.Quantidade):
+            if self.Composto:
+                try:
+                    acumulador += self.Pesos[i] / ((1.0 + juros / 100.0) ** (self.Pagamentos[i] / self.Periodo))
+                except OverflowError:
+                    pass
+            else:
+                acumulador += self.Pesos[i] / (1.0 + juros / 100.0 * self.Pagamentos[i] / self.Periodo)
+
+        if acumulador <= 0.0:
+            return 0.0
+
+        return (pesototal / acumulador - 1.0) * 100.0
+```
+
 Os parâmetros desse método já são um pouco mais complicados. Recebemos o `acrescimo`, podemos escolher quantas casas depois da vírgula teremos de `precisao`, o máximo de iterações que o método irá aplicar, `maximoiteracoes`, e o máximo de juros que o método irá usar no começo, `maximojuros` . Apenas `acrescimo` é absolutamente necessário, pois os valores padrão dos outros parâmetros já bastam para fazer o cálculo, na maioria das situações.
 
 Primeiro, calculamos o `pesototal`. Aqui ela não é usada para cálculos, apenas para validação.

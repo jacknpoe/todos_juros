@@ -197,7 +197,7 @@ Calculamos o **peso total**. Calculamos o **acréscimo** a partir de `3%` de **j
 
 Depois imprimimos os três **resultados**.
 
-O **resultado* deve ser algo parecido com isso:
+O **resultado** deve ser algo parecido com isso:
 
 ```console
 Peso total = 3.0

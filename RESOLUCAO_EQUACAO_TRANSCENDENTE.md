@@ -2,7 +2,7 @@
 
 Existem **equações** que não podem ser resolvidas com **métodos algébricos elementares**. São as chamadas [equações transcendentes](https://pt.wikipedia.org/wiki/Equa%C3%A7%C3%A3o_transcendente). Você precisa aplicar um conceito de **Cálculo Numérico** chamado **Método da Bisseção** para resolvê-las. Esse método é utilizado para procurar os **zeros** das **funções**. Aqui, iremos resolver uma dessas **equações**, que é o **cálculo** do percentual de **juros** a partir do percentual de **acréscimo** de um conjunto de **parcelas ponderadas**. A única diferença é que iremos procurar o **valor** onde uma **função** chega no **acréscimo** desejado, ao invés do **zero** da **função**.
 
-Nosso **projeto** será em **Python**, por simplicidade, mas as outras soluções neste **repositório** seguem as mesmas estrutura e lógica. Começamos colocando, em `Juros.py`, alguns valores básicos, que mudam pouco, e que iremos guardar como atributos em nossa classe `Juros`:
+Nosso **projeto** será em **Python**, por simplicidade, mas as outras soluções neste **repositório** seguem a mesma estrutura e a mesma lógica. Começamos colocando, em `Juros.py`, alguns valores básicos, que mudam pouco, e que iremos guardar como atributos em nossa classe `Juros`:
 
 ```python
 class Juros:
@@ -41,7 +41,7 @@ O *array* `Pagamentos` terá um **método** para incluir elementos a partir de u
                 self.Pagamentos.append(float(temporaria[i]))
 ```
 
-Ele recebe um **delimitador** e uma *string* de números separados pelo **delimitador** (Exemplo: `“,”`, `“0,30,60,90”`). Por padrão, se a *string* for vazia, os valores no *array* serão incluídos com os valores de `Periodo` vezes o número da **parcela** (considerando a primeira como `1`). Por exemplo, com `Periodo` = `30.0`, para `30.0`, `60.0`, `90.00`...  até a `Quantidade` de **parcelas**.
+Ele recebe um **delimitador** e uma *string* de números separados pelo **delimitador** (Exemplo: `“,”`, `“0,30,60,90”`). Por padrão, se a *string* for vazia, os valores no *array* serão incluídos com os valores de `Periodo` vezes o número da **parcela** (considerando a primeira como `1`). Por exemplo, com `Periodo` = `30.0`, para `30.0`, `60.0`, `90.0`...  até a `Quantidade` de **parcelas**.
 
 O *array* `Pesos` terá um **método** parecido:
 
@@ -118,7 +118,7 @@ Inicializamos o `acumulador` que somará o **peso ponderado** das **parcelas** (
 
 **Iteramos** a **quantidade** de parcelas. **Incrementamos** `acumulador`, para termos a **somatória** dos **pesos ponderados das parcelas**, usando o cálculo dos **juros compostos** ou o cálculo dos **juros simples**, de acordo com `Composto`.
 
-Retornamos **zero** se `acumulador` for **zero** ou **negativo** (porque poderia gerar uma **divisão por zero** ou resultados absurdos.
+Retornamos **zero** se `acumulador` for **zero** ou **negativo** (porque poderia gerar uma **divisão por zero** ou resultados absurdos).
 
 O valor do **acréscimo** é calculado dividindo `pesototal` pelo **somatório dos pesos ponderados** pelos **juros** (`acumulador`), diminuindo `1.0` e multiplicando por `100.0`. Por exemplo, se o valor da divisão for `1.03`, o resultado será `3%` de **acréscimo**.
 
@@ -152,17 +152,17 @@ Podemos escrever, agora, o **método** que é o objetivo desse **repositório**,
 
 Os **parâmetros** desse **método** já são um pouco mais complicados. Recebemos o `acrescimo`, podemos escolher quantas **casas depois da vírgula** queremos de `precisao`, o máximo de **iterações** que o método irá aplicar, `maximoiteracoes`, e o **máximo de juros** que o **método** irá usar no começo, `maximojuros` . Apenas `acrescimo` é absolutamente necessário, pois os **valores padrão** dos outros **parâmetros** já bastam para fazer o cálculo, na maioria das situações.
 
-Primeiro, calculamos o `pesototal`. Aqui ela não é usada para cálculos, apenas para validação.
+Primeiro, calculamos o `pesototal`. Aqui ele não é usado para cálculos, apenas para validação.
 
-Então testamos se alguns valores estão são iguais a **zero** ou **negativos** (`maximoiteracoes`, `Quantidade`, `precisao`, `Periodo`, `acrescimo`, `pesototal` e `maximojuros`), se sim, retornamos **zero**.
+Então testamos se alguns valores são iguais a **zero** ou **negativos** (`maximoiteracoes`, `Quantidade`, `precisao`, `Periodo`, `acrescimo`, `pesototal` e `maximojuros`), se sim, retornamos **zero**.
 
-Nós iniciamos o **minimo de juros** como **zero**, `minimojuros` e a **média de juros** como metade de `maximojuros`, `mediojuros`.
+Nós iniciamos o **mínimo de juros** como **zero**, `minimojuros` e a **média de juros** como metade de `maximojuros`, `mediojuros`.
 
 Em `minimadiferenca`, guardamos o valor da **precisão** que queremos, em `precisao` de **casas decimais**, para podermos avaliar quando o **algoritmo** pode parar (por exemplo, `0.0001` quando definimos `precisao` como `4`).
 
-No **laço**, pŕimeiro verificamos se os valores atuais em `maximojuros` e `minimojuros` diferem **menos** do que `minimadiferenca`, quando nós retornamos a **média** que se encontra em `mediojuros`, pois já encontramos o resultado com a **precisão** que queremos.
+No **laço**, primeiro verificamos se os valores atuais em `maximojuros` e `minimojuros` diferem **menos** do que `minimadiferenca`, quando nós retornamos a **média** que se encontra em `mediojuros`, pois já encontramos o resultado com a **precisão** que queremos.
 
-A **mágica** do **algoritmo** que estamos **implementando** estão no próximo `if`. Nós chamamos o método `jurosparaacrescimo` para calcularmos se, com o valor de `mediojuros` atual, o resultado do **método** fica maior ou **menor** do que o **parâmetro** `acrescimo`. Se for **menor** ou **igual**, nós alteramos `minimojuros` para `mediojuros`. Se for **maior**, nós alteramos `maximojuros` para `mediojuros`.
+A **mágica** do **algoritmo** que estamos **implementando** está no próximo `if`. Nós chamamos o método `jurosparaacrescimo` para calcularmos se, com o valor de `mediojuros` atual, o resultado do **método** fica maior ou **menor** do que o **parâmetro** `acrescimo`. Se for **menor** ou **igual**, nós alteramos `minimojuros` para `mediojuros`. Se for **maior**, nós alteramos `maximojuros` para `mediojuros`.
 
 A coisa mais importante, no **algoritmo**, é que ele tem esses **dois** valores, `minimojuros` e `maximojuros` que, a cada **iteração**, têm a sua **diferença** cortada pela **metade**. Eventualmente, a **diferença** pode ficar **menor** do que a **precisão** que queremos. Veja que `minimojuros` será sempre **menor** ou **igual** e `maximojuros` será sempre **maior** ou **igual** ao valor que estamos procurando.
 
@@ -193,7 +193,7 @@ print("Juros = " + str(juroscalculado))
 
 Nós importamos `Juros`. Criamos um **objeto** com `3` parcelas, juros **compostos** e com períodos de `30.0` dias. Chamamos `juros.setpagamentos` e `juros.setpesos` sem **parâmetros**, para que `juros.pagamentos` seja igual a [`30.0`, `60.0`, `90.0`] e `juros.pesos` seja igual a [`1.0`, `1.0`, `1.0`].
 
-Calculamos o **peso total**. Calculamos o **acréscimo** a partir de `3%` de **juros**. E fazemos o cálculo inverso, usando `acrescimocalculadl` no **parâmetro** `acrescimo`, sem alterar os valores padrão de `juros.acrescimoparajuros` (`15` para `precisao`, `65` para `maximoiteracoes` e `50.0` para `maximojuros`).
+Calculamos o **peso total**. Calculamos o **acréscimo** a partir de `3%` de **juros**. E fazemos o cálculo inverso, usando `acrescimocalculado` no **parâmetro** `acrescimo`, sem alterar os valores padrão de `juros.acrescimoparajuros` (`15` para `precisao`, `65` para `maximoiteracoes` e `50.0` para `maximojuros`).
 
 Depois imprimimos os três **resultados**.
 

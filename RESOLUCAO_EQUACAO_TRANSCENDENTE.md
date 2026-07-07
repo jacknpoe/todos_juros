@@ -14,7 +14,7 @@ class Juros:
     Pesos = []
 ```
 
-Temos **três** atributos simples, a **quantidade** total de pagamentos (`Quantidade`), se os juros são **compostos** (`Composto`), e a quantidade de **períodos** sobre os quais os juros incidem (por exemplo, a cada `30.0` **dias**; veja que o **período** não precisa ser em **dias**, pode ser em **semanas**, **meses** ou mesmo **anos**, somente se exige que os **prazos de pagamentos** utilizem a mesma **unidade de tempo**) (`Periodo`). E **dois** atributos *arrays*: a quantidade de dias de prazo de cada **pagamento** (por exemplo, `0.0`, `30.0`, `60.0` e `90.0` **dias**) (`Pagamentos`), e os **pesos** de cada pagamento (por exemplo, se a parcela a vista fosse o dobro das demais, ficaria `2.0`, `1.0`, `1.0`, `1.0`) (`Pesos`).
+Temos **três** atributos simples, a **quantidade** total de pagamentos (`Quantidade`), se os juros são **compostos** (`Composto`), e a quantidade de **períodos** sobre os quais os juros incidem (por exemplo, a cada `30.0` **dias**; veja que o **período** não precisa ser em **dias**, pode ser em **semanas**, **meses** ou mesmo **anos**, somente se exige que os **prazos de pagamentos** utilizem a mesma **unidade de tempo**) (`Periodo`). E **dois** atributos *arrays*: a quantidade de períodos de **prazo** de cada **pagamento** (por exemplo, `0.0`, `30.0`, `60.0` e `90.0` **dias**) (`Pagamentos`), e os **pesos** de cada **pagamento** (por exemplo, se a **parcela a vista** fosse o **dobro** das demais, ficaria `2.0`, `1.0`, `1.0`, `1.0`) (`Pesos`).
 
 Nosso construtor irá permitir a definição dos **três** atributos simples:
 
@@ -41,7 +41,7 @@ O *array* `Pagamentos` terá um método para incluir elementos a partir de uma *
                 self.Pagamentos.append(float(temporaria[i]))
 ```
 
-Ele recebe um delimitador e uma *string* de números separados pelo delimitador (Exemplo: **“,”**, `“0,30,60,90”`). Por padrão, se a *string* for vazia, os valores no *array* serão incluídos com os valores de `Periodo` vezes o número da parcela (considerando a primeira como `1`). Por exemplo, com `Periodo` = `30.0`, para `30.0`, `60.0`, `90.00`...  até a `Quantidade` de parcelas.
+Ele recebe um delimitador e uma *string* de números separados pelo delimitador (Exemplo: `“,”`, `“0,30,60,90”`). Por padrão, se a *string* for vazia, os valores no *array* serão incluídos com os valores de `Periodo` vezes o número da parcela (considerando a primeira como `1`). Por exemplo, com `Periodo` = `30.0`, para `30.0`, `60.0`, `90.00`...  até a `Quantidade` de parcelas.
 
 O *array* `Pesos` terá um método parecido:
 
@@ -58,7 +58,7 @@ O *array* `Pesos` terá um método parecido:
                 self.Pesos.append(float(temporaria[i]))
 ```
 
-A diferença nesse método é que, se a *string* for vazia, todos os pesos serão incluídos com o valor para `1.0`, significando que todas as parcelas têm o mesmo valor.
+A diferença nesse método é que, se a *string* for vazia, todos os pesos serão incluídos com o valor para `1.0`, significando que todas as **parcelas** têm o mesmo valor.
 
 Vejamos como são feitos os cálculos.
 
@@ -70,7 +70,7 @@ Vejamos como são feitos os cálculos.
 
 ![Juros Compostos](JurosCompostos.jpg)
 
-Um método que precisamos definir antes de nossos cálculos é a soma dos pesos das parcelas (`pesoTotal`):
+Um método que precisamos definir antes de nossos cálculos é a soma dos pesos das parcelas (`getpesototal`):
 
 ```python
     def getpesototal(self):

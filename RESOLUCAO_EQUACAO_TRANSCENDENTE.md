@@ -14,7 +14,7 @@ class Juros:
     Pesos = []
 ```
 
-Temos **três** atributos simples, a quantidade total de pagamentos (`Quantidade`), se os juros são **compostos** (`Composto`), e a quantidade de dias sobre os quais os juros incidem (por exemplo, a cada **30** dias) (`Periodo`). E **dois** atributos *arrays*: a quantidade de dias de prazo de cada pagamento (por exemplo, **0**, **30**, **60** e **90** dias) (`Pagamentos`), e os pesos de cada pagamento (por exemplo, se a parcela a vista fosse o dobro das demais, ficaria **2.0**, **1.0**, **1.0**, **1.0**) (`Pesos`).
+Temos **três** atributos simples, a quantidade total de pagamentos (`Quantidade`), se os juros são **compostos** (`Composto`), e a quantidade de dias sobre os quais os juros incidem (por exemplo, a cada **30.0** dias) (`Periodo`). E **dois** atributos *arrays*: a quantidade de dias de prazo de cada pagamento (por exemplo, **0.0**, **30.0**, **60.0** e **90.0** dias) (`Pagamentos`), e os pesos de cada pagamento (por exemplo, se a parcela a vista fosse o dobro das demais, ficaria **2.0**, **1.0**, **1.0**, **1.0**) (`Pesos`).
 
 Nosso construtor irá permitir a definição dos **três** atributos simples:
 

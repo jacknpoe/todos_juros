@@ -4,23 +4,59 @@ Existem equações que não podem ser resolvidas com métodos elementares. São 
 
 Nosso projeto será em `Python`, por simplicidade, mas as outras soluções neste repositório seguem as mesmas estrutura e lógica. Começamos colocando, em `Juros.py`, alguns valores básicos, que mudam pouco, e que iremos guardar como atributos em nossa classe `Juros`:
 
-![atributos](juros_python_atributos.png)
+```python
+class Juros:
+    """Classe que faz o cálculo do juros, sendo que precisa de arrays pra isso"""
+    Quantidade = 0
+    Composto = False
+    Periodo = 30.0
+    Pagamentos = []
+    Pesos = []
+```
 
 Temos **três** atributos simples, a quantidade total de pagamentos (`Quantidade`), se os juros são **compostos** (`Composto`), e a quantidade de dias sobre os quais os juros incidem (por exemplo, a cada **30** dias) (`Periodo`). E **dois** atributos arrays: a quantidade de dias de prazo de cada pagamento (por exemplo, **0**, **30**, **60** e **90** dias) (`Pagamentos`), e os pesos de cada pagamento (por exemplo, se a parcela a vista fosse o dobro das demais, ficaria **2.0**, **1.0**, **1.0**, **1.0**) (`Pesos`).
 
 Nosso construtor irá permitir a definição dos **três** atributos simples:
 
-![construtor](juros_python_construtor.png)
+```python
+    def __init__(self, quantidade=0, composto=False, periodo=30.0):
+        """O construtor inicializa os atributos escalares"""
+        self.Quantidade = quantidade
+        self.Composto = composto
+        self.Periodo = periodo
+```
 
 O array `Pagamentos` terá um método para incluir elementos a partir de uma *string*:
 
-![setpagamentos](juros_python_setpagamentos.png)
+```python
+    def setpagamentos(self, delimitador=",", pagamentos=""):
+        """Define as datas de pagamento a partir de uma string separada pelo delimitador"""
+        self.Pagamentos.clear()
+        if pagamentos == "":
+            for i in range(self.Quantidade):
+                self.Pagamentos.append((i + 1) * self.Periodo)
+        else:
+            temporaria = pagamentos.split(delimitador)
+            for i in range(self.Quantidade):
+                self.Pagamentos.append(float(temporaria[i]))
+```
 
 Ele recebe um delimitador e uma *string* de números separados pelo delimitador (Exemplo: **“,”**, **“0,30,60,90”**). Por padrão, se a *string* for vazia, os valores no array serão incluídos com os valores de `Periodo` vezes o número da parcela (considerando a primeira como **1**). Por exemplo, com `Periodo` = **30.0**, para **30.0**, **60.0**, **90.00**...  até a `Quantidade` de parcelas.
 
 O array `Pesos` terá um método parecido:
 
-![setpesos](juros_python_setpesos.png)
+```python
+    def setpesos(self, delimitador=",", pesos=""):
+        """Define os pesos a partir de uma string separada pelo delimitador"""
+        self.Pesos.clear()
+        if pesos == "":
+            for i in range(self.Quantidade):
+                self.Pesos.append(1.0)
+        else:
+            temporaria = pesos.split(delimitador)
+            for i in range(self.Quantidade):
+                self.Pesos.append(float(temporaria[i]))
+```
 
 A diferença nesse método é que, se a *string* for vazia, todos os pesos serão incluídos com o valor para **1.0**, significando que todas as parcelas têm o mesmo valor.
 
@@ -36,31 +72,18 @@ Vejamos como são feitos os cálculos.
 
 Um método que precisamos definir antes de nossos cálculos é a soma dos pesos das parcelas (`pesoTotal`):
 
-![getpesototal](juros_python_getpesototal.png)
+```python
+    def getpesototal(self):
+        """Retorna a soma total de todos os pesos"""
+        acumulador = 0.0
+        for i in range(self.Quantidade):
+            acumulador += self.Pesos[i]
+        return acumulador
+```
 
 O **Método da Bisseção** precisa ter uma função para chamar. Na nossa solução, ela calcula os juros a partir do acréscimo e dos atributos do objeto. A função é `jurosparacrescimo`:
 
-![jurosparaacrescimo](juros_python_jurosparaacrescimo.png)
-
-Esse método recebe o percentual de juros.
-
-Calculamos o peso total, guardando em `pesototal`. A variável será usada para produzir o resultado final.
-
-Avaliamos se ao menos um valor entre `juros`, `Quantidade`, `Periodo` ou `pesototal` é zero ou negativo, o que faz o método retornar **zero**. Essa avaliação elimina boa parte do uso errado do método. Na prática, apenas se um elemento em `Pagamentos` for em negativo vezes `Periodo` causará uma divisão por zero. Mas os arrays não estão sendo avaliados nessa versão, por fins didáticos.
-
-Inicializamos o `acumulador` que somará o peso ponderado das parcelas (que é a contribuição que cada parcela tem em pagar o valor total, deduzindo-se os juros).
-
-Iteramos a quantidade de parcelas. Incrementamos `acumulador`, o peso ponderado das parcelas, usando o cálculo dos **juros compostos** ou o cálculo dos **juros simples**, de acordo com `Composto` .
-
-Retornamos zero se `acumulador` for zero ou negativo (porque poderia gerar uma divisão por zero ou resultados absurdos.
-
-O valor do acréscimo é calculado dividindo `pesototal` pelo peso ponderado pelos juros `acumulador`, diminuindo **um** e multiplicando por **cem**. Por exemplo, se o valor da divisão for **1,03**, o resultado será **3%**.
-
-Podemos escrever, agora, o método que é o objetivo desse repositório, `acrescimoparajuros`:
-
-![acrescimoparajuros](juros_python_acrescimoparajuros.png)
-
-``` python
+```python
     def jurosparaacrescimo(self, juros=0.0):
         """Calcula o acréscimo a partir dos juros"""
         pesototal = self.getpesototal()
@@ -83,6 +106,48 @@ Podemos escrever, agora, o método que é o objetivo desse repositório, `acresc
             return 0.0
 
         return (pesototal / acumulador - 1.0) * 100.0
+```
+
+Esse método recebe o percentual de juros.
+
+Calculamos o peso total, guardando em `pesototal`. A variável será usada para produzir o resultado final.
+
+Avaliamos se ao menos um valor entre `juros`, `Quantidade`, `Periodo` ou `pesototal` é zero ou negativo, o que faz o método retornar **zero**. Essa avaliação elimina boa parte do uso errado do método. Na prática, apenas se um elemento em `Pagamentos` for em negativo vezes `Periodo` causará uma divisão por zero. Mas os arrays não estão sendo avaliados nessa versão, por fins didáticos.
+
+Inicializamos o `acumulador` que somará o peso ponderado das parcelas (que é a contribuição que cada parcela tem em pagar o valor total, deduzindo-se os juros).
+
+Iteramos a quantidade de parcelas. Incrementamos `acumulador`, o peso ponderado das parcelas, usando o cálculo dos **juros compostos** ou o cálculo dos **juros simples**, de acordo com `Composto` .
+
+Retornamos zero se `acumulador` for zero ou negativo (porque poderia gerar uma divisão por zero ou resultados absurdos.
+
+O valor do acréscimo é calculado dividindo `pesototal` pelo peso ponderado pelos juros `acumulador`, diminuindo **um** e multiplicando por **cem**. Por exemplo, se o valor da divisão for **1,03**, o resultado será **3%**.
+
+Podemos escrever, agora, o método que é o objetivo desse repositório, `acrescimoparajuros`:
+
+```python
+    def acrescimoparajuros(self, acrescimo=0.0, precisao=15, maximointeracoes=65, maximojuros=50.0):
+        """Calcula os juros a partir do acréscimo"""
+        pesototal = self.getpesototal()
+
+        if ( maximointeracoes < 1 or self.Quantidade < 1 or precisao < 1 or self.Periodo <= 0.0
+             or acrescimo <= 0.0 or pesototal <= 0.0 or maximojuros <= 0.0 ):
+            return 0.0
+
+        minimojuros = 0.0
+        mediojuros = maximojuros / 2.0
+
+        minimadiferenca = 0.1 ** precisao
+
+        for i in range(maximointeracoes):
+            if (maximojuros - minimojuros) < minimadiferenca:
+                return mediojuros
+            if self.jurosparaacrescimo(mediojuros) <= acrescimo:  # bisseção
+                minimojuros = mediojuros
+            else:
+                maximojuros = mediojuros
+            mediojuros = (minimojuros + maximojuros) / 2.0
+
+        return mediojuros
 ```
 
 Os parâmetros desse método já são um pouco mais complicados. Recebemos o `acrescimo`, podemos escolher quantas casas depois da vírgula teremos de `precisao`, o máximo de iterações que o método irá aplicar, `maximoiteracoes`, e o máximo de juros que o método irá usar no começo, `maximojuros` . Apenas `acrescimo` é absolutamente necessário, pois os valores padrão dos outros parâmetros já bastam para fazer o cálculo, na maioria das situações.
@@ -109,7 +174,24 @@ Para mais detalhes, pesquise por **Método da Bisseção**.
 
 Para testar a nossa classe, criamos um main.py:
 
-![main](juros_python_main.png)
+```python
+import Juros
+
+# cria um objeto juros da classe juros, inicializa escalares e seta arrays
+juros = Juros.Juros(3, True, 30.0)
+juros.setpagamentos()
+juros.setpesos()
+
+# calcula e guarda os resultados dos métodos
+pesototal = juros.getpesototal()
+acrescimocalculado = juros.jurosparaacrescimo(3.0)
+juroscalculado = juros.acrescimoparajuros(acrescimocalculado)
+
+# imprime os resultados
+print("Peso total = " + str(pesototal))
+print("Acréscimo = " + str(acrescimocalculado))
+print("Juros = " + str(juroscalculado))
+```
 
 Nós importamos `Juros`. Criamos um objeto com **três** parcelas, juros **compostos** e com períodos de **trinta** dias. Chamamos `juros.setpagamentos` e `juros.setpesos` sem parâmetros, para que `juros.pagamentos` seja igual a [**30.0**, **60.0**, **90.0**] e `juros.pesos` seja igual a [**1.0**, **1.0**, **1.0**].
 
@@ -119,7 +201,7 @@ Depois imprimos os três resultados.
 
 O resultado deve ser algo parecido com isso:
 
-``` console
+```console
 Peso total = 3.0
 Acréscimo = 6.059108997379403
 Juros = 3.0000000000000133

@@ -1,4 +1,4 @@
-# PLANILHA  / SPREADSHEET
+# PLANILHA
 
 <br>
 

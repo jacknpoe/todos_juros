@@ -162,7 +162,7 @@ Em `minimadiferenca`, guardamos o valor da **precisão** que queremos, em `preci
 
 No **laço**, primeiro **verificamos** se os valores atuais em `maximojuros` e `minimojuros` diferem **menos** do que `minimadiferenca`, quando nós retornamos a **média** que se encontra em `mediojuros`, pois já encontramos o resultado com a **precisão** que queremos.
 
-A **mágica** do **algoritmo** que estamos **implementando** está no próximo `if`. Nós chamamos o método `jurosparaacrescimo` para **calcularmos** se, com o valor de `mediojuros` atual, o resultado do **método** fica maior ou **menor** do que o **parâmetro** `acrescimo`. Se for **menor** ou **igual**, nós alteramos `minimojuros` para `mediojuros`. Se for **maior**, nós alteramos `maximojuros` para `mediojuros`.
+A **ideia chave** do **algoritmo** que estamos **implementando** está no próximo `if`. Nós chamamos o método `jurosparaacrescimo` para **calcularmos** se, com o valor de `mediojuros` atual, o resultado do **método** fica maior ou **menor** do que o **parâmetro** `acrescimo`. Se for **menor** ou **igual**, nós alteramos `minimojuros` para `mediojuros`. Se for **maior**, nós alteramos `maximojuros` para `mediojuros`.
 
 A **coisa mais importante**, no **algoritmo**, é que ele tem esses **dois** valores, `minimojuros` e `maximojuros` que, a cada **iteração**, têm a sua **diferença** cortada pela **metade**. Eventualmente, a **diferença** pode ficar **menor** do que a **precisão** que queremos. Veja que `minimojuros` será sempre **menor** ou **igual** e `maximojuros` será sempre **maior** ou **igual** ao valor que estamos procurando.
 

@@ -211,14 +211,12 @@ otimizado: [juros_otimizado.c](juros_otimizado.c)
 
 ### Ć (28/03/2025)
 
-[juros.ci](juros.ci)
-
+[juros.ci](juros.ci)<br>
 [testajurosCI.py](testajurosCI.py)
 
 ### C# (21/02/2024) ⭐
 
-[Juros.cs](Juros.cs)
-
+[Juros.cs](Juros.cs)<br>
 [TesteJuros.cs](TesteJuros.cs)
 
 ### C++ (17/09/2023) ⭐

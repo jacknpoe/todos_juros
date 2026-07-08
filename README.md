@@ -18,6 +18,14 @@ Solving Transcendent Equations: .
 
 <br>
 
+# PLANILHA / SPREADSHEET
+
+[PLANILHA.md](PLANILHA.md) / [SPREADSHEET.md](SPREADSHEET.md)
+
+[juros.xlsx](juros.xlsx)
+
+<br>
+
 # PORTUGUÊS
 
 Este repositório é sobre codificar, em vários dialetos, a mesma solução em matemática financeira. Achar os juros a partir do acréscimo, das datas e pesos das parcelas. Eu uso o Método da Bisseção do Cálculo Numérico para resolvê-la. A ideia é que cada versão se fixe ao máximo à cultura de cada dialeto. Eu uso o mínimo de recursos possível. Eu evito adicionar qualquer biblioteca que eu puder.
@@ -172,7 +180,7 @@ The C++ dialect versions of the solution were written in English, including Ardu
 
 The license is GNU [LICENSE](LICENSE).
 
-The project also includes the spreadsheet [juros.xlsx](juros.xlsx). Besides directly implementing the `jurosParaAcrescimo` algorithm, it allows the use of the `Goal Seek` tool to obtain the result of the `acrescimoParaJuros` algorithm, without needing to implement a numerical method. See [PLANILHA.md](PLANILHA.md).
+The project also includes the spreadsheet [juros.xlsx](juros.xlsx). Besides directly implementing the `jurosParaAcrescimo` algorithm, it allows the use of the `Goal Seek` tool to obtain the result of the `acrescimoParaJuros` algorithm, without needing to implement a numerical method. See [SPREADSHEET.md](SPREADSHEET.md).
 
 <br>
 

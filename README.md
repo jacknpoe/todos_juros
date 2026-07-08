@@ -1,8 +1,8 @@
-# Todos Juros
+# TODOS JUROS / ALL INTEREST
 
 <br>
 
-# Lista de Soluções
+# LISTA DE SOLUÇÕES / LIST OF SOLUTIONS
 
 A lista de soluções está organizada, em ordem alfabética, pelos nomes dos dialetos, em: [SOLUCOES.md](SOLUCOES.md). 
 
@@ -10,7 +10,7 @@ The list of solutions is organized alphabetically by dialect name in: [SOLUCOES.
 
 <br>
 
-# Resolução de Equação Transcendente
+# RESOLUÇÃO DE EQUAÇÃO TRANSCENDENTE
 
 [RESOLUCAO_EQUACAO_TRANSCENDENTE.md](RESOLUCAO_EQUACAO_TRANSCENDENTE.md).
 

@@ -1,5 +1,7 @@
 # RESOLUÇÃO DE EQUAÇÃO TRANSCENDENTE
 
+<br>
+
 > **Nota:**
 > Uma versão obsoleta dessa página foi publicada em 14 de janeiro de 2024: [Resolução de Equação Transcendente](https://jacknpoeexplicaprogramacao.wordpress.com/2024/01/14/resolucao-de-equacao-transcendente/)
 

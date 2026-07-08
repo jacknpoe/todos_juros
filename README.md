@@ -36,6 +36,21 @@ Spreadsheet: [SPREADSHEET.md](SPREADSHEET.md)
 Arquivo / File: [juros.xlsx](juros.xlsx)
 
 <br>
+
+# CRONOLOGIA / CHRONOLOGY
+
+Cronologia:<br>
+Chronology:
+
+[cronologia.txt](cronologia.txt)
+
+Planilha: [PLANILHA.md](PLANILHA.md)
+
+Spreadsheet: [SPREADSHEET.md](SPREADSHEET.md)
+
+Arquivo / File: [juros.xlsx](juros.xlsx)
+
+<br>
 <br>
 
 ![resoluções/resolutions](resolu%C3%A7%C3%B5es.jpg)

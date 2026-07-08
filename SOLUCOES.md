@@ -34,7 +34,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 ### 4D (01/04/2025)
 
-[Juros.4dm](Juros.4dm)  
+[Juros.4dm](Juros.4dm)<br>
 [Teste.4dm](Teste.4dm)
 
 ### ABC (13/02/2025) ⭐
@@ -44,8 +44,7 @@ This is a list of links in this repository to solutions in different dialects, o
 ### Ada (09/04/2024) ⭐
 
 [juros.adb](juros.adb)<br>
-[juros.ads](juros.ads)
-
+[juros.ads](juros.ads)<br>
 [testajuros.adb](testajuros.adb)
 
 ### Agora (26/06/2026)
@@ -70,18 +69,14 @@ This is a list of links in this repository to solutions in different dialects, o
 
 ### AngelScript (02/02/2026)
 
-[jurosAS.as](jurosAS.as)
-
+[jurosAS.as](jurosAS.as)<br>
 [runAS.cpp](runAS.cpp)
 
 ### APDL (24/02/2026) ⭐
 
-[acrescimoParaJuros.mac](acrescimoParaJuros.mac)
-
-[getPesoTotal.mac](getPesoTotal.mac)
-
-[jurosAPDL.mac](jurosAPDL.mac)
-
+[acrescimoParaJuros.mac](acrescimoParaJuros.mac)<br>
+[getPesoTotal.mac](getPesoTotal.mac)<br>
+[jurosAPDL.mac](jurosAPDL.mac)<br>
 [jurosParaAcrescimo.mac](jurosParaAcrescimo.mac)
 
 ### Ape (06/02/2026)
@@ -106,12 +101,9 @@ This is a list of links in this repository to solutions in different dialects, o
 
 ### Arden (06/02/2025)
 
-[acrescimoParaJuros.mlm](acrescimoParaJuros.mlm)
-
-[jurosParaAcrescimo.mlm](jurosParaAcrescimo.mlm)
-
-[new_mlm.mlm](new_mlm.mlm)
-
+[acrescimoParaJuros.mlm](acrescimoParaJuros.mlm)<br>
+[jurosParaAcrescimo.mlm](jurosParaAcrescimo.mlm)<br>
+[new_mlm.mlm](new_mlm.mlm)<br>
 [pesoTotal.mlm](pesoTotal.mlm)
 
 ### Arduino (14/07/2024) ⭐

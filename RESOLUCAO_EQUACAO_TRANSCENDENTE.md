@@ -81,7 +81,7 @@ Um **método** que precisamos definir antes de nossos **cálculos** é a **soma*
         return acumulador
 ```
 
-O **Método da Bisseção** precisa ter um **método** para chamar, e **avaliar** se o resultado está **acima** ou **abaixo** do **acréscimo alvo**. Na nossa **solução**, ele **calcula** os **juros** a partir do **acréscimo** e dos **atributos** do **objeto**. O **método** é `jurosparacrescimo`:
+O **Método da Bisseção** precisa ter um **método** para chamar, e **avaliar** se o resultado está **acima** ou **abaixo** do **acréscimo alvo**. Na nossa **solução**, ele **calcula** o **acréscimo** a partir dos **juros** e dos **atributos** do **objeto**. O **método** é `jurosparacrescimo`:
 
 ```python
     def jurosparaacrescimo(self, juros=0.0):

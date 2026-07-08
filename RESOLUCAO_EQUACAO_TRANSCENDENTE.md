@@ -1,4 +1,4 @@
-# Resolução de Equação Transcendente
+# RESOLUÇÃO DE EQUAÇÃO TRANSCENDENTE
 
 Existem **equações** que não podem ser resolvidas com **métodos algébricos elementares**. São as chamadas [equações transcendentes](https://pt.wikipedia.org/wiki/Equa%C3%A7%C3%A3o_transcendente). Você precisa aplicar um conceito de **Cálculo Numérico** chamado **Método da Bisseção** para resolvê-las. Esse método é utilizado para procurar os **zeros** das **funções**. Aqui, iremos resolver uma dessas **equações**, que é o **cálculo** do percentual de **juros** a partir do percentual de **acréscimo** de um conjunto de **parcelas ponderadas**. A única diferença é que iremos procurar o **valor** onde uma **função** chega no **acréscimo** desejado, ao invés do **zero** da **função**.
 

@@ -60,7 +60,7 @@ O *array* `Pesos` terá um **método** parecido:
 
 A diferença nesse **método** é que, se a *string* for vazia, todos os **pesos** serão incluídos com o valor para `1.0`, significando que todas as **parcelas** têm o mesmo valor.
 
-Vejamos como são feitos os cálculos.
+Vejamos como são feitos os **cálculos**.
 
 **Juros simples**:
 
@@ -70,7 +70,7 @@ Vejamos como são feitos os cálculos.
 
 ![Juros Compostos](JurosCompostos.jpg)
 
-Um **método** que precisamos definir antes de nossos cálculos é a **soma** dos **pesos** das **parcelas** (`getpesototal`):
+Um **método** que precisamos definir antes de nossos **cálculos** é a **soma** dos **pesos** das **parcelas** (`getpesototal`):
 
 ```python
     def getpesototal(self):
@@ -116,7 +116,7 @@ Esse método recebe o percentual de **juros**.
 
 **Inicializamos** o `acumulador` que somará o **peso ponderado** das **parcelas** (que é a **contribuição** que cada **parcela** tem em pagar o **valor total**, deduzindo-se os **juros**).
 
-**Iteramos** a **quantidade** de parcelas. **Incrementamos** `acumulador`, para termos a **somatória** dos **pesos ponderados das parcelas**, usando o cálculo dos **juros compostos** ou o cálculo dos **juros simples**, de acordo com `Composto`.
+**Iteramos** a **quantidade** de parcelas. **Incrementamos** `acumulador`, para termos a **somatória** dos **pesos ponderados das parcelas**, usando o **cálculo** dos **juros compostos** ou o **cálculo** dos **juros simples**, de acordo com `Composto`.
 
 Retornamos **zero** se `acumulador` for **zero** ou **negativo** (porque poderia gerar uma **divisão por zero** ou resultados absurdos).
 
@@ -150,9 +150,9 @@ Podemos **escrever**, agora, o **método** que é o objetivo desse **repositóri
         return mediojuros
 ```
 
-Os **parâmetros** desse **método** já são um pouco mais complicados. Recebemos o `acrescimo`, podemos escolher quantas **casas depois da vírgula** queremos de `precisao`, o máximo de **iterações** que o método irá aplicar, `maximoiteracoes`, e o **máximo de juros** que o **método** irá usar no começo, `maximojuros` . Apenas `acrescimo` é absolutamente necessário, pois os **valores padrão** dos outros **parâmetros** já bastam para fazer o cálculo, na maioria das situações.
+Os **parâmetros** desse **método** já são um pouco mais complicados. Recebemos o `acrescimo`, podemos escolher quantas **casas depois da vírgula** queremos de `precisao`, o máximo de **iterações** que o método irá aplicar, `maximoiteracoes`, e o **máximo de juros** que o **método** irá usar no começo, `maximojuros` . Apenas `acrescimo` é absolutamente necessário, pois os **valores padrão** dos outros **parâmetros** já bastam para fazer o **cálculo**, na maioria das situações.
 
-Primeiro, **calculamos** o `pesototal`. Aqui ele não é usado para cálculos, apenas para validação.
+Primeiro, **calculamos** o `pesototal`. Aqui ele não é usado para **cálculos**, apenas para **validação**.
 
 Então **testamos** se alguns valores são iguais a **zero** ou **negativos** (`maximoiteracoes`, `Quantidade`, `precisao`, `Periodo`, `acrescimo`, `pesototal` e `maximojuros`), se sim, retornamos **zero**.
 
@@ -193,7 +193,7 @@ print("Juros = " + str(juroscalculado))
 
 Nós importamos `Juros`. Criamos um **objeto** com `3` parcelas, juros **compostos** e com períodos de `30.0` dias. Chamamos `juros.setpagamentos` e `juros.setpesos` sem **parâmetros**, para que `juros.pagamentos` seja igual a [`30.0`, `60.0`, `90.0`] e `juros.pesos` seja igual a [`1.0`, `1.0`, `1.0`].
 
-Calculamos o **peso total**. Calculamos o **acréscimo** a partir de `3%` de **juros**. E fazemos o cálculo inverso, usando `acrescimocalculado` no **parâmetro** `acrescimo`, sem alterar os valores padrão de `juros.acrescimoparajuros` (`15` para `precisao`, `65` para `maximoiteracoes` e `50.0` para `maximojuros`).
+Calculamos o **peso total**. Calculamos o **acréscimo** a partir de `3%` de **juros**. E fazemos o **cálculo** inverso, usando `acrescimocalculado` no **parâmetro** `acrescimo`, sem alterar os valores padrão de `juros.acrescimoparajuros` (`15` para `precisao`, `65` para `maximoiteracoes` e `50.0` para `maximojuros`).
 
 Depois imprimimos os três **resultados**.
 

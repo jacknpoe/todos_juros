@@ -60,7 +60,7 @@ O *array* `Pesos` terá um **método** parecido:
 
 A diferença nesse **método** é que, se a *string* for vazia, todos os **pesos** serão incluídos com o valor para `1.0`, significando que todas as **parcelas** têm o mesmo valor.
 
-Vejamos como são feitos os **cálculos**.
+Agora, vejamos como são feitos os **cálculos**.
 
 **Juros simples**:
 

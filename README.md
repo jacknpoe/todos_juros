@@ -44,12 +44,6 @@ Chronology:
 
 [cronologia.txt](cronologia.txt)
 
-Planilha: [PLANILHA.md](PLANILHA.md)
-
-Spreadsheet: [SPREADSHEET.md](SPREADSHEET.md)
-
-Arquivo / File: [juros.xlsx](juros.xlsx)
-
 <br>
 <br>
 

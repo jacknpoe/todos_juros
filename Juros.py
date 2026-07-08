@@ -54,11 +54,14 @@ class Juros:
         for i in range(self.Quantidade):
             try:
                 if self.Composto:
-                    acumulador += self.Pesos[i] / ((1.0 + juros / 100.0) ** (self.Pagamentos[i] / self.Periodo))
+                    try:
+                        acumulador += self.Pesos[i] / ((1.0 + juros / 100.0) ** (self.Pagamentos[i] / self.Periodo))
+                    except OverflowError:
+                        pass
                 else:
                     acumulador += self.Pesos[i] / (1.0 + juros / 100.0 * self.Pagamentos[i] / self.Periodo)
-            except (OverflowError, ZeroDivisionError):
-                pass
+            except ZeroDivisionError:
+                return 0.0
 
         if acumulador <= 0.0:
             return 0.0

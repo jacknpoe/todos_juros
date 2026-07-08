@@ -37,5 +37,6 @@ Spreadsheet: [SPREADSHEET.md](SPREADSHEET.md)
 Arquivo / FIle: [juros.xlsx](juros.xlsx)
 
 <br>
+<br>
 
 ![ŕesoluções/resolutions](resolu%C3%A7%C3%B5es.jpg)

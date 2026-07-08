@@ -44,6 +44,13 @@ Chronology:
 
 [cronologia.txt](cronologia.txt)
 
+# BENCHMARK
+
+Benchmark (300.000 parcelas):<br>
+Benchmark (300,000 installments):
+
+[benchmark.png](benchmark.png)
+
 <br>
 <br>
 

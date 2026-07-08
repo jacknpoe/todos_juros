@@ -2,8 +2,7 @@
 
 <br>
 
-Lista de Soluções
-=================
+# Lista de Soluções
 
 A lista de soluções está organizada, em ordem alfabética, pelos nomes dos dialetos, em: [SOLUCOES.md](SOLUCOES.md). 
 
@@ -11,15 +10,13 @@ The list of solutions is organized alphabetically by dialect name in: [SOLUCOES.
 
 <br>
 
-Resolução de Equação Transcendente
-==================================
+# Resolução de Equação Transcendente
 
 [RESOLUCAO_EQUACAO_TRANSCENDENTE.md](RESOLUCAO_EQUACAO_TRANSCENDENTE.md).
 
 <br>
 
-PORTUGUÊS
-=========
+# PORTUGUÊS
 
 Este repositório é sobre codificar, em vários dialetos, a mesma solução em matemática financeira. Achar os juros a partir do acréscimo, das datas e pesos das parcelas. Eu uso o Método da Bisseção do Cálculo Numérico para resolvê-la. A ideia é que cada versão se fixe ao máximo à cultura de cada dialeto. Eu uso o mínimo de recursos possível. Eu evito adicionar qualquer biblioteca que eu puder.
 
@@ -93,9 +90,9 @@ O projeto também inclui a planilha [juros.xlsx](juros.xlsx). Além de implement
 
 A licença é GNU [LICENSE](LICENSE).
 
+<br>
 
-ENGLISH
-=======
+# ENGLISH
 
 This repository is about coding, in multiple dialects, the same solution in financial mathematics. To find the interest based on the increase, dates and weights of the installments. I use the Bisection Method of Numerical Calculus to solve it. The idea is that each version adheres to the culture of each dialect as much as possible. I use as few resources as possible. I avoid adding any libraries I can.
 

@@ -74,10 +74,6 @@ The online WOKWI version of MicroPython is published at https://wokwi.com/projec
 
 The C++ dialect versions of the solution were written in English, including Arduino and Raspberry Pi.
 
-The license is GNU [LICENSE](LICENSE).
-
 The project also includes the spreadsheet [juros.xlsx](juros.xlsx). Besides directly implementing the `jurosParaAcrescimo` algorithm, it allows the use of the `Goal Seek` tool to obtain the result of the `acrescimoParaJuros` algorithm, without needing to implement a numerical method. See [SPREADSHEET.md](SPREADSHEET.md).
 
-<br>
-
-![ŕesoluções/resolutions](resolu%C3%A7%C3%B5es.jpg)
+The license is GNU [LICENSE](LICENSE).

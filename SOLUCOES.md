@@ -1,10 +1,24 @@
 # LISTA DE SOLUÇÕES / LIST OF SOLUTIONS
 
-No artigo [Resolução de Equação Transcendente](https://jacknpoeexplicaprogramacao.wordpress.com/2024/01/14/resolucao-de-equacao-transcendente/), foi explicado como uma equação que calcula os juros a partir do acréscimo e das parcelas pode ser feita usando Cálculo Numérico, especificamente o Método da Bisseção.
+# PORTUGUESE
+
+No artigo [Resolução de Equação Transcendente](RESOLUCAO_EQUACAO_TRANSCENDENTE.md), foi explicado como uma equação que calcula os juros a partir do acréscimo e das parcelas pode ser feita usando Cálculo Numérico, especificamente o Método da Bisseção.
 
 Esta é a relação dos links neste repositório para as resoluções em dialetos diferentes ordenados por ordem alfabética (embora não exatamente seguindo a ordem UTF-8), totalizando 415 resoluções e 88 equivalentes (outras implementações, nomes alternativos ou dialetos em que a solução é coincidente). Caso seja publicada uma nova resolução, ela será adicionada à lista.
 
 ⭐ ⇒ solução que considero especialmente interessante por desempenho, sintaxe, conceito, implementação, importância histórica, influência ou popularidade (quando duas ou mais soluções forem elegíveis pelo mesmo motivo, será escolhida a que está há mais tempo na lista).
+
+<br>
+
+# ENCLISH
+
+In the article [Solving Transcendent Equations](), it was explained how an equation that calculates interest from accrual and installments can be solved using Numerical Calculus, specifically the Bisection Method.
+
+This is a list of links in this repository to solutions in different dialects, ordered alphabetically (though not exactly following UTF-8 order), totaling 415 solutions and 88 equivalents (other implementations, alternative names, or dialects where the solution is coincident). If a new solution is published, it will be added to the list.
+
+⭐ ⇒ solution that I consider especially interesting due to performance, syntax, concept, implementation, historical importance, influence, or popularity (when two or more solutions are eligible for the same reason, the one that has been on the list the longest will be chosen).
+
+<br>
 
 ### 11l (14/03/2026)
 

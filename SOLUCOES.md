@@ -1,5 +1,7 @@
 # LISTA DE SOLUÇÕES / LIST OF SOLUTIONS
 
+<br>
+
 # PORTUGUESE
 
 No artigo [Resolução de Equação Transcendente](RESOLUCAO_EQUACAO_TRANSCENDENTE.md), foi explicado como uma equação que calcula os juros a partir do acréscimo e das parcelas pode ser feita usando Cálculo Numérico, especificamente o Método da Bisseção.

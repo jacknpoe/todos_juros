@@ -8,6 +8,7 @@ class Juros:
     Pesos = []
 
     def __init__(self, quantidade=0, composto=False, periodo=30.0):
+        """O construtor inicializa os atributos escalares"""
         self.Quantidade = quantidade
         self.Composto = composto
         self.Periodo = periodo
@@ -43,9 +44,9 @@ class Juros:
 
     def jurosparaacrescimo(self, juros=0.0):
         """Calcula o acréscimo a partir dos juros"""
-        total = self.getpesototal()
+        pesototal = self.getpesototal()
 
-        if juros <= 0.0 or self.Quantidade < 1 or self.Periodo <= 0.0 or total <= 0.0:
+        if juros <= 0.0 or self.Quantidade < 1 or self.Periodo <= 0.0 or pesototal <= 0.0:
             return 0.0
 
         acumulador = 0.0
@@ -62,33 +63,28 @@ class Juros:
         if acumulador <= 0.0:
             return 0.0
 
-        return (total / acumulador - 1.0) * 100.0
+        return (pesototal / acumulador - 1.0) * 100.0
 
-    def acrescimoparajuros(self, acrescimo=0.0, precisao=12, maximointeracoes=100, maximojuros=50.0,
-                           acrescimocomovalororiginal=False):
+    def acrescimoparajuros(self, acrescimo=0.0, precisao=15, maximointeracoes=65, maximojuros=50.0):
         """Calcula os juros a partir do acréscimo"""
-        total = self.getpesototal()
+        pesototal = self.getpesototal()
 
-        if maximointeracoes < 1 or self.Quantidade < 1 or precisao < 1 or self.Periodo <= 0.0 or acrescimo <= 0.0 or total <= 0.0 or maximojuros <= 0.0:
+        if ( maximointeracoes < 1 or self.Quantidade < 1 or precisao < 1 or self.Periodo <= 0.0
+             or acrescimo <= 0.0 or pesototal <= 0.0 or maximojuros <= 0.0 ):
             return 0.0
 
         minimojuros = 0.0
-        mediojuros = 0.0
-
-        if acrescimocomovalororiginal:      # nesse caso, os pesos totais dão o valor cobrado e o acrescimo é o original
-            acrescimo = 100.0 * (total / acrescimo - 1.0)
-            if acrescimo <= 0.0:
-                return 0.0
+        mediojuros = maximojuros / 2.0
 
         minimadiferenca = 0.1 ** precisao
 
         for i in range(maximointeracoes):
-            mediojuros = (minimojuros + maximojuros) / 2.0
             if (maximojuros - minimojuros) < minimadiferenca:
                 return mediojuros
-            if self.jurosparaacrescimo(mediojuros) <= acrescimo:       # if "mágico" da bisseção
+            if self.jurosparaacrescimo(mediojuros) <= acrescimo:  # bisseção
                 minimojuros = mediojuros
             else:
                 maximojuros = mediojuros
+            mediojuros = (minimojuros + maximojuros) / 2.0
 
         return mediojuros

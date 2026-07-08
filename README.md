@@ -12,8 +12,7 @@ Read me: [READ_ME.md](READ_ME.md).
 
 # LISTA DE SOLUÇÕES / LIST OF SOLUTIONS
 
-A lista de soluções está organizada, em ordem alfabética, pelos nomes dos dialetos, em:
-
+A lista de soluções está organizada, em ordem alfabética, pelos nomes dos dialetos, em:<br>
 The list of solutions is organized alphabetically by dialect name in:
 
 [SOLUCOES.md](SOLUCOES.md). 

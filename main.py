@@ -11,6 +11,7 @@
 #          1.0: 28/06/2026: preparado para novo artigo no blog, alterado de "total" para "pesototal" nos métodos,
 #                           removido acrescimocomovalororiginal, mais comentários, restaurada a acentuação e removida a diretiva de codificação
 #          1.1: 07/07/2026: finalizada preparação para publicação, agora no repositório, quebra de linha no primeiro if de acrescimoparajuros
+#          1.2: 08/07/2026: tratada divisão por zero no cálculo das amortizações
 
 import Juros
 

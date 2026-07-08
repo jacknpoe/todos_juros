@@ -1,12 +1,18 @@
 # README
 
 
-LISTA
-=====
+Lista de Soluções
+=================
 
-A lista de soluções está organizada em ordem alfabética, pelos nomes dos dialetos, em: [SOLUCOES.md](SOLUCOES.md). 
+A lista de soluções está organizada, em ordem alfabética, pelos nomes dos dialetos, em: [SOLUCOES.md](SOLUCOES.md). 
 
-The list of solutions is organized alphabetically by dialect name in: [SOLUCOES.md](SOLUCOES.md)
+The list of solutions is organized alphabetically by dialect name in: [SOLUCOES.md](SOLUCOES.md).
+
+
+Resolução de Equação Transcendente
+==================================
+
+[RESOLUCAO_EQUACAO_TRANSCENDENTE.md](RESOLUCAO_EQUACAO_TRANSCENDENTE.md).
 
 
 PORTUGUÊS

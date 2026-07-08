@@ -204,3 +204,8 @@ Peso total = 3.0
 Acréscimo = 6.059108997379403
 Juros = 3.0000000000000133
 ```
+
+O código fonte da solução completa:
+
+[Juros.py](Juros.py)<br>
+[main.py](main.py)

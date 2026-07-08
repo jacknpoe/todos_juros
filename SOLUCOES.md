@@ -168,8 +168,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 ### Bend (08/08/2024) ⭐
 
-mapas: [juros.bend](juros.bend)
-
+mapas: [juros.bend](juros.bend)<br>
 funções: [jurosf.bend](jurosf.bend)
 
 ### Bigloo (02/08/2025)
@@ -198,8 +197,7 @@ funções: [jurosf.bend](jurosf.bend)
 
 ### Bython (10/07/2024)
 
-[Juros.by](Juros.by)
-
+[Juros.by](Juros.by)<br>
 [main.by](main.by)
 
 ### Bywater BASIC (30/03/2025)
@@ -208,8 +206,7 @@ funções: [jurosf.bend](jurosf.bend)
 
 ### C (01/03/2024) ⭐
 
-[juros.c](juros.c)
-
+[juros.c](juros.c)<br>
 otimizado: [juros_otimizado.c](juros_otimizado.c)
 
 ### Ć (28/03/2025)
@@ -226,8 +223,7 @@ otimizado: [juros_otimizado.c](juros_otimizado.c)
 
 ### C++ (17/09/2023) ⭐
 
-[interest.cpp](interest.cpp)
-
+[interest.cpp](interest.cpp)<br>
 recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 ### Cakelisp (16/02/2026) ⭐
@@ -240,8 +236,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 ### CFScript (30/05/2024)
 
-[juros.cfm](juros.cfm)
-
+[juros.cfm](juros.cfm)<br>
 [base.css](base.css)
 
 ### Chapel (31/07/2024) ⭐
@@ -302,8 +297,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 ### Component Pascal (07/02/2025)
 
-[Juros.cp](Juros.cp)
-
+[Juros.cp](Juros.cp)<br>
 [Juros.prj](Juros.prj)
 
 ### Concurnas (01/05/2026)
@@ -326,16 +320,11 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 ### csh (21/07/2025) ⭐
 
-[acrescimoParaJuros.csh](acrescimoParaJuros.csh)
-
-[getPesoTotal.csh](getPesoTotal.csh)
-
-[juros.csh](juros.csh)
-
-[jurosParaAcrescimo.csh](jurosParaAcrescimo.csh)
-
-[Pagamentos.csh](Pagamentos.csh)
-
+[acrescimoParaJuros.csh](acrescimoParaJuros.csh)<br>
+[getPesoTotal.csh](getPesoTotal.csh)<br>
+[juros.csh](juros.csh)<br>
+[jurosParaAcrescimo.csh](jurosParaAcrescimo.csh)<br>
+[Pagamentos.csh](Pagamentos.csh)<br>
 [Pesos.csh](Pesos.csh)
 
 ### Curry (02/06/2026)
@@ -380,8 +369,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 ### Delphi (28/02/2024) ⭐
 
-[Juros.pas](Juros.pas)
-
+[Juros.pas](Juros.pas)<br>
 [TesteJuros.dpr](TesteJuros.dpr)
 
 ### DelphiWebScript (13/04/2025)
@@ -402,8 +390,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 ### Eiffel (06/05/2024) ⭐
 
-[application.e](application.e)
-
+[application.e](application.e)<br>
 [juros.e](juros.e)
 
 ### Elixir (29/04/2024) ⭐
@@ -424,18 +411,14 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 ### Embedded C for ARM Cortex-M (17/02/2026)
 
-[jurosELF.c](jurosELF.c)
-
-[linker.ld](linker.ld)
-
+[jurosELF.c](jurosELF.c)<br>
+[linker.ld](linker.ld)<br>
 [startup.c](startup.c)
 
 ### Embedded C++ for ARM Cortex-M (17/02/2026)
 
-[interestELF.cpp](interestELF.cpp)
-
-[linker.ld](linker.ld)
-
+[interestELF.cpp](interestELF.cpp)<br>
+[linker.ld](linker.ld)<br>
 [startup.cpp](startup.cpp)
 
 ### EndBASIC (14/04/2026)
@@ -496,10 +479,8 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 ### ferite (22/03/2026)
 
-[juros.fe](juros.fe)
-
-[math.fe](math.fe)
-
+[juros.fe](juros.fe)<br>
+[math.fe](math.fe)<br>
 [testajuros.fe](testajuros.fe)
 
 ### fish (20/07/2025)
@@ -524,14 +505,10 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 ### FreeMat (02/04/2025)
 
-[acrescimoParaJurosFM.m](acrescimoParaJurosFM.m)
-
-[getPesoTotalFM.m](getPesoTotalFM.m)
-
-[jurosFM.m](jurosFM.m)
-
-[jurosParaAcrescimoFM.m](jurosParaAcrescimoFM.m)
-
+[acrescimoParaJurosFM.m](acrescimoParaJurosFM.m)<br>
+[getPesoTotalFM.m](getPesoTotalFM.m)<br>
+[jurosFM.m](jurosFM.m)<br>
+[jurosParaAcrescimoFM.m](jurosParaAcrescimoFM.m)<br>
 [testajurosFM.m](testajurosFM.m)
 
 ### Frege (15/02/2026)
@@ -552,8 +529,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 ### Gambas (09/07/2025)
 
-[Juros.class](Juros.class)
-
+[Juros.class](Juros.class)<br>
 [Main.module](Main.module)
 
 ### GameMaker Language (27/01/2025)
@@ -618,8 +594,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 ### Groovy (06/06/2024)
 
-[Juros.groovy](Juros.groovy)
-
+[Juros.groovy](Juros.groovy)<br>
 [TesteJuros.groovy](TesteJuros.groovy)
 
 ### GW-BASIC (26/05/2024) ⭐
@@ -628,8 +603,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 ### Hack (13/02/2026)
 
-[juros.hack](juros.hack)
-
+[juros.hack](juros.hack)<br>
 [testajuros.hack](testajuros.hack)
 
 ### Hamilton C shell (17/03/2025)
@@ -710,28 +684,21 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 ### Java (27/02/2024) ⭐
 
-[Juros.java](Juros.java)
-
+[Juros.java](Juros.java)<br>
 [TesteJuros.java](TesteJuros.java)
 
 ### JavaScript (22/11/2023) ⭐
 
-[CalculaJuros.js](CalculaJuros.js)
-
-[js_testejuros.html](js_testejuros.html)
-
-[js_testejuros.css](js_testejuros.css)
-
-[js_testejuros.js](js_testejuros.js)
-
+[CalculaJuros.js](CalculaJuros.js)<br>
+[js_testejuros.html](js_testejuros.html)<br>
+[js_testejuros.css](js_testejuros.css)<br>
+[js_testejuros.js](js_testejuros.js)<br>
 [js_testejuros.png](js_testejuros.png)
 
 ### Jinja (15/02/2025)
 
-[Jinja.py](Jinja.py)
-
-[Juros.py](Juros.py)
-
+[Jinja.py](Jinja.py)<br>
+[Juros.py](Juros.py)<br>
 [main.html.jinja](main.html.jinja)
 
 ### JScript .NET (14/03/2025)
@@ -748,8 +715,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 ### Julia (20/03/2024) ⭐
 
-[juros.jl](juros.jl)
-
+[juros.jl](juros.jl)<br>
 [testejuros.jl](testejuros.jl)
 
 ### Just BASIC (08/02/2026)
@@ -758,8 +724,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 ### Jython (04/06/2024)
 
-[Juros_jython.py](Juros_jython.py)
-
+[Juros_jython.py](Juros_jython.py)<br>
 [main_jython.py](main_jython.py)
 
 ### K (04/03/2026) ⭐
@@ -788,8 +753,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 ### Kotlin (22/02/2024) ⭐
 
-[Juros.kt](Juros.kt)
-
+[Juros.kt](Juros.kt)<br>
 [Main.kt](Main.kt)
 
 ### ksh (16/07/2025)
@@ -802,8 +766,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 ### Lazarus (12/04/2024)
 
-[Juros.pas](Juros.pas)
-
+[Juros.pas](Juros.pas)<br>
 [testajuros.lpr](testajuros.lpr)
 
 ### Lean (20/06/2024) ⭐
@@ -836,8 +799,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 ### Logo (11/06/2024) ⭐
 
-[juros.lgo](juros.lgo)
-
+[juros.lgo](juros.lgo)<br>
 [testajuros.lgo](testajuros.lgo)
 
 ### lox (jlox Ahmad-Faraj implementation) (08/02/2026)
@@ -862,8 +824,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 ### MATLAB (31/03/2024) ⭐
 
-[Juros.m](Juros.m)
-
+[Juros.m](Juros.m)<br>
 [testajuros.m](testajuros.m)
 
 ### Matrix Brandy BASIC (11/04/2026)
@@ -872,10 +833,8 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 ### MAUI (16/02/2025)
 
-[JurosMAUI.cs](JurosMAUI.cs)
-
-[MainPage.xaml](MainPage.xaml)
-
+[JurosMAUI.cs](JurosMAUI.cs)<br>
+[MainPage.xaml](MainPage.xaml)<br>
 [MainPage.xaml.cs](MainPage.xaml.cs)
 
 ### Maxima (09/03/2025)
@@ -900,8 +859,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 ### MicroPython (17/11/2025)
 
-[juros_micropython.py](juros_micropython.py)
-
+[juros_micropython.py](juros_micropython.py)<br>
 [Juros.py](Juros.py)
 
 ### MiniBasic (10/04/2026) ⭐
@@ -1046,8 +1004,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 ### Object Rexx (05/03/2025)
 
-[juros.rexx](juros.rexx)
-
+[juros.rexx](juros.rexx)<br>
 [testajuros.rexx](testajuros.rexx)
 
 ### Objective-C (27/03/2024) ⭐
@@ -1056,8 +1013,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 ### ObjectScript (InterSystems IRIS) (29/04/2026)
 
-[Juros.cls](Juros.cls)
-
+[Juros.cls](Juros.cls)<br>
 [testajuros.mac](testajuros.mac)
 
 ### OCaml (30/05/2024) ⭐
@@ -1066,8 +1022,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 ### Octave (02/04/2024)
 
-[Juros_octave.m](Juros_octave.m)
-
+[Juros_octave.m](Juros_octave.m)<br>
 [testajuros_octave.m](testajuros_octave.m)
 
 ### Odin (06/04/2025)
@@ -1100,8 +1055,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 ### Oxygene (29/06/2024)
 
-[JurosOxygene.pas](JurosOxygene.pas)
-
+[JurosOxygene.pas](JurosOxygene.pas)<br>
 [TesteJurosOxygene.pas](TesteJurosOxygene.pas)
 
 ### Pascal (01/04/2024) ⭐
@@ -1118,8 +1072,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 ### Perl (25/04/2024) ⭐
 
-[Juros.pm](Juros.pm)
-
+[Juros.pm](Juros.pm)<br>
 [testajuros.pl](testajuros.pl)
 
 ### pForth (02/01/2026)
@@ -1128,14 +1081,10 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 ### PHP (17/09/2023) ⭐
 
-[CalculaJuros.php](CalculaJuros.php)
-
-[php_testejuros.php](php_testejuros.php)
-
-[php_testejuros.css](php_testejuros.css)
-
-[php_testejuros.png](php_testejuros.png)
-
+[CalculaJuros.php](CalculaJuros.php)<br>
+[php_testejuros.php](php_testejuros.php)<br>
+[php_testejuros.css](php_testejuros.css)<br>
+[php_testejuros.png](php_testejuros.png)<br>
 [php_testejuros.js](php_testejuros.js)
 
 ### Picol (05/06/2026)
@@ -1152,8 +1101,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 ### PL/SQL (Oracle) (28/01/2025) ⭐
 
-[juros_body_pl.sql](juros_body_pl.sql)
-
+[juros_body_pl.sql](juros_body_pl.sql)<br>
 [juros_pl.sql](juros_pl.sql)
 
 ### Pony (24/01/2025)
@@ -1214,8 +1162,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 ### Python (17/09/2023) ⭐
 
-[Juros.py](Juros.py)
-
+[Juros.py](Juros.py)<br>
 [main.py](main.py)
 
 ### q (04/03/2026) ⭐
@@ -1236,8 +1183,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 ### QML (27/01/2026)
 
-[juros.qml](juros.qml)
-
+[juros.qml](juros.qml)<br>
 [jurosQML.js](jurosQML.js)
 
 ### Quite BASIC (07/04/2026)
@@ -1346,8 +1292,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 ### Rust (13/03/2024)
 
-[juros.rs](juros.rs)
-
+[juros.rs](juros.rs)<br>
 [main.rs](main.rs)
 
 ### S-Lang (12/06/2024)
@@ -1372,8 +1317,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 ### Scala (20/05/2024)
 
-[juros.scala](juros.scala)
-
+[juros.scala](juros.scala)<br>
 [testajuros.scala](testajuros.scala)
 
 ### Scheme (28/04/2024) ⭐
@@ -1454,8 +1398,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 ### SnapDevelop C# (23/04/2025)
 
-[JurosSD.cs](JurosSD.cs)
-
+[JurosSD.cs](JurosSD.cs)<br>
 [TestJurosSD.cs](TestJurosSD.cs)
 
 ### SNOBOL4 (28/01/2026) ⭐
@@ -1480,8 +1423,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 ### Spider (10/06/2024)
 
-[juros.spider](juros.spider)
-
+[juros.spider](juros.spider)<br>
 [testajuros.html](testajuros.html)
 
 ### Squint (30/01/2025)
@@ -1514,8 +1456,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 ### Stride (10/06/2024) ⭐
 
-[Juros.stride](Juros.stride)
-
+[Juros.stride](Juros.stride)<br>
 [TestaJuros.stride](TestaJuros.stride)
 
 ### Structured Text (IEC 61131-3 – CODESYS) (23/02/2026) ⭐
@@ -1548,8 +1489,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 ### TeaLang (20/05/2026)
 
-[__unit.tea](__unit.tea)
-
+[__unit.tea](__unit.tea)<br>
 [main.tea](main.tea)
 
 ### thinBasic (04/02/2026)
@@ -1566,16 +1506,11 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 ### Transact-SQL (SQL Server) (04/02/2025) ⭐
 
-[acrescimoParaJuros.sql](acrescimoParaJuros.sql)
-
-[getPesoTotal.sql](getPesoTotal.sql)
-
-[inclui.sql](inclui.sql)
-
-[jurosParaAcrescimo.sql](jurosParaAcrescimo.sql)
-
-[parcelas.sql](parcelas.sql)
-
+[acrescimoParaJuros.sql](acrescimoParaJuros.sql)<br>
+[getPesoTotal.sql](getPesoTotal.sql)<br>
+[inclui.sql](inclui.sql)<br>
+[jurosParaAcrescimo.sql](jurosParaAcrescimo.sql)<br>
+[parcelas.sql](parcelas.sql)<br>
 [testaJuros.sql](testaJuros.sql)
 
 ### TrekBASIC (04/04/2026)
@@ -1612,10 +1547,8 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 ### Twig (13/02/2026)
 
-[CalculaJuros.php](CalculaJuros.php)
-
-[juros.html.twig](juros.html.twig)
-
+[CalculaJuros.php](CalculaJuros.php)<br>
+[juros.html.twig](juros.html.twig)<br>
 [twig.php](twig.php)
 
 ### twinBASIC (28/05/2024)
@@ -1628,8 +1561,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 ### TypeScript (03/03/2024)
 
-[Juros.ts](Juros.ts)
-
+[Juros.ts](Juros.ts)<br>
 [TesteJuros.ts](TesteJuros.ts)
 
 ### UCSD Pascal (Apple /// implementation) (12/01/2026)
@@ -1726,8 +1658,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 ### wwwBASIC (03/04/2026)
 
-HTML: [juroswww.html](juroswww.html)
-
+HTML: [juroswww.html](juroswww.html)<br>
 JavaScript: [juroswww.js](juroswww.js)
 
 ### wxBasic (04/02/2026)
@@ -1736,8 +1667,7 @@ JavaScript: [juroswww.js](juroswww.js)
 
 ### X# (14/06/2024)
 
-[Juros.prg](Juros.prg)
-
+[Juros.prg](Juros.prg)<br>
 [Start.prg](Start.prg)
 
 ### X++ (12/03/2026)
@@ -1758,8 +1688,7 @@ JavaScript: [juroswww.js](juroswww.js)
 
 ### Xbase++ (02/04/2025)
 
-[jurosXB.prg](jurosXB.prg)
-
+[jurosXB.prg](jurosXB.prg)<br>
 [main.prg](main.prg)
 
 ### XBasic (31/12/2025)
@@ -1846,180 +1775,93 @@ JavaScript: [juroswww.js](juroswww.js)
 
 # EQUIVALENTES / EQUIVALENTS (86)
 
-Amstrad BASIC = Locomotive BASIC
-
-BBC BASIC for SDL 2.0 = BBC BASIC
-
-Boa = Node.js
-
-Bourne shell = POSIX sh
-
-bsh = Java
-
-cbmbasic = Commodore 64 BASIC
-
-Cerberus X = Monkey 2
-
-Ch = C
-
-Chez Scheme = Scheme
-
-CHICKEN = Scheme
-
-ClosureScript = Squint
-
-Coffee = CoffeeScript
-
-ColdFusion Markup Language / CFML = CFScript
-
-CPC = Locomotive BASIC
-
-CPython = Python
-
-CSNOBOL4 = SNOBOL4
-
-Delégua = Égua
-
-Dragon 32 BASIC = TRS-80 BASIC
-
-eLua = Lua
-
-Free Pascal = Pascal
-
-Gambit = Scheme
-
-gawk = awk
-
-Generic Java = Java
-
-Gerbil Scheme = Kawa/Steel
-
-Gforth = pForth
-
-GNU Bourne-Again Shell = Bash
-
-GNU Octave = Octave
-
-Guile = Kawa/Scheme/Steel
-
-HashLink = Haxe
-
-IBM PC BASIC A = GW-BASIC
-
-Intel Fortran Compiler = Fortran
-
-Iodine = Java
-
-IronPython = Python
-
-JRuby = Ruby
-
-Korn Shell = ksh
-
-LibreOffice Basic = OpenOffice Basic
-
-Linden Scripting Language = LSL
-
-MaPLe (MPL) = Alice
-
-MariaDB = MySQL
-
-Microsoft Office Visual Basic for Applications = OpenOffice Basic
-
-MinForth = pForth
-
-MirBSD Korn Shell = ksh
-
-mksh = POSIX sh
-
-MLton = Alice
-
-MMB4L = MMBasic
-
-Monkey X = Monkey 2
-
-nawk = awk
-
-NimbleScript = Nim
-
-NimScript = Nim
-
-Oberon-07 = Oberon-2
-
-Objective Caml = OCaml
-
-oksh = POSIX sh
-
-OpenMP = Intel oneAPI DPC++
-
-OSH (Oil Shell) = Bash
-
-Pascal ISO 7185 = MSX Turbo Pascal
-
-PC-BASIC = GW-BASIC
-
-Pizza = Java
-
-PicoC = C
-
-PoSh = Windows PowerShell
-
-PowerBASIC = Turbo Basic
-
-Pretty C = C
-
-PRO*C = C
-
-QB45 = QB64
-
-QBasic 1.1 = QB64
-
-QuickC = Turbo C
-
-QuickPascal = Turbo Pascal
-
-Racket Base = Racket
-
-Racket Lazy = Racket
-
-Reason = ReasonML
-
-Rebol/Core = Rebol
-
-SCM = Scheme
-
-Scryer Prolog = Prolog
-
-SICP = DrScheme
-
-SML/NJ = Alice
-
-SpiderBasic = PureBasic
-
-Squeak = Smalltalk
-
-STklos = Gauche/Kawa/Scheme/Steel
-
-SWI-Prolog = Prolog
-
-SwiftForth = pForth
-
-SYCL = Intel oneAPI DPC++
-
-tcsh = csh
-
-TOM = Java
-
-Turing+ = Turing
-
-WPS Office Visual Basic for Applications = OpenOffice Basic
-
-XLISP = Common Lisp
-
-XLispStat = Common Lisp
-
-XOTcl = Tcl
-
+Amstrad BASIC = Locomotive BASIC<br>
+BBC BASIC for SDL 2.0 = BBC BASIC<br>
+Boa = Node.js<br>
+Bourne shell = POSIX sh<br>
+bsh = Java<br>
+cbmbasic = Commodore 64 BASIC<br>
+Cerberus X = Monkey 2<br>
+Ch = C<br>
+Chez Scheme = Scheme<br>
+CHICKEN = Scheme<br>
+ClosureScript = Squint<br>
+Coffee = CoffeeScript<br>
+ColdFusion Markup Language / CFML = CFScript<br>
+CPC = Locomotive BASIC<br>
+CPython = Python<br>
+CSNOBOL4 = SNOBOL4<br>
+Delégua = Égua<br>
+Dragon 32 BASIC = TRS-80 BASIC<br>
+eLua = Lua<br>
+Free Pascal = Pascal<br>
+Gambit = Scheme<br>
+gawk = awk<br>
+Generic Java = Java<br>
+Gerbil Scheme = Kawa/Steel<br>
+Gforth = pForth<br>
+GNU Bourne-Again Shell = Bash<br>
+GNU Octave = Octave<br>
+Guile = Kawa/Scheme/Steel<br>
+HashLink = Haxe<br>
+IBM PC BASIC A = GW-BASIC<br>
+Intel Fortran Compiler = Fortran<br>
+Iodine = Java<br>
+IronPython = Python<br>
+JRuby = Ruby<br>
+Korn Shell = ksh<br>
+LibreOffice Basic = OpenOffice Basic<br>
+Linden Scripting Language = LSL<br>
+MaPLe (MPL) = Alice<br>
+MariaDB = MySQL<br>
+Microsoft Office Visual Basic for Applications = OpenOffice Basic<br>
+MinForth = pForth<br>
+MirBSD Korn Shell = ksh<br>
+mksh = POSIX sh<br>
+MLton = Alice<br>
+MMB4L = MMBasic<br>
+Monkey X = Monkey 2<br>
+nawk = awk<br>
+NimbleScript = Nim<br>
+NimScript = Nim<br>
+Oberon-07 = Oberon-2<br>
+Objective Caml = OCaml<br>
+oksh = POSIX sh<br>
+OpenMP = Intel oneAPI DPC++<br>
+OSH (Oil Shell) = Bash<br>
+Pascal ISO 7185 = MSX Turbo Pascal<br>
+PC-BASIC = GW-BASIC<br>
+Pizza = Java<br>
+PicoC = C<br>
+PoSh = Windows PowerShell<br>
+PowerBASIC = Turbo Basic<br>
+Pretty C = C<br>
+PRO*C = C<br>
+QB45 = QB64<br>
+QBasic 1.1 = QB64<br>
+QuickC = Turbo C<br>
+QuickPascal = Turbo Pascal<br>
+Racket Base = Racket<br>
+Racket Lazy = Racket<br>
+Reason = ReasonML<br>
+Rebol/Core = Rebol<br>
+SCM = Scheme<br>
+Scryer Prolog = Prolog<br>
+SICP = DrScheme<br>
+SML/NJ = Alice<br>
+SpiderBasic = PureBasic<br>
+Squeak = Smalltalk<br>
+STklos = Gauche/Kawa/Scheme/Steel<br>
+SWI-Prolog = Prolog<br>
+SwiftForth = pForth<br>
+SYCL = Intel oneAPI DPC++<br>
+tcsh = csh<br>
+TOM = Java<br>
+Turing+ = Turing<br>
+WPS Office Visual Basic for Applications = OpenOffice Basic<br>
+XLISP = Common Lisp<br>
+XLispStat = Common Lisp<br>
+XOTcl = Tcl<br>
 YLISP = Common Lisp
 
 <br>

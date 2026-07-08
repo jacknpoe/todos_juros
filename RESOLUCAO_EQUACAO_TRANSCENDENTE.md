@@ -110,9 +110,9 @@ O **Método da Bisseção** precisa ter um **método** para chamar, e avaliar se
 
 Esse método recebe o percentual de **juros**.
 
-Calculamos o **peso total**, guardando em `pesototal`. A variável será usada para produzir o **resultado final**.
+**Calculamos** o **peso total**, guardando em `pesototal`. A variável será usada para produzir o **resultado final**.
 
-Avaliamos se ao menos um valor entre `juros`, `Quantidade`, `Periodo` ou `pesototal` é **zero** ou **negativo**, o que faz o método retornar **zero**. Essa avaliação elimina boa parte do uso errado do método. Na prática, apenas em casos como `juros` **simples** exatamente igual a `1.0`, e um elemento em `Pagamentos` for **cem negativo** vezes `Periodo`, causará uma **divisão por zero**. Mas os *arrays* não estão sendo avaliados nessa **versão**, por fins **didáticos**.
+**Avaliamos** se ao menos um valor entre `juros`, `Quantidade`, `Periodo` ou `pesototal` é **zero** ou **negativo**, o que faz o método retornar **zero**. Essa avaliação elimina boa parte do uso errado do método. Na prática, apenas em casos como `juros` **simples** exatamente igual a `1.0`, e um elemento em `Pagamentos` for **cem negativo** vezes `Periodo`, causará uma **divisão por zero**. Mas os *arrays* não estão sendo avaliados nessa **versão**, por fins **didáticos**.
 
 **Inicializamos** o `acumulador` que somará o **peso ponderado** das **parcelas** (que é a **contribuição** que cada **parcela** tem em pagar o **valor total**, deduzindo-se os **juros**).
 
@@ -122,7 +122,7 @@ Retornamos **zero** se `acumulador` for **zero** ou **negativo** (porque poderia
 
 O valor do **acréscimo** é calculado dividindo `pesototal` pelo **somatório dos pesos ponderados** pelos **juros** (`acumulador`), diminuindo `1.0` e multiplicando por `100.0`. Por exemplo, se o valor da divisão for `1.03`, o resultado será `3%` de **acréscimo**.
 
-Podemos escrever, agora, o **método** que é o objetivo desse **repositório**, `acrescimoparajuros`:
+Podemos **escrever**, agora, o **método** que é o objetivo desse **repositório**, `acrescimoparajuros`:
 
 ```python
     def acrescimoparajuros(self, acrescimo=0.0, precisao=15, maximointeracoes=65, maximojuros=50.0):
@@ -152,15 +152,15 @@ Podemos escrever, agora, o **método** que é o objetivo desse **repositório**,
 
 Os **parâmetros** desse **método** já são um pouco mais complicados. Recebemos o `acrescimo`, podemos escolher quantas **casas depois da vírgula** queremos de `precisao`, o máximo de **iterações** que o método irá aplicar, `maximoiteracoes`, e o **máximo de juros** que o **método** irá usar no começo, `maximojuros` . Apenas `acrescimo` é absolutamente necessário, pois os **valores padrão** dos outros **parâmetros** já bastam para fazer o cálculo, na maioria das situações.
 
-Primeiro, calculamos o `pesototal`. Aqui ele não é usado para cálculos, apenas para validação.
+Primeiro, **calculamos** o `pesototal`. Aqui ele não é usado para cálculos, apenas para validação.
 
-Então testamos se alguns valores são iguais a **zero** ou **negativos** (`maximoiteracoes`, `Quantidade`, `precisao`, `Periodo`, `acrescimo`, `pesototal` e `maximojuros`), se sim, retornamos **zero**.
+Então **testamos** se alguns valores são iguais a **zero** ou **negativos** (`maximoiteracoes`, `Quantidade`, `precisao`, `Periodo`, `acrescimo`, `pesototal` e `maximojuros`), se sim, retornamos **zero**.
 
-Nós iniciamos o **mínimo de juros** como **zero**, `minimojuros` e a **média de juros** como metade de `maximojuros`, `mediojuros`.
+Nós **iniciamos** o **mínimo de juros** como **zero**, `minimojuros` e a **média de juros** como metade de `maximojuros`, `mediojuros`.
 
 Em `minimadiferenca`, guardamos o valor da **precisão** que queremos, em `precisao` de **casas decimais**, para podermos avaliar quando o **algoritmo** pode parar (por exemplo, `0.0001` quando definimos `precisao` como `4`).
 
-No **laço**, primeiro verificamos se os valores atuais em `maximojuros` e `minimojuros` diferem **menos** do que `minimadiferenca`, quando nós retornamos a **média** que se encontra em `mediojuros`, pois já encontramos o resultado com a **precisão** que queremos.
+No **laço**, primeiro **verificamos** se os valores atuais em `maximojuros` e `minimojuros` diferem **menos** do que `minimadiferenca`, quando nós retornamos a **média** que se encontra em `mediojuros`, pois já encontramos o resultado com a **precisão** que queremos.
 
 A **mágica** do **algoritmo** que estamos **implementando** está no próximo `if`. Nós chamamos o método `jurosparaacrescimo` para calcularmos se, com o valor de `mediojuros` atual, o resultado do **método** fica maior ou **menor** do que o **parâmetro** `acrescimo`. Se for **menor** ou **igual**, nós alteramos `minimojuros` para `mediojuros`. Se for **maior**, nós alteramos `maximojuros` para `mediojuros`.
 

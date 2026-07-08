@@ -193,7 +193,7 @@ print("Juros = " + str(juroscalculado))
 
 Nós importamos `Juros`. Criamos um **objeto** com `3` parcelas, juros **compostos** e com períodos de `30.0` dias. Chamamos `juros.setpagamentos` e `juros.setpesos` sem **parâmetros**, para que `juros.pagamentos` seja igual a [`30.0`, `60.0`, `90.0`] e `juros.pesos` seja igual a [`1.0`, `1.0`, `1.0`].
 
-**Calculamos** o **peso total**. **Calculamos** o **acréscimo** a partir de `3%` de **juros**. E fazemos o **cálculo** inverso, usando `acrescimocalculado` no **parâmetro** `acrescimo`, sem alterar os valores padrão de `juros.acrescimoparajuros` (`15` para `precisao`, `65` para `maximoiteracoes` e `50.0` para `maximojuros`).
+**Calculamos** o **peso total**. **Calculamos** o **acréscimo** a partir de `3%` de **juros**. E fazemos o **cálculo inverso**, usando `acrescimocalculado` no **parâmetro** `acrescimo`, sem alterar os valores padrão de `juros.acrescimoparajuros` (`15` para `precisao`, `65` para `maximoiteracoes` e `50.0` para `maximojuros`).
 
 Depois imprimimos os três **resultados**.
 

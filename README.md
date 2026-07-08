@@ -2,6 +2,13 @@
 
 <br>
 
+# LEIA-ME / READ ME
+
+Leia-me: [LEIA_ME.md](LEIA_ME.md).
+Read me: [READ_ME.md](READ_ME.md).
+
+<br>
+
 # LISTA DE SOLUÇÕES / LIST OF SOLUTIONS
 
 A lista de soluções está organizada, em ordem alfabética, pelos nomes dos dialetos, em: [SOLUCOES.md](SOLUCOES.md). 
@@ -25,164 +32,6 @@ Planilha: [PLANILHA.md](PLANILHA.md)
 Spreadsheet: [SPREADSHEET.md](SPREADSHEET.md)
 
 Arquivo / FIle: [juros.xlsx](juros.xlsx)
-
-<br>
-
-# PORTUGUÊS
-
-Este repositório é sobre codificar, em vários dialetos, a mesma solução em matemática financeira. Achar os juros a partir do acréscimo, das datas e pesos das parcelas. Eu uso o Método da Bisseção do Cálculo Numérico para resolvê-la. A ideia é que cada versão se fixe ao máximo à cultura de cada dialeto. Eu uso o mínimo de recursos possível. Eu evito adicionar qualquer biblioteca que eu puder.
-
-É uma "Pedra de Roseta" sobre dialetos de programação.
-
-Tirando a pasta "terceiros", todas as soluções foram escritas por [jacknpoe](https://github.com/jacknpoe). Em BBC Basic foi utilizada uma forma simplificada de "tradução", sendo que o código precisou ser completamente revisado para poder rodar apropriadamente. QML teve parte do código traduzida de JavaScript pelo ChatGPT mas, de novo, ela teve que ser revisada, com partes que foram ignoradas.
-
-Um executor de scripts para AngelScript foi criado pelo ChatGPT a partir das bibliotecas do AngelScript. Trata-se de um código-fonte em C++ (.cpp) que recebe um script como parâmetro e o executa. Ele está disponível junto à solução escrita nesse dialeto de script, para quem quiser compilar e testar a execução (desde que, é claro, as bibliotecas sejam baixadas e colocadas nas pastas adequadas).
-
-Fórmula para calcular o acréscimo a partir dos juros simples:
-
-![Juros Simples](JurosSimples.jpg)
-
-Fórmula para calcular o acréscimo a partir dos juros compostos:
-
-![Juros Compostos](JurosCompostos.jpg)
-
-Apenas soluções que compilaram (ou foram corretamente interpretadas), que realmente rodaram, e retornaram resultados corretos, são publicadas. Com exceção de Bend, que apresentou diferença de 0,02 no cálculo dos juros. A solução é mantida para registro histórico e didático.
-
-Uma das metas é que os compiladores e interpretadores não exibam avisos ao compilar ou rodar as soluções. Em IDEs integradas, os avisos também foram evitados. 
-
-Dois conceitos que pesaram muito foram a exponenciação de números ponto flutuante (direta ou implementada, é usada em todos os dialetos) e os arrays dinâmicos (que não foram possíveis, por exemplo, em Chapel, Modula-2, MSX Turbo Pascal, Pascalzim, Portugol, VisuALG e XC=BASIC e, nesses casos, os arrays podem ter três ou mil elementos).
-
-Dois dialetos são considerados diferentes quando qualquer parte do código tem que ser alterada para ser compilado ou interpretado em ambos. Essa questão ficaria muito complicada, se fosse escolhido um critério mais rígido sobre o quanto um dialeto precisa ser diferente de outro, o que seria impraticável. Quando dois ou mais dialetos rodam exatamente o mesmo código (como Chez Scheme, Guile e Scheme ou ClojureScript e Squint), apenas um dos dialetos será considerado, e os outros serão adicionados ao final da lista apenas como equivalentes, e não serão contabilizados. Tecnologias que exigem alteração no código de outros dialetos também estão listadas. Quando um dialeto puder ser definido como uma extensão de outro dialeto, e construções novas puderem ser usadas, ele é incluído e postado como dialeto diferente. Isso vale para orientação a objetos e variáveis com nomes mais significativos. Se duas implementações puderem executar uma mesma solução, mas para isso uma delas não for legitimamente representada, duas soluções serão incluídas. Exemplo: Starlark e Python — Starlark requer implementação manual de exponenciais, enquanto Python possui essas funções nativamente. Outro exemplo é RetroBASIC e retrobasic. Embora o interpretador RetroBASIC rode a versão em retrobasic, há diferenças na precisão dos resultados, na estética das soluções, na acentuação e na definição dos tipos de variáveis. Publicar somente a solução em retrobasic como denominador comum não representaria corretamente RetroBASIC.
-
-Claro que, para alguns dialetos, algumas soluções são quase completamente idênticas, mas foram publicadas distintamente porque um só código não rodaria em mais de um dialeto. Um exemplo clássico são os dialetos SML e Alice. Uma única linha (que é obrigatória em SML e gera um erro em Alice) impede que uma mesma solução rode em ambos os dialetos. Outro exemplo bem evidente são os dialetos de Forth, que usam arrays distintamente.
-
-As soluções estão divididas entre as recursivas e iterativas, formando dois conjuntos algorítmicos bem distintos.
-
-Existem, em algumas soluções, salvaguardas para valores incorretos para uma aplicação real. São valores zerados e negativos. Em alguns dialetos não é verificado, pois entendeu-se que o público-alvo desses dialetos não cometeria esse tipo de equívoco.
-
-Tenham em mente que algumas das soluções (como as em BASIC para microcomputadores de oito bits e shells), pelas próprias naturezas de suas tecnologias, são extremamente lentas. Algumas têm exponenciação ineficiente, outras dependem de processos externos para operações de ponto flutuante. Com centenas de pagamentos, certas soluções podem levar minutos para produzir resultados. Recomenda-se iniciar os testes com poucas parcelas e utilizar regra de três para estimar o tempo em casos maiores, evitando execuções inviáveis.
-
-Em ambientes baseados em emulação de microcomputadores antigos, pode ser necessário alternar entre a velocidade original de emulação (1x), para interação, e velocidades mais altas (10x, 100x...) para tornar a execução dos testes viável.
-
-Algumas implementações não serão mantidas, porque foram feitas em versões de avaliação de ambientes de desenvolvimento pagos, como o Embarcadero Delphi e o EiffelStudio. Os dialetos menos populares não terão suporte, mesmo tendo IDEs gratuitas.
-
-Algumas soluções, principalmente as mais antigas em dialetos funcionais, não foram implementadas de forma realmente escalável (em geral têm arrays ou listas atribuídos estaticamente). Os dialetos Cakelisp, Gluon, Koka, Nickel, PicoLisp, Racket, Roc e Typed Racket são bons exemplos de como soluções funcionais podem ser estruturadas para suportar um número arbitrário de parcelas, mantendo o mesmo modelo algorítmico. Em contraste, a quantidade de soluções escaláveis em dialetos imperativos é significativamente maior, incluindo C, C++, Rust, C#, Fortran 90, Java, GForth, Lua, Go, Perl e Python, entre os mais eficientes e populares. Em ambas as listas, em PicoLisp e Nickel não foi possível executar um benchmark com 300.000 parcelas.
-
-Alguns arquivos estão ilegíveis, pois são binários e devem ser abertos ou importados nos ambientes dos dialetos, como AppleSoft BASIC, Smalltalk, Snap! e twinBASIC. StarLogo Nova não salva em arquivo, então somente a URL está disponibilizada: https://www.slnova.org/jacknpoe/projects/941781/.
-
-Alguns dialetos não terão a solução ainda, por não terem suporte a recursos necessários, como números de ponto flutuante (ou inteiros de 64 bits para emular). Outros dialetos têm outros problemas, como estarem desatualizadas e não rodarem ou compilarem nos sistemas atuais. Dialetos que são, na verdade, Turing tarpits, como Agda, serão ignorados.
-
-Uma versão em C, com otimizações estruturais e transformações computacionais em relação ao padrão das demais soluções, foi publicada com o nome de [juros_otimizado.c](juros_otimizado.c). Essa versão preserva a base algorítmica do problema, mas altera a forma de cálculo para reduzir custos computacionais, incluindo o cálculo antecipado de partes fixas das equações financeiras, uso de variáveis globais para diminuir indireção e outras melhorias de desempenho. Ela não é destinada à comparação direta com as demais soluções, mas pode servir como referência para quem busca maior eficiência ou deseja adaptar essas ideias para outras linguagens. Esta versão não é a mais representativa do projeto Pedra de Roseta. Seu objetivo não é servir como modelo matemático, didático ou filosófico para as demais soluções, mas demonstrar até onde é possível reduzir o custo computacional mantendo a mesma base algorítmica. Ela funciona como uma prova de conceito, um vislumbre de otimizações estruturais possíveis e um lembrete de que muitas vezes é possível obter o mesmo resultado realizando menos trabalho. Como os benchmarks do projeto procuram comparar implementações equivalentes, nenhuma das demais linguagens ou dialetos adota otimizações semelhantes. Além disso, para os cenários normalmente encontrados em aplicações reais (por exemplo, algumas centenas de parcelas e taxas moderadas), tais otimizações raramente são necessárias.
-
-Alguns dialetos tiveram o tempo medido para 300.000 parcelas, e classificados: [benchmark.png](benchmark.png). Existem duas versões em C, a versão para comparação justa, com os mesmos algoritmos dos demais dialetos, e a versão otimizada. Já em C++ foi realizado um experimento [juros_rec.cpp]juros_rec.cpp) substituindo laços por recursão, em estilo próximo ao das linguagens funcionais; essa versão também foi medida.
-
-O dialeto Bend tem duas soluções. A primeira usa um mapa (estrutura {1:..., 2:...}) para simular arrays, o que não é escalável. A segunda usa funções para mapear pagamentos e pesos a partir do índice, sendo escalável. Ambas foram mantidas por motivos históricos e didáticos. A precisão numérica é limitada (float de 24 bits), o que afeta o resultado final.
-
-A saída mais comum para os testes é:
-
-Peso total = 3.0 / Acréscimo = 6.059108997379403 / Juros = 2.999999999999992
-
-ATENÇÃO: existe uma possibilidade de divisão por zero, nos juros simples, por exemplo, se os juros forem 100% e uma das parcelas for -100 vezes o período. Uma verificação desse tipo complicaria o código, para evitar essa eventualidade tão rara.
-
-ATENÇÃO: Algumas soluções deste repositório utilizam implementações próprias de funções exponenciais (`ln`, `exp` e `pow`). Essas funções não têm como objetivo substituir implementações genéricas das bibliotecas matemáticas padrão. Elas foram projetadas e validadas exclusivamente para os domínios efetivamente usados nas soluções, em especial valores de juros honestos e um número sensato de parcelas. O uso dessas funções fora desse contexto pode resultar em perda significativa de precisão numérica. A função `powint`, por sua vez, utiliza exponenciação com expoente inteiro e não apresenta essas limitações (além do expoente não ser real). Alguns dialetos, como B (BCause implementation) e PicoLisp, além dessas funções, tiverram aritmética (multiplicação, divisão, conversões) de pontos fixos implementada.
-
-As versões em JavaScript e PHP podem ser testadas a partir de: https://jacknpoe.rf.gd/
-
-A versão em Scratch está publicada em https://scratch.mit.edu/projects/1162953396/
-
-A versão em Snap! está publicada em https://snap.berkeley.edu/project?username=jacknpoe&projectname=juros
-
-A versão on-line em WOKWI de Arduino está publicada em https://wokwi.com/projects/447631899725952001
-
-A versão on-line em WOKWI de Raspberry Pi está publicada em https://wokwi.com/projects/447794347319174145
-
-A versão on-line em WOKWI de MicroPython está publicada em https://wokwi.com/projects/447878410647046145
-
-O projeto também inclui a planilha [juros.xlsx](juros.xlsx). Além de implementar diretamente o algoritmo `jurosParaAcrescimo`, ela permite utilizar a ferramenta `Goal Seek` (`Atingir Meta`) para obter o resultado do algoritmo `acrescimoParaJuros`, sem necessidade de implementar um método numérico. Consulte [PLANILHA.md](PLANILHA.md).
-
-A licença é GNU [LICENSE](LICENSE).
-
-<br>
-
-# ENGLISH
-
-This repository is about coding, in multiple dialects, the same solution in financial mathematics. To find the interest based on the increase, dates and weights of the installments. I use the Bisection Method of Numerical Calculus to solve it. The idea is that each version adheres to the culture of each dialect as much as possible. I use as few resources as possible. I avoid adding any libraries I can.
-
-It's a "Rosetta Stone" of programming dialects.
-
-With the exception of the "third parties" folder, all solutions were written by [jacknpoe](https://github.com/jacknpoe). BBC Basic used a simplified form of "translation," requiring a complete review of the code to run properly. QML had part of its JavaScript code translated by ChatGPT, but again, it had to be revised, with some parts being omitted.
-
-A script executor for AngelScript was created by ChatGPT using the AngelScript libraries. It is a C++ source code (.cpp) that receives a script as a parameter and executes it. It is available along with the solution written in this scripting dialect, for anyone who wants to compile and test its execution (provided, of course, that the libraries are downloaded and placed in the appropriate folders).
-
-Formula for calculating the increase from simple interest:
-
-![Simple Interest](JurosSimples.jpg)
-
-Formula for calculating the increase from compound interest:
-
-![Compound Interest](JurosCompostos.jpg)
-
-(pesoTotal = totalWeight; quantidade = quantity; pesos = weights; juros = interest; pagamentos = payments; periodo = period)
-
-Only solutions that compiled (or were correctly interpreted), actually ran, and returned correct results are published. With the exception of Bend, which showed a difference of 0.02 in the interest calculation. The solution is kept for historical and educational record.
-
-One of the goals is for compilers and interpreters to avoid displaying warnings when compiling or running the solutions. In integrated IDEs, warnings have also been avoided.
-
-Two concepts that weighed heavily were the exponentiation of floating point numbers (direct or implemented, it is used in all dialects) and dynamic arrays (which were not possible, for example, in Chapel, Modula-2, MSX Turbo Pascal, Pascalzim, Portugol, VisuALG and XC=BASIC, and arrays can have one three or a thousand of elements).
-
-Two dialects ​​are considered different when any part of the code has to be changed to be compiled or interpreted in both. This issue would become very complicated if a stricter criterion were chosen regarding how much one dialect needs to be different from another, which would be impractical. When two or more dialects ​​run exactly the same code (such as Chez Scheme, Guile and Scheme or ClojureScript and Squint), only one of the dialects ​​will be considered, and the others will be added to the end of the list only as equivalents, and will not be accounted. Technologies that require changes to code from other dialects ​​are also listed. When a dialect can be defined as an extension of another dialect, and new constructs can be used, they are included and posted as a different dialect. This applies to object-oriented programming and variables with more meaningful names. If two implementations can execute the same solution, but one of them is not legitimately represented, then two solutions will be included. Example: Starlark and Python — Starlark requires manual implementation of exponentials, while Python has these functions natively. Another example is RetroBASIC and retrobasic. Although the RetroBASIC interpreter runs the retrobasic version, there are differences in the accuracy of the results, the aesthetics of the solutions, the accentuation, and the definition of variable types. Publishing only the retrobasic solution as a common denominator would not correctly represent RetroBASIC.
-
-Of course, for some dialects, some solutions are almost completely identical, but they were published separately because a single code would not run in more than one dialect. A classic example is the SML and Alice dialects. A single line (which is mandatory in SML and generates an error in Alice) prevents the same solution from running in both dialects. Another very clear example is the Forth dialects, which use arrays differently.
-
-The solutions are divided between recursive and iterative methods, forming two very distinct algorithmic sets.
-
-There are, in some solutions, safeguards for incorrect values ​​for a real application. These are zero and negative values. In some dialects ​​it is not verified, as it was understood that the target audience of these dialects ​​would not make this type of mistake.
-
-Keep in mind that some solutions (such as those in BASIC for eight-bit microcomputers and shells), due to the very nature of their technologies, are extremely slow. Some have inefficient exponentiation, others depend on external processes for floating-point operations. With hundreds of payments, certain solutions can take minutes to produce results. It is recommended to start testing with a few installments and use the rule of three to estimate the time in larger cases, avoiding unfeasible executions.
-
-In environments based on emulation of older microcomputers, it may be necessary to switch between the original emulation speed (1x), for interaction, and higher speeds (10x, 100x...) to make running the tests feasible.
-
-Some implementations will not be maintained because they were done in trial versions of paid development environments such as Embarcadero Delphi and EiffelStudio. Less popular dialects will not be supported, even though they have free IDEs.
-
-Some solutions, especially older ones in functional dialects, were not implemented in a truly scalable way (they generally have statically assigned arrays or lists). The Cakelisp, Gluon, Koka, Nickel, PicoLisp, Racket, Roc, and Typed Racket dialects are good examples of how functional solutions can be structured to support an arbitrary number of parcels while maintaining the same algorithmic model. In contrast, the number of scalable solutions in imperative dialects is significantly greater, including C, C++, Rust, C#, Fortran 90, Java, GForth, Lua, Go, Perl, and Python, among the most efficient and popular. In both lists, PicoLisp and Nickel were unable to run a benchmark with 300,000 parcels.
-
-Some files are unreadable, as they are binary and must be opened or imported into the dialect environments, such as AppleSoft BASIC, Smalltalk, Snap! and twinBASIC. StarLogo Nova does not save to a file, so only the URL is available: https://www.slnova.org/jacknpoe/projects/941781/.
-
-Some dialects will not yet have a solution because they lack support for necessary features, such as floating-point numbers (or 64-bit integers to emulate). Other dialects have other problems, such as being outdated and not running or compiling on current systems. Dialects that are, in fact, Turing tarpits, such as Agda, will be ignored.
-
-A C version, with structural optimizations and computational transformations compared to the standard solutions, was published under the name [juros_otimizado.c](juros_otimizado.c). This version preserves the algorithmic basis of the problem, but alters the calculation method to reduce computational costs, including the upfront calculation of fixed parts of the financial equations, the use of global variables to reduce indirection, and other performance improvements. It is not intended for direct comparison with the other solutions, but can serve as a reference for those seeking greater efficiency or wishing to adapt these ideas to other languages. This version is not the most representative of the Rosetta Stone project. Its goal is not to serve as a mathematical, didactic, or philosophical model for other solutions, but to demonstrate how far it is possible to reduce computational cost while maintaining the same algorithmic basis. It functions as a proof of concept, a glimpse of possible structural optimizations, and a reminder that it is often possible to obtain the same result by doing less work. As the project's benchmarks seek to compare equivalent implementations, none of the other languages ​​or dialects adopt similar optimizations. Furthermore, for scenarios typically found in real-world applications (for example, a few hundred installments and moderate rates), such optimizations are rarely necessary.
-
-Some dialects had their time measured for 300,000 installments and ranked: [benchmark.png](benchmark.png). There are two versions in C, the version for fair comparison, with the same algorithms as the other dialects, and the optimized version. In C++, an experiment was conducted [juros_rec.cpp](juros_rec.cpp) replacing loops with recursion, in a style similar to that of functional languages; this version was also measured.
-
-The Bend dialect has two solutions. The first uses a map (structure {1:..., 2:...}) to simulate arrays, which is not scalable. The second uses functions to map payments and weights from the index, which is scalable. Both have been maintained for historical and didactic reasons. Numerical precision is limited (24-bit float), which affects the final result.
-
-The most common output for tests is:
-
-Peso total = 3.0 / Acréscimo = 6.059108997379403 / Juros = 2.999999999999992
-
-WARNING: There is a possibility of division by zero in simple interest, for example, if the interest is 100% and one of the installments is -100 times the period. A check of this type would complicate the code, to avoid this very rare eventuality.
-
-WARNING: Some solutions in this repository use their own implementations of exponential functions (`ln`, `exp`, and `pow`). These functions are not intended to replace generic implementations from standard mathematical libraries. They were designed and validated exclusively for the domains actually used in the solutions, especially fair interest rates and a reasonable number of installments. Using these functions outside of this context can result in a significant loss of numerical precision. The `powint` function, on the other hand, uses exponentiation with an integer exponent and does not have these limitations (besides the exponent not being real). Some dialects, such as B (BCause implementation) and PicoLisp, in addition to these functions, had fixed-point arithmetic (multiplication, division, conversions) implemented.
-
-The list is organized alphabetically, by dialects names: https://jacknpoeexplicaprogramacao.wordpress.com/2024/03/02/10-resolucoes-de-equacao-transcendente/ or [SOLUCOES.md](SOLUCOES.md)
-
-JavaScript and PHP versions can be tested from: https://jacknpoe.rf.gd/
-
-The Scratch version is published at https://scratch.mit.edu/projects/1162953396/
-
-The Snap! version is published at https://snap.berkeley.edu/project?username=jacknpoe&projectname=juros
-
-The online WOKWI version of Arduino is published at https://wokwi.com/projects/447631899725952001
-
-The online WOKWI version of Raspberry Pi is published at https://wokwi.com/projects/447794347319174145
-
-The online WOKWI version of MicroPython is published at https://wokwi.com/projects/447878410647046145
-
-The C++ dialect versions of the solution were written in English, including Arduino and Raspberry Pi.
-
-The license is GNU [LICENSE](LICENSE).
-
-The project also includes the spreadsheet [juros.xlsx](juros.xlsx). Besides directly implementing the `jurosParaAcrescimo` algorithm, it allows the use of the `Goal Seek` tool to obtain the result of the `acrescimoParaJuros` algorithm, without needing to implement a numerical method. See [SPREADSHEET.md](SPREADSHEET.md).
 
 <br>
 

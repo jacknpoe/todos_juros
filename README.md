@@ -172,5 +172,6 @@ The license is GNU [LICENSE](LICENSE).
 
 The project also includes the spreadsheet [juros.xlsx](juros.xlsx). Besides directly implementing the `jurosParaAcrescimo` algorithm, it allows the use of the `Goal Seek` tool to obtain the result of the `acrescimoParaJuros` algorithm, without needing to implement a numerical method. See [PLANILHA.md](PLANILHA.md).
 
+<br>
 
 ![ŕesoluções/resolutions](resolu%C3%A7%C3%B5es.jpg)

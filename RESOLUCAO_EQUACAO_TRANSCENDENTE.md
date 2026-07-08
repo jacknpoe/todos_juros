@@ -41,7 +41,7 @@ O *array* `Pagamentos` terá um **método** para incluir elementos a partir de u
                 self.Pagamentos.append(float(temporaria[i]))
 ```
 
-Ele recebe um **delimitador** e uma *string* de números separados pelo **delimitador** (Exemplo: `“,”`, `“0,30,60,90”`). Por padrão, se a *string* for vazia, os valores no *array* serão incluídos com os valores de `Periodo` vezes o número da **parcela** (considerando a primeira como `1`). Por exemplo, com `Periodo` = `30.0`, para `30.0`, `60.0`, `90.0`...  até a `Quantidade` de **parcelas**.
+Ele recebe um **delimitador** e uma ***string* de números** separados pelo **delimitador** (Exemplo: `“,”`, `“0,30,60,90”`). Por padrão, se a *string* for vazia, os valores no *array* serão incluídos com os valores de `Periodo` vezes o número da **parcela** (considerando a primeira como `1`). Por exemplo, com `Periodo` = `30.0`, para `30.0`, `60.0`, `90.0`...  até a `Quantidade` de **parcelas**.
 
 O *array* `Pesos` terá um **método** parecido:
 

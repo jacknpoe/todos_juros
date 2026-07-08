@@ -96,13 +96,13 @@ The **Bisection Method** needs to have a **method** to call, and **evaluate** wh
         acumulador = 0.0
 
         for i in range(self.Quantidade):
-            if self.Composto:
-                try:
+            try:
+                if self.Composto:
                     acumulador += self.Pesos[i] / ((1.0 + juros / 100.0) ** (self.Pagamentos[i] / self.Periodo))
-                except OverflowError:
-                    pass
-            else:
-                acumulador += self.Pesos[i] / (1.0 + juros / 100.0 * self.Pagamentos[i] / self.Periodo)
+                else:
+                    acumulador += self.Pesos[i] / (1.0 + juros / 100.0 * self.Pagamentos[i] / self.Periodo)
+            except (OverflowError, ZeroDivisionError):
+                pass
 
         if acumulador <= 0.0:
             return 0.0
@@ -114,7 +114,7 @@ This method receives the **interest rate**, expressed as a percentage.
 
 We **calculate** the **total weight**, storing it in `pesototal` (total weight). This variable will be used to produce the **final result**.
 
-We **evaluate** if at least one value among `juros` (interest rate), `Quantity` (number of installments), `Periodo` (period), or `pesototal` (total weight) is **zero** or **negative**, which causes the method to return **zero**. This evaluation eliminates much of the method's misuse. In practice, only in cases like **simple interest** exactly equal to `1.0`, and an element in `Pagamentos` (payments) being **negative one hundred** times `Periodo` (period), will it cause a **division by zero**. But arrays are not being evaluated in this **version**, for **didactic** purposes.
+We **evaluate** if at least one value among `juros` (interest rate), `Quantity` (number of installments), `Periodo` (period), or `pesototal` (total weight) is **zero** or **negative**, which causes the method to return **zero**. This evaluation eliminates much of the method's misuse. In practice, only in cases like **simple interest** exactly equal to `1.0`, and an element in `Pagamentos` (payments) being **negative one hundred** times `Periodo` (period), will it cause a **division by zero**. However, errors in calculations, whether due to **overflow** or **division by zero**, are handled with a `try` block.
 
 We **initialize** the `acumulador` (accumulator) which will sum the **weighted values** ​​of the **installments** (which is the **contribution** each **installment** makes to paying the **total value**, deducting **interest**).
 

@@ -1,5 +1,12 @@
 # SOLVING TRANSCENDENT EQUATIONS
 
+<br>
+
+> **Note:**
+> An outdated version of this page was published on January 14, 2024: [Resolução de Equação Transcendente](https://jacknpoeexplicaprogramacao.wordpress.com/2024/01/14/resolucao-de-equacao-transcendente/)
+
+<br>
+
 There are **equations** that cannot be solved using **elementary algebraic methods**. These are called transcendental equations. You need to apply a concept from **Numerical Analysis** called the **Bisection Method** to solve them. This **method** is used to find the **roots** of **functions**. Here, we will solve one of these **equations**, which is the **calculation** of the **interest rate** from the **increase percentage** of a set of **weighted installments**. The only difference is that we will look for the **value** at which a **function** reaches the desired **increase**, instead of the **roots** of the **function**.
 
 Our **project** will be in **Python**, for simplicity, but the other solutions in this **repository** follow the same structure and logic. We begin by placing some basic values, which rarely change, ​​in `Juros.py` and which we will store as attributes in our `Juros` class:

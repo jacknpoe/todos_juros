@@ -81,7 +81,7 @@ Um **método** que precisamos definir antes de nossos **cálculos** é a **soma*
         return acumulador
 ```
 
-O **Método da Bisseção** precisa ter um **método** para chamar, e avaliar se o resultado está **acima** ou **abaixo** do **acréscimo alvo**. Na nossa **solução**, ele calcula os **juros** a partir do **acréscimo** e dos **atributos** do **objeto**. O **método** é `jurosparacrescimo`:
+O **Método da Bisseção** precisa ter um **método** para chamar, e avaliar se o resultado está **acima** ou **abaixo** do **acréscimo alvo**. Na nossa **solução**, ele **calcula** os **juros** a partir do **acréscimo** e dos **atributos** do **objeto**. O **método** é `jurosparacrescimo`:
 
 ```python
     def jurosparaacrescimo(self, juros=0.0):
@@ -120,7 +120,7 @@ Esse método recebe o percentual de **juros**.
 
 Retornamos **zero** se `acumulador` for **zero** ou **negativo** (porque poderia gerar uma **divisão por zero** ou resultados absurdos).
 
-O valor do **acréscimo** é calculado dividindo `pesototal` pelo **somatório dos pesos ponderados** pelos **juros** (`acumulador`), diminuindo `1.0` e multiplicando por `100.0`. Por exemplo, se o valor da divisão for `1.03`, o resultado será `3%` de **acréscimo**.
+O valor do **acréscimo** é **calculado** dividindo `pesototal` pelo **somatório dos pesos ponderados** pelos **juros** (`acumulador`), diminuindo `1.0` e multiplicando por `100.0`. Por exemplo, se o valor da divisão for `1.03`, o resultado será `3%` de **acréscimo**.
 
 Podemos **escrever**, agora, o **método** que é o objetivo desse **repositório**, `acrescimoparajuros`:
 
@@ -162,13 +162,13 @@ Em `minimadiferenca`, guardamos o valor da **precisão** que queremos, em `preci
 
 No **laço**, primeiro **verificamos** se os valores atuais em `maximojuros` e `minimojuros` diferem **menos** do que `minimadiferenca`, quando nós retornamos a **média** que se encontra em `mediojuros`, pois já encontramos o resultado com a **precisão** que queremos.
 
-A **mágica** do **algoritmo** que estamos **implementando** está no próximo `if`. Nós chamamos o método `jurosparaacrescimo` para calcularmos se, com o valor de `mediojuros` atual, o resultado do **método** fica maior ou **menor** do que o **parâmetro** `acrescimo`. Se for **menor** ou **igual**, nós alteramos `minimojuros` para `mediojuros`. Se for **maior**, nós alteramos `maximojuros` para `mediojuros`.
+A **mágica** do **algoritmo** que estamos **implementando** está no próximo `if`. Nós chamamos o método `jurosparaacrescimo` para **calcularmos** se, com o valor de `mediojuros` atual, o resultado do **método** fica maior ou **menor** do que o **parâmetro** `acrescimo`. Se for **menor** ou **igual**, nós alteramos `minimojuros` para `mediojuros`. Se for **maior**, nós alteramos `maximojuros` para `mediojuros`.
 
 A coisa mais importante, no **algoritmo**, é que ele tem esses **dois** valores, `minimojuros` e `maximojuros` que, a cada **iteração**, têm a sua **diferença** cortada pela **metade**. Eventualmente, a **diferença** pode ficar **menor** do que a **precisão** que queremos. Veja que `minimojuros` será sempre **menor** ou **igual** e `maximojuros` será sempre **maior** ou **igual** ao valor que estamos procurando.
 
 A última coisa feita no **laço** é atualizar `mediojuros` para ser a **média** entre `minimojuros` e `maximojuros`.
 
-Se o número de **iterações** alcançar `maximoiteracoes`, o valor de `mediojuros` será retornado, mesmo que não se alcance a **precisão** que calculamos em `minimadiferenca`. Isso é muito importante quando, por exemplo, por uma questão de **implementação** dos **números de ponto flutuante**, não for possível encontrar uma diferença entre `minimojuros` e `maximojuros` **menor** do que `minimadiferenca`.
+Se o número de **iterações** alcançar `maximoiteracoes`, o valor de `mediojuros` será retornado, mesmo que não se alcance a **precisão** que **calculamos** em `minimadiferenca`. Isso é muito importante quando, por exemplo, por uma questão de **implementação** dos **números de ponto flutuante**, não for possível encontrar uma diferença entre `minimojuros` e `maximojuros` **menor** do que `minimadiferenca`.
 
 Para **testar** a nossa **classe**, criamos um `main.py`:
 
@@ -193,7 +193,7 @@ print("Juros = " + str(juroscalculado))
 
 Nós importamos `Juros`. Criamos um **objeto** com `3` parcelas, juros **compostos** e com períodos de `30.0` dias. Chamamos `juros.setpagamentos` e `juros.setpesos` sem **parâmetros**, para que `juros.pagamentos` seja igual a [`30.0`, `60.0`, `90.0`] e `juros.pesos` seja igual a [`1.0`, `1.0`, `1.0`].
 
-Calculamos o **peso total**. Calculamos o **acréscimo** a partir de `3%` de **juros**. E fazemos o **cálculo** inverso, usando `acrescimocalculado` no **parâmetro** `acrescimo`, sem alterar os valores padrão de `juros.acrescimoparajuros` (`15` para `precisao`, `65` para `maximoiteracoes` e `50.0` para `maximojuros`).
+**Calculamos** o **peso total**. **Calculamos** o **acréscimo** a partir de `3%` de **juros**. E fazemos o **cálculo** inverso, usando `acrescimocalculado` no **parâmetro** `acrescimo`, sem alterar os valores padrão de `juros.acrescimoparajuros` (`15` para `precisao`, `65` para `maximoiteracoes` e `50.0` para `maximojuros`).
 
 Depois imprimimos os três **resultados**.
 

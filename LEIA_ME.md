@@ -71,7 +71,3 @@ A versão on-line em WOKWI de MicroPython está publicada em https://wokwi.com/p
 O projeto também inclui a planilha [juros.xlsx](juros.xlsx). Além de implementar diretamente o algoritmo `jurosParaAcrescimo`, ela permite utilizar a ferramenta `Goal Seek` (`Atingir Meta`) para obter o resultado do algoritmo `acrescimoParaJuros`, sem necessidade de implementar um método numérico. Consulte [PLANILHA.md](PLANILHA.md).
 
 A licença é GNU [LICENSE](LICENSE).
-
-<br>
-
-![ŕesoluções/resolutions](resolu%C3%A7%C3%B5es.jpg)

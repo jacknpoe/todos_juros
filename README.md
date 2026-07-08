@@ -20,9 +20,11 @@ Solving Transcendent Equations: .
 
 # PLANILHA / SPREADSHEET
 
-[PLANILHA.md](PLANILHA.md) / [SPREADSHEET.md](SPREADSHEET.md)
+Planilha: [PLANILHA.md](PLANILHA.md)
 
-[juros.xlsx](juros.xlsx)
+Spreadsheet: [SPREADSHEET.md](SPREADSHEET.md)
+
+Arquivo / FIle: [juros.xlsx](juros.xlsx)
 
 <br>
 

@@ -156,7 +156,7 @@ Primeiro, **calculamos** o `pesototal`. Aqui ele não é usado para **cálculos*
 
 Então **testamos** se alguns valores são iguais a **zero** ou **negativos** (`maximoiteracoes`, `Quantidade`, `precisao`, `Periodo`, `acrescimo`, `pesototal` e `maximojuros`), se sim, retornamos **zero**.
 
-Nós **iniciamos** o **mínimo de juros** como **zero**, `minimojuros` e a **média de juros** como metade de `maximojuros`, `mediojuros`.
+Nós **inicializamos** o **mínimo de juros** como **zero**, `minimojuros` e a **média de juros** como metade de `maximojuros`, `mediojuros`.
 
 Em `minimadiferenca`, guardamos o valor da **precisão** que queremos, em `precisao` de **casas decimais**, para podermos avaliar quando o **algoritmo** pode parar (por exemplo, `0.0001` quando definimos `precisao` como `4`).
 

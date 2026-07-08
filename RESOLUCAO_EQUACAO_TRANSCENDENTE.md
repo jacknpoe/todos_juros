@@ -112,7 +112,7 @@ Esse método recebe o percentual de **juros**.
 
 **Calculamos** o **peso total**, guardando em `pesototal`. A variável será usada para produzir o **resultado final**.
 
-**Avaliamos** se ao menos um valor entre `juros`, `Quantidade`, `Periodo` ou `pesototal` é **zero** ou **negativo**, o que faz o método retornar **zero**. Essa avaliação elimina boa parte do uso errado do método. Na prática, apenas em casos como `juros` **simples** exatamente igual a `1.0`, e um elemento em `Pagamentos` for **cem negativo** vezes `Periodo`, causará uma **divisão por zero**. Mas os *arrays* não estão sendo avaliados nessa **versão**, por fins **didáticos**.
+**Avaliamos** se ao menos um valor entre `juros`, `Quantidade`, `Periodo` ou `pesototal` é **zero** ou **negativo**, o que faz o método retornar **zero**. Essa avaliação elimina boa parte do uso errado do método. Na prática, apenas em casos como **juros simples** exatamente igual a `1.0`, e um elemento em `Pagamentos` for **cem negativo** vezes `Periodo`, causará uma **divisão por zero**. Mas os *arrays* não estão sendo avaliados nessa **versão**, por fins **didáticos**.
 
 **Inicializamos** o `acumulador` que somará o **peso ponderado** das **parcelas** (que é a **contribuição** que cada **parcela** tem em pagar o **valor total**, deduzindo-se os **juros**).
 

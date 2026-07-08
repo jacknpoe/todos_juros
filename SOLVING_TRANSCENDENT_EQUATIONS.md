@@ -3,7 +3,7 @@
 <br>
 
 > [!NOTE]
-> An outdated version of this page was published on January 14, 2024: [Resolução de Equação Transcendente](https://jacknpoeexplicaprogramacao.wordpress.com/2024/01/14/resolucao-de-equacao-transcendente/)
+> An outdated version of this page was published on January 14, 2024: [Resolução de Equação Transcendente](https://jacknpoeexplicaprogramacao.wordpress.com/2024/01/14/resolucao-de-equacao-transcendente/).
 
 <br>
 

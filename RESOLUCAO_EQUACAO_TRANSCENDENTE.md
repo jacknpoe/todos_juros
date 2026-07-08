@@ -94,13 +94,13 @@ O **Método da Bisseção** precisa ter um **método** para chamar, e **avaliar*
         acumulador = 0.0
 
         for i in range(self.Quantidade):
-            if self.Composto:
-                try:
+            try:
+                if self.Composto:
                     acumulador += self.Pesos[i] / ((1.0 + juros / 100.0) ** (self.Pagamentos[i] / self.Periodo))
-                except OverflowError:
-                    pass
-            else:
-                acumulador += self.Pesos[i] / (1.0 + juros / 100.0 * self.Pagamentos[i] / self.Periodo)
+                else:
+                    acumulador += self.Pesos[i] / (1.0 + juros / 100.0 * self.Pagamentos[i] / self.Periodo)
+            except (OverflowError, ZeroDivisionError):
+                pass
 
         if acumulador <= 0.0:
             return 0.0
@@ -112,7 +112,7 @@ Esse método recebe o percentual de **juros**.
 
 **Calculamos** o **peso total**, guardando em `pesototal`. A variável será usada para produzir o **resultado final**.
 
-**Avaliamos** se ao menos um valor entre `juros`, `Quantidade`, `Periodo` ou `pesototal` é **zero** ou **negativo**, o que faz o método retornar **zero**. Essa avaliação elimina boa parte do uso errado do método. Na prática, apenas em casos como **juros simples** exatamente igual a `1.0`, e um elemento em `Pagamentos` for **cem negativo** vezes `Periodo`, causará uma **divisão por zero**. Mas os *arrays* não estão sendo avaliados nessa **versão**, por fins **didáticos**.
+**Avaliamos** se ao menos um valor entre `juros`, `Quantidade`, `Periodo` ou `pesototal` é **zero** ou **negativo**, o que faz o método retornar **zero**. Essa avaliação elimina boa parte do uso errado do método. Na prática, apenas em casos como **juros simples** exatamente igual a `1.0`, e um elemento em `Pagamentos` for **cem negativo** vezes `Periodo`, causará uma **divisão por zero**. Mas erros nos cálculos, seja por ***overflow***, seja por **divisão por zero**, são tratados com um bloco `try`.
 
 **Inicializamos** o `acumulador` que somará o **peso ponderado** das **parcelas** (que é a **contribuição** que cada **parcela** tem em pagar o **valor total**, deduzindo-se os **juros**).
 

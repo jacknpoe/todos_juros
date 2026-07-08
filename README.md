@@ -23,7 +23,7 @@ The list of solutions is organized alphabetically by dialect name in:
 
 Resolução de Equação Transcendente: [RESOLUCAO_EQUACAO_TRANSCENDENTE.md](RESOLUCAO_EQUACAO_TRANSCENDENTE.md).
 
-Solving Transcendent Equations: <SOON>.
+Solving Transcendent Equations: <<SOON>>.
 
 <br>
 

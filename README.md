@@ -10,9 +10,11 @@ The list of solutions is organized alphabetically by dialect name in: [SOLUCOES.
 
 <br>
 
-# RESOLUÇÃO DE EQUAÇÃO TRANSCENDENTE
+# RESOLUÇÃO DE EQUAÇÃO TRANSCENDENTE / SOLVING TRANSCENDENT EQUATIONS
 
-[RESOLUCAO_EQUACAO_TRANSCENDENTE.md](RESOLUCAO_EQUACAO_TRANSCENDENTE.md).
+Resolução de Equação Transcendente: [RESOLUCAO_EQUACAO_TRANSCENDENTE.md](RESOLUCAO_EQUACAO_TRANSCENDENTE.md).
+
+Solving Transcendent Equations: .
 
 <br>
 

@@ -34,8 +34,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 ### 4D (01/04/2025)
 
-[Juros.4dm](Juros.4dm)
-
+[Juros.4dm](Juros.4dm)  
 [Teste.4dm](Teste.4dm)
 
 ### ABC (13/02/2025) ⭐
@@ -44,8 +43,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 ### Ada (09/04/2024) ⭐
 
-[juros.adb](juros.adb)
-
+[juros.adb](juros.adb)<br>
 [juros.ads](juros.ads)
 
 [testajuros.adb](testajuros.adb)

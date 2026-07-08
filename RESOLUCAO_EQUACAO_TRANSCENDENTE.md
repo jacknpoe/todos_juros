@@ -3,6 +3,8 @@
 > **Nota:**
 > Uma versão obsoleta dessa página foi publicada em 14 de janeiro de 2024: [Resolução de Equação Transcendente](https://jacknpoeexplicaprogramacao.wordpress.com/2024/01/14/resolucao-de-equacao-transcendente/)
 
+<br>
+
 Existem **equações** que não podem ser resolvidas com **métodos algébricos elementares**. São as chamadas [equações transcendentes](https://pt.wikipedia.org/wiki/Equa%C3%A7%C3%A3o_transcendente). Você precisa aplicar um conceito de **Cálculo Numérico** chamado **Método da Bisseção** para resolvê-las. Esse **método** é utilizado para procurar os **zeros** das **funções**. Aqui, iremos resolver uma dessas **equações**, que é o **cálculo** do percentual de **juros** a partir do percentual de **acréscimo** de um conjunto de **parcelas ponderadas**. A única diferença é que iremos procurar o **valor** onde uma **função** chega no **acréscimo** desejado, ao invés do **zero** da **função**.
 
 Nosso **projeto** será em **Python**, por simplicidade, mas as outras soluções neste **repositório** seguem a mesma estrutura e a mesma lógica. Começamos colocando, em `Juros.py`, alguns valores básicos, que mudam pouco, e que iremos guardar como atributos em nossa classe `Juros`:

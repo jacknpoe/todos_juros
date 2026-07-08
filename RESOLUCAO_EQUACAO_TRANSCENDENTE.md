@@ -114,7 +114,7 @@ Calculamos o **peso total**, guardando em `pesototal`. A variável será usada p
 
 Avaliamos se ao menos um valor entre `juros`, `Quantidade`, `Periodo` ou `pesototal` é **zero** ou **negativo**, o que faz o método retornar **zero**. Essa avaliação elimina boa parte do uso errado do método. Na prática, apenas em casos como `juros` **simples** exatamente igual a `1.0`, e um elemento em `Pagamentos` for **cem negativo** vezes `Periodo`, causará uma **divisão por zero**. Mas os *arrays* não estão sendo avaliados nessa **versão**, por fins **didáticos**.
 
-Inicializamos o `acumulador` que somará o **peso ponderado** das **parcelas** (que é a **contribuição** que cada **parcela** tem em pagar o **valor total**, deduzindo-se os **juros**).
+**Inicializamos** o `acumulador` que somará o **peso ponderado** das **parcelas** (que é a **contribuição** que cada **parcela** tem em pagar o **valor total**, deduzindo-se os **juros**).
 
 **Iteramos** a **quantidade** de parcelas. **Incrementamos** `acumulador`, para termos a **somatória** dos **pesos ponderados das parcelas**, usando o cálculo dos **juros compostos** ou o cálculo dos **juros simples**, de acordo com `Composto`.
 

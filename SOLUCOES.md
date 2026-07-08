@@ -1,4 +1,4 @@
-# LISTA DE SOLUÇÕES
+# LISTA DE SOLUÇÕES / LIST OF SOLUTIONS
 
 No artigo [Resolução de Equação Transcendente](https://jacknpoeexplicaprogramacao.wordpress.com/2024/01/14/resolucao-de-equacao-transcendente/), foi explicado como uma equação que calcula os juros a partir do acréscimo e das parcelas pode ser feita usando Cálculo Numérico, especificamente o Método da Bisseção.
 

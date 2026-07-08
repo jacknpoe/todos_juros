@@ -164,7 +164,7 @@ No **laço**, primeiro **verificamos** se os valores atuais em `maximojuros` e `
 
 A **mágica** do **algoritmo** que estamos **implementando** está no próximo `if`. Nós chamamos o método `jurosparaacrescimo` para **calcularmos** se, com o valor de `mediojuros` atual, o resultado do **método** fica maior ou **menor** do que o **parâmetro** `acrescimo`. Se for **menor** ou **igual**, nós alteramos `minimojuros` para `mediojuros`. Se for **maior**, nós alteramos `maximojuros` para `mediojuros`.
 
-A coisa mais importante, no **algoritmo**, é que ele tem esses **dois** valores, `minimojuros` e `maximojuros` que, a cada **iteração**, têm a sua **diferença** cortada pela **metade**. Eventualmente, a **diferença** pode ficar **menor** do que a **precisão** que queremos. Veja que `minimojuros` será sempre **menor** ou **igual** e `maximojuros` será sempre **maior** ou **igual** ao valor que estamos procurando.
+A **coisa mais importante**, no **algoritmo**, é que ele tem esses **dois** valores, `minimojuros` e `maximojuros` que, a cada **iteração**, têm a sua **diferença** cortada pela **metade**. Eventualmente, a **diferença** pode ficar **menor** do que a **precisão** que queremos. Veja que `minimojuros` será sempre **menor** ou **igual** e `maximojuros` será sempre **maior** ou **igual** ao valor que estamos procurando.
 
 A última coisa feita no **laço** é atualizar `mediojuros` para ser a **média** entre `minimojuros` e `maximojuros`.
 

@@ -312,8 +312,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 ### Crystal (14/06/2024)
 
-[juros.cr](juros.cr)
-
+[juros.cr](juros.cr)<br>
 [testajuros.cr](testajuros.cr)
 
 ### csh (21/07/2025) ⭐

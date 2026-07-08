@@ -2034,6 +2034,8 @@ YLISP = Common Lisp
 
 <br>
 
-# [PLANILHA](PLANILHA.md) / [SPREADSHEET](SPREADSHEET.md)
+# PLANILHA / SPREADSHEET
+
+[PLANILHA.md](PLANILHA.md) / [SPREADSHEET.md](SPREADSHEET.md)
 
 [juros.xlsx](juros.xlsx)

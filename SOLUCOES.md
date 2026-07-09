@@ -466,7 +466,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.fan](juros.fan)
 
-### Flex (04/07/2026)
+### Felix (04/07/2026)
 
 [juros.flx](juros.flx)
 

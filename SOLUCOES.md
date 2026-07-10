@@ -22,7 +22,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 <br>
 
-# SOLUÇÕES / SOLUTIONS (415)
+# SOLUÇÕES / SOLUTIONS (416)
 
 ### 11l (14/03/2026)
 
@@ -962,6 +962,11 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 ### Nim (02/06/2024)
 
 [juros.nim](juros.nim)
+
+### Nit (10/07/2026)
+
+[juros.nit](juros.nit)<br>
+[testajuros.nit](testajuros.nit)
 
 ### Node.js (26/01/2025)
 

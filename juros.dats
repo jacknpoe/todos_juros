@@ -1,5 +1,6 @@
 // Cálculo dos juros, sendo que precisa de parcelas pra isso
 // Versão 0.1: 22/06/2026: versão feita sem muito conhecimento de ATS2
+//        0.2: 10/07/2026: simplificado cases de rJurosCompostos e rJurosSimples, de getPamentos para getPagamentos
 // COMPILAR COM: patscc -DATS_MEMALLOC_LIBC juros.dats -o juros -lm
 // a solução foi testada até 300.000 parcelas, mas com ulimit -s 65536
 
@@ -20,7 +21,7 @@ fun rGeraPagamentos (indice: int) : list0(double) =
     else nil0
 
 // função açúcar que cria a lista Pagamentos
-fun geraPamentos () : list0(double) = rGeraPagamentos(Quantidade)
+fun geraPagamentos () : list0(double) = rGeraPagamentos(Quantidade)
 
 // função recursiva que cria a lista Pagamentos
 fun rGeraPesos (indice: int) : list0(double) =
@@ -31,7 +32,7 @@ fun rGeraPesos (indice: int) : list0(double) =
 fun geraPesos () : list0(double) = rGeraPesos(Quantidade)
 
 // listas globais, para simplificar as chamadas às funções
-val Pagamentos : list0(double) = geraPamentos()
+val Pagamentos : list0(double) = geraPagamentos()
 val Pesos : list0(double) = geraPesos()
 
 // função recursiva que calcula a somatória dos elementos em Pesos
@@ -46,18 +47,15 @@ fun getPesoTotal () : double = rGetPesoTotal(Pesos)
 // função recursiva que calcula a somatória das amortizações em juros compostos
 fun rJurosCompostos (juros : double, pagamentos : list0(double), pesos : list0(double)) : double =
     case+ (pagamentos, pesos) of
-        | (nil0 (), nil0 ()) => 0.0
-        | (cons0 (pagH, pagT), nil0 ()) => 0.0
-        | (nil0 (), cons0 (pesH, pesT)) => 0.0
         | (cons0 (pagH, pagT), cons0 (pesH, pesT)) => pesH / pow(1.0 + juros / 100.0, pagH / Periodo) + rJurosCompostos(juros, pagT, pesT)
+        | (_, _) => 0.0
+
 
 // função recursiva que calcula a somatória das amortizações em juros simples
 fun rJurosSimples (juros : double, pagamentos : list0(double), pesos : list0(double)) : double =
     case+ (pagamentos, pesos) of
-        | (nil0 (), nil0 ()) => 0.0
-        | (cons0 (pagH, pagT), nil0 ()) => 0.0
-        | (nil0 (), cons0 (pesH, pesT)) => 0.0
         | (cons0 (pagH, pagT), cons0 (pesH, pesT)) => pesH / (1.0 + juros / 100.0 * pagH / Periodo) + rJurosSimples(juros, pagT, pesT)
+        | (_, _) => 0.0
 
 // função que calcula o acréscimo a partir dos juros e parcelas (com algum açúcar)
 fun jurosParaAcrescimo (juros : double) : double =

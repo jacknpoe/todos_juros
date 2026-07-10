@@ -42,7 +42,7 @@ Arquivo / File: [juros.xlsx](juros.xlsx)
 Cronologia:<br>
 Chronology:
 
-[cronologia.txt](cronologia.txt)
+[CRONOLOGIA.md](CRONOLOGIA.md)
 
 # BENCHMARK
 

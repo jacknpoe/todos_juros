@@ -1,6 +1,4 @@
-
-CRONOLOGIA / CHRONOLOGY
------------------------
+# CRONOLOGIA / CHRONOLOGY
 
 <br>
 

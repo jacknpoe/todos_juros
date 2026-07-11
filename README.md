@@ -46,8 +46,8 @@ Chronology:
 
 # BENCHMARK
 
-Benchmark (300.000 parcelas):<br>
-Benchmark (300,000 installments):
+Benchmark (300.000 parcelas, juros compostos, precisão de 15 dígitos e máximo de 65 iterações):<br>
+Benchmark (300,000 installments, compound interest, 15-digit precision, and a maximum of 65 iterations):
 
 [benchmark.png](benchmark.png)
 

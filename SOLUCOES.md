@@ -8,7 +8,8 @@ No artigo [Resolução de Equação Transcendente](RESOLUCAO_EQUACAO_TRANSCENDEN
 
 Esta é a relação dos links neste repositório para as soluções em dialetos diferentes ordenados por ordem alfabética (embora não exatamente seguindo a ordem UTF-8), divididas entre soluções e equivalentes (outras implementações, nomes alternativos ou dialetos em que a solução é coincidente). Caso seja publicada uma nova resolução, ela será adicionada à lista.
 
-⭐ ⇒ solução que considero especialmente interessante por desempenho, sintaxe, conceito, implementação, importância histórica, influência ou popularidade (quando duas ou mais soluções forem elegíveis pelo mesmo motivo, será escolhida a que está há mais tempo na lista).
+> [!NOTE]
+> ⭐ ⇒ solução que considero especialmente interessante por desempenho, sintaxe, conceito, implementação, importância histórica, influência ou popularidade (quando duas ou mais soluções forem elegíveis pelo mesmo motivo, será escolhida a que está há mais tempo na lista).
 
 <br>
 
@@ -18,7 +19,8 @@ In the article [Resolve Transcendent Equation](RESOLUCAO_EQUACAO_TRANSCENDENTE.m
 
 This is a list of links in this repository to solutions in different dialects, ordered alphabetically (though not exactly following UTF-8 order), divided between solutions and equivalents (other implementations, alternative names, or dialects where the solution is coincident). If a new solution is published, it will be added to the list.
 
-⭐ ⇒ solution that I consider especially interesting due to performance, syntax, concept, implementation, historical importance, influence, or popularity (when two or more solutions are eligible for the same reason, the one that has been on the list the longest will be chosen).
+> [!NOTE]
+> ⭐ ⇒ solution that I consider especially interesting due to performance, syntax, concept, implementation, historical importance, influence, or popularity (when two or more solutions are eligible for the same reason, the one that has been on the list the longest will be chosen).
 
 <br>
 

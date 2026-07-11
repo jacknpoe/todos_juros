@@ -636,7 +636,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.hop](juros.hop)
 
-### Hy (15/03/2025)
+### Hy (15/03/2025) ⭐
 
 [juros.hy](juros.hy)
 
@@ -680,7 +680,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.jakt](juros.jakt)
 
-### Janet (03/03/2026)
+### Janet (03/03/2026) ⭐
 
 [juros.janet](juros.janet)
 

@@ -2,6 +2,7 @@
 ;; Versão 0.1: 26/04/2025: versão feita sem muito conhecimento de ILOS
 ;;        0.2: 26/04/2025: trocados temporariamente "setq" por "defglobal" porque dava erro unbound variable no interpretador
 ;;        0.3: 27/04/2025: trocados defun por defgeneric + defmethod
+;;        0.4: 11/07/2026: corrigida / por quotient em (if (= iteracaoAtual 0) (quotient (+ minJuros maxJuros) 2.0)
 
 ;; classe cJuros com propriedades para simplificar as chamadas aos metodos
 (defclass <cJuros> ()
@@ -67,7 +68,7 @@
   (if (< (- maxJuros minJuros) minDiferenca)
     (quotient (+ minJuros maxJuros) 2.0)
     (if (= iteracaoAtual 0)
-      (/ (+ minJuros maxJuros) 2.0)
+      (quotient (+ minJuros maxJuros) 2.0)
       (if (< (jurosParaAcrescimo ojuros (quotient (+ minJuros maxJuros) 2.0)) acrescimo)
         (_acrescimoParaJuros ojuros acrescimo minDiferenca (- iteracaoAtual 1) (quotient (+ minJuros maxJuros) 2.0) maxJuros)
         (_acrescimoParaJuros ojuros acrescimo minDiferenca (- iteracaoAtual 1) minJuros (quotient (+ minJuros maxJuros) 2.0))

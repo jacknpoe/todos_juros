@@ -1,5 +1,6 @@
 ; Calculo do juros, sendo que precisa de arrays pra isso
 ; Versao 0.1: 12/03/2025: versao sem muito conhecimento de ISLisp
+;        0.2: 11/07/2026: quotient em (if (= iteracaoAtual 0) (quotient (+ minJuros maxJuros) 2.0)
 ; AVISO: algumas verificacoes foram retiradas, entao os calculos sao indefinidos para valores incorretos
 
 ; variaveis globais para simplificar as chamadas as funcoes
@@ -51,7 +52,7 @@
   (if (< (- maxJuros minJuros) minDiferenca)
     (quotient (+ minJuros maxJuros) 2.0)
     (if (= iteracaoAtual 0)
-      (/ (+ minJuros maxJuros) 2.0)
+      (quotient (+ minJuros maxJuros) 2.0)
       (if (< (jurosParaAcrescimo (quotient (+ minJuros maxJuros) 2.0)) acrescimo)
         (_acrescimoParaJuros acrescimo minDiferenca (- iteracaoAtual 1) (quotient (+ minJuros maxJuros) 2.0) maxJuros)
         (_acrescimoParaJuros acrescimo minDiferenca (- iteracaoAtual 1) minJuros (quotient (+ minJuros maxJuros) 2.0))

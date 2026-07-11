@@ -1,4 +1,11 @@
-C++ (17/09/2023)*
+
+CRONOLOGIA / CHRONOLOGY
+-----------------------
+
+(* = criação do repositório, a data de criação é anterior; ! = três em um dia; !! = quatro em um dia)
+(* = creation of the repository, the creation date is before; ! = three in a day; !! = four in a day)
+
+C++ (17/09/2023)*<br>
 PHP (17/09/2023)*
 Python (17/09/2023)*
 JavaScript (22/11/2023)
@@ -414,9 +421,3 @@ Maple (27/06/2026)
 Object Icon (02/07/2026)
 Felix (04/07/2026)
 Nit (10/07/2026)
-
-CRONOLOGIA / CHRONOLOGY
------------------------
-
-(* = criação do repositório, a data de criação é anterior; ! = três em um dia; !! = quatro em um dia)
-(* = creation of the repository, the creation date is before; ! = three in a day; !! = four in a day)

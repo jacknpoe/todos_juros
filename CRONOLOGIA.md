@@ -2,7 +2,7 @@
 CRONOLOGIA / CHRONOLOGY
 -----------------------
 
-> (* = criação do repositório, a data de criação é anterior; ! = três em um dia; !! = quatro em um dia)
+> (* = criação do repositório, a data de criação é anterior; ! = três em um dia; !! = quatro em um dia)<br>
 > (* = creation of the repository, the creation date is before; ! = three in a day; !! = four in a day)
 
 <br>

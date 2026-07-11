@@ -234,6 +234,9 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros_caml.ml](juros_caml.ml)
 
+## Carp (11/07/2026)
+[juros.carp](juros.carp) ⭐
+
 ### CFScript (30/05/2024)
 
 [juros.cfm](juros.cfm)<br>
@@ -400,7 +403,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [Juros.elm](Juros.elm)
 
-### Elvish (01/03/2026)
+### Elvish (01/03/2026) ⭐
 
 [juros.elv](juros.elv)
 

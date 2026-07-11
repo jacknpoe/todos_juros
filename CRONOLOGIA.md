@@ -2,8 +2,10 @@
 CRONOLOGIA / CHRONOLOGY
 -----------------------
 
-(* = criação do repositório, a data de criação é anterior; ! = três em um dia; !! = quatro em um dia)
-(* = creation of the repository, the creation date is before; ! = three in a day; !! = four in a day)
+> (* = criação do repositório, a data de criação é anterior; ! = três em um dia; !! = quatro em um dia)
+> (* = creation of the repository, the creation date is before; ! = three in a day; !! = four in a day)
+
+<br>
 
 C++ (17/09/2023)*
 

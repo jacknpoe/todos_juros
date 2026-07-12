@@ -1,5 +1,7 @@
 # READ ME
 
+<br>
+
 This repository is about coding, in multiple dialects, the same solution in financial mathematics. To find the interest based on the increase, dates and weights of the installments. I use the Bisection Method of Numerical Calculus to solve it. The idea is that each version adheres to the culture of each dialect as much as possible. I use as few resources as possible. I avoid adding any libraries I can.
 
 It's a "Rosetta Stone" of programming dialects.

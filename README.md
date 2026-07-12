@@ -44,6 +44,8 @@ Chronology:
 
 [CRONOLOGIA.md](CRONOLOGIA.md)
 
+<br>
+
 # BENCHMARK
 
 Benchmark (300.000 parcelas, juros compostos, precisão de 15 dígitos e máximo de 65 iterações):<br>

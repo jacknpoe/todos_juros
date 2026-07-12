@@ -1647,6 +1647,10 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.ps1](juros.ps1)
 
+### WLambda (12/07/2026)
+
+[juros.wlambda](juros.wlambda)
+
 ### WLanguage (06/08/2024)
 
 [juros.wl](juros.wl)

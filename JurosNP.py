@@ -51,10 +51,7 @@ class JurosNP:
         try:
             if self.Composto:
                 with np.errstate(over='ignore'):
-#                try:
                     acumulador = np.sum(self.Pesos / np.power(1.0 + juros / 100.0, self.Pagamentos / self.Periodo))
-#                except OverflowError:
-#                    pass
             else:
                 acumulador = np.sum(self.Pesos / (1.0 + juros / 100.0 * self.Pagamentos / self.Periodo))
         except ZeroDivisionError:

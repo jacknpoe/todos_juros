@@ -985,6 +985,11 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [jurosnu.bas](jurosnu.bas)
 
+### NumPy (13/07/2026) ⭐
+
+[JurosNP.py](JurosNP.py)<br>
+[mainNP.py](mainNP.py)
+
 ### Nushell (28/02/2026)
 
 [juros.nu](juros.nu)

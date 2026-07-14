@@ -24,7 +24,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 <br>
 
-# SOLUÇÕES / SOLUTIONS (419)
+# SOLUÇÕES / SOLUTIONS (420)
 
 ### 11l (14/03/2026)
 
@@ -1176,6 +1176,10 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [Juros.py](Juros.py)<br>
 [main.py](main.py)
+
+### PyTorch (14/07/2026)
+[JurosPT.py](JurosPT.py)<br>
+[mainPT.py](mainPT.py)
 
 ### q (04/03/2026) ⭐
 

@@ -1636,7 +1636,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [Juros.src](Juros.src)
 
-### Visual DialogScript (21/02/2025)
+### Visual DialogScript (21/02/2025) ⭐
 
 [juros.dsc](juros.dsc)
 

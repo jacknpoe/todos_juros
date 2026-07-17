@@ -1,5 +1,5 @@
 ;; Cálculo dos juros, sendo que precisa de parcelas pra isso
-;; Versão 0.1: 16/04/2025: versão feita sem muito conhecimento de Gauche
+;; Versão 0.1: 16/04/2025: versão feita a partir de Steel sem muito conhecimento de Gauche
 
 ;; classe cJuros com propriedades para simplificar as chamadas aos metodos
 (define-class cJuros ()

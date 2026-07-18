@@ -24,7 +24,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 <br>
 
-# SOLUÇÕES / SOLUTIONS (420)
+# SOLUÇÕES / SOLUTIONS (421)
 
 ### 11l (14/03/2026)
 
@@ -939,6 +939,10 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 ### Neko (08/03/2025)
 
 [juros.neko](juros.neko)
+
+### Nelua (18/07/2026)
+
+[juros.nelua[(juros.nelua)
 
 ### NetLogo (07/03/2025)
 

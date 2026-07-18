@@ -1,0 +1,89 @@
+-- Calcula o acréscimo a partir dos juros e os juros a partir do acréscimo
+-- Versões: 0.1: 18/07/2026: feita sem muito conhecimento de Nelua
+
+require 'vector'
+require 'string'
+
+-- estrutura para simplificar as chamadas às funções
+local Juros = @record {
+	Quantidade: int32,
+	Composto: boolean,
+	Periodo: float64,
+	Pagamentos: vector(float64),
+	Pesos: vector(float64)
+}
+
+-- calcula a somatória do vetor Pesos
+function Juros:getPesoTotal(): float64
+    local acumulador: float64 = 0.0
+    for indice = 0, self.Quantidade - 1 do
+        acumulador = acumulador + self.Pesos[indice]
+    end
+    return acumulador
+end
+
+-- calcula o acréscimo a partir dos juros e parcelas
+function Juros:jurosParaAcrescimo(juros: float64): float64
+    local pesoTotal: float64 = self:getPesoTotal()
+    if self.Quantidade < 1 or self.Periodo <= 0.0 or pesoTotal <= 0.0 or juros <= 0.0 then
+        return 0.0
+    end
+    local acumulador: float64 = 0.0
+
+    for indice = 0, self.Quantidade - 1 do
+        if self.Composto then
+            acumulador = acumulador + self.Pesos[indice] / (1.0 + juros / 100.0) ^ (self.Pagamentos[indice] / self.Periodo)
+        else
+            acumulador = acumulador + self.Pesos[indice] / (1.0 + juros / 100.0 * self.Pagamentos[indice] / self.Periodo)
+        end
+    end
+
+    if acumulador <= 0.0 then
+        return 0.0
+    end
+    return (pesoTotal / acumulador - 1.0) * 100.0
+end
+
+-- calcula os juros a partir do acréscimo e parcelas
+function Juros:acrescimoParaJuros(acrescimo: float64, precisao: int16, maxIteracoes: int16, maxJuros: float64): float64
+    local pesoTotal: float64 = self:getPesoTotal()
+    if self.Quantidade < 1 or self.Periodo <= 0.0 or pesoTotal <= 0.0 or acrescimo <= 0.0 or precisao < 1 or maxIteracoes < 1 or maxJuros <= 0.0 then
+        return 0.0
+    end
+    local minJuros: float64 = 0.0
+    local medJuros: float64 = maxJuros / 2.0
+    local minDiferenca: float64 = 0.1 ^ precisao
+
+    for indice = 1, maxIteracoes do
+        if maxJuros - minJuros <= minDiferenca then
+            return medJuros
+        end
+        if self:jurosParaAcrescimo(medJuros) < acrescimo then
+            minJuros = medJuros
+        else
+            maxJuros = medJuros
+        end
+        medJuros = (minJuros + maxJuros) / 2.0
+    end
+
+    return medJuros
+end
+
+-- cria um objeto juros do tipo Juros e inicializa os membros escalares
+local juros: Juros = Juros{Quantidade = 3, Composto = true, Periodo = 30.0}
+
+-- insere elementos nos membros vetores de juros
+for indice = 1, juros.Quantidade do
+    juros.Pagamentos:push(indice * juros.Periodo)
+    juros.Pesos:push(1.0)
+end
+
+-- calcula e guarda os resultados das funções
+local pesoTotal: float64 = juros:getPesoTotal()
+local acrescimoCalculado: float64 = juros:jurosParaAcrescimo(3.0)
+local jurosCalculado: float64 = juros:acrescimoParaJuros(acrescimoCalculado, 15, 65, 50.0)
+
+-- imprime os resultados
+print( string.format("Peso total = %.15f", pesoTotal))
+print( string.format("Acréscimo = %.15f", acrescimoCalculado))
+print( string.format("Juros = %.15f", jurosCalculado))

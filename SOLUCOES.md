@@ -942,7 +942,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 ### Nelua (18/07/2026)
 
-[juros.nelua[(juros.nelua)
+[juros.nelua](juros.nelua)
 
 ### NetLogo (07/03/2025)
 

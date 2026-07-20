@@ -1,0 +1,183 @@
+// Cálculo dos juros, sendo que precisa de parcelas pra isso
+// Versão 0.1: 19/07/2026: feita sem muito conhecimento de Rune (DataDraw)
+//        0.2: 20/07/2026: agora orientada a objetos
+// a solução tem uma estrela por ser a primeira do repositório com ln() e exp() normalizados
+
+// essa importação é necessária apenas para .f64tostring()
+import runtime
+
+// #################### FUNCOES FORA DO DOMINIO DO PROBLEMA (MATEMATICA BASICA DE PONTO FIXO, EXPONENCIACAO, ETC.) ####################
+
+// para imprimir com 17 casas decimais, a outra opção seria 7 casas
+func float2string(x: f64) -> string {
+    s = ""
+    runtime.f64tostring(s, x)
+    return s
+}
+
+// essa função é especial para expoentes inteiros (usada por expn)
+func powint(base: f64, expoente: i32) -> f64 {
+	if expoente < 0i32{
+        return powint(1.0 / base, expoente * -1i32);
+    }
+	if expoente == 0i32 {
+        return 1.0;
+    }
+	if expoente % 2i32 == 0i32 {
+        return powint(base * base, expoente / 2i32);
+    }
+	return base * powint(base * base, (expoente - 1i32) / 2i32);
+}
+
+// essa "constante" elimina um número mágico no retorno de ln() e cálculo de ajuste em exp()
+LN2: f64 = 0.69314718055994530
+
+// função ln() normalizada, de uso geral
+func ln(valor: f64) -> f64 {
+    soma: f64 = 0.0;
+    ajuste: i32 = 0i32;
+    indice: f64 = 1.0;
+    atingiu: bool = false
+    x: f64 = valor;
+
+    // aqui x é normalizado
+    while x >= 2.0 {
+        x /= 2.0;
+        ajuste += 1i32;
+    }
+    while x < 1.0 {
+        x *= 2.0;
+        ajuste -= 1i32;
+    }
+
+    termo: f64 = (x - 1.0) / (x + 1.0);
+    yy: f64 = termo * termo;
+
+    while ! atingiu {
+        soma += termo / (2.0 * indice - 1.0);
+        termo *= yy;
+        if (soma + termo == soma) {
+            atingiu = true;
+        }
+        indice += 1.0;
+    }
+
+    // ajuste * LN2 recupera o que a normalização fez sobre x
+    return 2.0 * soma + <f64>ajuste * LN2;
+}
+
+// função exp() normalizada, de uso geral
+func exp(valor: f64) -> f64 {
+    termo: f64 = 1.0;
+    soma: f64 = 1.0;
+    indice: f64 = 1.0;
+    atingiu: bool = false;
+
+    // aqui x é normalizado
+    ajuste: i32 = <i32>(valor / LN2) - (valor < 0.0 ? 1i32 : 0i32);
+    x: f64 = valor - <f64>ajuste * LN2;
+
+    while ! atingiu {
+        termo *= x / indice;
+        soma += termo;
+        if soma + termo == soma {
+            atingiu = true;
+        }
+        indice += 1.0;
+    }
+
+    // powint(2.0, ajuste) recupera o que a normalização fez sobre x
+    return soma * powint(2.0, ajuste);
+}
+
+// pow() é calculado pela equação clássica exp(ln(base) * expoente)
+func pow(base: f64, expoente: f64) {
+    return exp(ln(base) * expoente);
+}
+
+// #################### FUNCOES DENTRO DO DOMINIO DO PROBLEMA (MATEMATICA FINANCEIRA) ####################
+
+// classe juros com atributos para simplificar as chamadas aos métodos
+class Juros(self: Juros, Quantidade: u64, Composto: bool, Periodo: f64) {
+    // o construtor não tem uma função
+    self.Quantidade = Quantidade;
+    self.Composto = Composto;
+    self.Periodo = Periodo;
+    self.Pagamentos = arrayof(f64);
+    self.Pesos = arrayof(f64);
+
+    // calcula a somatória dos elementos no array Pesos[]
+    func getPesoTotal(self: Juros) -> f64 {
+        acumulador: f64 = 0.0;
+        for indice = 0, indice < self.Quantidade, indice += 1 {
+            acumulador += self.Pesos[indice];
+        }
+        return acumulador;
+    }
+
+    // calcula o acréscimo a partir dos juros e parcelas
+    func jurosParaAcrescimo(self: Juros, juros: f64) -> f64 {
+        pesoTotal: f64 = self.getPesoTotal();
+        if self.Quantidade < 1 || self.Periodo <= 0.0 || pesoTotal <= 0.0 || juros <= 0.0 {
+            return 0.0;
+        }
+        acumulador: f64 = 0.0;
+
+        for indice = 0, indice < self.Quantidade, indice += 1 {
+            if self.Composto {
+                acumulador += self.Pesos[indice] / pow(1.0 + juros / 100.0, self.Pagamentos[indice] / self.Periodo);
+            } else {
+                acumulador += self.Pesos[indice] / (1.0 + juros / 100.0 * self.Pagamentos[indice] / self.Periodo);
+            }
+        }
+
+        if acumulador <= 0.0 {
+            return 0.0;
+        }
+        return (pesoTotal / acumulador - 1.0) * 100.0;
+    }
+
+    // calcula os juros a partir do acréscimo e parcelas
+    func acrescimoParaJuros(self: Juros, acrescimo: f64, precisao: i32, maxIteracoes: i32, maximoJuros: f64) -> f64 {
+        pesoTotal: f64 = self.getPesoTotal();
+        if self.Quantidade < 1 || self.Periodo <= 0.0 || pesoTotal <= 0.0 || acrescimo <= 0.0 || precisao < 1i32 || maxIteracoes < 1i32 || maximoJuros <= 0.0 {
+            return 0.0;
+        }
+        minJuros: f64 = 0.0;
+        medJuros: f64 = maximoJuros / 2.0;
+        maxJuros: f64 = maximoJuros;
+        minDiferenca: f64 = pow(0.1, <f64>precisao);
+        iteracao: i32 = 0i32;
+
+        while iteracao < maxIteracoes && maxJuros - minJuros > minDiferenca {
+            if self.jurosParaAcrescimo(medJuros) < acrescimo {
+                minJuros = medJuros;
+            } else {
+                maxJuros = medJuros;
+            }
+            medJuros = (minJuros + maxJuros) / 2.0;
+            iteracao += 1i32;
+        }
+
+        return medJuros;
+    }
+}
+
+// cria um objeto juros da classe Juros e inicializa atributos escalares
+juros: Juros = Juros(3, true, 30.0);
+
+// inclui elementos nos atributos arrays Pagamentos[] e Pesos[]
+for indiceglobal = 0, indiceglobal < juros.Quantidade, indiceglobal += 1 {
+    juros.Pagamentos.append((<f64>indiceglobal + 1.0) * juros.Periodo);
+    juros.Pesos.append(1.0);
+}
+
+// calcula e guarda os resultados das funções
+pesoTotal: f64 = juros.getPesoTotal();
+acrescimoCalculado: f64 = juros.jurosParaAcrescimo(3.0);
+jurosCalculado: f64 = juros.acrescimoParaJuros(acrescimoCalculado, 15i32, 65i32, 50.0);
+
+// imprime os resultados
+println "Peso total = ", float2string(pesoTotal);
+println "Acréscimo = ", float2string(acrescimoCalculado);
+println "Juros = ", float2string(jurosCalculado);

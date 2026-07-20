@@ -1,4 +1,4 @@
-/* Calculo dos juros, sendo que precisa de parcelas pra isso
+/* Cálculo dos juros, sendo que precisa de parcelas pra isso
    Versão 0.1: 19/02/2026: ate o momento, a matematica de fixed-points, globais, inicializacao e getPesoTotal()
           0.2: 20/02/2026: jurosParaAcrecimo() e a acrescimoParaJuros()
           0.3: 24/03/2026: agora termo = mulfp(termo, x / indice); na linha 132, mais simples

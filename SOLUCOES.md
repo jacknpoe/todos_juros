@@ -1310,6 +1310,10 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.rb](juros.rb)
 
+### Rune (DataDraw) (20/07/2026)
+
+[juros.rn](juros.rn)
+
 ### Rust (13/03/2024)
 
 [juros.rs](juros.rs)<br>

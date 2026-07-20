@@ -1306,15 +1306,15 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.roc](juros.roc)
 
-### Ruby (12/03/2024)
+### Ruby (12/03/2024) ⭐
 
 [juros.rb](juros.rb)
 
-### Rune (DataDraw) (20/07/2026)
+### Rune (DataDraw) (20/07/2026) ⭐
 
 [juros.rn](juros.rn)
 
-### Rust (13/03/2024)
+### Rust (13/03/2024) ⭐
 
 [juros.rs](juros.rs)<br>
 [main.rs](main.rs)

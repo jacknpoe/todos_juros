@@ -7,7 +7,7 @@ let float = import! std.float
 let io @ { ? } = import! std.io
 
 // globais escalares para simplificar as chamadas às funções, inicializadas
-let quantidade : Int = 300000
+let quantidade : Int = 3
 let composto : Bool = True
 let periodo : Float = 30.0
 
@@ -35,8 +35,6 @@ rec let rJurosCompostos pagamentos pesos juros indice =
 rec let rJurosSimples pagamentos pesos juros indice =
     if indice < 0 then 0.0
     else (rJurosSimples pagamentos pesos juros (indice - 1)) + (array.index pesos indice) / (1.0 + juros / 100.0 * (array.index pagamentos indice) / periodo)
-
-// let mindiferenca = (float.powi pontoum precisao)
 
 (\_ ->
     // funções açúcares que criam arrays para pagsmentos e pesos

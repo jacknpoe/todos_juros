@@ -1,7 +1,7 @@
 // Cálculo dos juros, sendo que precisa de parcelas pra isso
 // Versão 0.1: 19/07/2026: feita sem muito conhecimento de Rune (DataDraw)
 //        0.2: 20/07/2026: agora orientada a objetos
-// a solução tem uma estrela por ser a primeira do repositório com ln() e exp() normalizados
+// a solução tem um 🔧 por ser a primeira do repositório com ln() e exp() normalizados
 
 // essa importação é necessária apenas para .f64tostring()
 import runtime

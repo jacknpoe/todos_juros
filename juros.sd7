@@ -75,7 +75,7 @@ begin
             end if;
             indice := indice + 1;
         end while;
-    end if
+    end if;
 end func;
 
 const proc: main is func

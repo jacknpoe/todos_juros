@@ -12,7 +12,6 @@ For indice% = 1 To quantidade%
     Let pesos#(indice%) = 1.0
 Next indice%
 
-
 ' calcula, guarda os resultados das funcoes e imprime
 GoSub getPesoTotal
 Print "Peso total = "; Using "#.###############"; pesoTotal#

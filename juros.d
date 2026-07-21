@@ -19,6 +19,7 @@ class Juros {
 		Pagamentos = pagamentos;
 		Pesos = pesos;
 	}
+
 	// calcula a somatória de Pesos[]
 	double getPesoTotal() {
 		double acumulador = 0.0;

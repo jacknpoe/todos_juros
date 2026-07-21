@@ -1801,10 +1801,6 @@ JavaScript: [juroswww.js](juroswww.js)
 
 <br>
 
-[^forth]: **Forth:** 🧠 🏛️ 🔧 💡 ✍️
-
-<br>
-
 # EQUIVALENTES / EQUIVALENTS (86)
 
 Amstrad BASIC = Locomotive BASIC<br>
@@ -1904,4 +1900,8 @@ Planilha: [PLANILHA.md](PLANILHA.md)
 
 Spreadsheet: [SPREADSHEET.md](SPREADSHEET.md)
 
-Arquivo / FIle: [juros.xlsx](juros.xlsx)
+Arquivo / File: [juros.xlsx](juros.xlsx)
+
+<br>
+
+[^forth]: **Forth:** 🧠 🏛️ 🔧 💡 ✍️

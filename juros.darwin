@@ -21,7 +21,7 @@
 
 # variáveis globais para simplificar as chamadas às funções
 # (as variáveis que se precisar alterar dentro de main devem estar listadas na primeira linha: global <vars>)
-Quantidade := 300000;
+Quantidade := 3;
 Composto := true;
 Periodo := 30.0;
 Pagamentos := CreateArray(1..Quantidade);

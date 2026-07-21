@@ -4,6 +4,7 @@
 # Versão 0.1: 05/07/2025: versão feita sem muito conhecimento de Dash
 # ATENÇÃO: Não funciona no Linux do Windows, porque bc retorna um carriage return (^M) que o Dash não trata,
 #          Testes (Ubuntu 23.10 e Debian 12.0.0 em VirtualBox) executaram em cerca de um segundo por parcela.
+#          Dash está listado com 🔧 na lista de soluções pela forma inovadora de substituir arrays por funções
 
 # variáveis globais para simplificar as chamadas
 Quantidade=3

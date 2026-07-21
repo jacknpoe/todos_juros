@@ -24,7 +24,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 <br>
 
-# SOLUÇÕES / SOLUTIONS (421)
+# SOLUÇÕES / SOLUTIONS (422)
 
 ### 11l (14/03/2026) 🚀 ✍️
 
@@ -69,7 +69,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 [JUROS.AMOS](JUROS.AMOS)
 
-### AngelScript (02/02/2026)
+### AngelScript (02/02/2026) 🧠 🔧
 
 [jurosAS.as](jurosAS.as)<br>
 [runAS.cpp](runAS.cpp)
@@ -101,7 +101,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 [jurosArc.lsp](jurosArc.lsp)
 
-### Arden (06/02/2025)
+### Arden (06/02/2025) 🧠 🔧 ✍️
 
 [acrescimoParaJuros.mlm](acrescimoParaJuros.mlm)<br>
 [jurosParaAcrescimo.mlm](jurosParaAcrescimo.mlm)<br>
@@ -799,7 +799,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.sna](juros.sna)
 
-### Logo (11/06/2024) 🏛️ 🔧 💡 ✍️
+### Logo (11/06/2024) 🧠 🏛️ 🔧 💡 ✍️
 
 [juros.lgo](juros.lgo)<br>
 [testajuros.lgo](testajuros.lgo)
@@ -1091,7 +1091,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 [Juros.pm](Juros.pm)<br>
 [testajuros.pl](testajuros.pl)
 
-### pForth (02/01/2026)
+### Gforth (02/01/2026) 🚀 [^forth]
 
 [jurosp.fth](jurosp.fth)
 
@@ -1352,7 +1352,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.sce](juros.sce)
 
-### Scratch (17/04/2025) 🏛️ 🔧 💡 💖 ✍️
+### Scratch (17/04/2025) 🧠 🏛️ 🔧 💡 💖 ✍️
 
 [juros.sb3](juros.sb3)
 
@@ -1416,7 +1416,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.sml](juros.sml)
 
-### Snap! (21/05/2024) 🧠 🔧 ✍️
+### Snap! (21/05/2024) 🔧 ✍️
 
 [juros.xml](juros.xml)
 
@@ -1437,7 +1437,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.source](juros.source)
 
-### SP-Forth (03/01/2026)
+### SP-Forth (03/01/2026) [^forth]
 
 [jurosSP.fth](jurosSP.fth)
 
@@ -1620,7 +1620,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.vala](juros.vala)
 
-### VFX Forth 64 (19/06/2025) 🧠 🏛️ 🔧 💡 ✍️
+### VFX Forth 64 (19/06/2025) [^forth]
 
 [juros.fth](juros.fth)
 
@@ -1801,6 +1801,10 @@ JavaScript: [juroswww.js](juroswww.js)
 
 <br>
 
+[^forth]: **Forth:** 🧠 🏛️ 🔧 💡 ✍️
+
+<br>
+
 # EQUIVALENTES / EQUIVALENTS (86)
 
 Amstrad BASIC = Locomotive BASIC<br>
@@ -1827,7 +1831,6 @@ Gambit = Scheme<br>
 gawk = awk<br>
 Generic Java = Java<br>
 Gerbil Scheme = Kawa/Steel<br>
-Gforth = pForth<br>
 GNU Bourne-Again Shell = Bash<br>
 GNU Octave = Octave<br>
 Guile = Kawa/Scheme/Steel<br>
@@ -1843,7 +1846,7 @@ Linden Scripting Language = LSL<br>
 MaPLe (MPL) = Alice<br>
 MariaDB = MySQL<br>
 Microsoft Office Visual Basic for Applications = OpenOffice Basic<br>
-MinForth = pForth<br>
+MinForth = Gforth<br>
 MirBSD Korn Shell = ksh<br>
 mksh = POSIX sh<br>
 MLton = Alice<br>
@@ -1859,6 +1862,7 @@ OpenMP = Intel oneAPI DPC++<br>
 OSH (Oil Shell) = Bash<br>
 Pascal ISO 7185 = MSX Turbo Pascal<br>
 PC-BASIC = GW-BASIC<br>
+pForth = Gforth<br>
 Pizza = Java<br>
 PicoC = C<br>
 PoSh = Windows PowerShell<br>
@@ -1881,7 +1885,7 @@ SpiderBasic = PureBasic<br>
 Squeak = Smalltalk<br>
 STklos = Gauche/Kawa/Scheme/Steel<br>
 SWI-Prolog = Prolog<br>
-SwiftForth = pForth<br>
+SwiftForth = Gforth<br>
 SYCL = Intel oneAPI DPC++<br>
 tcsh = csh<br>
 TOM = Java<br>

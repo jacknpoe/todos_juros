@@ -562,7 +562,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.G32](juros.G32)
 
-### Gforth (02/01/2026) 🚀 [ⓘ](#nota-forth)
+### Gforth (02/01/2026) 🚀 [①](#nota-forth)
 
 [jurosp.fth](jurosp.fth)
 
@@ -1437,7 +1437,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.source](juros.source)
 
-### SP-Forth (03/01/2026) [ⓘ](#nota-forth)
+### SP-Forth (03/01/2026) [①](#nota-forth)
 
 [jurosSP.fth](jurosSP.fth)
 
@@ -1620,7 +1620,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.vala](juros.vala)
 
-### VFX Forth 64 (19/06/2025) [ⓘ](#nota-forth)
+### VFX Forth 64 (19/06/2025) [①](#nota-forth)
 
 [juros.fth](juros.fth)
 
@@ -1906,4 +1906,4 @@ Arquivo / File: [juros.xlsx](juros.xlsx)
 
 <a id="nota-forth"></a>
 
-### ⓘ Forth 🧠 🏛️ 🔧 💡 ✍️
+### ① Forth 🧠 🏛️ 🔧 💡 ✍️

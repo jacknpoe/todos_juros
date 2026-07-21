@@ -1,5 +1,6 @@
 # Cálculo dos juros, sendo que precisa de parcelas pra isso
 # Versão 0.1: 27/06/2026: versão feita sem muito conhecimento de Maple
+#        0.2: 20/07/2026: retirado Composto dos globais de main
 # PARA EXECUTAR OS TESTES: copie e cole todo o arquivo na área de trabalho do Maple e pressione enter
 
 # para imprimir (e supõe-se calcular) com 18 dígitos (na prática, 16 dígitos, incluindo a parte inteira)
@@ -82,7 +83,7 @@ acrescimoParaJuros := proc(acrescimo, precisao, maxIteracoes, maximoJuros)
 end proc:
 
 main := proc()
-    global Quantidade, Composto, Periodo, Pagamentos, Pesos;
+    global Quantidade, Periodo, Pagamentos, Pesos;  # Composto, foi retirado, se não rodar, recoloque como global
     local indice, pesoTotal, acrescimoCalculado, jurosCalculado;
 
     # inicialização dos elementos nos arrays globais

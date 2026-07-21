@@ -562,6 +562,10 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.G32](juros.G32)
 
+### Gforth (02/01/2026) 🚀 [ⓘ](#nota-forth)
+
+[jurosp.fth](jurosp.fth)
+
 ### Gleam (18/03/2025) 🔧 ✍️
 
 [juros.gleam](juros.gleam)
@@ -812,7 +816,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.lsl](juros.lsl)
 
-
+### Lua (26/03/2024) 🧠 🚀 🏛️ 💡 💖
 
 [juros.lua](juros.lua)
 
@@ -1090,10 +1094,6 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [Juros.pm](Juros.pm)<br>
 [testajuros.pl](testajuros.pl)
-
-### Gforth (02/01/2026) 🚀 [^forth]
-
-[jurosp.fth](jurosp.fth)
 
 ### PHP (17/09/2023) 🧠 🚀 🏛️ 🔧 💡 💖 ✍️
 
@@ -1437,7 +1437,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.source](juros.source)
 
-### SP-Forth (03/01/2026) [^forth]
+### SP-Forth (03/01/2026) [ⓘ](#nota-forth)
 
 [jurosSP.fth](jurosSP.fth)
 
@@ -1620,7 +1620,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.vala](juros.vala)
 
-### VFX Forth 64 (19/06/2025) [^forth]
+### VFX Forth 64 (19/06/2025) [ⓘ](#nota-forth)
 
 [juros.fth](juros.fth)
 
@@ -1904,4 +1904,6 @@ Arquivo / File: [juros.xlsx](juros.xlsx)
 
 <br>
 
-[^forth]: **Forth:** 🧠 🏛️ 🔧 💡 ✍️
+<a id="nota-forth"></a>
+
+### ⓘ Forth 🧠 🏛️ 🔧 💡 ✍️

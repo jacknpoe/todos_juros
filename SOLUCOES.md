@@ -24,9 +24,9 @@ This is a list of links in this repository to solutions in different dialects, o
 
 <br>
 
-# SOLUÇÕES / SOLUTIONS (422)
+# SOLUÇÕES / SOLUTIONS (421)
 
-### 11l (14/03/2026)
+### 11l (14/03/2026) 🚀 ✍️
 
 [juros.11l](juros.11l)
 
@@ -39,11 +39,11 @@ This is a list of links in this repository to solutions in different dialects, o
 [Juros.4dm](Juros.4dm)<br>
 [Teste.4dm](Teste.4dm)
 
-### ABC (13/02/2025) ⭐
+### ABC (13/02/2025) ✍️
 
 [juros.abc](juros.abc)
 
-### Ada (09/04/2024) ⭐
+### Ada (09/04/2024) 🧠 🏛️
 
 [juros.adb](juros.adb)<br>
 [juros.ads](juros.ads)<br>
@@ -57,7 +57,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 [juros.as](juros.as)
 
-### ALGOL 68 (07/05/2024) ⭐
+### ALGOL 68 (07/05/2024) 🧠 🏛️ 💡 ✍️
 
 [juros.a68](juros.a68)
 
@@ -74,7 +74,7 @@ This is a list of links in this repository to solutions in different dialects, o
 [jurosAS.as](jurosAS.as)<br>
 [runAS.cpp](runAS.cpp)
 
-### APDL (24/02/2026) ⭐
+### APDL (24/02/2026) ✍️
 
 [acrescimoParaJuros.mac](acrescimoParaJuros.mac)<br>
 [getPesoTotal.mac](getPesoTotal.mac)<br>
@@ -108,7 +108,7 @@ This is a list of links in this repository to solutions in different dialects, o
 [new_mlm.mlm](new_mlm.mlm)<br>
 [pesoTotal.mlm](pesoTotal.mlm)
 
-### Arduino (14/07/2024) ⭐
+### Arduino (14/07/2024) 🧠 💖
 
 [interest.ino](interest.ino)
 
@@ -116,7 +116,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 [juros.atstate2](juros.atstate2)
 
-### ATS2 (22/06/2026) ⭐
+### ATS2 (22/06/2026) 🚀
 
 [juros.dats](juros.dats)
 
@@ -132,11 +132,11 @@ This is a list of links in this repository to solutions in different dialects, o
 
 [juros.lsp](juros.lsp)
 
-### awk (19/06/2024)
+### awk (19/06/2024) 🚀
 
 [jurs.awk](jurs.awk)
 
-### B (BCause implementation) (20/02/2026) ⭐
+### B (BCause implementation) (20/02/2026) 🏛️ 💡
 
 [juros.b](juros.b)
 
@@ -152,7 +152,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 [jurosbas.bas](jurosbas.bas)
 
-### Bash (04/07/2025) ⭐
+### Bash (04/07/2025) 🧠 🏛️ 💡 💖
 
 [juros.sh](juros.sh)
 
@@ -164,11 +164,11 @@ This is a list of links in this repository to solutions in different dialects, o
 
 [JUROSBBC.BAS](JUROSBBC.BAS)
 
-### bc (25/03/2025) ⭐
+### bc (25/03/2025) 🏛️
 
 [juros.bc](juros.bc)
 
-### Bend (08/08/2024) ⭐
+### Bend (08/08/2024) 🧠
 
 mapas: [juros.bend](juros.bend)<br>
 funções: [jurosf.bend](jurosf.bend)
@@ -193,7 +193,7 @@ funções: [jurosf.bend](jurosf.bend)
 
 [juros.blu](juros.blu)
 
-### Boo (14/05/2026)
+### Boo (14/05/2026) 🧠 🚀 🔧 ✍️
 
 [juros.boo](juros.boo)
 
@@ -206,7 +206,7 @@ funções: [jurosf.bend](jurosf.bend)
 
 [jurosbw.bas](jurosbw.bas)
 
-### C (01/03/2024) ⭐
+### C (01/03/2024) 🧠 🚀 🏛️ 💡 💖 ✍️
 
 [juros.c](juros.c)<br>
 otimizado: [juros_otimizado.c](juros_otimizado.c)
@@ -216,33 +216,33 @@ otimizado: [juros_otimizado.c](juros_otimizado.c)
 [juros.ci](juros.ci)<br>
 [testajurosCI.py](testajurosCI.py)
 
-### C# (21/02/2024) ⭐
+### C# (21/02/2024) 🚀
 
 [Juros.cs](Juros.cs)<br>
 [TesteJuros.cs](TesteJuros.cs)
 
-### C++ (17/09/2023) ⭐
+### C++ (17/09/2023) 🧠 🚀 🏛️ 💡 💖 ✍️
 
 [interest.cpp](interest.cpp)<br>
 recursivo: [juros_rec.cpp](juros_rec.cpp)
 
-### Cakelisp (16/02/2026) ⭐
+### Cakelisp (16/02/2026) 🧠 🚀 ✍️
 
 [juros.cake](juros.cake)
 
-### Caml (25/03/2025)
+### Caml (25/03/2025) 🏛️ 💡
 
 [juros_caml.ml](juros_caml.ml)
 
-### Carp (11/07/2026)
-[juros.carp](juros.carp) ⭐
+### Carp (11/07/2026) 🧠 🚀 🔧 ✍️
+[juros.carp](juros.carp)
 
 ### CFScript (30/05/2024)
 
 [juros.cfm](juros.cfm)<br>
 [base.css](base.css)
 
-### Chapel (31/07/2024) ⭐
+### Chapel (31/07/2024)
 
 [juros.chpl](juros.chpl)
 
@@ -250,7 +250,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [jurosCH.bas](jurosCH.bas)
 
-### Cilk (29/07/2025)
+### Cilk (29/07/2025) 🧠 🚀
 
 [jurosc.c](jurosc.c)
 
@@ -266,7 +266,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.icl](juros.icl)
 
-### Clipper (24/03/2025) ⭐
+### Clipper (24/03/2025) 🧠 🏛️ 💡 💖 ✍️
 
 [JUROSCLI.PRG](JUROSCLI.PRG)
 
@@ -274,7 +274,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [jacknpoe.juros.clj](jacknpoe.juros.clj)
 
-### COBOL (08/02/2025) ⭐
+### COBOL (08/02/2025) 🧠 🏛️ 🔧 💖 ✍️
 
 [juros.cob](juros.cob)
 
@@ -286,7 +286,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [JUROS.CAS](JUROS.CAS)
 
-### COMAL (23/03/2025) ⭐
+### COMAL (23/03/2025) 🧠 💡 ✍️
 
 [JUROS.COM](JUROS.COM)
 
@@ -294,7 +294,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [JUROSC64.PRG](JUROSC64.PRG)
 
-### Common Lisp (27/04/2024) ⭐
+### Common Lisp (27/04/2024) 🧠 🏛️ 🔧 💡 💖 ✍️
 
 [juros.lisp](juros.lisp)
 
@@ -320,7 +320,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 [juros.cr](juros.cr)<br>
 [testajuros.cr](testajuros.cr)
 
-### csh (21/07/2025) ⭐
+### csh (21/07/2025) 🔧 ✍️
 
 [acrescimoParaJuros.csh](acrescimoParaJuros.csh)<br>
 [getPesoTotal.csh](getPesoTotal.csh)<br>
@@ -349,7 +349,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.darwin](juros.darwin)
 
-### Dash (05/07/2025)
+### Dash (05/07/2025) 🔧
 
 [jurosd.sh](jurosd.sh)
 
@@ -369,7 +369,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [JUROSDB.BAS](JUROSDB.BAS)
 
-### Delphi (28/02/2024) ⭐
+### Delphi (28/02/2024) 🧠 🏛️ 💡 💖 ✍️
 
 [Juros.pas](Juros.pas)<br>
 [TesteJuros.dpr](TesteJuros.dpr)
@@ -390,12 +390,12 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.egua](juros.egua)
 
-### Eiffel (06/05/2024) ⭐
+### Eiffel (06/05/2024) 🧠 🔧 💡
 
 [application.e](application.e)<br>
 [juros.e](juros.e)
 
-### Elixir (29/04/2024) ⭐
+### Elixir (29/04/2024) 🔧 💖
 
 [juros.exs](juros.exs)
 
@@ -403,7 +403,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [Juros.elm](Juros.elm)
 
-### Elvish (01/03/2026) ⭐
+### Elvish (01/03/2026) 🧠 🔧 ✍️
 
 [juros.elv](juros.elv)
 
@@ -411,13 +411,13 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [jurosE.lisp](jurosE.lisp)
 
-### Embedded C for ARM Cortex-M (17/02/2026)
+### Embedded C for ARM Cortex-M (17/02/2026) 🧠 🔧 ✍️
 
 [jurosELF.c](jurosELF.c)<br>
 [linker.ld](linker.ld)<br>
 [startup.c](startup.c)
 
-### Embedded C++ for ARM Cortex-M (17/02/2026)
+### Embedded C++ for ARM Cortex-M (17/02/2026) 🧠 🔧 ✍️
 
 [interestELF.cpp](interestELF.cpp)<br>
 [linker.ld](linker.ld)<br>
@@ -435,7 +435,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.eol](juros.eol)
 
-### Erlang (29/04/2024) ⭐
+### Erlang (29/04/2024) 🧠 🏛️ 🔧 💡 💖 ✍️
 
 [juros.erl](juros.erl)
 
@@ -447,7 +447,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [Formulario.psc](Formulario.psc)
 
-### Euler Math Toolbox (01/04/2025) ⭐
+### Euler Math Toolbox (01/04/2025) 🔧 ✍️
 
 [juros.en](juros.en)
 
@@ -475,7 +475,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.flx](juros.flx)
 
-### Fennel (01/02/2026) ⭐
+### Fennel (01/02/2026) 🔧 ✍️
 
 [juros.fnl](juros.fnl)
 
@@ -493,15 +493,15 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.flix](juros.flix)
 
-### Flutter (14/04/2024) ⭐
+### Flutter (14/04/2024) 🧠 🔧 💡 💖 ✍️
 
 [main.dart](main.dart)
 
-### Fortran (03/04/2024) ⭐
+### Fortran (03/04/2024) 🧠 🚀  🏛️ 🔧 💡 💖 ✍️
 
 [juros.f90](juros.f90)
 
-### FreeBASIC (22/02/2025)
+### FreeBASIC (22/02/2025) 🚀
 
 [jurosFB.bas](jurosFB.bas)
 
@@ -513,7 +513,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 [jurosParaAcrescimoFM.m](jurosParaAcrescimoFM.m)<br>
 [testajurosFM.m](testajurosFM.m)
 
-### Frege (15/02/2026)
+### Frege (15/02/2026) 🔧
 
 [Juros.fr](Juros.fr)
 
@@ -521,7 +521,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.frink](juros.frink)
 
-### Futhark (18/07/2025) ⭐
+### Futhark (18/07/2025) 🧠 🚀 🔧 ✍️
 
 [juros.fut](juros.fut)
 
@@ -546,7 +546,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.g](juros.g)
 
-### Gauche (16/02/2025) ⭐
+### Gauche (16/02/2025) 🧠 🔧 ✍️
 
 [juros.gauche.scm](juros.gauche.scm)
 
@@ -562,19 +562,19 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.G32](juros.G32)
 
-### Gleam (18/03/2025) ⭐
+### Gleam (18/03/2025) 🔧 ✍️
 
 [juros.gleam](juros.gleam)
 
-### Gluon (01/04/2026) ⭐
+### Gluon (01/04/2026) 🧠 🔧 ✍️
 
 [juros.glu](juros.glu)
 
-### Go (27/02/2024) ⭐
+### Go (27/02/2024) 💖
 
 [juros.go](juros.go)
 
-### GObject (21/04/2026) ⭐
+### GObject (21/04/2026) 🔧 ✍️
 
 [jurosgo.c](jurosgo.c)
 
@@ -586,7 +586,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [jurosGAS.gs](jurosGAS.gs)
 
-### GOOPS (02/08/2025) ⭐
+### GOOPS (02/08/2025)
 
 [juros.GOOPS.scm](juros.GOOPS.scm)
 
@@ -599,7 +599,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 [Juros.groovy](Juros.groovy)<br>
 [TesteJuros.groovy](TesteJuros.groovy)
 
-### GW-BASIC (26/05/2024) ⭐
+### GW-BASIC (26/05/2024) 🔧 💖
 
 [JUROS.BAS](JUROS.BAS)
 
@@ -620,7 +620,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.ha](juros.ha)
 
-### Haskell (04/05/2024) ⭐
+### Haskell (04/05/2024) 🔧 💡 💖 ✍️
 
 [juros.hs](juros.hs)
 
@@ -628,15 +628,15 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [Juros.hx](Juros.hx)
 
-### HolyC (17/03/2025)
+### HolyC (17/03/2025) 🚀
 
 [juros.hc](juros.hc)
 
-### Hope (29/03/2025) ⭐
+### Hope (29/03/2025) 🧠 🔧 ✍️
 
 [juros.hop](juros.hop)
 
-### Hy (15/03/2025) ⭐
+### Hy (15/03/2025) 🧠 🔧
 
 [juros.hy](juros.hy)
 
@@ -644,11 +644,11 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.icn](juros.icn)
 
-### Idris (27/06/2024) ⭐
+### Idris (27/06/2024)
 
 [juros.idr](juros.idr)
 
-### ILOS (26/04/2025) ⭐
+### ILOS (26/04/2025) 🧠 🔧 ✍️
 
 [jurosILOS.lsp](jurosILOS.lsp)
 
@@ -656,7 +656,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [jurosSPL.sql](jurosSPL.sql)
 
-### Intel oneAPI DPC++ (05/02/2025)
+### Intel oneAPI DPC++ (05/02/2025) 🚀
 
 [InterestIOD.cpp](InterestIOD.cpp)
 
@@ -668,11 +668,11 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [jurosIL.lsp](jurosIL.lsp)
 
-### J (22/01/2026) ⭐
+### J (22/01/2026) 🧠 🔧 ✍️
 
 [run.ijs](run.ijs)
 
-### JADE (13/04/2026)
+### JADE (13/04/2026) 🚀
 
 [juros.cc](juros.cc)
 
@@ -680,16 +680,16 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.jakt](juros.jakt)
 
-### Janet (03/03/2026) ⭐
+### Janet (03/03/2026) 🧠 🚀 🔧 ✍️
 
 [juros.janet](juros.janet)
 
-### Java (27/02/2024) ⭐
+### Java (27/02/2024) 🧠 🚀 🏛️ 💡 💖
 
 [Juros.java](Juros.java)<br>
 [TesteJuros.java](TesteJuros.java)
 
-### JavaScript (22/11/2023) ⭐
+### JavaScript (22/11/2023) 🧠 🚀 🏛️ 💡 💖
 
 [CalculaJuros.js](CalculaJuros.js)<br>
 [js_testejuros.html](js_testejuros.html)<br>
@@ -715,7 +715,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [jurosJS.judo](jurosJS.judo)
 
-### Julia (20/03/2024) ⭐
+### Julia (20/03/2024) 🚀
 
 [juros.jl](juros.jl)<br>
 [testejuros.jl](testejuros.jl)
@@ -729,7 +729,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 [Juros_jython.py](Juros_jython.py)<br>
 [main_jython.py](main_jython.py)
 
-### K (04/03/2026) ⭐
+### K (04/03/2026) 🔧 ✍️
 
 [juros.k](juros.k)
 
@@ -737,7 +737,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [jurosK.scm](jurosK.scm)
 
-### Kaya-BASIC (12/04/2026)
+### Kaya-BASIC (12/04/2026) 🚀
 
 [juroskb.bas](juroskb.bas)
 
@@ -749,11 +749,11 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.kojo](juros.kojo)
 
-### Koka (20/03/2026) ⭐
+### Koka (20/03/2026) 🧠 🚀 🔧
 
 [juros.kk](juros.kk)
 
-### Kotlin (22/02/2024) ⭐
+### Kotlin (22/02/2024) 💖
 
 [Juros.kt](Juros.kt)<br>
 [Main.kt](Main.kt)
@@ -771,7 +771,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 [Juros.pas](Juros.pas)<br>
 [testajuros.lpr](testajuros.lpr)
 
-### Lean (20/06/2024) ⭐
+### Lean (20/06/2024)
 
 [juros.lean](juros.lean)
 
@@ -799,7 +799,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.sna](juros.sna)
 
-### Logo (11/06/2024) ⭐
+### Logo (11/06/2024) 🏛️ 🔧 💡 ✍️
 
 [juros.lgo](juros.lgo)<br>
 [testajuros.lgo](testajuros.lgo)
@@ -812,7 +812,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.lsl](juros.lsl)
 
-### Lua (26/03/2024) ⭐
+
 
 [juros.lua](juros.lua)
 
@@ -820,11 +820,11 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.magma](juros.magma)
 
-### Maple (27/06/2026) ⭐
+### Maple (27/06/2026) 🧠
 
 [juros.maple](juros.maple)
 
-### MATLAB (31/03/2024) ⭐
+### MATLAB (31/03/2024) 🧠 🏛️ 💡 💖
 
 [Juros.m](Juros.m)<br>
 [testajuros.m](testajuros.m)
@@ -859,12 +859,12 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [jurosMAB.bas](jurosMAB.bas)
 
-### MicroPython (17/11/2025)
+### MicroPython (17/11/2025) 🧠 🔧
 
 [juros_micropython.py](juros_micropython.py)<br>
 [Juros.py](Juros.py)
 
-### MiniBasic (10/04/2026) ⭐
+### MiniBasic (10/04/2026) 🧠 🔧 ✍️
 
 [juros.mb](juros.mb)
 
@@ -876,7 +876,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros_miranda.m](juros_miranda.m)
 
-### MIT App Inventor (26/03/2025) ⭐
+### MIT App Inventor (26/03/2025) 🧠 🔧 ✍️
 
 [Juros.aia](Juros.aia)
 
@@ -896,7 +896,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.mod](juros.mod)
 
-### Modula-3 (24/01/2026)
+### Modula-3 (24/01/2026) 🚀
 
 [juros.m3](juros.m3)
 
@@ -928,7 +928,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [jurosmb.bas](jurosmb.bas)
 
-### MySQL (07/08/2024) ⭐
+### MySQL (07/08/2024) 🧠 🏛️ 🔧 💡 💖 ✍️
 
 [juros.sql](juros.sql)
 
@@ -940,7 +940,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.neko](juros.neko)
 
-### Nelua (18/07/2026)
+### Nelua (18/07/2026) 🚀
 
 [juros.nelua](juros.nelua)
 
@@ -960,7 +960,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.ndf](juros.ndf)
 
-### Nickel (31/03/2026) ⭐
+### Nickel (31/03/2026) 🧠 🔧 ✍️
 
 [juros.ncl](juros.ncl)
 
@@ -972,12 +972,12 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.nim](juros.nim)
 
-### Nit (10/07/2026)
+### Nit (10/07/2026) 🚀
 
 [juros.nit](juros.nit)<br>
 [testajuros.nit](testajuros.nit)
 
-### Node.js (26/01/2025)
+### Node.js (26/01/2025) 🚀 💖
 
 [juros.js](juros.js)
 
@@ -989,7 +989,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [jurosnu.bas](jurosnu.bas)
 
-### NumPy (13/07/2026) ⭐
+### NumPy (13/07/2026) 🧠 🚀 🏛️ 💡 💖
 
 [JurosNP.py](JurosNP.py)<br>
 [mainNP.py](mainNP.py)
@@ -1023,7 +1023,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 [juros.rexx](juros.rexx)<br>
 [testajuros.rexx](testajuros.rexx)
 
-### Objective-C (27/03/2024) ⭐
+### Objective-C (27/03/2024) 🏛️ 🔧 💡 💖 ✍️
 
 [juros_objective_c.m](juros_objective_c.m)
 
@@ -1032,7 +1032,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 [Juros.cls](Juros.cls)<br>
 [testajuros.mac](testajuros.mac)
 
-### OCaml (30/05/2024) ⭐
+### OCaml (30/05/2024) 🏛️ 💡
 
 [juros.ml](juros.ml)
 
@@ -1045,11 +1045,11 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.odin](juros.odin)
 
-### ooc (21/03/2026)
+### ooc (21/03/2026) 🚀
 
 [juros.ooc](juros.ooc)
 
-### OpenOffice Basic (16/05/2025) ⭐
+### OpenOffice Basic (16/05/2025) 🧠 🏛️ 💡 💖
 
 [jurosOOB.bas](jurosOOB.bas)
 
@@ -1074,7 +1074,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 [JurosOxygene.pas](JurosOxygene.pas)<br>
 [TesteJurosOxygene.pas](TesteJurosOxygene.pas)
 
-### Pascal (01/04/2024) ⭐
+### Pascal (01/04/2024) 🧠 🏛️ 🔧 💡 💖 ✍️
 
 [testajuros.pas](testajuros.pas)
 
@@ -1086,7 +1086,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [testajuros_pascalzim.pas](testajuros_pascalzim.pas)
 
-### Perl (25/04/2024) ⭐
+### Perl (25/04/2024) 🧠 🏛️ 🔧 💡 💖 ✍️
 
 [Juros.pm](Juros.pm)<br>
 [testajuros.pl](testajuros.pl)
@@ -1095,7 +1095,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [jurosp.fth](jurosp.fth)
 
-### PHP (17/09/2023) ⭐
+### PHP (17/09/2023) 🧠 🚀 🏛️ 🔧 💡 💖 ✍️
 
 [CalculaJuros.php](CalculaJuros.php)<br>
 [php_testejuros.php](php_testejuros.php)<br>
@@ -1107,7 +1107,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.picol](juros.picol)
 
-### PicoLisp (24/03/2026) ⭐
+### PicoLisp (24/03/2026) 🧠 🔧
 
 [jurospico.l](jurospico.l)
 
@@ -1115,7 +1115,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.pike](juros.pike)
 
-### PL/SQL (Oracle) (28/01/2025) ⭐
+### PL/SQL (Oracle) (28/01/2025) 🧠 🏛️ 🔧 💡 💖 ✍️
 
 [juros_body_pl.sql](juros_body_pl.sql)<br>
 [juros_pl.sql](juros_pl.sql)
@@ -1136,7 +1136,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [jurosp.sh](jurosp.sh)
 
-### PostgreSQL (20/12/2025) ⭐
+### PostgreSQL (20/12/2025) 🧠 🔧
 
 [jurosPostgre.sql](jurosPostgre.sql)
 
@@ -1148,11 +1148,11 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [Juros.pde](Juros.pde)
 
-### Prolog (03/05/2024) ⭐
+### Prolog (03/05/2024) 🧠 🏛️ 🔧 💡 ✍️
 
 [juros.pl](juros.pl)
 
-### pSQL (Firebird) (26/02/2026) ⭐
+### pSQL (Firebird) (26/02/2026) 🧠 🔧 ✍️
 
 [jurosFB.sql](jurosFB.sql)
 
@@ -1164,7 +1164,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.pb](juros.pb)
 
-### PureScript (25/01/2025) ⭐
+### PureScript (25/01/2025) 🔧 ✍️
 
 [Main.purs](Main.purs)
 
@@ -1176,7 +1176,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [jurospb.bas](jurospb.bas)
 
-### Python (17/09/2023) ⭐
+### Python (17/09/2023) 🧠 🏛️ 🔧 💡 💖 ✍️
 
 [Juros.py](Juros.py)<br>
 [main.py](main.py)
@@ -1185,11 +1185,11 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 [JurosPT.py](JurosPT.py)<br>
 [mainPT.py](mainPT.py)
 
-### q (04/03/2026) ⭐
+### q (04/03/2026) 🔧 ✍️
 
 [jurosq.q](jurosq.q)
 
-### Q (26/01/2026) ⭐
+### Q (26/01/2026) 🔧 ✍️
 
 [juros.q](juros.q)
 
@@ -1197,7 +1197,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.qs](juros.qs)
 
-### QB64 (12/06/2024)
+### QB64 (12/06/2024) 🧠 🏛️ 🔧 💡 💖 ✍️ 
 
 [juros_qb64.bas](juros_qb64.bas)
 
@@ -1214,7 +1214,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [Juros.R](Juros.R)
 
-### Racket (20/05/2024) ⭐
+### Racket (20/05/2024) 🔧 ✍️
 
 [juros.rkt](juros.rkt)
 
@@ -1230,7 +1230,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.rap](juros.rap)
 
-### Raspberry Pi (16/11/2025) ⭐
+### Raspberry Pi (16/11/2025)
 
 [interest_rpp.ino](interest_rpp.ino)
 
@@ -1238,7 +1238,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [jurosr.r](jurosr.r)
 
-### rc (05/01/2026) ⭐
+### rc (05/01/2026)
 
 [juros.rc](juros.rc)
 
@@ -1254,15 +1254,15 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.re](juros.re)
 
-### Rebol (28/01/2026) ⭐
+### Rebol (28/01/2026) 
 
 [jurosREB.r](jurosREB.r)
 
-### Red (25/01/2025) ⭐
+### Red (25/01/2025) 🔧 ✍️
 
 [juros.red](juros.red)
 
-### Red/System (25/03/2026) ⭐
+### Red/System (25/03/2026)
 
 [juros.reds](juros.reds)
 
@@ -1306,15 +1306,15 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.roc](juros.roc)
 
-### Ruby (12/03/2024) ⭐
+### Ruby (12/03/2024) 💖
 
 [juros.rb](juros.rb)
 
-### Rune (DataDraw) (20/07/2026) ⭐
+### Rune (DataDraw) (20/07/2026) 🔧
 
 [juros.rn](juros.rn)
 
-### Rust (13/03/2024) ⭐
+### Rust (13/03/2024) 🚀 🏛️ 💡 💖
 
 [juros.rs](juros.rs)<br>
 [main.rs](main.rs)
@@ -1323,11 +1323,11 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.sl](juros.sl)
 
-### S4A (29/11/2025) ⭐
+### S4A (29/11/2025) 🧠
 
 [jurosS4A.sb](jurosS4A.sb)
 
-### SaC (01/08/2025)
+### SaC (01/08/2025) 🚀
 
 [juros.sac](juros.sac)
 
@@ -1335,7 +1335,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [jurossap.sp](jurossap.sp)
 
-### Sather (28/04/2026)
+### Sather (28/04/2026) 🚀
 
 [juros.sa](juros.sa)
 
@@ -1344,7 +1344,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 [juros.scala](juros.scala)<br>
 [testajuros.scala](testajuros.scala)
 
-### Scheme (28/04/2024) ⭐
+### Scheme (28/04/2024) 🏛️ 🔧 💡 ✍️
 
 [juros.scm](juros.scm)
 
@@ -1352,7 +1352,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.sce](juros.sce)
 
-### Scratch (17/04/2025) ⭐
+### Scratch (17/04/2025) 🏛️ 🔧 💡 💖 ✍️
 
 [juros.sb3](juros.sb3)
 
@@ -1364,7 +1364,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.sdlbas](juros.sdlbas)
 
-### Seed7 (26/02/2025) ⭐
+### Seed7 (26/02/2025) 🔧 ✍️
 
 [juros.sd7](juros.sd7)
 
@@ -1376,7 +1376,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.shk](juros.shk)
 
-### Shen (09/06/2026) ⭐
+### Shen (09/06/2026) 🔧
 
 [juros.shen](juros.shen)
 
@@ -1384,7 +1384,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [jurosSIMP.sim](jurosSIMP.sim)
 
-### Simula (08/06/2024) ⭐
+### Simula (08/06/2024) 🏛️ 💡
 
 [juros.sim](juros.sim)
 
@@ -1392,7 +1392,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [JUROSSQL.BAS](JUROSSQL.BAS)
 
-### SISAL (14/06/2026) ⭐
+### SISAL (14/06/2026) 🧠 🚀 🔧 ✍️
 
 [juros.sis](juros.sis)
 
@@ -1408,15 +1408,15 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [jurossb.bas](jurossb.bas)
 
-### Smalltalk (14/05/2024) ⭐
+### Smalltalk (14/05/2024) 🧠 🏛️ 🔧 💡 ✍️
 
 [RER-Juros.st](RER-Juros.st)
 
-### SML (31/05/2024) ⭐
+### SML (31/05/2024) 🏛️ ✍️
 
 [juros.sml](juros.sml)
 
-### Snap! (21/05/2024) ⭐
+### Snap! (21/05/2024) 🧠 🔧 ✍️
 
 [juros.xml](juros.xml)
 
@@ -1425,7 +1425,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 [JurosSD.cs](JurosSD.cs)<br>
 [TestJurosSD.cs](TestJurosSD.cs)
 
-### SNOBOL4 (28/01/2026) ⭐
+### SNOBOL4 (28/01/2026) 🧠 🏛️ 🔧 ✍️
 
 [juros.sno](juros.sno)
 
@@ -1433,7 +1433,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [main.lua](main.lua)
 
-### Source (24/02/2025) ⭐
+### Source (24/02/2025)
 
 [juros.source](juros.source)
 
@@ -1462,11 +1462,11 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.star](juros.star)
 
-### StarLogo Nova (07/04/2025) ⭐
+### StarLogo Nova (07/04/2025) 🔧 ✍️
 
 [Juros](https://www.slnova.org/jacknpoe/projects/941781/)
 
-### StarLogo TNG (08/04/2025) ⭐
+### StarLogo TNG (08/04/2025) 🧠
 
 [juros.sltng](juros.sltng)
 
@@ -1478,16 +1478,16 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.steel.scm](juros.steel.scm)
 
-### Stride (10/06/2024) ⭐
+### Stride (10/06/2024) 🧠 🔧 ✍️
 
 [Juros.stride](Juros.stride)<br>
 [TestaJuros.stride](TestaJuros.stride)
 
-### Structured Text (IEC 61131-3 – CODESYS) (23/02/2026) ⭐
+### Structured Text (IEC 61131-3 – CODESYS) (23/02/2026) 🧠 🔧 ✍️
 
 [juros.project](juros.project)
 
-### Suneido (25/02/2026) ⭐
+### Suneido (25/02/2026) 🧠 🔧 ✍️
 
 [juroslib.su](juroslib.su)
 
@@ -1495,7 +1495,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.sp](juros.sp)
 
-### SuperCollider (31/01/2025) ⭐
+### SuperCollider (31/01/2025) 🧠 🔧 ✍️
 
 [juros.scd](juros.scd)
 
@@ -1507,7 +1507,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.btm](juros.btm)
 
-### Tcl (05/06/2024) ⭐
+### Tcl (05/06/2024) 🔧 ✍️
 
 [juros.tcl](juros.tcl)
 
@@ -1528,7 +1528,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [JUROSTIEX.BAS](JUROSTIEX.BAS)
 
-### Transact-SQL (SQL Server) (04/02/2025) ⭐
+### Transact-SQL (SQL Server) (04/02/2025) 🔧 💖 ✍️
 
 [acrescimoParaJuros.sql](acrescimoParaJuros.sql)<br>
 [getPesoTotal.sql](getPesoTotal.sql)<br>
@@ -1549,7 +1549,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.tru](juros.tru)
 
-### Turbo Basic (30/01/2025) ⭐
+### Turbo Basic (30/01/2025)
 
 [JUROS_TB.BAS](JUROS_TB.BAS)
 
@@ -1579,7 +1579,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.twinproj](juros.twinproj)
 
-### Typed Racket (17/04/2026) ⭐
+### Typed Racket (17/04/2026)
 
 [jurost.rkt](jurost.rkt)
 
@@ -1592,7 +1592,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [JUROS.TEXT](JUROS.TEXT)
 
-### ugBASIC (30/01/2026) ⭐
+### ugBASIC (30/01/2026) 🧠
 
 [jurosug.bas](jurosug.bas)
 
@@ -1620,11 +1620,11 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.vala](juros.vala)
 
-### VFX Forth 64 (19/06/2025) ⭐
+### VFX Forth 64 (19/06/2025) 🧠 🏛️ 🔧 💡 ✍️
 
 [juros.fth](juros.fth)
 
-### Vim script (20/02/2025) ⭐
+### Vim script (20/02/2025) 🔧 ✍️
 
 [juros.vim](juros.vim)
 
@@ -1632,7 +1632,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [jurosvb.bas](jurosvb.bas)
 
-### Visual Basic (13/02/2025) ⭐
+### Visual Basic (13/02/2025) 🧠 🏛️ 💡 💖
 
 [Juros.frm](Juros.frm)
 
@@ -1644,7 +1644,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [Juros.src](Juros.src)
 
-### Visual DialogScript (21/02/2025) ⭐
+### Visual DialogScript (21/02/2025) 🔧 ✍️
 
 [juros.dsc](juros.dsc)
 
@@ -1672,7 +1672,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [juros.wl](juros.wl)
 
-### WolframScript (22/07/2024) ⭐
+### WolframScript (22/07/2024) 🔧 ✍️
 
 [juros.wls](juros.wls)
 
@@ -1755,7 +1755,7 @@ JavaScript: [juroswww.js](juroswww.js)
 
 [juros.ys](juros.ys)
 
-### Yellow (17/05/2026) ⭐
+### Yellow (17/05/2026)
 
 [juros.yellow](juros.yellow)
 

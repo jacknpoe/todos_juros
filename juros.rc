@@ -34,7 +34,6 @@ fn getPesoTotal {
     return 0
 }
 
-
 # calcula o acréscimo a partir dos juros e parcelas
 fn jurosParaAcrescimo {
     juros = $1

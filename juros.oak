@@ -1,5 +1,6 @@
 // Cálculo dos juros, sendo que precisa de parcelas pra isso
 // Versão 0.1: 05/03/2025: versão feita sem muito conhecimento de Oak
+//        0.2: 22/07/2026: de (indice * 30.0) para (indice * Periodo)
 std := import('std')
 
 Quantidade := 3
@@ -13,7 +14,7 @@ fn preenche(indice) if indice {
     0 -> ?
     _ -> {
         preenche(indice - 1)
-        Pagamentos << (indice * 30.0)
+        Pagamentos << (indice * Periodo)
         Pesos << 1.0
     }
 }

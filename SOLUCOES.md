@@ -8,14 +8,20 @@ No artigo [Resolução de Equação Transcendente](RESOLUCAO_EQUACAO_TRANSCENDEN
 
 Esta é a relação dos links neste repositório para as soluções em dialetos diferentes ordenados por ordem alfabética (embora não exatamente seguindo a ordem UTF-8), divididas entre soluções e equivalentes (outras implementações, nomes alternativos ou dialetos em que a solução é coincidente). Caso seja publicada uma nova resolução, ela será adicionada à lista.
 
-> [!NOTE]<br><br>
-> **SELOS**<br><br>
-> 🧠 **conceitos:** apresentar conceitos, combinações de conceitos ou aplicações que sejam suficientemente inéditos, notáveis, importantes ou influentes;<br><br>
-> 🚀 **desempenho:** estar entre os mais rápidos em geral ou entre os mais rápidos na sua área de aplicação; as avaliações utilizam, principalmente, os resultados do benchmark com 300.000 parcelas ([benchmark.png](benchmark.png)); as medições sistemáticas começaram em 11/07/2025; soluções anteriores relevantes estão sendo medidas gradualmente;<br><br>
-> 🏛️ **histórico:** representar um marco histórico, uma etapa importante ou um representante relevante na evolução das linguagens, dialetos, implementações ou áreas de aplicação, mesmo que sua influência direta tenha sido limitada;<br><br>
-> 🔧 **implementação:** o código da solução implementa um conceito inédito para a página, utiliza uma construção única do dialeto, ou é memorável pela qualidade do código;<br><br>
-> 💡 **influência:** ter exercido influência significativa sobre outros dialetos, implementações ou áreas de aplicação, seja de forma ampla ou dentro de seu próprio domínio;<br><br>
-> 💖 popularidade: ser relativamente reconhecido, utilizado ou particularmente apreciado em geral, ou por uma parcela significativa de sua área de aplicação, hoje ou no passado;<br><br>
+> **SELOS**
+>
+> 🧠 **conceitos:** apresentar conceitos, combinações de conceitos ou aplicações que sejam suficientemente inéditos, notáveis, importantes ou influentes;
+>
+> 🚀 **desempenho:** estar entre os mais rápidos em geral ou entre os mais rápidos na sua área de aplicação; as avaliações utilizam, principalmente, os resultados do benchmark com 300.000 parcelas ([benchmark.png](benchmark.png)); as medições sistemáticas começaram em 11/07/2025; soluções anteriores relevantes estão sendo medidas gradualmente;
+>
+> 🏛️ **histórico:** representar um marco histórico, uma etapa importante ou um representante relevante na evolução das linguagens, dialetos, implementações ou áreas de aplicação, mesmo que sua influência direta tenha sido limitada;
+>
+> 🔧 **implementação:** o código da solução implementa um conceito inédito para a página, utiliza uma construção única do dialeto, ou é memorável pela qualidade do código;
+>
+> 💡 **influência:** ter exercido influência significativa sobre outros dialetos, implementações ou áreas de aplicação, seja de forma ampla ou dentro de seu próprio domínio;
+>
+> 💖 popularidade: ser relativamente reconhecido, utilizado ou particularmente apreciado em geral, ou por uma parcela significativa de sua área de aplicação, hoje ou no passado;
+>
 > ✍️ **sintaxe:** possuir sintaxe e/ou léxico relativamente originais ou particularmente idiomáticos, capazes de expressar seus conceitos de forma marcante, sem que isso implique originalidade na semântica.
 
 <br>

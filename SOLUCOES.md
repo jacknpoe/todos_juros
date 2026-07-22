@@ -9,13 +9,21 @@ No artigo [Resolução de Equação Transcendente](RESOLUCAO_EQUACAO_TRANSCENDEN
 Esta é a relação dos links neste repositório para as soluções em dialetos diferentes ordenados por ordem alfabética (embora não exatamente seguindo a ordem UTF-8), divididas entre soluções e equivalentes (outras implementações, nomes alternativos ou dialetos em que a solução é coincidente). Caso seja publicada uma nova resolução, ela será adicionada à lista.
 
 > [!NOTE]
+
 > **SELOS**
+
 > 🧠 **conceitos:** apresentar conceitos, combinações de conceitos ou aplicações que sejam suficientemente inéditos, notáveis, importantes ou influentes;
+
 > 🚀 **desempenho:** estar entre os mais rápidos em geral ou entre os mais rápidos na sua área de aplicação; as avaliações utilizam, principalmente, os resultados do benchmark com 300.000 parcelas ([benchmark.png](benchmark.png)); as medições sistemáticas começaram em 11/07/2025; soluções anteriores relevantes estão sendo medidas gradualmente;
+
 > 🏛️ **histórico:** representar um marco histórico, uma etapa importante ou um representante relevante na evolução das linguagens, dialetos, implementações ou áreas de aplicação, mesmo que sua influência direta tenha sido limitada;
+
 > 🔧 **implementação:** o código da solução implementa um conceito inédito para a página, utiliza uma construção única do dialeto, ou é memorável pela qualidade do código;
+
 > 💡 **influência:** ter exercido influência significativa sobre outros dialetos, implementações ou áreas de aplicação, seja de forma ampla ou dentro de seu próprio domínio;
+
 > 💖 popularidade: ser relativamente reconhecido, utilizado ou particularmente apreciado em geral, ou por uma parcela significativa de sua área de aplicação, hoje ou no passado;
+
 > ✍️ **sintaxe:** possuir sintaxe e/ou léxico relativamente originais ou particularmente idiomáticos, capazes de expressar seus conceitos de forma marcante, sem que isso implique originalidade na semântica.
 
 <br>
@@ -27,13 +35,21 @@ In the article [Resolve Transcendent Equation](RESOLUCAO_EQUACAO_TRANSCENDENTE.m
 This is a list of links in this repository to solutions in different dialects, ordered alphabetically (though not exactly following UTF-8 order), divided between solutions and equivalents (other implementations, alternative names, or dialects where the solution is coincident). If a new solution is published, it will be added to the list.
 
 > [!NOTE]
+
 > **BADGES**
+
 > 🧠 **concepts:** introduce concepts, combinations of concepts, or applications that are sufficiently novel, notable, important, or influential, especially in semantics;
+
 > 🚀 **performance:** be among the fastest overall or among the fastest in its application domain; evaluations are based primarily on the results of the benchmark with 300,000 installments ([benchmark.png](benchmark.png)); systematic measurements began on 2025-07-11; relevant earlier solutions are being measured gradually;
+
 > 🏛️ **historical:** represent a historical milestone, an important stage, or a significant representative in the evolution of programming languages, dialects, implementations, or application domains, even if its direct influence has been limited;
+
 > 🔧 **implementation:** the solution's code implements a concept that is novel to this page, makes use of a dialect-specific construct, or is memorable for its code quality;
+
 > 💡 influence: have exerted a significant influence on other dialects, implementations, or application domains, whether broadly or within its own field;
+
 > 💖 popularity: be relatively well known, widely used, or particularly appreciated in general, or by a significant portion of its field of application, either today or in the past;
+
 > ✍️ **syntax:** possess relatively original syntax and/or lexical features, or be particularly idiomatic, expressing its concepts in a distinctive way, without necessarily implying originality in its semantics.
 
 <br>

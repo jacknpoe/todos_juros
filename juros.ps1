@@ -20,12 +20,10 @@ function getPesoTotal {
 
 # calcula o acrescimo a partir dos juros e parcelas
 function jurosParaAcrescimo ( [double]$juros ) {
-
     [double]$pesoTotal = getPesoTotal
     if (($juros -le 0.0) -or ($Quantidade -lt 1) -or ($Periodo -le 0.0) -or ($pesoTotal -le 0.0)) {
         return 0.0
     }
-
     [double]$acumulador = 0.0
 
     for($indice = 0; $indice -lt $Quantidade; $indice++) {
@@ -49,7 +47,6 @@ function acrescimoParaJuros ( [double]$acrescimo, [int]$precisao, [int]$maxItera
     if (($maxIteracoes -lt 1) -or ($Quantidade -lt 1) -or ($precisao -lt 1) -or ($Periodo -le 0.0) -or ($acrescimo -le 0.0) -or ($maximoJuros -le 0.0) -or ($pesoTotal -le 0.0)) {
         return 0.0
     }
-
     [double]$minJuros = 0.0
     [double]$medJuros = $maximoJuros / 2.0
     [double]$maxJuros = $maximoJuros

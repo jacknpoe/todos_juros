@@ -10,7 +10,7 @@ Pesos = 0 : (Quantidade-1)
 
 block main()
     for indice = 0 to Quantidade-1 {
-        Pagamentos[indice] = 30.0 * (indice + 1.0)
+        Pagamentos[indice] = Periodo * (indice + 1.0)
         Pesos[indice] = 1.0
     }
 

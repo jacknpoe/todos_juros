@@ -61,7 +61,6 @@
   )
 )
 
-
 ; calcula os juros a partir do acrescimo e dados comuns (como parcelas)
 (defun acrescimoParaJuros (acrescimo precisao maxIteracoes maxJuros)
   (_acrescimoParaJuros acrescimo (expt 0.1 precisao) maxIteracoes 0.0 maxJuros)

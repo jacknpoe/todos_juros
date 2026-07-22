@@ -1,6 +1,6 @@
 // Cálculo dos juros, sendo que precisa de parcelas pra isso
-// Versão 0.1: 05/04/2025: versão feita sem muito conhecimento de Procesing
-
+// Versão 0.1: 05/04/2025: versão feita sem muito conhecimento de Processing
+//        0.2: 22/07/2026: melhorias nos comentários
 
 // essa é, basicamente, a função main() em Processing 
 void setup() {
@@ -28,6 +28,7 @@ void draw() {
   noLoop();
 }
 
+// classe com atributos para simplificar as chamadas aos métodos
 class cJuros {
   int Quantidade;
   boolean Composto;
@@ -35,6 +36,7 @@ class cJuros {
   double[] Pagamentos;
   double[] Pesos;
 
+  // construtor inicializa escalares e aloca arrays
   cJuros(int qtd, boolean cmp, double per) {
     Quantidade = qtd;
     Composto = cmp;

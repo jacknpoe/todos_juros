@@ -2,6 +2,7 @@
 6 REM Versao 0.1: 02/01/2025 copiada de GW-BASIC
 9 REM        0.2: 04/01/2025 retirada linha 1210 e alterado acumulador de AC para AM e linha 1600
 12 REM       0.3: 04/04/2026 na linha 210 de 30# para PR
+66 REM essa solucao esta com o selo conceito porque eh a primeira em BASIC 8 bits
 95 REM variaveis globais e atribuicao de valores
 100 QT = 3
 110 CM = 1

@@ -62,9 +62,9 @@ for indice = 1; indice <= Quantidade; indice += 1 {
 }
 
 # calcula e guarda os resultados das funções
- val pesoTotal = getPesoTotal(Quantidade, Pesos);
- val acrescimoCalculado = jurosParaAcrescimo(Quantidade, Composto, Periodo, Pagamentos, Pesos, 3.0);
- val jurosCalculado = acrescimoParaJuros(Quantidade, Composto, Periodo, Pagamentos, Pesos, acrescimoCalculado, 34, 120, 50.0);
+val pesoTotal = getPesoTotal(Quantidade, Pesos);
+val acrescimoCalculado = jurosParaAcrescimo(Quantidade, Composto, Periodo, Pagamentos, Pesos, 3.0);
+val jurosCalculado = acrescimoParaJuros(Quantidade, Composto, Periodo, Pagamentos, Pesos, acrescimoCalculado, 34, 120, 50.0);
 
 # imprime os resultados
 writeln "Peso total = " ~ string(pesoTotal);

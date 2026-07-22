@@ -221,7 +221,7 @@ otimizado: [juros_otimizado.c](juros_otimizado.c)
 [Juros.cs](Juros.cs)<br>
 [TesteJuros.cs](TesteJuros.cs)
 
-### C++ (17/09/2023) 🧠 🚀 🏛️ 💡 💖 ✍️
+### C++ (07/11/2013) 🧠 🚀 🏛️ 💡 💖 ✍️
 
 [interest.cpp](interest.cpp)<br>
 recursivo: [juros_rec.cpp](juros_rec.cpp)
@@ -1092,7 +1092,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 [Juros.pm](Juros.pm)<br>
 [testajuros.pl](testajuros.pl)
 
-### PHP (17/09/2023) 🧠 🚀 🏛️ 🔧 💡 💖 ✍️
+### PHP (20/04/2023) 🧠 🚀 🏛️ 🔧 💡 💖 ✍️
 
 [CalculaJuros.php](CalculaJuros.php)<br>
 [php_testejuros.php](php_testejuros.php)<br>
@@ -1173,7 +1173,7 @@ recursivo: [juros_rec.cpp](juros_rec.cpp)
 
 [jurospb.bas](jurospb.bas)
 
-### Python (17/09/2023) 🧠 🏛️ 🔧 💡 💖 ✍️
+### Python (25/08/2023) 🧠 🏛️ 🔧 💡 💖 ✍️
 
 [Juros.py](Juros.py)<br>
 [main.py](main.py)

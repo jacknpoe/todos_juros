@@ -1,5 +1,7 @@
 { Calcula o acrescimo a partir dos juros e os juros a partir do acrescimo
   Versao: 0.1: 12/01/2026: comecando pelas funcoes matematicas
+  a solucao tem os selos "conceito" e "implementacao" porque eh a primeira
+  a ter series de Taylor implementadas em LN() e EXP()
 }
 
 PROGRAM juros;

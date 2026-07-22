@@ -3,16 +3,16 @@
 <br>
 
 > [!NOTE]
-> (* = criação do repositório, a data de criação é anterior; ! = três em um dia; !! = quatro em um dia)<br>
-> (* = creation of the repository, the creation date is before; ! = three in a day; !! = four in a day)
+> ! = três soluções em um dia; !! = quatro soluções em um dia<br>
+> ! = three solutions in a day; !! = four solutions in a day
 
 <br>
 
-C++ (17/09/2023)*
+C++ (07/11/2013)
 
-PHP (17/09/2023)*
+PHP (20/04/2023)
 
-Python (17/09/2023)*
+Python (25/08/2023)
 
 JavaScript (22/11/2023)
 

@@ -1,4 +1,5 @@
-// VERSION 0.X1: 23/11/2025: removed <locale> and replaced main to mimic juros.c
+// VERSION 0.1:  07/11/2013: first version
+//         0.X1: 23/11/2025: removed <locale> and replaced main to mimic juros.c
 //         0.X2: 17/04/2026: new method to create the interest object
 //         0.X3: 18/04/2026: setQuant after ChatGPT and other minor changes; from long double to double
 //         0.X4: 05/05/2026: from precision to setprecision (and 15 real decimals)

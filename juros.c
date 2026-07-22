@@ -1,5 +1,6 @@
 // Cálculo dos juros, sendo que precisa de parcelas pra isso
-// Versão 0.2:    04/2024: trocada avaliação soZero por acumulador == 0
+// Versão 0.1: 01/03/2024: primeira versão, com certo código adaptado de C++
+//        0.2: 04/04/2024: trocada avaliação soZero por acumulador == 0
 //        0.3: 22/12/2024: adicionados comentários para os includes
 //        0.4: 16/01/2025: adicionado cálculo de peso total
 //        0.5: 26/01/2025: adicionados comentários para estrutura, funções e main

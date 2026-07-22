@@ -9,10 +9,18 @@
 //        0.9: 25/03/2026: compatibilidade com PicoC (para retornar a imprimir com , no lugar de . em C, descomente #include "locale.h" e setlocale())
 //        0.10: 15/04/2026: revisados números para double e outras melhorias de defeitos menores descobertos enquanto criava a versão otimizada
 //        0.11: 18/04/2026: alterações para colocar NULLs em setValores e verificar NULLs em setQuantidade
+//        0.12: 22/07/2026: if defined para trocar os #includes para os de Circle
 
-#include <math.h>      // para usar pow()
-#include <stdio.h>     // para usar printf() e gets()
-#include <stdlib.h>    // para usar malloc() e free()
+#if defined(__circle__)
+    #include <cmath>      // para usar pow()
+    #include <cstdio>     // para usar printf() e gets()
+    #include <cstdlib>    // para usar malloc() e free()
+#else
+    #include <math.h>      // para usar pow()
+    #include <stdio.h>     // para usar printf() e gets()
+    #include <stdlib.h>    // para usar malloc() e free()
+#endif
+
 // #include <locale.h>    // para usar setlocale()
 
 #define true 1

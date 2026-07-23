@@ -260,7 +260,7 @@ otimizado: [juros_otimizado.c](juros_otimizado.c)
 ### C++ (07/11/2013) 🧠 🚀 🏛️ 🔧 💡 💖 ✍️
 
 [interest.cpp](interest.cpp)<br>
-recursivo: [juros_rec.cpp](juros_rec.cpp)
+recursivo: [juros_rec.cpp](juros_rec.cpp) ♻️
 
 ### Cakelisp (16/02/2026) 🧠 🚀 ♻️ ✍️
 

@@ -1059,7 +1059,7 @@ funções: [jurosf.bend](jurosf.bend)
 [juros.rexx](juros.rexx)<br>
 [testajuros.rexx](testajuros.rexx)
 
-### Objective-C (27/03/2024) 🏛️ 🔧 💡 💖 ✍️
+### Objective-C (27/03/2024) 🏛️ 🚀 🔧 💡 💖 ✍️
 
 [juros_objective_c.m](juros_objective_c.m)
 
@@ -1245,7 +1245,7 @@ funções: [jurosf.bend](jurosf.bend)
 
 [Juros.R](Juros.R)
 
-### Racket (20/05/2024) 🔧 ♻️ ✍️
+### Racket (20/05/2024) 🧠 🚀 🔧 ♻️ ✍️
 
 [juros.rkt](juros.rkt)
 
@@ -1333,7 +1333,7 @@ funções: [jurosf.bend](jurosf.bend)
 
 [juros.ring](juros.ring)
 
-### Roc (18/03/2026) 🔧 ♻️ ✍️
+### Roc (18/03/2026) 🚀 🔧 ♻️ ✍️
 
 [juros.roc](juros.roc)
 
@@ -1610,7 +1610,7 @@ funções: [jurosf.bend](jurosf.bend)
 
 [juros.twinproj](juros.twinproj)
 
-### Typed Racket (17/04/2026) 🧠 🔧 ♻️ ✍️
+### Typed Racket (17/04/2026) 🧠 🚀 🔧 ♻️ ✍️
 
 [jurost.rkt](jurost.rkt)
 

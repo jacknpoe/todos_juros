@@ -245,7 +245,7 @@ funções: [jurosf.bend](jurosf.bend)
 ### C (01/03/2024) 🧠 🚀 🏛️ 🔧 💡 💖 ✍️
 
 [juros.c](juros.c)<br>
-**otimizada/optimized:** [juros_otimizado.c](juros_otimizado.c)
+**otimizada / optimized:** [juros_otimizado.c](juros_otimizado.c)
 
 ### Ć (28/03/2025) 🔧
 
@@ -260,7 +260,7 @@ funções: [jurosf.bend](jurosf.bend)
 ### C++ (07/11/2013) 🧠 🚀 🏛️ 🔧 💡 💖 ✍️
 
 [interest.cpp](interest.cpp)<br>
-**recursiva/recursive:** [juros_rec.cpp](juros_rec.cpp) ♻️
+**recursiva / recursive:** [juros_rec.cpp](juros_rec.cpp) ♻️
 
 ### Cakelisp (16/02/2026) 🧠 🚀 ♻️ ✍️
 

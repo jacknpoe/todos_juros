@@ -54,9 +54,9 @@ This is a list of links in this repository to solutions in different dialects, o
 >
 > ♻️ **recursive:** solutions that use recursion where other solutions use loops;
 >
-> 📈 **Taylor series:** solutions that implement `ln()` and `exp()` through Taylor series using only the four basic arithmetic operations; `pow()` is obtained as `exp(ln(base) * exponent)`;
+> ✍️ **syntax:** possess relatively original syntax and/or lexical features, or be particularly idiomatic, expressing its concepts in a distinctive way, without necessarily implying originality in its semantics;
 >
-> ✍️ **syntax:** possess relatively original syntax and/or lexical features, or be particularly idiomatic, expressing its concepts in a distinctive way, without necessarily implying originality in its semantics.
+> 📈 **Taylor series:** solutions that implement `ln()` and `exp()` through Taylor series using only the four basic arithmetic operations; `pow()` is obtained as `exp(ln(base) * exponent)`.
 
 <br>
 
@@ -246,6 +246,7 @@ funções: [jurosf.bend](jurosf.bend)
 
 [juros.c](juros.c)<br>
 **otimizada / optimized:** [juros_otimizado.c](juros_otimizado.c)
+**restrito / restricted:** [juros_restrito.c](juros_restrito.c)
 
 ### Ć (28/03/2025) 🔧
 

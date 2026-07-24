@@ -2,9 +2,9 @@
 
 <br>
 
-This repository is about coding, in multiple dialects, the same solution in financial mathematics. To find the interest based on the increase, dates and weights of the installments. I use the Bisection Method of Numerical Calculus to solve it. The idea is that each version adheres to the culture of each dialect as much as possible. I use as few resources as possible. I avoid adding any libraries I can.
+This repository is a "Rosetta Stone" on programming dialects.
 
-It's a "Rosetta Stone" of programming dialects.
+It's about coding the same solution in Advanced Financial Mathematics in various dialects. It involves calculating interest rate based on increase rate, dates, and installment weights. The Bisection Method of Numerical Calculus is used to solve it. The idea is that each version adheres as closely as possible to the culture of each dialect. The minimum possible resources are used, and adding libraries was avoided whenever possible.
 
 With the exception of the "third parties" folder, all solutions were written by [jacknpoe](https://github.com/jacknpoe). BBC Basic used a simplified form of "translation," requiring a complete review of the code to run properly. QML had part of its JavaScript code translated by ChatGPT, but again, it had to be revised, with some parts being omitted.
 
@@ -48,7 +48,9 @@ Some dialects will not yet have a solution because they lack support for necessa
 
 A C version, with structural optimizations and computational transformations compared to the standard solutions, was published under the name [juros_otimizado.c](juros_otimizado.c). This version preserves the algorithmic basis of the problem, but alters the calculation method to reduce computational costs, including the upfront calculation of fixed parts of the financial equations, the use of global variables to reduce indirection, and other performance improvements. It is not intended for direct comparison with the other solutions, but can serve as a reference for those seeking greater efficiency or wishing to adapt these ideas to other languages. This version is not the most representative of the Rosetta Stone project. Its goal is not to serve as a mathematical, didactic, or philosophical model for other solutions, but to demonstrate how far it is possible to reduce computational cost while maintaining the same algorithmic basis. It functions as a proof of concept, a glimpse of possible structural optimizations, and a reminder that it is often possible to obtain the same result by doing less work. As the project's benchmarks seek to compare equivalent implementations, none of the other languages ​​or dialects adopt similar optimizations. Furthermore, for scenarios typically found in real-world applications (for example, a few hundred installments and moderate rates), such optimizations are rarely necessary.
 
-Some dialects had their time measured for 300,000 installments and ranked: [benchmark.png](benchmark.png). There are two versions in C, the version for fair comparison, with the same algorithms as the other dialects, and the optimized version. In C++, an experiment was conducted [juros_rec.cpp](juros_rec.cpp) replacing loops with recursion, in a style similar to that of functional languages; this version was also measured.
+There is also a restricted C version [juros_restrito.c](juros_restrito.c), which takes specialization a step further. While the optimized version still preserves the general proposal of the algorithm, the restricted version assumes specific characteristics of the problem (such as installments [1.0, 2.0, 3.0...] and standardized weights [1.0, 2.0, 3.0]) to exploit mathematical properties that are not available in the general case. For this reason, it is even less representative of the Rosetta Stone proposal and should be understood as an experiment in extreme optimization, and not as a reference implementation.
+
+Some dialects had their time measured for 300,000 installments and were ranked: [benchmark.png](benchmark.png). There are three versions in C: a version for fair comparison, with the same algorithms as the other dialects; an optimized version; and a restricted version. In C++, an experiment was conducted [juros_rec.cpp](juros_rec.cpp) replacing loops with recursion, in a style similar to functional languages; this version was also measured.
 
 The Bend dialect has two solutions. The first uses a map (structure {1:..., 2:...}) to simulate arrays, which is not scalable. The second uses functions to map payments and weights from the index, which is scalable. Both have been maintained for historical and didactic reasons. Numerical precision is limited (24-bit float), which affects the final result.
 
@@ -56,7 +58,7 @@ The most common output for tests is:
 
 Peso total = 3.0 / Acréscimo = 6.059108997379403 / Juros = 2.999999999999992
 
-WARNING: There is a possibility of division by zero in simple interest, for example, if the interest is 100% and one of the installments is -100 times the period. A check of this type would complicate the code, to avoid this very rare eventuality.
+WARNING: There is a possibility of division by zero in simple interest, for example, if the interest is 100% and one of the installments is -100 times the period. A check of this type would complicate the code, to avoid this very rare eventuality. The Python class [Juros.py](Juros.py) handles overflow and division by zero. It can serve as a basis for intercepting exceptions that are possible in other dialects.
 
 WARNING: Some solutions in this repository use their own implementations of exponential functions (`ln`, `exp`, and `pow`). These functions are not intended to replace generic implementations from standard mathematical libraries. They were designed and validated exclusively for the domains actually used in the solutions, especially fair interest rates and a reasonable number of installments. Using these functions outside of this context can result in a significant loss of numerical precision. The `powint` function, on the other hand, uses exponentiation with an integer exponent and does not have these limitations (besides the exponent not being real). Some dialects, such as B (BCause implementation) and PicoLisp, in addition to these functions, had fixed-point arithmetic (multiplication, division, conversions) implemented.
 

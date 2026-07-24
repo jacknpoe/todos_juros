@@ -1,8 +1,9 @@
 // Cálculo dos juros, sendo que precisa de parcelas pra isso
 // Versão 0.1: 15/04/2026: versão pesadamente e estaticamente otimizada copiada da versão normal em C
+// COMPILAR: /opt/intel/oneapi/compiler/2026.0/bin/icx -O3 -ffast-math -march=native juros_otimizado.c -o juros_otimizado -lm
 
-#include <math.h>      // para usar pow()
-#include <stdio.h>     // para usar printf() e gets()
+#include <math.h>      // para usar exp(), log(), pow()
+#include <stdio.h>     // para usar printf()
 #include <stdlib.h>    // para usar malloc() e free()
 
 #define true 1
@@ -11,7 +12,7 @@
 // variáveis para simplificar as chamadas
 int Quantidade;
 int Composto;
-double Periodo;
+double Periodo; 
 double *Pagamentos;
 double *Pesos;
 

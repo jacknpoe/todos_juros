@@ -1,9 +1,6 @@
 // Cálculo dos juros, sendo que precisa de parcelas pra isso
 // Versão 0.1: 23/07/2026: versão restrita e ainda mais otimizada doque juros_otomizado.c em C
-// COMPILAR COM O COMPILADOR MAIS RÁPIDO (C)
-// /opt/intel/oneapi/compiler/2026.0/bin/compiler/clang -O3 -ffast-math -march=native juros_restrito.c -o juros_restrito -lm
-// TESTAR PARA VER SE ESSE COMPILADOR É MAIS RÁPIDO (C++)
-// /opt/intel/oneapi/compiler/2026.0/bin/icpx -O3 -ffast-math -march=native -std=c++20 arquivo.cpp -o arquivo -lm
+// COMPILAR: /opt/intel/oneapi/compiler/2026.0/bin/icx -O3 -ffast-math -march=native juros_restrito.c -o juros_restrito -lm
 
 #include <math.h>      // para usar exp(), log(), pow()
 #include <stdio.h>     // para usar printf()

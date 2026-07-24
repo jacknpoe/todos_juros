@@ -2,7 +2,7 @@
 6 REM Versão 0.1: 07/04/2026 copiado de "RetroBASIC" e alterado conforme abaixo
 25 REM diferenças para "RetroBASIC":
 30 REM • não tem acentos no PRINT;
-35 REM • comentários com acentos, só UTF-8;
+35 REM • comentários com acentos restritos;
 40 REM • não aceita espaços entre as linhas numeradas;
 45 REM • não aceita DEFINT e DEFDBL;
 50 REM • não entende USING;

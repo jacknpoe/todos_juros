@@ -2,9 +2,9 @@
 
 <br>
 
-Este repositório é sobre codificar, em vários dialetos, a mesma solução em matemática financeira. Achar os juros a partir do acréscimo, das datas e pesos das parcelas. Eu uso o Método da Bisseção do Cálculo Numérico para resolvê-la. A ideia é que cada versão se fixe ao máximo à cultura de cada dialeto. Eu uso o mínimo de recursos possível. Eu evito adicionar qualquer biblioteca que eu puder.
+Este repositório é uma "Pedra de Roseta" sobre dialetos de programação.
 
-É uma "Pedra de Roseta" sobre dialetos de programação.
+É sobre codificar, em vários dialetos, a mesma solução em Matemática Financeira Acançada. Achar os juros a partir do acréscimo, das datas e pesos das parcelas. É utilizado Método da Bisseção do Cálculo Numérico para resolvê-la. A ideia é que cada versão se fixe ao máximo à cultura de cada dialeto. É utilizado o mínimo de recursos possível. Se evitou adicionar qualquer biblioteca qaundo possível.
 
 Tirando a pasta "terceiros", todas as soluções foram escritas por [jacknpoe](https://github.com/jacknpoe). Em BBC Basic foi utilizada uma forma simplificada de "tradução", sendo que o código precisou ser completamente revisado para poder rodar apropriadamente. QML teve parte do código traduzida de JavaScript pelo ChatGPT mas, de novo, ela teve que ser revisada, com partes que foram ignoradas.
 
@@ -46,7 +46,9 @@ Alguns dialetos não terão a solução ainda, por não terem suporte a recursos
 
 Uma versão em C, com otimizações estruturais e transformações computacionais em relação ao padrão das demais soluções, foi publicada com o nome de [juros_otimizado.c](juros_otimizado.c). Essa versão preserva a base algorítmica do problema, mas altera a forma de cálculo para reduzir custos computacionais, incluindo o cálculo antecipado de partes fixas das equações financeiras, uso de variáveis globais para diminuir indireção e outras melhorias de desempenho. Ela não é destinada à comparação direta com as demais soluções, mas pode servir como referência para quem busca maior eficiência ou deseja adaptar essas ideias para outras linguagens. Esta versão não é a mais representativa do projeto Pedra de Roseta. Seu objetivo não é servir como modelo matemático, didático ou filosófico para as demais soluções, mas demonstrar até onde é possível reduzir o custo computacional mantendo a mesma base algorítmica. Ela funciona como uma prova de conceito, um vislumbre de otimizações estruturais possíveis e um lembrete de que muitas vezes é possível obter o mesmo resultado realizando menos trabalho. Como os benchmarks do projeto procuram comparar implementações equivalentes, nenhuma das demais linguagens ou dialetos adota otimizações semelhantes. Além disso, para os cenários normalmente encontrados em aplicações reais (por exemplo, algumas centenas de parcelas e taxas moderadas), tais otimizações raramente são necessárias.
 
-Alguns dialetos tiveram o tempo medido para 300.000 parcelas, e classificados: [benchmark.png](benchmark.png). Existem duas versões em C, a versão para comparação justa, com os mesmos algoritmos dos demais dialetos, e a versão otimizada. Já em C++ foi realizado um experimento [juros_rec.cpp](juros_rec.cpp) substituindo laços por recursão, em estilo próximo ao das linguagens funcionais; essa versão também foi medida.
+Existe também uma versão restrita e C [juros_restrito.c](juros_restrito.c), que leva a especialização um passo além. Enquanto a versão otimizada ainda preserva a proposta geral do algoritmo, a versão restrita assume características específicas do problema (como parcelas [1.0, 2.0, 3.0...] e pesos padronizados [1.0, 2.0, 3.0]) para explorar propriedades matemáticas que não estão disponíveis no caso geral. Por esse motivo, ela é ainda menos representativa da proposta da Pedra de Roseta e deve ser entendida como um experimento de otimização extrema, e não como uma implementação de referência.
+
+Alguns dialetos tiveram o tempo medido para 300.000 parcelas, e classificados: [benchmark.png](benchmark.png). Existem três versões em C, a versão para comparação justa, com os mesmos algoritmos dos demais dialetos, a versão otimizada e a versão restrita. Já em C++ foi realizado um experimento [juros_rec.cpp](juros_rec.cpp) substituindo laços por recursão, em estilo próximo ao das linguagens funcionais; essa versão também foi medida.
 
 O dialeto Bend tem duas soluções. A primeira usa um mapa (estrutura {1:..., 2:...}) para simular arrays, o que não é escalável. A segunda usa funções para mapear pagamentos e pesos a partir do índice, sendo escalável. Ambas foram mantidas por motivos históricos e didáticos. A precisão numérica é limitada (float de 24 bits), o que afeta o resultado final.
 
@@ -54,7 +56,7 @@ A saída mais comum para os testes é:
 
 Peso total = 3.0 / Acréscimo = 6.059108997379403 / Juros = 2.999999999999992
 
-ATENÇÃO: existe uma possibilidade de divisão por zero, nos juros simples, por exemplo, se os juros forem 100% e uma das parcelas for -100 vezes o período. Uma verificação desse tipo complicaria o código, para evitar essa eventualidade tão rara.
+ATENÇÃO: existe uma possibilidade de divisão por zero, nos juros simples, por exemplo, se os juros forem 100% e uma das parcelas for -100 vezes o período. Uma verificação desse tipo complicaria o código, para evitar essa eventualidade tão rara. A classe em Python [Juros.py](Juros.py) trata overflow e divisão por zero. Ela pode servir de base para interceptar as exceções possível em outros dialetos.
 
 ATENÇÃO: Algumas soluções deste repositório utilizam implementações próprias de funções exponenciais (`ln`, `exp` e `pow`). Essas funções não têm como objetivo substituir implementações genéricas das bibliotecas matemáticas padrão. Elas foram projetadas e validadas exclusivamente para os domínios efetivamente usados nas soluções, em especial valores de juros honestos e um número sensato de parcelas. O uso dessas funções fora desse contexto pode resultar em perda significativa de precisão numérica. A função `powint`, por sua vez, utiliza exponenciação com expoente inteiro e não apresenta essas limitações (além do expoente não ser real). Alguns dialetos, como B (BCause implementation) e PicoLisp, além dessas funções, tiverram aritmética (multiplicação, divisão, conversões) de pontos fixos implementada.
 

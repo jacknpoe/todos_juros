@@ -245,7 +245,7 @@ funções: [jurosf.bend](jurosf.bend)
 ### C (01/03/2024) 🧠 🚀 🏛️ 🔧 💡 💖 ✍️
 
 [juros.c](juros.c)<br>
-**otimizada / optimized:** [juros_otimizado.c](juros_otimizado.c)
+**otimizada / optimized:** [juros_otimizado.c](juros_otimizado.c)<br>
 **restrito / restricted:** [juros_restrito.c](juros_restrito.c)
 
 ### Ć (28/03/2025) 🔧

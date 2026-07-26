@@ -170,7 +170,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 ### awk (19/06/2024) 🚀
 
-[jurs.awk](jurs.awk)
+[juros.awk](juros.awk)
 
 ### B (BCause implementation) (20/02/2026) 🏛️ 💡 📈
 

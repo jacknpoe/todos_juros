@@ -213,7 +213,7 @@ funções: [jurosf.bend](jurosf.bend)
 
 [juros.bigloo.scm](juros.bigloo.scm)
 
-### Blade (08/05/2026)
+### Blade (08/05/2026) 🚀
 
 [jurosblade.b](jurosblade.b)
 
@@ -225,7 +225,7 @@ funções: [jurosf.bend](jurosf.bend)
 
 [juros.bmx](juros.bmx)
 
-### Blu (21/04/2026)
+### Blu (21/04/2026) 🚀
 
 [juros.blu](juros.blu)
 
@@ -379,7 +379,7 @@ funções: [jurosf.bend](jurosf.bend)
 
 [juros.dart](juros.dart)
 
-### Darwin (26/06/2026)
+### Darwin (26/06/2026) 🚀
 
 [juros.darwin](juros.darwin)
 
@@ -641,7 +641,7 @@ funções: [jurosf.bend](jurosf.bend)
 
 [JUROS.BAS](JUROS.BAS)
 
-### Hack (13/02/2026)
+### Hack (13/02/2026) 🚀
 
 [juros.hack](juros.hack)<br>
 [testajuros.hack](testajuros.hack)
@@ -654,7 +654,7 @@ funções: [jurosf.bend](jurosf.bend)
 
 [juros_harbour.prg](juros_harbour.prg)
 
-### Hare (17/03/2026)
+### Hare (17/03/2026) 🚀
 
 [juros.ha](juros.ha)
 
@@ -706,7 +706,7 @@ funções: [jurosf.bend](jurosf.bend)
 
 [jurosIL.lsp](jurosIL.lsp)
 
-### J (22/01/2026) 🧠 🔧 ✍️
+### J (22/01/2026) 🧠 🚀 🔧 ✍️
 
 [run.ijs](run.ijs)
 
@@ -1209,7 +1209,7 @@ funções: [jurosf.bend](jurosf.bend)
 
 [jurospb.bas](jurospb.bas)
 
-### Python (25/08/2023) 🧠 🏛️ 🔧 💡 💖 ✍️
+### Python (25/08/2023) 🧠 🚀 🏛️ 🔧 💡 💖 ✍️
 
 [Juros.py](Juros.py)<br>
 [main.py](main.py)
@@ -1275,7 +1275,7 @@ funções: [jurosf.bend](jurosf.bend)
 
 [juros.rc](juros.rc)
 
-### RCBasic (07/02/2026)
+### RCBasic (07/02/2026) 🚀 🔧
 
 [jurosRC.bas](jurosRC.bas)
 
@@ -1629,7 +1629,7 @@ funções: [jurosf.bend](jurosf.bend)
 
 [jurosug.bas](jurosug.bas)
 
-### Umka (16/04/2026)
+### Umka (16/04/2026) 🚀
 
 [juros.um](juros.um)
 
@@ -1697,7 +1697,7 @@ funções: [jurosf.bend](jurosf.bend)
 
 [juros.ps1](juros.ps1)
 
-### WLambda (12/07/2026) 🔧 ✍️
+### WLambda (12/07/2026) 🚀 🔧 ✍️
 
 [juros.wlambda](juros.wlambda)
 
@@ -1722,7 +1722,7 @@ funções: [jurosf.bend](jurosf.bend)
 HTML: [juroswww.html](juroswww.html)<br>
 JavaScript: [juroswww.js](juroswww.js)
 
-### wxBasic (04/02/2026)
+### wxBasic (04/02/2026) 🚀
 
 [juros.wxb](juros.wxb)
 
@@ -1735,7 +1735,7 @@ JavaScript: [juroswww.js](juroswww.js)
 
 [juros.xpp](juros.xpp)
 
-### x-lang (08/03/2026) 📈
+### x-lang (08/03/2026) 🚀 📈
 
 [jurosxlang.x](jurosxlang.x)
 
@@ -1752,7 +1752,7 @@ JavaScript: [juroswww.js](juroswww.js)
 [jurosXB.prg](jurosXB.prg)<br>
 [main.prg](main.prg)
 
-### XBasic (31/12/2025) 🔧 ✍️
+### XBasic (31/12/2025) 🚀 🔧 ✍️
 
 [juros.x](juros.x)
 
@@ -1788,7 +1788,7 @@ JavaScript: [juroswww.js](juroswww.js)
 
 [juros.ys](juros.ys)
 
-### Yellow (17/05/2026)
+### Yellow (17/05/2026) 🚀
 
 [juros.yellow](juros.yellow)
 

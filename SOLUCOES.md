@@ -953,7 +953,7 @@ funções: [jurosf.bend](jurosf.bend)
 
 [juros.moon](juros.moon)
 
-### MSX Basic (02/01/2025) 🧠 💖 🔧 ✍️
+### MSX BASIC (02/01/2025) 🧠 💖 🔧 ✍️
 
 [JUROSMSX.BAS](JUROSMSX.BAS)
 

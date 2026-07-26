@@ -261,7 +261,8 @@ funções: [jurosf.bend](jurosf.bend)
 ### C++ (07/11/2013) 🧠 🚀 🏛️ 🔧 💡 💖 ✍️
 
 [interest.cpp](interest.cpp)<br>
-**recursiva / recursive:** [juros_rec.cpp](juros_rec.cpp) ♻️
+**recursiva / recursive:** [juros_rec.cpp](juros_rec.cpp) + ♻️<br>
+**recursiva + séries de Taylor / recursive + Taylor series:** [juros_rec_taylor.cpp](juros_rec_taylor.cpp) + ♻️ 📈
 
 ### Cakelisp (16/02/2026) 🧠 🚀 ♻️ ✍️
 

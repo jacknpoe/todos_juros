@@ -1214,7 +1214,7 @@ funções: [jurosf.bend](jurosf.bend)
 [Juros.py](Juros.py)<br>
 [main.py](main.py)
 
-### PyTorch (14/07/2026) 
+### PyTorch (14/07/2026) 🚀
 [JurosPT.py](JurosPT.py)<br>
 [mainPT.py](mainPT.py)
 

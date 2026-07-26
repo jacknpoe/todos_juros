@@ -1,5 +1,7 @@
 // Cálculo dos juros, sendo que precisa de parcelas pra isso
 // Versão 0.1: 03/06/2026: com vetores de C++ e globais como em juros_otimizado, versão recursiva
+// COMPILAR: g++ -Ofast -march=native -DNDEBUG -std=c++17 juros_rec.cpp -o juros_rec
+// PREPARAR PARA MUITAS PARCELAS (TESTADO ATÉ 300.000): ulimit -s 65536
 
 #include <vector>  // vector
 #include <math.h>	// pow
@@ -72,7 +74,7 @@ int main() {
     std::cout << std::fixed << std::setprecision(15);
 
     // inicializa as variáveis escalares globais
-    Quantidade = 3;
+    Quantidade = 300000;
     Composto = true;
     Periodo = 30.0;
 

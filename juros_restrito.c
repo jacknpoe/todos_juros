@@ -94,11 +94,16 @@ double acrescimoParaJuros(double valor, short precisao, short maxIteracoes, doub
 
 int main() {
     // variáveis que guardarão os resultados das funções
-	double acrescimoCalculado, jurosCalculado;
+	volatile double acrescimoCalculado, jurosCalculado;
 	int indice;
 
     Quantidade = 300000;
 	Composto = true;
+
+    // for(long i = 0; i < 1000; i++) {
+    // 	acrescimoCalculado = jurosParaAcrescimo(3.0);
+	//     jurosCalculado = acrescimoParaJuros(acrescimoCalculado, 15, 65, 10.0);  // ainda se pode diminuir 50.0 para outros máximos conhecidos de antemão
+	// }
 
     // calcula, guarda e imprime os resultados
 	acrescimoCalculado = jurosParaAcrescimo(3.0);

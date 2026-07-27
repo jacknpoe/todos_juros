@@ -2,10 +2,10 @@
 // Versão 0.1: 15/04/2026: versão pesadamente e estaticamente otimizada copiada da versão normal em C
 
 // OBJETIVO: Esta versão altamente otimizada existe para estudar otimizações de desempenho sobre a implementação
-//           canônica, preservando os resultados, mas não necessariamente os algoritmos.
+//           canônica (juros.c), preservando os resultados, mas não necessariamente os algoritmos.
 //           O foco é desempenho, mesmo que isso implique sacrificar legibilidade, reutilização ou semelhança com a 
-//           implementação canônica (juros.c). Ela não foi pensada como material didático. Esta implementação não deve 
-//           ser vista como representante de C no repositório https://github.com/jacknpoe/todos_juros/
+//           implementação canônica. Ela não foi pensada como material didático. Esta implementação não deve ser vista
+//           como representante de C no repositório https://github.com/jacknpoe/todos_juros/
 
 // ALTERAÇÕES:
 // ① `Quantidade`, `Compostos`, `Periodo`, `*Pagamentos` e `*Pesos` agora são variáveis globais, eliminando indireções;

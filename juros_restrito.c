@@ -10,6 +10,9 @@
 //             iteração posterior irá alterar o resultado final, pois os parcelamentos são uma progressão aritmética 
 //             crescente, o que gera termos adicionados exponencialmente decrescentes.
 
+//    DIVISOR: no lugar de calcular os valores que dividem 1.0, foram alterados os cálculos para usarem uma variávei `divisor`
+//             que é atualiza de forma rápida; veja que isso só é possível por causa das restrições listadas acima.
+
 // RESULTADOS: para juros de 3.0%, no cálculo de juros compostos, o laço acumulador para na parcela número 1126,
 //             ~1/266 do número de parcelas; nessa iteração, o valor de 1.0 / exp(fator * indice), com indice = 1126.0,
 //             é tão pequeno que não consegue mais alterar acumulador; já no cálculo dos juros simples,
@@ -25,35 +28,48 @@
 
 // PARA UMA PERSPECTIVA MATEMÁTICA: 1,03 ^ 1126 = 2,849148057 * 10^14  /  1 + 0,03 × 300000 = 900001
 
-// COMPILAR: /opt/intel/oneapi/compiler/2026.0/bin/icx -O3 -ffast-math -march=native juros_restrito.c -o juros_restrito -lm
+// COMPILAR: /opt/intel/oneapi/compiler/2026.0/bin/icx -O3 -ffast-math -march=native juros_restrito.c -o juros_restrito
 
-#include <math.h>      // para usar exp(), log(), pow()
 #include <stdio.h>     // para usar printf()
 
 #define true 1
 #define false 0
 
 // variáveis para simplificar as chamadas
-double Quantidade;
+long Quantidade;
 int Composto;
+
+// essa função é especial para expoentes inteiros (usada por acrescimoParaJuros)
+double powint(double base, long expoente) {
+	if (expoente < 0) return powint(1.0 / base, -expoente);
+	if (expoente == 0) return 1.0;
+	if (expoente % 2 == 0) return powint(base * base, expoente / 2);
+	return base * powint(base * base, (expoente - 1) / 2);
+}
 
 // calcula o acréscimo a partir dos juros e parcelas
 double jurosParaAcrescimo(double valor) {
-	if(valor <= 0.0 || Quantidade < 1.0) return 0.0;
-	double acumulador = 0.0, anterior = 0.0, indice, fator;
+	if(valor <= 0.0 || Quantidade < 1) return 0.0;
+    long indice;
+	double acumulador = 0.0, anterior = 0.0, fator, divisor;
 	
     if(Composto) {
-        fator = log(1.0 + valor / 100.0);   // parte fixa do cálculo de juros compostos
-	    for(indice = 1.0; indice <= Quantidade; indice++){
-		    acumulador += 1.0 / exp(fator * indice);
+        fator = 1.0 + valor / 100.0;
+        divisor =  fator;
+	    for(indice = 0; indice < Quantidade; indice++){
+		    acumulador += 1.0 / divisor;
             if(acumulador == anterior) break;
             anterior = acumulador;
+            divisor *= fator;
         }
         // printf("Parcelas: %f\n", indice);
     } else {
         fator = valor / 100.0;   // parte fixa do cálculo de juros simples
-        for(indice = 1.0; indice <= Quantidade; indice++)
-            acumulador += 1.0 / (1.0 + fator * indice); 
+        divisor = 1.0 + fator;
+        for(indice = 0; indice < Quantidade; indice++) {
+            acumulador += 1.0 / divisor;
+            divisor += fator;
+        }
     }
 	
 	if( acumulador <= 0.0 ) return 0.0;
@@ -62,9 +78,9 @@ double jurosParaAcrescimo(double valor) {
 
 // calcula os juros a partir do acréscimo e parcelas
 double acrescimoParaJuros(double valor, short precisao, short maxIteracoes, double maxJuros) {
-	double minJuros = 0.0, medJuros = (minJuros + maxJuros) / 2.0, minDiferenca = pow(0.1, precisao);
+	double minJuros = 0.0, medJuros = (minJuros + maxJuros) / 2.0, minDiferenca = powint(0.1, precisao);
 	short indice;
-	if(maxIteracoes < 1 || Quantidade < 1.0 || precisao < 1 || valor <= 0.0 || maxJuros <= 0.0) return 0.0;
+	if(maxIteracoes < 1 || Quantidade < 1 || precisao < 1 || valor <= 0.0 || maxJuros <= 0.0) return 0.0;
 
 	for(indice = 0; indice < maxIteracoes; indice++) {
 		if((maxJuros - minJuros) < minDiferenca) return medJuros;
@@ -81,7 +97,7 @@ int main() {
 	double acrescimoCalculado, jurosCalculado;
 	int indice;
 
-    Quantidade = 300000.0;
+    Quantidade = 300000;
 	Composto = true;
 
     // calcula, guarda e imprime os resultados

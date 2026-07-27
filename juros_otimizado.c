@@ -1,5 +1,18 @@
 // Cálculo dos juros, sendo que precisa de parcelas pra isso
 // Versão 0.1: 15/04/2026: versão pesadamente e estaticamente otimizada copiada da versão normal em C
+
+// OBJETIVO: Esta versão altamente otimizada existe para estudar otimizações de desempenho sobre a implementação
+//           canônica, preservando os resultados, mas não necessariamente os mesmos algoritmos.
+//           O foco é desempenho, mesmo que isso implique sacrificar legibilidade, reutilização ou semelhança com a 
+//           implementação canônica (juros.c). Ela não foi pensada como material didático.
+//           Também não deve ser vista como representante de C no repositório https://github.com/jacknpoe/todos_juros/
+
+// ALTERAÇÕES:
+// ① `Quantidade`, `Compostos`, `Periodo`, `*Pagamentos` e `*Pesos` agora são variáveis globais, eliminando indireções;
+// ② `pesoTotal` é calculada apenas uma vez e enviado via parâmetro para `jurosParaAcrescimo` e `acrescimoParaJuros`;
+// ③ em `jurosParaAcrescimo` foi adicionada a variável `fator` com os valores que não mudam dentro dos laços for;
+// ④ nos juros compostos `pow()` foi separado em `log()` e `exp()`, sendo que `log()` é resolvida fora do laço for.
+
 // COMPILAR: /opt/intel/oneapi/compiler/2026.0/bin/icx -O3 -ffast-math -march=native juros_otimizado.c -o juros_otimizado -lm
 
 #include <math.h>      // para usar exp(), log(), pow()

@@ -18,6 +18,9 @@
 //               Pode parecer muito tempo, mas é mais rápido que soluções que contêm implementações para essas funções,
 //               mesmo se comparada com implementações que usam laços, como a de Rune (DataDraw) (juros.rn), com 2,356 s.
 
+//        SELOS: somando com os selos de C++, esta versão tem todos os selos (🧠 🚀 🏛️ 🔧 💡 💖 ♻️ 📈 ✍️)
+//               na lista de soluções (SOLUCOES.md) (atualizado em 28/07/2026)
+
 // COMPILAR: g++ -Ofast -march=native -DNDEBUG -std=c++17 juros_rec_taylor.cpp -o juros_rec_taylor
 
 // PREPARAR PARA MUITAS PARCELAS (TESTADO ATÉ 300.000): ulimit -s 65536

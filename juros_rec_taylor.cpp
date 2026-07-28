@@ -1,11 +1,32 @@
 // Cálculo dos juros, sendo que precisa de parcelas pra isso
 // Versão 0.1: 26/07/2026: versão recursiva com as séries de Taylor recursivas e normalizadas
+
+// Esta é uma versão da solução em C++ recursiva (juros_rec.cpp) com a diferença que implementa as funções matemáticas
+// `ln()` e `exp()` e, consequentemente, `pow()`, com as mesmas restrições (funções recursivas, sem laços e com variáveis
+// atribuídas somente uma vez). Os algoritmos originais, imperativos, foram fornecidos pelo ChatGPT, mas a conversão para
+// algoritmos recursivos foi feita por https://github.com/jacknpoe.
+
+// NORMALIZAÇÃO: As funções exponenciais são normalizadas, o que significa que são gerais, podendo ser utilizadas para
+//               valores fora do domínio do problema (em que base gira em torno de 1,03 e expoente é positivo).
+//               Outros benefícios de serem normalizadas são a precisão e o desempenho. De outra forma, as séries poderiam
+//               não convergir ou convergir mais lentamente, exigindo mais chamadas recursivas.
+
+//          POW: `pow(base, expoente)` é construída usando a identidade matemática clássica:
+//               `pow(base, expoente) = exp(ln(base) * expoente)`
+
+//        TEMPO: A média das medições (para benchmark.png) foi 1,142 s, quase 9x o tempo da versão canônica (interest.cpp).
+//               Pode parecer muito tempo, mas é mais rápido que soluções que contêm implementações para essas funções,
+//               mesmo se comparada com implementações que usam laços, como a de Rune (DataDraw) (juros.rn), com 2,356 s.
+
 // COMPILAR: g++ -Ofast -march=native -DNDEBUG -std=c++17 juros_rec_taylor.cpp -o juros_rec_taylor
+
 // PREPARAR PARA MUITAS PARCELAS (TESTADO ATÉ 300.000): ulimit -s 65536
 
 #include <vector>  // vector
 #include <iomanip>  // setprecision
 #include <iostream>  // couts
+
+// #################### FORA DO DOMÍNIO DO PROBLEMA (FUNÇÕES MATEMÁTICAS E CONSTANTE LN2) ####################
 
 #define LN2 0.69314718055994530
 
@@ -23,14 +44,10 @@ double rln(double indice, double soma, double termo, double yy) {
 }
 
 // função que calcula ajuste quando valor >= 2.0
-double raddajuste(double valor) {
-    if(valor >= 2.0) return 1.0 + raddajuste(valor / 2.0); else return 0.0;
-}
+double raddajuste(double valor) { if(valor >= 2.0) return 1.0 + raddajuste(valor / 2.0); else return 0.0; }
 
 // função que calcula ajuste quando valor <> 1.0
-double rsubajuste(double valor) {
-    if(valor < 1.0) return -1.0 + rsubajuste(valor * 2.0); else return 0.0;
-}
+double rsubajuste(double valor) { if(valor < 1.0) return -1.0 + rsubajuste(valor * 2.0); else return 0.0; }
 
 // função ln() açúcar normalizada, de uso geral
 double ln(double valor) {
@@ -72,10 +89,12 @@ double exp(double valor) {
     return rexp(1.0, 1.0, x, x) * rpowint(2.0, ajuste);
 }
 
-// pown() é calculado pela equação clássica expn(lnn(base) * expoente)
+// pown() é calculado pela equação clássica exp(ln(base) * expoente)
 double pow(double base, double expoente) {
     return exp(ln(base) * expoente);
 }
+
+// #################### DENTRO DO DOMÍNIO DO PROBLEMA (MATEMÁTICA FINANCEIRA AVANÇADA) ####################
 
 // variáveis globais para simplificar as chamadas de função
 int Quantidade;
@@ -137,13 +156,14 @@ double acrescimoParaJuros(double acrescimo, int precisao, int maxIteracoes, doub
     return rAcrescimoParaJuros(acrescimo, pow(0.1, precisao), maxIteracoes, 0.0, maxJuros, maxJuros / 2.0);
 }
 
-// função principal
+// #################### FUNÇÃO PRINCIPAL ####################
+
 int main() {
     // define como padrão 15 casas decimais depois da vírgula
     std::cout << std::fixed << std::setprecision(15);
 
     // inicializa as variáveis escalares globais
-    Quantidade = 300000;
+    Quantidade = 3;
     Composto = true;
     Periodo = 30.0;
 

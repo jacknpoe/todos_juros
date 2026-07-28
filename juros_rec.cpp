@@ -1,6 +1,13 @@
 // Cálculo dos juros, sendo que precisa de parcelas pra isso
 // Versão 0.1: 03/06/2026: com vetores de C++ e globais como em juros_otimizado, versão recursiva
+
+// Esta versão da solução em C++ é propositalmente recursiva para medir o desempenho dessa forma de implementar os algoritmos
+// usando um compilador em C++ conhecido pelo seu desempenho. A média das medições (para benchmark.png) foi 0,228 s, o que é
+// apenas ~ 78% mais lenta do que a versão canônica em C++ (interest.cpp). Não foram utilizados laços e todas as variáveis
+// foram atribuídas somente uma vez. As funções "geradoras" de vetores foram escritas pelo ChatGPT.
+
 // COMPILAR: g++ -Ofast -march=native -DNDEBUG -std=c++17 juros_rec.cpp -o juros_rec
+
 // PREPARAR PARA MUITAS PARCELAS (TESTADO ATÉ 300.000): ulimit -s 65536
 
 #include <vector>  // vector
@@ -74,7 +81,7 @@ int main() {
     std::cout << std::fixed << std::setprecision(15);
 
     // inicializa as variáveis escalares globais
-    Quantidade = 300000;
+    Quantidade = 3;
     Composto = true;
     Periodo = 30.0;
 

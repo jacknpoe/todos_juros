@@ -28,6 +28,9 @@
 
 // PARA UMA PERSPECTIVA MATEMÁTICA: 1,03 ^ 1126 = 2,849148057 * 10^14  /  1 + 0,03 × 300000 = 900001
 
+// RESULTADOS: calcular 1000x teve uma média de 0,063 s, equivalente a 0,000063 s por chamada a `jurosParaAcrescimo()`
+//             e `acrescimoParaJuros()`, ~317,5 mais rápido do que juros_otimizado.c.
+
 // COMPILAR: /opt/intel/oneapi/compiler/2026.0/bin/icx -O3 -ffast-math -march=native juros_restrito.c -o juros_restrito
 
 #include <stdio.h>     // para usar printf()

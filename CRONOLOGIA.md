@@ -849,3 +849,5 @@ PyTorch (14/07/2026)
 Nelua (18/07/2026)
 
 Rune (DataDraw) (20/07/2026)
+
+Rune (Rust) (30/07/2026)

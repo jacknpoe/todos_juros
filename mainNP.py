@@ -2,11 +2,11 @@
 # Versões: 0.1: 13/07/2026: copiada a solução em Python e adaptada para NumPy
 #
 # NOTA IMPORTANTE: no benchmark com 300.000 parcelas:
-#                  • Python puro = ~ 16 s
+#                  • Python puro = ~ 8,8 s
 #                  • com NumPy = 0,330 s
-#                  relação = 1 / 48,48484848...
+#                  relação = 1 / 26,666666...
 #                  • com PyTorch = 2,018 s
-#                  relação = 1 / 7,928642...
+#                  relação = 1 / 4,360753...
 
 import JurosNP
 

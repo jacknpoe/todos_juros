@@ -1,0 +1,96 @@
+// Cálculo dos juros, sendo que precisa de parcelas pra isso
+// Versão 0.1: 29/07/2026: versão feita sem muito conhecimento de Rune (Rust)
+//        0.2: 30/07/2026: versão "orientada a objetos"
+
+// estrutura para simplificar as chamadas
+struct sJuros {
+    Quantidade,
+    Composto,
+    Periodo,
+    Pagamentos,
+    Pesos
+}
+
+// implementação da estrutura sJuros
+impl sJuros {
+    // construtor
+    fn new(Quantidade, Composto, Periodo, Pagamentos, Pesos) {
+        return sJuros {Quantidade, Composto, Periodo, Pagamentos, Pesos};
+    }
+
+    // calcula a somatória dos elementos em Pesos[]
+    fn getPesoTotal(self){
+        let acumulador = 0.0;
+        let indice = 0;
+
+        while indice < self.Quantidade {
+            acumulador += self.Pesos[indice];
+            indice += 1;
+        }
+
+        return acumulador;
+    }
+
+    // calcula o acrescimo a partir dos juros e parcelas
+    fn jurosParaAcrescimo(self, juros) {
+        let pesoTotal = self.getPesoTotal();
+        if self.Quantidade < 1 || self.Periodo <= 0.0 || pesoTotal <= 0.0 || juros <= 0.0 { return 0.0; }
+        let acumulador = 0.0;
+        let indice = 0;
+
+        while indice < self.Quantidade {
+            if self.Composto {
+                acumulador += self.Pesos[indice] / (1.0 + juros / 100.0).powf(self.Pagamentos[indice] / self.Periodo);
+            } else {
+                acumulador += self.Pesos[indice] / (1.0 + juros / 100.0 * self.Pagamentos[indice] / self.Periodo);
+            }
+            indice += 1;
+        }
+
+        if acumulador <= 0.0 { return 0.0; }
+        return (pesoTotal / acumulador - 1.0) * 100.0;
+    }
+
+    // calcula os juros a partir do acréscimo e parcelas
+    fn acrescimoParaJuros(self, acrescimo, precisao, maxIteracoes, maxJuros) {
+        let pesoTotal = self.getPesoTotal();
+        if self.Quantidade < 1 || self.Periodo <= 0.0 || pesoTotal <= 0.0 || acrescimo <= 0.0 || precisao < 1 || maxIteracoes <= 0 || maxJuros <= 0.0 { return 0.0; }
+        let minJuros = 0.0;
+        let medJuros = maxJuros / 2.0;
+        let minDiferenca = (0.1).powf(precisao as f64);
+        let indice = 0;
+
+        while indice < maxIteracoes && maxJuros - minJuros >= minDiferenca {
+            if self.jurosParaAcrescimo(medJuros) < acrescimo { minJuros = medJuros; } else { maxJuros = medJuros; }
+            medJuros = (minJuros + maxJuros) / 2.0;
+            indice += 1;
+        }
+
+        return medJuros;
+    }
+}
+
+pub fn main() {
+    // cria uma estrutura oJuros do tipo sJuros e inicialização de escalares
+   let oJuros = sJuros::new(3, true, 30.0, [], []);
+
+    // inicialização dos arrays globais Pagamentos[] e Pesos[]
+    let indice = 1;
+    while indice <= oJuros.Quantidade {
+        oJuros.Pagamentos.push((indice as f64) * oJuros.Periodo);
+        oJuros.Pesos.push(1.0);
+        indice += 1;
+    }
+
+    // calcula e guarda os resultados das funções
+    let pesoTotal = oJuros.getPesoTotal();
+    let acrescimoCalculado = oJuros.jurosParaAcrescimo(3.0);
+    let jurosCalculado = oJuros.acrescimoParaJuros(acrescimoCalculado, 15, 65, 50.0);
+
+    // imprime os resultados
+    println!("Peso total = {pesoTotal}");
+    println!("Acréscimo = {acrescimoCalculado}");
+    println!("Juros = {jurosCalculado}");
+}
+
+main();

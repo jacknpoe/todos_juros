@@ -60,7 +60,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 <br>
 
-# SOLUÇÕES / SOLUTIONS (421)
+# SOLUÇÕES / SOLUTIONS (422)
 
 ### 11l (14/03/2026) 🚀 ✍️
 
@@ -596,7 +596,7 @@ funções: [jurosf.bend](jurosf.bend)
 
 [juros.G32](juros.G32)
 
-### Gforth (02/01/2026) 🚀 [①](#nota-forth)
+### Gforth (02/01/2026) [①](#nota-forth) + 🚀
 
 [jurosp.fth](jurosp.fth)
 
@@ -1339,13 +1339,17 @@ funções: [jurosf.bend](jurosf.bend)
 
 [juros.roc](juros.roc)
 
-### Ruby (12/03/2024) 💖
+### Ruby (12/03/2024) 🚀 💖
 
 [juros.rb](juros.rb)
 
 ### Rune (DataDraw) (20/07/2026) 🔧 📈
 
 [juros.rn](juros.rn)
+
+### Rune (Rust) (30/07/2026) 🚀
+
+[jurosRR.rn]([jurosRR.rn)
 
 ### Rust (13/03/2024) 🚀 🏛️ 💡 💖
 

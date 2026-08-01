@@ -1,0 +1,21 @@
+Página do Blockly Playground on-line:
+https://blockly-demo.appspot.com/static/tests/playground.html
+
+Como proceder:
+① copie o conteúdo de jurosBP.xml;
+② cole na área de texto da página do Blockly Playground;
+③ clique em "Load";
+④ clique em "To JavaScript", "To Python", "To PHP", "To Lua" ou "To Dart";
+⑤ copie o código exibido na área de texto;
+⑥ cole em um arquivo .js, .py, .php, .lua ou .dart;
+➆ em PHP, acrescente a primeira linha "<?php";
+➇ para Node, troque "window.alert" por "console.log".
+
+(Blockly Playground apenas gera código, a execução deve ser feita na linguagem escolhida)
+
+Tempos para 300.000 parcelas:
+To JS: (0,631 + 0,635 + 0,628 + 0,628 + 0,630 + 0,648 + 0,641) / 7 = 0,6344285714 s
+To Dart: (0,768 + 0,786 + 0,796 + 0,806 + 0,804 + 0,812 + 0,771) / 7 = 0,7918571429 s
+To Lua: (1,693 + 1,693 + 1,796 + 1,691 + 1,653 + 1,703 + 1,847) / 7 = 1,725142857 s
+To PHP: (1,878 + 1,888 + 1,916 + 1,919 + 1,925 + 1,925 + 1,923) / 7 = 1,910571429 s
+To Python: (13,830 + 12,881 + 14,329 + 13,908 + 15,209 + 13,613 + 14,101) / 7 = 13,98157143 s

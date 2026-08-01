@@ -225,6 +225,11 @@ funções: [jurosf.bend](jurosf.bend)
 
 [juros.bmx](juros.bmx)
 
+### Blockly Playground (31/07/2026) 🧠 🚀 🏛️ 🔧 💡 💖 ✍️
+
+[jurosBP.xml](jurosBP.xml)<br>
+[jurosBP.txt](jurosBP.txt)
+
 ### Blu (21/04/2026) 🚀
 
 [juros.blu](juros.blu)

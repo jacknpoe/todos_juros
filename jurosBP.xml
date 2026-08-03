@@ -1,23 +1,21 @@
 <xml xmlns="https://developers.google.com/blockly/xml">
   <variables>
-    <variable id="#5^%#l2zRk`|:mx|cj{#">juros</variable>
+    <variable id="cAA=gu|yJ/l6^h`T-!8z">Quantidade</variable>
     <variable id="*2Zdl(n3X[;_+.byn$X`">acrescimo</variable>
     <variable id="}qd?,#oq-(1^W;JeW.K[">precisao</variable>
     <variable id="2Ac^!%Y#vbg8_?kzP1[(">maxIteracoes</variable>
     <variable id="Bu;_CpVe0pAACAg~Razi">maxJuros</variable>
-    <variable id="cAA=gu|yJ/l6^h`T-!8z">Quantidade</variable>
-    <variable id="qm?LR`%:wYZ;!EHHZ`95">acumulador</variable>
-    <variable id="e~#~-5PWZFfK7DbnqSxc">pesoTotal</variable>
-    <variable id="9(NWolB%^d[l0aDg,cW-">medJuros</variable>
-    <variable id="$_kiO]X/,X8!hn-+emmy">minJuros</variable>
+    <variable id="#5^%#l2zRk`|:mx|cj{#">juros</variable>
     <variable id="+nE)]lUVa?(J*}YMPBUm">Composto</variable>
-    <variable id="s[6^it/mB+nI?^PmLn*j">indice_getPesoTotal</variable>
+    <variable id="$_kiO]X/,X8!hn-+emmy">minJuros</variable>
+    <variable id="9(NWolB%^d[l0aDg,cW-">medJuros</variable>
+    <variable id="qm?LR`%:wYZ;!EHHZ`95">acumulador</variable>
     <variable id="@FA/VsD,b7[-4u=xHeyG">Periodo</variable>
-    <variable id="w{,2BLQ~n[L2+!8zWLLm">indice_jurosParaAcrescimo</variable>
-    <variable id="s44DXw%`ES78|/SDpgHG">minDiferenca</variable>
+    <variable id="w{,2BLQ~n[L2+!8zWLLm">indice</variable>
     <variable id="ub%rqka=mExO8qqZrHCa">Pagamentos</variable>
+    <variable id="s44DXw%`ES78|/SDpgHG">minDiferenca</variable>
     <variable id="E75.:+f;$hShRbMF}l4K">Pesos</variable>
-    <variable id="._=KO@D=v{)0rI;5d*pq">indice_listas</variable>
+    <variable id="e~#~-5PWZFfK7DbnqSxc">pesoTotal</variable>
     <variable id="Za9bKPo+mXG$u19;JE+p">acrescimoCalculado</variable>
     <variable id="f{54_XHVpoa9Ofz]_f,8">jurosCalculado</variable>
   </variables>
@@ -62,7 +60,7 @@
                     </value>
                     <next>
                       <block type="controls_for" id="+@Dp4uP{U`x4GQfgzi:5">
-                        <field name="VAR" id="._=KO@D=v{)0rI;5d*pq">indice_listas</field>
+                        <field name="VAR" id="w{,2BLQ~n[L2+!8zWLLm">indice</field>
                         <value name="FROM">
                           <shadow type="math_number" id="0UX$0yXJc-:6R9mYuc!E">
                             <field name="NUM">1</field>
@@ -99,7 +97,7 @@
                                     <field name="NUM">1</field>
                                   </shadow>
                                   <block type="variables_get" id="r@A]Wr47|p3t[KWaT10k">
-                                    <field name="VAR" id="._=KO@D=v{)0rI;5d*pq">indice_listas</field>
+                                    <field name="VAR" id="w{,2BLQ~n[L2+!8zWLLm">indice</field>
                                   </block>
                                 </value>
                                 <value name="B">
@@ -493,7 +491,7 @@
         </value>
         <next>
           <block type="controls_for" id="wE#?kB?~Vj/AF4UMnxlR">
-            <field name="VAR" id="s[6^it/mB+nI?^PmLn*j">indice_getPesoTotal</field>
+            <field name="VAR" id="w{,2BLQ~n[L2+!8zWLLm">indice</field>
             <value name="FROM">
               <shadow type="math_number" id="/%5I=DL_ivMq;k0~4R!q">
                 <field name="NUM">1</field>
@@ -541,7 +539,7 @@
                         </value>
                         <value name="AT">
                           <block type="variables_get" id="J3ZR^O7Vx@JIA.=r@E%!">
-                            <field name="VAR" id="s[6^it/mB+nI?^PmLn*j">indice_getPesoTotal</field>
+                            <field name="VAR" id="w{,2BLQ~n[L2+!8zWLLm">indice</field>
                           </block>
                         </value>
                       </block>
@@ -567,161 +565,275 @@
     <field name="NAME">jurosParaAcrescimo</field>
     <comment pinned="false" h="80" w="160">Describe this function...</comment>
     <statement name="STACK">
-      <block type="variables_set" id="Q!UMg]dUve{%3EP]:aW?">
-        <field name="VAR" id="e~#~-5PWZFfK7DbnqSxc">pesoTotal</field>
+      <block type="variables_set" id="x?-;GsudTAe*ltPj!eXn">
+        <field name="VAR" id="qm?LR`%:wYZ;!EHHZ`95">acumulador</field>
         <value name="VALUE">
-          <block type="procedures_callreturn" id="Y{|.o8eRl-Cpz;vOyBv-">
-            <mutation name="getPesoTotal"></mutation>
+          <block type="math_number" id="X}55kz`L@bZ(XMWkH_1y">
+            <field name="NUM">0</field>
           </block>
         </value>
         <next>
-          <block type="variables_set" id="x?-;GsudTAe*ltPj!eXn">
-            <field name="VAR" id="qm?LR`%:wYZ;!EHHZ`95">acumulador</field>
-            <value name="VALUE">
-              <block type="math_number" id="X}55kz`L@bZ(XMWkH_1y">
-                <field name="NUM">0</field>
+          <block type="controls_for" id="b4(`EbV%9uM+Z:maV_UU">
+            <field name="VAR" id="w{,2BLQ~n[L2+!8zWLLm">indice</field>
+            <value name="FROM">
+              <shadow type="math_number" id="H]PV=k*kl.W,jK[hoJYL">
+                <field name="NUM">1</field>
+              </shadow>
+            </value>
+            <value name="TO">
+              <shadow type="math_number" id="JK`XYu8xDe[4:bSnvV%]">
+                <field name="NUM">10</field>
+              </shadow>
+              <block type="variables_get" id="%;,B^6T[bqO1oC0zO5[?">
+                <field name="VAR" id="cAA=gu|yJ/l6^h`T-!8z">Quantidade</field>
               </block>
             </value>
-            <next>
-              <block type="controls_for" id="b4(`EbV%9uM+Z:maV_UU">
-                <field name="VAR" id="w{,2BLQ~n[L2+!8zWLLm">indice_jurosParaAcrescimo</field>
-                <value name="FROM">
-                  <shadow type="math_number" id="H]PV=k*kl.W,jK[hoJYL">
-                    <field name="NUM">1</field>
-                  </shadow>
-                </value>
-                <value name="TO">
-                  <shadow type="math_number" id="JK`XYu8xDe[4:bSnvV%]">
-                    <field name="NUM">10</field>
-                  </shadow>
-                  <block type="variables_get" id="%;,B^6T[bqO1oC0zO5[?">
-                    <field name="VAR" id="cAA=gu|yJ/l6^h`T-!8z">Quantidade</field>
+            <value name="BY">
+              <shadow type="math_number" id="vvrJ`ZA({te)y-CJRM8`">
+                <field name="NUM">1</field>
+              </shadow>
+            </value>
+            <statement name="DO">
+              <block type="controls_if" id="pXD$l9@Yqs{GA15uxZiI">
+                <mutation else="1"></mutation>
+                <value name="IF0">
+                  <block type="variables_get" id="!tj3)Ll7HH+iG3h561Jc">
+                    <field name="VAR" id="+nE)]lUVa?(J*}YMPBUm">Composto</field>
                   </block>
                 </value>
-                <value name="BY">
-                  <shadow type="math_number" id="vvrJ`ZA({te)y-CJRM8`">
-                    <field name="NUM">1</field>
-                  </shadow>
-                </value>
-                <statement name="DO">
-                  <block type="controls_if" id="pXD$l9@Yqs{GA15uxZiI">
-                    <mutation else="1"></mutation>
-                    <value name="IF0">
-                      <block type="variables_get" id="!tj3)Ll7HH+iG3h561Jc">
-                        <field name="VAR" id="+nE)]lUVa?(J*}YMPBUm">Composto</field>
-                      </block>
-                    </value>
-                    <statement name="DO0">
-                      <block type="variables_set" id="~j]`J,PtnHUC~!W(!fY=">
-                        <field name="VAR" id="qm?LR`%:wYZ;!EHHZ`95">acumulador</field>
-                        <value name="VALUE">
-                          <block type="math_arithmetic" id="6FL=Rpv#/``0o`LTU!W{">
-                            <field name="OP">ADD</field>
+                <statement name="DO0">
+                  <block type="variables_set" id="~j]`J,PtnHUC~!W(!fY=">
+                    <field name="VAR" id="qm?LR`%:wYZ;!EHHZ`95">acumulador</field>
+                    <value name="VALUE">
+                      <block type="math_arithmetic" id="6FL=Rpv#/``0o`LTU!W{">
+                        <field name="OP">ADD</field>
+                        <value name="A">
+                          <shadow type="math_number" id="5yWz-:*iqey=95yG}Cb}">
+                            <field name="NUM">1</field>
+                          </shadow>
+                          <block type="variables_get" id="Spw0dtvzEC#lSl_1pZ15">
+                            <field name="VAR" id="qm?LR`%:wYZ;!EHHZ`95">acumulador</field>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <shadow type="math_number" id="}5Y?[L}kW_t[=oM:;q}/">
+                            <field name="NUM">1</field>
+                          </shadow>
+                          <block type="math_arithmetic" id="MZ`.l/6U%ky1p|w^]c;t">
+                            <field name="OP">DIVIDE</field>
                             <value name="A">
-                              <shadow type="math_number" id="5yWz-:*iqey=95yG}Cb}">
+                              <shadow type="math_number" id=":^1cB%95yGMSg0x#U`X*">
                                 <field name="NUM">1</field>
                               </shadow>
-                              <block type="variables_get" id="Spw0dtvzEC#lSl_1pZ15">
-                                <field name="VAR" id="qm?LR`%:wYZ;!EHHZ`95">acumulador</field>
+                              <block type="lists_getIndex" id="82Y|0^BZ3x9C;8(PI~v1">
+                                <mutation statement="false" at="true"></mutation>
+                                <field name="MODE">GET</field>
+                                <field name="WHERE">FROM_START</field>
+                                <value name="VALUE">
+                                  <block type="variables_get" id="#6R.S[^wW*Ja.m5`ZY)+">
+                                    <field name="VAR" id="E75.:+f;$hShRbMF}l4K">Pesos</field>
+                                  </block>
+                                </value>
+                                <value name="AT">
+                                  <block type="variables_get" id="*{8Q/1;dl6#:j:m(UlRG">
+                                    <field name="VAR" id="w{,2BLQ~n[L2+!8zWLLm">indice</field>
+                                  </block>
+                                </value>
                               </block>
                             </value>
                             <value name="B">
-                              <shadow type="math_number" id="}5Y?[L}kW_t[=oM:;q}/">
+                              <shadow type="math_number" id="KG[TS`0Bs7yE*rheNDzM">
                                 <field name="NUM">1</field>
                               </shadow>
-                              <block type="math_arithmetic" id="MZ`.l/6U%ky1p|w^]c;t">
-                                <field name="OP">DIVIDE</field>
+                              <block type="math_arithmetic" id="59THA2^(IGiKW:6i|LN#">
+                                <field name="OP">POWER</field>
                                 <value name="A">
-                                  <shadow type="math_number" id=":^1cB%95yGMSg0x#U`X*">
+                                  <shadow type="math_number" id="p}(`#/.60Dct?RAg!`Jy">
                                     <field name="NUM">1</field>
                                   </shadow>
-                                  <block type="lists_getIndex" id="82Y|0^BZ3x9C;8(PI~v1">
-                                    <mutation statement="false" at="true"></mutation>
-                                    <field name="MODE">GET</field>
-                                    <field name="WHERE">FROM_START</field>
-                                    <value name="VALUE">
-                                      <block type="variables_get" id="#6R.S[^wW*Ja.m5`ZY)+">
-                                        <field name="VAR" id="E75.:+f;$hShRbMF}l4K">Pesos</field>
-                                      </block>
+                                  <block type="math_arithmetic" id="ZS~:NYZ=!jeO]Q%bFz5V">
+                                    <field name="OP">ADD</field>
+                                    <value name="A">
+                                      <shadow type="math_number" id="v2fmR)yp_QzJH4`+CyKY">
+                                        <field name="NUM">1</field>
+                                      </shadow>
                                     </value>
-                                    <value name="AT">
-                                      <block type="variables_get" id="*{8Q/1;dl6#:j:m(UlRG">
-                                        <field name="VAR" id="w{,2BLQ~n[L2+!8zWLLm">indice_jurosParaAcrescimo</field>
+                                    <value name="B">
+                                      <shadow type="math_number" id="fC1MEq2Oxp|51.3Kizt#">
+                                        <field name="NUM">1</field>
+                                      </shadow>
+                                      <block type="math_arithmetic" id=",RuY.NPsKn+@S]Br=TmZ">
+                                        <field name="OP">DIVIDE</field>
+                                        <value name="A">
+                                          <shadow type="math_number" id="G%Df)$rU]pD81sl2q8~8">
+                                            <field name="NUM">1</field>
+                                          </shadow>
+                                          <block type="variables_get" id="i4*J1[fY!wSYAr4yg0Rn">
+                                            <field name="VAR" id="#5^%#l2zRk`|:mx|cj{#">juros</field>
+                                          </block>
+                                        </value>
+                                        <value name="B">
+                                          <shadow type="math_number" id="g1DAW6LSl9^ohllG(RM;">
+                                            <field name="NUM">100</field>
+                                          </shadow>
+                                        </value>
                                       </block>
                                     </value>
                                   </block>
                                 </value>
                                 <value name="B">
-                                  <shadow type="math_number" id="KG[TS`0Bs7yE*rheNDzM">
+                                  <shadow type="math_number" id="=JE82z,,!ohH?!em=3k=">
                                     <field name="NUM">1</field>
                                   </shadow>
-                                  <block type="math_arithmetic" id="59THA2^(IGiKW:6i|LN#">
-                                    <field name="OP">POWER</field>
+                                  <block type="math_arithmetic" id="Gn]BTggL@!Qxuy~EZ=tT">
+                                    <field name="OP">DIVIDE</field>
                                     <value name="A">
-                                      <shadow type="math_number" id="p}(`#/.60Dct?RAg!`Jy">
+                                      <shadow type="math_number" id="ULfbmm~o/~}3d26Dqy4g">
                                         <field name="NUM">1</field>
                                       </shadow>
-                                      <block type="math_arithmetic" id="ZS~:NYZ=!jeO]Q%bFz5V">
-                                        <field name="OP">ADD</field>
-                                        <value name="A">
-                                          <shadow type="math_number" id="v2fmR)yp_QzJH4`+CyKY">
-                                            <field name="NUM">1</field>
-                                          </shadow>
+                                      <block type="lists_getIndex" id="`?tGqi:h%u3hJwgtI2[Q">
+                                        <mutation statement="false" at="true"></mutation>
+                                        <field name="MODE">GET</field>
+                                        <field name="WHERE">FROM_START</field>
+                                        <value name="VALUE">
+                                          <block type="variables_get" id="@P,iRU{0$YmD,4fBB~fj">
+                                            <field name="VAR" id="ub%rqka=mExO8qqZrHCa">Pagamentos</field>
+                                          </block>
                                         </value>
-                                        <value name="B">
-                                          <shadow type="math_number" id="fC1MEq2Oxp|51.3Kizt#">
-                                            <field name="NUM">1</field>
-                                          </shadow>
-                                          <block type="math_arithmetic" id=",RuY.NPsKn+@S]Br=TmZ">
-                                            <field name="OP">DIVIDE</field>
-                                            <value name="A">
-                                              <shadow type="math_number" id="G%Df)$rU]pD81sl2q8~8">
-                                                <field name="NUM">1</field>
-                                              </shadow>
-                                              <block type="variables_get" id="i4*J1[fY!wSYAr4yg0Rn">
-                                                <field name="VAR" id="#5^%#l2zRk`|:mx|cj{#">juros</field>
-                                              </block>
-                                            </value>
-                                            <value name="B">
-                                              <shadow type="math_number" id="g1DAW6LSl9^ohllG(RM;">
-                                                <field name="NUM">100</field>
-                                              </shadow>
-                                            </value>
+                                        <value name="AT">
+                                          <block type="variables_get" id=")P9h^vXy!mj@=mJ;kDAq">
+                                            <field name="VAR" id="w{,2BLQ~n[L2+!8zWLLm">indice</field>
                                           </block>
                                         </value>
                                       </block>
                                     </value>
                                     <value name="B">
-                                      <shadow type="math_number" id="=JE82z,,!ohH?!em=3k=">
+                                      <shadow type="math_number" id="OhC=[|UfCKp-(^!QjK=/">
                                         <field name="NUM">1</field>
                                       </shadow>
-                                      <block type="math_arithmetic" id="Gn]BTggL@!Qxuy~EZ=tT">
+                                      <block type="variables_get" id="SO(^M4ko8Pb8cLmz.8yC">
+                                        <field name="VAR" id="@FA/VsD,b7[-4u=xHeyG">Periodo</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                  </block>
+                </statement>
+                <statement name="ELSE">
+                  <block type="variables_set" id="lS}`y0W{F~2WdL$:dKYB">
+                    <field name="VAR" id="qm?LR`%:wYZ;!EHHZ`95">acumulador</field>
+                    <value name="VALUE">
+                      <block type="math_arithmetic" id=";)GyJxbq*3N,ZRRyNGV{">
+                        <field name="OP">ADD</field>
+                        <value name="A">
+                          <shadow type="math_number" id="F/TPYl1vpeC4=KbIUzOu">
+                            <field name="NUM">1</field>
+                          </shadow>
+                          <block type="variables_get" id="_g2d^UCEg688cbnD`*PC">
+                            <field name="VAR" id="qm?LR`%:wYZ;!EHHZ`95">acumulador</field>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <shadow type="math_number" id="c[S1]#hTh(}0]aJZ!,8m">
+                            <field name="NUM">1</field>
+                          </shadow>
+                          <block type="math_arithmetic" id="_^oib=sJ;=_piyhMEzxp">
+                            <field name="OP">DIVIDE</field>
+                            <value name="A">
+                              <shadow type="math_number" id="lt@b.bi;^?1bDuulKs@l">
+                                <field name="NUM">1</field>
+                              </shadow>
+                              <block type="lists_getIndex" id="~oP#,5)bx~fIdB^?+zHQ">
+                                <mutation statement="false" at="true"></mutation>
+                                <field name="MODE">GET</field>
+                                <field name="WHERE">FROM_START</field>
+                                <value name="VALUE">
+                                  <block type="variables_get" id="BiZblq??Mg_c!2e*;y{$">
+                                    <field name="VAR" id="E75.:+f;$hShRbMF}l4K">Pesos</field>
+                                  </block>
+                                </value>
+                                <value name="AT">
+                                  <block type="variables_get" id="}l|[wyb??RQ@8J4BK8bV">
+                                    <field name="VAR" id="w{,2BLQ~n[L2+!8zWLLm">indice</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <value name="B">
+                              <shadow type="math_number" id="|L6NU)e?m+bW++sI^zh8">
+                                <field name="NUM">1</field>
+                              </shadow>
+                              <block type="math_arithmetic" id="N9Igqp2,}@:r0fIdz50J">
+                                <field name="OP">ADD</field>
+                                <value name="A">
+                                  <shadow type="math_number" id="Jn|CX(3s70eX[%]o10+;">
+                                    <field name="NUM">1</field>
+                                  </shadow>
+                                </value>
+                                <value name="B">
+                                  <shadow type="math_number" id="CV1|33j[hspQ+il!~*jt">
+                                    <field name="NUM">1</field>
+                                  </shadow>
+                                  <block type="math_arithmetic" id="A;^HbX+Y]@_rP:jUaYvc">
+                                    <field name="OP">MULTIPLY</field>
+                                    <value name="A">
+                                      <shadow type="math_number" id="KeG7}etgWUSArdxKDF.4">
+                                        <field name="NUM">1</field>
+                                      </shadow>
+                                      <block type="math_arithmetic" id="vHqjYlt0mrwX_TI{#A7J">
                                         <field name="OP">DIVIDE</field>
                                         <value name="A">
-                                          <shadow type="math_number" id="ULfbmm~o/~}3d26Dqy4g">
+                                          <shadow type="math_number" id="OYmQ[6iEamW`kmHQJs_Y">
                                             <field name="NUM">1</field>
                                           </shadow>
-                                          <block type="lists_getIndex" id="`?tGqi:h%u3hJwgtI2[Q">
+                                          <block type="variables_get" id="U_^8X8FK#b1N(;7_gRl0">
+                                            <field name="VAR" id="#5^%#l2zRk`|:mx|cj{#">juros</field>
+                                          </block>
+                                        </value>
+                                        <value name="B">
+                                          <shadow type="math_number" id="V/TKy+:?!nbEb?UomWE2">
+                                            <field name="NUM">100</field>
+                                          </shadow>
+                                        </value>
+                                      </block>
+                                    </value>
+                                    <value name="B">
+                                      <shadow type="math_number" id="iTwHI3?jMC~9k_ZUpEDe">
+                                        <field name="NUM">1</field>
+                                      </shadow>
+                                      <block type="math_arithmetic" id="hVJCo3hbSpm#eLoF|1E,">
+                                        <field name="OP">DIVIDE</field>
+                                        <value name="A">
+                                          <shadow type="math_number" id="@VFw1rdG0#8W^A,P}iTx">
+                                            <field name="NUM">1</field>
+                                          </shadow>
+                                          <block type="lists_getIndex" id="C[BlE^d*|-#aqv:qs6M`">
                                             <mutation statement="false" at="true"></mutation>
                                             <field name="MODE">GET</field>
                                             <field name="WHERE">FROM_START</field>
                                             <value name="VALUE">
-                                              <block type="variables_get" id="@P,iRU{0$YmD,4fBB~fj">
+                                              <block type="variables_get" id=".W2@9xC.71rj6~L/ew8K">
                                                 <field name="VAR" id="ub%rqka=mExO8qqZrHCa">Pagamentos</field>
                                               </block>
                                             </value>
                                             <value name="AT">
-                                              <block type="variables_get" id=")P9h^vXy!mj@=mJ;kDAq">
-                                                <field name="VAR" id="w{,2BLQ~n[L2+!8zWLLm">indice_jurosParaAcrescimo</field>
+                                              <block type="variables_get" id="N2Z|evqFTK[)0BUFvYwb">
+                                                <field name="VAR" id="w{,2BLQ~n[L2+!8zWLLm">indice</field>
                                               </block>
                                             </value>
                                           </block>
                                         </value>
                                         <value name="B">
-                                          <shadow type="math_number" id="OhC=[|UfCKp-(^!QjK=/">
+                                          <shadow type="math_number" id="Gk[[VOXWZ?bQJJAisAp?">
                                             <field name="NUM">1</field>
                                           </shadow>
-                                          <block type="variables_get" id="SO(^M4ko8Pb8cLmz.8yC">
+                                          <block type="variables_get" id="c/w/IiTz%#mt/RVRN,7i">
                                             <field name="VAR" id="@FA/VsD,b7[-4u=xHeyG">Periodo</field>
                                           </block>
                                         </value>
@@ -734,135 +846,11 @@
                           </block>
                         </value>
                       </block>
-                    </statement>
-                    <statement name="ELSE">
-                      <block type="variables_set" id="lS}`y0W{F~2WdL$:dKYB">
-                        <field name="VAR" id="qm?LR`%:wYZ;!EHHZ`95">acumulador</field>
-                        <value name="VALUE">
-                          <block type="math_arithmetic" id=";)GyJxbq*3N,ZRRyNGV{">
-                            <field name="OP">ADD</field>
-                            <value name="A">
-                              <shadow type="math_number" id="F/TPYl1vpeC4=KbIUzOu">
-                                <field name="NUM">1</field>
-                              </shadow>
-                              <block type="variables_get" id="_g2d^UCEg688cbnD`*PC">
-                                <field name="VAR" id="qm?LR`%:wYZ;!EHHZ`95">acumulador</field>
-                              </block>
-                            </value>
-                            <value name="B">
-                              <shadow type="math_number" id="c[S1]#hTh(}0]aJZ!,8m">
-                                <field name="NUM">1</field>
-                              </shadow>
-                              <block type="math_arithmetic" id="_^oib=sJ;=_piyhMEzxp">
-                                <field name="OP">DIVIDE</field>
-                                <value name="A">
-                                  <shadow type="math_number" id="lt@b.bi;^?1bDuulKs@l">
-                                    <field name="NUM">1</field>
-                                  </shadow>
-                                  <block type="lists_getIndex" id="~oP#,5)bx~fIdB^?+zHQ">
-                                    <mutation statement="false" at="true"></mutation>
-                                    <field name="MODE">GET</field>
-                                    <field name="WHERE">FROM_START</field>
-                                    <value name="VALUE">
-                                      <block type="variables_get" id="BiZblq??Mg_c!2e*;y{$">
-                                        <field name="VAR" id="E75.:+f;$hShRbMF}l4K">Pesos</field>
-                                      </block>
-                                    </value>
-                                    <value name="AT">
-                                      <block type="variables_get" id="}l|[wyb??RQ@8J4BK8bV">
-                                        <field name="VAR" id="w{,2BLQ~n[L2+!8zWLLm">indice_jurosParaAcrescimo</field>
-                                      </block>
-                                    </value>
-                                  </block>
-                                </value>
-                                <value name="B">
-                                  <shadow type="math_number" id="|L6NU)e?m+bW++sI^zh8">
-                                    <field name="NUM">1</field>
-                                  </shadow>
-                                  <block type="math_arithmetic" id="N9Igqp2,}@:r0fIdz50J">
-                                    <field name="OP">ADD</field>
-                                    <value name="A">
-                                      <shadow type="math_number" id="Jn|CX(3s70eX[%]o10+;">
-                                        <field name="NUM">1</field>
-                                      </shadow>
-                                    </value>
-                                    <value name="B">
-                                      <shadow type="math_number" id="CV1|33j[hspQ+il!~*jt">
-                                        <field name="NUM">1</field>
-                                      </shadow>
-                                      <block type="math_arithmetic" id="A;^HbX+Y]@_rP:jUaYvc">
-                                        <field name="OP">MULTIPLY</field>
-                                        <value name="A">
-                                          <shadow type="math_number" id="KeG7}etgWUSArdxKDF.4">
-                                            <field name="NUM">1</field>
-                                          </shadow>
-                                          <block type="math_arithmetic" id="vHqjYlt0mrwX_TI{#A7J">
-                                            <field name="OP">DIVIDE</field>
-                                            <value name="A">
-                                              <shadow type="math_number" id="OYmQ[6iEamW`kmHQJs_Y">
-                                                <field name="NUM">1</field>
-                                              </shadow>
-                                              <block type="variables_get" id="U_^8X8FK#b1N(;7_gRl0">
-                                                <field name="VAR" id="#5^%#l2zRk`|:mx|cj{#">juros</field>
-                                              </block>
-                                            </value>
-                                            <value name="B">
-                                              <shadow type="math_number" id="V/TKy+:?!nbEb?UomWE2">
-                                                <field name="NUM">100</field>
-                                              </shadow>
-                                            </value>
-                                          </block>
-                                        </value>
-                                        <value name="B">
-                                          <shadow type="math_number" id="iTwHI3?jMC~9k_ZUpEDe">
-                                            <field name="NUM">1</field>
-                                          </shadow>
-                                          <block type="math_arithmetic" id="hVJCo3hbSpm#eLoF|1E,">
-                                            <field name="OP">DIVIDE</field>
-                                            <value name="A">
-                                              <shadow type="math_number" id="@VFw1rdG0#8W^A,P}iTx">
-                                                <field name="NUM">1</field>
-                                              </shadow>
-                                              <block type="lists_getIndex" id="C[BlE^d*|-#aqv:qs6M`">
-                                                <mutation statement="false" at="true"></mutation>
-                                                <field name="MODE">GET</field>
-                                                <field name="WHERE">FROM_START</field>
-                                                <value name="VALUE">
-                                                  <block type="variables_get" id=".W2@9xC.71rj6~L/ew8K">
-                                                    <field name="VAR" id="ub%rqka=mExO8qqZrHCa">Pagamentos</field>
-                                                  </block>
-                                                </value>
-                                                <value name="AT">
-                                                  <block type="variables_get" id="N2Z|evqFTK[)0BUFvYwb">
-                                                    <field name="VAR" id="w{,2BLQ~n[L2+!8zWLLm">indice_jurosParaAcrescimo</field>
-                                                  </block>
-                                                </value>
-                                              </block>
-                                            </value>
-                                            <value name="B">
-                                              <shadow type="math_number" id="Gk[[VOXWZ?bQJJAisAp?">
-                                                <field name="NUM">1</field>
-                                              </shadow>
-                                              <block type="variables_get" id="c/w/IiTz%#mt/RVRN,7i">
-                                                <field name="VAR" id="@FA/VsD,b7[-4u=xHeyG">Periodo</field>
-                                              </block>
-                                            </value>
-                                          </block>
-                                        </value>
-                                      </block>
-                                    </value>
-                                  </block>
-                                </value>
-                              </block>
-                            </value>
-                          </block>
-                        </value>
-                      </block>
-                    </statement>
+                    </value>
                   </block>
                 </statement>
               </block>
-            </next>
+            </statement>
           </block>
         </next>
       </block>

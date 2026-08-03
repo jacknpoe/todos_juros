@@ -1,0 +1,10 @@
+# TERCEIROS / THIRD PARTIES
+
+<br>
+
+### IBM Z Assembly (23/01/2025) • Bob Schulien
+
+[B.MAC](B.MAC)
+[BC.MAC](BC.MAC)
+[FUNCBRC.MAC](FUNCBRC.MAC)
+[JUROS.MLC](JUROS.MLC)

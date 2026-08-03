@@ -863,6 +863,11 @@ funções: [jurosf.bend](jurosf.bend)
 
 [juros.magma](juros.magma)
 
+### MakeCode Arcade 🧠 🚀 🏛️ 🔧 💡 💖 ✍️
+
+[Juros](https://arcade.makecode.com/S46829-97315-00721-56883)
+
+
 ### Maple (27/06/2026) 🧠
 
 [juros.maple](juros.maple)

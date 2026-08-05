@@ -39,10 +39,7 @@ Arquivo / File: [juros.ods](juros.ods)
 
 # CRONOLOGIA / CHRONOLOGY
 
-Cronologia:<br>
-Chronology:
-
-[CRONOLOGIA.md](CRONOLOGIA.md)
+Cronologia: / Chronology: [CRONOLOGIA.md](CRONOLOGIA.md)
 
 <br>
 

@@ -1850,6 +1850,7 @@ JavaScript: [juroswww.js](juroswww.js)
 
 # EQUIVALENTES / EQUIVALENTS (89)
 
+ACECode = Scratch<br>
 Amstrad BASIC = Locomotive BASIC<br>
 BBC BASIC for SDL 2.0 = BBC BASIC<br>
 Boa = Node.js<br>

@@ -1876,6 +1876,7 @@ Gambit = Scheme<br>
 gawk = awk<br>
 Generic Java = Java<br>
 Gerbil Scheme = Kawa/Steel<br>
+gFortran = Fortran<br>
 GNU Bourne-Again Shell = Bash<br>
 GNU Octave = Octave<br>
 Guile = Kawa/Scheme/Steel<br>

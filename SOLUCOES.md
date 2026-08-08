@@ -1848,7 +1848,7 @@ JavaScript: [juroswww.js](juroswww.js)
 
 <br>
 
-# EQUIVALENTES / EQUIVALENTS (89)
+# EQUIVALENTES / EQUIVALENTS (92)
 
 ACECode = Scratch<br>
 Amstrad BASIC = Locomotive BASIC<br>
@@ -1882,6 +1882,7 @@ GNU Octave = Octave<br>
 Guile = Kawa/Scheme/Steel<br>
 HashLink = Haxe<br>
 IBM PC BASIC A = GW-BASIC<br>
+Idris 2 = Idris + 🚀<br>
 Intel Fortran Compiler = Fortran<br>
 Iodine = Java<br>
 IronPython = Python<br>

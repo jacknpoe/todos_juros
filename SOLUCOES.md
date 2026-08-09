@@ -900,10 +900,6 @@ funções: [jurosf.bend](jurosf.bend)
 
 [juros.mfloppy](juros.mfloppy)
 
-### Mercury (05/02/2025)
-
-[ProgramMercury.vb](ProgramMercury.vb)
-
 ### micro(A) (08/04/2025) 🔧 ✍️
 
 [jurosMAB.bas](jurosMAB.bas)
@@ -1313,6 +1309,10 @@ funções: [jurosf.bend](jurosf.bend)
 ### Regina Rexx (14/01/2026) 🧠 📈 ✍️
 
 [jurosr.rexx](jurosr.rexx)
+
+### RemObjects Mercury (05/02/2025)
+
+[ProgramMercury.vb](ProgramMercury.vb)
 
 ### ReScript (30/06/2024) 🔧 ♻️ ✍️
 

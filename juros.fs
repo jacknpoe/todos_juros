@@ -1,6 +1,6 @@
 ﻿// Cálculo do juros, sendo que precisa de arrays pra isso
 // Versão 0.1: 23/05/2024: versão feita sem muito conhecimento de F#
-//        0.2: 08/08/2024: agora como Program.fs em Mono, escalável, compilávels
+//        0.2: 08/08/2026: agora como Program.fs em Mono, escalável, compilávels
 
 // classe com atributos básicos para simplificar as chamadas
 type Juros(quantidade: int, composto: bool, periodo: double, pagamentos: double[], pesos: double[]) =

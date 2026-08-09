@@ -41,8 +41,7 @@ type Juros(quantidade: int, composto: bool, periodo: double, pagamentos: double[
             if juros <= 0.0 || this.Quantidade < 1 || this.Periodo < 0.0 || pesoTotal <= 0 then
                 0.0
             else
-                let acumulador: double = if this.Composto then this.rJurosCompostos(juros, 0) else this.rJurosSimples(juros, 0)
-                (pesoTotal / acumulador - 1.0) * 100.0
+                (pesoTotal / (if this.Composto then this.rJurosCompostos(juros, 0) else this.rJurosSimples(juros, 0)) - 1.0) * 100.0
 
         // método recursivo que calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
         member this.rAcrescimoParaJuros(acrescimo: double, minDiferenca: double, iteracao: int, minJuros: double, maxJuros: double, medJuros: double) =
@@ -56,8 +55,7 @@ type Juros(quantidade: int, composto: bool, periodo: double, pagamentos: double[
 
         // método açúcar que calcula os juros a partir do acréscimo e dados comuns (como parcelas)
         member this.acrescimoParaJuros(acrescimo: double, precisao: int, maxIteracoes: int, maxJuros: double): double =
-            let pesoTotal: double = this.rGetPesoTotal(0)
-            if acrescimo <= 0.0 || this.Quantidade < 1 || this.Periodo < 0.0 || pesoTotal <= 0 || maxIteracoes < 1 || precisao < 1 || maxJuros <= 0.0 then
+            if acrescimo <= 0.0 || this.Quantidade < 1 || this.Periodo < 0.0 || this.rGetPesoTotal(0) <= 0.0 || maxIteracoes < 1 || precisao < 1 || maxJuros <= 0.0 then
                 0.0
             else
                 this.rAcrescimoParaJuros(acrescimo, 0.1 ** double precisao, maxIteracoes, 0.0, maxJuros, maxJuros / 2.0)

@@ -1,6 +1,6 @@
 ﻿// Cálculo do juros, sendo que precisa de arrays pra isso
 // Versão 0.1: 23/05/2024: versão feita sem muito conhecimento de F#
-//        0.2: 08/98/2024: agora como Program.fs em Mono
+//        0.2: 08/08/2024: agora como Program.fs em Mono, escalável, compilávels
 
 // classe com atributos básicos para simplificar as chamadas
 type Juros(quantidade: int, composto: bool, periodo: double, pagamentos: double[], pesos: double[]) =
@@ -66,7 +66,7 @@ let main argv =
     // calcula e guarda os resultados das funções
     let pesoTotal = juros.getPesoTotal()
     let acrescimoCalculado = juros.jurosParaAcrescimo(3.0)
-    let jurosCalculado = juros.acrescimoParaJuros(acrescimoCalculado, 15, 100, 50.0)
+    let jurosCalculado = juros.acrescimoParaJuros(acrescimoCalculado, 15, 65, 50.0)
 
     // testa as funções
     printfn "Peso total = %2.14f" pesoTotal

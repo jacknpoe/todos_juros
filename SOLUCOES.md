@@ -1686,7 +1686,7 @@ funções: [jurosf.bend](jurosf.bend)
 
 ### Visual Basic .NET (02/03/2024) 🧠 🏛️ 🔧 💡 💖 ✍️
 
-[TesteJuros.vb](TesteJuros.vb)
+[Program.vb](Program.vb)
 
 ### Visual DataFlex (21/02/2025) 🔧 ✍️
 

@@ -500,7 +500,7 @@ funções: [jurosf.bend](jurosf.bend)
 
 ### F# (23/05/2024) 🚀 🏛️ 💡 💖
 
-[juros.fs](juros.fs)
+[juros.fs](juros.fs)<br>
 **recursiva / recursive:** [jurosrec.fs](jurosrec.fs) + ♻️
 
 ### Falcon (10/02/2026)

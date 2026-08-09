@@ -498,9 +498,10 @@ funções: [jurosf.bend](jurosf.bend)
 
 [juros.l](juros.l)
 
-### F# (23/05/2024) 🏛️ 💡 💖
+### F# (23/05/2024) 🚀 🏛️ 💡 💖
 
-[juros.fsx](juros.fsx)
+[juros.fs](juros.fs)
+**recursiva / recursive:** [jurosrec.fs](jurosrec.fs) + ♻️
 
 ### Falcon (10/02/2026)
 

@@ -294,7 +294,7 @@ Transact-SQL (SQL Server) (04/02/2025)
 
 Intel oneAPI DPC++ (05/02/2025)
 
-Mercury (05/02/2025)
+RemObjects Mercury (05/02/2025)
 
 Arden (06/02/2025)
 

@@ -11,7 +11,7 @@
 //             crescente, o que gera termos adicionados exponencialmente decrescentes.
 
 //    DIVISOR: no lugar de calcular os valores que dividem 1.0, foram alterados os cálculos para usarem uma variávei `divisor`
-//             que é atualiza de forma rápida; veja que isso só é possível por causa das restrições listadas acima.
+//             que é atualizada de forma rápida; veja que isso só é possível por causa das restrições listadas acima.
 
 // RESULTADOS: para juros de 3.0%, no cálculo de juros compostos, o laço acumulador para na parcela número 1126,
 //             ~1/266 do número de parcelas; nessa iteração, o valor de 1.0 / exp(fator * indice), com indice = 1126.0,

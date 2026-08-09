@@ -1,4 +1,3 @@
-//  Versão 0.2:    04/2024: trocada avaliação soZero por acumulador == 0
 using System;
 
 public class Juros
@@ -20,6 +19,8 @@ public class Juros
     }
 
     public Juros(int quantidade = 0, bool composto = false, double periodo = 30.0) {
+        Pagamentos = new double[quantidade];    // para aplacar o compilador
+        Pesos = new double[quantidade];    // para aplacar o compilador
         Quantidade = quantidade;    // perceba que irá usar o método SET para definir os arrays também
         Composto = composto;
         Periodo = periodo;
@@ -52,7 +53,7 @@ public class Juros
         return (pesoTotal / acumulador - 1) * 100;
     }
 
-    public double acrescimoParaJuros(double acrescimo, int precisao = 15, int maxInteracoes = 100, double maxJuros = 50) {
+    public double acrescimoParaJuros(double acrescimo, int precisao = 15, int maxInteracoes = 65, double maxJuros = 50) {
         if(maxInteracoes < 1 || Quantidade == 0 || precisao < 1 || Periodo <= 0.0 || acrescimo <= 0 || maxJuros <= 0) return 0;
         double minJuros = 0, medJuros = 0, minDiferenca = Math.Pow(0.1, precisao), pesoTotal = getPesoTotal();
         if(pesoTotal == 0) return 0;

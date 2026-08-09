@@ -261,7 +261,7 @@ funções: [jurosf.bend](jurosf.bend)
 ### C# (21/02/2024) 🚀
 
 [Juros.cs](Juros.cs)<br>
-[TesteJuros.cs](TesteJuros.cs)
+[Program.cs](Program.cs)
 
 ### C++ (07/11/2013) 🧠 🚀 🏛️ 🔧 💡 💖 ✍️
 
@@ -902,7 +902,7 @@ funções: [jurosf.bend](jurosf.bend)
 
 ### Mercury (05/02/2025)
 
-[Program.vb](Program.vb)
+[ProgramMercury.vb](ProgramMercury.vb)
 
 ### micro(A) (08/04/2025) 🔧 ✍️
 
@@ -1684,7 +1684,7 @@ funções: [jurosf.bend](jurosf.bend)
 
 [Juros.frm](Juros.frm)
 
-### Visual Basic .NET (02/03/2024) 🧠 🏛️ 🔧 💡 💖 ✍️
+### Visual Basic .NET (02/03/2024) 🧠 🚀 🏛️ 🔧 💡 💖 ✍️
 
 [Program.vb](Program.vb)
 

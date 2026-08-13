@@ -688,7 +688,7 @@ funções: [jurosf.bend](jurosf.bend)
 
 [juros.icn](juros.icn)
 
-### Idris (27/06/2024) ♻️
+### Idris (27/06/2024) 🚀 ♻️
 
 [juros.idr](juros.idr)
 
@@ -1883,7 +1883,7 @@ GNU Octave = Octave<br>
 Guile = Kawa/Scheme/Steel<br>
 HashLink = Haxe<br>
 IBM PC BASIC A = GW-BASIC<br>
-Idris 2 = Idris + 🚀<br>
+Idris 2 = Idris<br>
 Intel Fortran Compiler = Fortran<br>
 Iodine = Java<br>
 IronPython = Python<br>

@@ -2,12 +2,14 @@
 -- Versão 0.1: 27/06/2024: versão sem muito conhecimento de Idris
 --        0.2: 08/08/2024: corrigidos comentários de versões
 --        0.3: 08/08/2026: solução escalabilizada e compatibilizada com Idris 1.3.4 e Idris 2
--- ATENÇÃO: para Idris 1.3.4, o limite é de 292570 parcelas, acima levanta o erro "Falha de segmentação"
+--        0.4: 13/08/2026: reescritas funções rGetPesoTotal, rJurosCompostos e rJurosSimples para terem Tail Call Optimizations
+-- ATÉ VERSÃO 0.3: para Idris 1.3.4, o limite é de 292570 parcelas, acima levanta o erro "Falha de segmentação"
+-- APÓS VERSÃO 0.3: não existe limite para parcelas em qualquer um dos compiladores, por causa de TCO
 module Main
 
 -- estrutura básica para simplificar as chamadas
 quantidade : Int
-quantidade = 1  -- quantidade = 292570  -- máximo para Idris 1.3.4
+quantidade = 3  -- quantidade = 292570  -- máximo para Idris 1.3.4
 composto : Bool
 composto = True
 periodo : Double
@@ -41,34 +43,34 @@ pagamentos = geraPagamentos
 pesos = geraPesos
 
 -- função recursiva que realmente calcula a somatória de pesos[]
-rGetPesoTotal : List Double -> Double
-rGetPesoTotal [] = 0.0
-rGetPesoTotal (h::t) = h + rGetPesoTotal t
+rGetPesoTotal : List Double -> Double -> Double
+rGetPesoTotal [] acumulador = acumulador
+rGetPesoTotal (h::t) acumulador = rGetPesoTotal t (acumulador + h)
 
 -- açúcar que calcula a somatória do array Pesos[]
 getPesoTotal : Double
-getPesoTotal = rGetPesoTotal pesos
+getPesoTotal = rGetPesoTotal pesos 0.0
 
 -- calcula a soma do amortecimento de todas as parcelas para juros compostos
-rJurosCompostos : List Double -> List Double -> Double -> Double
-rJurosCompostos [] (_ :: _) _ = 0.0
-rJurosCompostos (_ :: _) [] _ = 0.0
-rJurosCompostos [] [] _ = 0.0
-rJurosCompostos (paH::paT) (peH::peT) juros = peH / (pow (1.0 + juros / 100.0) (paH / periodo)) + rJurosCompostos paT peT juros
+rJurosCompostos : List Double -> List Double -> Double -> Double -> Double
+rJurosCompostos [] (_ :: _) _ acumulador = acumulador
+rJurosCompostos (_ :: _) [] _ acumulador = acumulador
+rJurosCompostos [] [] _  acumulador = acumulador
+rJurosCompostos (paH::paT) (peH::peT) juros acumulador = rJurosCompostos paT peT juros (acumulador + peH / (pow (1.0 + juros / 100.0) (paH / periodo)))
 -- a versão abaixo também funciona, mas só em Idris 1
--- rJurosCompostos (paH::paT) (peH::peT) juros = peH / (Prelude.Doubles.pow (1.0 + juros / 100.0) (paH / periodo)) + rJurosCompostos paT peT juros
+-- rJurosCompostos (paH::paT) (peH::peT) juros acumulador = rJurosCompostos paT peT juros (acumulador + peH / (Prelude.Doubles.pow (1.0 + juros / 100.0) (paH / periodo)))
 
 -- calcula a soma do amortecimento de todas as parcelas para juros simples
-rJurosSimples : List Double -> List Double -> Double -> Double
-rJurosSimples [] (_ :: _) _ = 0.0
-rJurosSimples (_ :: _) [] _ = 0.0
-rJurosSimples [] [] _ = 0.0
-rJurosSimples (paH::paT) (peH::peT) juros = peH / (1.0 + juros / 100.0 * paH / periodo) + rJurosSimples paT peT juros
+rJurosSimples : List Double -> List Double -> Double -> Double -> Double
+rJurosSimples [] (_ :: _) _ acumulador = acumulador
+rJurosSimples (_ :: _) [] _ acumulador = acumulador
+rJurosSimples [] [] _ acumulador = acumulador
+rJurosSimples (paH::paT) (peH::peT) juros acumulador = rJurosSimples paT peT juros (acumulador + peH / (1.0 + juros / 100.0 * paH / periodo))
 
 -- calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
 jurosParaAcrescimo : Double ->  Double
-jurosParaAcrescimo juros = if composto then (getPesoTotal / (rJurosCompostos pagamentos pesos juros) - 1.0) * 100.0
-                                       else (getPesoTotal / (rJurosSimples pagamentos pesos juros) - 1.0) * 100.0
+jurosParaAcrescimo juros = if composto then (getPesoTotal / (rJurosCompostos pagamentos pesos juros 0.0) - 1.0) * 100.0
+                                       else (getPesoTotal / (rJurosSimples pagamentos pesos juros 0.0) - 1.0) * 100.0
 
 -- função recursiva no lugar de um for que realmente calcula o acréscimo
 rAcrescimoParaJuros : Double -> Double -> Int -> Double -> Double -> Double -> Double

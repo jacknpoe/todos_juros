@@ -4,15 +4,15 @@
 --        0.3: 08/08/2026: solução escalabilizada e compatibilizada com Idris 1.3.4 e Idris 2
 --        0.4: 13/08/2026: reescritas funções rGetPesoTotal, rJurosCompostos e rJurosSimples para terem Tail Call Optimizations
 -- TESTES: os testes de benchmark foram realizados em um Debian 12 com 20 GB de memória RAM
---         as medidas foram feitas utilizando o comando: ulimit -s 65536
+--         as medidas foram feitas depois da utilização do comando: ulimit -s 65536
 -- ATÉ VERSÃO 0.3: para Idris 1.3.4, o limite é de 292.570 parcelas, acima levanta o erro "Falha de segmentação"
--- APÓS VERSÃO 0.3: o limite para parcelas é 1.023.990 em Idris 1.3.4, por causa de TCO
---                  o limite para Idris 2 supera as 70.000.000 de parcelas, quando o sistema começa a ficar instável demais
+-- APÓS VERSÃO 0.3: o limite para parcelas ficou em 1.023.990 em Idris 1.3.4, por causa de Tail Call Optimizations
+--                  o limite para Idris 2 superou as 70.000.000 de parcelas, quando o sistema começou a ficar instável demais
 module Main
 
 -- estrutura básica para simplificar as chamadas
 quantidade : Int
-quantidade = 70_000_000  -- quantidade = 1023990  -- máximo para Idris 1.3.4
+quantidade = 3  -- quantidade = 1023990  -- máximo para Idris 1.3.4
 composto : Bool
 composto = True
 periodo : Double

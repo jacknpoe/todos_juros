@@ -2,17 +2,27 @@
 -- Versão 0.1: 27/06/2024: versão sem muito conhecimento de Idris
 --        0.2: 08/08/2024: corrigidos comentários de versões
 --        0.3: 08/08/2026: solução escalabilizada e compatibilizada com Idris 1.3.4 e Idris 2
---        0.4: 13/08/2026: reescritas funções rGetPesoTotal, rJurosCompostos e rJurosSimples para terem Tail Call Optimizations
+--        0.4: 13/08/2026: reescritas as funções rGetPesoTotal, rJurosCompostos e rJurosSimples para permitir Tail Call Optimization (TCO),
+--                         para isso, as chamadas recursivas passaram a ser as últimas operações executadas pelas funções
+
 -- TESTES: os testes de benchmark de 300.000 parcelas foram realizados em um Debian 12 com 20 GB de memória RAM
 --         as medidas foram feitas depois da utilização do comando: ulimit -s 65536
--- ATÉ VERSÃO 0.3: para Idris 1.3.4, o limite é de 292.570 parcelas, acima levanta o erro "Falha de segmentação"
--- APÓS VERSÃO 0.3: o limite para parcelas ficou em 1.023.990 em Idris 1.3.4, por causa de Tail Call Optimizations
---                  o limite para Idris 2 superou as 70.000.000 de parcelas, quando o sistema começou a ficar instável demais
+
+-- ATÉ VERSÃO 0.3: para Idris 1.3.4, o limite é de 292.570 parcelas, acima disso levanta o erro "Falha de segmentação"
+--                 Idris 2 completou o teste de 300.000 parcelas, com média de 0,713 segundos, mas o limite não foi avaliado
+
+-- A PARTIR DA VERSÃO 0.4: após a implementação das modificações para que as funções ficassem compatíveis com a Tail Call Optimization (TCO):
+--                         em Idris 1.3.4, o limite ficou em 1.023.990 parcelas, após isso ocorre Stack Overflow
+--                         em Idris 2, o limite superou 70.000.000 de parcelas, mas o sistema já fica irresponsivo por causa da memória;    
+--                         com 80.000.000 parcelas a solução é encerrada pelo sistema operacional, após mais de uma hora de irresponsividade
+
+--                         com o TCO, com 300.000 parcelas, Idris 1.3.4 teve média de 5,045 segundos e Idris 2 teve média de 0,360 segundos
+
 module Main
 
 -- estrutura básica para simplificar as chamadas
 quantidade : Int
-quantidade = 3  -- quantidade = 1023990  -- máximo para Idris 1.3.4
+quantidade = 70_000_000  -- quantidade = 1023990  -- máximo para Idris 1.3.4
 composto : Bool
 composto = True
 periodo : Double
@@ -58,7 +68,7 @@ getPesoTotal = rGetPesoTotal pesos 0.0
 rJurosCompostos : List Double -> List Double -> Double -> Double -> Double
 rJurosCompostos [] (_ :: _) _ acumulador = acumulador
 rJurosCompostos (_ :: _) [] _ acumulador = acumulador
-rJurosCompostos [] [] _  acumulador = acumulador
+rJurosCompostos [] [] _ acumulador = acumulador
 rJurosCompostos (paH::paT) (peH::peT) juros acumulador = rJurosCompostos paT peT juros (acumulador + peH / (pow (1.0 + juros / 100.0) (paH / periodo)))
 -- a versão abaixo também funciona, mas só em Idris 1
 -- rJurosCompostos (paH::paT) (peH::peT) juros acumulador = rJurosCompostos paT peT juros (acumulador + peH / (Prelude.Doubles.pow (1.0 + juros / 100.0) (paH / periodo)))

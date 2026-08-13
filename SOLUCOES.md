@@ -384,7 +384,7 @@ funções: [jurosf.bend](jurosf.bend)
 
 [juros.dart](juros.dart)
 
-### Darwin (26/06/2026) 🚀
+### Darwin (26/06/2026)
 
 [juros.darwin](juros.darwin)
 
@@ -688,7 +688,7 @@ funções: [jurosf.bend](jurosf.bend)
 
 [juros.icn](juros.icn)
 
-### Idris (27/06/2024) 🚀 ♻️
+### Idris (27/06/2024) ♻️
 
 [juros.idr](juros.idr)
 
@@ -1254,7 +1254,7 @@ funções: [jurosf.bend](jurosf.bend)
 
 [Juros.R](Juros.R)
 
-### Racket (20/05/2024) 🧠 🚀 🔧 ♻️ ✍️
+### Racket (20/05/2024) 🧠 🔧 ♻️ ✍️
 
 [juros.rkt](juros.rkt)
 
@@ -1294,7 +1294,7 @@ funções: [jurosf.bend](jurosf.bend)
 
 [juros.re](juros.re)
 
-### Rebol (28/01/2026) 
+### Rebol (28/01/2026)
 
 [jurosREB.r](jurosREB.r)
 
@@ -1358,7 +1358,7 @@ funções: [jurosf.bend](jurosf.bend)
 
 [juros.rn](juros.rn)
 
-### Rune (Rust) (30/07/2026) 🚀
+### Rune (Rust) (30/07/2026)
 
 [jurosRR.rn]([jurosRR.rn)
 
@@ -1627,7 +1627,7 @@ funções: [jurosf.bend](jurosf.bend)
 
 [juros.twinproj](juros.twinproj)
 
-### Typed Racket (17/04/2026) 🧠 🚀 🔧 ♻️ ✍️
+### Typed Racket (17/04/2026) 🧠 🔧 ♻️ ✍️
 
 [jurost.rkt](jurost.rkt)
 
@@ -1712,7 +1712,7 @@ funções: [jurosf.bend](jurosf.bend)
 
 [juros.ps1](juros.ps1)
 
-### WLambda (12/07/2026) 🚀 🔧 ✍️
+### WLambda (12/07/2026) 🔧 ✍️
 
 [juros.wlambda](juros.wlambda)
 
@@ -1803,7 +1803,7 @@ JavaScript: [juroswww.js](juroswww.js)
 
 [juros.ys](juros.ys)
 
-### Yellow (17/05/2026) 🚀
+### Yellow (17/05/2026)
 
 [juros.yellow](juros.yellow)
 
@@ -1883,7 +1883,7 @@ GNU Octave = Octave<br>
 Guile = Kawa/Scheme/Steel<br>
 HashLink = Haxe<br>
 IBM PC BASIC A = GW-BASIC<br>
-Idris 2 = Idris<br>
+Idris 2 = Idris + 🚀<br>
 Intel Fortran Compiler = Fortran<br>
 Iodine = Java<br>
 IronPython = Python<br>

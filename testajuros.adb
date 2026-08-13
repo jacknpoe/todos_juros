@@ -4,6 +4,7 @@
 --        0.3:    04/2024: trocada avaliações soZero por acumulador == 0
 --        0.4: 25/04/2024: arrays dinâmicos
 --        0.5: 22/01/2026: para caracteres do Linux, padronizados Puts e retirados withs e uses desnecessários
+-- COMPILAR COM: gnatmake -O3 -march=native -gnatp testajuros.adb
 
 with Ada.Text_IO, Ada.Long_Float_Text_IO;
 use  Ada.Text_IO, Ada.Long_Float_Text_IO;

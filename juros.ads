@@ -6,7 +6,7 @@ package juros is
 
    type tjuros is record
       Quantidade : Integer := 0;
-      Composto : Boolean := False;
+      Composto : Boolean := true;
       Periodo : Long_Float := 0.0;
       Pagamentos : vetor_dinamico.Vector; -- 0.4
       Pesos : vetor_dinamico.Vector; -- 0.4

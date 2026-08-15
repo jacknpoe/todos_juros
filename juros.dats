@@ -1,8 +1,9 @@
 // Cálculo dos juros, sendo que precisa de parcelas pra isso
 // Versão 0.1: 22/06/2026: versão feita sem muito conhecimento de ATS2
 //        0.2: 10/07/2026: simplificado cases de rJurosCompostos e rJurosSimples, de getPamentos para getPagamentos
-// COMPILAR COM: patscc -DATS_MEMALLOC_LIBC juros.dats -o juros -lm
-// a solução foi testada até 300.000 parcelas, mas com ulimit -s 65536
+//        0.3: 15/08/2026: alteradas rGetPesoTotal, rJurosCompostos e rJurosSimples para propiciar Tail Call Optimization
+// COMPILAR COM: patscc -O3 -DATS_MEMALLOC_LIBC juros.dats -o juros -lm
+// a solução foi testada até 300.000 parcelas mas, ATÉ A VERSÃO 0.2, é necessário fazer ulimit -s 65536
 
 #include "share/atspre_staload.hats"
 
@@ -11,7 +12,7 @@ staload "libats/libc/SATS/math.sats"
 staload _ = "libats/libc/DATS/math.dats"
 
 // variáveis escalares globais, para simplificar as chamadas às funções
-val Quantidade : int = 3
+val Quantidade : int = 300000
 val Composto : bool = true
 val Periodo : double = 30.0
 
@@ -36,31 +37,31 @@ val Pagamentos : list0(double) = geraPagamentos()
 val Pesos : list0(double) = geraPesos()
 
 // função recursiva que calcula a somatória dos elementos em Pesos
-fun rGetPesoTotal (pesos : list0(double)) : double =
+fun rGetPesoTotal (pesos : list0(double), acumulador : double) : double =
     case+ pesos of
-        | nil0 () => 0.0
-        | cons0 (pesH, pesT) => pesH + rGetPesoTotal(pesT)
+        | nil0 () => acumulador
+        | cons0 (pesH, pesT) => rGetPesoTotal(pesT, acumulador + pesH)
 
 // função açúcar que calcula a somatória dos elementos em Pesos
-fun getPesoTotal () : double = rGetPesoTotal(Pesos)
+fun getPesoTotal () : double = rGetPesoTotal(Pesos, 0.0)
 
 // função recursiva que calcula a somatória das amortizações em juros compostos
-fun rJurosCompostos (juros : double, pagamentos : list0(double), pesos : list0(double)) : double =
+fun rJurosCompostos (juros : double, pagamentos : list0(double), pesos : list0(double), acumulador : double) : double =
     case+ (pagamentos, pesos) of
-        | (cons0 (pagH, pagT), cons0 (pesH, pesT)) => pesH / pow(1.0 + juros / 100.0, pagH / Periodo) + rJurosCompostos(juros, pagT, pesT)
-        | (_, _) => 0.0
+        | (cons0 (pagH, pagT), cons0 (pesH, pesT)) => rJurosCompostos(juros, pagT, pesT, acumulador + pesH / pow(1.0 + juros / 100.0, pagH / Periodo))
+        | (_, _) => acumulador
 
 
 // função recursiva que calcula a somatória das amortizações em juros simples
-fun rJurosSimples (juros : double, pagamentos : list0(double), pesos : list0(double)) : double =
+fun rJurosSimples (juros : double, pagamentos : list0(double), pesos : list0(double), acumulador : double) : double =
     case+ (pagamentos, pesos) of
-        | (cons0 (pagH, pagT), cons0 (pesH, pesT)) => pesH / (1.0 + juros / 100.0 * pagH / Periodo) + rJurosSimples(juros, pagT, pesT)
-        | (_, _) => 0.0
+        | (cons0 (pagH, pagT), cons0 (pesH, pesT)) => rJurosSimples(juros, pagT, pesT, acumulador + pesH / (1.0 + juros / 100.0 * pagH / Periodo))
+        | (_, _) => acumulador
 
 // função que calcula o acréscimo a partir dos juros e parcelas (com algum açúcar)
 fun jurosParaAcrescimo (juros : double) : double =
-    if Composto then (getPesoTotal() / rJurosCompostos(juros, Pagamentos, Pesos) - 1.0) * 100.0
-                else (getPesoTotal() / rJurosSimples(juros, Pagamentos, Pesos) - 1.0) * 100.0
+    if Composto then (getPesoTotal() / rJurosCompostos(juros, Pagamentos, Pesos, 0.0) - 1.0) * 100.0
+                else (getPesoTotal() / rJurosSimples(juros, Pagamentos, Pesos, 0.0) - 1.0) * 100.0
 
 // função recursiva que calcula os juros a partir do acréscimo e parcelas
 fun rAcrescimoParaJuros (acrescimo : double, minDiferenca : double, iteracao : int, minJuros : double, maxJuros : double, medJuros : double) : double =

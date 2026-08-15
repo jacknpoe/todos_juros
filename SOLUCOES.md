@@ -793,7 +793,7 @@ funções: [jurosf.bend](jurosf.bend)
 
 [juros.kojo](juros.kojo)
 
-### Koka (20/03/2026) 🧠 🚀 🔧 ♻️
+### Koka (20/03/2026) 🧠 🚀 🔧 ♻️ ✍️
 
 [juros.kk](juros.kk)
 
@@ -1360,7 +1360,7 @@ funções: [jurosf.bend](jurosf.bend)
 
 ### Rune (Rust) (30/07/2026)
 
-[jurosRR.rn]([jurosRR.rn)
+[jurosRR.rn](jurosRR.rn)
 
 ### Rust (13/03/2024) 🚀 🏛️ 💡 💖
 

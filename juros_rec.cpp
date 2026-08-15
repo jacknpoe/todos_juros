@@ -7,11 +7,9 @@
 // apenas ~ 64% mais lenta do que a versão canônica em C++ (interest.cpp). Não foram utilizados laços e todas as variáveis
 // foram atribuídas somente uma vez. As funções "geradoras" de vetores foram escritas pelo ChatGPT.
 
-// VERSÃO 0.2: agora roda a 0,138 s, ~ 7,8% mais lenta que na versão canônica de C++ porque permite Tail Call Optimization
+// VERSÃO 0.2: agora roda a 0,130 s, ~ 1,5% mais lenta que na versão canônica de C++ porque permite Tail Call Optimization
 
-// COMPILAR: g++ -O3 -march=native -DNDEBUG -std=c++17 juros_tco.cpp -o juros_tco
-
-// PREPARAR PARA MUITAS PARCELAS (TESTADO ATÉ 300.000): ulimit -s 65536
+// COMPILAR: g++ -O3 -march=native -DNDEBUG -std=c++17 juros_rec.cpp -o juros_rec
 
 #include <vector>  // vector
 #include <math.h>	// pow
@@ -26,22 +24,22 @@ std::vector<double> Pagamentos;
 std::vector<double> Pesos;
 
 // função recursiva que cria Pagamentos
-std::vector<double> rGeraPagamentos(int indice) {
-    if (indice <= 0) return {};
-    std::vector<double> resultado = rGeraPagamentos(indice - 1); resultado.push_back(indice * Periodo); return resultado;
+void rGeraPagamentos(int indice, std::vector<double>& resultado) {
+    if (indice <= 0) return;
+	resultado.push_back(indice * Periodo); rGeraPagamentos(indice - 1, resultado);
 }
 
 // açúcar que cria Pagamentos
-std::vector<double> geraPagamentos() { return rGeraPagamentos(Quantidade); }
+void geraPagamentos(std::vector<double>& resultado) { rGeraPagamentos(Quantidade, resultado); }
 
-// função recursiva que cria Pesos
-std::vector<double> rGeraPesos(int indice) {
-    if (indice <= 0) return {};
-    std::vector<double> resultado = rGeraPesos(indice - 1); resultado.push_back(1.0); return resultado;
+// função recursiva que cria Pagamentos
+void rGeraPesos(int indice, std::vector<double>& resultado) {
+    if (indice <= 0) return;
+	resultado.push_back(1.0); rGeraPesos(indice - 1, resultado);
 }
 
 // açúcar que cria Pesos
-std::vector<double> geraPesos() { return rGeraPesos(Quantidade); }
+void geraPesos(std::vector<double>& resultado) { rGeraPesos(Quantidade, resultado); }
 
 // função recursiva que calcula a somatória de Pesos
 double rGetPesoTotal(int indice, double acumulador) { if (indice < 0) return acumulador; else return rGetPesoTotal(indice - 1, acumulador + Pesos[indice]);}
@@ -89,8 +87,8 @@ int main() {
     Periodo = 30.0;
 
     // inicializam recursivamente os vetores globais
-    Pagamentos = geraPagamentos();
-    Pesos = geraPesos();
+    geraPagamentos(Pagamentos);
+    geraPesos(Pesos);
 
     // calcula e guarda os resultados das funções
     double pesoTotal = getPesoTotal();

@@ -23,7 +23,7 @@ module Main
 
 -- estrutura básica para simplificar as chamadas
 quantidade : Int
-quantidade = 300000  -- quantidade = 1023990  -- máximo para Idris 1.3.4
+quantidade = 3  -- quantidade = 1023990  -- máximo para Idris 1.3.4
 composto : Bool
 composto = True
 periodo : Double

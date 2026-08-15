@@ -3,6 +3,14 @@
 ;;        0.2: 16/02/2026: na verdade, só agora foi convertido, a sintaxe é muito distante dos outros Lisp
 ;;                         exemplos: c-imports, pow, at, return, declarações e tipos nos parâmetros e de retorno
 ;;                         a solução foi testada até 300.000 parcelas, mas com ulimit -s 65536, talvez precise dessa pilha
+;;        0.3: 15/08/2026: alteradas _getPesoTotal, _jurosCompostos e _jurosSimples para propiciar Tail Call Optimization
+
+;; PARA COMPILAR COM O MÁXIMO DE DESEMPENHO (NA PASTA DE juros.cake):
+;; cakelisp juros.cake
+;; gcc -O3 -g -c cakelisp_cache/default/juros.cake.c -o cakelisp_cache/default/juros.cake.c.o -fPIC -std=c99
+;; g++ -o cakelisp_cache/default/juros cakelisp_cache/default/juros.cake.c.o
+;; PARA RODAR:
+;; cakelisp_cache/default/juros
 
 (c-import "<stdio.h>")
 (c-import "<math.h>")
@@ -44,38 +52,38 @@
 
 ;; calcula a somatória de Pesos[]
 (defun getPesoTotal(&return double)
-  (return (_getPesoTotal(- Quantidade 1)))
+  (return (_getPesoTotal(- Quantidade 1) 0.0))
 )
 
 ;; função recursiva no lugar de um for com acumulador que realmente calcula a somatória de Pesos[]
-(defun _getPesoTotal(valor int &return double)
-  (if (= valor 0)
-    (return (at 0 Pesos))
-    (return (+ (at valor Pesos) (_getPesoTotal(- valor 1))))
+(defun _getPesoTotal(indice int acumulador double &return double)
+  (if (< indice 0)
+    (return acumulador)
+    (return (_getPesoTotal(- indice 1) (+ acumulador (at indice Pesos))))
   )
 )
 
 ;; calcula a soma do amortecimento de todas as parcelas para juros compostos
-(defun _jurosCompostos(valor int juros double &return double)
-  (if (= valor 0)
-    (return (/ (at 0 Pesos) (pow (+ 1.0 (/ juros 100.0)) (/ (at 0 Pagamentos) Periodo))))
-    (return (+ (/ (at valor Pesos) (pow (+ 1.0 (/ juros 100.0)) (/ (at valor Pagamentos) Periodo))) (_jurosCompostos (- valor 1) juros)))
+(defun _jurosCompostos(indice int juros double acumulador double &return double)
+  (if (< indice 0)
+    (return acumulador)
+    (return (_jurosCompostos (- indice 1) juros (+ acumulador (/ (at indice Pesos) (pow (+ 1.0 (/ juros 100.0)) (/ (at indice Pagamentos) Periodo))))))
   )
 )
 
 ;; calcula a soma do amortecimento de todas as parcelas para juros simples
-(defun _jurosSimples(valor int juros double &return double)
-  (if (= valor 0)
-    (return (/ (at 0 Pesos) (+ 1.0 (* (/ juros 100.0) (/ (at 0 Pagamentos) Periodo)))))
-    (return (+ (/ (at valor Pesos) (+ 1.0 (* (/ juros 100.0) (/ (at valor Pagamentos) Periodo)))) (_jurosSimples (- valor 1) juros)))
+(defun _jurosSimples(indice int juros double acumulador double &return double)
+  (if (< indice 0)
+    (return acumulador)
+    (return (_jurosSimples (- indice 1) juros (+ acumulador (/ (at indice Pesos) (+ 1.0 (* (/ juros 100.0) (/ (at indice Pagamentos) Periodo)))))))
   )
 )
 
 ;; calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
 (defun jurosParaAcrescimo(juros double &return double)
   (if (= Composto 1)
-      (return (* (- (/ (getPesoTotal) (_jurosCompostos(- Quantidade 1) juros)) 1.0) 100.0))
-      (return (* (- (/ (getPesoTotal) (_jurosSimples(- Quantidade 1) juros)) 1.0) 100.0))
+      (return (* (- (/ (getPesoTotal) (_jurosCompostos(- Quantidade 1) juros 0.0)) 1.0) 100.0))
+      (return (* (- (/ (getPesoTotal) (_jurosSimples(- Quantidade 1) juros 0.0)) 1.0) 100.0))
   )
 )
 

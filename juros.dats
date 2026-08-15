@@ -1,7 +1,7 @@
 // Cálculo dos juros, sendo que precisa de parcelas pra isso
 // Versão 0.1: 22/06/2026: versão feita sem muito conhecimento de ATS2
 //        0.2: 10/07/2026: simplificado cases de rJurosCompostos e rJurosSimples, de getPamentos para getPagamentos
-//        0.3: 15/08/2026: alteradas rGetPesoTotal, rJurosCompostos e rJurosSimples para propiciar Tail Call Optimization
+//        0.3: 15/08/2026: alteradas rGeraPagamentos, rGeraPesos, rGetPesoTotal, rJurosCompostos e rJurosSimples para propiciar Tail Call Optimization
 // COMPILAR COM: patscc -O3 -DATS_MEMALLOC_LIBC juros.dats -o juros -lm
 // a solução foi testada até 300.000 parcelas mas, ATÉ A VERSÃO 0.2, é necessário fazer ulimit -s 65536
 
@@ -17,20 +17,20 @@ val Composto : bool = true
 val Periodo : double = 30.0
 
 // função recursiva que cria a lista Pagamentos
-fun rGeraPagamentos (indice: int) : list0(double) =
-    if indice > 0 then cons0(g0int2float(indice) * Periodo, rGeraPagamentos(indice - 1))
-    else nil0
+fun rGeraPagamentos (indice: int, acumulador : list0(double)) : list0(double) =
+    if indice > 0 then rGeraPagamentos(indice - 1, cons0(g0int2float(indice) * Periodo, acumulador))
+    else acumulador
 
 // função açúcar que cria a lista Pagamentos
-fun geraPagamentos () : list0(double) = rGeraPagamentos(Quantidade)
+fun geraPagamentos () : list0(double) = rGeraPagamentos(Quantidade, nil0)
 
 // função recursiva que cria a lista Pagamentos
-fun rGeraPesos (indice: int) : list0(double) =
-    if indice > 0 then cons0(1.0, rGeraPesos(indice - 1))
-    else nil0
+fun rGeraPesos (indice: int, acumulador : list0(double)) : list0(double) =
+    if indice > 0 then rGeraPesos(indice - 1, cons0(1.0, acumulador))
+    else acumulador
 
 // função açúcar que cria a lista Pagamentos
-fun geraPesos () : list0(double) = rGeraPesos(Quantidade)
+fun geraPesos () : list0(double) = rGeraPesos(Quantidade, nil0)
 
 // listas globais, para simplificar as chamadas às funções
 val Pagamentos : list0(double) = geraPagamentos()

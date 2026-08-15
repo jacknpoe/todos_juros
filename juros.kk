@@ -1,11 +1,12 @@
 // Calcula o acréscimo a partir dos juros e os juros a partir do acréscimo
 // Versão: 0.1: 20/03/2026: feita sem muito conhecimento de Koka
+//         0.2: 15/08/2026: alteradas rGetTotalLista, rJurosCompostos e rJurosSimples para propiciar Tail Call Optimization
 
 import std/num/float64
 import std/num/int64
 
 // variáveis globais escalares para simplificar as chamadas e inicializações
-val quantidade: int64 = 3.int64
+val quantidade: int64 = 300000.int64
 val composto: bool = True
 val periodo: float64 = 30.0
 
@@ -32,27 +33,32 @@ fun criaPesos(): div list<float64> {
 }
 
 // recursão que calcula a somatória dos elementos de uma lista
+fun rGetTotalLista(lista: list<float64>, acumulador: float64): div float64 {
+  if lista.is-empty return acumulador
+  rGetTotalLista(lista.tail, acumulador + lista.head.default(0.0))
+}
+
+// açúcar que calcula a somatória dos elementos de uma lista
 fun getTotalLista(lista: list<float64>): div float64 {
-  if lista.is-empty return 0.0
-  getTotalLista(lista.tail) + lista.head.default(0.0)
+  rGetTotalLista(lista, 0.0)
 }
 
 // recursão que calcula o somatório das amortizações dos juros compostos
-fun rJurosCompostos(pagamentos: list<float64>, pesos: list<float64>, juros: float64): div float64 {
-  if pagamentos.is-empty return 0.0
-  rJurosCompostos(pagamentos.tail, pesos.tail, juros) + pesos.head.default(0.0) / pow(1.0 + juros / 100.0, pagamentos.head.default(0.0) / periodo)
+fun rJurosCompostos(pagamentos: list<float64>, pesos: list<float64>, juros: float64, acumulador: float64): div float64 {
+  if pagamentos.is-empty return acumulador
+  rJurosCompostos(pagamentos.tail, pesos.tail, juros, acumulador + pesos.head.default(0.0) / pow(1.0 + juros / 100.0, pagamentos.head.default(0.0) / periodo))
 }
 
 // recursão que calcula o somatório das amortizações dos juros simples
-fun rJurosSimples(pagamentos: list<float64>, pesos: list<float64>, juros: float64): div float64 {
-  if pagamentos.is-empty return 0.0
-  rJurosSimples(pagamentos.tail, pesos.tail, juros) + pesos.head.default(0.0) / (1.0 + juros / 100.0 * pagamentos.head.default(0.0) / periodo)
+fun rJurosSimples(pagamentos: list<float64>, pesos: list<float64>, juros: float64, acumulador: float64): div float64 {
+  if pagamentos.is-empty return acumulador
+  rJurosSimples(pagamentos.tail, pesos.tail, juros, acumulador + pesos.head.default(0.0) / (1.0 + juros / 100.0 * pagamentos.head.default(0.0) / periodo))
 }
 
 // açúcar que calcula o acréscimo a partir dos juros e parcelas
 fun jurosParaAcrescimo(pagamentos: list<float64>, pesos: list<float64>, juros: float64): div float64 {
-  if composto then return (getTotalLista(pesos) / rJurosCompostos(pagamentos, pesos, juros) - 1.0) * 100.0
-  (getTotalLista(pesos) / rJurosSimples(pagamentos, pesos, juros) - 1.0) * 100.0
+  if composto then return (getTotalLista(pesos) / rJurosCompostos(pagamentos, pesos, juros, 0.0) - 1.0) * 100.0
+  (getTotalLista(pesos) / rJurosSimples(pagamentos, pesos, juros, 0.0) - 1.0) * 100.0
 }
 
 // recursão que calcula os juros a partir do acréscimo e parcelas com busca binária (método da bisseção)

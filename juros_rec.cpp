@@ -1,12 +1,15 @@
 // Cálculo dos juros, sendo que precisa de parcelas pra isso
 // Versão 0.1: 03/06/2026: com vetores de C++ e globais como em juros_otimizado, versão recursiva
+//        0.2: 15/08/2026: alterada para propiciar Tail Call Optimization
 
 // Esta versão da solução em C++ é propositalmente recursiva para medir o desempenho dessa forma de implementar os algoritmos
-// usando um compilador em C++ conhecido pelo seu desempenho. A média das medições (para benchmark.png) foi 0,228 s, o que é
-// apenas ~ 78% mais lenta do que a versão canônica em C++ (interest.cpp). Não foram utilizados laços e todas as variáveis
+// usando um compilador em C++ conhecido pelo seu desempenho. A média das medições (para benchmark.png) foi 0,21 s, o que é
+// apenas ~ 64% mais lenta do que a versão canônica em C++ (interest.cpp). Não foram utilizados laços e todas as variáveis
 // foram atribuídas somente uma vez. As funções "geradoras" de vetores foram escritas pelo ChatGPT.
 
-// COMPILAR: g++ -Ofast -march=native -DNDEBUG -std=c++17 juros_rec.cpp -o juros_rec
+// VERSÃO 0.2: agora roda a 0,138 s, ~ 7,8% mais lenta que na versão canônica de C++ porque permite Tail Call Optimization
+
+// COMPILAR: g++ -O3 -march=native -DNDEBUG -std=c++17 juros_tco.cpp -o juros_tco
 
 // PREPARAR PARA MUITAS PARCELAS (TESTADO ATÉ 300.000): ulimit -s 65536
 
@@ -41,25 +44,25 @@ std::vector<double> rGeraPesos(int indice) {
 std::vector<double> geraPesos() { return rGeraPesos(Quantidade); }
 
 // função recursiva que calcula a somatória de Pesos
-double rGetPesoTotal(int indice) { if (indice < 0) return 0.0; else return Pesos[indice] + rGetPesoTotal(indice - 1);}
+double rGetPesoTotal(int indice, double acumulador) { if (indice < 0) return acumulador; else return rGetPesoTotal(indice - 1, acumulador + Pesos[indice]);}
 
 // açúcar que calcula a somatória de Pesos
-double getPesoTotal() { return rGetPesoTotal(Quantidade - 1); }
+double getPesoTotal() { return rGetPesoTotal(Quantidade - 1, 0.0); }
 
 // função recursiva que calcula a somatória dos amortecimentos de juros compostos
-double rJurosCompostos(double juros, int indice) {
-    if (indice < 0) return 0.0; else return Pesos[indice] / pow(1.0 + juros / 100.0, Pagamentos[indice] / Periodo) + rJurosCompostos(juros, indice - 1);
+double rJurosCompostos(double juros, int indice, double acumulador) {
+    if (indice < 0) return acumulador; else return rJurosCompostos(juros, indice - 1, acumulador + Pesos[indice] / pow(1.0 + juros / 100.0, Pagamentos[indice] / Periodo));
 }
 
 // função recursiva que calcula a somatória dos amortecimentos de juros simples
-double rJurosSimples(double juros, int indice) {
-    if (indice < 0) return 0.0; else return Pesos[indice] / (1.0 + juros / 100.0 * Pagamentos[indice] / Periodo) + rJurosSimples(juros, indice - 1);
+double rJurosSimples(double juros, int indice, double acumulador) {
+    if (indice < 0) return acumulador; else return rJurosSimples(juros, indice - 1, acumulador + Pesos[indice] / (1.0 + juros / 100.0 * Pagamentos[indice] / Periodo));
 }
 
 // calcula o acréscimo a partir dos juros e parcelas (com algum açúcar)
 double jurosParaAcrescimo(double juros) {
-    if (Composto) return (getPesoTotal() / rJurosCompostos(juros, Quantidade - 1) - 1.0) * 100.0;
-             else return (getPesoTotal() / rJurosSimples(juros, Quantidade - 1) - 1.0) * 100.0;
+    if (Composto) return (getPesoTotal() / rJurosCompostos(juros, Quantidade - 1, 0.0) - 1.0) * 100.0;
+             else return (getPesoTotal() / rJurosSimples(juros, Quantidade - 1, 0.0) - 1.0) * 100.0;
 }
 
 // função recursiva que calcula os juros a partir do acréscimo e parcelas

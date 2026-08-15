@@ -27,7 +27,9 @@ Esta é a relação dos links neste repositório para as soluções em dialetos 
 >
 > 📈 **séries de Taylor**: soluções que implementam `ln()` e `exp()` por séries de Taylor utilizando apenas as quatro operações matemáticas básicas; `pow()` é obtida por `exp(ln(base) * expoente)`;
 >
-> ✍️ **sintaxe:** possuir sintaxe e/ou léxico relativamente originais ou particularmente idiomáticos, capazes de expressar seus conceitos de forma marcante, sem que isso implique originalidade na semântica.
+> ✍️ **sintaxe:** possuir sintaxe e/ou léxico relativamente originais ou particularmente idiomáticos, capazes de expressar seus conceitos de forma marcante, sem que isso implique originalidade na semântica;
+>
+> ➰ **TCO:** a implementação das funções recursivas é preparada para permitir Tail Call Optimization (otimização de chamada de cauda).
 
 <br>
 
@@ -56,7 +58,9 @@ This is a list of links in this repository to solutions in different dialects, o
 >
 > ✍️ **syntax:** possess relatively original syntax and/or lexical features, or be particularly idiomatic, expressing its concepts in a distinctive way, without necessarily implying originality in its semantics;
 >
-> 📈 **Taylor series:** solutions that implement `ln()` and `exp()` through Taylor series using only the four basic arithmetic operations; `pow()` is obtained as `exp(ln(base) * exponent)`.
+> 📈 **Taylor series:** solutions that implement `ln()` and `exp()` through Taylor series using only the four basic arithmetic operations; `pow()` is obtained as `exp(ln(base) * exponent)`;
+>
+> ➰ **TCO:** the implementation of the recursive functions is prepared to allow Tail Call Optimization.
 
 <br>
 
@@ -152,7 +156,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 [juros.atstate2](juros.atstate2)
 
-### ATS2 (22/06/2026) 🚀 ♻️
+### ATS2 (22/06/2026) 🚀 ♻️ ➰
 
 [juros.dats](juros.dats)
 
@@ -266,10 +270,10 @@ funções: [jurosf.bend](jurosf.bend)
 ### C++ (07/11/2013) 🧠 🚀 🏛️ 🔧 💡 💖 ✍️
 
 [interest.cpp](interest.cpp)<br>
-**recursiva / recursive:** [juros_rec.cpp](juros_rec.cpp) + ♻️<br>
+**recursiva / recursive:** [juros_rec.cpp](juros_rec.cpp) + ♻️ ➰<br>
 **recursiva + séries de Taylor / recursive + Taylor series:** [juros_rec_taylor.cpp](juros_rec_taylor.cpp) + ♻️ 📈
 
-### Cakelisp (16/02/2026) 🧠 🚀 ♻️ ✍️
+### Cakelisp (16/02/2026) 🧠 🚀 ♻️ ✍️ ➰
 
 [juros.cake](juros.cake)
 
@@ -498,7 +502,7 @@ funções: [jurosf.bend](jurosf.bend)
 
 [juros.l](juros.l)
 
-### F# (23/05/2024) 🚀 🏛️ 💡 💖
+### F# (23/05/2024) 🚀 🏛️ 💡 💖 ➰
 
 [juros.fs](juros.fs)<br>
 **recursiva / recursive:** [jurosrec.fs](jurosrec.fs) + ♻️
@@ -688,7 +692,7 @@ funções: [jurosf.bend](jurosf.bend)
 
 [juros.icn](juros.icn)
 
-### Idris (27/06/2024) ♻️
+### Idris (27/06/2024) ♻️ ➰
 
 [juros.idr](juros.idr)
 
@@ -793,7 +797,7 @@ funções: [jurosf.bend](jurosf.bend)
 
 [juros.kojo](juros.kojo)
 
-### Koka (20/03/2026) 🧠 🚀 🔧 ♻️ ✍️
+### Koka (20/03/2026) 🧠 🚀 🔧 ♻️ ✍️ ➰
 
 [juros.kk](juros.kk)
 

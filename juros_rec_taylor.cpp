@@ -1,5 +1,6 @@
 // Cálculo dos juros, sendo que precisa de parcelas pra isso
 // Versão 0.1: 26/07/2026: versão recursiva com as séries de Taylor recursivas e normalizadas
+//        0.2: 15/08/2026: fazer as recursivas preparadas para Tail Call Optimization (TCO) não deu o resultado esperado
 
 // Esta é uma versão da solução em C++ recursiva (juros_rec.cpp) com a diferença que implementa as funções matemáticas
 // `ln()` e `exp()` e, consequentemente, `pow()`, com as mesmas restrições (funções recursivas, sem laços e com variáveis
@@ -18,8 +19,10 @@
 //               Pode parecer muito tempo, mas é mais rápido que soluções que contêm implementações para essas funções,
 //               mesmo se comparada com implementações que usam laços, como a de Rune (DataDraw) (juros.rn), com 2,356 s.
 
-//        SELOS: somando com os selos de C++, esta versão tem todos os selos (🧠 🚀 🏛️ 🔧 💡 💖 ♻️ 📈 ✍️)
+//        SELOS: somando com os selos de C++, esta versão tem os selos (🧠 🚀 🏛️ 🔧 💡 💖 ♻️ 📈 ✍️)
 //               na lista de soluções (SOLUCOES.md) (atualizado em 28/07/2026)
+
+//  SELO TCO ➰: por algum motivo, aparentemente, as otimizações das séries de Taylor impedem Tail Call Optimization (TCO)
 
 // COMPILAR: g++ -Ofast -march=native -DNDEBUG -std=c++17 juros_rec_taylor.cpp -o juros_rec_taylor
 
@@ -107,22 +110,22 @@ std::vector<double> Pagamentos;
 std::vector<double> Pesos;
 
 // função recursiva que cria Pagamentos
-std::vector<double> rGeraPagamentos(int indice) {
-    if (indice <= 0) return {};
-    std::vector<double> resultado = rGeraPagamentos(indice - 1); resultado.push_back(indice * Periodo); return resultado;
+void rGeraPagamentos(int indice, std::vector<double>& resultado) {
+    if (indice <= 0) return;
+	resultado.push_back(indice * Periodo); rGeraPagamentos(indice - 1, resultado);
 }
 
 // açúcar que cria Pagamentos
-std::vector<double> geraPagamentos() { return rGeraPagamentos(Quantidade); }
+void geraPagamentos(std::vector<double>& resultado) { rGeraPagamentos(Quantidade, resultado); }
 
-// função recursiva que cria Pesos
-std::vector<double> rGeraPesos(int indice) {
-    if (indice <= 0) return {};
-    std::vector<double> resultado = rGeraPesos(indice - 1); resultado.push_back(1.0); return resultado;
+// função recursiva que cria Pagamentos
+void rGeraPesos(int indice, std::vector<double>& resultado) {
+    if (indice <= 0) return;
+	resultado.push_back(1.0); rGeraPesos(indice - 1, resultado);
 }
 
 // açúcar que cria Pesos
-std::vector<double> geraPesos() { return rGeraPesos(Quantidade); }
+void geraPesos(std::vector<double>& resultado) { rGeraPesos(Quantidade, resultado); }
 
 // função recursiva que calcula a somatória de Pesos
 double rGetPesoTotal(int indice) { if (indice < 0) return 0.0; else return Pesos[indice] + rGetPesoTotal(indice - 1);}
@@ -171,8 +174,8 @@ int main() {
     Periodo = 30.0;
 
     // inicializam recursivamente os vetores globais
-    Pagamentos = geraPagamentos();
-    Pesos = geraPesos();
+    geraPagamentos(Pagamentos);
+    geraPesos(Pesos);
 
     // calcula e guarda os resultados das funções
     double pesoTotal = getPesoTotal();

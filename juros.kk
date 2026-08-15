@@ -1,6 +1,6 @@
 // Calcula o acréscimo a partir dos juros e os juros a partir do acréscimo
 // Versão: 0.1: 20/03/2026: feita sem muito conhecimento de Koka
-//         0.2: 15/08/2026: alteradas rGetTotalLista, rJurosCompostos e rJurosSimples para propiciar Tail Call Optimization
+//         0.2: 15/08/2026: alteradas rCriaPagamentos, rCriaPesos, rGetTotalLista, rJurosCompostos e rJurosSimples para propiciar Tail Call Optimization
 
 import std/num/float64
 import std/num/int64
@@ -11,25 +11,25 @@ val composto: bool = True
 val periodo: float64 = 30.0
 
 // recursão de cria a lista pagamentos (com inversão de operandos em ++, caso contrário o tempo seria O(n²))
-fun rCriaPagamentos(indice: int64): div list<float64> {
-  if indice < 1.int64 then return []
-  [(indice.float64 * periodo)] ++ rCriaPagamentos(indice - 1.int64)   // está invertida a ordem, mas não importa para o resultado final, apenas é ~200x mais rápido
+fun rCriaPagamentos(indice: int64, acumulador: list<float64>): div list<float64> {
+  if indice < 1.int64 then return acumulador
+  rCriaPagamentos(indice - 1.int64, [(indice.float64 * periodo)] ++ acumulador)   // está invertida a ordem, mas não importa para o resultado final, apenas é ~200x mais rápido
 }
 
 // açúcar de cria a lista pagamentos
 fun criaPagamentos(): div list<float64> {
-  rCriaPagamentos(quantidade)
+  rCriaPagamentos(quantidade, [])
 }
 
 // recursão de cria a lista pesos (com inversão de operandos em ++, caso contrário o tempo seria O(n²))
-fun rCriaPesos(indice: int64): div list<float64> {
-  if indice < 1.int64 then return []
-  [1.0] ++ rCriaPesos(indice - 1.int64)   // está invertida a ordem, mas não importa para o resultado final, apenas é ~200x mais rápido
+fun rCriaPesos(indice: int64, acumulador: list<float64>): div list<float64> {
+  if indice < 1.int64 then return acumulador
+  rCriaPesos(indice - 1.int64, [1.0] ++ acumulador)   // está invertida a ordem, mas não importa para o resultado final, apenas é ~200x mais rápido
 }
 
 // açúcar de cria a lista pesos
 fun criaPesos(): div list<float64> {
-  rCriaPesos(quantidade)
+  rCriaPesos(quantidade, [])
 }
 
 // recursão que calcula a somatória dos elementos de uma lista

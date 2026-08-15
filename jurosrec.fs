@@ -1,6 +1,6 @@
 ﻿// Cálculo do juros, sendo que precisa de arrays pra isso
 // Versão 0.1: 09/08/2026: a partir da versão iterativa de F#, imutável (exceto arrrays) e recursiva
-//        0.2: 15/08/2026: agora com Tail Call Optimization
+//        0.2: 15/08/2026: alterada para propiciar Tail Call Optimization
 
 // classe com atributos básicos para simplificar as chamadas
 type Juros(quantidade: int, composto: bool, periodo: double, pagamentos: double[], pesos: double[]) =

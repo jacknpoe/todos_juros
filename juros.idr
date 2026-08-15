@@ -4,6 +4,7 @@
 --        0.3: 08/08/2026: solução escalabilizada e compatibilizada com Idris 1.3.4 e Idris 2
 --        0.4: 13/08/2026: reescritas as funções rGetPesoTotal, rJurosCompostos e rJurosSimples para permitir Tail Call Optimization (TCO),
 --                         para isso, as chamadas recursivas passaram a ser as últimas operações executadas pelas funções
+--        0.5: 15/08/2026: reescritas as funções rGeraPagamentos e rGeraPesos para também permitir Tail Call Optimization (TCO)
 
 -- TESTES: os testes de benchmark de 300.000 parcelas foram realizados em um Debian 12 com 20 GB de memória RAM
 --         as medidas foram feitas depois da utilização do comando: ulimit -s 65536
@@ -22,7 +23,7 @@ module Main
 
 -- estrutura básica para simplificar as chamadas
 quantidade : Int
-quantidade = 3  -- quantidade = 1023990  -- máximo para Idris 1.3.4
+quantidade = 300000  -- quantidade = 1023990  -- máximo para Idris 1.3.4
 composto : Bool
 composto = True
 periodo : Double
@@ -34,22 +35,22 @@ acrescimoCalculado : Double
 jurosCalculado : Double
 
 -- função recursiva que cria a lista Pagamentos
-rGeraPagamentos : Int -> List Double
-rGeraPagamentos indice = if indice < 1 then []
-                         else (cast indice * periodo) :: rGeraPagamentos (indice - 1)
+rGeraPagamentos : Int -> List Double -> List Double
+rGeraPagamentos indice acumulador = if indice < 1 then acumulador
+                                    else rGeraPagamentos (indice - 1) ((cast indice * periodo) :: acumulador)
 
 -- função açúcar que cria a lista Pagamentos
 geraPagamentos : List Double
-geraPagamentos = rGeraPagamentos(quantidade)
+geraPagamentos = rGeraPagamentos quantidade []
 
 -- função recursiva que cria a lista Pesos
-rGeraPesos : Int -> List Double
-rGeraPesos indice = if indice < 1 then []
-                    else 1.0 :: rGeraPesos (indice - 1)
+rGeraPesos : Int -> List Double -> List Double
+rGeraPesos indice acumulador = if indice < 1 then acumulador
+                               else rGeraPesos (indice - 1) (1.0 :: acumulador)
 
 -- função açúcar que cria a lista Pesos
 geraPesos : List Double
-geraPesos = rGeraPesos(quantidade)
+geraPesos = rGeraPesos quantidade []
 
 -- atribui às listas Pagamentos e Pesos os resultados das geradoras de listas
 pagamentos = geraPagamentos

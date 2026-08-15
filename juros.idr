@@ -17,13 +17,15 @@
 --                         em Idris 2, o limite superou 70.000.000 de parcelas, mas o sistema já fica irresponsivo por causa da memória;    
 --                         com 80.000.000 parcelas a solução é encerrada pelo sistema operacional, após mais de uma hora de irresponsividade
 
---                         com o TCO, com 300.000 parcelas, Idris 1.3.4 teve média de 5,045 segundos e Idris 2 teve média de 0,360 segundos
+-- A PARTIR DA VERSÃO 0.5: Idris 1.3.4 foi validada com 10.000.000 parcelas em 3m19,120 s, a partir daí começa a ficar muito mais lento
+
+--                         com o TCO, com 300.000 parcelas, Idris 1.3.4 teve média de 4,120 segundos e Idris 2 teve média de 0,355 segundos
 
 module Main
 
 -- estrutura básica para simplificar as chamadas
 quantidade : Int
-quantidade = 3  -- quantidade = 1023990  -- máximo para Idris 1.3.4
+quantidade = 3
 composto : Bool
 composto = True
 periodo : Double

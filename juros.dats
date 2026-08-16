@@ -51,7 +51,6 @@ fun rJurosCompostos (juros : double, pagamentos : list0(double), pesos : list0(d
         | (cons0 (pagH, pagT), cons0 (pesH, pesT)) => rJurosCompostos(juros, pagT, pesT, acumulador + pesH / pow(1.0 + juros / 100.0, pagH / Periodo))
         | (_, _) => acumulador
 
-
 // função recursiva que calcula a somatória das amortizações em juros simples
 fun rJurosSimples (juros : double, pagamentos : list0(double), pesos : list0(double), acumulador : double) : double =
     case+ (pagamentos, pesos) of

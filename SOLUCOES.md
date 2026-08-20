@@ -1352,8 +1352,8 @@ This is a list of links in this repository to solutions in different dialects, o
 
 ### Roc (18/03/2026) 🚀 🔧 ♻️ ✍️ ➰
 
-**listas / lists:**: [juros.roc](juros.roc)<br>
-**funções / functions:**[fn.roc](fn.roc)
+**listas / lists:** [juros.roc](juros.roc)<br>
+**funções / functions:** [fn.roc](fn.roc)
 
 ### Ruby (12/03/2024) 🚀 💖
 

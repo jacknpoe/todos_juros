@@ -9,7 +9,7 @@ import pf.Stdout
 
 # "variáveis" globais simplificam as chamadas às funções
 quantidade : U64
-quantidade = 300000
+quantidade = 3
 composto : Bool
 composto = Bool.true
 periodo : F64

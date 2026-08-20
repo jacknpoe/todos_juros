@@ -1350,7 +1350,7 @@ funções: [jurosf.bend](jurosf.bend)
 
 [juros.ring](juros.ring)
 
-### Roc (18/03/2026) 🚀 🔧 ♻️ ✍️
+### Roc (18/03/2026) 🚀 🔧 ♻️ ✍️ ➰
 
 [juros.roc](juros.roc)
 

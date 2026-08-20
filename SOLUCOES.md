@@ -1369,7 +1369,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 ### Rust (13/03/2024) 🚀 🏛️ 💡 💖
 
-[juros.rc](juros.rs)<br>
+[juros.rs](juros.rs)<br>
 [main.rs](main.rs)
 
 ### S-Lang (12/06/2024)
@@ -1893,7 +1893,7 @@ IBM Personal Computer BASIC = GW-BASIC<br>
 Idris 2 = Idris + 🚀<br>
 Intel Fortran Compiler = Fortran<br>
 Iodine = Java<br>
-IronPython - Python<br>
+IronPython = Python<br>
 JRuby = Ruby<br>
 Korn Shell = ksh<br>
 LibreOffice Basic = OpenOffice Basic<br>

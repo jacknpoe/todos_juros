@@ -1,6 +1,6 @@
 # Calcula o acréscimo a partir dos juros e os juros a partir do acréscimo
 # Versão: 0.1: 18/03/2026: alternativa que usa funções no lugar de listas para benchmark
-#         0.2: 20/08/2026: versão com head/tail e permitindo Tail Call Optimization
+#         0.2: 20/08/2026: versão permitindo Tail Call Optimization
 # compilável (por causa de Num.log em Num.pow, aparentemente) apenas com a opção --linker legacy
 # a versão do compilador é a alpha4 disponível em https://github.com/roc-lang/roc/releases
 

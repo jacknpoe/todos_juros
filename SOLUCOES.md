@@ -210,8 +210,8 @@ This is a list of links in this repository to solutions in different dialects, o
 
 ### Bend (08/08/2024) 🧠 ♻️
 
-mapas: [juros.bend](juros.bend)<br>
-funções: [jurosf.bend](jurosf.bend)
+**mapas / maps:** [juros.bend](juros.bend)<br>
+**funções / functions:** [jurosf.bend](jurosf.bend)
 
 ### Bigloo (02/08/2025) ♻️
 
@@ -1352,7 +1352,8 @@ funções: [jurosf.bend](jurosf.bend)
 
 ### Roc (18/03/2026) 🚀 🔧 ♻️ ✍️ ➰
 
-[juros.roc](juros.roc)
+**listas / lists:**: [juros.roc](juros.roc)<br>
+**funções / functions:**[fn.roc](fn.roc)
 
 ### Ruby (12/03/2024) 🚀 💖
 

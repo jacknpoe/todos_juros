@@ -1853,10 +1853,11 @@ JavaScript: [juroswww.js](juroswww.js)
 
 <br>
 
-# EQUIVALENTES / EQUIVALENTS (92)
+# EQUIVALENTES / EQUIVALENTS (94)
 
 ACECode = Scratch<br>
 Amstrad BASIC = Locomotive BASIC<br>
+BASICA = GW-BASIC<br>
 BBC BASIC for SDL 2.0 = BBC BASIC<br>
 Boa = Node.js<br>
 Bourne shell = POSIX sh<br>
@@ -1887,10 +1888,11 @@ GNU Octave = Octave<br>
 Guile = Kawa/Scheme/Steel<br>
 HashLink = Haxe<br>
 IBM PC BASIC A = GW-BASIC<br>
+IBM Personal Computer BASIC = GW-BASIC<br>
 Idris 2 = Idris + 🚀<br>
 Intel Fortran Compiler = Fortran<br>
 Iodine = Java<br>
-IronPython = Python<br>
+IronPython - Python<br>
 JRuby = Ruby<br>
 Korn Shell = ksh<br>
 LibreOffice Basic = OpenOffice Basic<br>
@@ -1911,12 +1913,12 @@ Oberon-07 = Oberon-2<br>
 Objective Caml = OCaml<br>
 oksh = POSIX sh<br>
 OpenMP = Intel oneAPI DPC++<br>
-OSH (Oil Shell) = Bash<br>
+OSH (Oil Shell) = bash<br>
 Pascal ISO 7185 = MSX Turbo Pascal<br>
 PC-BASIC = GW-BASIC<br>
 pForth = Gforth<br>
-Pizza = Java<br>
 PicoC = C<br>
+Pizza = Java<br>
 PoSh = Windows PowerShell<br>
 PowerBASIC = Turbo Basic<br>
 Pretty C = C<br>

@@ -8,7 +8,7 @@
 ;;        0.3: 21/08/2026: alteradas as funções recursivas para permitir Tail Call Optimization
 
 ;; dados gerais escalares
-(define Quantidade 300000)
+(define Quantidade 3)
 (define Composto 1)  ;; 1 = true, 0 = false
 (define Periodo 30.0)
 

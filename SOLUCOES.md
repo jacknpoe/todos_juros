@@ -781,7 +781,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 [juros.k](juros.k)
 
-### Kawa (10/04/2025) ♻️
+### Kawa (10/04/2025) ♻️ ➰
 
 [jurosK.scm](jurosK.scm)
 
@@ -1258,7 +1258,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 [Juros.R](Juros.R)
 
-### Racket (20/05/2024) 🧠 🚀 🔧 ♻️ ✍️
+### Racket (20/05/2024) 🧠 🚀 🔧 ♻️ ✍️ ➰
 
 [juros.rkt](juros.rkt)
 
@@ -1527,7 +1527,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 [juros.slx](juros.slx)
 
-### Steel (16/04/2025) ♻️
+### Steel (16/04/2025) ♻️ ➰
 
 [juros.steel.scm](juros.steel.scm)
 
@@ -1632,7 +1632,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 [juros.twinproj](juros.twinproj)
 
-### Typed Racket (17/04/2026) 🧠 🚀 🔧 ♻️ ✍️
+### Typed Racket (17/04/2026) 🧠 🚀 🔧 ♻️ ✍️ ➰
 
 [jurost.rkt](jurost.rkt)
 

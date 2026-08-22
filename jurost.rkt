@@ -2,6 +2,7 @@
 
 ;; Cálculo do juros, sendo que precisa de listas para isso
 ;; Versão 0.1: 17/06/2026: copiada da versão de Racket (padrão) para adicionar os tipos sob supervisão do ChatGPT
+;;        0.2: 21/08/2026: alteradas as funções recursivas para permitir Tail Call Optimization
 
 ;; dados gerais escalares
 (define Quantidade 3)
@@ -9,33 +10,31 @@
 (define Periodo 30.0)
 
 ;; função recursiva que realmente monta Pagamentos[]
-(: rCriaPagamentos (-> Integer (Listof Real)))
-(define (rCriaPagamentos indice)
+(: rCriaPagamentos (-> Integer (Listof Real) (Listof Real)))
+(define (rCriaPagamentos indice acumulador)
   (if (< indice 0)
-    '()
-    (cons (* (- Quantidade indice) Periodo)
-          (rCriaPagamentos (- indice 1)))
+    acumulador
+    (rCriaPagamentos (- indice 1) (cons (* (- Quantidade indice) Periodo) acumulador))
   )
 )
 
 ;; função açúcar que monta Pagamentos[]
 (define (criaPagamentos)
-  (rCriaPagamentos (- Quantidade 1))
+  (rCriaPagamentos (- Quantidade 1) '())
 )
 
-(: rCriaPesos (-> Integer (Listof Real)))
 ;; função recursiva que realmente monta Pesos[]
-(define (rCriaPesos indice)
+(: rCriaPesos (-> Integer (Listof Real) (Listof Real)))
+(define (rCriaPesos indice acumulador)
   (if (< indice 0)
-    '()
-    (cons 1.0
-          (rCriaPesos (- indice 1)))
+    acumulador
+    (rCriaPesos (- indice 1) (cons 1.0 acumulador))
   )
 )
 
 ;; função açúcar que monta Pesos[]
 (define (criaPesos)
-  (rCriaPesos (- Quantidade 1))
+  (rCriaPesos (- Quantidade 1) '())
 )
 
 ;; dados gerais listas
@@ -43,34 +42,34 @@
 (define Pesos (criaPesos))
 
 ;; função recursiva que realmente calcula a somatória de pesos[]
-(: rGetPesoTotal (-> (Listof Real) Real))
-(define (rGetPesoTotal lista)
+(: rGetPesoTotal (-> (Listof Real) Real Real))
+(define (rGetPesoTotal lista acumulador)
   (if (null? lista)
-    0.0
-    (+ (car lista) (rGetPesoTotal (cdr lista)))
+    acumulador
+    (rGetPesoTotal(cdr lista) (+ (car lista) acumulador))
   )
 )
 
 ;; função açúcar que chama a função recursiva que calcula a somatória de pesos[]
 (define (getPesoTotal)
-  (rGetPesoTotal Pesos)
+  (rGetPesoTotal Pesos 0.0)
 )
 
 ;; função recursiva que calcula a soma do amortecimento de todas as parcelas para juros compostos
-(: rJurosCompostos (-> Real (Listof Real) (Listof Real) Real))
-(define (rJurosCompostos juros pagamentos pesos)
+(: rJurosCompostos (-> Real (Listof Real) (Listof Real) Real Real))
+(define (rJurosCompostos juros pagamentos pesos acumulador)
   (if (null? pagamentos)
-    0.0
-    (+ (/ (car pesos) (real-part (expt (+ 1.0 (/ juros 100.0)) (/ (car pagamentos) Periodo)))) (rJurosCompostos juros (cdr pagamentos) (cdr pesos)))
+    acumulador
+    (rJurosCompostos juros (cdr pagamentos) (cdr pesos) (+ (/ (car pesos) (real-part (expt (+ 1.0 (/ juros 100.0)) (/ (car pagamentos) Periodo)))) acumulador))
   )
 )
 
 ;; função recursiva que calcula a soma do amortecimento de todas as parcelas para juros simples
-(: rJurosSimples (-> Real (Listof Real) (Listof Real) Real))
-(define (rJurosSimples juros pagamentos pesos)
+(: rJurosSimples (-> Real (Listof Real) (Listof Real) Real Real))
+(define (rJurosSimples juros pagamentos pesos acumulador)
   (if (null? pagamentos)
-    0.0
-    (+ (/ (car pesos) (+ 1.0 (* (/ juros 100.0) (/ (car pagamentos) Periodo)))) (rJurosSimples juros (cdr pagamentos) (cdr pesos)))
+    acumulador
+    (rJurosSimples juros (cdr pagamentos) (cdr pesos) (+ (/ (car pesos) (+ 1.0 (* (/ juros 100.0) (/ (car pagamentos) Periodo)))) acumulador))
   )
 )
 
@@ -80,8 +79,8 @@
   (if (or (<= juros 0.0) (< Quantidade 1) (<= Periodo 0.0) (<= (getPesoTotal) 0.0))
     0.0
     (if (= Composto 1)
-      (* (- (/ (getPesoTotal) (rJurosCompostos juros Pagamentos Pesos)) 1.0) 100.0)
-      (* (- (/ (getPesoTotal) (rJurosSimples juros Pagamentos Pesos)) 1.0) 100.0)
+      (* (- (/ (getPesoTotal) (rJurosCompostos juros Pagamentos Pesos 0.0)) 1.0) 100.0)
+      (* (- (/ (getPesoTotal) (rJurosSimples juros Pagamentos Pesos 0.0)) 1.0) 100.0)
     )
   )
 )

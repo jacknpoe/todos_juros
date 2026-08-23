@@ -515,7 +515,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 [juros.fan](juros.fan)
 
-### Felix (04/07/2026) ♻️
+### Felix (04/07/2026) ♻️ ➰
 
 [juros.flx](juros.flx)
 

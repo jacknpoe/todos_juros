@@ -1,5 +1,6 @@
 // Cálculo dos juros, sendo que precisa de parcelas pra isso
 // Versão 0.1: 04/07/2026: feito sem muito conhecimento de Felix
+//        0.2: 23/08/2026: funções recursivas alteradas para possibilitar Tail Call Optimization
 
 // variáveis globais escalares para simplificar as chamadas às funções
 var Quantidade : int = 3;
@@ -7,49 +8,51 @@ var Composto : bool = true;
 var Periodo : double = 30.0;
 
 // funções recursiva + açúcar que cria os elementos da lista Pagamentos
-pure fun rGeraPagamentos (indice : int) : list[double] = { if indice == 0 do return Empty[double]; else return indice.double * Periodo + rGeraPagamentos (indice - 1); done }
-pure fun geraPagamentos () : list[double] = { return rGeraPagamentos(Quantidade); }
+pure fun rGeraPagamentos (indice : int, acumulador : list[double]) : list[double] = {
+    if indice == 0 do return acumulador; else return rGeraPagamentos(indice - 1, indice.double * Periodo + acumulador); done }
+pure fun geraPagamentos () : list[double] = { return rGeraPagamentos(Quantidade, Empty[double]); }
 
 // funções recursiva + açúcar que cria os elementos da lista Pesos
-pure fun rGeraPesos (indice : int) : list[double] = { if indice == 0 do return Empty[double]; else return 1.0 + rGeraPesos(indice - 1); done }
-pure fun geraPesos () : list[double] = { return rGeraPesos(Quantidade); }
+pure fun rGeraPesos (indice : int, acumulador : list[double]) : list[double] = {
+    if indice == 0 do return acumulador; else return rGeraPesos(indice - 1, 1.0 + acumulador); done }
+pure fun geraPesos () : list[double] = { return rGeraPesos(Quantidade, Empty[double]); }
 
 // listas globais para simplificar as chamadas às funções
 var Pagamentos : list[double] = geraPagamentos();
 var Pesos : list[double] = geraPesos();
 
 // função recursiva que calcula a somatória dos elementos na lista Pesos[] 
-pure fun rGetPesoTotal (pesos : list[double]) : double = {
+pure fun rGetPesoTotal (pesos : list[double], acumulador : double) : double = {
     match pesos with
-        | Cons(hPes, tPes) => return rGetPesoTotal(tPes) + hPes;
-        | Empty => return 0.0;
+        | Cons(hPes, tPes) => return rGetPesoTotal(tPes, hPes + acumulador);
+        | Empty => return acumulador;
     endmatch;
 }
 
 // função açúcar que calcula a somatória dosw elementos na lista Pesos[]
-pure fun getPesoTotal () : double = { return rGetPesoTotal Pesos; }
+pure fun getPesoTotal () : double = { return rGetPesoTotal(Pesos, 0.0); }
 
 // função recursiva que calcula a somatória das amortizações de juros compostos
-pure fun rJurosCompostos (pagamentos : list[double], pesos : list[double], juros : double) : double = {
+pure fun rJurosCompostos (pagamentos : list[double], pesos : list[double], juros : double, acumulador : double) : double = {
     match (pagamentos, pesos) with
-        | (Cons(hPag, tPag), Cons(hPes, tPes)) => return rJurosCompostos(tPag, tPes, juros) + hPes / (1.0 + juros / 100.0) ^ (hPag / Periodo);
-        | (Empty, Empty) => return 0.0;
+        | (Cons(hPag, tPag), Cons(hPes, tPes)) => return rJurosCompostos(tPag, tPes, juros, hPes / (1.0 + juros / 100.0) ^ (hPag / Periodo) + acumulador);
+        | (Empty, Empty) => return acumulador;
     endmatch;
 }
 
 // função recursiva que calcula a somatória das amortizações de juros compostos
-pure fun rJurosSimples (pagamentos : list[double], pesos : list[double], juros : double) : double = {
+pure fun rJurosSimples (pagamentos : list[double], pesos : list[double], juros : double, acumulador : double) : double = {
     match (pagamentos, pesos) with
-        | (Cons(hPag, tPag), Cons(hPes, tPes)) => return rJurosSimples(tPag, tPes, juros) + hPes / (1.0 + juros / 100.0 * hPag / Periodo);
-        | (Empty, Empty) => return 0.0;
+        | (Cons(hPag, tPag), Cons(hPes, tPes)) => return rJurosSimples(tPag, tPes, juros, + hPes / (1.0 + juros / 100.0 * hPag / Periodo));
+        | (Empty, Empty) => return acumulador;
     endmatch;
 }
 
 // função (um pouco açúcar) que calcula o acréscimo a partir dos juros e parcelas
 pure fun jurosParaAcrescimo(juros : double) : double = {
     match Composto with
-        | true => return (getPesoTotal() / rJurosCompostos(Pagamentos, Pesos, juros) - 1.0) * 100.0;
-        | false => return (getPesoTotal() / rJurosSimples(Pagamentos, Pesos, juros) - 1.0) * 100.0;
+        | true => return (getPesoTotal() / rJurosCompostos(Pagamentos, Pesos, juros, 0.0) - 1.0) * 100.0;
+        | false => return (getPesoTotal() / rJurosSimples(Pagamentos, Pesos, juros, 0.0) - 1.0) * 100.0;
     endmatch;
 }
 

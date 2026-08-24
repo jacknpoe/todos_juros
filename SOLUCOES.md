@@ -616,7 +616,8 @@ This is a list of links in this repository to solutions in different dialects, o
 
 ### Gluon (01/04/2026) 🧠 🔧 ♻️ ✍️
 
-[juros.glu](juros.glu)
+**arrays:** [juros.glu](juros.glu) + ➰<br>
+**listas / lists:** [jurosl.glu](jurosl.glu)
 
 ### Go (27/02/2024) 💖
 

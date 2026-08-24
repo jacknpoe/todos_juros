@@ -1,17 +1,17 @@
 // Cálculo do juros, sendo que precisa de arrays pra isso
 // Versão 0.1: 01/04/2026: versão feita sem muito conhecimento de Gluon
-//        0.2: 23/08/2026: funções recursivas alteradas para permitir Tail Call Optimization (TCO)
+//        0.2: 23/08/2026: funções recursivas alteradas para permitir Tail Call Optimization (TCO), arrays para listas
 
-// RESUMO DAS DIFERENÇAS ENTRE O BENCHMARKS COM 300.000 PARCELAS SOBRE A VERSÃO COM LISTAS E SOBRE A VERSÃO COM ARRAYS (ESTA):
+// RESUMO DAS DIFERENÇAS ENTRE O BENCHMARKS COM 300.000 PARCELAS SOBRE A VERSÃO COM LISTAS (ESTA) E SOBRE A VERSÃO COM ARRAYS:
 // a versão com listas levou uma média de 46,460s e a versão com arrays levou uma média de 5m16.468s (≃6,81162 vezes maior)
 // a versão com listas necessitou de ter o tamanho da pilha alterado com ulimit -s 16384
 // (não foram feitos testes exaustivos, somente potências de 2) o que fortemente sugere que a TCO não ocorreu
 // a versão com arrays não necessitou de ter o tamanho da pilha alterado, o que fortemente sugere que a TCO ocorreu
 
-let array = import! std.array
 let bool = import! std.bool
 let float = import! std.float
 let io @ { ? } = import! std.io
+let list @ { List, ? } = import! std.list
 
 // globais escalares para simplificar as chamadas às funções, inicializadas
 let quantidade : Int = 300000
@@ -20,50 +20,53 @@ let periodo : Float = 30.0
 
 // função recursiva que cria um array para pagamentos
 rec let rGeraPagamentos indice acumulador :
-    Int -> Array Float -> Array Float =
+    Int -> List Float -> List Float =
     if indice < 0 then acumulador
-    else rGeraPagamentos (indice - 1) (array.append acumulador [periodo * (float.from_int (indice + 1))])
+    else rGeraPagamentos (indice - 1) (Cons (periodo * (float.from_int (indice + 1))) acumulador)
 
 // função recursiva que cria um array para pesos
 rec let rGeraPesos indice acumulador :
-    Int -> Array Float -> Array Float =
+    Int -> List Float -> List Float =
     if indice < 0 then acumulador
-    else rGeraPesos (indice - 1) (array.append acumulador [1.0])
+    else rGeraPesos (indice - 1) (Cons 1.0 acumulador)
 
 // função recursiva que calcula a somatória dos elementos no array pesos
-rec let rGetPesoTotal pesos indice acumulador :
-    Array Float -> Int -> Float -> Float =
-    if indice < 0 then acumulador
-    else rGetPesoTotal pesos (indice - 1) (acumulador + (array.index pesos indice))
+rec let rGetPesoTotal pesos acumulador :
+    List Float -> Float -> Float =
+    match pesos with
+    | Cons hPes tPes -> rGetPesoTotal tPes (acumulador + hPes)
+    | _ -> acumulador
 
 // função recursiva que calcula a somatória das amortizações nos juros compostos
-rec let rJurosCompostos pagamentos pesos juros indice acumulador :
-    Array Float -> Array Float -> Float -> Int -> Float -> Float =
-    if indice < 0 then acumulador
-    else rJurosCompostos pagamentos pesos juros (indice - 1) (acumulador + (array.index pesos indice) / (float.powf (1.0 + juros / 100.0) ((array.index pagamentos indice) / periodo)))
+rec let rJurosCompostos pagamentos pesos juros acumulador :
+    List Float -> List Float -> Float -> Float -> Float =
+    match (pagamentos, pesos) with
+    | (Cons hPag tPag, Cons hPes tPes) -> rJurosCompostos tPag tPes juros (acumulador + hPes / (float.powf (1.0 + juros / 100.0) (hPag / periodo)))
+    | _ -> acumulador
 
 // função recursiva que calcula a somatória das amortizações nos juros simples
-rec let rJurosSimples pagamentos pesos juros indice acumulador :
-    Array Float -> Array Float -> Float -> Int -> Float -> Float =
-    if indice < 0 then acumulador
-    else rJurosSimples pagamentos pesos juros (indice - 1) (acumulador + (array.index pesos indice) / (1.0 + juros / 100.0 * (array.index pagamentos indice) / periodo))
+rec let rJurosSimples pagamentos pesos juros acumulador :
+    List Float -> List Float -> Float -> Float -> Float =
+    match (pagamentos, pesos) with
+    | (Cons hPag tPag, Cons hPes tPes) -> rJurosCompostos tPag tPes juros (acumulador + hPes / (1.0 + juros / 100.0 * hPag / periodo))
+    | _ -> acumulador
 
 (\_ ->
     // funções açúcares que criam arrays para pagamentos e pesos
-    let geraPagamentos : Array Float = rGeraPagamentos (quantidade - 1) []
-    let geraPesos : Array Float = rGeraPesos (quantidade - 1) []
+    let geraPagamentos : List Float = rGeraPagamentos (quantidade - 1) Nil
+    let geraPesos : List Float = rGeraPesos (quantidade - 1) Nil
 
     // inicializa os arrays
-    let pagamentos : Array Float = geraPagamentos
-    let pesos : Array Float = geraPesos
+    let pagamentos : List Float = geraPagamentos
+    let pesos : List Float = geraPesos
 
     // função açúcar que calcula a somatória dos elementos no array pesos
-    let getPesoTotal : Float = rGetPesoTotal pesos (quantidade - 1) 0.0
+    let getPesoTotal : Float = rGetPesoTotal pesos 0.0
 
     // função (meio açúcar) que calcula o acréscimo a partir dos juros e parcelas
     let jurosParaAcrescimo juros : Float -> Float =
-        if composto then (getPesoTotal / (rJurosCompostos pagamentos pesos juros (quantidade - 1) 0.0) - 1.0) * 100.0
-        else (getPesoTotal / (rJurosSimples pagamentos pesos juros (quantidade - 1) 0.0) - 1.0) * 100.0
+        if composto then (getPesoTotal / (rJurosCompostos pagamentos pesos juros 0.0) - 1.0) * 100.0
+        else (getPesoTotal / (rJurosSimples pagamentos pesos juros 0.0) - 1.0) * 100.0
 
     // função recursiva que calcula os juros a partir do acréscimo e parcelas
     rec let rAcrescimoParaJuros acrescimo minDiferenca iteracao minJuros maxJuros medJuros :

@@ -4,9 +4,9 @@
 
 # LEIA-ME / READ ME
 
-Leia-me: [LEIA_ME.md](LEIA_ME.md).
+Leia-me: [LEIA_ME.md](LEIA_ME.md)
 
-Read me: [READ_ME.md](READ_ME.md).
+Read me: [READ_ME.md](READ_ME.md)
 
 <br>
 
@@ -15,15 +15,15 @@ Read me: [READ_ME.md](READ_ME.md).
 A lista de soluções está organizada, em ordem alfabética, pelos nomes dos dialetos, em:<br>
 The list of solutions is organized alphabetically by dialect name in:
 
-[SOLUCOES.md](SOLUCOES.md). 
+[SOLUCOES.md](SOLUCOES.md)
 
 <br>
 
 # RESOLUÇÃO DE EQUAÇÃO TRANSCENDENTE / SOLVING TRANSCENDENT EQUATIONS
 
-Resolução de Equação Transcendente: [RESOLUCAO_EQUACAO_TRANSCENDENTE.md](RESOLUCAO_EQUACAO_TRANSCENDENTE.md).
+Resolução de Equação Transcendente: [RESOLUCAO_EQUACAO_TRANSCENDENTE.md](RESOLUCAO_EQUACAO_TRANSCENDENTE.md)
 
-Solving Transcendent Equations: [SOLVING_TRANSCENDENT_EQUATIONS.md](SOLVING_TRANSCENDENT_EQUATIONS.md).
+Solving Transcendent Equations: [SOLVING_TRANSCENDENT_EQUATIONS.md](SOLVING_TRANSCENDENT_EQUATIONS.md)
 
 <br>
 

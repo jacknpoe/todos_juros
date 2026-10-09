@@ -23,8 +23,12 @@
 //               na lista de soluções (SOLUCOES.md) (atualizado em 28/07/2026 e 15/08/2026)
 
 // COMPILAR: g++ -Ofast -march=native -DNDEBUG -std=c++17 juros_rec_taylor.cpp -o juros_rec_taylor
+// FORÇAR: g++ -Ofast -march=native -DNDEBUG -std=c++17 -foptimize-sibling-calls juros_rec_taylor.cpp -o juros_rec_taylor
 
-// PREPARAR PARA MUITAS PARCELAS (TESTADO ATÉ 300.000): ulimit -s 65536
+// as funções recursivas foram alteradas para serem propícias a Tail Call Optimization (TCO) mas, durante os testes,
+// ficou evidente que rpowint(), raddajuste() e rsubajuste()  pioravam o desempenho quando propícias a TCO, e o código
+// de máquina gerado confirma que acontece uma otimização aparentemente melhor feita pelo compilador g++
+// dessa forma, os códigos dessas funções foram mantidos com a lógica original
 
 #include <vector>  // vector
 #include <iomanip>  // setprecision
@@ -167,7 +171,7 @@ int main() {
     std::cout << std::fixed << std::setprecision(15);
 
     // inicializa as variáveis escalares globais
-    Quantidade = 3;
+    Quantidade = 300000;
     Composto = true;
     Periodo = 30.0;
 

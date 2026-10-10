@@ -1,40 +1,42 @@
 // Cálculo dos juros, sendo que precisa de parcelas pra isso
 // Versão 0.1: 29/05/2026: feita sem muito conhecimento de Pure
+//        0.2: 10/10/2026: funções rGetPesoTotal, rJurosCompostos e rJurosSimples reescritas com acumuladores para permitir Tail Call Optimization (TCO)
 // Rodou em um docker com Ubuntu 16.04.7 LTS e LLVM 3.5
 // DEPENDÊNCIAS: autoconf bison flex libgmp-dev libmpfr-dev libreadline-dev llvm-3.5-dev
 // COMPILAR: cd /pure/pure   autoreconf -i   ./configure   make
 // CONFIGURAR: export PURELIB=./lib   export LD_LIBRARY_PATH=.
 // EXECUTAR: ./pure /caminho/<arq>.pure
-// Teste de estresse: 73662 parcelas -> OK; 73663 parcelas -> stack_fault em acrescimoParaJuros; 73668 parcelas -> stack_fault em jurosParaAcrescimo
+// VERSÃO 0.1: Teste de estresse: 73662 parcelas -> OK; 73663 parcelas -> stack_fault em acrescimoParaJuros; 73668 parcelas -> stack_fault em jurosParaAcrescimo
+// VERSÃO 0.2: Tempo médio de execução com 300.000 parcelas: ~ 9,256 s
 
 using system;
 
 // variáveis globais para simplificar os chamados às funções
-let Quantidade = 3;
+let Quantidade = 300000;
 let Composto = true;
 let Periodo = 30.0;
 let Pagamentos = map (Periodo*) (1..Quantidade);
 let Pesos = take Quantidade (cycle [1.0]);
 
 // função recursiva que retorna a somatória de Pesos[]
-rGetPesoTotal [] = 0.0;
-rGetPesoTotal (car:cdr) = car + rGetPesoTotal cdr;
+rGetPesoTotal [] acumulador = acumulador;
+rGetPesoTotal (car:cdr) acumulador = rGetPesoTotal cdr (car + acumulador);
 
 // função açúcar que retorna a somatória de Pesos[]
-getPesoTotal = rGetPesoTotal(Pesos);
+getPesoTotal = rGetPesoTotal Pesos 0.0 ;
 
 // função recursiva que calcula a amortização dos juros compostos
-rJurosCompostos [] [] juros = 0.0;
-rJurosCompostos (pagH:pagT) (pesH:pesT) juros = (pesH / (1.0 + juros / 100.0) ^ (pagH / Periodo)) + rJurosCompostos pagT pesT juros;
+rJurosCompostos [] [] juros acumulador = acumulador;
+rJurosCompostos (pagH:pagT) (pesH:pesT) juros acumulador = rJurosCompostos pagT pesT juros (pesH / (1.0 + juros / 100.0) ^ (pagH / Periodo) + acumulador);
 
 // função recursiva que calcula a amortização dos juros simples
-rJurosSimples [] [] juros = 0.0;
-rJurosSimples (pagH:pagT) (pesH:pesT) juros = (pesH / (1.0 + juros / 100.0 * pagH / Periodo)) + rJurosSimples pagT pesT juros;
+rJurosSimples [] [] juros acumulador = acumulador;
+rJurosSimples (pagH:pagT) (pesH:pesT) juros acumulador = rJurosSimples pagT pesT juros (pesH / (1.0 + juros / 100.0 * pagH / Periodo) + acumulador);
 
 // funcão que calcula o acréscimo a partir dos juros e parcelas (relativamente açúcar)
 jurosParaAcrescimo juros = if Composto
-    then ((getPesoTotal / rJurosCompostos Pagamentos Pesos juros) - 1.0) * 100
-    else ((getPesoTotal / rJurosSimples Pagamentos Pesos juros) - 1.0) * 100;
+    then ((getPesoTotal / rJurosCompostos Pagamentos Pesos juros 0.0) - 1.0) * 100
+    else ((getPesoTotal / rJurosSimples Pagamentos Pesos juros 0.0) - 1.0) * 100;
 
 // função recursiva que calcula os juros a partir do acréscimo e parcelas
 rAcrescimoParaJuros acrescimo minDiferenca iteracao minJuros maxJuros medJuros =

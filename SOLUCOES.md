@@ -1201,7 +1201,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 [jurosFB.sql](jurosFB.sql)
 
-### Pure (29/05/2026) ♻️
+### Pure (29/05/2026) ♻️ ➰
 
 [juros.pure](juros.pure)
 

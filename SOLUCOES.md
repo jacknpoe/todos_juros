@@ -1430,7 +1430,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 [juros.shk](juros.shk)
 
-### Shen (09/06/2026) 🔧 ♻️ 📈
+### Shen (09/06/2026) 🔧 ♻️ 📈 ➰
 
 [juros.shen](juros.shen)
 

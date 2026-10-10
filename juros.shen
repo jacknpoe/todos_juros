@@ -3,7 +3,7 @@
 \\        0.2: 26/08/2026: tentativa de alterar funções recursivas para permitir Tail Call Optimization
 \\        0.3: 09/10/2026: versão mista, que usa TCO onde poderiam acontecer problemas de segurança (nomeadamente rJurosCompostos e rJurosSimples)
 \\                         TCO não se traduziu em melhor performance (quase o contrário) mas, de acordo com a documentação, é seguro para a pilha
-\\                         conds foram trocados por ifs, por duas razões: performance (embora influencie pouco) e semântica
+\\                         conds foram trocados por ifs, por performance (embora influencie pouco) e semântica; tc - desativa verificação de tipos
 \\ CONDIÇÕES: não informe números negativos fora da realidade, a solução será correta dentro do domínio do problema
 
 \\ ############### FUNÇÕES FORA DO DOMÍNIO DO PROBLEMA, IMPLEMENTAM EXPONENCIAÇÕES ###############
@@ -15,7 +15,6 @@
         (rLog (+ Indice 1) Ip (* Termo Ip Ip) (+ Soma (/ Termo (- (* 2.0 Indice) 1.0))))
     )
 )
-
 
 \\ função açúcar que calcula o logaritmo natural; converge corretamente para os valores do domínio do problema
 (define log Valor -> (rLog 1 (/ (- Valor 1.0) (+ Valor 1.0)) (/ (- Valor 1.0) (+ Valor 1.0)) 0.0))

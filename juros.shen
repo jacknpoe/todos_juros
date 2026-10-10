@@ -1,8 +1,8 @@
 \\ Cálculo dos juros, sendo que precisa de parcelas pra isso
 \\ Versão 0.1: 09/06/2026: feita sem muito conhecimento de Shen
 \\        0.2: 26/08/2026: tentativa de alterar funções recursivas para permitir Tail Call Optimization
-\\        0.3: 09/10/2026: versão mista, que usa TCO onde poderiam acontecer problemas de segurança (nomeadamente rJurosCompostos e rJurosSimples)
-\\                         TCO não se traduziu em melhor performance (quase o contrário) mas, de acordo com a documentação, é seguro para a pilha
+\\        0.3: 09/10/2026: versão mista, que usa TCO nas funções rJurosCompostos e rJurosSimples para reduzir o risco de estouro de pilha 🤞
+\\                         TCO não se traduziu em melhor performance (quase o contrário) mas, de acordo com a documentação, deve ser seguro para a pilha
 \\                         conds foram trocados por ifs, por performance (embora influencie pouco) e semântica; tc - desativa verificação de tipos
 \\ CONDIÇÕES: não informe números negativos fora da realidade, a solução será correta dentro do domínio do problema
 

@@ -1,7 +1,9 @@
 # ; Cálculo do juros, sendo que precisa de arrays pra isso
 # ; Versão 0.1: 24/03/2026: versao feita sem muito conhecimento de PicoLisp
 # ;             25/03/2026: (maxJuros - minJuros) <= minDiferenca (em vez de < ) e (if (not (car pesos) 0 em lugar de sobre cdr
-# ; AVISOS: algumas verificações foram retiradas, então os calculos são indefinidos para valores incorretos
+# ;        0.2: 11/10/2026: funções _getPesoTotal, _jurosCompostos e _jurosSimples alteradas para permitir Tail Call Optimization (TCO)
+# ; AVISOS: algumas verificações foram retiradas, então os cálculos são indefinidos para valores incorretos
+# ;         calcula até 34.814 parcelas, depois estoura a pilha; a não ser que se use ulimit -s, mas ainda não chega a 300.000 parcelas
 
 # ; a primeira parte não é domínio do problema, mas a matemática mais básica, de ponto fixo, para a parte financeira
 
@@ -79,7 +81,7 @@
 # ; a partir daqui é domínio do problema
 
 # ; variáveis globais para simplificar as chamadas às funções
-(setq Quantidade 3)
+(setq Quantidade 3s)
 (setq Composto 1)
 (setq Periodo (itof 30))
 (setq Pagamentos NIL)
@@ -114,39 +116,39 @@
 )
 
 # ; função recursiva no lugar de um for com acumulador que realmente calcula a somatória de Pesos[]
-(de _getPesoTotal (pesos)
+(de _getPesoTotal (pesos acumulador)
   (if (not (car pesos))
-    0
-    (+ (_getPesoTotal (cdr pesos)) (car pesos))
+    acumulador
+  (_getPesoTotal (cdr pesos) (+ (car pesos) acumulador))
   )
 )
 
 # ; açúcar que calcula a somatória de Pesos[]
 (de getPesoTotal ()
-  (_getPesoTotal Pesos)
+  (_getPesoTotal Pesos 0)
 )
 
 # ; função recursiva que calcula a soma do amortecimento de todas as parcelas para juros compostos
-(de _jurosCompostos (juros pagamentos pesos)
+(de _jurosCompostos (juros pagamentos pesos acumulador)
   (if (not (car pesos))
-    0
-    (+ (divfp (car pesos) (powfp (+ UM (/ juros 100)) (divfp (car pagamentos) Periodo))) (_jurosCompostos juros (cdr pagamentos) (cdr pesos)))
+    acumulador
+    (_jurosCompostos juros (cdr pagamentos) (cdr pesos) (+ (divfp (car pesos) (powfp (+ UM (/ juros 100)) (divfp (car pagamentos) Periodo))) acumulador))
   )
 )
 
 # ; função recursiva que calcula a soma do amortecimento de todas as parcelas para juros simples
-(de _jurosSimples (juros pagamentos pesos)
+(de _jurosSimples (juros pagamentos pesos acumulador)
   (if (not (car pesos))
-    0
-    (+ (divfp (car pesos) (+ UM (mulfp (/ juros 100) (divfp (car pagamentos) Periodo)))) (_jurosSimples juros (cdr pagamentos) (cdr pesos)))
+    acumulador
+     _jurosSimples juros (cdr pagamentos) (cdr pesos) (+ (divfp (car pesos) (+ UM (mulfp (/ juros 100) (divfp (car pagamentos) Periodo))) acumulador))
   )
 )
 
 # ; açúcar que calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
 (de jurosParaAcrescimo (juros)
   (if (> Composto 0)
-    (* (- (divfp (getPesoTotal) (_jurosCompostos juros Pagamentos Pesos)) UM) 100)
-    (* (- (divfp (getPesoTotal) (_jurosSimples juros Pagamentos Pesos)) UM) 100)
+    (* (- (divfp (getPesoTotal) (_jurosCompostos juros Pagamentos Pesos 0)) UM) 100)
+    (* (- (divfp (getPesoTotal) (_jurosSimples juros Pagamentos Pesos 0)) UM) 100)
   )
 )
 

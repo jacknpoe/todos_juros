@@ -1152,7 +1152,7 @@ This is a list of links in this repository to solutions in different dialects, o
 ### Picol (05/06/2026) 📈
 [juros.picol](juros.picol)
 
-### PicoLisp (24/03/2026) 🧠 🔧 ♻️ 📈
+### PicoLisp (24/03/2026) 🧠 🔧 ♻️ 📈 ➰
 
 [jurospico.l](jurospico.l)
 

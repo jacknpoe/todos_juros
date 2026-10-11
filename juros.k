@@ -1,5 +1,7 @@
 / Calcula o acréscimo a partir dos juros e os juros a partir do acréscimo
 / Versão: 0.1: 04/03/2026: feita sem muito conhecimento de K
+/ há um limite de 500 parcelas, após dá erro de pilha
+/ alterar rGetPesoTotal, rJurosCompostos e rJurosSimples para permitir Tail Call Optimization (TCO) leva ~81% mais tempo
 
 / variáveis globais para simplificar as chamadas de função e inicialização
 Quantidade: 3

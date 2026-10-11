@@ -1236,8 +1236,6 @@ This is a list of links in this repository to solutions in different dialects, o
 **iterativa / iterative:** [jurosqi.q](jurosqi.q)<br>
 **recursiva / recursive:**[jurosq.q](jurosq.q) + ♻️
 
-[jurosq.q](jurosq.q)
-
 ### Q (26/01/2026) 🔧 ✍️
 
 [juros.q](juros.q)

@@ -18,44 +18,58 @@ getPesoTotal: {
     sum Pesos
     }
 
-/ calcula o acréscimo a partir dos juros e parcelas (é um pouco açúcar)
+/ calcula o acréscimo a partir dos juros e parcelas
 jurosParaAcrescimo: {
     [juros]
-    indice: count Pesos;
-    acumulador: 0.0;
+    pesoTotal: getPesoTotal[];
     $[
-        Composto = 1;
-        while[
-            indice > 0;
-            indice-:1;
-            acumulador+: Pesos[indice] % ((1 + (juros % 100)) xexp (Pagamentos[indice] % Periodo))
-        ];
-        while[
-            indice > 0;
-            indice-:1;
-            acumulador+: Pesos[indice] % (1 + ((juros % 100) * (Pagamentos[indice] % Periodo)))
+        (Quantidade = 0) | (Periodo <= 0.0) | (pesoTotal <= 0.0) | (juros <= 0.0);
+        0.0;
+        [
+            indice: count Pesos;
+            acumulador: 0.0;
+            $[
+                Composto = 1;
+                while[
+                    indice > 0;
+                    indice -: 1;
+                    acumulador+: Pesos[indice] % ((1 + (juros % 100)) xexp (Pagamentos[indice] % Periodo))
+                ];
+                while[
+                    indice > 0;
+                    indice -: 1;
+                    acumulador+: Pesos[indice] % (1 + ((juros % 100) * (Pagamentos[indice] % Periodo)))
+                ]
+            ];
+            ((pesoTotal % acumulador) - 1.0) * 100.0
         ]
-    ];
-    ((getPesoTotal[] % acumulador) - 1.0) * 100.0
+    ]
     }
 
-/ calcula os juros a partir do acréscimo e parcelas (açúcar)
+/ calcula os juros a partir do acréscimo e parcelas
 acrescimoParaJuros: {
     [acrescimo; precisao; maxIteracoes; maxJuros]
     minJuros: 0.0;
     medJuros: maxJuros % 2;
     minDiferenca: 0.1 xexp precisao;
-    while[
-        (maxIteracoes > 0) and ((maxJuros - minJuros) > minDiferenca);
-        maxIteracoes-:1;
-        $[
-            jurosParaAcrescimo[medJuros] < acrescimo;
-            minJuros: medJuros;
-            maxJuros: medJuros
-        ];
-        medJuros:(minJuros + maxJuros) % 2
-    ];
-    medJuros
+    pesoTotal: getPesoTotal[];
+    $[
+        (Quantidade = 0) | (Periodo <= 0.0) | (pesoTotal <= 0.0) | (acrescimo <= 0.0) | (precisao < 1) | (maxIteracoes < 1) | (maxJuros <= 0.0);
+        0.0;
+        [
+            while[
+                (maxIteracoes > 0) and ((maxJuros - minJuros) > minDiferenca);
+                maxIteracoes -: 1;
+                $[
+                    jurosParaAcrescimo[medJuros] < acrescimo;
+                    minJuros: medJuros;
+                    maxJuros: medJuros
+                ];
+                medJuros: (minJuros + maxJuros) % 2
+            ];
+            medJuros
+        ]
+    ]
     }
 
 / executa código aqui, para poder ser medido por \t

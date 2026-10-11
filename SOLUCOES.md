@@ -504,7 +504,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 ### F# (23/05/2024) 🚀 🏛️ 💡 💖 ➰
 
-[juros.fs](juros.fs)<br>
+**iterativa / iterative:** [juros.fs](juros.fs)<br>
 **recursiva / recursive:** [jurosrec.fs](jurosrec.fs) + ♻️
 
 ### Falcon (10/02/2026)
@@ -1227,10 +1227,14 @@ This is a list of links in this repository to solutions in different dialects, o
 [main.py](main.py)
 
 ### PyTorch (14/07/2026) 🚀
+
 [JurosPT.py](JurosPT.py)<br>
 [mainPT.py](mainPT.py)
 
-### q (04/03/2026) 🔧 ♻️ ✍️
+### q (04/03/2026) 🔧 ✍️
+
+**iterativa / iterative:** [jurosqi.q](jurosqi.q)<br>
+**recursiva / recursive:**[jurosq.q](jurosq.q) + ♻️
 
 [jurosq.q](jurosq.q)
 

@@ -117,11 +117,8 @@
         (set *Periodo* 30.0)
 
         \\ listas globais para simplificar as chamadas às funções
-        \\ (output "antes de listas~%")
         (set *Pagamentos* (criaPagamentos))
-        \\ (output "depois de pagamentos~%")
         (set *Pesos* (criaPesos))
-        \\ (output "depois de pesos~%")
 
         \\ calcula e guarda os retornos das funções
         (let PesoTotal (getPesoTotal)

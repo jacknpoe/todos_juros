@@ -557,7 +557,7 @@ This is a list of links in this repository to solutions in different dialects, o
 [jurosParaAcrescimoFM.m](jurosParaAcrescimoFM.m)<br>
 [testajurosFM.m](testajurosFM.m)
 
-### Frege (15/02/2026) 🔧 ♻️ 📈
+### Frege (15/02/2026) 🔧 ♻️ 📈 ➰
 
 [Juros.fr](Juros.fr)
 

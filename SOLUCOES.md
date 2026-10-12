@@ -502,10 +502,10 @@ This is a list of links in this repository to solutions in different dialects, o
 
 [juros.l](juros.l)
 
-### F# (23/05/2024) 🚀 🏛️ 💡 💖 ➰
+### F# (23/05/2024) 🚀 🏛️ 💡 💖
 
 **iterativa / iterative:** [juros.fs](juros.fs)<br>
-**recursiva / recursive:** [jurosrec.fs](jurosrec.fs) + ♻️
+**recursiva / recursive:** [jurosrec.fs](jurosrec.fs) + ♻️ ➰
 
 ### Falcon (10/02/2026)
 

@@ -519,10 +519,10 @@ This is a list of links in this repository to solutions in different dialects, o
 
 [juros.flx](juros.flx)
 
-### Fennel (01/02/2026) 🔧 ✍️
+### Fennel (01/02/2026) 🚀 🔧 ✍️
 
-**iterativa / iterative:** [jurosi.fnl](jurosi.fnl) + 🚀<br>
-**recursiva / recursive:** [juros.fnl](juros.fnl) + ♻️
+**iterativa / iterative:** [jurosi.fnl](jurosi.fnl)<br>
+**recursiva / recursive:** [juros.fnl](juros.fnl) + ♻️ ➰
 
 ### ferite (22/03/2026) 📈
 

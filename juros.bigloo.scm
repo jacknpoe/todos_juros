@@ -1,6 +1,6 @@
 ;; Cálculo do juros, sendo que precisa de listas pra isso
 ;; Versão 0.1: 02/08/2025: a partir da versão em Steel, incluindo módulo e trocados prints para Bigloo
-;;        0.2: 13/10/2026: melhorias gerais nas validações, geradoras de listas para escalabilidade, correção de recursões infinitas, 
+;;        0.2: 13/10/2026: melhorias gerais nas validações, geradoras de listas para escalabilidade, correção de recursões infinitas,
 ;;                         funções recursivas alteradas para permitir Tail Call Optimization (TCO)
 
 (module juros)

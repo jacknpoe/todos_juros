@@ -36,6 +36,29 @@
   )
 )
 
+; aqui calcularia em média em 1,457 s, na versão acima calcularia em média em 1,639 s
+; mas veja que "foge" do padrão usado na maioria das soluções da página
+
+;; ; calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
+;; (fn jurosParaAcrescimo [juros]
+;;   (var pesoTotal (getPesoTotal))
+;;   (if (or (< _G.Quantidade 1) (<= _G.Periodo 0.0) (<= pesoTotal 0.0) (<= juros 0.0))
+;;     0.0
+;;     (do
+;;       (var acumulador 0.0)
+;;       (if _G.Composto
+;;         (for [indice 1 _G.Quantidade]
+;;           (set acumulador (+ acumulador (/ (. _G.Pesos indice) (^ (+ 1.0 (/ juros 100.0)) (/ (. _G.Pagamentos indice) _G.Periodo)))))
+;;         )
+;;         (for [indice 1 _G.Quantidade]
+;;           (set acumulador (+ acumulador (/ (. _G.Pesos indice) (+ 1.0 (* (/ juros 100.0) (/ (. _G.Pagamentos indice) _G.Periodo))))))
+;;         )
+;;       )
+;;       (* (- (/ pesoTotal acumulador) 1.0) 100.0)
+;;     )
+;;   )
+;; )
+
 ; calcula os juros a partir do acréscimo e dados comuns (como parcelas)
 (fn acrescimoParaJuros [acrescimo precisao maxIteracoes maximoJuros]
   (var pesoTotal (getPesoTotal))

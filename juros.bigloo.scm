@@ -6,7 +6,7 @@
 (module juros)
 
 ;; Variáveis globais para simplificar as chamadas
-(define Quantidade 300000)
+(define Quantidade 3)
 (define Composto 1)  ;; 1 = true, 0 = false
 (define Periodo 30.0)
 (define Pagamentos (criaPagamentos))
@@ -104,5 +104,5 @@
 (print "Peso total = " peso)
 (define acrescimo (jurosParaAcrescimo 3.0))
 (print "Acréscimo = " acrescimo)
-(define juros (acrescimoParaJuros acrescimo 15 100 50.0))
+(define juros (acrescimoParaJuros acrescimo 15 65 50.0))
 (print "Juros = " juros)

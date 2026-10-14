@@ -4,7 +4,7 @@
 ;;                         recursivas alteradas para permitir Tail Call Optimoization (TCO) embora ainda estoure a pilha e o desempenho não melhore muito
 
 ;; inicializa as variáveis escalares globais
-(defvar Quantidade 60000)
+(defvar Quantidade 3)
 (defvar Composto 1)  ;; 1 = true; 0 = false
 (defvar Periodo 30.0)
 
@@ -97,6 +97,6 @@
 (defvar jurosCalculado (acrescimoParaJuros acrescimoCalculado 15 65 50.0))
 
 (format t "Peso total = ~2,15F~%" pesoTotal)
-(format t "Acrescimo = ~2,15F~%" acrescimoCalculado)
+(format t "Acréscimo = ~2,15F~%" acrescimoCalculado)
 (format t "Juros = ~2,15F~%" jurosCalculado)
 (exit)

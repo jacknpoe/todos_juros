@@ -38,7 +38,7 @@
 (defvar Pagamentos (criaPagamentos))
 (defvar Pesos (criaPesos))
 
-;; função açúcar que calcula a somatória de Pesos[]
+;; função açúcar que calcula a somatória de Pesos
 (defun getPesoTotal ()
   (_getPesoTotal Pesos 0.0)
 )

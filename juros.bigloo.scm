@@ -14,25 +14,25 @@
 
 ;; função açúcar que monta a lista Pagamentos
 (define (criaPagamentos)
-    (_criaPagamentos Quantidade '())
+    (_criaPagamentos (- Quantidade 1) '())
 )
 
 ;; função recursiva que monta a lista Pagamentos
 (define (_criaPagamentos indice acumulador)
-    (if (<= indice 0)
+    (if (< indice 0)
         acumulador
-        (_criaPagamentos (- indice 1) (cons (* indice Periodo) acumulador))
+        (_criaPagamentos (- indice 1) (cons (* (- Quantidade indice) Periodo) acumulador))
     )
 )
 
 ;; função açúcar que monta a lista Pesos
 (define (criaPesos)
-    (_criaPesos Quantidade '())
+    (_criaPesos (- Quantidade 1) '())
 )
 
 ;; função recursiva que monta a lista Pesos
 (define (_criaPesos indice acumulador)
-    (if (<= indice 0)
+    (if (< indice 0)
         acumulador
         (_criaPesos (- indice 1) (cons 1.0 acumulador))
     )

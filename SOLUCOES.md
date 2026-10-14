@@ -498,7 +498,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 [juros.ex](juros.ex)
 
-### EusLisp (23/07/2025) ♻️
+### EusLisp (23/07/2025) ♻️ ➰
 
 [juros.l](juros.l)
 

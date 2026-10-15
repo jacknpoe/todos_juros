@@ -450,9 +450,10 @@ This is a list of links in this repository to solutions in different dialects, o
 
 [juros.elv](juros.elv)
 
-### Emacs Lisp (21/03/2025) ♻️
+### Emacs Lisp (21/03/2025)
 
-[jurosE.lisp](jurosE.lisp)
+**iterativa / iterative:** [jurosEi.lisp](jurosEi.lisp)<br>
+**recursiva / recursive:** [jurosE.lisp](jurosE.lisp) + ♻️ ➰
 
 ### Embedded C for ARM Cortex-M (17/02/2026) 🧠 🔧 ✍️
 

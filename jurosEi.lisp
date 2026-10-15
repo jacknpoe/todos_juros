@@ -2,6 +2,7 @@
 ;; Versão 0.1: 21/03/2025: criado a partir da versão em Common Lisp sem muito conhecimento de Emacs Lisp
 ;;        0.2: 16/04/2025: retirada variável medJuros
 ;;        0.3: 14/10/2026: alterado para usar iteração
+;;        0.4: 15/10/2026: agora valida variáveis e acumulador
 
 ;; inicializa as variáveis escalares globais
 (defvar Quantidade 3)
@@ -47,34 +48,47 @@
 
 ;; função que calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
 (defun jurosParaAcrescimo (juros)
-  (let ((pagamentos Pagamentos) (pesos Pesos) (acumulador 0.0))
-    (while pagamentos
-      (if (= Composto 1)
-        (setq acumulador (+ acumulador (/ (car pesos) (expt (+ 1.0 (/ juros 100.0)) (/ (car pagamentos) Periodo)))))
-        (setq acumulador (+ acumulador (/ (car pesos) (+ 1.0 (* (/ juros 100.0) (/ (car pagamentos) Periodo))))))
+  (let ((pesoTotal (getPesoTotal)))
+    (if (or (< Quantidade 1) (<= Periodo 0.0) (<= pesoTotal 0.0) (<= juros 0.0))
+      0.0
+      (let ((pagamentos Pagamentos) (pesos Pesos) (acumulador 0.0))
+        (while pagamentos
+          (if (= Composto 1)
+            (setq acumulador (+ acumulador (/ (car pesos) (expt (+ 1.0 (/ juros 100.0)) (/ (car pagamentos) Periodo)))))
+            (setq acumulador (+ acumulador (/ (car pesos) (+ 1.0 (* (/ juros 100.0) (/ (car pagamentos) Periodo))))))
+          )
+          (setq pagamentos (cdr pagamentos))
+          (setq pesos (cdr pesos))
+        )
+        (if (<= acumulador 0.0)
+          0.0
+          (* (- (/ pesoTotal acumulador) 1.0) 100.0)
+        )
       )
-      (setq pagamentos (cdr pagamentos))
-      (setq pesos (cdr pesos))
     )
-    (* (- (/ (getPesoTotal) acumulador) 1.0) 100.0)
   )
 )
 
 ;; função que calcula os juros a partir do acréscimo e dados comuns (como parcelas)
 (defun acrescimoParaJuros (acrescimo precisao maxIteracoes maxJuros)
-  (let ( (minJuros 0.0)
-         (medJuros (/ maxJuros 2.0))
-         (minDiferenca (expt 0.1 precisao))
-         (indice 0) )
-    (while (and (< indice maxIteracoes) (> (- maxJuros minJuros) minDiferenca))
-      (if (< (jurosParaAcrescimo medJuros) acrescimo)
-        (setq minJuros medJuros)
-        (setq maxJuros medJuros)
+  (let ((pesoTotal (getPesoTotal)))
+    (if (or (< Quantidade 1) (<= Periodo 0.0) (<= pesoTotal 0.0) (<= acrescimo 0.0) (< precisao 1) (< maxIteracoes 1) (<= maxJuros 0.0))
+      0.0
+      (let ( (minJuros 0.0)
+             (medJuros (/ maxJuros 2.0))
+             (minDiferenca (expt 0.1 precisao))
+             (indice 0) )
+        (while (and (< indice maxIteracoes) (> (- maxJuros minJuros) minDiferenca))
+          (if (< (jurosParaAcrescimo medJuros) acrescimo)
+            (setq minJuros medJuros)
+            (setq maxJuros medJuros)
+          )
+          (setq medJuros (/ (+ minJuros maxJuros) 2.0))
+          (setq indice (+ indice 1))
+        )
+        medJuros
       )
-      (setq medJuros (/ (+ minJuros maxJuros) 2.0))
-      (setq indice (+ indice 1))
     )
-    medJuros
   )
 )
 

@@ -3,6 +3,7 @@
 ;;        0.2: 16/04/2025: retirada variável medJuros
 ;;        0.3: 14/10/2026: alterado geradores de listas, uso de car e cdr
 ;;                         recursivas alteradas para permitir Tail Call Optimoization (TCO) embora ainda estoure a pilha e o desempenho não melhore muito
+;;                         nos testes, o número máximo de parcelas calculadas com sucesso foram 333 (o mesmo que não TCO)
 
 ;; inicializa as variáveis escalares globais
 (defvar Quantidade 3)

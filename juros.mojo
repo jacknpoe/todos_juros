@@ -17,8 +17,8 @@ struct Juros:
         self.Quantidade = quantidade
         self.Composto = composto
         self.Periodo = periodo
-        self.Pagamentos = List[Float64]()
-        self.Pesos = List[Float64]()
+        self.Pagamentos = List[Float64](capacity = Int(quantidade))
+        self.Pesos = List[Float64](capacity = Int(quantidade))
 
     # retorna a somatória de Pesos[]
     def getPesoTotal(self) -> Float64:

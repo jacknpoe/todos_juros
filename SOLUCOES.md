@@ -952,7 +952,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 [juros.m3](juros.m3)
 
-### Mojo (25/05/2024)
+### Mojo (25/05/2024) 🚀
 
 [juros.mojo](juros.mojo)
 

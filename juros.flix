@@ -76,7 +76,7 @@ def acrescimoParaJuros(composto: Bool, periodo: Float64, pagamentos: List[Float6
 
 def main(): Unit \ IO = 
     // variáveis (invariantes)
-    let quantidade = 300000;
+    let quantidade = 3;
     let composto: Bool = true;
     let periodo: Float64 = 30.0;
     let pagamentos = geraPagamentos(quantidade, periodo);

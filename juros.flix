@@ -4,25 +4,25 @@
 
 // função recursiva que gera a lista pagamentos
 def rGeraPagamentos(quantidade: Int32, periodo: Float64, indice: Int32, acumulador: List[Float64]): List[Float64] =
-    match indice > quantidade {
+    match indice >= quantidade {
         case true   => acumulador
-        case false  => rGeraPagamentos(quantidade, periodo, indice + 1, (Int32.toFloat64(indice) * periodo) :: acumulador)
+        case false  => rGeraPagamentos(quantidade, periodo, indice + 1, (Int32.toFloat64(quantidade - indice) * periodo) :: acumulador)
     }
 
 /// função açúcar que gera a lista pagamentos
 def geraPagamentos(quantidade: Int32, periodo: Float64): List[Float64] =
-    rGeraPagamentos(quantidade, periodo, 1, Nil)
+    rGeraPagamentos(quantidade, periodo, 0, Nil)
 
 // função recursiva que gera a lista pagamentos
 def rGeraPesos(quantidade: Int32, indice: Int32, acumulador: List[Float64]): List[Float64] =
-    match indice > quantidade {
+    match indice >= quantidade {
         case true   => acumulador
         case false  => rGeraPesos(quantidade, indice + 1, 1.0 :: acumulador)
     }
 
 /// função açúcar que gera a lista pagamentos
 def geraPesos(quantidade: Int32): List[Float64] =
-    rGeraPesos(quantidade, 1, Nil)
+    rGeraPesos(quantidade, 0, Nil)
 
 /// calcula a somatória de qualquer lista com Float64, mas vai ser usada com Pesos[]
 def rGetTotal(lista: List[Float64], acumulador: Float64): Float64 =
@@ -76,16 +76,16 @@ def acrescimoParaJuros(composto: Bool, periodo: Float64, pagamentos: List[Float6
 
 def main(): Unit \ IO = 
     // variáveis (invariantes)
-    let quantidade = 3;
+    let quantidade = 300000;
     let composto: Bool = true;
     let periodo: Float64 = 30.0;
     let pagamentos = geraPagamentos(quantidade, periodo);
     let pesos = geraPesos(quantidade);
 
     // calcula e guarda os retornos das funções
-    let pesoTotal = getTotal(pesos);
-    let acrescimoCalculado = jurosParaAcrescimo(composto, periodo, pagamentos, pesos, 3.0);
-    let jurosCalculado = acrescimoParaJuros(composto, periodo, pagamentos, pesos, acrescimoCalculado, 15, 100, 50.0);
+    let pesoTotal: Float64 = getTotal(pesos);
+    let acrescimoCalculado: Float64 = jurosParaAcrescimo(composto, periodo, pagamentos, pesos, 3.0);
+    let jurosCalculado: Float64 = acrescimoParaJuros(composto, periodo, pagamentos, pesos, acrescimoCalculado, 15, 100, 50.0);
 
     // imprime os resultados
     println("Peso total = ${pesoTotal}");

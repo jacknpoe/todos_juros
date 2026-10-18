@@ -535,7 +535,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 [juros.fish](juros.fish)
 
-### Flix (20/03/2025) 🧠 🔧 ♻️ ✍️
+### Flix (20/03/2025) 🧠 🚀 🔧 ♻️ ✍️ ➰
 
 [juros.flix](juros.flix)
 

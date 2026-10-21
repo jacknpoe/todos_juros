@@ -105,6 +105,6 @@
 (display acrescimo)
 (newline)
 (display "Juros = ")
-(define juros (acrescimoParaJuros acrescimo 15 100 50.0))
+(define juros (acrescimoParaJuros acrescimo 15 65 50.0))
 (display juros)
 (newline)

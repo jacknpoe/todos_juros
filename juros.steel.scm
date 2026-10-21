@@ -1,6 +1,7 @@
 ;; Cálculo do juros, sendo que precisa de listas para isso
 ;; Versão 0.1: 16/41/2025: a partir da versão em Dr.Scheme, alterados os números para compatíveis com Steel
 ;;        0.2: 22/08/2026: ChatGPT: listas dinâmicas, car/cdr, alterações nas funções recursivas para permitir Tail Call Optimization
+;;        0.3: 21/10/2026: adicionadas variáveis `pesoTotal`
 
 ;; dados gerais escalares
 (define Quantidade 3)
@@ -38,10 +39,10 @@
 (define Pesos (criaPesos))
 
 ;; função recursiva no lugar de um for que realmente calcula a somatória de Pesos[]
-(define (rGetPesoTotal lista acumulador)
-  (if (null? lista)
+(define (rGetPesoTotal pesos acumulador)
+  (if (null? pesos)
     acumulador
-    (rGetPesoTotal (cdr lista) (+ (car lista) acumulador))
+    (rGetPesoTotal (cdr pesos) (+ (car pesos) acumulador))
   )
 )
 
@@ -68,13 +69,15 @@
 
 ;; função açúcar que calcula o acréscimo a partir dos juros e dados comuns
 (define (jurosParaAcrescimo juros)
-  (if (or (<= juros 0.0) (< Quantidade 1) (<= Periodo 0.0) (<= (getPesoTotal) 0.0))
-    0.0
-    (if (= Composto 1)
-      (* (- (/ (getPesoTotal) (rJurosCompostos juros Pagamentos Pesos 0.0)) 1.0) 100.0)
-      (* (- (/ (getPesoTotal) (rJurosSimples juros Pagamentos Pesos 0.0)) 1.0) 100.0)
+  (let ((pesoTotal (getPesoTotal)))
+    (if (or (<= juros 0.0) (< Quantidade 1) (<= Periodo 0.0) (<= pesoTotal 0.0))
+      0.0
+      (if (= Composto 1)
+        (* (- (/ pesoTotal (rJurosCompostos juros Pagamentos Pesos 0.0)) 1.0) 100.0)
+        (* (- (/ pesoTotal (rJurosSimples juros Pagamentos Pesos 0.0)) 1.0) 100.0)
+      )
     )
-  )
+  )    
 )
 
 ;; função recursiva no lugar de um for que realmente calcula os juros
@@ -90,9 +93,11 @@
 
 ;; função açúcar que calcula os juros a partir do acréscimo
 (define (acrescimoParaJuros acrescimo precisao maxIteracoes maxJuros)
-  (if (or (<= acrescimo 0.0) (< Quantidade 1) (<= Periodo 0.0) (< maxIteracoes 1) (< precisao 1) (<= maxJuros 0.0) (<= (getPesoTotal) 0.0))
-    0.0
-    (rAcrescimoParaJuros acrescimo (expt 0.1 precisao) maxIteracoes 0.0 maxJuros (/ maxJuros 2.0))
+  (let ((pesoTotal (getPesoTotal)))
+    (if (or (<= acrescimo 0.0) (< Quantidade 1) (<= Periodo 0.0) (< maxIteracoes 1) (< precisao 1) (<= maxJuros 0.0) (<= pesoTotal 0.0))
+      0.0
+      (rAcrescimoParaJuros acrescimo (expt 0.1 precisao) maxIteracoes 0.0 maxJuros (/ maxJuros 2.0))
+    )
   )
 )
 

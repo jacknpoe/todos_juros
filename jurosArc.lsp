@@ -1,76 +1,120 @@
 ; Calculo do juros, sendo que precisa de arrays pra isso
 ; Versao 0.1: 30/03/2025: versao sem muito conhecimento de Arc
-; AVISO: algumas verificacoes foram retiradas, entao os calculos sao indefinidos para valores incorretos
+;             22/10/2026: listas escaladas, recursoes preparadas para Tail Call Optimization (TCO), adicionadas validacoes como nas solucoes iterativas
 
-; variaveis globais para simplificar as chamadas as funcoes
+; variaveis globais para simplificar as chamadas as funcoes (escalares)
 (= Quantidade 3)
-(= Composto 1)
+(= Composto 0)  ; 1 = true, 0 = false
 (= Periodo 30.0)
-(= Pagamentos (list 30.0 60.0 90.0))
-(= Pesos (list 1.0 1.0 1.0))
 
-; funcao recursiva no lugar de um for com acumulador que realmente calcula a somatoria de Pesos[]
-(def _getPesoTotal (pesos)
-  (if (no (cdr pesos))
-    (car pesos)
-    (+ (car pesos) (_getPesoTotal(cdr pesos)))
+; funcao recursiva que gera a lista de pagamentos
+(def _criaPagamentos (indice acumulador)
+  (if (< indice 0)
+    acumulador
+    (_criaPagamentos (- indice 1) (cons (* (- Quantidade indice) Periodo) acumulador))
   )
 )
 
-; calcula a somatoria de Pesos[]
+; funcao acucar que gera a lista de pagamentos
+(def criaPagamentos ()
+  (_criaPagamentos (- Quantidade 1) '())
+)
+
+; funcao recursiva que gera a lista de pesos
+(def _criaPesos (indice acumulador)
+  (if (< indice 0)
+    acumulador
+    (_criaPesos (- indice 1) (cons 1.0 acumulador))
+  )
+)
+
+; funcao acucar que gera a lista de pesos
+(def criaPesos ()
+  (_criaPesos ( - Quantidade 1) '())
+)
+
+; variaveis globais para simplificar as chamadas as funcoes (listas)
+(= Pagamentos (criaPagamentos))
+(= Pesos (criaPesos))
+
+; funcao recursiva que calcula a somatoria de Pesos
+(def _getPesoTotal (pesos acumulador)
+  (if (no pesos)
+    acumulador
+    (_getPesoTotal (cdr pesos) (+ (car pesos) acumulador))
+  )
+)
+
+; funcao acucar que calcula a somatoria de Pesos
 (def getPesoTotal ()
-  (_getPesoTotal Pesos)
+  (_getPesoTotal Pesos 0.0)
 )
 
-; calcula a soma do amortecimento de todas as parcelas para juros compostos
-(def _jurosCompostos (juros pagamentos pesos)
-  (if (no (cdr pesos))
-    (/ (car pesos) (expt (+ 1.0 (/ juros 100.0)) (/ (car pagamentos) Periodo)))
-    (+ (/ (car pesos) (expt (+ 1.0 (/ juros 100.0)) (/ (car pagamentos) Periodo))) (_jurosCompostos juros (cdr pagamentos) (cdr pesos)))
+; fumcao recursiva que calcula a soma do amortecimento de todas as parcelas para juros compostos
+(def _jurosCompostos (juros pagamentos pesos acumulador)
+  (if (no pesos)
+    acumulador
+    (_jurosCompostos juros (cdr pagamentos) (cdr pesos) (+ (/ (car pesos) (expt (+ 1.0 (/ juros 100.0)) (/ (car pagamentos) Periodo))) acumulador))
   )
 )
 
-; calcula a soma do amortecimento de todas as parcelas para juros simples
-(def _jurosSimples (juros pagamentos pesos)
-  (if (no (cdr pesos))
-    (/ (car pesos) (+ 1.0 (* (/ juros 100.0) (/ (car pagamentos) Periodo))))
-    (+ (/ (car pesos) (+ 1.0 (* (/ juros 100.0) (/ (car pagamentos) Periodo)))) (_jurosSimples juros (cdr pagamentos) (cdr pesos)))
+; funcao recursiva que calcula a soma do amortecimento de todas as parcelas para juros simples
+(def _jurosSimples (juros pagamentos pesos acumulador)
+  (if (no pesos)
+    acumulador
+    (_jurosSimples juros (cdr pagamentos) (cdr pesos) (+ (/ (car pesos) (+ 1.0 (* (/ juros 100.0) (/ (car pagamentos) Periodo)))) acumulador))
   )
 )
 
 ; calcula o acrescimo a partir dos juros e dados comuns (como parcelas)
 (def jurosParaAcrescimo (juros)
-  (if (> Composto 0)
-    (* (- (/ (getPesoTotal) (_jurosCompostos juros Pagamentos Pesos)) 1.0) 100.0)
-    (* (- (/ (getPesoTotal) (_jurosSimples juros Pagamentos Pesos)) 1.0) 100.0)
-  )
-)
-
-; funcao recursiva no lugar de um for que realmente calcula os juros
-(def _acrescimoParaJuros (acrescimo minDiferenca iteracaoAtual minJuros maxJuros)
-  (if (< (- maxJuros minJuros) minDiferenca)
-    (/ (+ minJuros maxJuros) 2.0)
-    (if (> iteracaoAtual 0)
-      (if (< (jurosParaAcrescimo (/ (+ minJuros maxJuros) 2.0)) acrescimo)
-        (_acrescimoParaJuros acrescimo minDiferenca (- iteracaoAtual 1) (/ (+ minJuros maxJuros) 2.0) maxJuros)
-        (_acrescimoParaJuros acrescimo minDiferenca (- iteracaoAtual 1) minJuros (/ (+ minJuros maxJuros) 2.0))
+  (let pesoTotal (getPesoTotal)
+    (if (or (< Quantidade 1) (<= Periodo 0.0) (<= pesoTotal 0.0) (<= juros 0.0))
+      0.0
+      (let acumulador
+        (if (> Composto 0)
+          (_jurosCompostos juros Pagamentos Pesos 0.0)
+          (_jurosSimples juros Pagamentos Pesos 0.0)
+        )
+        (if (<= acumulador 0.0)
+          0.0
+          (* (- (/ pesoTotal acumulador) 1.0) 100.0)
+        )
       )
-      (/ (+ minJuros maxJuros) 2.0)
     )
   )
 )
 
-; calcula os juros a partir do acrescimo e dados comuns (como parcelas)
+; funcao recursiva no que calcula os juros a partir do acrescimo e dados comuns (como parcelas)
+(def _acrescimoParaJuros (acrescimo minDiferenca iteracaoAtual minJuros maxJuros medJuros)
+  (if (or (< (- maxJuros minJuros) minDiferenca) (<= iteracaoAtual 0))
+    medJuros
+    (if (< (jurosParaAcrescimo (/ (+ minJuros maxJuros) 2.0)) acrescimo)
+      (_acrescimoParaJuros acrescimo minDiferenca (- iteracaoAtual 1) medJuros maxJuros (/ (+ medJuros maxJuros) 2.0))
+      (_acrescimoParaJuros acrescimo minDiferenca (- iteracaoAtual 1) minJuros medJuros (/ (+ minJuros medJuros) 2.0))
+    )
+  )
+)
+
+; funcao acucar calcula os juros a partir do acrescimo e dados comuns (como parcelas)
 (def acrescimoParaJuros (acrescimo precisao maxIteracoes maxJuros)
-  (_acrescimoParaJuros acrescimo (expt 0.1 precisao) maxIteracoes 0.0 maxJuros)
+  (let pesoTotal (getPesoTotal)
+    (if (or (< Quantidade 1) (<= Periodo 0.0) (<= pesoTotal 0.0) (<= acrescimo 0.0) (< precisao 1) (< maxIteracoes 1) (<= maxJuros 0.0))
+      0.0
+      (_acrescimoParaJuros acrescimo (expt 0.1 precisao) maxIteracoes 0.0 maxJuros (/ maxJuros 2.0))
+    )
+  )
 )
 
 ; testes
 (def teste ()
+  ; calcula e guarda os retornos das funcoes
   (= pesoTotal (getPesoTotal))
-  (prn "Peso total = " pesoTotal)
   (= acrescimoCalculado (jurosParaAcrescimo 3.0))
-  (prn "Acréscimo = " acrescimoCalculado)
   (= jurosCalculado (acrescimoParaJuros acrescimoCalculado 15 100 50.0))
+
+  ; imprime os resultados
+  (prn "Peso total = " pesoTotal)
+  (prn "Acréscimo = " acrescimoCalculado)
   (prn "Juros = " jurosCalculado)
 )

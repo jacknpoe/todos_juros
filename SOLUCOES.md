@@ -137,7 +137,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 [JUROSASB.BAS](JUROSASB.BAS)
 
-### Arc (30/03/2025) ♻️
+### Arc (30/03/2025) ♻️ ➰
 
 [jurosArc.lsp](jurosArc.lsp)
 

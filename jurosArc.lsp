@@ -4,7 +4,7 @@
 
 ; variaveis globais para simplificar as chamadas as funcoes (escalares)
 (= Quantidade 3)
-(= Composto 0)  ; 1 = true, 0 = false
+(= Composto #t)
 (= Periodo 30.0)
 
 ; funcao recursiva que gera a lista de pagamentos
@@ -72,7 +72,7 @@
     (if (or (< Quantidade 1) (<= Periodo 0.0) (<= pesoTotal 0.0) (<= juros 0.0))
       0.0
       (let acumulador
-        (if (> Composto 0)
+        (if Composto
           (_jurosCompostos juros Pagamentos Pesos 0.0)
           (_jurosSimples juros Pagamentos Pesos 0.0)
         )

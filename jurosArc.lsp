@@ -9,28 +9,28 @@
 
 ; funcao recursiva que gera a lista de pagamentos
 (def _criaPagamentos (indice acumulador)
-  (if (< indice 0)
+  (if (> indice Quantidade)
     acumulador
-    (_criaPagamentos (- indice 1) (cons (* (- Quantidade indice) Periodo) acumulador))
+    (_criaPagamentos (+ indice 1) (cons (* indice Periodo) acumulador))
   )
 )
 
 ; funcao acucar que gera a lista de pagamentos
 (def criaPagamentos ()
-  (_criaPagamentos (- Quantidade 1) '())
+  (_criaPagamentos 1 '())
 )
 
 ; funcao recursiva que gera a lista de pesos
 (def _criaPesos (indice acumulador)
-  (if (< indice 0)
+  (if (> indice Quantidade)
     acumulador
-    (_criaPesos (- indice 1) (cons 1.0 acumulador))
+    (_criaPesos (+ indice 1) (cons 1.0 acumulador))
   )
 )
 
 ; funcao acucar que gera a lista de pesos
 (def criaPesos ()
-  (_criaPesos ( - Quantidade 1) '())
+  (_criaPesos 1 '())
 )
 
 ; variaveis globais para simplificar as chamadas as funcoes (listas)

@@ -592,7 +592,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 [juros.g](juros.g)
 
-### Gauche (16/02/2025) 🧠 🔧 ♻️ ✍️
+### Gauche (16/04/2025) 🧠 🔧 ♻️ ✍️ ➰
 
 [juros.gauche.scm](juros.gauche.scm)
 
@@ -1246,7 +1246,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 [juros.qs](juros.qs)
 
-### QB64 (12/06/2024) 🧠 🏛️ 🔧 💡 💖 ✍️ 
+### QB64 (12/06/2024) 🧠 🏛️ 🔧 💡 💖 ✍️
 
 [juros_qb64.bas](juros_qb64.bas)
 

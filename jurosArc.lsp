@@ -1,4 +1,4 @@
-; Calculo do juros, sendo que precisa de arrays pra isso
+; Calculo do juros, sendo que precisa de listas pra isso
 ; Versao 0.1: 30/03/2025: versao sem muito conhecimento de Arc
 ;             22/10/2026: listas escaladas, recursoes preparadas para Tail Call Optimization (TCO), adicionadas validacoes como nas solucoes iterativas
 

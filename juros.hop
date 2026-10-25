@@ -2,37 +2,41 @@
 ! Versão 0.1: 29/03/2025: feita sem muito conhecimento de Hope
 !        0.2: 06/05/2026: alterada forma de criar criaPagamentos (igual a criaPesos, mas cronologicamente invertida) 
 !                         comentários, legendas e melhoria na impressão dos números
+!        0.3: 24/10/2026: criaPagamentos recebe período
+!        0.4: 24/10/2026: usando a ideia de lets encadeados do chatGPT e com o retorno de tuplas do Google; veja que ele não executa as funções realmente três vezes
+!                         a avaliação preguiçosa de Hope é tão... preguiçosa, que a impressão chega a ser feita em partes
+!                         com essa forma de execução, pode se alterar cada parâmetro dos testes em um só lugar
 
-! cria uma lista de pagamentos
-dec criaPagamentos : num -> list (num);
---- criaPagamentos (indice) <= if indice = 1 then [30.0] else (indice * 30.0) :: criaPagamentos (indice - 1);
+! cria uma lista de pagamentos (original)
+dec criaPagamentos : num # num -> list (num);
+--- criaPagamentos (indice, periodo) <= if indice = 1 then [30.0] else (indice * periodo) :: criaPagamentos (indice - 1, periodo);
 
-! cria uma lista de pesos
+! cria uma lista de pesos (original)
 dec criaPesos : num -> list (num);
 --- criaPesos (indice) <= if indice = 1 then [1.0] else 1.0 :: criaPesos (indice-1);
 
-! calcula a somatória dos elementos na lista de pesos
+! calcula a somatória dos elementos na lista de pesos (original)
 dec getPesoTotal : list (num) -> num;
 --- getPesoTotal (head::tail) <= head + getPesoTotal (tail);
 --- getPesoTotal (nil) <= 0.0;
 
-! calcula a somatória dos amortecimentos dos juros compostos
+! calcula a somatória dos amortecimentos dos juros compostos (original)
 dec rJurosCompostos : num # list (num) # list (num) # num -> num;
 --- rJurosCompostos (periodo, (hpag::tpag), (hpes::tpes), juros) <= rJurosCompostos (periodo, tpag, tpes, juros) + hpes / pow(1.0 + juros / 100.0, hpag / periodo);
 --- rJurosCompostos (periodo, nil, nil, juros) <= 0.0;
 
-! calcula a somatória dos amortecimentos dos juros simples
+! calcula a somatória dos amortecimentos dos juros simples (original)
 dec rJurosSimples : num # list (num) # list (num) # num -> num;
 --- rJurosSimples (periodo, (hpag::tpag), (hpes::tpes), juros) <= rJurosSimples (periodo, tpag, tpes, juros) + hpes / (1.0 + juros / 100.0 * hpag / periodo);
 --- rJurosSimples (periodo, nil, nil, juros) <= 0.0;
 
-! calcula o acréscimo a partir dos juros e parcelas
+! calcula o acréscimo a partir dos juros e parcelas (original)
 dec jurosParaAcrescimo : num # num # list (num) # list (num) # num -> num;
 --- jurosParaAcrescimo (composto, periodo, pagamentos, pesos, juros) <=
         if composto = 1 then (getPesoTotal (pesos) / rJurosCompostos (periodo, pagamentos, pesos, juros) - 1.0) * 100.0
                         else (getPesoTotal (pesos) / rJurosSimples (periodo, pagamentos, pesos, juros) - 1.0) * 100.0;
 
-! parte recursiva que calcula os juros a partir do acréscimo e parcelas
+! parte recursiva que calcula os juros a partir do acréscimo e parcelas (original)
 dec rAcrescimoParaJuros : num # num # list (num) # list (num) # num # num # num # num # num # num -> num;
 --- rAcrescimoParaJuros (composto, periodo, pagamentos, pesos, acrescimo, mindiferenca, iteracaoatual, minjuros, maxjuros, medjuros) <=
     if iteracaoatual = 0 or maxjuros - minjuros < mindiferenca then medjuros
@@ -40,15 +44,39 @@ dec rAcrescimoParaJuros : num # num # list (num) # list (num) # num # num # num 
         then rAcrescimoParaJuros (composto, periodo, pagamentos, pesos, acrescimo, mindiferenca, iteracaoatual - 1, medjuros, maxjuros, (medjuros + maxjuros) / 2.0)
         else rAcrescimoParaJuros (composto, periodo, pagamentos, pesos, acrescimo, mindiferenca, iteracaoatual - 1, minjuros, medjuros, (minjuros + medjuros) / 2.0);
 
-! parte açúcar que calcula os juros a partir do acréscimo e parcelas
+! parte açúcar que calcula os juros a partir do acréscimo e parcelas (original)
 dec acrescimoParaJuros : num # num # list (num) # list (num) # num # num # num # num -> num;
 --- acrescimoParaJuros (composto, periodo, pagamentos, pesos, acrescimo, precisao, maxiteracoes, maxjuros) <=
     rAcrescimoParaJuros (composto, periodo, pagamentos, pesos, acrescimo, pow(0.1, precisao), maxiteracoes, 0.0, maxjuros,  maxjuros / 2.0);
 
-! calcula e mostra os resultados das funções
-write("Peso total = ");
-write( [ getPesoTotal (criaPesos (3)) ] );
-write("Acréscimo = ");
-write( [ jurosParaAcrescimo (1, 30.0, criaPagamentos (3), criaPesos (3), 3.0) ] );
-write("Juros = ");
-write( [acrescimoParaJuros (1, 30.0, criaPagamentos (3), criaPesos (3), jurosParaAcrescimo (1, 30.0, criaPagamentos (3), criaPesos (3), 3.0), 15, 100, 50.0) ] );
+! bloco de cálculo de escopo Único: Retorna list(num) para evitar problemas com tuplas estritas
+dec calcula : num # num # num # num # num # num # num -> list (num);
+--- calcula (quantidade, composto, periodo, jurosBase, precisao, maxIteracoes, maxJuros) <=
+    let pagamentos == criaPagamentos (quantidade, periodo) in
+    let pesos == criaPesos (quantidade) in
+    let pesoTotal == getPesoTotal (pesos) in
+    let acrescimoCalculado  == jurosParaAcrescimo (composto, periodo, pagamentos, pesos, jurosBase) in
+    let jurosCalculado  == acrescimoParaJuros (composto, periodo, pagamentos, pesos, acrescimoCalculado, precisao, maxIteracoes, maxJuros) in
+    [ pesoTotal, acrescimoCalculado, jurosCalculado ];
+
+! funções que extraem elementos da lista sem recomputar as listas originais
+dec ePesoTotal : list (num) -> num;
+--- ePesoTotal (h::t) <= h;
+
+dec eAcrescimo : list (num) -> num;
+--- eAcrescimo (h1::h2::t) <= h2;
+
+dec eJuros : list( num) -> num;
+--- eJuros (h1::h2::h3::t) <= h3;
+
+! armazena a lista de resultados gerada executando EXATAMENTE UMA VEZ
+dec resultados : list (num);
+--- resultados <= calcula (3, 1, 30.0, 3.0, 15, 65, 50.0);
+
+! imprime os resultados
+write( "Peso total = ");
+write( [ ePesoTotal (resultados) ]);
+write( "Acréscimo = ");
+write( [ eAcrescimo (resultados) ]);
+write( "Juros = ");
+write( [ eJuros (resultados) ]);

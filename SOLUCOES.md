@@ -612,7 +612,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 [jurosp.fth](jurosp.fth)
 
-### Gleam (18/03/2025) 🔧 ♻️ ✍️
+### Gleam (18/03/2025) 🔧 ♻️ ✍️ ➰
 
 [juros.gleam](juros.gleam)
 

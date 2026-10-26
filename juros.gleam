@@ -14,34 +14,34 @@ import gleam/erlang
 // import gleam/string
 
 // variáveis globais para simplificar as chamadas às funções
-const quantidade: Int = 3  // agora que escalamos as listas, quantidade pode ter significado real
+const quantidade: Int = 3 // agora que escalamos as listas, quantidade pode ter significado real
 const composto: Bool = True
 const periodo: Float = 30.0
 
 // função recursiva que cria a lista pagamentos
 fn rcriapagamentos(indice: Int, acumulador: List(Float)) -> List(Float) {
-  case indice <= 0 {
+  case indice > quantidade {
     True -> acumulador
-    _ -> rcriapagamentos(indice - 1, list.prepend(to: acumulador, this: int.to_float(indice) *. periodo))
+    _ -> rcriapagamentos(indice + 1, list.prepend(to: acumulador, this: int.to_float(indice) *. periodo))
   }
 }
 
 // função açúcar que cria a lista pagamentos
 fn criapagamentos() -> List(Float) {
-  rcriapagamentos(quantidade, [])
+  rcriapagamentos(1, [])
 }
 
 // função recursiva que cria a lista pesos
 fn rcriapesos(indice: Int, acumulador: List(Float)) -> List(Float) {
-  case indice <= 0 {
+  case indice > quantidade {
     True -> acumulador
-    _ -> rcriapesos(indice - 1, list.prepend(to: acumulador, this: 1.0))
+    _ -> rcriapesos(indice + 1, list.prepend(to: acumulador, this: 1.0))
   }
 }
 
 // função açúcar que cria a lista pesos
 fn criapesos() -> List(Float) {
-  rcriapesos(quantidade, [])
+  rcriapesos(1, [])
 }
 
 // calcula recursivamente a somatória de Pesos[]

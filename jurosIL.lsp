@@ -3,7 +3,6 @@
 ;        0.2: 11/07/2026: substituído / por quotient em (if (= iteracaoAtual 0) (quotient (+ minJuros maxJuros) 2.0); o motivo de o interpretador aceitar / não ficou claro
 ;        0.3: 27/10/2026: listas escaladas com geradoras, proteção de expt infinito e medJuros em _acrescimoParaJuros
 ;                         funções recursivas agora permitem Tail Call Optimization (TCO), mas o ganho é marginal, ainda não alcança 40.000 parcelas
-; AVISO: algumas verificações foram retiradas; os cálculos são indefinidos para valores incorretos
 
 ; COMO RODAR E MEDIR:
 ; eisl -c
@@ -78,9 +77,21 @@
 
 ; função que calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
 (defun jurosParaAcrescimo (juros)
-  (if (= Composto 1)
-    (* (- (quotient (getPesoTotal) (_jurosCompostos juros Pagamentos Pesos 0.0)) 1.0) 100.0)
-    (* (- (quotient (getPesoTotal) (_jurosSimples juros Pagamentos Pesos 0.0)) 1.0) 100.0)
+  (let ((pesoTotal (getPesoTotal)))
+    (if (or (< Quantidade 1) (<= Periodo 0.0) (<= pesoTotal 0.0) (<= juros 0.0))
+      0.0
+      (let ((acumulador
+        (if (= Composto 1)
+          (_jurosCompostos juros Pagamentos Pesos 0.0)
+          (_jurosSimples juros Pagamentos Pesos 0.0)
+        )
+        ))
+        (if (<= acumulador 0.0)
+          0.0
+          (* (- (quotient pesoTotal acumulador) 1.0) 100.0)
+        )
+      )
+    )
   )
 )
 
@@ -97,7 +108,12 @@
 
 ; função açúcar que calcula os juros a partir do acréscimo e dados comuns (como parcelas)
 (defun acrescimoParaJuros (acrescimo precisao maxIteracoes maxJuros)
-  (_acrescimoParaJuros acrescimo (expt 0.1 precisao) maxIteracoes 0.0 maxJuros (quotient maxJuros 2.0))
+  (let ((pesoTotal (getPesoTotal)))
+    (if (or (< Quantidade 1) (<= Periodo 0.0) (<= pesoTotal 0.0) (<= acrescimo 0.0) (< precisao 1) (< maxIteracoes 1) (<= maxJuros 0.0))
+      0.0
+      (_acrescimoParaJuros acrescimo (expt 0.1 precisao) maxIteracoes 0.0 maxJuros (quotient maxJuros 2.0))
+    )
+  )
 )
 
 ; testes

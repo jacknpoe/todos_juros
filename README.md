@@ -48,7 +48,9 @@ Cronologia: / Chronology: [CRONOLOGIA.md](CRONOLOGIA.md)
 Benchmark (300.000 parcelas, juros compostos, precisão de 15 dígitos e máximo de 65 iterações):<br>
 Benchmark (300,000 payments, compound interest, 15-digit precision, and a maximum of 65 iterations):
 
-[x <= 1s](benchmark1.png) [1s < x <= 6s](benchmark2.png) [6s < x](benchmark3.png)
+[x <= 1s](benchmark1.png)<br>
+[1s < x <= 6s](benchmark2.png)<br>
+[6s < x](benchmark3.png)
 
 <br>
 <br>

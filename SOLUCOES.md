@@ -699,7 +699,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 [juros.idr](juros.idr)
 
-### ILOS (26/04/2025) 🧠 🔧 ♻️ ✍️
+### ILOS (26/04/2025) 🧠 🔧 ♻️ ✍️ ➰
 
 [jurosILOS.lsp](jurosILOS.lsp)
 
@@ -715,7 +715,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 [juros.io](juros.io)
 
-### ISLISP (12/03/2025) ♻️
+### ISLISP (12/03/2025) ♻️ ➰
 
 [jurosIL.lsp](jurosIL.lsp)
 

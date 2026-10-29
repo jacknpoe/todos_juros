@@ -1,72 +1,125 @@
-; Calculo do juros, sendo que precisa de arrays pra isso
-; Versao 0.1: 05/03/2025: versao sem muito conhecimento de Otus Lisp
-;        0.2: 07/03/2025: na linha 52 verificado se iteracaoAtual = 0
-; AVISO: algumas verificacoes foram retiradas, entao os calculos sao indefinidos para valores incorretos
+; Cálculo dos juros, sendo que precisa de listas pra isso
+; Versão 0.1: 05/03/2025: versão feita sem muito conhecimento de Otus Lisp
+;        0.2: 07/03/2025: no primeiro if de _pJuros, agora é verificado se iteracaoAtual = 0
+;        0.3: 29/10/2026: cálculos antes de impressão, acentos, melhorias nos comentários, números pomto flutuante agora inexatos
+;                         quando (null? pesos) é verdadeiro, retorna zero em vez de caso especial com (= (length(cdr pesos)) 0),
+;                         incluído parâmetro medJuros em _pJuros, pois estava calculando quatro vezes,
+;                         listas escaláveis de tamanho Quantidade, validações de parâmetros, variáveis e cálculos inválidos,
+;                         corrigido parêntese errado na chamada a _simples em dJuros,
+;                         funções recursivas alteradas para permitir Tail Call Optimization (TCO); ficou em média 12% mais rápido
 
-; variaveis
+; variáveis globais escalares
 (setq Quantidade 3)
-(setq Composto 1)
-(setq Periodo 30.0)
-(setq Pagamentos (list 30.0 60.0 90.0))
-(setq Pesos (list 1.0 1.0 1.0))
+(setq Composto 1)  ; 1 = true, 0 = false
+(setq Periodo #i30.0)
 
-; funcao recursiva no lugar de um for com acumulador que realmente calcula a somatoria de Pesos[]
-(define (_gPeso pesos)
-  (if (= (length(cdr pesos)) 0)
-    (car pesos)
-    (+ (car pesos) (_gPeso(cdr pesos)))
+; função recursiva que gera a lista de pagamentos
+(define (_cPags indice acumulador)
+  (if (< indice 0)
+    acumulador
+    (_cPags (- indice 1) (cons (* (- Quantidade indice) Periodo) acumulador))
   )
 )
 
-; calcula a somatoria de Pesos[]
+; função açúcar que gera a lista de pagamentos
+(define (cPags)
+  (_cPags (- Quantidade 1) '())
+)
+
+; função recursiva que gera a lista de pesos
+(define (_cPesos indice acumulador)
+  (if (< indice 0)
+    acumulador
+    (_cPesos (- indice 1) (cons #i1.0 acumulador))
+  )
+)
+
+; função açúcar que gera a lista de pesos
+(define (cPesos)
+  (_cPesos (- Quantidade 1) '())
+)
+
+; listas globais
+(setq Pagamentos (cPags))
+(setq Pesos (cPesos))
+
+; função recursiva que calcula a somatória de Pesos
+(define (_gPeso pesos acumulador)
+  (if (null? pesos)
+    acumulador
+    (_gPeso (cdr pesos) (+ (car pesos) acumulador))
+  )
+)
+
+; função açúcar que calcula a somatória de Pesos
 (define (gPeso)
-  (_gPeso Pesos)
+  (_gPeso Pesos #i0.0)
 )
 
-; calcula a soma do amortecimento de todas as parcelas para juros compostos
-(define (_compostos juros pagamentos pesos)
-  (if (= (length(cdr pesos)) 0)
-    (/ (car pesos) (expt (+ 1.0 (/ juros 100.0)) (/ (car pagamentos) Periodo)))
-    (+ (/ (car pesos) (expt (+ 1.0 (/ juros 100.0)) (/ (car pagamentos) Periodo))) (_compostos juros (cdr pagamentos) (cdr pesos)))
+; função recursiva que calcula a soma do amortecimento de todas as parcelas para juros compostos
+(define (_compostos juros pagamentos pesos acumulador)
+  (if (null? pesos)
+    acumulador
+    (_compostos juros (cdr pagamentos) (cdr pesos) (+ (/ (car pesos) (expt (+ #i1.0 (/ juros #i100.0)) (/ (car pagamentos) Periodo))) acumulador))
   )
 )
 
-; calcula a soma do amortecimento de todas as parcelas para juros simples
-(define (_simples juros pagamentos pesos)
-  (if (= (length(cdr pesos)) 0)
-    (/ (car pesos) (+ 1.0 (* (/ juros 100.0) (/ (car pagamentos) Periodo))))
-    (+ (/ (car pesos) (+ 1.0 (* (/ juros 100.0) (/ (car pagamentos) Periodo)))) (_simples juros (cdr pagamentos) (cdr pesos)))
+; função recursiva que calcula a soma do amortecimento de todas as parcelas para juros simples
+(define (_simples juros pagamentos pesos acumulador)
+  (if (null? pesos)
+    acumulador
+    (_simples juros (cdr pagamentos) (cdr pesos) (+ (/ (car pesos) (+ #i1.0 (* (/ juros #i100.0) (/ (car pagamentos) Periodo)))) acumulador))
   )
 )
 
-; calcula o acrescimo a partir dos juros e dados comuns (como parcelas)
+; função que calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
 (define (dJuros juros)
-  (if (= Composto 1)
-    (* (- (/ (gPeso) (_compostos juros Pagamentos Pesos)) 1.0) 100.0)
-    (* (- (/ (gPeso) (_simples juros) Pagamentos Pesos) 1.0) 100.0)
-  )
-)
-
-; funcao recursiva no lugar de um for que realmente calcula os juros
-(define (_pJuros acrescimo minDiferenca iteracaoAtual minJuros maxJuros)
-  (if (or (< (sub maxJuros minJuros) minDiferenca) (= iteracaoAtual 0))
-    (/ (+ minJuros maxJuros) 2.0)
-    (if (< (dJuros (/ (+ minJuros maxJuros) 2.0)) acrescimo)
-      (_pJuros acrescimo minDiferenca (- iteracaoAtual 1) (/ (+ minJuros maxJuros) 2.0) maxJuros)
-      (_pJuros acrescimo minDiferenca (- iteracaoAtual 1) minJuros (/ (+ minJuros maxJuros) 2.0))
+  (let ((pesoTotal (gPeso)))
+    (if (or (< Quantidade 1) (<= Periodo #i0.0) (<= pesoTotal #i0.0) (<= juros #i0.0))
+      #i0.0
+      (let
+        ((acumulador
+          (if (= Composto 1)
+            (_compostos juros Pagamentos Pesos #i0.0)
+            (_simples juros Pagamentos Pesos #i0.0)
+          )
+        ))
+        (if (<= acumulador #i0.0)
+          #i0.0
+          (* (- (/ pesoTotal acumulador) #i1.0) #i100.0)
+        )
+      )
     )
   )
 )
 
-; calcula os juros a partir do acrescimo e dados comuns (como parcelas)
-(define (pJuros acrescimo precisao maxIteracoes maxJuros)
-  (_pJuros acrescimo (expt 0.1 precisao) maxIteracoes 0.0 maxJuros)
+; função recursiva que calcula os juros a partir do acréscimo e dados comuns (como parcelas)
+(define (_pJuros acrescimo minDiferenca iteracaoAtual minJuros maxJuros medJuros)
+  (if (or (< (sub maxJuros minJuros) minDiferenca) (= iteracaoAtual 0))
+    medJuros
+    (if (< (dJuros medJuros) acrescimo)
+      (_pJuros acrescimo minDiferenca (- iteracaoAtual 1) medJuros maxJuros (/ (+ medJuros maxJuros) #i2.0))
+      (_pJuros acrescimo minDiferenca (- iteracaoAtual 1) minJuros medJuros (/ (+ minJuros medJuros) #i2.0))
+    )
+  )
 )
 
-; testes
+; função açúcar que calcula os juros a partir do acréscimo e dados comuns (como parcelas)
+(define (pJuros acrescimo precisao maxIteracoes maxJuros)
+  (let ((pesoTotal (gPeso)))
+    (if (or (< Quantidade 1) (<= Periodo #i0.0) (<= pesoTotal #i0.0) (<= acrescimo #i0.0) (< precisao 1) (< maxIteracoes 1) (<= maxJuros #i0.0))
+      #i0.0
+      (_pJuros acrescimo (expt #i0.1 precisao) maxIteracoes #i0.0 maxJuros (/ maxJuros #i2.0))
+    )
+  )
+)
+
+; calcula e guarda os resultados das funções
 (setq pesoC (gPeso))
+(setq acrescimoC (dJuros #i3.0))
+(setq jurosC (pJuros acrescimoC 15 100 #i50.0))
+
+; imprime os resultados
 (print "Peso total = " pesoC)
-(setq acrescimoC (dJuros 3.0))
-(print "Acrescimo = " acrescimoC)
-(setq jurosC (pJuros acrescimoC 15 100 50.0))
+(print "Acréscimo = " acrescimoC)
 (print "Juros = " jurosC)

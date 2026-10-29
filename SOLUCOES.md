@@ -1113,7 +1113,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 [JUROS.TAP](JUROS.TAP)
 
-### Otus Lisp (05/03/2025) ♻️
+### Otus Lisp (05/03/2025) ♻️ ➰
 
 [jurosOL.lisp](jurosOL.lisp)
 

@@ -1004,7 +1004,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 [juros.nrx](juros.nrx)
 
-### NewLISP (07/03/2025) ♻️
+### newLISP (07/03/2025) ♻️ ➰
 
 [jurosNL.lsp](jurosNL.lsp)
 

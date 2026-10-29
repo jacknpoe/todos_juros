@@ -39,7 +39,7 @@ Arquivo / File: [juros.ods](juros.ods)
 
 # CRONOLOGIA / CHRONOLOGY
 
-Cronologia: / Chronology: [CRONOLOGIA.md](CRONOLOGIA.md)
+Cronologia / Chronology: [CRONOLOGIA.md](CRONOLOGIA.md)
 
 <br>
 
@@ -48,26 +48,11 @@ Cronologia: / Chronology: [CRONOLOGIA.md](CRONOLOGIA.md)
 Benchmark (300.000 parcelas, juros compostos, precisão de 15 dígitos e máximo de 65 iterações):<br>
 Benchmark (300,000 payments, compound interest, 15-digit precision, and a maximum of 65 iterations):
 
-<div style="display: flex; gap: 4px; margin: 12px 0;">
-  <a href="benchmark1.png"
-     style="flex: 1; background: #2F855A; color: white; padding: 12px 8px; text-align: center; border-radius: 4px; text-decoration: none;">
-    <strong>x &lt;= 1s</strong><br>
-    <small>Até 1 segundo</small><br>
-    <small>Up to 1 second</small>
-  </a>
-  <a href="benchmark2.png"
-     style="flex: 1; background: #3977B8; color: white; padding: 12px 8px; text-align: center; border-radius: 4px; text-decoration: none;">
-    <strong>1s &lt; x &lt;= 6s</strong><br>
-    <small>De 1 a 6 segundos</small><br>
-    <small>From 1 to 6 seconds</small>
-  </a>
-  <a href="benchmark3.png"
-     style="flex: 1; background: #B7791F; color: white; padding: 12px 8px; text-align: center; border-radius: 4px; text-decoration: none;">
-    <strong>6s &lt; x</strong><br>
-    <small>Acima de 6 segundos</small><br>
-    <small>Over 6 seconds</small>
-  </a>
-</div>
+Até 1 segundo / Up to 1 second: [benchmark1.png](benchmark1.png)
+
+De 1 a 6 segundos / From 1 to 6 seconds: [benchmark2.png](benchmark2.png)
+
+Acima de 6 segundos / Over 6 seconds: [benchmark3.png](benchmark3.png)
 
 <br>
 <br>

@@ -117,7 +117,7 @@
 ; calcula e guarda os resultados das funções
 (setq pesoC (gPeso))
 (setq acrescimoC (dJuros #i3.0))
-(setq jurosC (pJuros acrescimoC 15 100 #i50.0))
+(setq jurosC (pJuros acrescimoC 15 65 #i50.0))
 
 ; imprime os resultados
 (print "Peso total = " pesoC)

@@ -1050,7 +1050,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 [juros.nu](juros.nu)
 
-### Oak (05/03/2025) ♻️
+### Oak (05/03/2025) ♻️ ➰
 
 [juros.oak](juros.oak)
 

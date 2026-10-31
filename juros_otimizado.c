@@ -37,16 +37,36 @@ void liberaMemoria(void) {
 	}
 }
 
-// define a quantidade de parcelas
+// define a quantidade de parcelas (melhorada por CHatGPT)
 int setQuantidade(int quantidade) {
-	if(quantidade < 0) return false;
-	if(quantidade == Quantidade) return true;
-	Pagamentos = (double *) malloc(sizeof(double) * quantidade);
-	if(quantidade > 0 && Pagamentos == NULL) { Quantidade = 0; return false; }
-	Pesos = (double *) malloc(sizeof(double) * quantidade);
-	if(quantidade > 0 && Pesos == NULL) { free(Pagamentos); Quantidade = 0; return false; }
-	Quantidade = quantidade; return true;
+	double *novosPagamentos = NULL;
+	double *novosPesos = NULL;
+
+	if(quantidade < 0) return false; if(quantidade == Quantidade) return true;
+
+	if(quantidade > 0) {
+        novosPagamentos = (double *) malloc(sizeof(double) * quantidade); if(novosPagamentos == NULL) return false;
+		novosPesos = (double *) malloc(sizeof(double) * quantidade);
+		if(novosPesos == NULL) { free(novosPagamentos); return false;
+		}
+	}
+
+	free(Pagamentos); free(Pesos);
+	Pagamentos = novosPagamentos; Pesos = novosPesos;
+	Quantidade = quantidade;
+	return true;
 }
+
+// define a quantidade de parcelas (anterior a ChatGPT)
+// int setQuantidade(int quantidade) {
+// 	if(quantidade < 0) return false;
+// 	if(quantidade == Quantidade) return true;
+// 	Pagamentos = (double *) malloc(sizeof(double) * quantidade);
+// 	if(quantidade > 0 && Pagamentos == NULL) { Quantidade = 0; return false; }
+// 	Pesos = (double *) malloc(sizeof(double) * quantidade);
+// 	if(quantidade > 0 && Pesos == NULL) { free(Pagamentos); Quantidade = 0; return false; }
+// 	Quantidade = quantidade; return true;
+// }
 
 // define os valores escalares da estrutura (automaticamente, também chama setQuantidade)
 int setValores(int quantidade, int composto, double periodo) {

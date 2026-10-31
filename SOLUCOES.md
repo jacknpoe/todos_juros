@@ -1105,7 +1105,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 [jurosOOB.bas](jurosOOB.bas)
 
-### Orc (03/03/2025) ♻️
+### Orc (03/03/2025) ♻️ ➰
 
 [juros.orc](juros.orc)
 

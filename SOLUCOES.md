@@ -1491,7 +1491,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 [main.lua](main.lua)
 
-### Source (24/02/2025) 🔧 ♻️ ✍️
+### Source (24/02/2025) 🔧 ♻️ ✍️ ➰
 
 [juros.source](juros.source)
 

@@ -1,9 +1,10 @@
 % Cálculo do juros, sendo que precisa de arrays para isso
 % Versão 0.1: 03/05/2024: completa
 %        0.2: 03/02/2026: com initialization para swipl e halt em juros()
-%        0.3: 03/02/2026: agora, com a ajuda do ChatGPR, roda também em Scryer Prolog
+%        0.3: 03/02/2026: agora, com a ajuda do ChatGPT, roda também em Scryer Prolog
 %                         alterações como tirar () de funções sem parênteses e troca de aspas duplas por aspas simples em strings
 %                         para fazer rodar também em Scryer Prolog (rodava em SWI-Prolog porque ele era permissivo além da norma ISO)
+%        0.4: 02/11/2026: corrigido AND (,) por OR (;)
 
 % dados gerais
 juros :-
@@ -70,7 +71,7 @@ acrescimoParaJuros(Composto, Periodo, Pagamentos, Pesos, Acrescimo, Precisao, Ma
 % função recursiva no lugar de um for que realmente calcula o acréscimo
 rAcrescimoParaJuros(Composto, Periodo, Pagamentos, Pesos, Acrescimo, MinDiferenca, IteracaoAtual, MinJuros, MaxJuros, MedJuros, Juros) :-
   (
-    (IteracaoAtual == 0, (MaxJuros - MinJuros) < MinDiferenca, Juros is MedJuros)
+    (IteracaoAtual == 0; (MaxJuros - MinJuros) < MinDiferenca, Juros is MedJuros)
     ;
     (
       ProximaIteracao is IteracaoAtual - 1,

@@ -4,7 +4,7 @@
 %        0.3: 03/02/2026: agora, com a ajuda do ChatGPT, roda também em Scryer Prolog
 %                         alterações como tirar () de funções sem parênteses e troca de aspas duplas por aspas simples em strings
 %                         para fazer rodar também em Scryer Prolog (rodava em SWI-Prolog porque ele era permissivo além da norma ISO)
-%        0.4: 02/11/2026: corrigido AND (,) por OR (;) e colocados parênteses
+%        0.4: 02/11/2026: corrigido AND (,) por OR (;) e colocados parênteses e acréscimo com acento
 
 % dados gerais
 juros :-
@@ -19,7 +19,7 @@ juros :-
   write(PesoTotal), nl,
   jurosParaAcrescimo(Composto, Periodo, Pagamentos, Pesos, 3.0, Acrescimo),
   write('Acréscimo = '),
-  write(Acrescimo), nl,
+  write(Acréscimo), nl,
   acrescimoParaJuros(Composto, Periodo, Pagamentos, Pesos, Acrescimo, 15, 100, 50.0, Juros),
   write('Juros = '),
   write(Juros), nl,

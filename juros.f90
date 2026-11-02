@@ -1,6 +1,7 @@
 ! Calculo dos juros, sendo que precisa de arrays para isso
 ! Versao 0.1: 03/04/2024: versao feita a partir de pesquisas no Google
-! Versao 0.2:    04/2024: trocada avaliacao soZero por acumulador == 0
+!        0.2:    04/2024: trocada avaliacao soZero por acumulador == 0
+!        0.3: 02/11/2026: corrigido criterio de parada em acrescimoParaJuros para ((maxJuros - minJuros) <= minDiferenca)
 module juros
 implicit none
     ! estrutura basica para simplificar as chamadas
@@ -110,7 +111,7 @@ implicit none
 
         do indice = 1, maxIteracoes
             medJuros = (minJuros + maxJuros) / 2.0
-            if ((maxJuros - maxJuros) > minDiferenca) then
+            if ((maxJuros - minJuros) <= minDiferenca) then
                 acrescimoParaJuros = medJuros
                 return
             endif
@@ -145,9 +146,9 @@ implicit none
     enddo
 
     ! testes
-    print *, 'Peso total =', getPesoTotal(sJuros)
-    print *, 'Acrescimo =', jurosParaAcrescimo(sJuros, real(3.0, 8))
-    print *, 'Juros =', acrescimoParaJuros( sJuros, jurosParaAcrescimo(sJuros, real(3.0, 8)), 15, 100, real(50.0, 8))
+    print *, 'Peso total =',getPesoTotal(sJuros)
+    print *, 'Acrescimo =',jurosParaAcrescimo(sJuros, real(3.0, 8))
+    print *, 'Juros =',  acrescimoParaJuros( sJuros, jurosParaAcrescimo(sJuros, real(3.0, 8)), 15, 100, real(50.0, 8))
 
     ! desalocacao
     deallocate(sJuros%Pagamentos)

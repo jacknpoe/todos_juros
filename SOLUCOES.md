@@ -1799,7 +1799,8 @@ JavaScript: [juroswww.js](juroswww.js)
 
 ### XSB (19/02/2025) ♻️
 
-[juros.P](juros.P)
+**sem TCO / without TCO:** [juros.P](juros.P)<br>
+**com TCO / with TCO:** [jurosTCO.P](jurosTCO.P) + ➰
 
 ### Xtend (03/06/2024)
 

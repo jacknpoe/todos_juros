@@ -1,81 +1,130 @@
-% Calculo do juros, sendo que precisa de arrays para isso
-% Versao 0.1: 19/02/2025: a partir de Prolog, foram alterados writes e strings
+% Cálculo do juros, sendo que precisa de listas para isso
+% Versão 0.1: 19/02/2025: a partir de Prolog, foram alterados writes e strings
+%        0.2: 01/11/2026: melhorados comentários
+%        0.3: 02/11/2026: corrigido acrescimoParaJuros, listas escaladas, casos especiais retirados, validações de parâmetros e cálculos
+%                         comparada com a versão que permite Tail Call Optimization (TCO), esta força extender a pilha, mas o desempenho é melhor
+
 % dados gerais
 juros() :-
+  Quantidade is 3,
   Composto is 1,
   Periodo is 30.0,
-  Pagamentos = [30.0, 60.0, 90.0],
-  Pesos = [1.0, 1.0, 1.0],
-  % testa as funcoes
-  getPesoTotal(Pesos, PesoTotal),
+  rCriaPagamentos(Quantidade, Periodo, Pagamentos),
+  rCriaPesos(Quantidade, Pesos),
+
+  % testa as funções
+  rGetPesoTotal(Pesos, PesoTotal),
   write('Peso total = '),
   writeln(PesoTotal),
   jurosParaAcrescimo(Composto, Periodo, Pagamentos, Pesos, 3.0, Acrescimo),
-  write('Acrescimo = '),
+  write('Acréscimo = '),
   writeln(Acrescimo),
-  acrescimoParaJuros(Composto, Periodo, Pagamentos, Pesos, Acrescimo, 15, 100, 50.0, Juros),
+  acrescimoParaJuros(Composto, Periodo, Pagamentos, Pesos, Acrescimo, 15, 65, 50.0, Juros),
   write('Juros = '),
   writeln(Juros).
 
-% funcao recursiva que calcula a somatoria de pesos[]
-getPesoTotal([PesosH|PesosT], PesoTotal) :-
-  (
-    (PesosT == [], PesoTotal is PesosH)
-    ;
-    (PesosT \= [], getPesoTotal(PesosT, PesoTotal1), PesoTotal is PesosH + PesoTotal1)
-  ).
+% função recursiva que cria a lista Pagamentos
+rCriaPagamentos(Indice, Periodo, Pagamentos) :-
+(
+  (Indice == 0,
+    Pagamentos = [])
+  ;
+  (Indice \= 0,
+    Prazo is Indice * Periodo,
+    NovoIndice is Indice - 1,
+    rCriaPagamentos(NovoIndice, Periodo, Pagamentos1),
+    Pagamentos = [Prazo|Pagamentos1])
+).
 
-% calcula o acrescimo a partir dos juros e dados comuns (como parcelas)
+% função recursiva que cria a lista Pesos
+rCriaPesos(Indice, Pesos) :-
+(
+  (Indice == 0,
+    Pesos = [])
+  ;
+  (Indice \= 0,
+    NovoIndice is Indice - 1,
+    rCriaPesos(NovoIndice, Pesos1),
+    Pesos = [1.0|Pesos1])
+).
+
+% função recursiva que calcula a somatória de Pesos
+rGetPesoTotal([], 0.0).
+rGetPesoTotal([PesosH|PesosT], PesoTotal) :-
+  rGetPesoTotal(PesosT, PesoTotal1), PesoTotal is PesosH + PesoTotal1.
+
+% função que calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
 jurosParaAcrescimo(Composto, Periodo, Pagamentos, Pesos, Juros, Acrescimo) :-
-  getPesoTotal(Pesos, PesoTotal),
+  rGetPesoTotal(Pesos, PesoTotal),
   (
-    (Composto == 1,
-      rJurosCompostos(Periodo, Pagamentos, Pesos, Juros, Amortecimento),
-      Acrescimo is (PesoTotal / Amortecimento - 1.0) * 100 )
-    ;
-    (Composto == 0,
-      rJurosSimples(Periodo, Pagamentos, Pesos, Juros, Amortecimento),
-      Acrescimo is (PesoTotal / Amortecimento - 1.0) * 100 )
-  ).
-
-% calcula a soma do amortecimento de todas as parcelas para juros compostos
-rJurosCompostos(Periodo, [PagamentosH|PagamentosT], [PesosH|PesosT], Juros, Amortecimento) :-
-  (
-    (PesosT == [], Amortecimento is PesosH / (1.0 + Juros / 100.0) ^ (PagamentosH / Periodo))
-    ;
-    (PesosT \= [], rJurosCompostos(Periodo, PagamentosT, PesosT, Juros, Amortecimento1),
-      Amortecimento is PesosH / (1.0 + Juros / 100.0) ^ (PagamentosH / Periodo) + Amortecimento1)
-  ).
-  
-% calcula a soma do amortecimento de todas as parcelas para juros simples
-rJurosSimples(Periodo, [PagamentosH|PagamentosT], [PesosH|PesosT], Juros, Amortecimento) :-
-  (
-    (PesosT == [], Amortecimento is PesosH / (1.0 + Juros / 100.0 * PagamentosH / Periodo))
-    ;
-    (PesosT \= [], rJurosSimples(Periodo, PagamentosT, PesosT, Juros, Amortecimento1),
-      Amortecimento is PesosH / (1.0 + Juros / 100.0 * PagamentosH / Periodo) + Amortecimento1)
-  ).
-  
-% calcula os juros a partir do acrescimo e dados comuns (como parcelas)
-acrescimoParaJuros(Composto, Periodo, Pagamentos, Pesos, Acrescimo, Precisao, MaxIteracoes, MaxJuros, Juros) :-
-  rAcrescimoParaJuros(Composto, Periodo, Pagamentos, Pesos, Acrescimo, 0.1 ^ Precisao, MaxIteracoes, 0.0, MaxJuros, MaxJuros / 2.0, Juros).
-
-% funcao recursiva no lugar de um for que realmente calcula o acrescimo
-rAcrescimoParaJuros(Composto, Periodo, Pagamentos, Pesos, Acrescimo, MinDiferenca, IteracaoAtual, MinJuros, MaxJuros, MedJuros, Juros) :-
-  (
-    (IteracaoAtual == 0; (MaxJuros - MinJuros) < MinDiferenca, Juros is MedJuros)
+    ((Periodo =< 0.0; PesoTotal =< 0.0; Juros =< 0.0),
+      Acrescimo is 0.0)
     ;
     (
-      ProximaIteracao is IteracaoAtual - 1,
-      jurosParaAcrescimo(Composto, Periodo, Pagamentos, Pesos, MedJuros, Calculado),
       (
-        (Calculado < Acrescimo,
-          NovoMedJuros is (MedJuros + MaxJuros) / 2.0,
-          rAcrescimoParaJuros(Composto, Periodo, Pagamentos, Pesos, Acrescimo, MinDiferenca, ProximaIteracao, MedJuros, MaxJuros, NovoMedJuros, Juros))
+        (Composto == 1,
+          rJurosCompostos(Periodo, Pagamentos, Pesos, Juros, Amortecimento))
         ;
-        (Calculado >= Acrescimo,
-          NovoMedJuros is (MinJuros + MedJuros) / 2.0,
-          rAcrescimoParaJuros(Composto, Periodo, Pagamentos, Pesos, Acrescimo, MinDiferenca, ProximaIteracao, MinJuros, MedJuros, NovoMedJuros, Juros))
+        (Composto == 0,
+          rJurosSimples(Periodo, Pagamentos, Pesos, Juros, Amortecimento))
+      ),
+      (
+        (Amortecimento =< 0.0,
+          Acrescimo is 0.0)
+        ;
+        (Amortecimento > 0.0,
+          Acrescimo is (PesoTotal / Amortecimento - 1.0) * 100)
       )
     )
   ).
+
+% função recursiva que calcula a soma do amortecimento de todas as parcelas para juros compostos
+rJurosCompostos(_, [], [], _, 0.0).
+rJurosCompostos(Periodo, [PagamentosH|PagamentosT], [PesosH|PesosT], Juros, Amortecimento) :-
+(
+  rJurosCompostos(Periodo, PagamentosT, PesosT, Juros, Amortecimento1),
+  Amortecimento is PesosH / (1.0 + Juros / 100.0) ^ (PagamentosH / Periodo) + Amortecimento1
+).
+  
+% função recursiva que calcula a soma do amortecimento de todas as parcelas para juros simples
+rJurosSimples(_, [], [], _, 0.0).
+rJurosSimples(Periodo, [PagamentosH|PagamentosT], [PesosH|PesosT], Juros, Amortecimento) :-
+(
+  rJurosSimples(Periodo, PagamentosT, PesosT, Juros, Amortecimento1),
+  Amortecimento is PesosH / (1.0 + Juros / 100.0 * PagamentosH / Periodo) + Amortecimento1
+).
+  
+% função açúcar que calcula os juros a partir do acrescimo e dados comuns (como parcelas)
+acrescimoParaJuros(Composto, Periodo, Pagamentos, Pesos, Acrescimo, Precisao, MaxIteracoes, MaxJuros, Juros) :-
+  rGetPesoTotal(Pesos, PesoTotal),
+  (
+    ((Periodo =< 0.0; PesoTotal =< 0.0; Acrescimo =< 0.0; Precisao < 1; MaxIteracoes < 1; MaxJuros =< 0.0),
+      Juros is 0.0)
+    ;
+    (
+      MinDiferenca is 0.1 ^ Precisao,
+      MedJuros is MaxJuros / 2.0,
+      rAcrescimoParaJuros(Composto, Periodo, Pagamentos, Pesos, Acrescimo, MinDiferenca, MaxIteracoes, 0.0, MaxJuros, MedJuros, Juros)
+    )
+  ).
+
+% função recursiva que calcula os juros a partir do acrescimo e dados comuns (como parcelas)
+rAcrescimoParaJuros(Composto, Periodo, Pagamentos, Pesos, Acrescimo, MinDiferenca, IteracaoAtual, MinJuros, MaxJuros, MedJuros, Juros) :-
+(
+  ((IteracaoAtual == 0; (MaxJuros - MinJuros) < MinDiferenca),
+    Juros is MedJuros)
+  ;
+  (
+    ProximaIteracao is IteracaoAtual - 1,
+    jurosParaAcrescimo(Composto, Periodo, Pagamentos, Pesos, MedJuros, Calculado),
+    (
+      (Calculado < Acrescimo,
+        NovoMedJuros is (MedJuros + MaxJuros) / 2.0,
+        rAcrescimoParaJuros(Composto, Periodo, Pagamentos, Pesos, Acrescimo, MinDiferenca, ProximaIteracao, MedJuros, MaxJuros, NovoMedJuros, Juros))
+      ;
+      (Calculado >= Acrescimo,
+        NovoMedJuros is (MinJuros + MedJuros) / 2.0,
+        rAcrescimoParaJuros(Composto, Periodo, Pagamentos, Pesos, Acrescimo, MinDiferenca, ProximaIteracao, MinJuros, MedJuros, NovoMedJuros, Juros))
+    )
+  )
+).

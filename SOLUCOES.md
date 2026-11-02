@@ -1195,7 +1195,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 [Juros.pde](Juros.pde)
 
-### Prolog (03/05/2024) 🧠 🏛️ 🔧 💡 ♻️ ✍️
+### Prolog (03/05/2024) 🧠 🏛️ 🔧 💡 ♻️ ✍️ ➰
 
 [juros.pl](juros.pl)
 

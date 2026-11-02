@@ -111,7 +111,7 @@ acrescimoParaJuros(Composto, Periodo, Pagamentos, Pesos, Acrescimo, Precisao, Ma
 % função recursiva que calcula os juros a partir do acrescimo e dados comuns (como parcelas)
 rAcrescimoParaJuros(Composto, Periodo, Pagamentos, Pesos, Acrescimo, MinDiferenca, IteracaoAtual, MinJuros, MaxJuros, MedJuros, Juros) :-
 (
-  ((IteracaoAtual == 0; (MaxJuros - MinJuros) < MinDiferenca),
+  ((IteracaoAtual == 0; (MaxJuros - MinJuros) =< MinDiferenca),
     Juros is MedJuros)
   ;
   (

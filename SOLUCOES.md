@@ -425,7 +425,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 [juros.dgn](juros.dgn)
 
-### DrScheme (31/01/2025) ♻️
+### DrScheme (31/01/2025) 🚀 ♻️ ➰
 
 [juros.dr.scm](juros.dr.scm)
 

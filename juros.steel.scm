@@ -2,6 +2,7 @@
 ;; Versão 0.1: 16/41/2025: a partir da versão em Dr.Scheme, alterados os números para compatíveis com Steel
 ;;        0.2: 22/08/2026: ChatGPT: listas dinâmicas, car/cdr, alterações nas funções recursivas para permitir Tail Call Optimization
 ;;        0.3: 21/10/2026: adicionadas variáveis `pesoTotal`
+;;        0.4: 03/11/2026: adicionada `acumualador` e avaliada
 
 ;; dados gerais escalares
 (define Quantidade 3)
@@ -72,10 +73,19 @@
   (let ((pesoTotal (getPesoTotal)))
     (if (or (<= juros 0.0) (< Quantidade 1) (<= Periodo 0.0) (<= pesoTotal 0.0))
       0.0
-      (if (= Composto 1)
-        (* (- (/ pesoTotal (rJurosCompostos juros Pagamentos Pesos 0.0)) 1.0) 100.0)
-        (* (- (/ pesoTotal (rJurosSimples juros Pagamentos Pesos 0.0)) 1.0) 100.0)
+      (let
+        ((acumulador
+          (if (= Composto 1)
+            (rJurosCompostos juros Pagamentos Pesos 0.0)
+            (rJurosSimples juros Pagamentos Pesos 0.0)
+          )
+        ))
+        (if (<= acumulador 0.0)
+          0.0
+          (* (- (/ pesoTotal acumulador) 1.0) 100.0)
+        )
       )
+
     )
   )    
 )

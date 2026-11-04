@@ -210,8 +210,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 ### Bend (08/08/2024) 🧠 ♻️
 
-**mapas / maps:** [juros.bend](juros.bend)<br>
-**funções / functions:** [jurosf.bend](jurosf.bend)
+[juros.bend](juros.bend)
 
 ### Bigloo (02/08/2025) ♻️ ➰
 

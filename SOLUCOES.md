@@ -1299,7 +1299,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 [App.js](App.js)
 
-### ReasonML (13/08/2024) ♻️ ✍️
+### ReasonML (13/08/2024) 🚀 ♻️ ✍️ ➰
 
 [juros.re](juros.re)
 

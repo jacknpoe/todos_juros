@@ -2,6 +2,7 @@
 (** Versão 0.1: 25/03/2025: versão feita sem muito conhecimento de Caml *)
 (**        0.2: 25/10/2026: convertida para a versão de camlc para Debian (print_newline, quebras de linha, encoding UTF-8), vetores agora são escaláveis *)
 (**                         funções recursivas foram alteradas para permitir Tail Call Optimization (TCO) *)
+(**        0.3:  04/11/2026: validações de variáveis, parâmetros e cálculos *)
 
 (** valores para simplificar as chamadas *)
 let quantidade = 3 ;;
@@ -57,20 +58,29 @@ let rec rJurosSimples indice juros acumulador =
 
 (** função que calcula o acréscimo a partir dos juros e das parcelas *)
 let jurosParaAcrescimo juros =
-  if composto
-    then (getPesoTotal /. (rJurosCompostos (quantidade - 1) juros 0.0) -. 1.0) *. 100.0 
-    else (getPesoTotal /. (rJurosSimples (quantidade - 1) juros 0.0) -. 1.0) *. 100.0 ;;
+  let pesoTotal = getPesoTotal in
+  if quantidade < 1 || periodo <= 0.0 || pesoTotal <= 0.0 || juros <= 0.0
+    then 0.0
+    else let acumulador = if composto
+        then rJurosCompostos (quantidade - 1) juros 0.0
+        else rJurosSimples (quantidade - 1) juros 0.0
+      in if acumulador <= 0.0
+        then 0.0
+        else (pesoTotal /. acumulador -. 1.0) *. 100.0 ;;
 
 (** função recursiva que calcula os juros a partir do acréscimo e das parcelas *)
 let rec rAcrescimoParaJuros acrescimo minDiferenca iteracaoAtual minJuros maxJuros medJuros =
   if iteracaoAtual = 0 || (maxJuros -. minJuros) < minDiferenca then medJuros else
     if jurosParaAcrescimo medJuros < acrescimo 
-        then rAcrescimoParaJuros acrescimo minDiferenca (iteracaoAtual - 1) medJuros maxJuros ((medJuros +. maxJuros) /. 2.0)
-        else rAcrescimoParaJuros acrescimo minDiferenca (iteracaoAtual - 1) minJuros medJuros ((minJuros +. medJuros) /. 2.0) ;;
+      then rAcrescimoParaJuros acrescimo minDiferenca (iteracaoAtual - 1) medJuros maxJuros ((medJuros +. maxJuros) /. 2.0)
+      else rAcrescimoParaJuros acrescimo minDiferenca (iteracaoAtual - 1) minJuros medJuros ((minJuros +. medJuros) /. 2.0) ;;
 
 (** função açúcar que calcula os juros a partir do acréscimo e das parcelas *)
 let acrescimoParaJuros acrescimo precisao maxIteracoes maxJuros =
-  rAcrescimoParaJuros acrescimo (0.1 ** (float_of_int precisao)) maxIteracoes 0.0 maxJuros (maxJuros /. 2.0) ;;
+  let pesoTotal = getPesoTotal in
+  if quantidade < 1 || periodo <= 0.0 || pesoTotal <= 0.0 || acrescimo <= 0.0 || precisao < 1 || maxIteracoes < 1 || maxJuros <= 0.0
+    then 0.0
+    else rAcrescimoParaJuros acrescimo (0.1 ** (float_of_int precisao)) maxIteracoes 0.0 maxJuros (maxJuros /. 2.0) ;;
 
 (** define os valores dos vetores *)
 definePagamentos ;;

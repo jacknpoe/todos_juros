@@ -1,54 +1,67 @@
 ;; Cálculo do juros, sendo que precisa de arrays pra isso
 ;; Versão 0.1: 30/01/2025: versão feita a partir de Clojure, alterados os prints
+;;        0.2: 03/11/2026: melhorias nos comentários, listas agora dinâmicas e escaladas, variáveis em jurosParaAcrescimo
+;;                         rGetPesoTotal, rJurosCompostos e rJurosSimples (somatórias) convertidos para usar reduces e maps
 
 ;; namespace
 (ns jacknpoe.juros (:gen-class))
 
-;; variáveis globais
+;; variáveis escalares globais
 (def Quantidade 3)
 (def Composto true)
 (def Periodo 30.0)
-(def Pagamentos [30.0 60.0 90.0])
-(def Pesos [1.0 1.0 1.0])
-;;(def Pagamentos '(30.0 60.0 90.0))  ;; se quiser listas, descomentar essas linhas comentadas para pagamentos e pesos
-;;(def Pesos '(1.0 1.0 1.0))  ;; e comentar as duas acima com vetores
 
-;; função recursiva no lugar de um for com acumulador que realmente calcula a somatória de Pesos[]
-(defn rGetPesoTotal [valor]
-  (if (= valor 0)
-    (nth Pesos 0) 
-    (+ (nth Pesos valor) (rGetPesoTotal (dec valor)))
+;; função recursiva que gera a lista Pagamentos
+(defn rCriaPagamentos [indice acumulador]
+  (if (> indice Quantidade)
+    acumulador
+    (rCriaPagamentos (inc indice) (cons (* indice Periodo) acumulador))
   )
 )
 
-;; calcula a somatória de todos os pesos
+;; função recursiva que gera a lista Pesos
+(defn criaPagamentos []
+  (rCriaPagamentos 1 ())
+)
+
+;; função recursiva que gera a lista Pesos
+(defn rCriaPesos [indice acumulador]
+  (if (> indice Quantidade)
+    acumulador
+    (rCriaPesos (inc indice) (cons 1.0 acumulador))
+  )
+)
+
+;; função recursiva que gera a lista Pesos
+(defn criaPesos []
+  (rCriaPesos 1 ())
+)
+
+;; listas globais
+(def Pagamentos (criaPagamentos))
+(def Pesos (criaPesos))
+
+;; função que calcula a somatória de todos os pesos
 (defn getPesoTotal []
-  (rGetPesoTotal(dec Quantidade))
-)
-
-;; calcula a soma do amortecimento de todas as parcelas para juros compostos
-(defn rJurosCompostos [valor juros]
-  (if (= valor 0)
-    (/ (nth Pesos 0) (Math/pow (+ 1.0 (/ juros 100.0)) (/ (nth Pagamentos 0) Periodo)))
-    (+ (/ (nth Pesos valor) (Math/pow (+ 1.0 (/ juros 100.0)) (/ (nth Pagamentos valor) Periodo))) (rJurosCompostos (dec valor) juros))
-  )
-)
-
-;; calcula a soma do amortecimento de todas as parcelas para juros simples
-(defn rJurosSimples [valor juros]
-  (if (= valor 0)
-    (/ (nth Pesos 0) (+ 1.0 (* (/ juros 100.0) (/ (nth Pagamentos 0) Periodo))))
-    (+ (/ (nth Pesos valor) (+ 1.0 (* (/ juros 100.0) (/ (nth Pagamentos valor) Periodo)))) (rJurosSimples (dec valor) juros))
-  )
+  (reduce + 0.0 Pesos)
 )
 
 ;; calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
 (defn jurosParaAcrescimo [juros]
-  (if (or (<= juros 0.0) (< Quantidade 1) (<= Periodo 0.0) (<= (getPesoTotal) 0.0))
-    0.0
-    (if Composto
-      (* (- (/ (getPesoTotal) (rJurosCompostos (dec Quantidade) juros)) 1.0) 100.0)
-      (* (- (/ (getPesoTotal) (rJurosSimples (dec Quantidade) juros)) 1.0) 100.0)
+  (let [pesoTotal (getPesoTotal)]
+    (if (or (<= juros 0.0) (< Quantidade 1) (<= Periodo 0.0) (<= pesoTotal 0.0))
+      0.0
+      (let [acumulador
+          (if Composto
+            (reduce + 0.0 (map (fn [peso pagamento] (/ peso (Math/pow (+ 1.0 (/ juros 100.0)) (/ pagamento Periodo)))) Pesos Pagamentos))
+            (reduce + 0.0 (map (fn [peso pagamento] (/ peso (+ 1.0 (* (/ juros 100.0) (/ pagamento Periodo))))) Pesos Pagamentos))
+          )
+        ]
+        (if (<= acumulador 0.0)
+          0.0
+          (* (- (/ pesoTotal acumulador) 1.0) 100.0)
+        )
+      )
     )
   )
 )
@@ -75,4 +88,4 @@
 ;; testa os valores de retorno das funções
 (println (str "Peso total = " (getPesoTotal)))
 (println (str "Acréscimo = " (jurosParaAcrescimo 3.0)))
-(println (str "Juros = " (acrescimoParaJuros (jurosParaAcrescimo 3.0) 15 100 50.0)))
+(println (str "Juros = " (acrescimoParaJuros (jurosParaAcrescimo 3.0) 15 65 50.0)))

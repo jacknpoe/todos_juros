@@ -89,7 +89,7 @@ def acrescimoParaJuros(composto, periodo, pagamentos, pesos, quantidade, acresci
 
 def main:
   # variáveis definidas por questão de leitura
-  quantidade = 3000
+  quantidade = 3
   composto = 1  # 1 = true
   periodo = 30.0
   pagamentos = geraPagamentos(quantidade, periodo)

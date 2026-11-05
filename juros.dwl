@@ -6,6 +6,7 @@
 // RODAR COM: dw run -f juros.dwl -s
 
 %dw 2.0
+import * from dw::util::Math
 output application/json
 
 // configuração da precisão
@@ -57,7 +58,7 @@ fun rJurosCompostos(indice, juros, acumulador) =
     if (indice < 0)
         acumulador
     else
-        rJurosCompostos((indice - 1), juros, Pesos[indice] / ((1.0 + juros / 100.0) pow (Pagamentos[indice] / Periodo)) + acumulador)
+        rJurosCompostos((indice - 1), juros, Pesos[indice] / decimalPow(1.0 + juros / 100.0, Pagamentos[indice] / Periodo) + acumulador)
 
 // função recursiva que calcula o amortecimento das parcelas em juros simples
 fun rJurosSimples(indice, juros, acumulador) = 

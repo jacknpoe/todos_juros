@@ -1,6 +1,7 @@
 ﻿// Cálculo do juros, sendo que precisa de arrays pra isso
 // Versão 0.1: 23/05/2024: versão feita sem muito conhecimento de F#
 //        0.2: 08/08/2026: agora como Program.fs em Mono, escalável, compilávels
+//        0.3: 04/11/2026: avalia se acumulador <= 0.0
 
 // classe com atributos básicos para simplificar as chamadas
 type Juros(quantidade: int, composto: bool, periodo: double, pagamentos: double[], pesos: double[]) =
@@ -27,7 +28,10 @@ type Juros(quantidade: int, composto: bool, periodo: double, pagamentos: double[
                 for indice in 0 .. this.Quantidade - 1 do
                     if this.Composto then acumulador <- acumulador + this.Pesos.[indice] / (1.0 + juros / 100.0) ** (this.Pagamentos.[indice] / this.Periodo)
                         else acumulador <- acumulador + this.Pesos.[indice] / (1.0 + juros / 100.0 * this.Pagamentos.[indice] / this.Periodo)
-                (pesoTotal / acumulador - 1.0) * 100.0
+                if acumulador <= 0.0 then
+                    0.0
+                else
+                    (pesoTotal / acumulador - 1.0) * 100.0
 
         // calcula os juros a partir do acréscimo e dados comuns (como parcelas)
         member this.acrescimoParaJuros(acrescimo: double, precisao: int, maxIteracoes: int, maximoJuros: double): double =
@@ -49,7 +53,7 @@ type Juros(quantidade: int, composto: bool, periodo: double, pagamentos: double[
 [<EntryPoint>]
 let main argv =
     // variáveis para legibilidade e inicialização de escalares; altere aqui os parâmetros para criar juros
-    let Quantidade: int = 300000
+    let Quantidade: int = 3
     let Composto: bool = true
     let Periodo: double = 30.0
     let Pagamentos : double[] = Array.zeroCreate Quantidade

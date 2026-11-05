@@ -1,6 +1,7 @@
 ﻿// Cálculo do juros, sendo que precisa de arrays pra isso
 // Versão 0.1: 09/08/2026: a partir da versão iterativa de F#, imutável (exceto arrrays) e recursiva
 //        0.2: 15/08/2026: alterada para propiciar Tail Call Optimization
+//        0.3: 04/11/2026: avalia se acumulador <= 0.0
 
 // classe com atributos básicos para simplificar as chamadas
 type Juros(quantidade: int, composto: bool, periodo: double, pagamentos: double[], pesos: double[]) =
@@ -42,7 +43,11 @@ type Juros(quantidade: int, composto: bool, periodo: double, pagamentos: double[
             if juros <= 0.0 || this.Quantidade < 1 || this.Periodo < 0.0 || pesoTotal <= 0 then
                 0.0
             else
-                (pesoTotal / (if this.Composto then this.rJurosCompostos(juros, 0, 0.0) else this.rJurosSimples(juros, 0, 0.0)) - 1.0) * 100.0
+                let acumulador: double = (if this.Composto then this.rJurosCompostos(juros, 0, 0.0) else this.rJurosSimples(juros, 0, 0.0))
+                if acumulador <= 0.0 then
+                    0.0
+                else
+                    (pesoTotal / acumulador - 1.0) * 100.0
 
         // método recursivo que calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
         member this.rAcrescimoParaJuros(acrescimo: double, minDiferenca: double, iteracao: int, minJuros: double, maxJuros: double, medJuros: double) =

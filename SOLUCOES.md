@@ -395,7 +395,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 [jurosd.sh](jurosd.sh)
 
-### DataWeave (19/07/2024) 🔧 ♻️
+### DataWeave (19/07/2024) 🔧 ♻️ ➰
 
 [juros.dwl](juros.dwl)
 

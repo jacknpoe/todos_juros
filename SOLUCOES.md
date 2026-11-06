@@ -1322,7 +1322,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 [ProgramMercury.vb](ProgramMercury.vb)
 
-### ReScript (30/06/2024) 🔧 ♻️ ✍️
+### ReScript (30/06/2024) 🚀 🔧 ♻️ ✍️ ➰
 
 [Juros.res](Juros.res)
 

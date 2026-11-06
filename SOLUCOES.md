@@ -1324,7 +1324,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 ### ReScript (30/06/2024) 🔧 ♻️ ✍️
 
-[Demo.res](Demo.res)
+[Juros.res](Juros.res)
 
 ### retrobasic (07/04/2026)
 

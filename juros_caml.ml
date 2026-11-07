@@ -11,7 +11,7 @@ let periodo = 30.0 ;;
 let pagamentos = make_vect quantidade 0.0 ;;
 let pesos = make_vect quantidade 0.0 ;;
 
-(** função recursiva que gera a lista pagamentos *)
+(** função recursiva que preenche os elementos do vetor pagamentos *)
 let rec rDefinePagamentos indice =
     if indice < 0
         then ()
@@ -20,10 +20,10 @@ let rec rDefinePagamentos indice =
             rDefinePagamentos (indice - 1)
         ) ;;
 
-(** função açúcar que gera a lista pagamentos *)
+(** função açúcar que preenche os elementos do vetor pagamentos *)
 let definePagamentos = rDefinePagamentos (quantidade - 1) ;;
 
-(** função recursiva que gera a lista pesos *)
+(** função recursiva que preenche os elementos do vetor pesos *)
 let rec rDefinePesos indice =
     if indice < 0
         then ()
@@ -32,7 +32,7 @@ let rec rDefinePesos indice =
             rDefinePesos (indice - 1)
         ) ;;
 
-(** função açúcar que gera a lista pagamentos *)
+(** função açúcar que preenche os elementos do vetor pagamentos *)
 let definePesos = rDefinePesos (quantidade - 1) ;;
 
 (** função recursiva que calcula a somatória de pesos *)

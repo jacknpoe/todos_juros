@@ -923,7 +923,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 [juros.ms](juros.ms)
 
-### Miranda (21/06/2024) 🧠 🏛️ 🔧 💡 ♻️ ✍️
+### Miranda (21/06/2024) 🧠 🏛️ 🔧 💡 ♻️ ✍️ ➰
 
 [juros_miranda.m](juros_miranda.m)
 

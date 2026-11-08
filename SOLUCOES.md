@@ -64,7 +64,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 <br>
 
-# SOLUÇÕES / SOLUTIONS (424)
+# SOLUÇÕES / SOLUTIONS (425)
 
 ### 11l (14/03/2026) 🚀 ✍️
 
@@ -1863,7 +1863,7 @@ JavaScript: [juroswww.js](juroswww.js)
 
 <br>
 
-# EQUIVALENTES / EQUIVALENTS (94)
+# EQUIVALENTES / EQUIVALENTS (93)
 
 ACECode = Scratch<br>
 Amstrad BASIC = Locomotive BASIC<br>
@@ -1907,7 +1907,7 @@ JRuby = Ruby<br>
 Korn Shell = ksh<br>
 LibreOffice Basic = OpenOffice Basic<br>
 Linden Scripting Language = LSL<br>
-MaPLe (MPL) = Alice<br>
+MaPLe (MPL) = SML/NJ<br>
 MariaDB = MySQL<br>
 Microsoft Office Visual Basic for Applications = OpenOffice Basic<br>
 MinForth = Gforth<br>
@@ -1944,7 +1944,6 @@ Rebol/Core = Rebol<br>
 SCM = Scheme<br>
 Scryer Prolog = Prolog<br>
 SICP = DrScheme<br>
-SML/NJ = Alice<br>
 SpiderBasic = PureBasic<br>
 Squeak = Smalltalk<br>
 STklos = Gauche/Kawa/Scheme/Steel<br>

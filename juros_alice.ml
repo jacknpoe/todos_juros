@@ -6,7 +6,7 @@
                            a versão com funções recursivas alteradadas para permitir Tail Call Optimization (TCO) não performou bem em Alice *)
 
 (* variáveis básicas para simplificar as chamadas *)
-val quantidade = 300000;
+val quantidade = 3;
 val composto = true;
 val periodo = 30.0;
 val pagamentos = Array.array(quantidade, 0.0);

@@ -1,7 +1,7 @@
 || Cálculo dos juros, sendo que precisa de parcelas para isso
 || Versão 0.1: 21/06/2024: versão feita sem muito conhecimento de Miranda
 ||        0.2: 08/11/2026: retirados casos especiais; melhorados comentários; validados variáveis, parâmetros e cálculos; arrays escaláveis criados dinamicamente
-||                         funções recursivas agora permitem Tail Call Optimization (TCO)
+||                         funções recursivas agora permitem Tail Call Optimization (TCO); usado head e tail no lugar de indice
 
 || variáveis escalares globais para simplificar as chamadas
 quantidade = 300000

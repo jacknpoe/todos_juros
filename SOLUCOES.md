@@ -13,7 +13,7 @@ Esta é a relação dos links neste repositório para as soluções em dialetos 
 >
 > 🧠 **conceitos:** apresentar conceitos, combinações de conceitos ou aplicações que sejam suficientemente inéditos, notáveis, importantes ou influentes;
 >
-> 🚀 **desempenho:** estar entre os mais rápidos em geral ou entre os mais rápidos na sua área de aplicação; as avaliações utilizam, principalmente, os resultados do benchmark com 300.000 parcelas ([benchmark.png](benchmark.png)); as medições sistemáticas começaram em 11/07/2025; soluções anteriores relevantes estão sendo medidas gradualmente;
+> 🚀 **desempenho:** estar entre os mais rápidos em geral ou entre os mais rápidos na sua área de aplicação; as avaliações utilizam, principalmente, os resultados do benchmark com 300.000 parcelas ([benchmark1.png](benchmark1.png), [benchmark2.png](benchmark2.png), [benchmark3.png](benchmark3.png)); as medições sistemáticas começaram em 11/07/2025; soluções anteriores relevantes estão sendo medidas gradualmente;
 >
 > 🏛️ **histórico:** representar um marco histórico, uma etapa importante ou um representante relevante na evolução das linguagens, dialetos, implementações ou áreas de aplicação, mesmo que sua influência direta tenha sido limitada;
 >
@@ -304,7 +304,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 [juros.cl](juros.cl)
 
-### Clean (21/06/2024) ♻️
+### Clean (21/06/2024) 🚀 ♻️ ➰
 
 [juros.icl](juros.icl)
 

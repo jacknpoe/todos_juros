@@ -78,7 +78,7 @@ def main : IO Unit := do
   let stdout ← IO.getStdout
 
   -- variáveis para a criação da estrutura (alterer os parâmetros aqui)
-  let Quantidade : Nat := 300000
+  let Quantidade : Nat := 3
   let Composto : Bool := true
   let Periodo : Float := 30.0
   let mut Pagamentos : Array Float := Array.replicate Quantidade 0.0

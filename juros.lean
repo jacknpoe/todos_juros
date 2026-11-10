@@ -1,75 +1,103 @@
 -- Cálculo dos juros, sendo que precisa de parcelas pra isso
 -- Versão 0.1: 20/06/2024: versão feita sem muito conhecimento de Lean
+--        0.2: 10/11/2026: comentários melhorados; variáveis para inicializar a estrutura; agora é iterativo; impressão de float com 15 decimais
+--                         avaliados variáveis, parâmetros e cálculos; criada forma de imprimir mais decimais
 
 -- estrutura básica de propriedades para simplificar as chamadas
-structure Juros :=
+structure Juros where
   quantidade : Nat
   composto : Bool
   periodo : Float
   pagamentos : Array Float
   pesos : Array Float
 
--- função recursiva que realmente calcula a somatória de Pesos[]
-def rGetPesoTotal (oJuros : Juros) (indice : Nat) : Float :=
-  if indice = 0 then
-    oJuros.pesos[0]!
-  else
-    oJuros.pesos[indice]! + rGetPesoTotal oJuros (indice - 1)
+-- função que formata um número com até 15 casas decimais (adaptado do ChatGPT)
+def formataReal (valor : Float) : String := Id.run do
+  let digitos : Nat := 15 - (Float.log valor / Float.log 10.0).toInt64.toNatClampNeg
+  let escala : Int64 := 10 ^ digitos
+  let arredondado : Int64 := (valor.abs * escala.toFloat + 0.5).toInt64
+  let inteiro : Int64 := arredondado / escala
+  let decimal : Int64 := arredondado % escala
+  let sinal : String := if valor < 0.0 then "-" else ""
+  let fracao : String := toString decimal
+  let zeros : String := String.ofList (List.replicate (digitos - fracao.length) '0')
+  return sinal ++ toString inteiro ++ "." ++ zeros ++ fracao
 
--- perfume que calcula a somatória de Pesos[]
-def getPesoTotal (oJuros : Juros) : Float :=
-  rGetPesoTotal oJuros (oJuros.quantidade - 1)
+-- função que calcula a somatória de Pesos[]
+def getPesoTotal (oJuros : Juros) : Float := Id.run do
+  let mut acumulador := 0.0
+  for indice in [:oJuros.quantidade] do
+    acumulador := acumulador + oJuros.pesos[indice]!
+  return acumulador
 
--- função recursiva que calcula o amortecimento das parcelas em juros compostos
-def rJurosCompostos (oJuros : Juros) (indice : Nat) (juros : Float) : Float :=
-  if indice = 0 then
-    oJuros.pesos[0]! / (1.0 + juros / 100.0) ^ (oJuros.pagamentos[0]! / oJuros.periodo)
-  else
-    oJuros.pesos[indice]! / (1.0 + juros / 100.0) ^ (oJuros.pagamentos[indice]! / oJuros.periodo) + rJurosCompostos oJuros (indice - 1) juros
+-- função que calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
+def jurosParaAcrescimo (oJuros : Juros) (juros : Float) : Float := Id.run do
+  let pesoTotal : Float := getPesoTotal oJuros
 
--- função recursiva que calcula o amortecimento das parcelas em juros simples
-def rJurosSimples (oJuros : Juros) (indice : Nat) (juros : Float) : Float :=
-  if indice = 0 then
-    oJuros.pesos[0]! / (1.0 + juros / 100.0 * oJuros.pagamentos[0]! / oJuros.periodo)
-  else
-    oJuros.pesos[indice]! / (1.0 + juros / 100.0 * oJuros.pagamentos[indice]! / oJuros.periodo) + rJurosSimples oJuros (indice - 1) juros
+  if oJuros.quantidade < 1 || oJuros.periodo <= 0.0 || pesoTotal <= 0.0 || juros <= 0.0 then
+    return 0.0
 
--- calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
-def jurosParaAcrescimo (oJuros : Juros) (juros : Float) : Float :=
-  if oJuros.composto then
-    (getPesoTotal oJuros / (rJurosCompostos oJuros (oJuros.quantidade - 1) juros) - 1.0) * 100.0
-  else
-    (getPesoTotal oJuros / (rJurosSimples oJuros (oJuros.quantidade - 1) juros) - 1.0) * 100.0
+  let mut acumulador : Float := 0.0
 
--- função recursiva no lugar de um for que realmente calcula os juros
-def rAcrescimoParaJuros (oJuros : Juros) (acrescimo : Float) (minDiferenca : Float) (iteracaoAtual : Nat) (minJuros : Float) (maxJuros : Float) (medJuros : Float) : Float :=
-  if iteracaoAtual = 0 then
-    medJuros
-  else
-    if (maxJuros - minJuros) < minDiferenca  then
-      medJuros
+  for indice in [:oJuros.quantidade] do
+    if oJuros.composto then
+      acumulador := acumulador + oJuros.pesos[indice]! / (1.0 + juros / 100.0) ^ (oJuros.pagamentos[indice]! / oJuros.periodo)
     else
-      if jurosParaAcrescimo oJuros medJuros < acrescimo then
-        rAcrescimoParaJuros oJuros acrescimo minDiferenca (iteracaoAtual - 1) medJuros maxJuros ((medJuros + maxJuros) / 2.0)
-      else
-        rAcrescimoParaJuros oJuros acrescimo minDiferenca (iteracaoAtual - 1) minJuros medJuros ((minJuros + medJuros) / 2.0)
+      acumulador := acumulador + oJuros.pesos[indice]! / (1.0 + juros / 100.0 * oJuros.pagamentos[indice]! / oJuros.periodo)
 
--- calcula os juros a partir do acréscimo e dados comuns (como parcelas)
-def acrescimoParaJuros (oJuros : Juros) (acrescimo : Float) (precisao : Float) (maxIteracoes : Nat) (maxJuros : Float) : Float :=
-  rAcrescimoParaJuros oJuros acrescimo (0.1 ^ precisao) maxIteracoes 0.0 maxJuros (maxJuros / 2.0)
+  if acumulador <= 0.0 then
+    return 0.0
 
+  return (pesoTotal / acumulador - 1.0) * 100.0
+
+-- função que calcula os juros a partir do acréscimo e dados comuns (como parcelas)
+def acrescimoParaJuros (oJuros : Juros) (acrescimo : Float) (precisao : Nat) (maxIteracoes : Nat) (maximoJuros : Float) : Float := Id.run do
+  let pesoTotal : Float := getPesoTotal oJuros
+
+  if oJuros.quantidade < 1 || oJuros.periodo <= 0.0 || pesoTotal <= 0.0 || acrescimo <= 0.0 || precisao < 1 || maxIteracoes < 1 || maximoJuros <= 0.0 then
+    return 0.0
+
+  let mut minJuros : Float := 0.0
+  let mut medJuros : Float := maximoJuros / 2.0
+  let mut maxJuros : Float := maximoJuros
+  let mut minDiferenca : Float := (0.1 ^ precisao.toFloat)
+
+  for _ in [:maxIteracoes] do
+    if (maxJuros - minJuros) <= minDiferenca then
+      break
+    if (  jurosParaAcrescimo oJuros medJuros) < acrescimo then
+      minJuros := medJuros
+    else
+      maxJuros := medJuros
+    medJuros := (minJuros + maxJuros) / 2.0
+
+  return medJuros
+
+-- função principal
 def main : IO Unit := do
   let stdout ← IO.getStdout
 
+  -- variáveis para a criação da estrutura (alterer os parâmetros aqui)
+  let Quantidade : Nat := 300000
+  let Composto : Bool := true
+  let Periodo : Float := 30.0
+  let mut Pagamentos : Array Float := Array.replicate Quantidade 0.0
+  let mut Pesos : Array Float := Array.replicate Quantidade 0.0
+
+  -- inicializa os elementos dos arrays Pagamentos[] e Pesos[]
+  for indice in [:Quantidade] do
+    Pagamentos := Pagamentos.set! indice ((indice.toFloat + 1.0) * Periodo)
+    Pesos := Pesos.set! indice 1.0
+
   -- cria um objeto oJuros da estrutura e inicializa as propriedades
-  let oJuros : Juros := { quantidade := 3, composto := true, periodo := 30.0, pagamentos := #[30.0, 60.0, 90.0], pesos := #[1.0, 1.0, 1.0] }
+  let oJuros : Juros := { quantidade := Quantidade, composto := Composto, periodo := Periodo, pagamentos := Pagamentos, pesos := Pesos }
 
   -- calcula e guarda os resultados das funções
   let pesoTotal : Float := getPesoTotal oJuros
   let acrescimoCalculado : Float := jurosParaAcrescimo oJuros 3.0
-  let jurosCalculado : Float := acrescimoParaJuros oJuros acrescimoCalculado 15.0 100 50.0
+  let jurosCalculado : Float := acrescimoParaJuros oJuros acrescimoCalculado 15 100 50.0
 
   -- imprime os resultados
-  stdout.putStrLn s!"Peso total = {pesoTotal}!"
-  stdout.putStrLn s!"Acrescimo = {acrescimoCalculado}!"
-  stdout.putStrLn s!"Juros = {jurosCalculado}!"
+  stdout.putStrLn ("Peso total = " ++ formataReal pesoTotal)
+  stdout.putStrLn ("Acrescimo = " ++ formataReal acrescimoCalculado)
+  stdout.putStrLn ("Juros = " ++ formataReal jurosCalculado)

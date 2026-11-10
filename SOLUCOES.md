@@ -821,7 +821,7 @@ This is a list of links in this repository to solutions in different dialects, o
 [Juros.pas](Juros.pas)<br>
 [testajuros.lpr](testajuros.lpr)
 
-### Lean (20/06/2024) ♻️
+### Lean (20/06/2024) ✍️
 
 [juros.lean](juros.lean)
 

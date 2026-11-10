@@ -44,7 +44,7 @@ This is a list of links in this repository to solutions in different dialects, o
 >
 > 🧠 **concepts:** introduce concepts, combinations of concepts, or applications that are sufficiently novel, notable, important, or influential, especially in semantics;
 >
-> 🚀 **performance:** be among the fastest overall or among the fastest in its application domain; evaluations are based primarily on the results of the benchmark with 300,000 installments ([benchmark.png](benchmark.png)); systematic measurements began on 2025-07-11; relevant earlier solutions are being measured gradually;
+> 🚀 **performance:** be among the fastest overall or among the fastest in its application domain; evaluations are based primarily on the results of the benchmark with 300,000 installments ([benchmark1.png](benchmark1.png), [benchmark2.png](benchmark2.png), [benchmark3.png](benchmark3.png)); systematic measurements began on 2025-07-11; relevant earlier solutions are being measured gradually;
 >
 > 🏛️ **historical:** represent a historical milestone, an important stage, or a significant representative in the evolution of programming languages, dialects, implementations, or application domains, even if its direct influence has been limited;
 >

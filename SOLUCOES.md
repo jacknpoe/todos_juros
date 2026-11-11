@@ -441,7 +441,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 [juros.exs](juros.exs)
 
-### Elm (08/06/2024) ♻️
+### Elm (08/06/2024) 🚀 ♻️ ➰
 
 [Juros.elm](Juros.elm)
 

@@ -967,6 +967,10 @@ This is a list of links in this repository to solutions in different dialects, o
 
 [juros.moon](juros.moon)
 
+### Moscow ML (31/05/2024) 🏛️ ♻️ ✍️ ➰
+
+[juros.sml](juros.sml)
+
 ### MSX BASIC (02/01/2025) 🧠 💖 🔧 ✍️
 
 [JUROSMSX.BAS](JUROSMSX.BAS)
@@ -1468,10 +1472,6 @@ This is a list of links in this repository to solutions in different dialects, o
 ### Smalltalk (14/05/2024) 🧠 🏛️ 🔧 💡 ✍️
 
 [RER-Juros.st](RER-Juros.st)
-
-### SML (31/05/2024) 🏛️ ♻️ ✍️
-
-[juros.sml](juros.sml)
 
 ### SML/NJ (07/11/2026) ♻️ ➰
 

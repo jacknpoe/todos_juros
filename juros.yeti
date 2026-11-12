@@ -1,54 +1,91 @@
-// Cálculo do juros, sendo que precisa de listas pra isso
+// Cálculo do juros, sendo que precisa de arrays pra isso
 // Versão 0.1: 31/05/2024: completo, mas sem saber muito sobre Yeti
+//        0.2: 12/11/2026: arrays escaláveis preenchidos dinamicamente; melhorias nos comentários; removidos casos especiais;
+//                         validados variáveis, parâmetros e cálculos; funções recursivas alteradas para permitir Tail Call Optimization (TCO)
 
-// variáveis básicas para simplificar as chamadas
+// variáveis escalares globais para simplificar as chamadas
 quantidade = 3;
 composto = true;
 periodo = 30.0;
-pagamentos = array [30.0, 60.0, 90.0];
-pesos = array [1.0, 1.0, 1.0];
+pagamentos = array [];
+pesos = array [];
 
-// função recursiva que realmente calcula a somatória de Pesos[]
-rGetPesoTotal indice =
-    if indice == 0 then pesos[0] else rGetPesoTotal (indice - 1) + pesos[indice] fi;
+// função recursiva que preenche o array pagamentos[]
+rPreenchePagamentos indice = 
+    if indice <= quantidade then
+        push pagamentos (indice * periodo);
+        rPreenchePagamentos (indice + 1)
+    fi;
 
-// perfume que calcula a somatória de Pesos[]
-getPesoTotal = rGetPesoTotal (quantidade - 1);
+// função açúcar que preenche o array pagamentos[]
+preenchePagamentos = rPreenchePagamentos 1;
+
+// função recursiva que preenche o array pesos[]
+rPreenchePesos indice = 
+    if indice <= quantidade then
+        push pesos 1.0;
+        rPreenchePesos (indice + 1)
+    fi;
+
+// função açúcar que preenche o array pesos[]
+preenchePesos = rPreenchePesos 1;
+
+// função recursiva que calcula a somatória de Pesos[]
+rGetPesoTotal indice acumulador =
+    if indice < 0 then acumulador
+    else rGetPesoTotal (indice - 1) (pesos[indice] + acumulador) fi;
+
+// função açúcar que calcula a somatória de Pesos[]
+getPesoTotal = rGetPesoTotal (quantidade - 1) 0.0;
 
 // calcula a soma do amortecimento de todas as parcelas para juros compostos
-rJurosCompostos indice juros =
-    if indice == 0 then pesos[0] / exp((pagamentos[0] / periodo) * ln(1.0 + juros / 100.0))
-    else rJurosCompostos (indice - 1) juros + pesos[indice] / exp((pagamentos[indice] / periodo) * ln(1.0 + juros / 100.0)) fi;
+rJurosCompostos indice juros acumulador =
+    if indice < 0 then acumulador
+    else rJurosCompostos (indice - 1) juros (pesos[indice] / exp((pagamentos[indice] / periodo) * ln(1.0 + juros / 100.0)) + acumulador) fi;
 
 // calcula a soma do amortecimento de todas as parcelas para juros simples
-rJurosSimples indice juros =
-    if indice == 0 then pesos[0] / (1.0 + juros / 100.0 * pagamentos[0] / periodo)
-    else rJurosSimples (indice - 1) juros + pesos[indice] / (1.0 + juros / 100.0 * pagamentos[indice] / periodo) fi;
+rJurosSimples indice juros acumulador =
+    if indice < 0 then acumulador
+    else rJurosSimples (indice - 1) juros (pesos[indice] / (1.0 + juros / 100.0 * pagamentos[indice] / periodo) + acumulador) fi;
 
 // calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
-jurosParaAcrescimo juros =
-    if composto then (getPesoTotal / rJurosCompostos (quantidade - 1) juros - 1.0) * 100.0
-    else (getPesoTotal / rJurosSimples (quantidade - 1) juros - 1.0) * 100.0 fi;
+jurosParaAcrescimo juros = (
+    pesoTotal = getPesoTotal;
+    if quantidade < 1 or periodo <= 0.0 or pesoTotal <= 0.0 or juros <= 0.0 then 0.0
+    else
+        acumulador = if composto then rJurosCompostos (quantidade - 1) juros 0.0
+                     else rJurosSimples (quantidade - 1) juros 0.0 fi;
+        if acumulador <= 0.0 then 0.0
+        else (pesoTotal / acumulador - 1.0) * 100.0 fi
+    fi
+);
 
-// função recursiva no lugar de um for que realmente calcula o acréscimo
+// função recursiva que calcula os juros a partir do acréscimo e dados comuns (como parcelas)
 rAcrescimoParaJuros acrescimo minDiferenca iteracaoAtual minJuros maxJuros medJuros =
-    if iteracaoAtual == 0 or (maxJuros - minJuros) < minDiferenca then medJuros
-    else if jurosParaAcrescimo medJuros < acrescimo
+    if iteracaoAtual == 0 or (maxJuros - minJuros) <= minDiferenca then medJuros
+    else if jurosParaAcrescimo medJuros <= acrescimo
          then rAcrescimoParaJuros acrescimo minDiferenca (iteracaoAtual - 1) medJuros maxJuros ((medJuros + maxJuros) / 2.0)
          else rAcrescimoParaJuros acrescimo minDiferenca (iteracaoAtual - 1) minJuros medJuros ((minJuros + medJuros) / 2.0)
          fi
     fi;
 
-// calcula os juros a partir do acréscimo e dados comuns (como parcelas)
-acrescimoParaJuros acrescimo precisao maxIteracoes maxJuros =
-    rAcrescimoParaJuros acrescimo (exp(precisao * ln(0.1)))  maxIteracoes 0.0 maxJuros (maxJuros / 2.0);
+// função açúcar que calcula os juros a partir do acréscimo e dados comuns (como parcelas)
+acrescimoParaJuros acrescimo precisao maxIteracoes maxJuros = (
+    pesoTotal = getPesoTotal;
+    if quantidade < 1 or periodo <= 0.0 or pesoTotal <= 0.0 or acrescimo <= 0.0 or precisao < 1 or maxIteracoes < 1 or maxJuros <= 0.0 then 0.0
+    else rAcrescimoParaJuros acrescimo (exp(precisao * ln(0.1)))  maxIteracoes 0.0 maxJuros (maxJuros / 2.0) fi
+);  
 
-// faz os cálculos para testes
+// preenche os arrays pagamentos[] e pesos[]
+preenchePagamentos;
+preenchePesos;
+
+// calcula e guarda os resultados das funções
 pesoTotal = getPesoTotal;
 acrescimoCalculado = jurosParaAcrescimo 3.0;
-jurosCalculado = acrescimoParaJuros acrescimoCalculado 15 100 50.0;
+jurosCalculado = acrescimoParaJuros acrescimoCalculado 15 65 50.0;
 
-// imprime as variáveis calculadas
+// imprime os resultados
 println "Peso total = \(pesoTotal)";
 println "Acréscimo = \(acrescimoCalculado)";
 println "Juros = \(jurosCalculado)";

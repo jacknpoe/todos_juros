@@ -18,7 +18,7 @@ rPreenchePagamentos indice =
     fi;
 
 // função açúcar que preenche o array pagamentos[]
-preenchePagamentos = rPreenchePagamentos 1;
+preenchePagamentos () = rPreenchePagamentos 1;
 
 // função recursiva que preenche o array pesos[]
 rPreenchePesos indice = 
@@ -28,7 +28,7 @@ rPreenchePesos indice =
     fi;
 
 // função açúcar que preenche o array pesos[]
-preenchePesos = rPreenchePesos 1;
+preenchePesos () = rPreenchePesos 1;
 
 // função recursiva que calcula a somatória de pesos[]
 rGetPesoTotal indice acumulador =
@@ -36,7 +36,7 @@ rGetPesoTotal indice acumulador =
     else rGetPesoTotal (indice - 1) (pesos[indice] + acumulador) fi;
 
 // função açúcar que calcula a somatória de pesos[]
-getPesoTotal = rGetPesoTotal (quantidade - 1) 0.0;
+getPesoTotal () = rGetPesoTotal (quantidade - 1) 0.0;
 
 // calcula a soma da amortização de todas as parcelas para juros compostos
 rJurosCompostos indice juros acumulador =
@@ -50,7 +50,7 @@ rJurosSimples indice juros acumulador =
 
 // calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
 jurosParaAcrescimo juros = (
-    pesoTotal = getPesoTotal;
+    pesoTotal = getPesoTotal ();
     if quantidade < 1 or periodo <= 0.0 or pesoTotal <= 0.0 or juros <= 0.0 then 0.0
     else
         acumulador = if composto then rJurosCompostos (quantidade - 1) juros 0.0
@@ -71,17 +71,17 @@ rAcrescimoParaJuros acrescimo minDiferenca iteracaoAtual minJuros maxJuros medJu
 
 // função açúcar que calcula os juros a partir do acréscimo e dados comuns (como parcelas)
 acrescimoParaJuros acrescimo precisao maxIteracoes maxJuros = (
-    pesoTotal = getPesoTotal;
+    pesoTotal = getPesoTotal ();
     if quantidade < 1 or periodo <= 0.0 or pesoTotal <= 0.0 or acrescimo <= 0.0 or precisao < 1 or maxIteracoes < 1 or maxJuros <= 0.0 then 0.0
     else rAcrescimoParaJuros acrescimo (exp(precisao * ln(0.1))) maxIteracoes 0.0 maxJuros (maxJuros / 2.0) fi
 );  
 
 // preenche os arrays pagamentos[] e pesos[]
-preenchePagamentos;
-preenchePesos;
+preenchePagamentos ();
+preenchePesos ();
 
 // calcula e guarda os resultados das funções
-pesoTotal = getPesoTotal;
+pesoTotal = getPesoTotal ();
 acrescimoCalculado = jurosParaAcrescimo 3.0;
 jurosCalculado = acrescimoParaJuros acrescimoCalculado 15 65 50.0;
 

@@ -1,4 +1,4 @@
-// Cálculo do juros, sendo que precisa de arrays pra isso
+// Cálculo dos juros, sendo que precisa de arrays pra isso
 // Versão 0.1: 31/05/2024: completo, mas sem saber muito sobre Yeti
 //        0.2: 12/11/2026: arrays escaláveis preenchidos dinamicamente; melhorias nos comentários; removidos casos especiais;
 //                         validados variáveis, parâmetros e cálculos; funções recursivas alteradas para permitir Tail Call Optimization (TCO)
@@ -30,20 +30,20 @@ rPreenchePesos indice =
 // função açúcar que preenche o array pesos[]
 preenchePesos = rPreenchePesos 1;
 
-// função recursiva que calcula a somatória de Pesos[]
+// função recursiva que calcula a somatória de pesos[]
 rGetPesoTotal indice acumulador =
     if indice < 0 then acumulador
     else rGetPesoTotal (indice - 1) (pesos[indice] + acumulador) fi;
 
-// função açúcar que calcula a somatória de Pesos[]
+// função açúcar que calcula a somatória de pesos[]
 getPesoTotal = rGetPesoTotal (quantidade - 1) 0.0;
 
-// calcula a soma do amortecimento de todas as parcelas para juros compostos
+// calcula a soma da amortização de todas as parcelas para juros compostos
 rJurosCompostos indice juros acumulador =
     if indice < 0 then acumulador
     else rJurosCompostos (indice - 1) juros (pesos[indice] / exp((pagamentos[indice] / periodo) * ln(1.0 + juros / 100.0)) + acumulador) fi;
 
-// calcula a soma do amortecimento de todas as parcelas para juros simples
+// calcula a soma da amortização de todas as parcelas para juros simples
 rJurosSimples indice juros acumulador =
     if indice < 0 then acumulador
     else rJurosSimples (indice - 1) juros (pesos[indice] / (1.0 + juros / 100.0 * pagamentos[indice] / periodo) + acumulador) fi;

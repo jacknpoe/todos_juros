@@ -73,7 +73,7 @@ rAcrescimoParaJuros acrescimo minDiferenca iteracaoAtual minJuros maxJuros medJu
 acrescimoParaJuros acrescimo precisao maxIteracoes maxJuros = (
     pesoTotal = getPesoTotal;
     if quantidade < 1 or periodo <= 0.0 or pesoTotal <= 0.0 or acrescimo <= 0.0 or precisao < 1 or maxIteracoes < 1 or maxJuros <= 0.0 then 0.0
-    else rAcrescimoParaJuros acrescimo (exp(precisao * ln(0.1)))  maxIteracoes 0.0 maxJuros (maxJuros / 2.0) fi
+    else rAcrescimoParaJuros acrescimo (exp(precisao * ln(0.1))) maxIteracoes 0.0 maxJuros (maxJuros / 2.0) fi
 );  
 
 // preenche os arrays pagamentos[] e pesos[]

@@ -3,7 +3,7 @@
            0.2: 25/10/2026: convertida para a versão de camlc para Debian (print_newline, quebras de linha, encoding UTF-8), vetores agora são escaláveis
                             funções recursivas foram alteradas para permitir Tail Call Optimization (TCO)
            0.3:  04/11/2026: validações de variáveis, parâmetros e cálculos
-           0.4:  13/11/2026: corrigidas funções açúcares que viraram variáveis *)
+           0.4:  13/11/2026: corrigidas funções açúcares que estavam como variáveis *)
 
 (** valores para simplificar as chamadas *)
 let quantidade = 3 ;;
@@ -33,7 +33,7 @@ let rec rDefinePesos indice =
             rDefinePesos (indice - 1)
         ) ;;
 
-(** função açúcar que preenche os elementos do vetor pagamentos *)
+(** função açúcar que preenche os elementos do vetor oesos *)
 let definePesos () = rDefinePesos (quantidade - 1) ;;
 
 (** função recursiva que calcula a somatória de pesos *)

@@ -1087,7 +1087,7 @@ This is a list of links in this repository to solutions in different dialects, o
 [Juros.cls](Juros.cls)<br>
 [testajuros.mac](testajuros.mac)
 
-### OCaml (30/05/2024) 🏛️ 💡 ♻️
+### OCaml (30/05/2024) 🚀 🏛️ 💡 ♻️ ➰
 
 [juros.ml](juros.ml)
 

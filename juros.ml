@@ -1,50 +1,97 @@
-(** Cálculo dos juros, sendo que precisa de arrays para isso *)
-(** Versão 0.1: 30/05/2024: versão feita sem muito conhecimento de OCaml *)
+(** Cálculo dos juros, sendo que precisa de arrays para isso
+    Versão 0.1: 30/05/2024: versão feita sem muito conhecimento de OCaml
+           0.2: 13/11/2026: feitas as mesmas alterações que em Caml:
+                            arrays agora são escaláveis; funções recursivas foram alteradas para permitir Tail Call Optimization (TCO)
+                            validações de variáveis, parâmetros e cálculos; corrigidas funções açúcares que estavam como variáveis *)
 
 (** valores para simplificar as chamadas *)
-let quantidade : int = 3
-let composto = true
-let periodo = 30.0
-let pagamentos = [| 30.0; 60.0; 90.0 |]
-let pesos = [| 1.0; 1.0; 1.0|]
+let quantidade : int = 300000 ;;
+let composto = true ;;
+let periodo = 30.0 ;;
+let pagamentos = Array.make quantidade 0.0 ;;
+let pesos = Array.make quantidade 0.0 ;;
 
-(** função recursiva que calcula a somatória de Pesos[] *)
-let rec rGetPesoTotal indice = if indice = 0 then pesos.(0) else pesos.(indice) +. rGetPesoTotal(indice-1);;
+(** função recursiva que preenche os elementos do vetor pagamentos *)
+let rec rDefinePagamentos indice =
+    if indice < 0
+        then ()
+        else (
+            pagamentos.(indice) <- ((float_of_int (indice + 1)) *. periodo) ; 
+            rDefinePagamentos (indice - 1)
+        ) ;;
 
-(** calcula a somatória de Pesos[] *)
-let getPesoTotal = rGetPesoTotal(quantidade-1);;
+(** função açúcar que preenche os elementos do vetor pagamentos *)
+let definePagamentos () = rDefinePagamentos (quantidade - 1) ;;
+
+(** função recursiva que preenche os elementos do vetor pesos *)
+let rec rDefinePesos indice =
+    if indice < 0
+        then ()
+        else (
+            pesos.(indice) <- 1.0 ; 
+            rDefinePesos (indice - 1)
+        ) ;;
+
+(** função açúcar que preenche os elementos do vetor pesos *)
+let definePesos () = rDefinePesos (quantidade - 1) ;;
+
+(** função recursiva que calcula a somatória de pesos *)
+let rec rGetPesoTotal indice acumulador =
+    if indice < 0
+        then acumulador
+        else rGetPesoTotal (indice - 1) (pesos.(indice) +. acumulador) ;;
+
+(** função açúcar que calcula a somatória de pesos *)
+let getPesoTotal () = rGetPesoTotal (quantidade - 1) 0.0 ;;
 
 (** função recursiva que calcula o amortecimento das parcelas em juros compostos *)
-let rec rJurosCompostos indice juros =
-  if indice = 0 then pesos.(0) /. (1.0 +. juros /. 100.0) ** (pagamentos.(0) /. periodo)
-  else pesos.(indice) /. (1.0 +. juros /. 100.0) ** (pagamentos.(indice) /. periodo) +. rJurosCompostos (indice-1) juros ;;
+let rec rJurosCompostos indice juros acumulador =
+  if indice < 0
+    then acumulador
+    else rJurosCompostos (indice - 1) juros (pesos.(indice) /. (1.0 +. juros /. 100.0) ** (pagamentos.(indice) /. periodo) +. acumulador) ;;
 
 (** função recursiva que calcula o amortecimento das parcelas em juros simples *)
-let rec rJurosSimples indice juros =
-  if indice = 0 then pesos.(0) /. (1.0 +. juros /. 100.0 *. pagamentos.(0) /. periodo)
-  else pesos.(indice) /. (1.0 +. juros /. 100.0 *. pagamentos.(indice) /. periodo) +. rJurosSimples (indice-1) juros ;;
+let rec rJurosSimples indice juros acumulador =
+  if indice < 0
+    then acumulador
+    else rJurosSimples (indice - 1) juros (pesos.(indice) /. (1.0 +. juros /. 100.0 *. pagamentos.(indice) /. periodo) +. acumulador) ;;
 
-(** calcula o acréscimo a partir dos juros e das parcelas *)
+(** função que calcula o acréscimo a partir dos juros e das parcelas *)
 let jurosParaAcrescimo juros =
-  if composto then (getPesoTotal /. (rJurosCompostos (quantidade-1) juros) -. 1.0) *. 100.0 
-  else (getPesoTotal /. (rJurosSimples (quantidade-1) juros) -. 1.0) *. 100.0  ;;
+  let pesoTotal = getPesoTotal () in
+  if quantidade < 1 || periodo <= 0.0 || pesoTotal <= 0.0 || juros <= 0.0
+    then 0.0
+    else let acumulador = if composto
+      then rJurosCompostos (quantidade - 1) juros 0.0
+      else rJurosSimples (quantidade - 1) juros 0.0 in
+        if acumulador <= 0.0
+          then 0.0
+          else (pesoTotal /. acumulador -. 1.0) *. 100.0 ;;
 
-(** função recursiva no lugar de um for que realmente calcula o acréscimo *)
+(** função recursiva que calcula os juros a partir do acréscimo e das parcelas *)
 let rec rAcrescimoParaJuros acrescimo minDiferenca iteracaoAtual minJuros maxJuros medJuros =
   if iteracaoAtual = 0 || (maxJuros -. minJuros) < minDiferenca then medJuros else
-    if jurosParaAcrescimo medJuros < acrescimo then rAcrescimoParaJuros acrescimo minDiferenca (iteracaoAtual-1) medJuros maxJuros ((medJuros +. maxJuros) /. 2.0)
-    else rAcrescimoParaJuros acrescimo minDiferenca (iteracaoAtual-1) minJuros medJuros ((minJuros +. medJuros) /. 2.0);;
+    if jurosParaAcrescimo medJuros < acrescimo 
+      then rAcrescimoParaJuros acrescimo minDiferenca (iteracaoAtual - 1) medJuros maxJuros ((medJuros +. maxJuros) /. 2.0)
+      else rAcrescimoParaJuros acrescimo minDiferenca (iteracaoAtual - 1) minJuros medJuros ((minJuros +. medJuros) /. 2.0) ;;
 
-(** calcula os juros a partir do acréscimo e das parcelas *)
+(** função açúcar que calcula os juros a partir do acréscimo e das parcelas *)
 let acrescimoParaJuros acrescimo precisao maxIteracoes maxJuros =
-  rAcrescimoParaJuros acrescimo (0.1 ** (float precisao)) maxIteracoes 0.0 maxJuros (maxJuros /. 2.0);;
+  let pesoTotal = getPesoTotal () in
+  if quantidade < 1 || periodo <= 0.0 || pesoTotal <= 0.0 || acrescimo <= 0.0 || precisao < 1 || maxIteracoes < 1 || maxJuros <= 0.0
+    then 0.0
+    else rAcrescimoParaJuros acrescimo (0.1 ** (float_of_int precisao)) maxIteracoes 0.0 maxJuros (maxJuros /. 2.0) ;;
+
+(** define os valores dos vetores *)
+definePagamentos () ;;
+definePesos () ;;
 
 (** faz os cálculos para testes *)
-let pesoTotal = getPesoTotal;;
-let acrescimoCalculado = jurosParaAcrescimo 3.0;;
-let jurosCalculado = acrescimoParaJuros acrescimoCalculado 15 100 50.0;;
+let pesoTotal = getPesoTotal () ;;
+let acrescimoCalculado = jurosParaAcrescimo 3.0 ;;
+let jurosCalculado = acrescimoParaJuros acrescimoCalculado 15 65 50.0 ;;
 
 (** imprime os resultados *)
-Printf.printf "Peso total = %.15f\n" pesoTotal;
-Printf.printf "Acréscimo = %.15f\n" acrescimoCalculado;
-Printf.printf "Juros = %.15f\n" jurosCalculado;
+Printf.printf "Peso total = %.15f\n" pesoTotal ;;
+Printf.printf "Acréscimo = %.15f\n" acrescimoCalculado ;;
+Printf.printf "Juros = %.15f\n" jurosCalculado ;;

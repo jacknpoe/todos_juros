@@ -25,21 +25,21 @@ let definePagamentos () = rDefinePagamentos (quantidade - 1) ;;
 
 (** função recursiva que preenche os elementos do vetor pesos *)
 let rec rDefinePesos indice =
-    if indice < 0
-        then ()
-        else (
-            pesos.(indice) <- 1.0 ; 
-            rDefinePesos (indice - 1)
-        ) ;;
+  if indice < 0
+    then ()
+    else (
+      pesos.(indice) <- 1.0 ; 
+      rDefinePesos (indice - 1)
+    ) ;;
 
 (** função açúcar que preenche os elementos do vetor pesos *)
 let definePesos () = rDefinePesos (quantidade - 1) ;;
 
 (** função recursiva que calcula a somatória de pesos *)
 let rec rGetPesoTotal indice acumulador =
-    if indice < 0
-        then acumulador
-        else rGetPesoTotal (indice - 1) (pesos.(indice) +. acumulador) ;;
+  if indice < 0
+    then acumulador
+    else rGetPesoTotal (indice - 1) (pesos.(indice) +. acumulador) ;;
 
 (** função açúcar que calcula a somatória de pesos *)
 let getPesoTotal () = rGetPesoTotal (quantidade - 1) 0.0 ;;

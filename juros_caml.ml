@@ -14,33 +14,33 @@ let pesos = make_vect quantidade 0.0 ;;
 
 (** função recursiva que preenche os elementos do vetor pagamentos *)
 let rec rDefinePagamentos indice =
-    if indice < 0
-        then ()
-        else (
-            pagamentos.(indice) <- ((float_of_int (indice + 1)) *. periodo) ; 
-            rDefinePagamentos (indice - 1)
-        ) ;;
+  if indice < 0
+    then ()
+    else (
+      pagamentos.(indice) <- ((float_of_int (indice + 1)) *. periodo) ; 
+      rDefinePagamentos (indice - 1)
+    ) ;;
 
 (** função açúcar que preenche os elementos do vetor pagamentos *)
 let definePagamentos () = rDefinePagamentos (quantidade - 1) ;;
 
 (** função recursiva que preenche os elementos do vetor pesos *)
 let rec rDefinePesos indice =
-    if indice < 0
-        then ()
-        else (
-            pesos.(indice) <- 1.0 ; 
-            rDefinePesos (indice - 1)
-        ) ;;
+  if indice < 0
+    then ()
+    else (
+      pesos.(indice) <- 1.0 ; 
+      rDefinePesos (indice - 1)
+    ) ;;
 
 (** função açúcar que preenche os elementos do vetor oesos *)
 let definePesos () = rDefinePesos (quantidade - 1) ;;
 
 (** função recursiva que calcula a somatória de pesos *)
 let rec rGetPesoTotal indice acumulador =
-    if indice < 0
-        then acumulador
-        else rGetPesoTotal (indice - 1) (pesos.(indice) +. acumulador) ;;
+  if indice < 0
+    then acumulador
+    else rGetPesoTotal (indice - 1) (pesos.(indice) +. acumulador) ;;
 
 (** função açúcar que calcula a somatória de pesos *)
 let getPesoTotal () = rGetPesoTotal (quantidade - 1) 0.0 ;;

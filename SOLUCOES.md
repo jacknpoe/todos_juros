@@ -200,6 +200,10 @@ This is a list of links in this repository to solutions in different dialects, o
 
 [juros.kbs](juros.kbs)
 
+### BASIC21 (14/11/2026) 🔧
+
+[juros21.bas](juros21.bas)
+
 ### BBC Basic (07/01/2025) ✍️
 
 [JUROSBBC.BAS](JUROSBBC.BAS)

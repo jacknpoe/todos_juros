@@ -857,3 +857,5 @@ Blockly Playground (31/07/2026)
 MakeCode Arcade (02/08/2026)
 
 SML/NJ (07/11/2026)
+
+BASIC21 (14/11/2026)

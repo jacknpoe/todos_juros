@@ -1218,7 +1218,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 [juros.pb](juros.pb)
 
-### PureScript (25/01/2025) 🔧 ♻️ ✍️
+### PureScript (25/01/2025) 🚀 🔧 ♻️ ✍️ ➰
 
 [Main.purs](Main.purs)
 

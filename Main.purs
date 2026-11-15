@@ -1,62 +1,99 @@
 -- Cálculo do juros, sendo que precisa de arrays pra isso
 -- Versão 0.1: 25/01/2025: versão feita sem muito conhecimento de PureScript
+--        0.2: 15/11/2026: melhores comentários; listas escaláveis criadas dinamicamente; removidos casos especiais; avaliados variáveis, parâmetros e cálculos
+--                         funções recursivas alteradas para permitir Tail Call Optimization (TCO)
 
-module Test.Main where  -- então, a solução está em forma de teste
+-- INSTALAR: spago install numbers lists integers
+-- COMPILAR: sudo npm install -g esbuild  &&  spago bundle --bundle-type app --platform node --minify --outfile juros.js  &&  node juros.js
 
-import Prelude  -- eu, até agora, não sei para que serve Prelude
+module Main where  -- então, a solução, dessa vez, está em Main
 
+import Prelude  -- fornece os fundamentos, como operadores
 import Effect (Effect)  -- tipo de retorno da função main
 import Effect.Class.Console (log)  -- para imprimir 
 import Data.Number (pow)  -- para fazer exponenciação
 import Data.Number.Format (toStringWith, fixed)  -- para formatar números para string com dígitos fixos
-import Data.List ((:), List(..), tail, head)  -- para declaração de listas, listas e operações de cabeça e cauda 
-import Data.Maybe (isNothing, fromMaybe)  -- para usar Nothing (cauda vazia) e converter de Maybe para Number
+import Data.List ((:), List(..))  -- para declaração de listas e listas
 import Data.Int (toNumber)  -- para converter pPrecisao de Int para Number
 
 -- variáveis globais evitam excesso de parâmetros nas chamadas
+quantidade :: Int
+quantidade = 300000
 composto :: Boolean
 composto = true
 periodo :: Number
 periodo = 30.0
 pagamentos :: List Number
-pagamentos = 30.0 : 60.0 : 90.0 : Nil
+pagamentos = criaPagamentos
 pesos :: List Number
-pesos = 1.0 : 1.0 : 1.0 : Nil
+pesos = criaPesos
 
--- calcula a somatória de Pesos[]
+-- função açúcar que cria a lista pagamentos
+criaPagamentos :: List Number 
+criaPagamentos = rCriaPagamentos 1 Nil
+
+-- função recursiva que cria a lista pagamentos
+rCriaPagamentos :: Int -> List Number -> List Number
+rCriaPagamentos indice acumulador
+  | indice > quantidade = acumulador
+  | otherwise = rCriaPagamentos (indice + 1) ((toNumber indice) * periodo : acumulador)
+
+-- função açúcar que cria a lista pagamentos
+criaPesos :: List Number 
+criaPesos = rCriaPesos 1 Nil
+
+-- função recursiva que cria a lista pesos
+rCriaPesos :: Int -> List Number -> List Number
+rCriaPesos indice acumulador
+  | indice > quantidade = acumulador
+  | otherwise = rCriaPesos (indice + 1) (1.0 : acumulador)
+
+-- função açúcar que calcula a somatória de pesos
 getPesoTotal :: Number
-getPesoTotal = rGetPesoTotal pesos
+getPesoTotal = rGetPesoTotal pesos 0.0
 
--- função recursiva que realmente calcula a somatória de pesos[]
-rGetPesoTotal :: List Number -> Number
-rGetPesoTotal pPesos
-  | isNothing (tail pPesos) = fromMaybe 0.0 (head pPesos)
-  | otherwise = fromMaybe 0.0 (head pPesos) + rGetPesoTotal (fromMaybe (0.0 : Nil) (tail pPesos))
+-- função recursiva que calcula a somatória de pesos
+rGetPesoTotal :: List Number -> Number -> Number
+rGetPesoTotal Nil acumulador = acumulador
+rGetPesoTotal (hPes:tPes) acumulador = rGetPesoTotal tPes (hPes + acumulador)
 
--- calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
+-- função que calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
 jurosParaAcrescimo :: Number -> Number
-jurosParaAcrescimo pJuros
-  | composto = (getPesoTotal / (rJurosCompostos pagamentos pesos pJuros) - 1.0) * 100.0
-  | otherwise = (getPesoTotal / (rJurosSimples pagamentos pesos pJuros) - 1.0) * 100.0
+jurosParaAcrescimo pJuros =
+  let
+    pesoTotal = getPesoTotal
+  in
+    if quantidade < 1 || periodo <= 0.0 || pesoTotal <= 0.0 || pJuros <= 0.0
+    then 0.0
+    else let
+      acumulador = if composto
+      then rJurosCompostos pagamentos pesos pJuros 0.0
+      else rJurosSimples pagamentos pesos pJuros 0.0
+    in
+      if acumulador <= 0.0
+      then 0.0
+      else (pesoTotal / acumulador - 1.0) * 100.0
 
--- calcula a soma do amortecimento de todas as parcelas para juros compostos
-rJurosCompostos :: List Number -> List Number -> Number -> Number
-rJurosCompostos pPagamentos pPesos pJuros
-  | isNothing (tail pPesos) = (fromMaybe 0.0 (head pPesos)) / pow (1.0 + pJuros / 100.0) ((fromMaybe 0.0 (head pPagamentos)) / periodo)
-  | otherwise = (fromMaybe 0.0 (head pPesos)) / pow (1.0 + pJuros / 100.0) ((fromMaybe 0.0 (head pPagamentos)) / periodo) + rJurosCompostos (fromMaybe (0.0 : Nil) (tail pPagamentos)) (fromMaybe (0.0 : Nil) (tail pPesos)) pJuros
+-- função recursiva que calcula a soma do amortecimento de todas as parcelas para juros compostos
+rJurosCompostos :: List Number -> List Number -> Number -> Number -> Number
+rJurosCompostos _ Nil _ acumulador = acumulador
+rJurosCompostos Nil _ _ acumulador = acumulador
+rJurosCompostos (hPag:tPag) (hPes:tPes) pJuros acumulador = rJurosCompostos tPag tPes pJuros (hPes / pow (1.0 + pJuros / 100.0) (hPag / periodo) + acumulador)
 
--- calcula a soma do amortecimento de todas as parcelas para juros simples
-rJurosSimples :: List Number -> List Number -> Number -> Number
-rJurosSimples pPagamentos pPesos pJuros
-  | isNothing (tail pPesos) = (fromMaybe 0.0 (head pPesos)) / (1.0 + pJuros / 100.0 * (fromMaybe 0.0 (head pPagamentos)) / periodo)
-  | otherwise = (fromMaybe 0.0 (head pPesos)) / (1.0 + pJuros / 100.0 * (fromMaybe 0.0 (head pPagamentos)) / periodo) + rJurosSimples (fromMaybe (0.0 : Nil) (tail pPagamentos)) (fromMaybe (0.0 : Nil) (tail pPesos)) pJuros
+-- função recursiva que calcula a soma do amortecimento de todas as parcelas para juros simples
+rJurosSimples :: List Number -> List Number -> Number -> Number -> Number
+rJurosSimples _ Nil _ acumulador = acumulador
+rJurosSimples Nil _ _ acumulador = acumulador
+rJurosSimples (hPag:tPag) (hPes:tPes) pJuros acumulador = rJurosSimples tPag tPes pJuros (hPes / (1.0 + pJuros / 100.0 * hPag / periodo) + acumulador)
 
--- calcula os juros a partir do acréscimo e dados comuns (como parcelas)
+-- função açúcar que calcula os juros a partir do acréscimo e dados comuns (como parcelas)
 acrescimoParaJuros :: Number -> Int -> Int -> Number -> Number
 acrescimoParaJuros pAcrescimo pPrecisao pMaxIteracoes pMaxJuros =
-  rAcrescimoParaJuros pAcrescimo (pow 0.1 (toNumber pPrecisao)) pMaxIteracoes 0.0 pMaxJuros (pMaxJuros / 2.0)
+  if quantidade < 1 || periodo <= 0.0 || getPesoTotal <= 0.0 || pAcrescimo <= 0.0 || pPrecisao < 1 || pMaxIteracoes < 1 || pMaxJuros <= 0.0
+  then 0.0
+  else rAcrescimoParaJuros pAcrescimo (pow 0.1 (toNumber pPrecisao)) pMaxIteracoes 0.0 pMaxJuros (pMaxJuros / 2.0)
 
--- função recursiva no lugar de um for que realmente calcula o acréscimo
+-- função recursiva que calcula os juros a partir do acréscimo e dados comuns (como parcelas)
 rAcrescimoParaJuros :: Number -> Number -> Int -> Number -> Number -> Number -> Number
 rAcrescimoParaJuros pAcrescimo pMinDiferenca pIteracaoAtual pMinJuros pMaxJuros pMedJuros
   | pIteracaoAtual == 0 = pMedJuros

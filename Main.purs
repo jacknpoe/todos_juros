@@ -106,7 +106,7 @@ main = do
   -- calcula e guarda os resultados das funções principais
   let pesoTotal = getPesoTotal
   let acrescimoCalculado = jurosParaAcrescimo 3.0
-  let jurosCalculado = acrescimoParaJuros acrescimoCalculado 15 100 50.0
+  let jurosCalculado = acrescimoParaJuros acrescimoCalculado 15 65 50.0
 
   -- imprime os resultados
   log ("Peso total = " <> toStringWith (fixed 15) pesoTotal)

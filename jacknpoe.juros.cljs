@@ -2,6 +2,7 @@
 ;; Versão 0.1: 30/01/2025: versão feita a partir de Clojure, alterados os prints
 ;;        0.2: 03/11/2026: melhorias nos comentários, listas agora dinâmicas e escaladas, variáveis em jurosParaAcrescimo
 ;;                         rGetPesoTotal, rJurosCompostos e rJurosSimples (somatórias) convertidos para usar reduces e maps
+;;        0.3: 15/11/2026: sem TCO nas funções que criam listas
 
 ;; namespace
 (ns jacknpoe.juros (:gen-class))
@@ -12,29 +13,29 @@
 (def Periodo 30.0)
 
 ;; função recursiva que gera a lista Pagamentos
-(defn rCriaPagamentos [indice acumulador]
+(defn rCriaPagamentos [indice]
   (if (> indice Quantidade)
-    acumulador
-    (rCriaPagamentos (inc indice) (cons (* indice Periodo) acumulador))
+    ()
+    (cons (* indice Periodo) (rCriaPagamentos (inc indice)))
   )
 )
 
 ;; função recursiva que gera a lista Pesos
 (defn criaPagamentos []
-  (rCriaPagamentos 1 ())
+  (rCriaPagamentos 1)
 )
 
 ;; função recursiva que gera a lista Pesos
-(defn rCriaPesos [indice acumulador]
+(defn rCriaPesos [indice]
   (if (> indice Quantidade)
-    acumulador
-    (rCriaPesos (inc indice) (cons 1.0 acumulador))
+    ()
+    (cons 1.0 (rCriaPesos (inc indice)))
   )
 )
 
 ;; função recursiva que gera a lista Pesos
 (defn criaPesos []
-  (rCriaPesos 1 ())
+  (rCriaPesos 1)
 )
 
 ;; listas globais

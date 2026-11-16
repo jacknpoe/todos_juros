@@ -18,7 +18,7 @@ import Data.Int (toNumber)  -- para converter pPrecisao de Int para Number
 
 -- variáveis globais evitam excesso de parâmetros nas chamadas
 quantidade :: Int
-quantidade = 300000
+quantidade = 3
 composto :: Boolean
 composto = true
 periodo :: Number
@@ -60,19 +60,21 @@ rGetPesoTotal (hPes:tPes) acumulador = rGetPesoTotal tPes (hPes + acumulador)
 -- função que calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
 jurosParaAcrescimo :: Number -> Number
 jurosParaAcrescimo pJuros =
-  let
-    pesoTotal = getPesoTotal
-  in
-    if quantidade < 1 || periodo <= 0.0 || pesoTotal <= 0.0 || pJuros <= 0.0
-    then 0.0
-    else let
-      acumulador = if composto
-      then rJurosCompostos pagamentos pesos pJuros 0.0
-      else rJurosSimples pagamentos pesos pJuros 0.0
+  if quantidade < 1 || periodo <= 0.0 || pJuros <= 0.0
+  then 0.0
+  else let
+      pesoTotal = getPesoTotal
     in
-      if acumulador <= 0.0
+      if pesoTotal <= 0.0
       then 0.0
-      else (pesoTotal / acumulador - 1.0) * 100.0
+      else let
+        acumulador = if composto
+        then rJurosCompostos pagamentos pesos pJuros 0.0
+        else rJurosSimples pagamentos pesos pJuros 0.0
+      in
+        if acumulador <= 0.0
+        then 0.0
+        else (pesoTotal / acumulador - 1.0) * 100.0
 
 -- função recursiva que calcula a soma da amortização de todas as parcelas para juros compostos
 rJurosCompostos :: List Number -> List Number -> Number -> Number -> Number
@@ -89,7 +91,7 @@ rJurosSimples (hPag:tPag) (hPes:tPes) pJuros acumulador = rJurosSimples tPag tPe
 -- função açúcar que calcula os juros a partir do acréscimo e dados comuns (como parcelas)
 acrescimoParaJuros :: Number -> Int -> Int -> Number -> Number
 acrescimoParaJuros pAcrescimo pPrecisao pMaxIteracoes pMaxJuros =
-  if quantidade < 1 || periodo <= 0.0 || getPesoTotal <= 0.0 || pAcrescimo <= 0.0 || pPrecisao < 1 || pMaxIteracoes < 1 || pMaxJuros <= 0.0
+  if quantidade < 1 || periodo <= 0.0 || pAcrescimo <= 0.0 || pPrecisao < 1 || pMaxIteracoes < 1 || pMaxJuros <= 0.0 || getPesoTotal <= 0.0
   then 0.0
   else rAcrescimoParaJuros pAcrescimo (pow 0.1 (toNumber pPrecisao)) pMaxIteracoes 0.0 pMaxJuros (pMaxJuros / 2.0)
 

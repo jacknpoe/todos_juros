@@ -1,8 +1,13 @@
+# Cálculo do juros, sendo que precisa de listas pra isso
+# Versão 0.1: 05/04/2024: começo sem conhecer muita coisa necessária, como índices (apenas estrutura e construtor)
+#        0.2: 29/04/2024: as três funções e as recursivas (ou seja, todo o cálculo)
+#        0.3: 16/11/2026: melhorados comentários; variáveis separadas dos IO.puts; avaliação de acumulador; troca de Enum.at por cabeça e cauda; variáveis para configuração
+#                         listas escaláveis criadas dinamicamente; removidos casos especiais; funções recursivas alteradas para permitir Tail Call Optimization (TCO)
+
+# módulo da "classe" Juros
 defmodule Juros do
   @moduledoc """
-  Cálculo do juros, sendo que precisa de listas pra isso
-  Versão 0.1: 05/04/2024: começo sem conhecer muita coisa necessária, como índices (apenas estrutura e construtor)
-         0.2: 29/04/2024: as três funções e as recursivas (ou seja, todo o cálculo)
+  Estrutura e funções de cálculos entre acréscimo e juros
   """
 
   # estrutura básica para simplificar as chamadas
@@ -19,21 +24,18 @@ defmodule Juros do
     }
   end
 
-  # calcula a somatória de Pesos[]
-  def getPesoTotal(ojuros) do
-    rGetPesoTotal(ojuros, ojuros.quantidade-1)
-  end
+  # função açúcar que calcula a somatória de pesos
+  def getPesoTotal(ojuros) do rGetPesoTotal(ojuros.pesos, 0.0) end
 
-  # cálculo real da somatória de Pesos[]
-  def rGetPesoTotal(ojuros, indice) do
-    if indice == 0 do
-      Enum.at(ojuros.pesos, 0)
-    else
-      Enum.at(ojuros.pesos, indice) + rGetPesoTotal(ojuros, indice - 1)
+  # função recursiva que calcula a somatória de pesos
+  def rGetPesoTotal(pesos, acumulador) do
+    case pesos do
+      [] -> acumulador
+      [hPes|tPes] -> rGetPesoTotal(tPes, hPes + acumulador)
     end
   end
 
-  # calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
+  # função que calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
   def jurosParaAcrescimo(ojuros, juros) do
     if juros <= 0.0 || ojuros.quantidade <= 0 || ojuros.periodo <= 0.0 do
       0.0
@@ -42,34 +44,41 @@ defmodule Juros do
       if pesoTotal <= 0.0 do
         0.0
       else
-        if ojuros.composto do
-          (pesoTotal / rJurosCompostos(ojuros, ojuros.quantidade - 1, juros) - 1.0) * 100.0
+        acumulador = if ojuros.composto do
+          rJurosCompostos(ojuros, ojuros.pagamentos, ojuros.pesos, juros, 0.0)
         else
-          (pesoTotal / rJurosSimples(ojuros, ojuros.quantidade - 1, juros) - 1.0) * 100.0
+          rJurosSimples(ojuros, ojuros.pagamentos, ojuros.pesos, juros, 0.0)
+        end
+        if acumulador <= 0.0 do
+          0.0
+        else
+          (pesoTotal / acumulador - 1.0) * 100.0
         end
       end
     end
   end
 
-  # calcula a soma do amortecimento de todas as parcelas para juros compostos
-  def rJurosCompostos(ojuros, indice, juros) do
-    if indice == 0 do
-      Enum.at(ojuros.pesos, 0) / :math.pow(1.0 + juros / 100.0, Enum.at(ojuros.pagamentos, 0) / ojuros.periodo)
-    else
-      Enum.at(ojuros.pesos, indice) / :math.pow(1.0 + juros / 100.0, Enum.at(ojuros.pagamentos, indice) / ojuros.periodo) + rJurosCompostos(ojuros, indice - 1, juros)
+  # função recursiva que calcula a soma da amortização de todas as parcelas para juros compostos
+  def rJurosCompostos(ojuros, pagamentos, pesos, juros, acumulador) do
+    case {pagamentos, pesos} do
+      {[], []} -> acumulador
+      {[], [_|_]} -> acumulador
+      {[_|_], []} -> acumulador
+      {[hPag|tPag], [hPes|tPes]} -> rJurosCompostos(ojuros, tPag, tPes, juros, hPes * :math.pow(1.0 + juros / 100.0, -hPag / ojuros.periodo) + acumulador)
     end
   end
 
-  # calcula a soma do amortecimento de todas as parcelas para juros simples
-  def rJurosSimples(ojuros, indice, juros) do
-    if indice == 0 do
-      Enum.at(ojuros.pesos, 0) / (1.0 + juros / 100.0 * Enum.at(ojuros.pagamentos, 0) / ojuros.periodo)
-    else
-      Enum.at(ojuros.pesos, indice) / (1.0 + juros / 100.0 * Enum.at(ojuros.pagamentos, indice) / ojuros.periodo) + rJurosSimples(ojuros, indice - 1, juros)
+  # função recursiva que calcula a soma da amortização de todas as parcelas para juros simples
+  def rJurosSimples(ojuros, pagamentos, pesos, juros, acumulador) do
+    case {pagamentos, pesos} do
+      {[], []} -> acumulador
+      {[], [_|_]} -> acumulador
+      {[_|_], []} -> acumulador
+      {[hPag|tPag], [hPes|tPes]} -> rJurosSimples(ojuros, tPag, tPes, juros, hPes / (1.0 + juros / 100.0 * hPag / ojuros.periodo) + acumulador)
     end
   end
 
-  # calcula os juros a partir do acréscimo e dados comuns (como parcelas)
+  # função açúcar que calcula os juros a partir do acréscimo e dados comuns (como parcelas)
   def acrescimoParaJuros(ojuros, acrescimo, precisao, maxIteracoes, maxJuros) do
     if acrescimo <= 0.0 || ojuros.quantidade < 1 || ojuros.periodo <= 0.0 || maxIteracoes < 1 || precisao < 1 || maxJuros <= 0.0 do
       0.0
@@ -82,7 +91,7 @@ defmodule Juros do
     end
   end
 
-  # função recursiva no lugar de um for que realmente calcula o acréscimo
+  # função recursiva que calcula os juros a partir do acréscimo e dados comuns (como parcelas)
   def rAcrescimoParaJuros(ojuros, acrescimo, minDiferenca, iteracaoAtual, minJuros, maxJuros, medJuros) do
     if iteracaoAtual == 0 || (maxJuros - minJuros) < minDiferenca do
       medJuros
@@ -96,18 +105,58 @@ defmodule Juros do
   end
 end
 
+# módulo de funções de listas
+defmodule Listas do
+  @moduledoc """
+  Funções de criação dinâmica de listas escaláveis
+  """
+  # função açúcar que cria a lista pagamentos
+  def criaPagamentos(quantidade, periodo) do rCriaPagamentos(quantidade, periodo, 1, []) end
+
+  # função recursiva que cria a lista pagamentos
+  def rCriaPagamentos(quantidade, periodo, indice, acumulador) do
+    if indice > quantidade do
+      acumulador
+    else
+      rCriaPagamentos(quantidade, periodo, indice + 1, [indice * periodo | acumulador])
+    end
+  end
+
+  # função açúcar que cria a lista pesos
+  def criaPesos(quantidade) do rCriaPesos(quantidade, 1, []) end
+
+  # função recursiva que cria a lista pesos
+  def rCriaPesos(quantidade, indice, acumulador) do
+    if indice > quantidade do
+      acumulador
+    else
+      rCriaPesos(quantidade, indice + 1, [1.0 | acumulador])
+    end
+  end
+end
+
+# módulo de testes
 defmodule Main do
   def main do
-    # define os valores de ojuros
-    ojuros = Juros.novo(3, true, 30.0, [30.0, 60.0, 90.0], [1.0, 1.0, 1.0])
+    # para os valores de ojuros
+    quantidade = 3
+    composto = true
+    periodo = 30.0
+    pagamentos = Listas.criaPagamentos(quantidade, periodo)
+    pesos = Listas.criaPesos(quantidade)
 
-    # testa as funções
+    # define os valores de ojuros
+    ojuros = Juros.novo(quantidade, composto, periodo, pagamentos, pesos)
+
+    # calcula e guarda os resultados das funções
     pesoTotal = Juros.getPesoTotal(ojuros)
+    acrescimoCalculado = Juros.jurosParaAcrescimo(ojuros, 3.0)
+    jurosCalculado = Juros.acrescimoParaJuros(ojuros, acrescimoCalculado, 15, 65, 50.0)
+
+    # imprime os resultados
     IO.puts("Peso total = #{pesoTotal}")
-    acrescimo = Juros.jurosParaAcrescimo(ojuros, 3.0)
-    IO.puts("Acréscimo = #{acrescimo}")
-    juros = Juros.acrescimoParaJuros(ojuros, acrescimo, 15, 100, 50.0)
-    IO.puts("Juros = #{juros}")
+    IO.puts("Acréscimo = #{acrescimoCalculado}")
+    IO.puts("Juros = #{jurosCalculado}")
   end
 end
 

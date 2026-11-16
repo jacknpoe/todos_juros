@@ -441,7 +441,7 @@ This is a list of links in this repository to solutions in different dialects, o
 [application.e](application.e)<br>
 [juros.e](juros.e)
 
-### Elixir (29/04/2024) 🔧 💖 ♻️
+### Elixir (29/04/2024) 🚀 🔧 💖 ♻️ ➰
 
 [juros.exs](juros.exs)
 

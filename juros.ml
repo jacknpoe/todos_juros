@@ -44,13 +44,13 @@ let rec rGetPesoTotal indice acumulador =
 (** função açúcar que calcula a somatória de pesos *)
 let getPesoTotal () = rGetPesoTotal (quantidade - 1) 0.0 ;;
 
-(** função recursiva que calcula o amortecimento das parcelas em juros compostos *)
+(** função recursiva que calcula a amortização das parcelas em juros compostos *)
 let rec rJurosCompostos indice juros acumulador =
   if indice < 0
     then acumulador
     else rJurosCompostos (indice - 1) juros (pesos.(indice) /. (1.0 +. juros /. 100.0) ** (pagamentos.(indice) /. periodo) +. acumulador) ;;
 
-(** função recursiva que calcula o amortecimento das parcelas em juros simples *)
+(** função recursiva que calcula a amortização das parcelas em juros simples *)
 let rec rJurosSimples indice juros acumulador =
   if indice < 0
     then acumulador

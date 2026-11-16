@@ -53,7 +53,7 @@
   (rGetPesoTotal 0)
 )
 
-;; função recursiva que calcula a soma do amortecimento de todas as parcelas para juros compostos
+;; função recursiva que calcula a soma da amortização de todas as parcelas para juros compostos
 (defn rJurosCompostos [indice juros]
   (if (< indice 0)
     0.0
@@ -61,7 +61,7 @@
   )
 )
 
-;; função recursiva que calcula a soma do amortecimento de todas as parcelas para juros simples
+;; função recursiva que calcula a soma da amortização de todas as parcelas para juros simples
 (defn rJurosSimples [indice juros]
   (if (< indice 0)
     0.0

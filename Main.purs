@@ -74,13 +74,13 @@ jurosParaAcrescimo pJuros =
       then 0.0
       else (pesoTotal / acumulador - 1.0) * 100.0
 
--- função recursiva que calcula a soma do amortecimento de todas as parcelas para juros compostos
+-- função recursiva que calcula a soma da amortização de todas as parcelas para juros compostos
 rJurosCompostos :: List Number -> List Number -> Number -> Number -> Number
 rJurosCompostos _ Nil _ acumulador = acumulador
 rJurosCompostos Nil _ _ acumulador = acumulador
 rJurosCompostos (hPag:tPag) (hPes:tPes) pJuros acumulador = rJurosCompostos tPag tPes pJuros (hPes / pow (1.0 + pJuros / 100.0) (hPag / periodo) + acumulador)
 
--- função recursiva que calcula a soma do amortecimento de todas as parcelas para juros simples
+-- função recursiva que calcula a soma da amortização de todas as parcelas para juros simples
 rJurosSimples :: List Number -> List Number -> Number -> Number -> Number
 rJurosSimples _ Nil _ acumulador = acumulador
 rJurosSimples Nil _ _ acumulador = acumulador

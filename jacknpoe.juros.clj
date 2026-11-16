@@ -10,7 +10,7 @@
 (ns jacknpoe.juros (:gen-class))
 
 ;; variáveis globais
-(def Quantidade 1000)
+(def Quantidade 3)
 (def Composto true)
 (def Periodo 30.0)
 (def Pagamentos (double-array Quantidade))
@@ -71,17 +71,20 @@
 
 ;; função que calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
 (defn jurosParaAcrescimo [juros]
-  (let [pesoTotal (getPesoTotal)]
-    (if (or (<= juros 0.0) (< Quantidade 1) (<= Periodo 0.0) (<= pesoTotal 0.0))
-      0.0
-      (let [acumulador
-        (if Composto
-          (rJurosCompostos (dec Quantidade) juros)
-          (rJurosSimples (dec Quantidade) juros)
-        )]
-        (if (< acumulador 0.0)
-          0.0
-          (* (- (/ pesoTotal acumulador) 1.0) 100.0)
+  (if (or (<= juros 0.0) (< Quantidade 1) (<= Periodo 0.0))
+    0.0
+    (let [pesoTotal (getPesoTotal)]
+      (if (= pesoTotal 0.0)
+        0.0
+        (let [acumulador
+          (if Composto
+            (rJurosCompostos (dec Quantidade) juros)
+            (rJurosSimples (dec Quantidade) juros)
+          )]
+          (if (< acumulador 0.0)
+            0.0
+            (* (- (/ pesoTotal acumulador) 1.0) 100.0)
+          )
         )
       )
     )

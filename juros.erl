@@ -117,7 +117,7 @@ main(_) ->
   io:setopts(standard_io, [{encoding, unicode}]),
 
   %% variáveis para configurar o parcelamento
-  Quantidade = 300000,
+  Quantidade = 3,
   Composto = true,
   Periodo = 30.0,
   Pagamentos = criaPagamentos(Quantidade, Periodo),

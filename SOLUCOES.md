@@ -674,7 +674,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 [juros.ha](juros.ha)
 
-### Haskell (04/05/2024) 🔧 💡 💖 ♻️ ✍️
+### Haskell (04/05/2024) 🚀 🔧 💡 💖 ♻️ ✍️ ➰
 
 [juros.hs](juros.hs)
 

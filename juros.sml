@@ -44,12 +44,12 @@ fun rGetPesoTotal indice acumulador =
 (* função açúcar que calcula a somatória de Pesos *)
 fun getPesoTotal () = rGetPesoTotal (quantidade - 1) 0.0;
 
-(* função recursiva que calcula a soma do amortecimento de todas as parcelas para juros compostos *)
+(* função recursiva que calcula a soma da amortização de todas as parcelas para juros compostos *)
 fun rJurosCompostos indice juros acumulador =
     if indice < 0 then acumulador
     else rJurosCompostos (indice - 1) juros (acumulador + Array.sub(pesos, indice) * Math.pow(1.0 + juros / 100.0, ~(Array.sub(pagamentos, indice)) / periodo));
 
-(* função recursiva que calcula a soma do amortecimento de todas as parcelas para juros simples *)
+(* função recursiva que calcula a soma da amortização de todas as parcelas para juros simples *)
 fun rJurosSimples indice juros acumulador =
     if indice < 0 then acumulador
     else rJurosSimples (indice - 1) juros (acumulador + Array.sub(pesos, indice) / (1.0 + juros / 100.0 * Array.sub(pagamentos, indice) / periodo));

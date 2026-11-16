@@ -482,7 +482,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 [juros.eol](juros.eol)
 
-### Erlang (29/04/2024) 🧠 🏛️ 🔧 💡 💖 ♻️ ✍️
+### Erlang (29/04/2024) 🧠 🚀 🏛️ 🔧 💡 💖 ♻️ ✍️ ➰
 
 [juros.erl](juros.erl)
 

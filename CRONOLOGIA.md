@@ -859,3 +859,5 @@ MakeCode Arcade (02/08/2026)
 SML/NJ (07/11/2026)
 
 BASIC21 (14/11/2026)
+
+BazzBasic (16/11/2026)

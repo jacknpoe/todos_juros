@@ -64,7 +64,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 <br>
 
-# SOLUÇÕES / SOLUTIONS (426)
+# SOLUÇÕES / SOLUTIONS (427)
 
 ### 11l (14/03/2026) 🚀 ✍️
 
@@ -203,6 +203,10 @@ This is a list of links in this repository to solutions in different dialects, o
 ### BASIC21 (14/11/2026) 🔧
 
 [juros21.bas](juros21.bas)
+
+### BazzBasic (16/11/2026) 🔧 ✍️
+
+[jurosBB.bas](jurosBB.bas)
 
 ### BBC Basic (07/01/2025) ✍️
 

@@ -320,7 +320,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 [JUROSCLI.PRG](JUROSCLI.PRG)
 
-### Clojure (16/05/2024) ♻️
+### Clojure (16/05/2024) ♻️ ➰
 
 [jacknpoe.juros.clj](jacknpoe.juros.clj)
 

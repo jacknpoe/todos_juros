@@ -4,7 +4,9 @@
 ;;        0.3: 17/05/2024: versão com vetores no lugar de listas
 ;;        0.4: 17/05/2024: dec no lugar de - 1
 ;;        0.5: 15/11/2024: melhorias nos comentários; trocados vetores por arrays escaláveis dimanicamente preenchidos; removidos casos especiais
-;;                         validados variáveis, parâmetros e cálculos; variáveis antes de imprimir evitando recálculo;
+;;                         validados variáveis, parâmetros e cálculos; variáveis antes de imprimir evitando recálculo
+;;                         funções recursivas alteradas para permitirem Tail Call Optimization (TCO)
+;;        0.6: 17/11/2024: funções recursivas convertidas para usar `recur` (trocados nomes das funções nas recursões por `recur`): sugestão ChatGPT
 
 ;; namespace
 (ns jacknpoe.juros (:gen-class))
@@ -19,8 +21,8 @@
 ;; função recursiva que define os elementos do array Pagamentos[]
 (defn rDefinePagamentos [indice]
   (if (< indice Quantidade)
-    (do (rDefinePagamentos (inc indice))
-        (aset-double Pagamentos indice (* Periodo (inc indice)))
+    (do (aset-double Pagamentos indice (* Periodo (inc indice)))
+        (recur (inc indice))
     )
   )
 )
@@ -31,8 +33,8 @@
 ;; função recursiva que define os elementos do array Pesos[]
 (defn rDefinePesos [indice]
   (if (< indice Quantidade)
-    (do (rDefinePesos (inc indice))
-        (aset-double Pesos indice 1.0)
+    (do (aset-double Pesos indice 1.0)
+        (recur (inc indice))
     )
   )
 )
@@ -41,50 +43,46 @@
 (defn definePesos [] (rDefinePesos 0))
 
 ;; função recursiva que calcula a somatória dos elementos em Pesos[]
-(defn rGetPesoTotal [indice]
+(defn rGetPesoTotal [indice acumulador]
   (if (>= indice Quantidade)
-    0.0
-    (+ (aget Pesos indice) (rGetPesoTotal (inc indice)))
+    acumulador
+    (recur (inc indice) (+ (aget Pesos indice) acumulador))
   )
 )
-
 ;; função açúcar que calcula a somatória dos elementos em Pesos[]
 (defn getPesoTotal []
-  (rGetPesoTotal 0)
+  (rGetPesoTotal 0 0.0)
 )
 
-;; função recursiva que calcula a soma da amortização de todas as parcelas para juros compostos
-(defn rJurosCompostos [indice juros]
-  (if (< indice 0)
-    0.0
-    (+ (/ (aget Pesos indice) (Math/pow (+ 1.0 (/ juros 100.0)) (/ (aget Pagamentos indice) Periodo))) (rJurosCompostos (dec indice) juros))
+;; função recursiva que calcula a soma do amortecimento de todas as parcelas para juros compostos
+(defn rJurosCompostos [indice juros acumulador]
+  (if (>= indice Quantidade)
+    acumulador
+    (recur (inc indice) juros (+ (/ (aget Pesos indice) (Math/pow (+ 1.0 (/ juros 100.0)) (/ (aget Pagamentos indice) Periodo))) acumulador))
   )
 )
 
-;; função recursiva que calcula a soma da amortização de todas as parcelas para juros simples
-(defn rJurosSimples [indice juros]
-  (if (< indice 0)
-    0.0
-    (+ (/ (aget Pesos indice) (+ 1.0 (* (/ juros 100.0) (/ (aget Pagamentos indice) Periodo)))) (rJurosSimples (dec indice) juros))
+;; função recursiva que calcula a soma do amortecimento de todas as parcelas para juros simples
+(defn rJurosSimples [indice juros acumulador]
+  (if (>= indice Quantidade)
+    acumulador
+    (recur (inc indice) juros (+ (/ (aget Pesos indice) (+ 1.0 (* (/ juros 100.0) (/ (aget Pagamentos indice) Periodo)))) acumulador))
   )
 )
 
 ;; função que calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
 (defn jurosParaAcrescimo [juros]
-  (if (or (<= juros 0.0) (< Quantidade 1) (<= Periodo 0.0))
-    0.0
-    (let [pesoTotal (getPesoTotal)]
-      (if (= pesoTotal 0.0)
-        0.0
-        (let [acumulador
-          (if Composto
-            (rJurosCompostos (dec Quantidade) juros)
-            (rJurosSimples (dec Quantidade) juros)
-          )]
-          (if (< acumulador 0.0)
-            0.0
-            (* (- (/ pesoTotal acumulador) 1.0) 100.0)
-          )
+  (let [pesoTotal (getPesoTotal)]
+    (if (or (<= juros 0.0) (< Quantidade 1) (<= Periodo 0.0) (<= pesoTotal 0.0))
+      0.0
+      (let [acumulador
+        (if Composto
+          (rJurosCompostos 0 juros 0.0)
+          (rJurosSimples 0 juros 0.0)
+        )]
+        (if (< acumulador 0.0)
+          0.0
+          (* (- (/ pesoTotal acumulador) 1.0) 100.0)
         )
       )
     )
@@ -96,8 +94,8 @@
   (if (or (= iteracaoAtual 0) (<= (- maxJuros minJuros) minDiferenca))
     medJuros
     (if (< (jurosParaAcrescimo medJuros) acrescimo)
-      (rAcrescimoParaJuros acrescimo minDiferenca (dec iteracaoAtual) medJuros maxJuros (/ (+ medJuros maxJuros) 2.0))
-      (rAcrescimoParaJuros acrescimo minDiferenca (dec iteracaoAtual) minJuros medJuros (/ (+ minJuros medJuros) 2.0))
+      (recur acrescimo minDiferenca (dec iteracaoAtual) medJuros maxJuros (/ (+ medJuros maxJuros) 2.0))
+      (recur acrescimo minDiferenca (dec iteracaoAtual) minJuros medJuros (/ (+ minJuros medJuros) 2.0))
     )
   )  
 )

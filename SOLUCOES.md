@@ -1413,7 +1413,7 @@ This is a list of links in this repository to solutions in different dialects, o
 [juros.scala](juros.scala)<br>
 [testajuros.scala](testajuros.scala)
 
-### Scheme (28/04/2024) 🏛️ 🔧 💡 ♻️ ✍️
+### Scheme (MIT/GNU) (28/04/2024) 🚀 🏛️ 🔧 💡 ♻️ ✍️ ➰
 
 [juros.scm](juros.scm)
 

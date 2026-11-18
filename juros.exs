@@ -3,6 +3,7 @@
 #        0.2: 29/04/2024: as três funções e as recursivas (ou seja, todo o cálculo)
 #        0.3: 16/11/2026: melhorados comentários; variáveis separadas dos IO.puts; avaliação de acumulador; troca de Enum.at por cabeça e cauda; variáveis para configuração
 #                         listas escaláveis criadas dinamicamente; removidos casos especiais; funções recursivas alteradas para permitir Tail Call Optimization (TCO)
+#        0.4: 18/11/2026: rJurosCompostos e rJurosSimples agora recebem periodo em vez ded ojuros
 
 # módulo da "classe" Juros
 defmodule Juros do
@@ -45,9 +46,9 @@ defmodule Juros do
         0.0
       else
         acumulador = if ojuros.composto do
-          rJurosCompostos(ojuros, ojuros.pagamentos, ojuros.pesos, juros, 0.0)
+          rJurosCompostos(ojuros.periodo, ojuros.pagamentos, ojuros.pesos, juros, 0.0)
         else
-          rJurosSimples(ojuros, ojuros.pagamentos, ojuros.pesos, juros, 0.0)
+          rJurosSimples(ojuros.periodo, ojuros.pagamentos, ojuros.pesos, juros, 0.0)
         end
         if acumulador <= 0.0 do
           0.0
@@ -59,22 +60,22 @@ defmodule Juros do
   end
 
   # função recursiva que calcula a soma da amortização de todas as parcelas para juros compostos
-  def rJurosCompostos(ojuros, pagamentos, pesos, juros, acumulador) do
+  def rJurosCompostos(periodo, pagamentos, pesos, juros, acumulador) do
     case {pagamentos, pesos} do
       {[], []} -> acumulador
       {[], [_|_]} -> acumulador
       {[_|_], []} -> acumulador
-      {[hPag|tPag], [hPes|tPes]} -> rJurosCompostos(ojuros, tPag, tPes, juros, hPes * :math.pow(1.0 + juros / 100.0, -hPag / ojuros.periodo) + acumulador)
+      {[hPag|tPag], [hPes|tPes]} -> rJurosCompostos(periodo, tPag, tPes, juros, hPes * :math.pow(1.0 + juros / 100.0, -hPag / periodo) + acumulador)
     end
   end
 
   # função recursiva que calcula a soma da amortização de todas as parcelas para juros simples
-  def rJurosSimples(ojuros, pagamentos, pesos, juros, acumulador) do
+  def rJurosSimples(periodo, pagamentos, pesos, juros, acumulador) do
     case {pagamentos, pesos} do
       {[], []} -> acumulador
       {[], [_|_]} -> acumulador
       {[_|_], []} -> acumulador
-      {[hPag|tPag], [hPes|tPes]} -> rJurosSimples(ojuros, tPag, tPes, juros, hPes / (1.0 + juros / 100.0 * hPag / ojuros.periodo) + acumulador)
+      {[hPag|tPag], [hPes|tPes]} -> rJurosSimples(periodo, tPag, tPes, juros, hPes / (1.0 + juros / 100.0 * hPag / periodo) + acumulador)
     end
   end
 

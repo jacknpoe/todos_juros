@@ -4,10 +4,11 @@
 ;;        0.3: 17/07/2024: corrige um erro em que multiplica por 10 em vez de 100 na linha 31 e não mostra pagamentos
 ;;        0.4: 18/11/2026: variável pesoTotal; melhorias em comentários e impressão; de list-ref para car e cdr; validações de variáveis, parâmetros e cálculos
 ;;                         retirados return-from; listas escaláveis criadas dinamicamente; funções recursivas alteradas para permitir Tail Call Optimization (TCO)
+;;        0.5: 19/11/2026: #t em vez de 1
 
 ;; variáveis escalares globais para simplificar as chamadas
 (define Quantidade 3)
-(define Composto 1)  ;; 1 = true, 0 = false
+(define Composto #t)
 (define Periodo 30.0d0)
 
 ;; função açúcar que cria a lista Pagamentos
@@ -57,7 +58,7 @@
       (if (<= pesoTotal 0.0d0)
         0.0d0
         (let (( acumulador
-          (if (= Composto 1)
+          (if   Composto
               (_jurosCompostos Pagamentos Pesos juros 0.0)
               (_jurosSimples Pagamentos Pesos juros 0.0)
           ) ))

@@ -1,4 +1,4 @@
-;; Cálculo do juros, sendo que precisa de arrays pra isso - originalmente em Scheme (MIT/GNU)
+;; Cálculo do juros, sendo que precisa de listas pra isso
 ;; Versão 0.1: 20/11/2026: a partir de Scheme, trocados 0d0 para 0 e funções açúcar viraram lambdas para poder rodar em XLISP 3.3
 
 ;; variáveis escalares globais para simplificar chamadas

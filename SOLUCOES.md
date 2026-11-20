@@ -64,7 +64,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 <br>
 
-# SOLUÇÕES / SOLUTIONS (428)
+# SOLUÇÕES / SOLUTIONS (429)
 
 ### 11l (14/03/2026) 🚀 ✍️
 
@@ -1804,6 +1804,10 @@ JavaScript: [juroswww.js](juroswww.js)
 
 [jurosXLISP.lsp](jurosXLISP.lsp)
 
+### XLISP-PLUS (20/11/2026) ♻️
+
+[jurosXLISP-PLUS.lsp](jurosXLISP-PLUS.lsp)
+
 ### Xojo (18/02/2025) 🏛️ 🔧 💖 ✍️
 
 [juros.xojo_binary_project](juros.xojo_binary_project)
@@ -1875,7 +1879,7 @@ JavaScript: [juroswww.js](juroswww.js)
 
 <br>
 
-# EQUIVALENTES / EQUIVALENTS (93)
+# EQUIVALENTES / EQUIVALENTS (92)
 
 ACECode = Scratch<br>
 Amstrad BASIC = Locomotive BASIC<br>
@@ -1966,7 +1970,6 @@ tcsh = csh<br>
 TOM = Java<br>
 Turing+ = Turing<br>
 WPS Office Visual Basic for Applications = OpenOffice Basic<br>
-XLISP = Common Lisp<br>
 XLispStat = Common Lisp<br>
 XOTcl = Tcl<br>
 YLISP = Common Lisp

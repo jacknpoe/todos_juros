@@ -68,7 +68,7 @@ Flutter (14/04/2024)
 
 Perl (25/04/2024)
 
-Common Lisp (27/04/2024)
+Common Lisp (SBCL) (27/04/2024)
 
 Scheme (MIT/GNU) (28/04/2024)
 

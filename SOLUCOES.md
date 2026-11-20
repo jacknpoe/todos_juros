@@ -64,7 +64,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 <br>
 
-# SOLUÇÕES / SOLUTIONS (427)
+# SOLUÇÕES / SOLUTIONS (428)
 
 ### 11l (14/03/2026) 🚀 ✍️
 
@@ -1799,6 +1799,10 @@ JavaScript: [juroswww.js](juroswww.js)
 ### XL2 (06/03/2026)
 
 [juros.xl2](juros.xl2)
+
+### XLISP 3.3 (20/11/2026) ♻️ ➰
+
+[jurosXLISP.lsp](jurosXLISP.lsp)
 
 ### Xojo (18/02/2025) 🏛️ 🔧 💖 ✍️
 

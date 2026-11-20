@@ -18,7 +18,7 @@
 (defun criaPagamentos() (_criaPagamentos 1 nil))
 
 ;; função recursiva que cria a lista Pagamentos
-(defun _criaPagamentos(indice acumulador)
+(defun _criaPagamentos (indice acumulador)
   (if (> indice Quantidade)
     acumulador
     (_criaPagamentos (+ indice 1) (cons (* indice Periodo) acumulador))
@@ -29,7 +29,7 @@
 (defun criaPesos() (_criaPesos 1 nil))
 
 ;; função recursiva que cria a lista Pesos
-(defun _criaPesos(indice acumulador)
+(defun _criaPesos (indice acumulador)
   (if (> indice Quantidade)
     acumulador
     (_criaPesos (+ indice 1) (cons 1.0d0 acumulador))
@@ -43,7 +43,7 @@
 (defun getPesoTotal() (_getPesoTotal Pesos 0.0d0))
 
 ;; função recursiva que calcula a somatória de Pesos
-(defun _getPesoTotal(ppesos acumulador)
+(defun _getPesoTotal (ppesos acumulador)
   (if (null ppesos)
     acumulador
     (_getPesoTotal (cdr ppesos) (+ (car ppesos) acumulador))
@@ -51,7 +51,7 @@
 )
 
 ;; função que calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
-(defun jurosParaAcrescimo(juros)
+(defun jurosParaAcrescimo (juros)
   (if (or (<= juros 0.0d0) (<= Quantidade 0) (<= Periodo 0.0d0))
     0.0d0
     (let ((lpesoTotal (getPesoTotal)))
@@ -74,7 +74,7 @@
 )
 
 ;; função recursiva que calcula a soma do amortecimento de todas as parcelas para juros compostos
-(defun _jurosCompostos(ppagamentos ppesos juros acumulador)
+(defun _jurosCompostos (ppagamentos ppesos juros acumulador)
   (if (null ppesos)
     acumulador
     (_jurosCompostos (cdr ppagamentos) (cdr ppesos) juros (+ (* (car ppesos) (expt (+ 1.0d0 (/ juros 100.0d0)) (- (/ (car ppagamentos) Periodo)))) acumulador))
@@ -82,7 +82,7 @@
 )
 
 ;; função recursiva que calcula a soma do amortecimento de todas as parcelas para juros simples
-(defun _jurosSimples(ppagamentos ppesos juros acumulador)
+(defun _jurosSimples (ppagamentos ppesos juros acumulador)
   (if (null ppesos)
     acumulador
     (_jurosSimples (cdr ppagamentos) (cdr ppesos) juros (+ (/ (car ppesos) (+ 1.0d0 (* (/ juros 100.0d0) (/ (car ppagamentos) Periodo)))) acumulador))
@@ -90,7 +90,7 @@
 )
 
 ;; função açúcar que calcula os juros a partir do acréscimo e dados comuns (como parcelas)
-(defun acrescimoParaJuros(acrescimo precisao maxIteracoes maxJuros)
+(defun acrescimoParaJuros (acrescimo precisao maxIteracoes maxJuros)
   (if (or (<= acrescimo 0.0d0) (<= Quantidade 0) (<= Periodo 0.0d0) (< maxIteracoes 1) (< precisao 1) (<= maxJuros 0.0d0) (<= (getPesoTotal) 0.0d0))
     0.0d0
     (_acrescimoParaJuros acrescimo (expt 0.1d0 precisao) maxIteracoes 0.0d0 maxJuros (/ maxJuros 2.0d0))
@@ -98,7 +98,7 @@
 )
 
 ;; função recursiva que calcula os juros a partir do acréscimo e dados comuns (como parcelas)
-(defun _acrescimoParaJuros(acrescimo minDiferenca iteracaoAtual minJuros maxJuros medJuros)
+(defun _acrescimoParaJuros (acrescimo minDiferenca iteracaoAtual minJuros maxJuros medJuros)
   (if (or (= iteracaoAtual 0)  (< (- maxJuros minJuros) minDiferenca))
     medJuros
     (if (< (jurosParaAcrescimo medJuros) acrescimo)
@@ -113,7 +113,7 @@
 (defvar acrescimoCalculado (jurosParaAcrescimo 3.0d0))
 (defvar jurosCalculado (acrescimoParaJuros acrescimoCalculado 15 65 50.0d0))
 
-;; testes
+;; imprime os resultados
 (princ "Peso total = ") (write pesoTotal) (terpri)
 (princ "Acrescimo = ") (write acrescimoCalculado) (terpri)
 (princ "Juros = ") (write jurosCalculado) (terpri)

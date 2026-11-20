@@ -344,7 +344,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 [JUROSC64.PRG](JUROSC64.PRG)
 
-### Common Lisp (27/04/2024) 🧠 🏛️ 🔧 💡 💖 ♻️ ✍️
+### Common Lisp (SBCL) (27/04/2024) 🧠 🚀 🏛️ 🔧 💡 💖 ♻️ ✍️ ➰
 
 [juros.lisp](juros.lisp)
 

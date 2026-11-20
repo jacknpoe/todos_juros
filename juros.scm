@@ -1,4 +1,4 @@
-;; Cálculo do juros, sendo que precisa de arrays pra isso - originalmente em Scheme (MIT/GNU)
+;; Cálculo do juros, sendo que precisa de listas pra isso - originalmente em Scheme (MIT/GNU)
 ;; Versão 0.1: 28/04/2024: variáveis, getPesoTotal, jurosParaAcrescimo
 ;;        0.2: 29/04/2024: acrescimoParaJuros
 ;;        0.3: 17/07/2024: corrige um erro em que multiplica por 10 em vez de 100 na linha 31 e não mostra pagamentos

@@ -1970,7 +1970,7 @@ tcsh = csh<br>
 TOM = Java<br>
 Turing+ = Turing<br>
 WPS Office Visual Basic for Applications = OpenOffice Basic<br>
-XLispStat = Common Lisp<br>
+XLispStat = XLISP-PLUS<br>
 XOTcl = Tcl<br>
 YLISP = Common Lisp
 

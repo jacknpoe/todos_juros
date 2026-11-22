@@ -1,7 +1,7 @@
 ;; Cálculo do juros, sendo que precisa de listas pra isso
 ;; Versão 0.1: 21/11/2026: a partir de Common Lisp, alterações em ao menos 33 pontos, sem muita ajuda do YLISP
 
-;; RODAR: ylr <camimho init.yl>/init.yl juros.yl | grep -E "^(Peso|Acrescimo|Juros)"
+;; RODAR: ylr <caminho init.yl>/init.yl juros.yl | grep -E "^(Peso|Acrescimo|Juros)"
 ;; ATENÇÃO: para rodar usando ylr precisa alterar o código-fonte e recompilar, inclusive habilitando a função pow
 
 ;; variáveis escalares globais para simplificar chamadas

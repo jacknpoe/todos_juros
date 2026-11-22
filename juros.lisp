@@ -35,6 +35,7 @@
     (_criaPesos (+ indice 1) (cons 1.0d0 acumulador))
   )
 )
+
 ;; listas globais para simplificar chamadas
 (defvar Pagamentos (criaPagamentos))
 (defvar Pesos (criaPesos))

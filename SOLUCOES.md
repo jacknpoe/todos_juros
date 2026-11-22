@@ -64,7 +64,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 <br>
 
-# SOLUÇÕES / SOLUTIONS (429)
+# SOLUÇÕES / SOLUTIONS (430)
 
 ### 11l (14/03/2026) 🚀 ✍️
 
@@ -1884,7 +1884,7 @@ JavaScript: [juroswww.js](juroswww.js)
 
 <br>
 
-# EQUIVALENTES / EQUIVALENTS (92)
+# EQUIVALENTES / EQUIVALENTS (91)
 
 ACECode = Scratch<br>
 Amstrad BASIC = Locomotive BASIC<br>
@@ -1977,7 +1977,6 @@ Turing+ = Turing<br>
 WPS Office Visual Basic for Applications = OpenOffice Basic<br>
 XLispStat = XLISP-PLUS<br>
 XOTcl = Tcl<br>
-YLISP = Common Lisp
 
 <br>
 

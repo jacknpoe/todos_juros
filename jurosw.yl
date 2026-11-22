@@ -1,0 +1,140 @@
+;; Cálculo do juros, sendo que precisa de listas pra isso
+;; Versão 0.1: 21/11/2026: a partir de Common Lisp, alterações em ao menos 33 pontos, sem muita ajuda do YLISP
+;;        0.2: 22/11/2026: com whiles, mudanças demais em todas as funções
+
+;; RODAR: ylr <camimho init.yl>/init.yl jurosw.yl | grep -E "^(Peso|Acrescimo|Juros)"
+;; ATENÇÃO: para rodar usando ylr precisa alterar o código-fonte e recompilar, inclusive habilitando a função pow
+
+;; variáveis escalares globais para simplificar chamadas
+(set 'Quantidade 3)
+(set 'Composto 't)
+(set 'Periodo 30.0)
+
+(defun criaPagamentos () "função que cria a lista Pagamentos"
+  (progn
+    (set 'indice Quantidade)
+    (set 'lista '())
+    (while (> indice 0)
+      (set 'lista (cons (* indice Periodo) lista))
+      (set 'indice (- indice 1))
+    )
+    lista
+  )
+)
+
+(defun criaPesos () "função que cria a lista Pesos"
+  (progn
+    (set 'indice Quantidade)
+    (set 'lista '())
+    (while (> indice 0)
+      (set 'lista (cons 1.0 lista))
+      (set 'indice (- indice 1))
+    )
+    lista
+  )
+)
+
+;; listas globais para simplificar chamadas
+(set 'Pagamentos (criaPagamentos))
+(set 'Pesos (criaPesos))
+
+(defun getPesoTotal () "função que calcula a somatória de Pesos"
+  (progn
+    (set 'ppesos Pesos)
+    (set 'acumulador 0.0)
+    (while ppesos
+      (set 'acumulador (+ acumulador (car ppesos)))
+      (set 'ppesos (cdr ppesos))
+    )
+    acumulador
+  )
+)
+
+(defun jurosParaAcrescimo (juros) "função que calcula o acréscimo a partir dos juros e dados comuns (como parcelas)"
+  (cond ((or (<= juros 0.0) (<= Quantidade 0) (<= Periodo 0.0)) 0.0)
+    ('t (let ((lpesoTotal (getPesoTotal)))
+      (cond ((<= lpesoTotal 0.0) 0.0)
+        ('t (let (( acumulador
+          (cond (Composto (jurosCompostos juros))
+            ('t (jurosSimples juros))
+          )
+          ))
+          (cond ((<= acumulador 0.0) 0.0)
+            ('t (* (- (/ lpesoTotal acumulador) 1.0) 100.0))
+          )
+        ))
+      )
+    ))
+  )
+)
+
+(defun jurosCompostos (juros) "função que calcula a soma do amortecimento de todas as parcelas para juros compostos"
+  (progn
+    (set 'ppagamentos Pagamentos)
+    (set 'ppesos Pesos)
+    (set 'acumulador 0.0)
+    (while ppesos
+      (set 'acumulador (+ acumulador (* (car ppesos) (pow (+ 1.0 (/ juros 100.0)) (- 0.0 (/ (car ppagamentos) Periodo))))))
+      (set 'ppagamentos (cdr ppagamentos))
+      (set 'ppesos (cdr ppesos))
+    )
+    acumulador
+  )
+)
+
+(defun jurosSimples (juros) "função que calcula a soma do amortecimento de todas as parcelas para juros simples"
+  (progn
+    (set 'ppagamentos Pagamentos)
+    (set 'ppesos Pesos)
+    (set 'acumulador 0.0)
+    (while ppesos
+      (set 'acumulador (+ acumulador (/ (car ppesos) (+ 1.0 (* (/ juros 100.0) (/ (car ppagamentos) Periodo))))))
+      (set 'ppagamentos (cdr ppagamentos))
+      (set 'ppesos (cdr ppesos))
+    )
+    acumulador
+  )
+)
+
+(defun acrescimoParaJuros (acrescimo precisao maxIteracoes maxJuros) "função que calcula os juros a partir do acréscimo e dados comuns (como parcelas)"
+  (progn
+    (cond
+      ((or (<= acrescimo 0.0) (<= Quantidade 0) (<= Periodo 0.0) (< maxIteracoes 1) (< precisao 1) (<= maxJuros 0.0) (<= (getPesoTotal) 0.0))
+       0.0)
+      ('t
+       (progn
+         (set 'iteracaoAtual maxIteracoes)
+         (set 'minJuros 0.0)
+         (set 'medJuros (/ maxJuros 2.0))
+         (set 'minDiferenca (pow 0.1 precisao))
+         (while (and (> iteracaoAtual 0) (>= maxJuros minJuros) (>= (- maxJuros minJuros) minDiferenca))
+           (cond
+             ((< (jurosParaAcrescimo medJuros) acrescimo)
+              (set 'minJuros medJuros))
+             ('t
+              (set 'maxJuros medJuros)))
+           (set 'medJuros (/ (+ minJuros maxJuros) 2.0))
+           (set 'iteracaoAtual (- iteracaoAtual 1))
+         )
+         medJuros
+       )
+      )
+    )
+  )
+)
+
+(set 'escala (pow 10.0 15.0))
+(defun escalaPrecisao (valor) "multiplica um valor pela escala" (* valor escala))
+
+;; calcula e guarda os resultados das funções
+(set 'pesoTotal (getPesoTotal))
+(set 'acrescimoCalculado (jurosParaAcrescimo 3.0))
+(set 'jurosCalculado (acrescimoParaJuros acrescimoCalculado 15 65 50.0))
+
+;; imprime os resultados
+
+(printf '"Peso total (×10¹⁵) = %s\nAcrescimo (×10¹⁵) = %s\nJuros (×10¹⁵) = %s\n"
+  (escalaPrecisao pesoTotal)
+  (escalaPrecisao acrescimoCalculado)
+  (escalaPrecisao jurosCalculado)
+)

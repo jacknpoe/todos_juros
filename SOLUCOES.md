@@ -1841,6 +1841,11 @@ JavaScript: [juroswww.js](juroswww.js)
 
 [juros.yeti](juros.yeti)
 
+### YLISP (22/11/2026)
+
+**iterativa / iterative:** [jurosw.yl](jurosw.yl)<br>
+**recursiva / recursive:** [juros.yl](juros.yl) + ♻️
+
 ### Yoix (27/03/2025)
 
 [juros.yx](juros.yx)

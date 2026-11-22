@@ -15,7 +15,7 @@
 (defvar Periodo 30.0d0)
 
 ;; função açúcar que cria a lista Pagamentos
-(defun criaPagamentos() (_criaPagamentos 1 nil))
+(defun criaPagamentos () (_criaPagamentos 1 nil))
 
 ;; função recursiva que cria a lista Pagamentos
 (defun _criaPagamentos (indice acumulador)
@@ -26,7 +26,7 @@
 )
 
 ;; função açúcar que cria a lista Pesos
-(defun criaPesos() (_criaPesos 1 nil))
+(defun criaPesos () (_criaPesos 1 nil))
 
 ;; função recursiva que cria a lista Pesos
 (defun _criaPesos (indice acumulador)

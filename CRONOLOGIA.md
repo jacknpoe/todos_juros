@@ -156,6 +156,8 @@ V (11/06/2024)
 
 Logo (11/06/2024)
 
+QB64 (12/06/2024)
+
 S-Lang (12/06/2024)
 
 Genie (13/06/2024)
@@ -268,13 +270,11 @@ True BASIC (29/01/2025)
 
 PureBasic (29/01/2025)
 
-Decimal BASIC (30/01/2025) !!
+Decimal BASIC (30/01/2025) !
 
-Squint (30/01/2025) !!
+Squint (30/01/2025) !
 
-Yabasic (30/01/2025) !!
-
-Turbo Basic (30/01/2025) !!
+Yabasic (30/01/2025) !
 
 DrScheme (31/01/2025)
 

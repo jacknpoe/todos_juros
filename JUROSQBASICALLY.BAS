@@ -4,7 +4,7 @@
 ' RODAR EM: https://www.qbasically.com/
 
 ' define os valores globais
-LET quantidade& = 300000
+LET quantidade& = 3
 LET composto% = 1
 LET periodo# = 30.0
 DIM pagamentos#(quantidade&)

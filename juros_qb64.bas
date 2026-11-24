@@ -1,6 +1,6 @@
 ' Calculo do juros, sendo que precisa de arrays pra isso
 ' Versao 0.1: 12/06/2024: versao feita sem muito conhecimento de QB64
-'        0.2: 24/11/2026: sem acumulador# em getPesoTotal
+'        0.2: 24/11/2026: sem acumulador# em getPesoTotal; compatibilizada com Turbo Basic com iteracao% como índice de acréscimoParaJuros
 
 ' define os valores gerais
 Let quantidade% = 3

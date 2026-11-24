@@ -1257,6 +1257,10 @@ This is a list of links in this repository to solutions in different dialects, o
 
 [juros.qs](juros.qs)
 
+### QB64 (12/06/2024) 🧠 🏛️ 🔧 💡 💖 ✍️
+
+[juros_qb64.bas](juros_qb64.bas)
+
 ### QBasically (24/11/2026)
 
 [JUROSQBASICALLY.BAS](JUROSQBASICALLY.BAS)
@@ -1618,10 +1622,6 @@ This is a list of links in this repository to solutions in different dialects, o
 
 [juros.tru](juros.tru)
 
-### Turbo Basic (30/01/2025) 🧠 🏛️ 🔧 💖 ✍️
-
-[JUROS_TB.BAS](JUROS_TB.BAS)
-
 ### Turbo C (03/02/2025)
 
 [JUROSTC.C](JUROSTC.C)
@@ -1951,12 +1951,11 @@ pForth = Gforth<br>
 PicoC = C<br>
 Pizza = Java<br>
 PoSh = Windows PowerShell<br>
-PowerBASIC = Turbo Basic<br>
+PowerBASIC = QB64<br>
 Pretty C = C<br>
 PRO*C = C<br>
-QB45 = Turbo Basic<br>
-QB64 = Turbo Basic + 🧠 🏛️ 🔧 💡 💖 ✍️<br>
-QBasic 1.1 = Turbo Basic<br>
+QB45 = QB64<br>
+QBasic 1.1 = QB64<br>
 QuickC = Turbo C<br>
 QuickPascal = Turbo Pascal<br>
 Racket Base = Racket<br>
@@ -1974,6 +1973,7 @@ SwiftForth = Gforth<br>
 SYCL = Intel oneAPI DPC++<br>
 tcsh = csh<br>
 TOM = Java<br>
+Turbo Basic = QB64<br>
 Turing+ = Turing<br>
 WPS Office Visual Basic for Applications = OpenOffice Basic<br>
 XLispStat = XLISP-PLUS<br>

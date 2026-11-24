@@ -1,5 +1,7 @@
 ' Calculo do juros, sendo que precisa de arrays pra isso
 ' Versao 0.1: 12/06/2024: versao feita sem muito conhecimento de QB64
+'        0.2: 24/11/2026: sem acumulador# em getPesoTotal
+
 ' define os valores gerais
 Let quantidade% = 3
 Let composto% = 1
@@ -30,11 +32,10 @@ End
 
 ' calcula a somatoria de pesos()
 getPesoTotal:
-Let acumulador# = 0.0
+Let pesoTotal# = 0.0
 For indice% = 1 To quantidade%
-    Let acumulador# = acumulador# + pesos#(indice%)
+    Let pesoTotal# = pesoTotal# + pesos#(indice%)
 Next indice%
-Let pesoTotal# = acumulador#
 Return
 
 ' calcula o acrescimo a partir dos juros e dados comuns (como parcelas)
@@ -59,7 +60,7 @@ If acrescimo# <= 0.0 Or quantidade% < 1 Or periodo# <= 0.0 Or pesoTotal# <= 0.0 
 Let minJuros# = 0.0
 Let jurosCalculado# = maxJuros# / 2.0
 Let minDiferenca# = 0.1 ^ precisao#
-For indice% = 1 To maxIteracoes%
+For iteracao% = 1 To maxIteracoes%
     Let jurosCalculado# = (minJuros# + maxJuros#) / 2.0
     If (maxJuros# - minJuros#) < minDiferenca# Then Return
     Let juros# = jurosCalculado#

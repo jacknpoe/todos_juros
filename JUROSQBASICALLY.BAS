@@ -62,7 +62,7 @@ LET minJuros# = 0.0
 LET jurosCalculado# = maxJuros# / 2.0
 LET minDiferenca# = 0.1 ^ precisao#
 LET jurosCalculado# = (minJuros# + maxJuros#) / 2.0
-FOR indice% = 1 TO maxIteracoes%
+FOR iteracao% = 1 TO maxIteracoes%
     IF (maxJuros# - minJuros#) < minDiferenca# THEN RETURN
     LET juros# = jurosCalculado#
     GOSUB jurosParaAcrescimo

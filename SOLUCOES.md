@@ -1257,9 +1257,9 @@ This is a list of links in this repository to solutions in different dialects, o
 
 [juros.qs](juros.qs)
 
-### QB64 (12/06/2024) 🧠 🏛️ 🔧 💡 💖 ✍️
+### QBasically (24/11/2026)
 
-[juros_qb64.bas](juros_qb64.bas)
+[JUROSQBASICALLY.BAS](JUROSQBASICALLY.BAS)
 
 ### QML (27/01/2026)
 
@@ -1954,8 +1954,9 @@ PoSh = Windows PowerShell<br>
 PowerBASIC = Turbo Basic<br>
 Pretty C = C<br>
 PRO*C = C<br>
-QB45 = QB64<br>
-QBasic 1.1 = QB64<br>
+QB45 = Turbo Basic<br>
+QB64 = Turbo Basic + 🧠 🏛️ 🔧 💡 💖 ✍️<br>
+QBasic 1.1 = Turbo Basic<br>
 QuickC = Turbo C<br>
 QuickPascal = Turbo Pascal<br>
 Racket Base = Racket<br>

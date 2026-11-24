@@ -1,74 +1,76 @@
-' Calculo do juros, sendo que precisa de arrays pra isso
-' Versao 0.1: 12/06/2024: versao feita sem muito conhecimento de QB64
-'        0.2: 24/11/2026: sem acumulador# em getPesoTotal; compatibilizada com Turbo Basic com iteracao% como índice de acréscimoParaJuros
+' Cálculo do juros, sendo que precisa de arrays pra isso
+' Versão 0.1: 24/11/2026: versão feita a partir de QB 64, sem muito conhecimento de QBasically; retirados USING e espaços depois de "="
+' RODAR EM: https://www.qbasically.com/
 
-' define os valores gerais
-Let quantidade% = 3
-Let composto% = 1
-Let periodo# = 30.0
-Dim pagamentos#(quantidade%)
-Dim pesos#(quantidade%)
+' define os valores globais
+LET quantidade& = 300000
+LET composto% = 1
+LET periodo# = 30.0
+DIM pagamentos#(quantidade&)
+DIM pesos#(quantidade&)
 
-For indice% = 1 To quantidade%
-    Let pagamentos#(indice%) = 30.0 * indice%
-    Let pesos#(indice%) = 1.0
-Next indice%
+' define os elementos nos arrays
+FOR indice& = 1 TO quantidade&
+    LET pagamentos#(indice&) = 30.0 * indice&
+    LET pesos#(indice&) = 1.0
+NEXT indice&
 
-' calcula, guarda os resultados das funcoes e imprime
-GoSub getPesoTotal
-Print "Peso total = "; Using "#.###############"; pesoTotal#
+' calcula, guarda os resultados das funções e imprime
+GOSUB getPesoTotal
+PRINT "Peso total ="; pesoTotal#
 
-Let juros# = 3.0
-GoSub jurosParaAcrescimo
-Print "Acrescimo = "; Using "#.###############"; acrescimoCalculado#
+LET juros# = 3.0
+GOSUB jurosParaAcrescimo
+PRINT "Acréscimo ="; acrescimoCalculado#
 
-Let acrescimo# = acrescimoCalculado#
-Let precisao# = 15
-Let maxIteracoes% = 100
-Let maxJuros# = 50.0
-GoSub acrescimoParaJuros
-Print "Juros = "; Using "#.###############"; jurosCalculado#
-End
+LET acrescimo# = acrescimoCalculado#
+LET precisao# = 15
+LET maxIteracoes% = 65
+LET maxJuros# = 50.0
+GOSUB acrescimoParaJuros
+PRINT "Juros ="; jurosCalculado#
 
-' calcula a somatoria de pesos()
+' calcula a somatória de pesos()
 getPesoTotal:
-Let pesoTotal# = 0.0
-For indice% = 1 To quantidade%
-    Let pesoTotal# = pesoTotal# + pesos#(indice%)
-Next indice%
-Return
+LET pesoTotal# = 0.0
+FOR indice& = 1 TO quantidade&
+    LET pesoTotal# = pesoTotal# + pesos#(indice&)
+NEXT indice&
+RETURN
 
-' calcula o acrescimo a partir dos juros e dados comuns (como parcelas)
+' calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
 jurosParaAcrescimo:
-Let acrescimoCalculado# = 0.0
-If juros# <= 0.0 Or quantidade% < 1 Or periodo# <= 0.0 Or pesoTotal# <= 0.0 Then Return
-Let acumulador# = 0.0
-For indice% = 1 To quantidade%
-    If composto% = 1 Then
-        Let acumulador# = acumulador# + pesos#(indice%) / (1.0 + juros# / 100.0) ^ (pagamentos#(indice%) / periodo#)
-    Else
-        Let acumulador# = acumulador# + pesos#(indice%) / (1.0 + juros# / 100.0 * pagamentos#(indice%) / periodo#)
-    End If
-Next indice%
-Let acrescimoCalculado# = (pesoTotal# / acumulador# - 1.0) * 100.0
-Return
+LET acrescimoCalculado# = 0.0
+IF juros# <= 0.0 OR quantidade& < 1 OR periodo# <= 0.0 OR pesoTotal# <= 0.0 THEN RETURN
+LET acumulador# = 0.0
+FOR indice& = 1 TO quantidade&
+    IF composto% = 1 THEN
+        LET acumulador# = acumulador# + pesos#(indice&) / (1.0 + juros# / 100.0) ^ (pagamentos#(indice&) / periodo#)
+    ELSE
+        LET acumulador# = acumulador# + pesos#(indice&) / (1.0 + juros# / 100.0 * pagamentos#(indice&) / periodo#)
+    END IF
+NEXT indice&
+LET acrescimoCalculado# = (pesoTotal# / acumulador# - 1.0) * 100.0
+RETURN
 
-' calcula os juros a partir do acrescimo e dados comuns (como parcelas)
+' calcula os juros a partir do acréscimo e dados comuns (como parcelas)
 acrescimoParaJuros:
-Let jurosCalculado# = 0.0
-If acrescimo# <= 0.0 Or quantidade% < 1 Or periodo# <= 0.0 Or pesoTotal# <= 0.0 Or precisao# < 1 Or maxIteracoes% < 1 Or maxJuros# <= 0.0 Then Return
-Let minJuros# = 0.0
-Let jurosCalculado# = maxJuros# / 2.0
-Let minDiferenca# = 0.1 ^ precisao#
-For iteracao% = 1 To maxIteracoes%
-    Let jurosCalculado# = (minJuros# + maxJuros#) / 2.0
-    If (maxJuros# - minJuros#) < minDiferenca# Then Return
-    Let juros# = jurosCalculado#
-    GoSub jurosParaAcrescimo
-    If acrescimoCalculado# < acrescimo# Then
-        Let minJuros# = jurosCalculado#
-    Else
-        Let maxJuros# = jurosCalculado#
-    End If
-Next indice%
-Return
+LET jurosCalculado# = 0.0
+IF acrescimo# <= 0.0 OR quantidade& < 1 OR periodo# <= 0.0 OR pesoTotal# <= 0.0 OR precisao# < 1 OR maxIteracoes% < 1 OR maxJuros# <= 0.0 THEN RETURN
+LET minJuros# = 0.0
+LET jurosCalculado# = maxJuros# / 2.0
+LET minDiferenca# = 0.1 ^ precisao#
+LET jurosCalculado# = (minJuros# + maxJuros#) / 2.0
+FOR iteracao% = 1 TO maxIteracoes%
+    IF (maxJuros# - minJuros#) < minDiferenca# THEN RETURN
+    LET juros# = jurosCalculado#
+    GOSUB jurosParaAcrescimo
+    IF acrescimoCalculado# < acrescimo# THEN
+        LET minJuros# = jurosCalculado#
+    ELSE
+        LET maxJuros# = jurosCalculado#
+    END IF
+    LET jurosCalculado# = (minJuros# + maxJuros#) / 2.0
+NEXT iteracao%
+RETURN
+

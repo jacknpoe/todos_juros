@@ -3,10 +3,11 @@
 ;; Versão 0.1: 31/01/2025: a partir da versão em Scheme, alterados os IFs para não terem return-from
 ;;        0.2: 03/11/2026: listas dinâmicas escaláveis, car/cdr, alterações nas funções recursivas para permitir Tail Call Optimization (TCO)
 ;;                         adicionadas variáveis `pesoTotal` e validações de variáveis, argumentos e cálculos
+;;        03: 25/11/2026: Composto #t
 
 ;; Variáveis globais para simplificar as chamadas
 (define Quantidade 3)
-(define Composto 1)
+(define Composto #t)
 (define Periodo 30.0d0)
 
 ;; função recursiva que realmente monta Pagamentos[]
@@ -75,7 +76,7 @@
        0.0d0
       (let
         ((acumulador
-          (if (= Composto 1)
+          (if Composto
             (_jurosCompostos juros Pagamentos Pesos 0.0d0)
             (_jurosSimples juros Pagamentos Pesos 0.0d0)
           )

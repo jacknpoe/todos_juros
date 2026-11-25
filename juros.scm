@@ -59,7 +59,7 @@
       (if (<= pesoTotal 0.0d0)
         0.0d0
         (let (( acumulador
-          (if   Composto
+          (if Composto
               (_jurosCompostos Pagamentos Pesos juros 0.0)
               (_jurosSimples Pagamentos Pesos juros 0.0)
           ) ))

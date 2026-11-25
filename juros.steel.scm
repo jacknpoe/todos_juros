@@ -1,12 +1,13 @@
 ;; Cálculo do juros, sendo que precisa de listas para isso
-;; Versão 0.1: 16/41/2025: a partir da versão em Dr.Scheme, alterados os números para compatíveis com Steel
+;; Versão 0.1: 16/04/2025: a partir da versão em Dr.Scheme, alterados os números para compatíveis com Steel
 ;;        0.2: 22/08/2026: ChatGPT: listas dinâmicas, car/cdr, alterações nas funções recursivas para permitir Tail Call Optimization
 ;;        0.3: 21/10/2026: adicionadas variáveis `pesoTotal`
-;;        0.4: 03/11/2026: adicionada `acumualador` e avaliada
+;;        0.4: 03/11/2026: adicionada `acumulador` e avaliada
+;;        0.5: 20/11/2026: Composto #true
 
 ;; dados gerais escalares
 (define Quantidade 3)
-(define Composto 1)  ;; 1 = true, 0 = false
+(define Composto #true)  ;; #true, #false
 (define Periodo 30.0)
 
 ;; função recursiva que realmente monta Pagamentos[]
@@ -75,7 +76,7 @@
       0.0
       (let
         ((acumulador
-          (if (= Composto 1)
+          (if Composto
             (rJurosCompostos juros Pagamentos Pesos 0.0)
             (rJurosSimples juros Pagamentos Pesos 0.0)
           )

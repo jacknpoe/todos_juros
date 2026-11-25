@@ -6,10 +6,11 @@
 ;;                         troca de vetores estáticos para listas dinâmicas (ChatGPT), reorganização obrigatória de defines
 ;;                         troca de list-ref para car e cdr nas recursões que percorrem as listas
 ;;        0.3: 21/08/2026: alteradas as funções recursivas para permitir Tail Call Optimization
+;;        0.4: 25/11/2026: Composto #t; variáveis para impressão; definidos pesoTotal e acumulador e avaliado acumulador
 
 ;; dados gerais escalares
 (define Quantidade 3)
-(define Composto 1)  ;; 1 = true, 0 = false
+(define Composto #t)  ;; #t = true, #f = false
 (define Periodo 30.0)
 
 ;; função recursiva que realmente monta Pagamentos[]
@@ -73,11 +74,20 @@
 
 ;; função açúcar que calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
 (define (jurosParaAcrescimo juros)
-  (if (or (<= juros 0.0) (< Quantidade 1) (<= Periodo 0.0) (<= (getPesoTotal) 0.0))
-    0.0
-    (if (= Composto 1)
-      (* (- (/ (getPesoTotal) (rJurosCompostos juros Pagamentos Pesos 0.0)) 1.0) 100.0)
-      (* (- (/ (getPesoTotal) (rJurosSimples juros Pagamentos Pesos 0.0)) 1.0) 100.0)
+  (let (( pesoTotal (getPesoTotal) ))
+    (if (or (<= juros 0.0) (< Quantidade 1) (<= Periodo 0.0) (<= pesoTotal 0.0))
+      0.0
+      (let (( acumulador
+          (if Composto
+            (rJurosCompostos juros Pagamentos Pesos 0.0)
+            (rJurosSimples juros Pagamentos Pesos 0.0)
+          )
+        ))
+        (if (<= acumulador 0.0)
+          0.0
+          (* (- (/ pesoTotal acumulador) 1.0) 100.0)
+        )
+      )
     )
   )
 )
@@ -101,13 +111,12 @@
   )
 )
 
+;; calcula e guarda os resultados das funções
+(define pesoTotal (getPesoTotal))
+(define acrescimoCalculado (jurosParaAcrescimo 3.0))
+(define jurosCalculado (acrescimoParaJuros acrescimoCalculado 15 65 50.0))
+
 ;; testa as funções
-(display "Peso total = ")
-(display (getPesoTotal))
-(display "\n")
-(display "Acréscimo = ")
-(display (jurosParaAcrescimo 3.0))
-(display "\n")
-(display "Juros = ")
-(display (acrescimoParaJuros (jurosParaAcrescimo 3.0) 15 65 50.0))
-(display "\n")
+(display "Peso total = ") (display pesoTotal) (display "\n")
+(display "Acréscimo = ") (display acrescimoCalculado) (display "\n")
+(display "Juros = ") (display jurosCalculado) (display "\n")

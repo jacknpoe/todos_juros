@@ -7,10 +7,11 @@
 ;                         listas escaláveis de tamanho Quantidade, validações de parâmetros, variáveis e cálculos inválidos,
 ;                         corrigido parêntese errado na chamada a _simples em dJuros,
 ;                         funções recursivas alteradas para permitir Tail Call Optimization (TCO); ficou em média 12% mais rápido
+;        0.4: 25/11/2026: Composto #true
 
 ; variáveis globais escalares
 (setq Quantidade 3)
-(setq Composto 1)  ; 1 = true, 0 = false
+(setq Composto #true)  ; #true, #false
 (setq Periodo #i30.0)
 
 ; função recursiva que gera a lista de pagamentos
@@ -60,7 +61,7 @@
 (define (_compostos juros pagamentos pesos acumulador)
   (if (null? pesos)
     acumulador
-    (_compostos juros (cdr pagamentos) (cdr pesos) (+ (/ (car pesos) (expt (+ #i1.0 (/ juros #i100.0)) (/ (car pagamentos) Periodo))) acumulador))
+    (_compostos juros (cdr pagamentos) (cdr pesos) (+ (/ (car pesos) (expt (+ #i1.0 (/ juros #i100.0)) (/ (car pagamentos) Periodo))) acumulador))      
   )
 )
 
@@ -79,7 +80,7 @@
       #i0.0
       (let
         ((acumulador
-          (if (= Composto 1)
+          (if Composto
             (_compostos juros Pagamentos Pesos #i0.0)
             (_simples juros Pagamentos Pesos #i0.0)
           )

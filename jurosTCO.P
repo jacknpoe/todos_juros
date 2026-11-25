@@ -3,11 +3,12 @@
 %        0.2: 01/11/2026: melhorados comentários
 %        0.3: 02/11/2026: corrigido acrescimoParaJuros, listas escaladas, casos especiais retirados, validações de parâmetros e cálculos
 %                         funções recursivas alteradas para permitir Tail Call Optimization (TCO); não força extender a pilha, mas o desempenho piorou
+%        0.4: 25/11/2026: Composto = true
 
 % dados gerais
 juros() :-
   Quantidade is 3,
-  Composto is 1,
+  Composto = true,
   Periodo is 30.0,
   criaPagamentos(Quantidade, Periodo, Pagamentos),
   criaPesos(Quantidade, Pesos),
@@ -77,10 +78,10 @@ jurosParaAcrescimo(Composto, Periodo, Pagamentos, Pesos, Juros, Acrescimo) :-
     ;
     (
       (
-        (Composto == 1,
+        (Composto == true,
           rJurosCompostos(Periodo, Pagamentos, Pesos, Juros, Amortecimento, 0.0))
         ;
-        (Composto == 0,
+        (Composto == false,
           rJurosSimples(Periodo, Pagamentos, Pesos, Juros, Amortecimento, 0.0))
       ),
       (

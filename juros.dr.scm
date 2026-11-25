@@ -7,7 +7,7 @@
 
 ;; Variáveis globais para simplificar as chamadas
 (define Quantidade 3)
-(define Composto #t)
+(define Composto #t)  ;; #t, #f
 (define Periodo 30.0d0)
 
 ;; função recursiva que realmente monta Pagamentos[]

@@ -4,6 +4,7 @@
 #                         as funções geradoras de mapas usam Tail Call Optimization (TCO) porque ficam mais naturais assim e até menores
 #                         as funções acumuladoras permanecem sem TCO porque ficam mais naturais sem acumuladores como parâmetros
 #                         nos testes realizados, não foram observadas diferenças significativas de desempenho entre as versões apenas com TCO e apenas sem TCO
+#        0.3: 25/11/2026: tirado `== 1` desnecessário em `if composto:`
 # ATENÇÃO: ESTA SOLUÇÃO APRESENTA ERRO DE APROX. 0.02 PARA MENOS NOS JUROS
 
 # função recursiva que gera o mapa pagamentos
@@ -57,7 +58,7 @@ def jurosParaAcrescimo(composto, periodo, pagamentos, pesos, quantidade, juros):
   if quantidade < 1 | periodo <= 0.0 | pesoTotal <= 0.0 | juros <= 0.0:
     return 0.0
   else:
-    if composto == 1:
+    if composto:
       acumulador = rJurosCompostos(periodo, pagamentos, pesos, juros, quantidade)
     else:
       acumulador = rJurosSimples(periodo, pagamentos, pesos, juros, quantidade)

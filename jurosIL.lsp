@@ -3,6 +3,7 @@
 ;        0.2: 11/07/2026: substituído / por quotient em (if (= iteracaoAtual 0) (quotient (+ minJuros maxJuros) 2.0); o motivo de o interpretador aceitar / não ficou claro
 ;        0.3: 27/10/2026: listas escaladas com geradoras, proteção de expt infinito e medJuros em _acrescimoParaJuros
 ;                         funções recursivas agora permitem Tail Call Optimization (TCO), mas o ganho é marginal, ainda não alcança 40.000 parcelas
+;        0.4: 25/11/2026: Composto t
 
 ; COMO RODAR E MEDIR:
 ; eisl -c
@@ -14,7 +15,7 @@
 
 ; variáveis globais para simplificar as chamadas às funções
 (defglobal Quantidade 3)
-(defglobal Composto 1)  ; 1 = true; 0 = false
+(defglobal Composto t)  ; t = true, nil = falso
 (defglobal Periodo 30.0)
 
 ; função recursiva que gera a lista de pagamentos
@@ -81,7 +82,7 @@
     (if (or (< Quantidade 1) (<= Periodo 0.0) (<= pesoTotal 0.0) (<= juros 0.0))
       0.0
       (let ((acumulador
-        (if (= Composto 1)
+        (if Composto
           (_jurosCompostos juros Pagamentos Pesos 0.0)
           (_jurosSimples juros Pagamentos Pesos 0.0)
         )

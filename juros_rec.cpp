@@ -1,6 +1,7 @@
 // Cálculo dos juros, sendo que precisa de parcelas pra isso
 // Versão 0.1: 03/06/2026: com vetores de C++ e globais como em juros_otimizado, versão recursiva
 //        0.2: 15/08/2026: alterada para propiciar Tail Call Optimization
+//        0.3: 25/11/2026: validações de variáveis, parâmetros e cálculos (pesoTotal + acumulador)
 
 // Esta versão da solução em C++ é propositalmente recursiva para medir o desempenho dessa forma de implementar os algoritmos
 // usando um compilador em C++ conhecido pelo seu desempenho. A média das medições (para benchmark.png) foi 0,21 s, o que é
@@ -59,8 +60,10 @@ double rJurosSimples(double juros, int indice, double acumulador) {
 
 // calcula o acréscimo a partir dos juros e parcelas (com algum açúcar)
 double jurosParaAcrescimo(double juros) {
-    if (Composto) return (getPesoTotal() / rJurosCompostos(juros, Quantidade - 1, 0.0) - 1.0) * 100.0;
-             else return (getPesoTotal() / rJurosSimples(juros, Quantidade - 1, 0.0) - 1.0) * 100.0;
+    double pesoTotal = getPesoTotal();
+    if (Quantidade < 1 || Periodo <= 0.0 || pesoTotal <= 0.0 || juros <= 0.0) return 0.0;
+    double acumulador = Composto ? rJurosCompostos(juros, Quantidade - 1, 0.0) : rJurosSimples(juros, Quantidade - 1, 0.0);
+    if (acumulador <= 0.0) return 0.0; else return (pesoTotal / acumulador - 1.0) * 100.0;
 }
 
 // função recursiva que calcula os juros a partir do acréscimo e parcelas
@@ -73,7 +76,8 @@ double rAcrescimoParaJuros(double acrescimo, double minDiferenca, int iteracao, 
 
 // açúcar que calcula os juros a partir do acréscimo e parcelas
 double acrescimoParaJuros(double acrescimo, int precisao, int maxIteracoes, double maxJuros) {
-    return rAcrescimoParaJuros(acrescimo, pow(0.1, precisao), maxIteracoes, 0.0, maxJuros, maxJuros / 2.0);
+    if (Quantidade < 1 || Periodo <= 0.0 || acrescimo <= 0.0 || precisao < 1 || maxIteracoes < 1 || maxJuros <= 0.0 || getPesoTotal() <= 0.0) return 0.0;
+        else return rAcrescimoParaJuros(acrescimo, pow(0.1, precisao), maxIteracoes, 0.0, maxJuros, maxJuros / 2.0);
 }
 
 // função principal

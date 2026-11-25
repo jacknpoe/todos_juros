@@ -58,11 +58,11 @@
     (if (or (<= juros 0.0) (<= Quantidade 0) (<= Periodo 0.0) (<= pesoTotal 0.0))
         0.0
         (let (( acumulador
-            (if Composto
-                (_jurosCompostos juros Pagamentos Pesos 0.0)
-                (_jurosSimples juros Pagamentos Pesos 0.0)
-            )
-        ))
+                (if Composto
+                    (_jurosCompostos juros Pagamentos Pesos 0.0)
+                    (_jurosSimples juros Pagamentos Pesos 0.0)
+                )
+            ))
             (if (<= acumulador 0.0)
                 0.0
                 (* (- (/ pesoTotal acumulador) 1.0) 100.0)

@@ -7,11 +7,12 @@
 %        0.4: 02/11/2026: corrigido AND (,) por OR (;) e colocados parênteses e acréscimo com acento
 %                         corrigido acrescimoParaJuros, listas escaladas, casos especiais retirados, validações de parâmetros e cálculos
 %                         funções recursivas alteradas para permitir Tail Call Optimization (TCO); desempenho pior em Scryer Prolog e melhor em SWI-Prolog
+%        0.5: 25/11/2026: Composto = true
 
 % dados gerais
 juros :-
   Quantidade is 3,
-  Composto is 1,
+  Composto = true,
   Periodo is 30.0,
   criaPagamentos(Quantidade, Periodo, Pagamentos),
   criaPesos(Quantidade, Pesos),
@@ -82,10 +83,10 @@ jurosParaAcrescimo(Composto, Periodo, Pagamentos, Pesos, Juros, Acrescimo) :-
     ;
     (
       (
-        (Composto == 1,
+        (Composto == true,
           rJurosCompostos(Periodo, Pagamentos, Pesos, Juros, Amortecimento, 0.0))
         ;
-        (Composto == 0,
+        (Composto == false,
           rJurosSimples(Periodo, Pagamentos, Pesos, Juros, Amortecimento, 0.0))
       ),
       (

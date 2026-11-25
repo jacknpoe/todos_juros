@@ -64,7 +64,7 @@ This is a list of links in this repository to solutions in different dialects, o
 
 <br>
 
-# SOLUÇÕES / SOLUTIONS (430)
+# SOLUÇÕES / SOLUTIONS (429)
 
 ### 11l (14/03/2026) 🚀 ✍️
 
@@ -790,10 +790,6 @@ This is a list of links in this repository to solutions in different dialects, o
 ### K (04/03/2026) 🔧 ♻️ ✍️
 
 [juros.k](juros.k)
-
-### Kawa (10/04/2025) ♻️ ➰
-
-[jurosK.scm](jurosK.scm)
 
 ### Kaya-BASIC (12/04/2026) 🚀
 
@@ -1884,7 +1880,7 @@ JavaScript: [juroswww.js](juroswww.js)
 
 <br>
 
-# EQUIVALENTES / EQUIVALENTS (91)
+# EQUIVALENTES / EQUIVALENTS (92)
 
 ACECode = Scratch<br>
 Amstrad BASIC = Locomotive BASIC<br>
@@ -1912,11 +1908,11 @@ Free Pascal = Pascal<br>
 Gambit = Scheme + 🚀<br>
 gawk = awk<br>
 Generic Java = Java<br>
-Gerbil Scheme = Kawa/Steel<br>
+Gerbil Scheme = Scheme/Steel<br>
 gFortran = Fortran<br>
 GNU Bourne-Again Shell = Bash<br>
 GNU Octave = Octave<br>
-Guile = Kawa/Scheme/Steel<br>
+Guile = Scheme/Steel<br>
 HashLink = Haxe<br>
 IBM PC BASIC A = GW-BASIC<br>
 IBM Personal Computer BASIC = GW-BASIC<br>
@@ -1925,6 +1921,7 @@ Intel Fortran Compiler = Fortran<br>
 Iodine = Java<br>
 IronPython = Python<br>
 JRuby = Ruby<br>
+Kawa = Scheme<br>
 Korn Shell = ksh<br>
 LibreOffice Basic = OpenOffice Basic<br>
 Linden Scripting Language = LSL<br>
@@ -1967,7 +1964,7 @@ Scryer Prolog = Prolog<br>
 SICP = DrScheme<br>
 SpiderBasic = PureBasic<br>
 Squeak = Smalltalk<br>
-STklos = Gauche/Kawa/Scheme/Steel<br>
+STklos = Gauche/Scheme/Steel<br>
 SWI-Prolog = Prolog<br>
 SwiftForth = Gforth<br>
 SYCL = Intel oneAPI DPC++<br>

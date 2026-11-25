@@ -4,10 +4,11 @@
 ;;                         validações como nas soluções iterativas, encerramento explícito com (exit)
 ;;                         funções recursivas alteradas para permitir Tail Call Optimization (TCO)
 ;;                         estoura a pilha com 933 parcelas na pilha padrão (use a opção -s para aumentar a pilha; testado com sucesso até 5.000 parcelas)
+;;        0.3: 25/11/2026: 'Composto true
 
 ;; Variáveis escalares
 (set 'Quantidade 3)
-(set 'Composto 1)  ;; 1 = true, 0 = false
+(set 'Composto true)  ;; 1 = true, 0 = false
 (set 'Periodo 30,0)
 
 ;; função açúcar que gera a lista de pagamentos
@@ -23,7 +24,7 @@
   )
 )
 
-;; função açúcar que gera a lista de pesos
+;; função açúcar que gera a lista de pesoss
 (define (criaPesos)
   (_criaPesos(- Quantidade 1) '())
 )
@@ -59,7 +60,7 @@
     (if (or (< Quantidade 1) (<= Periodo 0,0) (<= pesoTotal 0,0) (<= juros 0,0))
       0,0
       (let (acumulador
-          (if (= Composto 1)
+          (if Composto
               (_jurosCompostos juros Pagamentos Pesos 0,0)
               (_jurosSimples juros Pagamentos Pesos 0,0)
           )

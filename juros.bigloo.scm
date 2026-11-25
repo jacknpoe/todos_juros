@@ -2,12 +2,13 @@
 ;; Versão 0.1: 02/08/2025: a partir da versão em Steel, incluindo módulo e trocados prints para Bigloo
 ;;        0.2: 13/10/2026: melhorias gerais nas validações, geradoras de listas para escalabilidade, correção de recursões infinitas,
 ;;                         funções recursivas alteradas para permitir Tail Call Optimization (TCO)
+;;        0.3: 25/11/2026: Composto #t; avaliado acumulador; retirado define de pesoTotal em acrescimoParaJuros
 
 (module juros)
 
 ;; Variáveis globais para simplificar as chamadas
 (define Quantidade 3)
-(define Composto 1)  ;; 1 = true, 0 = false
+(define Composto #t)  ;; #t = true, #f = false
 (define Periodo 30.0)
 (define Pagamentos (criaPagamentos))
 (define Pesos (criaPesos))
@@ -56,9 +57,16 @@
     (define pesoTotal (getPesoTotal))
     (if (or (<= juros 0.0) (<= Quantidade 0) (<= Periodo 0.0) (<= pesoTotal 0.0))
         0.0
-        (if (= Composto 1)
-            (* (- (/ pesoTotal (_jurosCompostos juros Pagamentos Pesos 0.0)) 1.0) 100.0)
-            (* (- (/ pesoTotal (_jurosSimples juros Pagamentos Pesos 0.0)) 1.0) 100.0)
+        (let (( acumulador
+            (if Composto
+                (_jurosCompostos juros Pagamentos Pesos 0.0)
+                (_jurosSimples juros Pagamentos Pesos 0.0)
+            )
+        ))
+            (if (<= acumulador 0.0)
+                0.0
+                (* (- (/ pesoTotal acumulador) 1.0) 100.0)
+            )
         )
     )
 )
@@ -81,8 +89,7 @@
 
 ;; função açúcar que calcula os juros a partir do acréscimo e dados comuns (como parcelas)
 (define (acrescimoParaJuros acrescimo precisao maxIteracoes maxJuros)
-    (define pesoTotal (getPesoTotal))
-    (if (or (<= acrescimo 0.0) (<= Quantidade 0) (<= Periodo 0.0) (< maxIteracoes 1) (< precisao 1) (<= maxJuros 0.0) (<= pesoTotal 0.0))
+    (if (or (<= acrescimo 0.0) (<= Quantidade 0) (<= Periodo 0.0) (< maxIteracoes 1) (< precisao 1) (<= maxJuros 0.0) (<= (getPesoTotal) 0.0))
         0.0
         (_acrescimoParaJuros acrescimo (expt 0.1 precisao) maxIteracoes 0.0 maxJuros (/ maxJuros 2.0))
     )

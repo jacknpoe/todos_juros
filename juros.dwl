@@ -2,6 +2,7 @@
 // Versão 0.1: 19/07/2024: versão feita sem muito conhecimento de DadaWeave
 //        0.2: 05/11/2026: 15 decimais; melhorados comentários; valida variáveis, parâmetros, cálculos; removidos casos especiais; corrigido índice em rGetPesoTotal
 //                         arrays escaláveis criados dinamicamente; funções recursivas agora permitem Tail Call Optimization (TCO)
+//        0.3: 25/11/2026: alterado MaxIteracoes para 65 e comentado o cálculo sobre MaxJuros e Precisao
 
 // RODAR COM: dw run -f juros.dwl -s
 
@@ -11,8 +12,9 @@ output application/json
 
 // configuração da precisão
 var MaxJuros = 50.0
-var Precisao = 15.0
-var MaxIteracoes = ceil((log(MaxJuros / 2.0) + Precisao * log(10.0)) / log(2.0))
+var Precisao = 15
+var MaxIteracoes = 65  // troque pela linha abaixo para ter um valor baseado em MaxJuros e Precisao
+// var MaxIteracoes = ceil((log(MaxJuros / 2.0) + Precisao * log(10.0)) / log(2.0))
 
 // variáveis escalares para simplificar as chamadas
 var Quantidade = 3

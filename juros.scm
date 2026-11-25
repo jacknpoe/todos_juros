@@ -5,6 +5,7 @@
 ;;        0.4: 18/11/2026: variável pesoTotal; melhorias em comentários e impressão; de list-ref para car e cdr; validações de variáveis, parâmetros e cálculos
 ;;                         retirados return-from; listas escaláveis criadas dinamicamente; funções recursivas alteradas para permitir Tail Call Optimization (TCO)
 ;;        0.5: 19/11/2026: #t em vez de 1
+;;        0.6: 25/11/2026: avalia acumulador
 
 ;; variáveis escalares globais para simplificar as chamadas
 (define Quantidade 3)
@@ -62,7 +63,10 @@
               (_jurosCompostos Pagamentos Pesos juros 0.0)
               (_jurosSimples Pagamentos Pesos juros 0.0)
           ) ))
-          (* (- (/ pesoTotal acumulador) 1.0d0) 100.0d0)
+          (if (<= acumulador 0.0)
+            0.0
+            (* (- (/ pesoTotal acumulador) 1.0d0) 100.0d0)
+          )
         )
       )
     )

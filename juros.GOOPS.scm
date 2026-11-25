@@ -2,13 +2,14 @@
 ;; Versão 0.1: 02/08/2025: versão feita a partir de Gauche, sem muito conhecimento de GOOPS
 ;;        0.2: 14/10/2026: com geradores de listas (o que tornou escalável), car e cdr, melhorias nos `or` repetitivos, pesoTotal calculada antes das validações
 ;;                         ao tentar alterar as funções recursivas para permitir Tail Call Optimization (TCO) houve piora de desempenho (5,4% mais lento)
+;;        0.3: 25/11/2026: Composto #t; retirado define de pesoTotal em acrescimoParaJuros; verificado acumulador
 
 ;; aqui é adicionado o suporte a POO do GOOPS
 (use-modules (oop goops))
 
 ;; define as varíaveis escalares que serão usadas para criar o objeto juros
 (define Quantidade 3)
-(define Composto 1)  ;; 0 = false; 1 = true
+(define Composto #t)  ;; #t = true; #f = false
 (define Periodo 30.0)
 
 ;; função açúcar que cria a lista de pagamentos
@@ -70,9 +71,16 @@
     (define pesoTotal (getPesoTotal ojuros))
     (if (or (<= juros 0.0) (<= (quantidade ojuros) 0) (<= (periodo ojuros) 0.0) (<= pesoTotal 0.0))
         0.0
-        (if (= (composto ojuros) 1)
-            (* (- (/ pesoTotal (_jurosCompostos ojuros juros (pagamentos ojuros) (pesos ojuros))) 1.0) 100.0)
-            (* (- (/ pesoTotal (_jurosSimples ojuros juros (pagamentos ojuros) (pesos ojuros))) 1.0) 100.0)
+        (let (( acumulador
+                (if (composto ojuros)
+                    (_jurosCompostos ojuros juros (pagamentos ojuros) (pesos ojuros))
+                    (_jurosSimples ojuros juros (pagamentos ojuros) (pesos ojuros))
+                )
+            ))
+            (if (<= acumulador 0.0)
+                0.0
+                (* (- (/ pesoTotal acumulador) 1.0) 100.0)
+            )
         )
     )
 )
@@ -95,8 +103,7 @@
 
 ;; função açúcar que calcula os juros a partir do acréscimo e dados comuns (como parcelas)
 (define-method (acrescimoParaJuros (ojuros <cJuros>) acrescimo precisao maxIteracoes maxJuros)
-    (define pesoTotal (getPesoTotal ojuros))
-    (if (or (<= acrescimo 0.0) (<= (quantidade ojuros) 0) (<= (periodo ojuros) 0.0) (< maxIteracoes 1) (< precisao 1) (<= maxJuros 0.0) (<= pesoTotal 0.0))
+    (if (or (<= acrescimo 0.0) (<= (quantidade ojuros) 0) (<= (periodo ojuros) 0.0) (< maxIteracoes 1) (< precisao 1) (<= maxJuros 0.0) (<= (getPesoTotal ojuros) 0.0))
         0.0
         (_acrescimoParaJuros ojuros acrescimo (expt 0.1 precisao) maxIteracoes 0.0 maxJuros (/ maxJuros 2.0))
     )

@@ -2,10 +2,11 @@
 ;; Versão 0.1: 23/07/2025: copiado de Common Lisp para EusLisp e alterado para definir as funções em ordem e a impressão dos resultados
 ;;        0.2: 14/10/2026: a partir de Emacs Lisp, alterada impressão, geradores de listas, uso de car e cdr
 ;;                         recursivas alteradas para permitir Tail Call Optimoization (TCO) embora ainda estoure a pilha e o desempenho não melhore muito
+;;        0.3: 26/11/2026: Composto T; validados variáveis, parâmetros e cálculos; pesoTotal e acumulador; + medJuros; 12 dígitos em vez de 15
 
 ;; inicializa as variáveis escalares globais
 (defvar Quantidade 3)
-(defvar Composto 1)  ;; 1 = true; 0 = false
+(defvar Composto T)  ;; T = true; NIL = false
 (defvar Periodo 30.0)
 
 ;; função açúcar que gera a lista de pagamentos
@@ -53,9 +54,21 @@
 
 ;; função que calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
 (defun jurosParaAcrescimo (juros)
-  (if (= Composto 1)
-      (* (- (/ (getPesoTotal) (_jurosCompostos juros Pagamentos Pesos 0.0)) 1.0) 100.0)
-      (* (- (/ (getPesoTotal) (_jurosSimples juros Pagamentos Pesos 0.0)) 1.0) 100.0)
+  (let (( pesoTotal (getPesoTotal) ))
+    (if (or (< Quantidade 1) (<= Periodo 0.0) (<= juros 0.0) (<= pesoTotal 0.0))
+      0.0
+      (let (( acumulador
+          (if Composto
+            (_jurosCompostos juros Pagamentos Pesos 0.0)
+            (_jurosSimples juros Pagamentos Pesos 0.0)
+          )
+        ))
+        (if (<= acumulador 0.0)
+          0.0
+          (* (- (/ pesoTotal acumulador) 1.0) 100.0)
+        )
+      )
+    )
   )
 )
 
@@ -77,16 +90,19 @@
 
 ;; função açúcar que calcula os juros a partir do acréscimo e dados comuns (como parcelas)
 (defun acrescimoParaJuros (acrescimo precisao maxIteracoes maxJuros)
-  (_acrescimoParaJuros acrescimo (expt 0.1 precisao) maxIteracoes 0.0 maxJuros)
+  (if (or (< Quantidade 1) (<= Periodo 0.0) (<= acrescimo 0.0) (< precisao 1) (< maxIteracoes 1) (<= maxJuros 0.0) (<= (getPesoTotal) 0.0))
+    0.0
+    (_acrescimoParaJuros acrescimo (expt 0.1 precisao) maxIteracoes 0.0 maxJuros (/ maxJuros 2.0))
+  )
 )
 
 ;;função recursiva que calcula os juros a partir do acréscimo e dados comuns (como parcelas)
-(defun _acrescimoParaJuros (acrescimo minDiferenca iteracaoAtual minJuros maxJuros)
-  (if (or (< (- maxJuros minJuros) minDiferenca) (= iteracaoAtual 0))
-    (/ (+ minJuros maxJuros) 2.0)
-    (if (< (jurosParaAcrescimo (/ (+ minJuros maxJuros) 2.0)) acrescimo)
-      (_acrescimoParaJuros acrescimo minDiferenca (- iteracaoAtual 1) (/ (+ minJuros maxJuros) 2.0) maxJuros)
-      (_acrescimoParaJuros acrescimo minDiferenca (- iteracaoAtual 1) minJuros (/ (+ minJuros maxJuros) 2.0))
+(defun _acrescimoParaJuros (acrescimo minDiferenca iteracaoAtual minJuros maxJuros medJuros)
+  (if (or (<= (- maxJuros minJuros) minDiferenca) (= iteracaoAtual 0))
+    medJuros
+    (if (< (jurosParaAcrescimo medJuros) acrescimo)
+      (_acrescimoParaJuros acrescimo minDiferenca (- iteracaoAtual 1) medJuros maxJuros (/ (+ medJuros maxJuros) 2.0))
+      (_acrescimoParaJuros acrescimo minDiferenca (- iteracaoAtual 1) minJuros medJuros (/ (+ minJuros medJuros) 2.0))
     )
   )
 )
@@ -96,7 +112,7 @@
 (defvar acrescimoCalculado (jurosParaAcrescimo 3.0))
 (defvar jurosCalculado (acrescimoParaJuros acrescimoCalculado 15 65 50.0))
 
-(format t "Peso total = ~2,15F~%" pesoTotal)
-(format t "Acréscimo = ~2,15F~%" acrescimoCalculado)
-(format t "Juros = ~2,15F~%" jurosCalculado)
+(format t "Peso total = ~2,12F~%" pesoTotal)
+(format t "Acréscimo = ~2,12F~%" acrescimoCalculado)
+(format t "Juros = ~2,12F~%" jurosCalculado)
 (exit)

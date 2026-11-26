@@ -4,10 +4,11 @@
 ;;        0.3: 14/10/2026: alterado geradores de listas, uso de car e cdr
 ;;                         recursivas alteradas para permitir Tail Call Optimoization (TCO) embora ainda estoure a pilha e o desempenho não melhore muito
 ;;                         nos testes, o número máximo de parcelas calculadas com sucesso foram 333 (o mesmo que não TCO)
+;;        0.5: 26/11/2026: Composto t; validações de variáveis, parâmetros e cálculos; pesoTotal e acumulador; + medJuros
 
 ;; inicializa as variáveis escalares globais
 (defvar Quantidade 3)
-(defvar Composto 1)  ;; 1 = true; 0 = false
+(defvar Composto t)  ;; t = true; nil = false
 (defvar Periodo 30.0)
 
 ;; função açúcar que gera a lista de pagamentos
@@ -55,9 +56,21 @@
 
 ;; função que calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
 (defun jurosParaAcrescimo (juros)
-  (if (= Composto 1)
-      (* (- (/ (getPesoTotal) (_jurosCompostos juros Pagamentos Pesos 0.0)) 1.0) 100.0)
-      (* (- (/ (getPesoTotal) (_jurosSimples juros Pagamentos Pesos 0.0)) 1.0) 100.0)
+  (let (( pesoTotal (getPesoTotal) ))
+    (if (or (< Quantidade 1) (<= Periodo 0.0) (<= juros 0.0) (<= pesoTotal 0.0))
+      0.0
+      (let (( acumulador
+          (if Composto
+              (_jurosCompostos juros Pagamentos Pesos 0.0)
+              (_jurosSimples juros Pagamentos Pesos 0.0)
+          )
+        ))
+        (if (<= acumulador 0.0)
+          0.0
+          (* (- (/ pesoTotal acumulador) 1.0) 100.0)
+        )
+      )
+    )
   )
 )
 
@@ -79,16 +92,19 @@
 
 ;; função açúcar que calcula os juros a partir do acréscimo e dados comuns (como parcelas)
 (defun acrescimoParaJuros (acrescimo precisao maxIteracoes maxJuros)
-  (_acrescimoParaJuros acrescimo (expt 0.1 precisao) maxIteracoes 0.0 maxJuros)
+  (if (or (< Quantidade 1) (<= Periodo 0.0) (<= acrescimo 0.0) (< precisao 1) (< maxIteracoes 1) (<= maxJuros 0.0) (<= (getPesoTotal) 0.0))
+    0.0
+    (_acrescimoParaJuros acrescimo (expt 0.1 precisao) maxIteracoes 0.0 maxJuros (/ maxJuros 2.0))
+  )
 )
 
 ;;função recursiva que calcula os juros a partir do acréscimo e dados comuns (como parcelas)
-(defun _acrescimoParaJuros (acrescimo minDiferenca iteracaoAtual minJuros maxJuros)
-  (if (or (< (- maxJuros minJuros) minDiferenca) (= iteracaoAtual 0))
-    (/ (+ minJuros maxJuros) 2.0)
-    (if (< (jurosParaAcrescimo (/ (+ minJuros maxJuros) 2.0)) acrescimo)
-      (_acrescimoParaJuros acrescimo minDiferenca (- iteracaoAtual 1) (/ (+ minJuros maxJuros) 2.0) maxJuros)
-      (_acrescimoParaJuros acrescimo minDiferenca (- iteracaoAtual 1) minJuros (/ (+ minJuros maxJuros) 2.0))
+(defun _acrescimoParaJuros (acrescimo minDiferenca iteracaoAtual minJuros maxJuros medJuros)
+  (if (or (<= (- maxJuros minJuros) minDiferenca) (= iteracaoAtual 0))
+    medJuros
+    (if (< (jurosParaAcrescimo medJuros) acrescimo)
+      (_acrescimoParaJuros acrescimo minDiferenca (- iteracaoAtual 1) medJuros maxJuros (/ (+ medJuros maxJuros) 2.0))
+      (_acrescimoParaJuros acrescimo minDiferenca (- iteracaoAtual 1) minJuros medJuros (/ (+ minJuros medJuros) 2.0))
     )
   )
 )

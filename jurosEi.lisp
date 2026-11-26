@@ -3,10 +3,11 @@
 ;;        0.2: 16/04/2025: retirada variável medJuros
 ;;        0.3: 14/10/2026: alterado para usar iteração
 ;;        0.4: 15/10/2026: agora valida variáveis e acumulador
+;;        0.5: 26/11/2026: Composto t
 
 ;; inicializa as variáveis escalares globais
 (defvar Quantidade 3)
-(defvar Composto 1)  ;; 1 = true; 0 = false
+(defvar Composto t)  ;; t = true; nil = false
 (defvar Periodo 30.0)
 
 ;; função que gera a lista de pagamentos
@@ -53,7 +54,7 @@
       0.0
       (let ((pagamentos Pagamentos) (pesos Pesos) (acumulador 0.0))
         (while pagamentos
-          (if (= Composto 1)
+          (if Composto
             (setq acumulador (+ acumulador (/ (car pesos) (expt (+ 1.0 (/ juros 100.0)) (/ (car pagamentos) Periodo)))))
             (setq acumulador (+ acumulador (/ (car pesos) (+ 1.0 (* (/ juros 100.0) (/ (car pagamentos) Periodo))))))
           )

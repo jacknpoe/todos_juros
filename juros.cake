@@ -133,7 +133,7 @@
   ;; calcula e guarda os resultados das funções
   (var pesoTotal double (getPesoTotal))
   (var acrescimoCalculado double (jurosParaAcrescimo 3.0))
-  (var jurosCalculado double (acrescimoParaJuros acrescimoCalculado 15 100 50.0))
+  (var jurosCalculado double (acrescimoParaJuros acrescimoCalculado 15 65 50.0))
 
   ;; imprime os resultados
   (fprintf stdout "Peso total = %.15f\n" pesoTotal)

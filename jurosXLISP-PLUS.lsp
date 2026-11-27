@@ -45,7 +45,7 @@
 ;; função açúcar que calcula a somatória de Pesos
 (defun getPesoTotal() (_getPesoTotal Pesos))
 
-;; função recursiva que calcula a soma do amortecimento de todas as parcelas para juros compostos
+;; função recursiva que calcula a soma da amortização de todas as parcelas para juros compostos
 (defun _jurosCompostos (ppagamentos ppesos juros)
   (if (null ppesos)
     0.0
@@ -54,7 +54,7 @@
   )
 )
 
-;; função recursiva que calcula a soma do amortecimento de todas as parcelas para juros simples
+;; função recursiva que calcula a soma da amortização de todas as parcelas para juros simples
 (defun _jurosSimples (ppagamentos ppesos juros)
   (if (null ppesos)
     0.0

@@ -68,7 +68,7 @@
   )
 )
 
-(defun jurosCompostos (juros) "função que calcula a soma do amortecimento de todas as parcelas para juros compostos"
+(defun jurosCompostos (juros) "função que calcula a soma da amortização de todas as parcelas para juros compostos"
   (progn
     (set 'ppagamentos Pagamentos)
     (set 'ppesos Pesos)
@@ -82,7 +82,7 @@
   )
 )
 
-(defun jurosSimples (juros) "função que calcula a soma do amortecimento de todas as parcelas para juros simples"
+(defun jurosSimples (juros) "função que calcula a soma da amortização de todas as parcelas para juros simples"
   (progn
     (set 'ppagamentos Pagamentos)
     (set 'ppesos Pesos)

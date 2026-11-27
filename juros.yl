@@ -56,13 +56,13 @@
   )
 )
 
-(defun _jurosCompostos (ppagamentos ppesos juros) "função recursiva não-TCO que calcula a soma do amortecimento de todas as parcelas para juros compostos"
+(defun _jurosCompostos (ppagamentos ppesos juros) "função recursiva não-TCO que calcula a soma da amortização de todas as parcelas para juros compostos"
   (cond ((null ppesos) 0.0)
     ('t (+ (* (car ppesos) (pow (+ 1.0 (/ juros 100.0)) (- 0.0 (/ (car ppagamentos) Periodo)))) (_jurosCompostos (cdr ppagamentos) (cdr ppesos) juros)))
   )
 )
 
-(defun _jurosSimples (ppagamentos ppesos juros) "função recursiva não-TCO que calcula a soma do amortecimento de todas as parcelas para juros simples"
+(defun _jurosSimples (ppagamentos ppesos juros) "função recursiva não-TCO que calcula a soma da amortização de todas as parcelas para juros simples"
   (cond ((null ppesos) 0.0)
     ('t (+ (/ (car ppesos) (+ 1.0 (* (/ juros 100.0) (/ (car ppagamentos) Periodo)))) (_jurosSimples (cdr ppagamentos) (cdr ppesos) juros)))
   )

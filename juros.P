@@ -64,35 +64,35 @@ jurosParaAcrescimo(Composto, Periodo, Pagamentos, Pesos, Juros, Acrescimo) :-
     (
       (
         (Composto == true,
-          rJurosCompostos(Periodo, Pagamentos, Pesos, Juros, Amortecimento))
+          rJurosCompostos(Periodo, Pagamentos, Pesos, Juros, Amortizacao))
         ;
         (Composto == false,
-          rJurosSimples(Periodo, Pagamentos, Pesos, Juros, Amortecimento))
+          rJurosSimples(Periodo, Pagamentos, Pesos, Juros, Amortizacao))
       ),
       (
-        (Amortecimento =< 0.0,
+        (Amortizacao =< 0.0,
           Acrescimo is 0.0)
         ;
-        (Amortecimento > 0.0,
-          Acrescimo is (PesoTotal / Amortecimento - 1.0) * 100)
+        (Amortizacao > 0.0,
+          Acrescimo is (PesoTotal / Amortizacao - 1.0) * 100)
       )
     )
   ).
 
-% função recursiva que calcula a soma do amortecimento de todas as parcelas para juros compostos
+% função recursiva que calcula a soma da amortização de todas as parcelas para juros compostos
 rJurosCompostos(_, [], [], _, 0.0).
-rJurosCompostos(Periodo, [PagamentosH|PagamentosT], [PesosH|PesosT], Juros, Amortecimento) :-
+rJurosCompostos(Periodo, [PagamentosH|PagamentosT], [PesosH|PesosT], Juros, Amortizacao) :-
 (
-  rJurosCompostos(Periodo, PagamentosT, PesosT, Juros, Amortecimento1),
-  Amortecimento is PesosH / (1.0 + Juros / 100.0) ^ (PagamentosH / Periodo) + Amortecimento1
+  rJurosCompostos(Periodo, PagamentosT, PesosT, Juros, Amortizacao1),
+  Amortizacao is PesosH / (1.0 + Juros / 100.0) ^ (PagamentosH / Periodo) + Amortizacao1
 ).
   
-% função recursiva que calcula a soma do amortecimento de todas as parcelas para juros simples
+% função recursiva que calcula a soma da amortização de todas as parcelas para juros simples
 rJurosSimples(_, [], [], _, 0.0).
-rJurosSimples(Periodo, [PagamentosH|PagamentosT], [PesosH|PesosT], Juros, Amortecimento) :-
+rJurosSimples(Periodo, [PagamentosH|PagamentosT], [PesosH|PesosT], Juros, Amortizacao) :-
 (
-  rJurosSimples(Periodo, PagamentosT, PesosT, Juros, Amortecimento1),
-  Amortecimento is PesosH / (1.0 + Juros / 100.0 * PagamentosH / Periodo) + Amortecimento1
+  rJurosSimples(Periodo, PagamentosT, PesosT, Juros, Amortizacao1),
+  Amortizacao is PesosH / (1.0 + Juros / 100.0 * PagamentosH / Periodo) + Amortizacao1
 ).
   
 % função açúcar que calcula os juros a partir do acrescimo e dados comuns (como parcelas)

@@ -38,14 +38,14 @@ def getPesoTotal(pesos, iteracao):
   else:
     return pesos[iteracao] + getPesoTotal(pesos, iteracao - 1)
 
-# função recursiva que calcula a soma do amortecimento de todas as parcelas para juros compostos
+# função recursiva que calcula a soma da amortização de todas as parcelas para juros compostos
 def rJurosCompostos(periodo, pagamentos, pesos, juros, iteracao):
   if iteracao == 0:
     return 0.0
   else:
     return pesos[iteracao] / ((1.0 + juros / 100.0) ** (pagamentos[iteracao] / periodo)) + rJurosCompostos(periodo, pagamentos, pesos, juros, iteracao - 1)
 
-# função recursiva que calcula a soma do amortecimento de todas as parcelas para juros simples
+# função recursiva que calcula a soma da amortização de todas as parcelas para juros simples
 def rJurosSimples(periodo, pagamentos, pesos, juros, iteracao):
   if iteracao == 0:
     return 0.0

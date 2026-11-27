@@ -48,12 +48,12 @@ double rGetPesoTotal(int indice, double acumulador) { if (indice < 0) return acu
 // açúcar que calcula a somatória de Pesos
 double getPesoTotal() { return rGetPesoTotal(Quantidade - 1, 0.0); }
 
-// função recursiva que calcula a somatória dos amortecimentos de juros compostos
+// função recursiva que calcula a somatória das amortizações de juros compostos
 double rJurosCompostos(double juros, int indice, double acumulador) {
     if (indice < 0) return acumulador; else return rJurosCompostos(juros, indice - 1, acumulador + Pesos[indice] / pow(1.0 + juros / 100.0, Pagamentos[indice] / Periodo));
 }
 
-// função recursiva que calcula a somatória dos amortecimentos de juros simples
+// função recursiva que calcula a somatória das amortizações de juros simples
 double rJurosSimples(double juros, int indice, double acumulador) {
     if (indice < 0) return acumulador; else return rJurosSimples(juros, indice - 1, acumulador + Pesos[indice] / (1.0 + juros / 100.0 * Pagamentos[indice] / Periodo));
 }

@@ -71,7 +71,7 @@
     )
 )
 
-;; função recursiva que calcula a soma do amortecimento das parcelas para juros compostos
+;; função recursiva que calcula a soma da amortização das parcelas para juros compostos
 (define (_jurosCompostos juros pagamentos pesos acumulador)
     (if (null? pesos)
         acumulador
@@ -79,7 +79,7 @@
     )
 )
 
-;; função recursiva que calcula a soma do amortecimento das parcelas para juros simples
+;; função recursiva que calcula a soma da amortização das parcelas para juros simples
 (define (_jurosSimples juros pagamentos pesos acumulador)
     (if (null? pesos)
         acumulador

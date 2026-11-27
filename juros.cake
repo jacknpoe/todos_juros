@@ -66,7 +66,7 @@
   )
 )
 
-;; calcula a soma do amortecimento de todas as parcelas para juros compostos
+;; calcula a soma da amortização de todas as parcelas para juros compostos
 (defun _jurosCompostos (indice int juros double acumulador double &return double)
   (if (< indice 0)
     (return acumulador)
@@ -74,7 +74,7 @@
   )
 )
 
-;; calcula a soma do amortecimento de todas as parcelas para juros simples
+;; calcula a soma da amortização de todas as parcelas para juros simples
 (defun _jurosSimples (indice int juros double acumulador double &return double)
   (if (< indice 0)
     (return acumulador)

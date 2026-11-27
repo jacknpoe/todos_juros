@@ -1,19 +1,57 @@
 / Calcula o acréscimo a partir dos juros e os juros a partir do acréscimo
 / Versão: 0.1: 04/03/2026: feita sem muito conhecimento de q
 /         0.2 (recursiva): 11/10/2026: agora com funções identadas corretamente e com medição de tempo
+/         0.3: 26/11/2026: 16 casas decimais; valiados variáveis, parâmetros e cálculos; Composto: 1b; define elementos dos arrays; getPesoTotal
 / converter rGetPesoTotal, rJurosCompostos e rJurosSimples para permitir Tail Call Optimization (TCO) não alterou desempenho nem mudou o comportamento da pilha
 / ATENÇÃO: com 1937 parcelas, ou mais, estoura a pilha
+/ EXECUTAR: q jurosq.q -q < /dev/null
 
-\P 0  / todas as casas decimais válidas
+\P 16  / 16 casas decimais
 
 / variáveis globais para simplificar as chamadas de função e inicialização
 Quantidade: 3
-Composto: 1  / true
+Composto: 1b  / 1b = true; 0b = false
 Periodo: 30.0
-Pagamentos: (1 + til Quantidade) * Periodo  / como está, [30.0 60.0 90.0]
-Pesos: Quantidade # 1.0  / como está, [1.0 1.0 1.0]
+Pagamentos: Quantidade # 0.0
+Pesos: Quantidade # 0.0
 
-/ calcula a somatória dos elementos em Pesos (parte recursiva interna)
+/ função recursiva que inicializa os elementosw do array Pagamentos
+rDefinePagamentos: {
+    [indice]
+    $[
+        indice < Quantidade;
+        [
+            Pagamentos[indice]: (indice + 1) * Periodo;
+            rDefinePagamentos[indice + 1]
+        ];
+        ::
+    ]
+    }
+
+/ função açúcar que inicializa os elementosw do array Pagamentos
+definePagamentos: {
+    rDefinePagamentos[0];
+    }
+
+/ função recursiva que inicializa os elementosw do array Pesos
+rDefinePesos: {
+    [indice]
+    $[
+        indice < Quantidade;
+        [
+            Pesos[indice]: 1.0;
+            rDefinePesos[indice + 1]
+        ];
+        ::
+    ]
+    }
+
+/ função açúcar que inicializa os elementosw do array Pagamentos
+definePesos: {
+    rDefinePesos[0];
+    }
+
+/ função recursiva que calcula a somatória dos elementos em Pesos
 rGetPesoTotal: {
     [indice]
     $[
@@ -23,12 +61,12 @@ rGetPesoTotal: {
     ]
     }
 
-/ calcula a somatória dos elementos em Pesos (açúcar)
+/ função açúcar que calcula a somatória dos elementos em Pesos
 getPesoTotal: {
     rGetPesoTotal[Quantidade - 1]
     }
 
-/ acumula o total de amortecimentos para juros compostos (parte recursiva interna)
+/ função que acumula o total de amortizações para juros compostos (parte recursiva interna)
 rJurosCompostos: {
     [indice; juros]
     $[
@@ -38,7 +76,7 @@ rJurosCompostos: {
     ]
     }
 
-/ acumula o total de amortecimentos para juros simples (parte recursiva interna)
+/ função que acumula o total de amortizações para juros simples (parte recursiva interna)
 rJurosSimples: {
     [indice; juros]
     $[
@@ -48,17 +86,35 @@ rJurosSimples: {
     ]
     }
 
-/ calcula o acréscimo a partir dos juros e parcelas (é um pouco açúcar)
-jurosParaAcrescimo: {
+/ função que calcula amortização
+calculaAmortizacao: {
     [juros]
     $[
-        Composto = 1;
-        ((getPesoTotal[] % rJurosCompostos[Quantidade - 1; juros]) - 1.0) * 100.0;
-        ((getPesoTotal[] % rJurosSimples[Quantidade - 1; juros]) - 1.0) * 100.0
+        Composto;
+        rJurosCompostos[Quantidade - 1; juros];
+        rJurosSimples[Quantidade - 1; juros]
+    ]
+ }
+
+/ função que calcula o acréscimo a partir dos juros e parcelas
+jurosParaAcrescimo: {
+    [juros]
+    pesoTotal: getPesoTotal[];
+    $[
+        (Quantidade = 0) | (Periodo <= 0.0) | (juros <= 0.0 | (pesoTotal <= 0.0));
+        0.0;
+        [
+            acumulador: calculaAmortizacao[juros];
+            $[
+                acumulador <= 0.0;
+                0.0;
+                ((pesoTotal % acumulador) - 1.0) * 100.0
+            ]
+        ]
     ]
     }
 
-/ calcula os juros a partir do acréscimo e parcelas (parte recursiva interna) A FUNÇÃO TEM 422 CARACTERES
+/ função recursiva que calcula os juros a partir do acréscimo e parcelas
 rAcrescimoParaJuros: {
     [acrescimo; iteracao; minDiferenca; minJuros; maxJuros; medJuros]
     $[
@@ -72,14 +128,22 @@ rAcrescimoParaJuros: {
     ]
     }
 
-/ calcula os juros a partir do acréscimo e parcelas (açúcar)
+/ função açúcar que calcula os juros a partir do acréscimo e parcelas
 acrescimoParaJuros: {
     [acrescimo; precisao; maxIteracoes; maxJuros]
-    rAcrescimoParaJuros[acrescimo; maxIteracoes; 0.1 xexp precisao; 0.0; maxJuros; (maxJuros % 2.0)]
+    $[
+        (Quantidade = 0) | (Periodo <= 0.0) | (acrescimo <= 0.0) | (precisao < 1) | (maxIteracoes < 1) | (maxJuros <= 0.0 | (getPesoTotal[] <= 0.0));
+        0.0;
+        rAcrescimoParaJuros[acrescimo; maxIteracoes; 0.1 xexp precisao; 0.0; maxJuros; (maxJuros % 2.0)]
+    ]
     }
 
 / executa código aqui, para poder ser medido por \t
 executa: {
+    / inicializa os arrays
+    definePagamentos[];
+    definePesos[];
+
     / calcula e guarda os retornos das funções
     pesoTotal: getPesoTotal[];
     acrescimoCalculado: jurosParaAcrescimo[3.0];

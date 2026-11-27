@@ -4,6 +4,7 @@
 ;        0.3: 27/04/2025: trocados defun por defgeneric + defmethod
 ;        0.4: 11/07/2026: corrigida / por quotient em (if (= iteracaoAtual 0) (quotient (+ minJuros maxJuros) 2.0)
 ;        0.5: 19/10/2026: escalável, recursões agora permitiriam Tail Call Optimization (TCO), mas ainda existem limites entre 3.000 e 7.000 parcelas
+;        0.6: 27/11/2026: Composto t; validações de atributos, parâmetros e cálculos; + medJuros
 
 ; COMO RODAR E MEDIR:
 ; eisl -c
@@ -20,7 +21,7 @@
 (defun _criaPagamentos (quantidade indice periodo acumulador)
   (if (< indice 0)
     acumulador
-    (_criaPagamentos quantidade (- indice 1) periodo (cons (* (- quantidade indice) periodo) acumulador))
+    (_criaPagamentos quantidade (- indice 1) periodo (cons (* (+ indice 1) periodo) acumulador))
   )
 )
 
@@ -40,7 +41,8 @@
 ; classe cJuros com propriedades para simplificar as chamadas aos métodos
 (defclass <cJuros> ()
     (
-        (composto   :accessor composto   :initform 0    :initarg composto)
+        (quantidade :accessor quantidade :initform 1    :initarg quantidade)
+        (composto   :accessor composto   :initform nil  :initarg composto)
         (periodo    :accessor periodo    :initform 30.0 :initarg periodo)
         (pagamentos :accessor pagamentos :initform '()  :initarg pagamentos)
         (pesos      :accessor pesos      :initform '()  :initarg pesos)
@@ -48,9 +50,9 @@
 )
 
 ; construtor
-(defgeneric cJuros (cmp per pag pes))
-(defmethod cJuros (cmp per pag pes)
-  (create (class <cJuros>) 'composto cmp 'periodo per 'pagamentos pag 'pesos pes)
+(defgeneric cJuros (qtd cmp per pag pes))
+(defmethod cJuros (qtd cmp per pag pes)
+  (create (class <cJuros>) 'quantidade qtd 'composto cmp 'periodo per 'pagamentos pag 'pesos pes)
 )
 
 ; função recursiva que calcula a somatoria de pesos
@@ -86,23 +88,32 @@
 ; função que calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
 (defgeneric jurosParaAcrescimo (ojuros juros))
 (defmethod jurosParaAcrescimo (ojuros juros)
-  (if (= (slot-value ojuros 'composto) 1)
-    (* (- (quotient (getPesoTotal ojuros) (_jurosCompostos juros (slot-value ojuros 'pagamentos) (slot-value ojuros 'pesos) (slot-value ojuros 'periodo) 0.0)) 1.0) 100.0)
-    (* (- (quotient (getPesoTotal ojuros) (_jurosSimples juros (slot-value ojuros 'pagamentos) (slot-value ojuros 'pesos) (slot-value ojuros 'periodo) 0.0)) 1.0) 100.0)
+  (let (( pesoTotal (getPesoTotal ojuros) ))
+    (if (or (< (slot-value ojuros 'quantidade) 1) (<= (slot-value ojuros 'periodo) 0.0) (<= juros 0.0) (<= pesoTotal 0.0))
+      0.0
+      (let (( acumulador
+          (if (slot-value ojuros 'composto)
+            (_jurosCompostos juros (slot-value ojuros 'pagamentos) (slot-value ojuros 'pesos) (slot-value ojuros 'periodo) 0.0)
+            (_jurosSimples juros (slot-value ojuros 'pagamentos) (slot-value ojuros 'pesos) (slot-value ojuros 'periodo) 0.0)
+          )
+        ))
+        (if (<= acumulador 0.0)
+          0.0
+          (* (- (quotient pesoTotal acumulador) 1.0) 100.0)
+        )
+      )
+    )
   )
 )
 
 ; função recursiva que calcula os juros a partir do acrescimo e dados comuns (como parcelas)
-(defgeneric _acrescimoParaJuros (ojuros acrescimo minDiferenca iteracaoAtual minJuros maxJuros))
-(defmethod _acrescimoParaJuros (ojuros acrescimo minDiferenca iteracaoAtual minJuros maxJuros)
-  (if (< (- maxJuros minJuros) minDiferenca)
-    (quotient (+ minJuros maxJuros) 2.0)
-    (if (= iteracaoAtual 0)
-      (quotient (+ minJuros maxJuros) 2.0)
-      (if (< (jurosParaAcrescimo ojuros (quotient (+ minJuros maxJuros) 2.0)) acrescimo)
-        (_acrescimoParaJuros ojuros acrescimo minDiferenca (- iteracaoAtual 1) (quotient (+ minJuros maxJuros) 2.0) maxJuros)
-        (_acrescimoParaJuros ojuros acrescimo minDiferenca (- iteracaoAtual 1) minJuros (quotient (+ minJuros maxJuros) 2.0))
-      )
+(defgeneric _acrescimoParaJuros (ojuros acrescimo minDiferenca iteracaoAtual minJuros maxJuros medJuros))
+(defmethod _acrescimoParaJuros (ojuros acrescimo minDiferenca iteracaoAtual minJuros maxJuros medJuros)
+  (if (or (<= (- maxJuros minJuros) minDiferenca) (<= iteracaoAtual 0))
+    medJuros
+    (if (< (jurosParaAcrescimo ojuros medJuros) acrescimo)
+      (_acrescimoParaJuros ojuros acrescimo minDiferenca (- iteracaoAtual 1) medJuros maxJuros (quotient (+ medJuros maxJuros) 2.0))
+      (_acrescimoParaJuros ojuros acrescimo minDiferenca (- iteracaoAtual 1) minJuros medJuros (quotient (+ minJuros medJuros) 2.0))
     )
   )
 )
@@ -110,18 +121,21 @@
 ; função açúcar que calcula os juros a partir do acrescimo e dados comuns (como parcelas)
 (defgeneric acrescimoParaJuros (ojuros acrescimo precisao maxIteracoes maxJuros))
 (defmethod acrescimoParaJuros (ojuros acrescimo precisao maxIteracoes maxJuros)
-  (_acrescimoParaJuros ojuros acrescimo (expt 0.1 precisao) maxIteracoes 0.0 maxJuros)
+  (if (or (< (slot-value ojuros 'quantidade) 1) (<= (slot-value ojuros 'periodo) 0.0) (<= acrescimo 0.0) (< precisao 1) (< maxIteracoes 1) (<= maxJuros 0.0) (<= (getPesoTotal ojuros) 0.0))
+    0.0
+    (_acrescimoParaJuros ojuros acrescimo (expt 0.1 precisao) maxIteracoes 0.0 maxJuros (quotient maxJuros 2.0))
+  )
 )
 
 ; corpo do programa, chamar com (time (main)) para medir o tempo
 (defun main ()
   ;; parâmetros do objeto, objeto e resultados das funções
   (let* ((Quantidade 3)
-         (Composto 1)  ; 1 = true, 0 = false
+         (Composto t)  ; t = true, nil = false
          (Periodo 30.0)
          (Pagamentos (criaPagamentos Quantidade Periodo))
          (Pesos (criaPesos Quantidade))
-         (juros (cJuros Composto Periodo Pagamentos Pesos))
+         (juros (cJuros Quantidade Composto Periodo Pagamentos Pesos))
          (pesoTotal nil)
          (acrescimoCalculado nil)
          (jurosCalculado nil))

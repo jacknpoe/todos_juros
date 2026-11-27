@@ -3,7 +3,7 @@
 # ;             25/03/2026: (maxJuros - minJuros) <= minDiferenca (em vez de < ) e (if (not (car pesos) 0 em lugar de sobre cdr
 # ;        0.2: 11/10/2026: funções _getPesoTotal, _jurosCompostos e _jurosSimples alteradas para permitir Tail Call Optimization (TCO)
 # ;        0.3: 27/11/2926: Composto T; + medJuros; validações de variáveis, parâmetros e cálculos
-# ;         calcula até 34.814 parcelas, depois estoura a pilha; a não ser que se use ulimit -s, mas ainda não chega a 300.000 parcelas
+# ; AVISO: calcula até 34.814 parcelas, depois estoura a pilha; a não ser que se use ulimit -s, mas ainda não chega a 300.000 parcelas
 
 # ; a primeira parte não é domínio do problema, mas a matemática mais básica, de ponto fixo, para a parte financeira
 

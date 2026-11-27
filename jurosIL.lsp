@@ -4,6 +4,7 @@
 ;        0.3: 27/10/2026: listas escaladas com geradoras, proteção de expt infinito e medJuros em _acrescimoParaJuros
 ;                         funções recursivas agora permitem Tail Call Optimization (TCO), mas o ganho é marginal, ainda não alcança 40.000 parcelas
 ;        0.4: 25/11/2026: Composto t
+;        0.5: 27/11/2026: simplificado pesoTotal em acrescimoParaJuros; separadas variáveis de impressão
 
 ; COMO RODAR E MEDIR:
 ; eisl -c
@@ -109,18 +110,18 @@
 
 ; função açúcar que calcula os juros a partir do acréscimo e dados comuns (como parcelas)
 (defun acrescimoParaJuros (acrescimo precisao maxIteracoes maxJuros)
-  (let ((pesoTotal (getPesoTotal)))
-    (if (or (< Quantidade 1) (<= Periodo 0.0) (<= pesoTotal 0.0) (<= acrescimo 0.0) (< precisao 1) (< maxIteracoes 1) (<= maxJuros 0.0))
-      0.0
-      (_acrescimoParaJuros acrescimo (expt 0.1 precisao) maxIteracoes 0.0 maxJuros (quotient maxJuros 2.0))
-    )
+  (if (or (< Quantidade 1) (<= Periodo 0.0) (<= pesoTotal 0.0) (<= acrescimo 0.0) (< precisao 1) (< maxIteracoes 1) (<= maxJuros 0.0) (<= (getPesoTotal) 0.0))
+    0.0
+    (_acrescimoParaJuros acrescimo (expt 0.1 precisao) maxIteracoes 0.0 maxJuros (quotient maxJuros 2.0))
   )
 )
 
-; testes
+; calcula e guarda os resultados das funções
 (defglobal pesoTotal (getPesoTotal))
-(format (standard-output) "Peso total = ~G~%" pesoTotal)
 (defglobal acrescimoCalculado (jurosParaAcrescimo 3.0))
-(format (standard-output) "Acrescimo = ~G~%" acrescimoCalculado)
 (defglobal jurosCalculado (acrescimoParaJuros acrescimoCalculado 15 100 50.0))
+
+; imprime os resultados
+(format (standard-output) "Peso total = ~G~%" pesoTotal)
+(format (standard-output) "Acrescimo = ~G~%" acrescimoCalculado)
 (format (standard-output) "Juros = ~G~%" jurosCalculado)

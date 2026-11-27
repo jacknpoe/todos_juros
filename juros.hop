@@ -20,12 +20,12 @@ dec getPesoTotal : list (num) -> num;
 --- getPesoTotal (head::tail) <= head + getPesoTotal (tail);
 --- getPesoTotal (nil) <= 0.0;
 
-! calcula a somatória dos amortecimentos dos juros compostos (original)
+! calcula a somatória das amortizações dos juros compostos (original)
 dec rJurosCompostos : num # list (num) # list (num) # num -> num;
 --- rJurosCompostos (periodo, (hpag::tpag), (hpes::tpes), juros) <= rJurosCompostos (periodo, tpag, tpes, juros) + hpes / pow(1.0 + juros / 100.0, hpag / periodo);
 --- rJurosCompostos (periodo, nil, nil, juros) <= 0.0;
 
-! calcula a somatória dos amortecimentos dos juros simples (original)
+! calcula a somatória das amortizações dos juros simples (original)
 dec rJurosSimples : num # list (num) # list (num) # num -> num;
 --- rJurosSimples (periodo, (hpag::tpag), (hpes::tpes), juros) <= rJurosSimples (periodo, tpag, tpes, juros) + hpes / (1.0 + juros / 100.0 * hpag / periodo);
 --- rJurosSimples (periodo, nil, nil, juros) <= 0.0;

@@ -67,7 +67,7 @@
   (_getPesoTotal (slot-value ojuros 'pesos) 0.0)
 )
 
-; função recursiva que calcula a soma do amortecimento de todas as parcelas para juros compostos
+; função recursiva que calcula a soma da amortização de todas as parcelas para juros compostos
 (defun _jurosCompostos (juros pagamentos pesos periodo acumulador)
   (if (null pesos)
     acumulador
@@ -75,7 +75,7 @@
   )
 )
 
-; função recursiva que calcula a soma do amortecimento de todas as parcelas para juros simples
+; função recursiva que calcula a soma da amortização de todas as parcelas para juros simples
 (defun _jurosSimples (juros pagamentos pesos periodo acumulador)
   (if (null pesos)
     acumulador

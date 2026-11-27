@@ -1,6 +1,7 @@
 ; Cálculo dos juros, sendo que precisa de parcelas pra isso
 ; Versão 0.1: 01/02/2026: versão feita sem muito conhecimento de Fennel, com 80% da matemática retirada de newLISP
 ;        0.2: 12/10/2026: versão iterativa
+;        0.3: 27/11/2026: valida acumulador
 
 ; variáveis globais para simplificar as chamadas de métodos
 (set _G.Quantidade 3)
@@ -31,7 +32,10 @@
           (set acumulador (+ acumulador (/ (. _G.Pesos indice) (+ 1.0 (* (/ juros 100.0) (/ (. _G.Pagamentos indice) _G.Periodo))))))
         )
       )
-      (* (- (/ pesoTotal acumulador) 1.0) 100.0)
+      (if (<= acumulador 0.0)
+        0.0
+        (* (- (/ pesoTotal acumulador) 1.0) 100.0)
+      )
     )
   )
 )
@@ -54,7 +58,10 @@
 ;;           (set acumulador (+ acumulador (/ (. _G.Pesos indice) (+ 1.0 (* (/ juros 100.0) (/ (. _G.Pagamentos indice) _G.Periodo))))))
 ;;         )
 ;;       )
-;;       (* (- (/ pesoTotal acumulador) 1.0) 100.0)
+;;       (if (<= acumulador 0.0)
+;;         0.0
+;;         (* (- (/ pesoTotal acumulador) 1.0) 100.0)
+;;       )
 ;;     )
 ;;   )
 ;; )

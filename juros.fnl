@@ -1,9 +1,10 @@
 ; Cálculo dos juros, sendo que precisa de parcelas pra isso
 ; Versão 0.1: 01/02/2026: versão feita sem muito conhecimento de Fennel, com 80% da matemática retirada de newLISP
 ;        0.2: 13/02/2026: alteradas _getPesoTotal, _jurosCompostos e _jurosSimples para permitir Tail Call Optimization (TCO), o for foi trocado por recursão
+;        0.3: 27/11/2026: validações de variáveis, parâmetros e cálculos; correção de _jurosSimples de parêntes que fechada depois de juros e foi para o final
 
 ; variáveis globais para simplificar as chamadas de métodos
-(set _G.Quantidade 300000)
+(set _G.Quantidade 3)
 (set _G.Composto true)
 (set _G.Periodo 30.0)
 (set _G.Pagamentos {})
@@ -28,7 +29,7 @@
 
 ; função recursiva que calcula a somatória de Pesos[]
 (fn _getPesoTotal [indice acumulador]
-  (if (= indice 0)
+  (if (<= indice 0)
     acumulador
     (_getPesoTotal (- indice 1) (+ (. _G.Pesos indice) acumulador))
   )
@@ -39,27 +40,40 @@
   (_getPesoTotal _G.Quantidade 0.0)
 )
 
-; função recursiva que calcula a soma do amortecimento de todas as parcelas para juros compostos
+; função recursiva que calcula a soma da amortização de todas as parcelas para juros compostos
 (fn _jurosCompostos [indice juros acumulador]
-  (if (= indice 0)
+  (if (<= indice 0)
     acumulador
     (_jurosCompostos (- indice 1) juros (+ (/ (. _G.Pesos indice) (^ (+ 1.0 (/ juros 100.0)) (/ (. _G.Pagamentos indice) _G.Periodo))) acumulador))
   )
 )
 
-; função recursiva que calcula a soma do amortecimento de todas as parcelas para juros simples
+; função recursiva que calcula a soma da amortização de todas as parcelas para juros simples
 (fn _jurosSimples [indice juros acumulador]
-  (if (= indice 0)
+  (if (<= indice 0)
     acumulador
-    (_jurosSimples (- indice 1) juros) (+ (/ (. _G.Pesos indice) (+ 1.0 (* (/ juros 100.0) (/ (. _G.Pagamentos indice) _G.Periodo)))) acumulador)
+    (_jurosSimples (- indice 1) juros (+ (/ (. _G.Pesos indice) (+ 1.0 (* (/ juros 100.0) (/ (. _G.Pagamentos indice) _G.Periodo)))) acumulador)
+)
   )
 )
 
 ; função que calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
 (fn jurosParaAcrescimo [juros]
-  (if _G.Composto
-      (* (- (/ (getPesoTotal) (_jurosCompostos _G.Quantidade juros 0.0)) 1.0) 100.0)
-      (* (- (/ (getPesoTotal) (_jurosSimples _G.Quantidade juros 0.0)) 1.0) 100.0)
+  (let [ pesoTotal (getPesoTotal) ]
+    (if (or (< _G.Quantidade 1) (<= _G.Periodo 0.0) (<= juros 0.0) (<= pesoTotal 0.0))
+      0.0
+      (let [ acumulador
+          (if _G.Composto
+            (_jurosCompostos _G.Quantidade juros 0.0)
+            (_jurosSimples _G.Quantidade juros 0.0)
+          )
+        ]
+        (if (<= acumulador 0.0)
+          0.0
+          (* (- (/ pesoTotal acumulador) 1.0) 100.0) 
+        )
+      )
+    )
   )
 )
 
@@ -76,7 +90,10 @@
 
 ; fumção açúcar que calcula os juros a partir do acréscimo e dados comuns (como parcelas)
 (fn acrescimoParaJuros [acrescimo precisao maxIteracoes maxJuros]
-  (_acrescimoParaJuros acrescimo (^ 0.1 precisao) maxIteracoes 0 maxJuros)
+  (if (or (< _G.Quantidade 1) (<= _G.Periodo 0.0) (<= acrescimo 0.0) (< precisao 1) (< maxIteracoes 1) (< maxJuros 0.0) (<= (getPesoTotal) 0.0))
+    0.0
+    (_acrescimoParaJuros acrescimo (^ 0.1 precisao) maxIteracoes 0 maxJuros)
+  )
 )
 
 ; chama a função que insere elementos nos arrays

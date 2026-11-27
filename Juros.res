@@ -42,13 +42,13 @@ let rec rGetPesoTotal = (indice: int, acumulador: float): float => {
 // função açúcar que calcula a somatória de pesos[]
 let getPesoTotal = (): float => { rGetPesoTotal(quantidade - 1, 0.0) }
 
-// função recursiva que calcula a soma do amortecimento de todas as parcelas para juros compostos
+// função recursiva que calcula a soma da amortização de todas as parcelas para juros compostos
 let rec rJurosCompostos = (indice: int, juros: float, acumulador: float): float => {
     if indice < 0 { acumulador }
     else { rJurosCompostos(indice - 1, juros, Array.getUnsafe(pesos, indice) /. (1.0 +. juros /. 100.0) ** (Array.getUnsafe(pagamentos, indice) /. periodo) +. acumulador) }
 }
 
-// função recursiva que calcula a soma do amortecimento de todas as parcelas para juros simples
+// função recursiva que calcula a soma da amortização de todas as parcelas para juros simples
 let rec rJurosSimples = (indice: int, juros: float, acumulador: float): float => {
     if indice < 0 { acumulador }
     else { rJurosSimples(indice - 1, juros, Array.getUnsafe(pesos, indice) /. (1.0 +. juros /. 100.0 *. Array.getUnsafe(pagamentos, indice) /. periodo) +. acumulador) }

@@ -84,36 +84,36 @@ jurosParaAcrescimo(Composto, Periodo, Pagamentos, Pesos, Juros, Acrescimo) :-
     (
       (
         (Composto == true,
-          rJurosCompostos(Periodo, Pagamentos, Pesos, Juros, Amortecimento, 0.0))
+          rJurosCompostos(Periodo, Pagamentos, Pesos, Juros, Amortizacao, 0.0))
         ;
         (Composto == false,
-          rJurosSimples(Periodo, Pagamentos, Pesos, Juros, Amortecimento, 0.0))
+          rJurosSimples(Periodo, Pagamentos, Pesos, Juros, Amortizacao, 0.0))
       ),
       (
-        (Amortecimento =< 0.0,
+        (Amortizacao =< 0.0,
           Acrescimo is 0.0)
         ;
-        (Amortecimento > 0.0,
-          Acrescimo is (PesoTotal / Amortecimento - 1.0) * 100)
+        (Amortizacao > 0.0,
+          Acrescimo is (PesoTotal / Amortizacao - 1.0) * 100)
       )
     )
   ).
 
-% função recursiva que calcula a soma do amortecimento de todas as parcelas para juros compostos
+% função recursiva que calcula a soma da amortização de todas as parcelas para juros compostos
 rJurosCompostos(_, [], [], _, Acumulador, Acumulador).
-rJurosCompostos(Periodo, [PagamentosH|PagamentosT], [PesosH|PesosT], Juros, Amortecimento, Acumulador) :-
+rJurosCompostos(Periodo, [PagamentosH|PagamentosT], [PesosH|PesosT], Juros, Amortizacao, Acumulador) :-
 (
   % NovoAcumulador is PesosH / (1.0 + Juros / 100.0) ** (PagamentosH / Periodo) + Acumulador,
   NovoAcumulador is PesosH * (1.0 + Juros / 100.0) ** (-(PagamentosH / Periodo)) + Acumulador,  
-  rJurosCompostos(Periodo, PagamentosT, PesosT, Juros, Amortecimento, NovoAcumulador)
+  rJurosCompostos(Periodo, PagamentosT, PesosT, Juros, Amortizacao, NovoAcumulador)
 ).
   
-% função recursiva que calcula a soma do amortecimento de todas as parcelas para juros simples
+% função recursiva que calcula a soma da amortização de todas as parcelas para juros simples
 rJurosSimples(_, [], [], _, Acumulador, Acumulador).
-rJurosSimples(Periodo, [PagamentosH|PagamentosT], [PesosH|PesosT], Juros, Amortecimento, Acumulador) :-
+rJurosSimples(Periodo, [PagamentosH|PagamentosT], [PesosH|PesosT], Juros, Amortizacao, Acumulador) :-
 (
   NovoAcumulador is PesosH / (1.0 + Juros / 100.0 * PagamentosH / Periodo) + Acumulador,
-  rJurosSimples(Periodo, PagamentosT, PesosT, Juros, Amortecimento, NovoAcumulador)
+  rJurosSimples(Periodo, PagamentosT, PesosT, Juros, Amortizacao, NovoAcumulador)
 ).
   
 % função açúcar que calcula os juros a partir do acrescimo e dados comuns (como parcelas)

@@ -2,7 +2,7 @@
 # ; Versão 0.1: 24/03/2026: versao feita sem muito conhecimento de PicoLisp
 # ;             25/03/2026: (maxJuros - minJuros) <= minDiferenca (em vez de < ) e (if (not (car pesos) 0 em lugar de sobre cdr
 # ;        0.2: 11/10/2026: funções _getPesoTotal, _jurosCompostos e _jurosSimples alteradas para permitir Tail Call Optimization (TCO)
-# ; AVISOS: algumas verificações foram retiradas, então os cálculos são indefinidos para valores incorretos
+# ;        0.3: 27/11/2926: Composto T; + medJuros; validações de variáveis, parâmetros e cálculos
 # ;         calcula até 34.814 parcelas, depois estoura a pilha; a não ser que se use ulimit -s, mas ainda não chega a 300.000 parcelas
 
 # ; a primeira parte não é domínio do problema, mas a matemática mais básica, de ponto fixo, para a parte financeira
@@ -81,8 +81,8 @@
 # ; a partir daqui é domínio do problema
 
 # ; variáveis globais para simplificar as chamadas às funções
-(setq Quantidade 3s)
-(setq Composto 1)
+(setq Quantidade 3)
+(setq Composto T)
 (setq Periodo (itof 30))
 (setq Pagamentos NIL)
 (setq Pesos NIL)
@@ -128,7 +128,7 @@
   (_getPesoTotal Pesos 0)
 )
 
-# ; função recursiva que calcula a soma do amortecimento de todas as parcelas para juros compostos
+# ; função recursiva que calcula a soma da amortização de todas as parcelas para juros compostos
 (de _jurosCompostos (juros pagamentos pesos acumulador)
   (if (not (car pesos))
     acumulador
@@ -136,39 +136,51 @@
   )
 )
 
-# ; função recursiva que calcula a soma do amortecimento de todas as parcelas para juros simples
+# ; função recursiva que calcula a soma da amortização de todas as parcelas para juros simples
 (de _jurosSimples (juros pagamentos pesos acumulador)
   (if (not (car pesos))
     acumulador
-     _jurosSimples juros (cdr pagamentos) (cdr pesos) (+ (divfp (car pesos) (+ UM (mulfp (/ juros 100) (divfp (car pagamentos) Periodo))) acumulador))
+     (_jurosSimples juros (cdr pagamentos) (cdr pesos) (+ (divfp (car pesos) (+ UM (mulfp (/ juros 100) (divfp (car pagamentos) Periodo)))) acumulador))
   )
 )
 
 # ; açúcar que calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
 (de jurosParaAcrescimo (juros)
-  (if (> Composto 0)
-    (* (- (divfp (getPesoTotal) (_jurosCompostos juros Pagamentos Pesos 0)) UM) 100)
-    (* (- (divfp (getPesoTotal) (_jurosSimples juros Pagamentos Pesos 0)) UM) 100)
+  (let ( pesoTotal (getPesoTotal) )
+    (if (or (< Quantidade 1) (<= Periodo 0) (<= juros 0) (<= pesoTotal 0))
+      0
+      (let ( acumulador
+          (if Composto
+            (_jurosCompostos juros Pagamentos Pesos 0)
+            (_jurosSimples juros Pagamentos Pesos 0)
+          )
+        )
+        (if (<= acumulador 0)
+          0
+          (* (- (divfp pesoTotal acumulador) UM) 100)
+        )
+      )
+    )
   )
 )
 
 # ; função recursiva no lugar de um for que realmente calcula os juros
-(de _acrescimoParaJuros (acrescimo minDiferenca iteracaoAtual minJuros maxJuros)
-  (if (<= (- maxJuros minJuros) minDiferenca)
-    (/ (+ minJuros maxJuros) 2)
-    (if (> iteracaoAtual 0)
-      (if (< (jurosParaAcrescimo (/ (+ minJuros maxJuros) 2)) acrescimo)
-        (_acrescimoParaJuros acrescimo minDiferenca (- iteracaoAtual 1) (/ (+ minJuros maxJuros) 2) maxJuros)
-        (_acrescimoParaJuros acrescimo minDiferenca (- iteracaoAtual 1) minJuros (/ (+ minJuros maxJuros) 2))
-      )
-      (/ (+ minJuros maxJuros) 2)
+(de _acrescimoParaJuros (acrescimo minDiferenca iteracaoAtual minJuros maxJuros medJuros)
+  (if (or (<= (- maxJuros minJuros) minDiferenca) (<= iteracaoAtual 0))
+    medJuros
+    (if (< (jurosParaAcrescimo medJuros) acrescimo)
+      (_acrescimoParaJuros acrescimo minDiferenca (- iteracaoAtual 1) medJuros maxJuros (/ (+ medJuros maxJuros) 2))
+      (_acrescimoParaJuros acrescimo minDiferenca (- iteracaoAtual 1) minJuros medJuros (/ (+ minJuros medJuros) 2))
     )
   )
 )
 
 # ; açúcar que calcula os juros a partir do acréscimo e dados comuns (como parcelas)
 (de acrescimoParaJuros (acrescimo precisao maxIteracoes maxJuros)
-  (_acrescimoParaJuros acrescimo (pretomin precisao) maxIteracoes 0 maxJuros)
+  (if (or (< Quantidade 1) (<= Periodo 0) (<= acrescimo 0) (< precisao 1) (<= maxIteracoes 1) (<= maxJuros 0) (<= (getPesoTotal) 0))
+    0
+    (_acrescimoParaJuros acrescimo (pretomin precisao) maxIteracoes 0 maxJuros (/ maxJuros 2))
+  )
 )
 
 # ; inicializa as listas

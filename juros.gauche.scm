@@ -83,7 +83,7 @@
     )
 )
 
-;; função que calcula a soma do amortecimento de todas as parcelas para juros compostos
+;; função que calcula a soma da amortização de todas as parcelas para juros compostos
 (define-method _jurosCompostos ((ojuros cJuros) pagamentos pesos juros acumulador)
     (if (null? pagamentos)
         acumulador
@@ -91,7 +91,7 @@
     )
 )
 
-;; função que calcula a soma do amortecimento de todas as parcelas para juros simples
+;; função que calcula a soma da amortização de todas as parcelas para juros simples
 (define-method _jurosSimples ((ojuros cJuros) pagamentos pesos juros acumulador)
     (if (null? pagamentos)
         acumulador

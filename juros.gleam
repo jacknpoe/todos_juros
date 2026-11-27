@@ -57,7 +57,7 @@ fn getpesototal(pesos: List(Float)) -> Float {
   rgetpesototal(pesos, 0.0)
 }
 
-// calcula recursivamente a soma do amortecimento de todas as parcelas para juros compostos
+// calcula recursivamente a soma da amortização de todas as parcelas para juros compostos
 fn rjuroscompostos(pagamentos: List(Float), pesos: List(Float), juros: Float, acumulador: Float) -> Float {
   case pagamentos, pesos {
     [], [] -> acumulador
@@ -70,7 +70,7 @@ fn rjuroscompostos(pagamentos: List(Float), pesos: List(Float), juros: Float, ac
   }
 }
 
-// calcula recursivamente a soma do amortecimento de todas as parcelas para juros simples
+// calcula recursivamente a soma da amortização de todas as parcelas para juros simples
 fn rjurossimples(pagamentos: List(Float), pesos: List(Float), juros: Float, acumulador: Float) -> Float {
   case pagamentos, pesos {
     [], [] -> acumulador

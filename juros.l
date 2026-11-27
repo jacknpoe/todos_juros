@@ -72,7 +72,7 @@
   )
 )
 
-;; função que calcula a soma do amortecimento de todas as parcelas para juros compostos
+;; função que calcula a soma da amortização de todas as parcelas para juros compostos
 (defun _jurosCompostos (juros pagamentos pesos acumulador)
   (if (null pesos)
     acumulador
@@ -80,7 +80,7 @@
   )
 )
 
-;; função que calcula a soma do amortecimento de todas as parcelas para juros simples
+;; função que calcula a soma da amortização de todas as parcelas para juros simples
 (defun _jurosSimples (juros pagamentos pesos acumulador)
   (if (null pesos)
     acumulador

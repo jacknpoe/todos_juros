@@ -79,10 +79,10 @@
 
 ; função que calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
 (defun jurosParaAcrescimo (juros)
-  (let ((pesoTotal (getPesoTotal)))
+  (let (( pesoTotal (getPesoTotal) ))
     (if (or (< Quantidade 1) (<= Periodo 0.0) (<= pesoTotal 0.0) (<= juros 0.0))
       0.0
-      (let ((acumulador
+      (let (( acumulador
           (if Composto
             (_jurosCompostos juros Pagamentos Pesos 0.0)
             (_jurosSimples juros Pagamentos Pesos 0.0)

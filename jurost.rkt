@@ -3,11 +3,12 @@
 ;; Cálculo do juros, sendo que precisa de listas para isso
 ;; Versão 0.1: 17/06/2026: copiada da versão de Racket (padrão) para adicionar os tipos sob supervisão do ChatGPT
 ;;        0.2: 21/08/2026: alteradas as funções recursivas para permitir Tail Call Optimization
+;;        0.3: 25/11/2026: Composto #t; variáveis para impressão; tipos explícitos de variáveis; pesoTotal e acumulador criados e validaçção de acumulador
 
 ;; dados gerais escalares
-(define Quantidade 3)
-(define Composto 1)  ;; 1 = true, 0 = false
-(define Periodo 30.0)
+(define Quantidade : Integer 3)
+(define Composto : Boolean #t)  ;; #t = true, #f = false
+(define Periodo : Real 30.0)
 
 ;; função recursiva que realmente monta Pagamentos[]
 (: rCriaPagamentos (-> Integer (Listof Real) (Listof Real)))
@@ -38,8 +39,8 @@
 )
 
 ;; dados gerais listas
-(define Pagamentos (criaPagamentos))
-(define Pesos (criaPesos))
+(define Pagamentos : (Listof Real) (criaPagamentos))
+(define Pesos : (Listof Real) (criaPesos))
 
 ;; função recursiva que realmente calcula a somatória de pesos[]
 (: rGetPesoTotal (-> (Listof Real) Real Real))
@@ -55,7 +56,7 @@
   (rGetPesoTotal Pesos 0.0)
 )
 
-;; função recursiva que calcula a soma do amortecimento de todas as parcelas para juros compostos
+;; função recursiva que calcula a soma da amortização de todas as parcelas para juros compostos
 (: rJurosCompostos (-> Real (Listof Real) (Listof Real) Real Real))
 (define (rJurosCompostos juros pagamentos pesos acumulador)
   (if (null? pagamentos)
@@ -64,7 +65,7 @@
   )
 )
 
-;; função recursiva que calcula a soma do amortecimento de todas as parcelas para juros simples
+;; função recursiva que calcula a soma da amortização de todas as parcelas para juros simples
 (: rJurosSimples (-> Real (Listof Real) (Listof Real) Real Real))
 (define (rJurosSimples juros pagamentos pesos acumulador)
   (if (null? pagamentos)
@@ -76,11 +77,20 @@
 ;; função açúcar que calcula o acréscimo a partir dos juros e dados comuns (como parcelas)
 (: jurosParaAcrescimo (-> Real Real))
 (define (jurosParaAcrescimo juros)
-  (if (or (<= juros 0.0) (< Quantidade 1) (<= Periodo 0.0) (<= (getPesoTotal) 0.0))
-    0.0
-    (if (= Composto 1)
-      (* (- (/ (getPesoTotal) (rJurosCompostos juros Pagamentos Pesos 0.0)) 1.0) 100.0)
-      (* (- (/ (getPesoTotal) (rJurosSimples juros Pagamentos Pesos 0.0)) 1.0) 100.0)
+  (let (( pesoTotal (ann (getPesoTotal) Real )))
+    (if (or (<= juros 0.0) (< Quantidade 1) (<= Periodo 0.0) (<= pesoTotal 0.0))
+      0.0
+      (let (( acumulador (ann
+          (if Composto
+            (rJurosCompostos juros Pagamentos Pesos 0.0)
+            (rJurosSimples juros Pagamentos Pesos 0.0)
+          )
+        Real )))
+        (if (<= acumulador 0.0)
+          0.0
+          (* (- (/ pesoTotal acumulador) 1.0) 100.0)
+        )
+      )
     )
   )
 )
@@ -106,13 +116,12 @@
   )
 )
 
+;; calcula e guarda os resultados das funções
+(define pesoTotal : Real (getPesoTotal))
+(define acrescimoCalculado : Real (jurosParaAcrescimo 3.0))
+(define jurosCalculado : Real (acrescimoParaJuros acrescimoCalculado 15 65 50.0))
+
 ;; testa as funções
-(display "Peso total = ")
-(display (getPesoTotal))
-(display "\n")
-(display "Acréscimo = ")
-(display (jurosParaAcrescimo 3.0))
-(display "\n")
-(display "Juros = ")
-(display (acrescimoParaJuros (jurosParaAcrescimo 3.0) 15 65 50.0))
-(display "\n")
+(display "Peso total = ") (display pesoTotal) (display "\n")
+(display "Acréscimo = ") (display acrescimoCalculado) (display "\n")
+(display "Juros = ") (display jurosCalculado)(display "\n")

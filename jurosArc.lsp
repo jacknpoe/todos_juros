@@ -50,7 +50,7 @@
   (_getPesoTotal Pesos 0.0)
 )
 
-; fumcao recursiva que calcula a soma do amortecimento de todas as parcelas para juros compostos
+; fumcao recursiva que calcula a soma do amortização de todas as parcelas para juros compostos
 (def _jurosCompostos (juros pagamentos pesos acumulador)
   (if (no pesos)
     acumulador
@@ -58,7 +58,7 @@
   )
 )
 
-; funcao recursiva que calcula a soma do amortecimento de todas as parcelas para juros simples
+; funcao recursiva que calcula a soma do amortização de todas as parcelas para juros simples
 (def _jurosSimples (juros pagamentos pesos acumulador)
   (if (no pesos)
     acumulador
